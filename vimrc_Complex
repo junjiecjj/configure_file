@@ -15,7 +15,7 @@ Plugin 'jiangmiao/auto-pairs' "自动补全括号等
 Plugin 'kien/ctrlp.vim' "在vim中搜索文件
 Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
 Plugin 'vim-syntastic/syntastic' "语法检查
-"Plugin 'scrooloose/syntastic' "语法检查
+Plugin 'scrooloose/syntastic' "语法检查
 Plugin 'nvie/vim-flake8' "falke代码风格检查
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
