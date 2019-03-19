@@ -3,6 +3,7 @@ filetype off                  "required开启探测文件类型,on off
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 
 "let Vundle manage Vundle,require
@@ -15,7 +16,7 @@ Plugin 'jiangmiao/auto-pairs' "自动补全括号等
 Plugin 'kien/ctrlp.vim' "在vim中搜索文件
 Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
 Plugin 'vim-syntastic/syntastic' "语法检查
-Plugin 'scrooloose/syntastic' "语法检查
+"Plugin 'scrooloose/syntastic' "语法检查
 Plugin 'nvie/vim-flake8' "falke代码风格检查
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
@@ -189,6 +190,10 @@ let g:ale_fixers = {
 \    'css': ['stylelint'],
 \}
 
+let g:ale_fix_on_save = 1
+
+let g:ale_sign_coumn_always = 1
+
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '▶'
 
@@ -196,6 +201,12 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:airline_theme='papercolor'
+
+let g:jsx_ext_required = 0
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
+
+let g:NERDSpaceDelims =1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCustomDelimiters = {
             \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
