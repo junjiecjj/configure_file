@@ -1,0 +1,7 @@
+host hdp
+    user junjie
+    hostname 114.214.161.12
+
+host trex
+    user junjie
+    hostname 211.86.151.170
