@@ -200,6 +200,9 @@ let g:ycm_seed_indetifiers_with_syntax = 1   "关键字补全
 
 let g:ycm_complete_in_comments=1  " 在注释中也可以补全
 
+let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
+let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
 let g:ycm_confirm_extra_conf=0       "不显示开启vim时是否检查ycm_extra_conf文件的信息，直接加载该文件
 let g:ycm_cache_omnifunc=0         "每次重新生成匹配项，禁止缓存匹配项
 map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
@@ -527,9 +530,11 @@ func SetTitle()
     else 
         call setline(1, "/*************************************************************************") 
         call append(line("."), ">> File Name: ".expand("%")) 
-        call append(line(".")+1, ">> Author: chenjunjie") 
+        "call append(line(".")+1, ">> Author: chenjunjie")
+        call append(line(".")+1, ">> Author: 陈俊杰") 
         call append(line(".")+2, ">> Mail: 2716705056qq.com") 
-        call append(line(".")+3, ">> Created Time: ".strftime("%Y.%m.%d")) 
+        "call append(line(".")+3, ">> Created Time: ".strftime("%Y.%m.%d"))
+        call append(line(".")+3, "# Created Time: ".strftime("%c"))
         call append(line(".")+4, "************************************************************************/") 
         call append(line(".")+5, "")
     endif
@@ -546,4 +551,4 @@ endfunc
 
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * normal G
-""""""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""新文件标题"""""""""""""""""""""""""""""""""""""""""
