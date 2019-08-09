@@ -145,7 +145,6 @@ syntax enable
 
 let python_highlight_all=1
 let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
-let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
 
 "************************************************
@@ -224,9 +223,15 @@ augroup END
 """"""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
+" 设置宽度
+let NERDTreeWinSize=17
 let NERDTreeShowHidden=1
 let g:NERDTreeShowIgnoredStatus = 1
 let g:nerdtree_tabs_open_on_console_startup=1
+" 显示目录行号
+let NERDTreeShowLineNumbers=0
+let NERDTreeAutoCenter=1
+let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -392,6 +397,10 @@ hi Directory ctermfg=11
 hi Operator ctermfg=9
 hi Keyword ctermfg=13
 hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
+
+highlight Search ctermbg=white ctermfg=black 
+highlight IncSearch ctermbg=black ctermfg=yellow 
+highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""
 
 "一键执行python代码
@@ -415,15 +424,17 @@ func! Rungdb()
 endfunc
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
+"sudo apt-get install vim-gnome
 noremap <C-A> ggvG$ 
 inoremap <C-A> <Esc>ggvG$
 vnoremap <C-C> "+y<Esc>
 map <C-V> "+p
 inoremap <C-V> <Esc>"+pa
 
-nnoremap <c-a> I
+
+"nnoremap <c-a> I
 nnoremap <c-e> A
-inoremap <c-a> <esc>I
+"inoremap <c-a> <esc>I
 inoremap <c-e> <esc>A
 nnoremap <c-v> "+gp
 nnoremap <c-c> "+y
@@ -551,4 +562,4 @@ endfunc
 
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * normal G
-""""""""""""""""""""""""""""""""""""""新文件标题"""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
