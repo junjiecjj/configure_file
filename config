@@ -124,7 +124,6 @@ AddToFunc   SetBG
 ##########################################
 
 # Function: IconManClick
-#
 # This function is run from FvwmIconMan when the button is clicked.
 DestroyFunc IconManClick
 AddToFunc   IconManClick
@@ -209,7 +208,8 @@ Style * SloppyFocus, MouseFocusClickRaises
 Style * TileCascadePlacement
 # Default Font
 #DefaultFont "xft:Sans:Bold:size=13:antialias=True"
-DefaultFont "StringEncoding=utf8:xft:Sans:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
+#DefaultFont "StringEncoding=utf8:xft:Sans:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
+DefaultFont "StringEncoding=utf8:xft:Noto mono:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
 
 # Window Placement
 Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition
@@ -278,22 +278,32 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置最上面的框框的颜色
-Colorset 2  fg Red, bg limegreen, hi, sh, Plain, NoShape
+Colorset 2  fg red, bg gold, hi red, sh red, Plain red, NoShape
+Colorset 2 Transient 
 
 Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 Colorset 4  fg black, bg #2d2d2d, hi #474747, sh #101010, Plain, NoShape
 #Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
 #5是调节menu的颜色
-Colorset 5  fg Black, bg lemonChiffon, hi, sh, Plain, NoShape
+Colorset 5  fg Black, bg lemonChiffon, hi red, sh red, Plain, NoShape
 
-Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
-Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
-Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
+#Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
+Colorset 6  fg Black, bg lawngreen, hi, sh, Plain, NoShape
+
+#Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
+Colorset 7  fg yellow, bg #ffffff, hi, sh, Plain, NoShape
+
+#Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
+Colorset 8  fg black, bg gold, hi blue, sh blue, bold
+
 Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
 Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
-Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
-Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+#Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
+Colorset 13 fg Black, bg pink, hi blue, sh blue, Plain, NoShape
+
+#Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+Colorset 14 fg red, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 
 #######
 # 4: Menus
@@ -306,10 +316,8 @@ MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 ############这是我自己加的###################
 #MenuStyle * Hilight3DOff, HilightBack #424164, ActiveFore white
 #Colorset 0 Transparent,fg white
-#MenuStyle * MenuColorset 0
-#MenuStyle * Foreground grey90
-#MenuStyle * Background #1c5572
-MenuStyle * Font "-Noto-Sans-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
+#MenuStyle * Font "-Noto-Sans-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
+MenuStyle * Font "-Noto-mono-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
 #MenuStyle * MenuColorset 0, HilightBack, ActiveColorset 1
 #MenuStyle * BorderWidth 1, TitleUnderlines1, SeparatorsLong, TrianglesSolid
 #MenuStyle * ItemFormat "%.2|%.5i%.5l%.5i%2.3>%2|"
@@ -329,7 +337,7 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&Offices%icon/wps.png%" Popup MenuOffice
 + "XDG &Menu%icons/apps.png%" Popup XDGMenu
 #+ "&XTerm%icon/terminal1.png%" Exec exec $[infostore.terminal]
-+ "&XTerm%icon/terminal1.png%" Exec exec xterm -fa "Noto mono" -fs 14 -bg grey25 -fg white -rightbar -sb
++ "&XTerm%icon/terminal1.png%" Exec exec xterm -fa "Noto mono" -fs 14 -bg grey11 -fg green2 -rightbar -sb
 + "" Nop
 + "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
 + "&Wallpapers%icons/wallpaper.png%" Popup BGMenu
@@ -618,8 +626,8 @@ ButtonStyle 6 - MwmDecorMin
 # a window. One use is getting the class/resource/name of a window.
 DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Colorset 10
-*FvwmIdent: Font "xft:Sans:bold:size=10:antialias=True"
-
+#*FvwmIdent: Font "xft:Sans:bold:size=10:antialias=True"
+*FvwmIdent: Font "xft:Noto mono:bold:size=10:antialias=True"
 # FvwmBanner
 #
 # This displays the Fvwm Logo for 5 seconds. This is displayed
@@ -653,7 +661,8 @@ DestroyModuleConfig RightPanel:*
 *RightPanel: Rows $[vp.height]
 *RightPanel: Columns 120
 *RightPanel: Frame 0
-*RightPanel: Font "xft:Sans:Bold:size=10:antialias=True"
+#*RightPanel: Font "xft:Sans:Bold:size=10:antialias=True"
+*RightPanel: Font "xft:Noto mono:Bold:size=10:antialias=True"
 *RightPanel: (120x45, Icon "fvwm-logo-small.png", Frame 0)
 *RightPanel: (120x5, Frame 0)
 *RightPanel: (10x20, Frame 0)
@@ -688,7 +697,8 @@ DestroyModuleConfig FvwmPager:*
 *FvwmPager: WindowColorsets 10 11
 *FvwmPager: Font None
 *FvwmPager: Balloons All
-*FvwmPager: BalloonFont "xft:Sans:Bold:size=8:antialias=True"
+#*FvwmPager: BalloonFont "xft:Sans:Bold:size=8:antialias=True"
+*FvwmPager: BalloonFont "xft:Noto Mono:Bold:size=8:antialias=True"
 *FvwmPager: BallonYOffset +2
 *FvwmPager: Window3dBorders
 *FvwmPager: MiniIcons
@@ -711,7 +721,8 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: DrawIcons always
 *FvwmIconMan: ReliefThickness 0
 *FvwmIconMan: Format "%t"
-*FvwmIconMan: Font "xft:Sans:Bold:size=8:antialias=True"
+#*FvwmIconMan: Font "xft:Sans:Bold:size=8:antialias=True"
+*FvwmIconMan: Font "xft:Noto mono:Bold:size=8:antialias=True"
 *FvwmIconMan: Action Mouse 0 A ret
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 *FvwmIconMan: Action Mouse 3 A sendcommand "Menu MenuIconOps"
