@@ -29,7 +29,7 @@
 #
 # The following is used in various menus and also sets the terminal
 # that FvwmConsole uses. Change this to your terminal of choice
-InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 14 -bg grey11 -fg green2 -rightbar -sb'
+InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
 InfoStoreAdd gnome-term gnome-terminal
 InfoStoreAdd kde-terminal  konsole
 #############添加环境变量##################
@@ -70,18 +70,19 @@ AddToFunc   StartFunction
 + I Test (Init, f $[FVWM_USERDIR]/.BGdefault) \
     Exec exec fvwm-root $[FVWM_USERDIR]/.BGdefault
 + I TestRc (NoMatch) Exec exec fvwm-root \
-    $[FVWM_DATADIR]/default-config/images/background/bg5.png
+    $[FVWM_DATADIR]/default-config/images/background/bg1.png
 + I Test (Init) Module FvwmBanner
 + I Module FvwmButtons RightPanel
 + I Module FvwmEvent EventNewDesk
-#+ I Exec xloadimage -nroot -fullscreen ~/图片/bg3.png  #背景
-+ I Exec exec fvwm-root -r $[fvwm_background]/bg7.png  #背景
 + I Exec exec fcitx    #启用中文输入法
+#+ I Module FvwmTaskBar 
+#+ I Exec xloadimage -nroot -fullscreen ~/图片/bg3.png  #背景
+#+ I Exec exec fvwm-root -r $[fvwm_background]/bg1.png  #背景
 
-DestroyFunc InitFunction
-AddToFunc InitFunction
-+ I Exec exec _xscreensaver -no-splash
-+ I Exec exec gnome-term
+#DestroyFunc InitFunction
+#AddToFunc InitFunction
+#+ I Exec exec _xscreensaver -no-splash
+#+ I Exec exec gnome-term
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -194,14 +195,16 @@ DesktopName 3 Desk3
 # for how long the mouse as at the edge before it scrolls.
 #
 # Set EdgeScroll 0 0 and/or EdgeResistance -1 to disable.
-EdgeScroll 100 100,100,100
-EdgeResistance 300,300,300,300
-EdgeThickness 1
+#使用EdgeScroll命令禁止flipping pages（鼠标不会因为接近屏幕边缘而进入相近的桌面）
+EdgeScroll 100, 100
+EdgeResistance 100,100,100,100
+EdgeThickness 1000
 Style * EdgeMoveDelay 350, EdgeMoveResistance 350
 
 # EwmhBaseStruts [left] [right] [top] [bottom]
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
+# 窗口最大化是两边撑满,而上面留出20个(像素),下面相应的留出25
 EwmhBaseStruts 0 120 0 0
 
 # This sets the ClickTime and MoveThreshold used to determine
@@ -211,9 +214,17 @@ MoveThreshold 3
 
 # Sets the focus style to SloppyFocus and a mouse click
 # in a window will Raise it.
+#这里SloppyFocus指，当鼠标移动到那个窗口时，窗口被激活（不包括root window)。
+#这里MouseFocusClickRaises表示，当鼠标点击一个激活的窗口时，这个窗口会上升到最高层。
 Style * SloppyFocus, MouseFocusClickRaises
-# 窗体出现时尽量不挡住其它的窗体
+# 窗体出现时尽量不挡住其它的窗体,先试图找一个可以放下它而不挡住其它窗口的地方，如果不行再采用层叠放置的方式
 Style * TileCascadePlacement
+
+#所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
+Style * FocusFollowsMouse 
+Style * DecorateTransient
+
+
 # Default Font
 #DefaultFont "xft:Sans:Bold:size=13:antialias=True"
 #DefaultFont "StringEncoding=utf8:xft:Sans:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -289,8 +300,8 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置最上面的框框的颜色
-Colorset 2  fg red, bg gold, hi red, sh red, Plain red, NoShape
-Colorset 2 Transient 
+Colorset 2 fg red, bg gold, hi red, sh red, Plain red, NoShape
+#Colorset 2 Transient 
 
 Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 Colorset 4  fg black, bg #2d2d2d, hi #474747, sh #101010, Plain, NoShape
@@ -317,7 +328,7 @@ Colorset 11 fg darkblue, bg white, hi green, sh #ffffff, Plain, NoShape
 Colorset 12 fg red, bg yellow, hi blue, sh, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
-Colorset 13 fg Black, bg pink, hi blue, sh blue, Plain, NoShape
+Colorset 13 fg Black, bg green, hi blue, sh blue, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 Colorset 14 fg red, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
@@ -354,13 +365,13 @@ MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:siz
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&Programs%icons/programs.png%" Popup MenuPrograms
-+ "&Browser%icon/www.png%" Popup MenuBrowser
-+ "&Offices%icon/wps.png%" Popup MenuOffice
++ "&Browser%icons/www.png%" Popup MenuBrowser
++ "&Offices%icons/wps.png%" Popup MenuOffice
 + "XDG &Menu%icons/apps.png%" Popup XDGMenu
 #+ "&XTerm%icon/terminal1.png%" Exec exec $[infostore.terminal]
-+ "&XTerm%icon/terminal1.png%" Exec exec xterm -fa "Noto mono" -fs 14 -bg grey11 -fg green2 -rightbar -sb
-+ "&gnome_Term%icon/terminal1.png%" Exec exec gnome-terminal
-+ "&kde_Term%icon/terminal1.png%" Exec exec konsole
++ "&XTerm%icons/terminal1.png%" Exec exec xterm -fa "Noto mono" -fs 14 -bg grey11 -fg green2 -rightbar -sb
++ "&gnome_Term%icons/terminal1.png%" Exec exec gnome-terminal
++ "&kde_Term%icons/terminal1.png%" Exec exec konsole
 + "" Nop
 + "Fvwm&Console%icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
 + "&Wallpapers%icons/wallpaper.png%" Popup BGMenu
@@ -425,10 +436,10 @@ AddToMenu   BGMenu "Wallpapers" Title
 + "Floral%bgicons/bg1.png%" SetBG bg1.png
 + "Circles%bgicons/bg2.png%" SetBG bg2.png
 + "Space%bgicons/bg3.png%" SetBG bg3.png
-+ "mountoun%icon/background/bg4.jpg%" SetBG bg4.png
-+ "sun%icon/background/bg5.jpg%" SetBG bg5.png
-+ "flower%icon/background/6.jpg%" SetBG 6.png
-+ "water%icon/background/7.jpg%" SetBG 7.png
+#+ "mountoun%bgicons/bg4.png%" SetBG bg4.png
+#+ "sun%bgicons/bg5.png%" SetBG bg5.png
+#+ "flower%bgicons/6.png%" SetBG 6.png
+#+ "water%bgicons/7.png%" SetBG 7.png
 
 # Window Operations Menus
 DestroyMenu MenuWindowOps
@@ -555,7 +566,7 @@ AddToMenu   MenuFvwmManPages "Help" Title
 # Format: Key <X>  <Context> <Modifier> <Action>
 #         Mouse <X> <Context> <Modifier> <Action>
 ####################
-
+#Meun是右windows键右边的按钮
 # Alt-F1 or Menu to load the root menu and Alt-Tab for a WindowList.
 # Ctrl-F1/F2/F3/F4 will switch between the Virtual Desktops.
 # Super_R (windows key) will launch a terminal.
@@ -563,7 +574,7 @@ AddToMenu   MenuFvwmManPages "Help" Title
 # Silent supresses any errors (such as keyboards with no Menu key).
 Silent Key F1 A M Menu MenuFvwmRoot
 Silent Key Menu A A Menu MenuFvwmRoot
-Silent Key Tab A M WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
+Silent Key Tab A M WindowList Root c c DeskSort, SelectOnRelease Meta_L
 #Silent Key Tab A M WindowList Root c c NoDeskSort
 Silent Key 1 A C GotoDesk 0 0
 Silent Key 2 A C GotoDesk 0 1
@@ -572,17 +583,20 @@ Silent Key 4 A C GotoDesk 0 3
 #Silent Key t A CM Exec exec $[infostore.terminal]
 Silent Key t A CM Exec exec $[infostore.gnome-term]
 Silent Key k A CM Exec exec $[infostore.kde-terminal]
-Silent Key Super_L A A Exec exec $[infostore.terminal]
+Silent Key Super_R A A Exec exec $[infostore.terminal]
 
 #Ctrl+Alt+n打开文件管理器
 Silent key f A CM Exec exec  /usr/bin/dolphin
 #Silent key f A CM Exec exec  /usr/bin/nautilus
-
+#Ctrl+Alt+g打开谷歌浏览器
 Silent key g A CM Exec exec /usr/bin/google-chrome-stable
+#Ctrl+Alt+s打开texStduio
 Silent key s A CM Exec exec /usr/bin/texstudio
+#Ctrl+Alt+l 打开 lyx
 Silent key l A CM Exec exec /usr/bin/lyx
+#Ctrl+Alt+d 打开spyder
 Silent key d A CM Exec exec /home/jack/anaconda3/bin/spyder
-#Ctrl+Alt+n打开控制中心
+#Ctrl+Alt+n打开控制中心/设置
 Silent key n  A CM Exec exec systemsettings5
 #Silent key n  A CM Exec exec gnome-control-center
 
@@ -675,7 +689,7 @@ DestroyModuleConfig FvwmIdent:*
 # when fvwm starts.
 DestroyModuleConfig FvwmBanner:*
 *FvwmBanner: NoDecor
-*FvwmBanner: Timeout 5
+*FvwmBanner: Timeout 3
 
 # FvwmScript
 #
@@ -797,3 +811,4 @@ DestroyModuleConfig EventNewDesk:*
 # This sets the default colorsets.
 *FvwmFormDefault: Colorset 10
 *FvwmFormDefault: ItemColorset 13
+
