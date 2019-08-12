@@ -67,8 +67,8 @@ SetEnv m_size       32x32
 # actions that are run after a restart.
 DestroyFunc StartFunction
 AddToFunc   StartFunction
-#+ I Test (Init, f $[FVWM_USERDIR]/.BGdefault) \
-#    Exec exec fvwm-root $[FVWM_USERDIR]/.BGdefault
++ I Test (Init, f $[FVWM_USERDIR]/.BGdefault) \
+    Exec exec fvwm-root $[FVWM_USERDIR]/.BGdefault
 + I TestRc (NoMatch) Exec exec fvwm-root \
     $[FVWM_DATADIR]/default-config/images/background/bg3.png
 + I Test (Init) Module FvwmBanner
@@ -81,8 +81,8 @@ AddToFunc   StartFunction
 
 #DestroyFunc InitFunction
 AddToFunc InitFunction
-+ I Exec exec _xscreensaver -no-splash
-+ I Exec exec gnome-terminal
+#+ I Exec exec _xscreensaver -no-splash
+#+ I Exec exec gnome-terminal
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-8-162 -norender -padding 1
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-8-130 -norender -padding 1
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w  -geometry 90x30-8-100 -norender -padding 1
@@ -448,10 +448,10 @@ AddToMenu   MenuBrowser "Browser" Title
 # Menu icons are located in ~/.fvwm/images/bgicons/
 DestroyMenu BGMenu
 AddToMenu   BGMenu "Wallpapers" Title
-+ "Floral%$[fvwm_img]/bgicons/bg1.png%" SetBG1 bg1.png
-+ "Circles%$[fvwm_img]/bgicons/bg2.png%" SetBG1 bg2.png
-+ "Space%$[fvwm_img]/bgicons/bg3.png%" SetBG1 bg3.png
-+ "mountoun%$[fvwm_img]/bgicons/bg4.png%" SetBG1 bg4.png
++ "Floral%$[fvwm_img]/bgicons/bg1.png%" SetBG bg1.png
++ "Circles%$[fvwm_img]/bgicons/bg2.png%" SetBG bg2.png
++ "Space%$[fvwm_img]/bgicons/bg3.png%" SetBG bg3.png
+#+ "mountoun%$[fvwm_img]/bgicons/bg4.png%" SetBG1 bg4.png
 #+ "sun%bgicons/bg5.png%" SetBG bg5.png
 #+ "flower%bgicons/6.png%" SetBG 6.png
 #+ "water%bgicons/7.png%" SetBG 7.png
