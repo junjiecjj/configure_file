@@ -421,6 +421,9 @@ Test (x xemacs) + "XEmacs" Exec exec xemacs
 Test (x gimp) + "Gimp" Exec exec gimp
 Test (x deepin-screenshot) + "screenshot" Exec exec deepin-screenshot
 Test (x smplayer) + "smplayer" Exec exec smplayer
+Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "TIM" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
+Test (x electronic-wechat) + "wetchat" Exec exec /usr/bin/electronic-wechat
+
 
 ############这是办公软件菜单##########################
 DestroyMenu MenuOffice
@@ -645,7 +648,7 @@ Silent Key q        A  CS   All (AcceptsFocus CurrentPage !Iconic !Shaded !FvwmT
 # shift + win_L 最大化当前page的所有窗口
 Silent Key Super_L    A  S   All (AcceptsFocus CurrentPage !Iconic !Shaded !FvwmTaskBar) Maximize
 
-
+Silent Key l          A  CM   Module FvwmScript FvwmScript-ConfirmQuit
 # Window Buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #   1 - Open the WindowOps menu.
 #   2 - Close on single click, Destory on double click.
