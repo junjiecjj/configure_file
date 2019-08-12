@@ -70,7 +70,7 @@ AddToFunc   StartFunction
 + I Test (Init, f $[FVWM_USERDIR]/.BGdefault) \
     Exec exec fvwm-root $[FVWM_USERDIR]/.BGdefault
 + I TestRc (NoMatch) Exec exec fvwm-root \
-    $[FVWM_DATADIR]/default-config/images/background/bg1.png
+    $[FVWM_DATADIR]/default-config/images/background/bg3.png
 + I Test (Init) Module FvwmBanner
 + I Module FvwmButtons RightPanel
 + I Module FvwmEvent EventNewDesk
@@ -80,9 +80,19 @@ AddToFunc   StartFunction
 #+ I Exec exec fvwm-root -r $[fvwm_background]/bg1.png  #背景
 
 #DestroyFunc InitFunction
-#AddToFunc InitFunction
+AddToFunc InitFunction
 #+ I Exec exec _xscreensaver -no-splash
-#+ I Exec exec gnome-term
+#+ I Exec exec gnome-terminal
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-8-162 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-8-130 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w  -geometry 90x30-8-100 -norender -padding 1
+
+
+AddToFunc RestartFunction
++ I All (xclock) Close
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-8-162 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-8-130 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w  -geometry 90x30-8-100 -norender -padding 1
 
 # Mouse Bindings Functions
 DestroyFunc RaiseMoveX
@@ -128,6 +138,9 @@ AddToFunc   SetBG
 + I Exec exec ln -fs $[FVWM_DATADIR]/default-config/images/background/$0 \
     $[FVWM_USERDIR]/.BGdefault
 #########################################
+DestroyFunc SetBG1
+AddToFunc   SetBG1
++ I Exec exec fvwm-root $[FVWM_USERDIR]/images/background/$0
 
 ##########################################
 
@@ -197,15 +210,15 @@ DesktopName 3 Desk3
 # Set EdgeScroll 0 0 and/or EdgeResistance -1 to disable.
 #使用EdgeScroll命令禁止flipping pages（鼠标不会因为接近屏幕边缘而进入相近的桌面）
 EdgeScroll 100, 100
-EdgeResistance 100,100,100,100
-EdgeThickness 1000
-Style * EdgeMoveDelay 350, EdgeMoveResistance 350
+EdgeResistance 1
+EdgeThickness 1
+Style * EdgeMoveDelay 10, EdgeMoveResistance 10
 
 # EwmhBaseStruts [left] [right] [top] [bottom]
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化是两边撑满,而上面留出20个(像素),下面相应的留出25
-EwmhBaseStruts 0 120 0 0
+EwmhBaseStruts 0 110 0 0
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -223,6 +236,9 @@ Style * TileCascadePlacement
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 Style * FocusFollowsMouse 
 Style * DecorateTransient
+#让所有以 "term" 结尾的那些窗口的标题拦都在左边。
+#Style *term* TitleAtLeft
+
 
 
 # Default Font
@@ -253,13 +269,19 @@ Style * WindowShadeScrolls, WindowShadeSteps 10
 IgnoreModifiers L25
 
 # Decor Styles
-Style * BorderWidth 100, HandleWidth 5, MWMButtons, FvwmBorder, FirmBorder
+Style * BorderWidth 100, HandleWidth 5,BorderColorset 1, MWMButtons, FvwmBorder, FirmBorder
 Style * Colorset 1, HilightColorset 2
 Style * BorderColorset 3, HilightBorderColorset 4
 
 # Disable Icons from appearing on desktop.
 # Comment this out or use Style * Icon to get the icons back.
+#Style * !Icon
 Style * !Icon
+
+
+Style *xclock* StaysOnTop, NoTitle, Sticky, WindowListSkip
+Style *xclock*  Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
+#Style xclock  Font "StringEncoding=UTF-8:xft:simsun:antialias=True:size=9:encoding=iso10646-1"
 
 # Window Specific Styles
 Style RightPanel !Title, !Borders, !Handles, Sticky, \
@@ -342,20 +364,13 @@ MenuStyle * TrianglesSolid, TrianglesUseFore
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Hilight3DOff, HilightBack #424164, ActiveFore white
-#Colorset 0 Transparent,fg white
 #MenuStyle * Font "-Noto-Sans-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
 #MenuStyle * Font "-NotoMono-bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
 MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
 #MenuStyle * Font "StringEncoding=UTF-8:xft:SimSun:antialias=True:size=9:encoding=iso10646-1"
 #MenuStyle * Font "StringEncoding=UTF-8:xft:NotoMono-Regular:antialias=True:size=9:encoding=iso10646-1"
 
-#MenuStyle * MenuColorset 0, HilightBack, ActiveColorset 1
-#MenuStyle * BorderWidth 1, TitleUnderlines1, SeparatorsLong, TrianglesSolid
-#MenuStyle * ItemFormat "%.2|%.5i%.5l%.5i%2.3>%2|"
-#MenuStyle * AutomaticHotKeys
-#3MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
-#ColormapFocus FollowsFocus
+MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
 
 ####################自己加的结束##########################
 # Root Menu
@@ -404,8 +419,8 @@ AddToMenu   MenuPrograms "Programs" Title
 + "Vim" Exec exec Vim 
 Test (x xemacs) + "XEmacs" Exec exec xemacs
 Test (x gimp) + "Gimp" Exec exec gimp
-Test (x vlc) + "VLC" Exec exec vlc
-
+Test (x deepin-screenshot) + "screenshot" Exec exec deepin-screenshot
+Test (x smplayer) + "smplayer" Exec exec smplayer
 
 ############这是办公软件菜单##########################
 DestroyMenu MenuOffice
@@ -433,10 +448,10 @@ AddToMenu   MenuBrowser "Browser" Title
 # Menu icons are located in ~/.fvwm/images/bgicons/
 DestroyMenu BGMenu
 AddToMenu   BGMenu "Wallpapers" Title
-+ "Floral%bgicons/bg1.png%" SetBG bg1.png
-+ "Circles%bgicons/bg2.png%" SetBG bg2.png
-+ "Space%bgicons/bg3.png%" SetBG bg3.png
-#+ "mountoun%bgicons/bg4.png%" SetBG bg4.png
++ "Floral%$[fvwm_img]/bgicons/bg1.png%" SetBG bg1.png
++ "Circles%$[fvwm_img]/bgicons/bg2.png%" SetBG bg2.png
++ "Space%$[fvwm_img]/bgicons/bg3.png%" SetBG bg3.png
+#+ "mountoun%$[fvwm_img]/bgicons/bg4.png%" SetBG1 bg4.png
 #+ "sun%bgicons/bg5.png%" SetBG bg5.png
 #+ "flower%bgicons/6.png%" SetBG 6.png
 #+ "water%bgicons/7.png%" SetBG 7.png
@@ -600,6 +615,37 @@ Silent key d A CM Exec exec /home/jack/anaconda3/bin/spyder
 Silent key n  A CM Exec exec systemsettings5
 #Silent key n  A CM Exec exec gnome-control-center
 
+# Shift+左      左卷一屏
+# Shift+右      右卷一屏
+# Shift+下      下卷一屏
+# Shift+上      上卷一屏
+Key Left    A  S    Scroll -100 0
+Key Right   A  S    Scroll +100 +0
+Key Up      A  S    Scroll +0   -100
+Key Down    A  S    Scroll +0   +100
+
+# Alt+F6    关闭显示屏
+Key F6      A  M    Function LockScreen
+
+#Ctrl+F11 最大化
+Silent Key F11		A	C	Maximize	
+
+# 按windows_L 当前page全部最小化
+Silent Key Super_L	A	N	All (AcceptsFocus CurrentPage !Iconic !Shaded !FvwmTaskBar) Iconify
+
+# Ctrl+q 关闭当前窗口，直至退出桌面对话框
+Silent Key q        A  C   Close
+
+#按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
+Silent Key w        W  M  Iconify
+
+# Ctrl+shift+q 关闭所有窗口
+Silent Key q        A  CS   All (AcceptsFocus CurrentPage !Iconic !Shaded !FvwmTaskBar) Close
+
+# shift + win_L 最大化当前page的所有窗口
+Silent Key Super_L    A  S   All (AcceptsFocus CurrentPage !Iconic !Shaded !FvwmTaskBar) Maximize
+
+
 # Window Buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #   1 - Open the WindowOps menu.
 #   2 - Close on single click, Destory on double click.
@@ -632,6 +678,8 @@ Mouse 1	I    A RaiseMoveX Move "Iconify off"
 Mouse 3	T    A Menu MenuWindowOps
 Mouse 3 I    A Menu MenuIconOps
 
+Mouse   4   R   A   Scroll +0 -100  #向上翻pager
+Mouse   5   R   A   Scroll +0 +100  #向下翻pager
 
 #######
 # 6: Window Decor
@@ -686,7 +734,7 @@ DestroyModuleConfig FvwmIdent:*
 # FvwmBanner
 #
 # This displays the Fvwm Logo for 5 seconds. This is displayed
-# when fvwm starts.
+con# when fvwm starts.
 DestroyModuleConfig FvwmBanner:*
 *FvwmBanner: NoDecor
 *FvwmBanner: Timeout 3
@@ -812,3 +860,19 @@ DestroyModuleConfig EventNewDesk:*
 *FvwmFormDefault: Colorset 10
 *FvwmFormDefault: ItemColorset 13
 
+
+
+# 修正系统函数切换窗口鼠标位于左上角问题，调整为Alt + TAB键切换时，鼠标居中
+DestroyFunc WindowListFunc
+AddToFunc WindowListFunc
++ I Iconify off
++ I FlipFocus
++ I Raise
++ I WarpToWindow 50 50
++ I Pick (CirculateHit) Layer 0 4
+
+
+# 关闭显示屏函数
+DestroyFunc LockScreen
+AddToFunc LockScreen
++ I Exec sleep 1; xset dpms force off
