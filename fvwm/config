@@ -212,7 +212,7 @@ DesktopName 3 Desk3
 EdgeScroll 100, 100
 EdgeResistance 1
 EdgeThickness 1
-Style * EdgeMoveDelay 10, EdgeMoveResistance 10
+Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 
 # EwmhBaseStruts [left] [right] [top] [bottom]
 # Reserves space along the edge(s) of the Screen that will not
@@ -325,7 +325,9 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 Colorset 2 fg red, bg gold, hi red, sh red, Plain red, NoShape
 #Colorset 2 Transient 
 
-Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
+#Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
+Colorset 3  fg blue, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
+
 Colorset 4  fg black, bg #2d2d2d, hi #474747, sh #101010, Plain, NoShape
 #Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
 #5是调节menu的颜色
@@ -338,19 +340,20 @@ Colorset 6  fg Black, bg lawngreen, hi, sh, Plain, NoShape
 Colorset 7  fg yellow, bg #ffffff, hi, sh, Plain, NoShape
 
 #Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
+#设置meun颜色
 Colorset 8  fg black, bg gold, hi blue, sh blue, bold
 
 #Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
-Colorset 10 Transparent fg yellow, bg #003c3c, hi yellow, sh yellow, Plain, NoShape
+Colorset 10 Transient fg red, bg #003c3c, hi red, sh red, Plain, NoShape
 
 #Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
-Colorset 11 fg darkblue, bg white, hi green, sh #ffffff, Plain, NoShape
+Colorset 11 fg darkblue, bg green, hi green, sh #ffffff, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
-Colorset 12 fg red, bg yellow, hi blue, sh, Plain, NoShape
+Colorset 12 fg red, bg yellow, hi blue, sh blue, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
-Colorset 13 fg Black, bg green, hi blue, sh blue, Plain, NoShape
+Colorset 13 fg black, bg white, hi blue, sh blue, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 Colorset 14 fg red, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
