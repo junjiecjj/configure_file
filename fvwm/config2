@@ -31,6 +31,8 @@
 #    /usr/local/share/fvwm/system.fvwm2rc
 #    /etc/system.fvwm2rc
 #--------------------------------------------------------------
+#
+# exec：执行一个shell命令.也就是利用bash去执行exce后面的
 ############################ 自己加的Module############################################
 
 
@@ -133,6 +135,7 @@ AddToFunc   StartFunction
 + I Exec exec fcitx    #启用中文输入法
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
++ I Exec exec conky &
 
 
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
@@ -156,6 +159,7 @@ AddToFunc ExitFunction
 + I All (xscreensaver) Close
 #+ I All (conky) Close
 + I All (xclock)   Close
++ I All (conky) Close
 ######################################################
 
 ##################   RestartFunction设置   ######################
@@ -164,12 +168,7 @@ AddToFunc RestartFunction
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x28-0-64 -norender -padding 1
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x28-0-32 -norender -padding 1
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x28-0-0 -norender -padding 1
-+ I KillModule   FvwmTaskBar
-+ I KillModule   FvwmAnimate
-+ I KillModule   FvwmIconMan
-+ I Module       FvwmIconMan
-+ I Module       FvwmTaskBar
-+ I Module       FvwmAnimate
+
 
 ##########################  Restart Function结束  ###############################
 
@@ -266,9 +265,12 @@ AddToFunc   ChangeDesk
 #配置一：
 DesktopSize 2x2   #这里的axb是指有a列b行
 DesktopName 0 主桌面
-DesktopName 1 文档
-DesktopName 2 程序
+DesktopName 1 程序
+DesktopName 2 文档
 DesktopName 3 娱乐
+
+
+#DesktopName desk name. 定义第desk号桌面的名字叫 name.
 
 #配置二：
 #DesktopSize 2x8
@@ -294,7 +296,7 @@ Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化时上下左右离屏幕的距离,命令格式为“EwmhBaseStruts 左 右 上 下”
-EwmhBaseStruts 10 110 20 20
+EwmhBaseStruts 10 140 10 10
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -314,13 +316,13 @@ Style * TileCascadePlacement
 
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 #Style * FocusFollowsMouse 
-Style * DecorateTransient, StaysPut
+Style * DecorateTransient, #Layer 4
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
 Style *term* TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
-Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
+Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 # Window Placement
 Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition
 
@@ -357,8 +359,10 @@ Style * !Icon
 
 Style *xclock*  StaysOnTop, NoTitle, Sticky, WindowListSkip
 Style *xclock*  Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
-
-#  Sticky也就是说即使桌面切换，它们也一直显示在屏幕上
+Style Conky !Title, !Borders, !Iconifiable, WindowListSkip, StayOnBottom,FixedPosition, FixedSize, Sticky
+# Sticky也就是说即使桌面切换，它们也一直显示在屏幕上
+#Sticky 窗口总是在屏幕上显示，好像粘在上面一样。这对于显示像clocks和xbiffs那样的应用非
+#常方便，
 
 Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
 Style FvwmIdent WindowListSkip
@@ -468,7 +472,7 @@ MenuStyle * TrianglesSolid, TrianglesUseFore, Animation
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
+MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
@@ -567,7 +571,7 @@ Test (x pcmanfm) + "%$[fvwm_exicons2]/folder.png% Pcmanfm"    Exec exec  pcmanfm
 DestroyMenu MenuYule
 AddToMenu   MenuYule    "音乐视频" Title
 Test (x netease-cloud-music) + "%$[fvwm_exicons2]/netesase.png% 网易云音乐" Exec exec netease-cloud-music
-Test (x smplayer) +   "%$[fvwm_exicons2]/cd-player.png %射手影音" Exec exec smplayer
+Test (x smplayer) +   "%$[fvwm_exicons2]/cd-player.png %smplayer射手影音" Exec exec smplayer
 Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png % VLC媒体播放器" Exec exec vlc
 Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png % Mplayer媒体播放器" Exec exec mpv
 
@@ -868,7 +872,7 @@ Key F5 A A Direction North Maximize True 0 growdown
 #   2 - Close on single click, Destory on double click.
 #   4 - Maximize (right/middle button will only maximize vertical/horizontal)
 #   6 - Iconify (minimize)
-Mouse 1 1 A Menu MenuWindowOps Delete
+Mouse 1 1 A Menu MenuWindowOpsLong Delete
 Mouse 1 2 A Close
 Mouse 1 4 A Maximize 100 100
 Mouse 2 4 A Maximize 0 100
@@ -882,25 +886,29 @@ Mouse 1 6 A Iconify
 #                Right Click - WindowOps Menu
 #                Middle Click - Window List Menu
 #   Right click TitleBar/Borders for WindowOps Menu
-Mouse 1	T    A RaiseMoveX Move Maximize
-Mouse 1	FS   A RaiseMove Resize
+Mouse 1	T    N   RaiseMoveX Move Maximize
+Mouse 1	FS   N     RaiseMove Resize
 # 在窗口标题栏上向上滚动鼠标，收起窗口
-Mouse 4	T    A WindowShade True
+Mouse 4	T    N    WindowShade True
 # 在窗口标题栏上向下滚动鼠标，展开窗口
-Mouse 5	T    A WindowShade False
+Mouse 5	T    N    WindowShade False
 
-Mouse 1	R    A Menu MenuFvwmRoot
-Mouse 2	R    A WindowList
-Mouse 3	R    A Menu MenuWindowOpsLong
-Mouse 1	I    A RaiseMoveX Move "Iconify off"
-Mouse 3	T    A Menu MenuWindowOps
-Mouse 3 I    A Menu MenuIconOps
+Mouse 1	R    N   Menu MenuFvwmRoot
+Mouse 2	R    N   WindowList
+Mouse 3	R    N   Menu MenuWindowOpsLong
+Mouse 1	I    N   RaiseMoveX Move "Iconify off"
+Mouse 3	T    N   Menu MenuWindowOpsLong
+Mouse 3 I    N   Menu MenuIconOps
 
-Mouse   4   R   A   Scroll +0 -100  #向上翻pager
-Mouse   5   R   A   Scroll +0 +100  #向下翻pager
+Mouse   4   R   N   Scroll +0 -100  #向上翻pager
+Mouse   5   R   N   Scroll +0 +100  #向下翻pager
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CS    Style  gvim,    TitleAtLeft
-#Mouse 2  T  CS    Style  *jack*,    TitleAtBottom
+Mouse 1  T   CS    Style  gnome-terminal*  TitleAtLeft
+Mouse 1  T   C    Style   xterm*  TitleAtLeft
+
+Mouse 3  T   CS    Style   gnome-terminal*   TitleAtTop
+Mouse 3  T   C    Style   xterm*   TitleAtTop
+
 
 
 
@@ -914,8 +922,9 @@ Mouse 1  T   CS    Style  gvim,    TitleAtLeft
 #   2 - Close
 #   4 - Maximize
 #   6 - Minimize
-###########
-TitleStyle Centered Height 18 -- Flat
+############
+#下面这句话控制的是窗口标题栏中字的位置和标题栏的高度
+TitleStyle Centered Height  24 -- Flat
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
                 15x15@3 -- Flat
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
@@ -952,7 +961,7 @@ DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Colorset 10
 #*FvwmIdent: Font "xft:Sans:bold:size=10:antialias=True"
 #*FvwmIdent: Font "xft:NotoMono-Regular:antialias=True:bold:size=10:antialias=True"
-*FvwmIdent: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
+*FvwmIdent: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 #*FvwmIdent: Font "-Noto-mono-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
 
 # FvwmBanner
@@ -992,7 +1001,7 @@ Colorset 16 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
 Colorset 17 fg white, bg #1883f1
 
 Style "FvwmPager" NoTitle, !Handles, BorderWidth 2, Sticky, WindowListSkip, \
-CirculateSkip, StaysPut, FixedPosition, FixedSize, !Iconifiable
+CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig FvwmPager:*
 *FvwmPager: Geometry 120x480-0+0
@@ -1002,9 +1011,9 @@ DestroyModuleConfig FvwmPager:*
 *FvwmPager: HilightColorset * 17
 *FvwmPager: BalloonColorset * 16
 #*FvwmPager: WindowColorsets 15 16
-*FvwmPager: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
+*FvwmPager: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 *FvwmPager: Balloons All
-*FvwmPager: BalloonFont "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
+*FvwmPager: BalloonFont "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 *FvwmPager: Rows 4
 *FvwmPager: Columns 1
 #*FvwmPager: NoSeparators  #每个边框有没有虚线
@@ -1029,7 +1038,7 @@ Style "FvwmTaskBar" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
 
 # CirculateSkip 说明当FVWM要求轮询窗口进行批量操作时，这些窗口不被计算在内
 DestroyModuleConfig FvwmTaskBar:*
-*FvwmTaskBar: Geometry +0-0
+*FvwmTaskBar: Geometry +0+0
 *FvwmTaskBar: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
 *FvwmTaskBar: SelFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
 *FvwmTaskBar: StatusFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
@@ -1111,9 +1120,10 @@ Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
 
 DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan:     NumManagers   1
-*FvwmIconMan: 1   ButtonGeometry  120x26
+#ButtonGeometry geometry 以像素为单位指定单个按钮的初始尺寸。如果height为0，则按钮的高取决于字体的大小。X和Y坐标被忽略。
+*FvwmIconMan: 1   ButtonGeometry  120x0
+#ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
 *FvwmIconMan: 1   ManagerGeometry 1x0-0-120
-#*FvwmIconMan: 1   Geometry 120x480-0-0
 *FvwmIconMan: 1   UseWinList true
 *FvwmIconMan: 1   Background #003c3c
 *FvwmIconMan: 1   Foreground #ffffff
@@ -1125,22 +1135,26 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1   SelectColorset 12
 *FvwmIconMan: 1   IconColorset 14
 
-*FvwmIconMan: 1   FollowFocus true
-*FvwmIconMan: 1   IconAndSelectColorset 12
+*FvwmIconMan: 1   FollowFocus false
+#*FvwmIconMan: 1   IconAndSelectColorset 12
 *FvwmIconMan: 1   ReliefThickness 0
 
 #*FvwmIconMan: 1   Resolution  page
 *FvwmIconMan: 1   DrawIcons always
 *FvwmIconMan: 1   Format "%c:%t"
-*FvwmIconMan: 1   Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
+*FvwmIconMan: 1   Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
 *FvwmIconMan: 1   Sort        name
-*FvwmIconMan: 1   Title       ""
-*FvwmIconMan: 1   UseWinList  true
+*FvwmIconMan: 1   Title       "FvwmIconMan"
 *FvwmIconMan: 1   Resolution global
 *FvwmIconMan: 1   Tips needed
 *FvwmIconMan: 1   Sort id
 
-# FvwmEvent
+*FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+*FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
+*FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
+
+
+####################### FvwmEvent
 #
 # FvwmEvent is a module that can run an action or function
 # on specific events. This instance changes which desk number
@@ -1166,12 +1180,12 @@ AddToFunc WindowListFunc
 + I FlipFocus
 + I Raise
 + I WarpToWindow 50 50
-+ I Pick (CirculateHit) Layer 0 6
++ I Pick (CirculateHit) Layer 0 4
 
 DestroyMenuStyle WindowList
 MenuStyle WindowList SelectOnRelease Meta_L
-MenuStyle WindowList ActiveFore rgb:ff/ff/e0, HilightBack rgb:cd/5c/5c, BorderWidth 5
-MenuStyle WindowList Font "Shadow=0 C:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=20:encoding=iso10646-1:pixelsize=22"
+MenuStyle WindowList ActiveFore rgb:ff/ff/e0, HilightBack rgb:cd/5c/5c, BorderWidth 3
+MenuStyle WindowList Font "Shadow=0 C:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1:pixelsize=22"
 #MenuStyle WindowList    MenuColorset ,  Geometry 120x80+0+0
 AddToFunc SwitchToWindow
 + I WindowListFunc
@@ -1191,23 +1205,29 @@ AddToFunc LockScreen
 #Style * PositionPlacement Center
 Style * RecaptureHonorsStartsOnPage, CaptureHonorsStartsOnPage
 
-Style    "Firefox"                  StartsOnPage 0 1
-Style    "*Google Chrome"           StartsOnPage 0 1
+Style    "Firefox"                  StartsOnPage 0 0
+Style    "*Google Chrome"           StartsOnPage 0 0
 
-Style    "xterm"                    StartsOnPage 1 0
-Style    "gnome-terminal*"          StartsOnPage 1 0
+Style    "xterm"                    StartsOnPage 0 1
+Style    "gnome-terminal*"          StartsOnPage 0 1
 
-Style    "dolphin*"                 StartsOnPage 1 1
-Style    "systemsettings5*"         StartsOnPage 1 1
+Style    "dolphin"                 StartsOnPage 1 1
+Style    "pcmanfm"                 StartsOnPage 1 1
+Style    "systemsettings5"         StartsOnPage 1 1
+Style    "gnome-control-center"    StartsOnPage 1 1
 
 
+Style    "*texstudio"               StartsOnDesk  2, StartsOnPage 0 0
+Style    "*lyx"                     StartsOnDesk  2, StartsOnPage 0 0
+Style    "wps"                      StartsOnDesk  2, StartsOnPage 0 1
+Style    "*pdf"                  StartsOnDesk  2, StartsOnPage 0 1
+Style    "*ppt"                 StartsOnDesk  2, StartsOnPage 0 1
+Style    "*et"                      StartsOnDesk  2, StartsOnPage 0 1
+Style    "*Okular"                  StartsOnDesk  2, StartsOnPage 1 0
 
-Style    "*texstudio"               MoveToDesk 0 2, StartsOnPage 1 0
 
-Style    lyx                      StartsOnPage 3 0
-Style    wps-word                 StartsOnPage 3 0
-Style    wps-ppt                  StartsOnPage 3 0
-Style    wps-excel                StartsOnPage 3 0
-Style    wpspdf                   StartsOnPage 3 0
-Style     okular                    StartsOnPage 3 0
+Style    "*netease-cloud-music"     StartsOnDesk  3, StartsOnPage 0 0
+Style    "*smplayer"                StartsOnDesk  3, StartsOnPage 0 1
+Style    "vlc"                      StartsOnDesk  3, StartsOnPage 1 0
+Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
 
