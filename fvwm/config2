@@ -135,7 +135,7 @@ AddToFunc   StartFunction
 + I Exec exec fcitx    #启用中文输入法
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
-+ I Exec exec conky &
++ I Exec exec conky -d
 
 
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
@@ -147,8 +147,8 @@ AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
 + I Exec exec gnome-terminal
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-64 -norender -padding 1
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x30-0-32 -norender -padding 1
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-0-0 -norender -padding 1
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x30-0-0 -norender -padding 1
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-0-0 -norender -padding 1
 
 ###########################  InitFunction结束设置##########################
 
@@ -165,9 +165,9 @@ AddToFunc ExitFunction
 ##################   RestartFunction设置   ######################
 AddToFunc RestartFunction
 + I All (xclock) Close
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x28-0-64 -norender -padding 1
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x28-0-32 -norender -padding 1
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x28-0-0 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x28-0-0 -norender -padding 1
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x28-0-32 -norender -padding 1
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x28-0-0 -norender -padding 1
 
 
 ##########################  Restart Function结束  ###############################
