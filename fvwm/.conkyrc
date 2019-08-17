@@ -1,6 +1,6 @@
 conky.config = {
 
-    alignment = "top_left" ,
+    alignment = "bottom_left" ,
     --是否嵌入桌面
     background=true,
     double_buffer=true,
@@ -24,7 +24,7 @@ conky.config = {
 
     --#是否使用xft字体，一般为“yes”。
     use_xft = true,
-    font =  "WenQuanYi Micro Hei:size=6" ,
+    font =  "WenQuanYi Micro Hei:size=9" ,
     --xftfont = " WenQuanYi Micro Hei:size=6",
     --#overriggde_utf8_locale yes
 
@@ -47,13 +47,13 @@ conky.config = {
 
     --#设定Conky的边界范围，最小宽度为280像素，最小高度为5像素
     --#minimum_size =  180 5,
-    minimum_height = 180,
-    minimum_width =  200,
+    minimum_height = 280,
+    minimum_width =  300,
     --#两条设定Conky输出范围距离屏幕边界的像素数量，最小为10像素。 
-    gap_x  = 0,
+    gap_x  = 50,
     gap_y =  0,
 
-    default_color =  "#CCCCCC",
+    default_color =  "#FFFFFF",
     default_shade_color = "#000000",
     default_outline_color = "#000000",
 
@@ -68,67 +68,59 @@ conky.config = {
     color2 =  "orange",
     color3  =   "#204A87",
 
-    wangka = 'wlp3s0'
+    wangka = "enp2s0"
 --${#00FF00}${font WenQuanYi Micro Hei:style=Bold:pixelsize=20}${alignc}${time %H:%M:%S}
 --${font WenQuanYi Micro Hei:pixelsize=18}${alignc}${time %b%d日星期%a}${alignc}
 }
 
 
 conky.text = [[
-${font Liberation Sans:style=Bold:size=8}DATE $stippled_hr${font}
-${voffset -2}${color2}${font Liberation Sans:style=Bold:size=22}${time %H:%M:%S}${font}${color0} ${voffset -10}${alignr }${font WenQuanYi Micro Hei:size=12}${time %A}${font}
-${color #8AE234}${hr 1}
-${color #00FF00}${font WenQuanYi Micro Hei:size=12}${alignc}${time %Y年%b%d日}${font}
-${color #FFFF00}${hr 2}
-${font WenQuanYi Micro Hei:pixelsize=10}${color #00ffcf}主机名:${color #00ffcf} $alignr$nodename
-${color #00ffcf}内核: ${color #00ffcf}$alignr$kernel
-${color #00ffcf}机器: ${color #00ffcf}$alignr$machine
+${font style=Bold:size=12}日期 ${color #FFFF00} ${hr 2}
+${voffset -2}${offset 30}${color2}${font Liberation Sans:style=Bold:size=24}${time %H:%M:%S} ${goto 180} ${color0} ${font style=Bold:size=16}${time %A}
+${color #8AE234} ${voffset -10} ${stippled_hr 1}
+${color #00FF00}${voffset -10}${font WenQuanYi Micro Hei:style=Bold::size=15}${alignc}${time %Y年%b%d日}
+${font style=Bold:size=12}${color #FFFFFF}主机 ${color #FFFF00}${hr 2}${font WenQuanYi Micro Hei:style=Bold::size=15}
+${font style=Bold:size=8} ${color #00ffcf}主机名:${color #00ffcf} $alignr $nodename
+${color #00ffcf}内核: ${color #00ffcf}  $alignr $kernel
+${color #00ffcf}机器: ${color #00ffcf}  $alignr $machine
 ${color #00ffcf}已运行时间: ${color #00ffcf}$alignr$uptime
-${color #FFFF00}${hr 1}
-${color #ffd700}频率: ${alignr}${freq dyn} MHz
-${font Microsoft YaHei:pixelsize=12}${color #00ff1e}CPU 0: ${cpu cpu0}% $alignr$acpitemp°C(T)
-${color #dcff82}${cpubar 4 cpu0}
-${color #00ff1e}CPU 1: ${cpu cpu0}%
-${color #dcff82}${cpubar 8 cpu0}
-${color #00ff1e}CPU 2: ${cpu cpu2}%
-${color #dcff82}${cpubar 8 cpu2}
-${color #00ff1e}CPU 3: ${cpu cpu3}%
-${color #dcff82}${cpubar 8 cpu3}
---${color #00ff1e}CPU 4: ${cpu cpu4}%
---${color #dcff82}${cpubar 8 cpu4}
-${color #00ff1e}CPU占用排名:$alignr CPU% MEM%
+${font style=Bold:size=12}${color #FFFFFF}CPU ${color #FFFF00}${hr 2}
+${font style=Bold:size=8}${color #ffd700}频率:${freq dyn} MHz ${alignr} ${color #ffd700}温度: $acpitemp°C(T)
+${font font WenQuanYi Micro Hei:style=Bold:size=8}${color #00ff1e}CPU0:${cpu cpu0}%    ${color #00ff1e} ${alignr} CPU1: ${cpu cpu1}%
+${color #dcff82}  ${cpubar cpu0 8,120 3465A4 204A87}   $alignr${color #dcff82}${cpubar cpu1 8,120 3465A4 204A87}
+${color #00ff1e}CPU2:${cpu cpu2}%    ${color #00ff1e} ${alignr} CPU3: ${cpu cpu3}%
+${color #dcff82}  ${cpubar cpu2 8,120 3465A4 204A87}   $alignr${color #dcff82}${cpubar cpu3 8,120 3465A4 204A87}
+${color #00ff1e}CPU4:${cpu cpu4}%    ${color #00ff1e} ${alignr} CPU5: ${cpu cpu5}%
+${color #dcff82}  ${cpubar cpu4 8,120 3465A4 204A87}   $alignr${color #dcff82}${cpubar cpu5 8,120 3465A4 204A87}
+${color #00ff1e}CPU6:${cpu cpu6}%    ${color #00ff1e} ${alignr} CPU7: ${cpu cpu1}%
+${color #dcff82}  ${cpubar cpu6 8,120 3465A4 204A87}   $alignr${color #dcff82}${cpubar cpu7 8,120 3465A4 204A87}
+${font style=Bold:size=9}${color #00ff1e}CPU占用排名:$alignr CPU% MEM%
 ${color #FF0000} ${top name 1}$alignr${top cpu 1} ${top mem 1}
 ${color lightgrey} ${top name 2}$alignr${top cpu 2} ${top mem 2}
 ${color lightgrey} ${top name 3}$alignr${top cpu 3} ${top mem 3}
-${color #FFFF00}${stippled_hr 2}$color
-${font WenQuanYi Micro Hei:pixelsize=12}${color #00ff1e}RAM:$alignr${color #00FFFF}$mem/($memperc%)
-${color #78af78}${membar 8}
-${color #00ff1e}SWAP: $swap $alignr ${color #00FFFF}$swap/($swapperc%)
-${color #78af78}${swapbar 8}
+${font style=Bold:size=12}${color #FFFFFF}内存 ${color #FFFF00}${hr 2}
+${font WenQuanYi Micro Hei:size=10}${color #00ff1e}RAM: ${color #00FFFF}$mem/$memmax ($memperc%)${color #78af78}${offset 10}${membar 8}
+${color #00ff1e}SWAP: ${color #00FFFF}$swap/$swapmax ($swapperc%)${color #78af78}${offset 30}${swapbar 8}
 ${color #00ff1e}内存占用排名: $alignr CPU%  MEM%
 ${color #FF0000} ${top_mem name 1}$alignr ${top_mem cpu 1}  ${top_mem mem 1}
 ${color lightgrey} ${top_mem name 2}$alignr ${top_mem cpu 2}  ${top_mem mem 2}
 ${color lightgrey} ${top_mem name 3}$alignr ${top_mem cpu 3}  ${top_mem mem 3}
-${color #FFFF00}${hr 1}$color
-${font WenQuanYi Micro Hei:pixelsize=12}${color #00ff1e}硬盘读取速度:${alignr}${diskio_read}
-${color #00ff1e}硬盘写入速度:${alignr}${diskio_write}
-${font WenQuanYi Micro Hei:pixelsize=12}${color #00ff1e}/ 分区: ${color}${alignr}${fs_used /}/ ${fs_size /}
-${color #78af78}${fs_bar 8 /}
-${color #00ff1e}/boot 分区: ${color}${alignr}${fs_used /boot}/ ${fs_size /boot}
-${color #78af78}${fs_bar 8 /boot}
-${color #00ff1e}/home 分区: ${color}${alignr}${fs_used /home}/ ${fs_size /home}
-${color #78af78}${fs_bar 8 /home}
-${color #FFFF00}${hr 1}$color
-${font Microsoft YaHei:pixelsize=12}${color #00ff1e}网络 $alignr ${color #00ff1e}IP地址: ${color #DDAA00}${addr wlp3s0}
-${voffset 1}${color #98c2c7} 上传: ${color #db7093}${upspeed wlp3s0}/s ${alignr}${color #98c2c7}总共: ${color #db7093}${totalup wlp3s0}
-${voffset 1}${color #98c2c7} 下载: ${color #ddaa00}${downspeed wlp3s0}/s ${alignr}${color #98c2c7}总共: ${color #ddaa00}${totaldown wlp3s0}
---${font Microsoft YaHei:pixelsize=12}${color #FFFF00}${hr 2}
-${color white}网络 ${hr 1}
-下载 ${downspeed wlp3s0}/s ${alignr}上传 ${upspeed wlp3s0}/s
-${downspeedgraph wlp3s0 25,80 #ff0000 #0000ff} ${alignr}${upspeedgraph wlp3s0 25,80 #ff0000 #0000ff}
-Total ${totaldown wlp3s0} ${alignr}Total ${totalup wlp3s0}
-${color white}磁盘 ${hr 1}${color yellow}
-读 ${diskio_read}/s ${alignr}写 ${diskio_write}/s
-${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff} ${alignr}${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff}
-
+${font style=Bold:size=12}${color #FFFFFF}磁盘${color #FFFF00}${hr 2}
+${font WenQuanYi Micro Hei:pixelsize=12}${color #00ff1e}硬盘读取速度:${diskio_read}${alignr}${color #00ff1e}硬盘写入速度:${diskio_write}
+${font WenQuanYi Micro Hei:pixelsize=12}${color #00ff1e}/ 分区: ${color}${fs_used /}/ ${fs_size /}${offset 40}${color #78af78}${fs_bar 8 /}
+${color #00ff1e}/boot 分区: ${color}${fs_used /boot}/ ${fs_size /boot} ${offset 10}${color #78af78}${fs_bar 8 /boot}
+${color #00ff1e}/home 分区: ${color}${fs_used /home}/ ${fs_size /home} ${offset 8}${color #78af78}${fs_bar 8 /home}
+${font style=Bold:size=12}${color #FFFFFF}网络${color #FFFF00}${hr 2}$color
+${font Microsoft YaHei:size=10}${color #00ff1e}IP地址: ${color #DDAA00}${addr enp2s0}
+${voffset 1}${color #98c2c7} 上传: ${color #db7093}${upspeed enp2s0}/s ${alignr}${color #98c2c7}总共: ${color #db7093}${totalup enp2s0}
+${voffset 1}${color #98c2c7} 下载: ${color #ddaa00}${downspeed enp2s0}/s ${alignr}${color #98c2c7}总共: ${color #ddaa00}${totaldown enp2s0}
+${font Microsoft YaHei:pixelsize=12}${color #FFFF00}${hr 2}
+${color white}网络频谱图 ${hr 1}
+${color #FFA500}下载 ${downspeed enp2s0}/s ${alignr}${color #00FA9A}上传 ${upspeed enp2s0}/s
+${color #FFA500}${downspeedgraph enp2s0 25,80 #ff0000 #0000ff} ${color #00FA9A}${alignr}${upspeedgraph wlp3s0 8,60 FFFFFF FFFFFF}${color}
+${color #FFA500}Total ${totaldown enp2s0} ${alignr}${color #00FA9A}Total ${totalup enp2s0}
+${color white}磁盘频谱图 ${hr 1}${color yellow}
+${color #FFA500}读: ${diskio_read}/s ${alignr}${color #00FA9A}写: ${diskio_write}/s
+${color #FFA500}${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff}${color #00FA9A} ${alignr}${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff}
+${color #FFFF00} ${hr 2}
 ]]
