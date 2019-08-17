@@ -241,9 +241,9 @@ AddToFunc   ToggleTitle
 DestroyFunc ChangeDesk
 AddToFunc   ChangeDesk
 + I SendToModule FvwmButtons ChangeButton desk0 Colorset 10
-#+ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
-#+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
-#+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
++ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
++ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
++ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
 + I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
 
 
@@ -410,8 +410,8 @@ Style   "*Google Chrome"     NoTitle
 #      13 - FvwmPager Active Page
 #      14 - FvwmIconMan Iconified Button
 ###########
-#Colorset 0  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
-Colorset 0  fg Yellow, bg Red, hi, sh, Plain, NoShape
+#Colorset 0  fg #ffffff, bg #003c3c, hi #FF00FF ,  sh  #FF00FF, Plain, NoShape
+Colorset 0  fg 	#000000, bg	#00FF00, hi, sh, Plain, NoShape
 
 #Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 #1是设置未激活窗口title栏的颜色
@@ -446,10 +446,11 @@ Colorset 8  fg black, bg gold, hi blue, sh blue, bold
 
 #Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 #默认的颜色，bg是右边时钟和最上面page背景色，hi,sh是每个page里面打开的应用的外框的颜色
-Colorset 10 Transient fg #ffffff, bg #003c3c, hi red, sh red, Plain, NoShape
+Colorset 10  fg #ffffff, bg #003c3c, hi red, sh red, Plain, NoShape
 
 #Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
-#右边iconman激活的颜色，也是鼠标所在窗口的颜色，就是右边的小条条
+#右边iconman激活的颜色，也是鼠标所在窗口的颜色，就是右边的小条条(小条条指Iconman,后面会讲到当鼠标放在小条条上时会弹出放大版的IconMan
+#这叫Tips)
 Colorset 11 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
@@ -457,7 +458,7 @@ Colorset 11 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
 Colorset 12 fg black, bg yellow, hi blue, sh blue, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
-#右边四个page，当鼠标在哪个page时的颜色
+#右边四个page，当鼠标在哪个page时的颜色(当鼠标指在page上时，弹出的小框叫fvwmBalloon)
 Colorset 13 fg black, bg white, hi blue, sh blue, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
@@ -473,7 +474,7 @@ MenuStyle * TrianglesSolid, TrianglesUseFore, Animation
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=18:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
@@ -528,7 +529,7 @@ AddToMenu   MenuEditor "编辑器" Title
 Test (x gvim)  + "gVim" Exec exec gvim
 Test (x  vim) + "Vim"  Exec exec vim
 Test (x xemacs) + "XEmacs" Exec exec xemacs
-Test (x gimp) + "Gimp" Exec exec gimp
+
 
 ##################系统设置##########################
 
@@ -585,7 +586,7 @@ Test (x deepin-screenshot) + "深度截图 %$[fvwm_exicons2]/deepinscreenshot.pn
 Test (x lximage-qt) +   "选择截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec lximage-qt --screenshot
 Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gnome-screenshot
 Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
-
+Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/inkscape.png%" Exec exec gimp
 ################通信软件相关##########################################
 DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
@@ -970,7 +971,7 @@ DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Colorset 10
 #*FvwmIdent: Font "xft:Sans:bold:size=10:antialias=True"
 #*FvwmIdent: Font "xft:NotoMono-Regular:antialias=True:bold:size=10:antialias=True"
-*FvwmIdent: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+*FvwmIdent: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=16:encoding=iso10646-1"
 #*FvwmIdent: Font "-Noto-mono-Bold-r-*-*-36-*,-*-simsun-medium-Bold-r-*-*-36-*-*-*-*-*-*-*"
 
 # FvwmBanner
@@ -991,6 +992,11 @@ DestroyModuleConfig FvwmBanner:*
 #     quitting fvwm.
 DestroyModuleConfig FvwmScript:*
 *FvwmScript: DefaultColorset 10
+*FvwmScript: DefaultFont "StringEncoding=UTF-8:xft:文泉驿微米黑:Bold:antialias=True:size=20:encoding=iso10646-1"
+
+
+
+
 
 
 # FvwmPager
@@ -998,36 +1004,46 @@ DestroyModuleConfig FvwmScript:*
 # This module displays the location of the windows on the various Pages
 # and Desks. This is setup to show only the Pages on the current Desk.
 
-#Colorset 15 Transient fg #ffffff, bg #003c3c, hi red, sh red, Plain, NoShape
+Colorset 15  fg #ffffff	, bg #000000, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 15 fg rgb:00/00/00, hi rgb:00/00/00, sh rgb:00/00/00, bg rgb:e9/e9/d9
-Colorset 15 fg white, bg white, hi white, RootTransparent buffer, Tint white 0
+#Colorset 15 fg white, bg white, hi white, RootTransparent buffer, Tint white 0
 
-#Colorset 16 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
+Colorset 16 fg #000000, bg #00FF00, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 16  fg rgb:00/00/00, hi rgb:dd/00/00, sh rgb:dd/00/00, bg rgb:fb/fc/ec
-Colorset 16 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
+#Colorset 16 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
 
-Colorset 17 fg black, bg dimgrey, hi blue, sh blue, Plain, NoShape
+Colorset 17 fg #000000, bg #FFFF00, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 17 fg white, bg #1883f1
 
-Style "FvwmPager" NoTitle, !Handles, BorderWidth 2, Sticky, WindowListSkip, \
+Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030
+,Sticky, WindowListSkip, \
 CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig FvwmPager:*
 *FvwmPager: Geometry 120x480-0+0
-*FvwmPager: BorderWidth 0
+*FvwmPager: BorderWidth 10
 *FvwmPager: Layer 0
 *FvwmPager: Colorset * 15
 *FvwmPager: HilightColorset * 17
 *FvwmPager: BalloonColorset * 16
+*FvwmPager: DeskHilight 
+
+*FvwmPager: BalloonBorderColor  red
 #*FvwmPager: WindowColorsets 15 16
-*FvwmPager: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+*FvwmPager: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:Bold:antialias=True:size=16:encoding=iso10646-1"
 *FvwmPager: Balloons All
-*FvwmPager: BalloonFont "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+
+#BalloonFont指定提示信息文本使用的字体。也就是当鼠标放在page上时弹出的小框的字体
+*FvwmPager: BalloonFont "StringEncoding=UTF-8:xft:文泉驿微米黑:Bold:antialias=True:size=20:encoding=iso10646-1"
+#BalloonColorset也就是当鼠标放在page上时提示框中的背景前景色
+*FvwmPager: BalloonColorset * 0
+*FvwmPager: BalloonBorderWidth 2   #设置提示窗口边框的宽度
+
 *FvwmPager: Rows 4
 *FvwmPager: Columns 1
 #*FvwmPager: NoSeparators  #每个边框有没有虚线
 *FvwmPager: WindowBorderWidth 1
-*FvwmPager: WindowLabelFormat ""
+*FvwmPager: WindowLabelFormat "%c : %t"
 *FvwmPager: MoveThreshold 0
 #*FvwmPager: ShapeLabels #Page有没有边框
 *FvwmPager: UseSkipList
@@ -1130,8 +1146,12 @@ Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
 DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan:     NumManagers   1
 #ButtonGeometry geometry 以像素为单位指定单个按钮的初始尺寸。如果height为0，则按钮的高取决于字体的大小。X和Y坐标被忽略。
+#*FvwmIconMan: 1 ButtonGeometry  175x26
 *FvwmIconMan: 1   ButtonGeometry  120x0
-#ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
+#ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 
+#多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有
+#确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
+#*FvwmIconMan: 1 ManagerGeometry 8x1+0+0
 *FvwmIconMan: 1   ManagerGeometry 1x0-0-120
 *FvwmIconMan: 1   UseWinList true
 *FvwmIconMan: 1   Background #003c3c
@@ -1145,18 +1165,26 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1   IconColorset 14
 
 *FvwmIconMan: 1   FollowFocus false
-#*FvwmIconMan: 1   IconAndSelectColorset 12
+*FvwmIconMan: 1   IconAndSelectColorset 12
 *FvwmIconMan: 1   ReliefThickness 0
 
 #*FvwmIconMan: 1   Resolution  page
 *FvwmIconMan: 1   DrawIcons always
-*FvwmIconMan: 1   Format "%c:%t"
-*FvwmIconMan: 1   Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
+
+#%t,%i,%c,和%r， 分别表示窗口的title、icon、class和resource name。默认是"%c:%i"。
+*FvwmIconMan: 1   TipsFormat "%c : %t"
+*FvwmIconMan: 1   Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
 *FvwmIconMan: 1   Sort        name
 *FvwmIconMan: 1   Title       "FvwmIconMan"
 *FvwmIconMan: 1   Resolution global
 *FvwmIconMan: 1   Tips needed
-*FvwmIconMan: 1   Sort id
+*FvwmIconMan: 1   Sort name
+
+#Tips指当鼠标放在右边的Iconman上时会出现一个放大的提示框,
+*FvwmIconMan: 1    TipsFont "StringEncoding=UTF-8:xft:文泉驿微米黑:Bold:antialias=True:size=22:encoding=iso10646-1"
+*FvwmIconMan: 1    TipsColorset 0
+*FvwmIconMan: 1   TipsDelays 500 200
+*FvwmIconMan: 1   TipsBorderWidth 4
 
 *FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
 *FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
