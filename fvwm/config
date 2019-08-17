@@ -540,7 +540,7 @@ Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-cen
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x /usr/NX/bin/nxplayer) + "NoMachine"  Exec exec /usr/NX/bin/nxplayer
 Test (x vncviewer) + "VNC" Exec exec vncviewer
-#Test (x gimp) + "Gimp" Exec exec gimp
+Test (x xscreensaver-demo) + "xscreensaver设置"   Exec exec  xscreensaver-demo
 
 
 ############这是办公软件菜单##########################
