@@ -1,6 +1,6 @@
 conky.config = {
 
-    alignment = "bottom_left" ,
+    alignment = "top_left" ,
     --是否嵌入桌面
     background=true,
     double_buffer=true,
@@ -38,20 +38,22 @@ conky.config = {
     own_window = true,
     own_window_class = 'Conky', 
     own_window_type = 'desktop',
-    --#窗口完全透明
-    own_window_transparent = true,
+
+    --#own_window_transparent = true时窗口完全透明,此时own_window_argb_value不起作用
+        --当为false时own_window_argb_value才调节透明度
+    own_window_transparent = false,
     own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
     own_window_argb_visual = true,
     --#own_window_argb_value改到255就是不透明。
-    own_window_argb_value =  0,
+    own_window_argb_value =  200,
 
     --#设定Conky的边界范围，最小宽度为280像素，最小高度为5像素
     --#minimum_size =  180 5,
     minimum_height = 280,
     minimum_width =  300,
     --#两条设定Conky输出范围距离屏幕边界的像素数量，最小为10像素。 
-    gap_x  = 50,
-    gap_y =  0,
+    gap_x  = 10,
+    gap_y =  40,
 
     default_color =  "#FFFFFF",
     default_shade_color = "#000000",
