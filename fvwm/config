@@ -136,7 +136,7 @@ AddToFunc   StartFunction
 + I Exec exec fcitx    #启用中文输入法
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
-+ I Exec exec conky -d
++ I Exec exec conky &
 
 
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
@@ -147,7 +147,7 @@ AddToFunc   StartFunction
 AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
 + I Exec exec gnome-terminal
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-64 -norender -padding 1
++ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x30-0-0 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-0-0 -norender -padding 1
 
@@ -161,6 +161,7 @@ AddToFunc ExitFunction
 #+ I All (conky) Close
 + I All (xclock)   Close
 + I All (conky) Close
++ I Exec exec sync
 ######################################################
 
 ##################   RestartFunction设置   ######################
@@ -494,6 +495,7 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&影音         %$[fvwm_exicons2]/game-logic.png%" Popup MenuYule
 + "&通信工具     %$[fvwm_exicons2]/chat.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
++ "&网络管理器    %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
 + "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
 + "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec $[infostore.terminal]
@@ -540,7 +542,16 @@ Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-cen
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x /usr/NX/bin/nxplayer) + "NoMachine"  Exec exec /usr/NX/bin/nxplayer
 Test (x vncviewer) + "VNC" Exec exec vncviewer
-Test (x xscreensaver-demo) + "xscreensaver设置"   Exec exec  xscreensaver-demo
+#Test (x gimp) + "Gimp" Exec exec gimp
+
+
+#######################网络设置###############################
+DestroyMenu NetworkMenu
+AddToMenu   NetworkMenu  "网络设置" Title
+Test (x nmtui) + "GnomeNetworkManager-nmtui" Exec exec nmtui
+Test (x nm-connection-editor) + "图形界面nm-connection-editor" Exec exec nm-connection-editor
+Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
+
 
 
 ############这是办公软件菜单##########################
@@ -583,10 +594,10 @@ AddToMenu   MenuPhoto "图片查看、编辑" Title
 Test (x gwenview) +   "图片查看gwenview  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gwenview
 Test (x shotwell) +   "图片查看shotwell  %$[fvwm_exicons2]/image-viewer.png%" Exec exec shotwell
 Test (x deepin-screenshot) + "深度截图 %$[fvwm_exicons2]/deepinscreenshot.png%" Exec exec deepin-screenshot
-Test (x lximage-qt) +   "选择截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec lximage-qt --screenshot
+Test (x lximage-qt) +   "选择截图screenshot  %$[fvwm_exicons2]/image-processor.png%" Exec exec lximage-qt --screenshot
 Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gnome-screenshot
 Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
-Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/inkscape.png%" Exec exec gimp
+Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
 ################通信软件相关##########################################
 DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
