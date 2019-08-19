@@ -1,3 +1,4 @@
+
 ##################################
 #  ____________________________
 # (   _________________________)
@@ -20,16 +21,16 @@
 #    7: Modules
 #
 #################################
-#    fvwm在启动过程，依次查找其配置文件:
+#    fvwm在启动过程，依次查找其配置文件:
 #
-#    $HOME/.fvwm/config 
-#    /usr/local/share/fvwm/config 
+#    $HOME/.fvwm/config 
+#    /usr/local/share/fvwm/config 
 
-#    $HOME/.fvwm/.fvwm2rc
-#    $HOME/.fvwm2rc
-#    /usr/local/share/fvwm/.fvwm2rc
-#    /usr/local/share/fvwm/system.fvwm2rc
-#    /etc/system.fvwm2rc
+#    $HOME/.fvwm/.fvwm2rc
+#    $HOME/.fvwm2rc
+#    /usr/local/share/fvwm/.fvwm2rc
+#    /usr/local/share/fvwm/system.fvwm2rc
+#    /etc/system.fvwm2rc
 #--------------------------------------------------------------
 #
 # exec：执行一个shell命令.也就是利用bash去执行exce后面的
@@ -925,12 +926,12 @@ Mouse 3 I    N   Menu MenuIconOps
 Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻pager
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CA    Style  gnome-terminal*  TitleAtLeft
-Mouse 1  T   A    Style   xterm*  TitleAtLeft
+Mouse 1  T   CM    Style  gnome-terminal*  TitleAtLeft
+Mouse 1  T   M    Style   xterm*  TitleAtLeft
 Mouse 1  T   C    Style   konsole*  TitleAtLeft
 
-Mouse 3  T   CA    Style   gnome-terminal*   TitleAtTop
-Mouse 3  T   A    Style    xterm*   TitleAtTop
+Mouse 3  T   CM    Style   gnome-terminal*   TitleAtTop
+Mouse 3  T   M    Style   xterm*   TitleAtTop
 Mouse 3  T   C    Style    konsole*   TitleAtTop
 
 
@@ -1072,7 +1073,7 @@ DestroyModuleConfig FvwmPager:*
 Colorset 21  fg rgb:00/00/00, hi rgb:00/00/00, sh rgb:00/00/00, bg rgb:e9/e9/d9
 
 Style "FvwmTaskBar" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
-  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 # CirculateSkip 说明当FVWM要求轮询窗口进行批量操作时，这些窗口不被计算在内
 DestroyModuleConfig FvwmTaskBar:*
@@ -1279,5 +1280,4 @@ Style    "*Okular"                  StartsOnDesk  2, StartsOnPage 1 0
 Style    "*netease-cloud-music"     StartsOnDesk  3, StartsOnPage 0 0
 Style    "*smplayer"                StartsOnDesk  3, StartsOnPage 0 1
 Style    "vlc"                      StartsOnDesk  3, StartsOnPage 1 0
-Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
-
+Style    "mplayer"   
