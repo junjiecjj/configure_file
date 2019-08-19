@@ -927,10 +927,11 @@ Mouse   5   R   N   Scroll +0 +100  #向下翻pager
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
 Mouse 1  T   CS    Style  gnome-terminal*  TitleAtLeft
 Mouse 1  T   C    Style   xterm*  TitleAtLeft
+Mouse 1  T   S    Style   konsole*  TitleAtLeft
 
 Mouse 3  T   CS    Style   gnome-terminal*   TitleAtTop
 Mouse 3  T   C    Style   xterm*   TitleAtTop
-
+Mouse 3  T   S    Style    konsole*   TitleAtTop
 
 
 
