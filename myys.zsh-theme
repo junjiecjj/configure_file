@@ -60,5 +60,5 @@ PROMPT="
 ${hg_info}\
 ${git_info}\
  \
-%{$terminfo[bold]$fg[green]%}[日期:%D,时间:%*] $exit_code
+%{$terminfo[bold]$fg[green]%}[日期:%D,周%w号,时间:%*] $exit_code
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
