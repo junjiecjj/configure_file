@@ -138,7 +138,7 @@ AddToFunc   StartFunction
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
 + I Exec exec conky &
-
++ I Exec xcompmgr
 
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
@@ -934,7 +934,8 @@ Mouse 3  T   CM    Style   gnome-terminal*   TitleAtTop
 Mouse 3  T   M    Style   xterm*   TitleAtTop
 Mouse 3  T   C    Style    konsole*   TitleAtTop
 
-
+Mouse 4 W CM Exec exec transset-df --inc 0.1 -i $[w.id]
+Mouse 5 W CM Exec exec transset-df --dec 0.1 -i $[w.id]  
 
 
 #######
