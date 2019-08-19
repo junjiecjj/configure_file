@@ -138,7 +138,7 @@ AddToFunc   StartFunction
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
 + I Exec exec conky &
-+ I Exec xcompmgr
+
 
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
@@ -151,7 +151,7 @@ AddToFunc InitFunction
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x30-0-0 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-0-0 -norender -padding 1
-
++ I Exec xcompmgr
 ###########################  InitFunction结束设置##########################
 
 
