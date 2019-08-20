@@ -138,10 +138,12 @@ AddToFunc   StartFunction
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
 + I Exec exec conky &
-
++ I Module FvwmButtons MyButtons
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
 
+
+Module FvwmAnimate
 ###########################  InitFunction设置##########################
 #DestroyFunc InitFunction
 AddToFunc InitFunction
@@ -249,6 +251,31 @@ AddToFunc   ChangeDesk
 + I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
 
 
+##############自动隐藏的函数#################
+
+# The autohiding functions
+AddToFunc autohide
++ I ThisWindow ($0) Deschedule $[w.id]
++ I ThisWindow ($0) KeepRc ThisWindow (shaded) WindowShade off
++ I TestRc (!Match) All ($0, !shaded) autohide_hide $1 $2
+
+AddToFunc autohide_hide
++ I Schedule $0 $[w.id] WindowShade $2
++ I Schedule $0 $[w.id] Deschedule $[w.id]
+
+#下面以"+ I"开头的是你设定要隐藏的模块。最后一个参数“S”表示隐藏的方向，这里是“向上隐藏”。相应的参数有N, S, E, W, NW, NE, SW or SE。
+# Add the windows you want to autohide
+AddToFunc enter_handler
+#+ I autohide FvwmButtons 500 N
++ I autohide FvwmPager 500 S
+# + I autohide FvwmTaskBar 500 N #由于taskbar（任务条）还可以在f.taskbar里设置隐藏功能，我就在这里注销了这句。
+
+# Start FvwmAuto
+AddToFunc StartFunction
++ I Module FvwmAuto FvwmAutohide -menter enter_handler
+
+#####################END######################
+
 #############
 # 2: Styles #
 #############
@@ -315,7 +342,8 @@ Style * SloppyFocus, MouseFocusClickRaises
 Style * TileCascadePlacement
 #Style * CenterPlacement
 
-#Style * Animation
+#开启动画
+Style * Animation
 
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 #Style * FocusFollowsMouse 
@@ -1016,9 +1044,6 @@ DestroyModuleConfig FvwmScript:*
 
 
 
-
-
-
 # FvwmPager
 #
 # This module displays the location of the windows on the various Pages
@@ -1083,10 +1108,10 @@ Style "FvwmTaskBar" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
 
 # CirculateSkip 说明当FVWM要求轮询窗口进行批量操作时，这些窗口不被计算在内
 DestroyModuleConfig FvwmTaskBar:*
-*FvwmTaskBar: Geometry +0+0
+*FvwmTaskBar: Geometry +0-0
 *FvwmTaskBar: Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1"
-*FvwmTaskBar: SelFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
-*FvwmTaskBar: StatusFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
+*FvwmTaskBar: SelFont "StringEncoding=UTF-8:xft:文泉驿微米黑:size=9:encoding=iso10646-1:pixelsize=12:minispace=True:antialias=True"
+*FvwmTaskBar: StatusFont "StringEncoding=UTF-8:xft:文泉驿微米黑:size=9:encoding=iso10646-1:pixelsize=12:minispace=True:antialias=True"
 #*FvwmTaskBar: StatusFont fixed
 
 # TaskBar的初始行数
@@ -1135,14 +1160,14 @@ DestroyModuleConfig FvwmTaskBar:*
 *FvwmTaskBar: DeskOnly
 
 #在任务条上显示的快捷程序。
-#*FvwmTaskBar: MailCommand Exec exec rxvt -e mutt
-#*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/file-manager.png, Action (Mouse 1) Exec exec /usr/bin/dolphin
-#*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/cd-player.png, Action (Mouse 1) Exec exec smplayer
-#*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/www.png, Action (Mouse 1) Exec exec google-chrome-stable
-#*FvwmTaskBar: Button NoTitle , Icon stardict.png, Action (Mouse 1) Exec exec stardict
-#*FvwmTaskBar: Button NoTitle , Icon ark.png, Action (Mouse 1) Exec exec ark
-#*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/teminal.png, Action (Mouse 1) Exec exec gnome-terminal
-#*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/gimp.png, Action (Mouse 1) Exec exec gwenview
+*FvwmTaskBar: MailCommand Exec exec rxvt -e mutt
+*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/file-manager.png, Action (Mouse 1) Exec exec /usr/bin/dolphin
+*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/cd-player.png, Action (Mouse 1) Exec exec smplayer
+*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/www.png, Action (Mouse 1) Exec exec google-chrome-stable
+*FvwmTaskBar: Button NoTitle , Icon stardict.png, Action (Mouse 1) Exec exec stardict
+*FvwmTaskBar: Button NoTitle , Icon ark.png, Action (Mouse 1) Exec exec ark
+*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/teminal.png, Action (Mouse 1) Exec exec gnome-terminal
+*FvwmTaskBar: Button NoTitle , Icon $[fvwm_icons]/gimp.png, Action (Mouse 1) Exec exec gwenview
 
 
 ####################  TaskBar结束######################################
@@ -1287,3 +1312,55 @@ Style    "*netease-cloud-music"     StartsOnDesk  3, StartsOnPage 0 0
 Style    "*smplayer"                StartsOnDesk  3, StartsOnPage 0 1
 Style    "vlc"                      StartsOnDesk  3, StartsOnPage 1 0
 Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
+
+
+
+#####
+# MyButtons
+##################################
+Colorset 20  Transparent,fg white #颜色
+Style "MyButtons" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
+  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+
+DestroyModuleConfig MyButtons: *
+*MyButtons: Geometry 420x60+500-0
+*MyButtons: Colorset 20
+*FvwmButtons: Foreground grey90
+*FvwmButtons: Background #1c5572
+*FvwmButtons: Window3DBorders
+*MyButtons: Rows 1  #显示 一行
+*MyButtons: Columns 8  #显示8个按钮
+*MyButtons: Frame 0
+*MyButtons: Font "Shadow=3:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1:pixelsize=14:minspace=True:antialias=True"
+#*MyButtons: (2x1, Frame 0, Title(Center) "FVWM")
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
+  Action(Mouse 1) `Exec exec terminator`, \
+  Action(Mouse 2) `Exec exec xterm`, \
+  Action(Mouse 3) `Exec exec konsole`)
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
+  Action(Mouse 1) `Exec exec google-chrome-stable`, \
+  Action(Mouse 3)  `Exec exec firefox` )
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
+  Action(Mouse 1) `Exec exec dolphin`, \
+  Action(Mouse 3) `Exec exec pcmanfm`)
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
+  Action(Mouse 1) `Exec exec gwenview` ,\
+  Action(Mouse 3) `Exec exec deepin-screenshot` )
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
+  Action(Mouse 1) `Exec exec texstudio` ,\
+  Action(Mouse 3) `Exec exec lyx`)
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
+  Action(Mosue 1) `Exec exec gvim`,\
+  Action(Mosue 1) `Exec exec vim`)
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
+  Action(Mouse 1) `Exec exec netease-cloud-music`)
+
+*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
+   Action(Mouse 1) `Exec exec systemsettings5`)
