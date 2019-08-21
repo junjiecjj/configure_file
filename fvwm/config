@@ -138,7 +138,7 @@ AddToFunc   StartFunction
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
 + I Exec exec conky &
-+ I Module FvwmButtons MyButtons
++ I Module FvwmButtons MyDock
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
 
@@ -150,9 +150,8 @@ AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
 + I Exec exec gnome-terminal
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
-#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x30-0-0 -norender -padding 1
-#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x30-0-0 -norender -padding 1
-+ I Exec xcompmgr
+#xcompmgr是开启窗口透明需要先打开的软件
+#+ I Exec xcompmgr
 
 ###########################  InitFunction结束设置##########################
 
@@ -263,12 +262,15 @@ AddToFunc autohide_hide
 + I Schedule $0 $[w.id] WindowShade $2
 + I Schedule $0 $[w.id] Deschedule $[w.id]
 
-#下面以"+ I"开头的是你设定要隐藏的模块。最后一个参数“S”表示隐藏的方向，这里是“向上隐藏”。相应的参数有N, S, E, W, NW, NE, SW or SE。
+#下面以"+ I"开头的是你设定要隐藏的模块。最后一个参数“S”表示隐藏的方向，这里是“向上隐藏”。
+#相应的参数有N, S, E, W, NW, NE, SW or SE。
 # Add the windows you want to autohide
 AddToFunc enter_handler
-#+ I autohide FvwmButtons 500 N
-+ I autohide FvwmPager 500 S
-# + I autohide FvwmTaskBar 500 N #由于taskbar（任务条）还可以在f.taskbar里设置隐藏功能，我就在这里注销了这句。
+#+ I autohide MyDock  50 S
++ I autohide FvwmPager 50 S
+
+# + I autohide FvwmTaskBar 500 N 
+# #由于taskbar（任务条）还可以在f.taskbar里设置隐藏功能，我就在这里注销了这句。
 
 # Start FvwmAuto
 AddToFunc StartFunction
@@ -869,8 +871,8 @@ Silent Key x  A   CM     Exec exec $[infostore.terminal]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 
 #Ctrl+Alt+n打开文件管理器
-#Silent key f A CM Exec exec   dolphin &
-Silent key f A CM Exec exec  /usr/bin/nautilus
+Silent key f A CM Exec exec   dolphin &
+#Silent key f A CM Exec exec  /usr/bin/nautilus
 #Ctrl+Alt+g打开谷歌浏览器
 Silent key g A CM Exec exec    google-chrome-stable &
 #Ctrl+Alt+s打开texStduio
@@ -956,19 +958,19 @@ Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CM    Style  gnome-terminal*  TitleAtLeft
+Mouse 1  T   CS    Style  gnome-terminal*  TitleAtLeft
 Mouse 1  T   M     Style   xterm*  TitleAtLeft
 Mouse 1  T   C     Style   konsole*  TitleAtLeft
-Mouse 1  T   CS     Style   terminator*  TitleAtLeft
+Mouse 1  T   CM     Style   terminator*  TitleAtLeft
 
-Mouse 3  T   CM    Style   gnome-terminal*   TitleAtTop
+Mouse 3  T   CS    Style   gnome-terminal*   TitleAtTop
 Mouse 3  T   M     Style   xterm*   TitleAtTop
 Mouse 3  T   C     Style    konsole*   TitleAtTop
-Mouse 3  T   CS     Style   terminator*  TitleAtTop
+Mouse 3  T   CM     Style   terminator*  TitleAtTop
 
-
-Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
-Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
+#窗口透明，首先需要安装xcompmgr
+#Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
+#Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
 
 
 #######
@@ -1316,51 +1318,66 @@ Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
 
 
 #####
-# MyButtons
+# MyDock
 ##################################
-Colorset 20  Transparent,fg white #颜色
-Style "MyButtons" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
+Colorset 20  Transparent,fg white #完全透明颜色
+#半透明
+Colorset 21 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
+
+Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
   CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
-DestroyModuleConfig MyButtons: *
-*MyButtons: Geometry 420x60+500-0
-*MyButtons: Colorset 20
-*FvwmButtons: Foreground grey90
-*FvwmButtons: Background #1c5572
-*FvwmButtons: Window3DBorders
-*MyButtons: Rows 1  #显示 一行
-*MyButtons: Columns 8  #显示8个按钮
-*MyButtons: Frame 0
-*MyButtons: Font "Shadow=3:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1:pixelsize=14:minspace=True:antialias=True"
-#*MyButtons: (2x1, Frame 0, Title(Center) "FVWM")
+DestroyModuleConfig MyDock:*
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
+#设置FvwmButtons的出现在屏幕的位置
+*MyDock: Geometry 420x60+500-0
+*MyDock: Colorset 21
+*MyDock: BoxSize smart
+*MyDock: Foreground grey90
+*MyDock: Background #1c5572
+*MyDock: background LightGoldenrodYellow
+*MyDock: Window3DBorders
+#*MyDock: ActiveColorset 12
+#*MyDcok: PressColorset 10
+*MyDock: Rows 1  #显示 一行
+*MyDock: Columns 8  #显示8个按钮
+*MyDock: Frame 0
+#*MyDock: Padding 2 2
+*MyDock: Pixmap none
+*MyDock: ShowTips
+*MyDock: Font "Shadow=3:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1:pixelsize=14:minspace=True:antialias=True"
+#*MyDock: (2x1, Frame 0, Title(Center) "FVWM")
+
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec terminator`, \
   Action(Mouse 2) `Exec exec xterm`, \
   Action(Mouse 3) `Exec exec konsole`)
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
   Action(Mouse 1) `Exec exec google-chrome-stable`, \
   Action(Mouse 3)  `Exec exec firefox` )
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
   Action(Mouse 1) `Exec exec dolphin`, \
   Action(Mouse 3) `Exec exec pcmanfm`)
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
   Action(Mouse 1) `Exec exec gwenview` ,\
   Action(Mouse 3) `Exec exec deepin-screenshot` )
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
   Action(Mouse 1) `Exec exec texstudio` ,\
   Action(Mouse 3) `Exec exec lyx`)
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
   Action(Mosue 1) `Exec exec gvim`,\
-  Action(Mosue 1) `Exec exec vim`)
+  Action(Mosue 3) `Exec exec vim`)
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
   Action(Mouse 1) `Exec exec netease-cloud-music`)
 
-*MyButtons: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
-   Action(Mouse 1) `Exec exec systemsettings5`)
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
+  Action(Mouse 1) `Exec exec systemsettings5`,\
+  Action(Mouse 3) `Exec exec xscreensaver-demo`)
+
+################### Dock结束######################################
