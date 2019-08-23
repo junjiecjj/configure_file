@@ -73,3 +73,9 @@ XTerm*scaleHeight: 1.01
 *xterm*color13: #ad7fa8
 *xterm*color14: #00f5e9
 *xterm*color15: #eeeeec
+
+
+！xrdb -merge ~/.Xresources
+或
+！在/etc/X11/app-defaults/XTerm里面加上面的东西
+！/usr/share/X11/app-defaults/XTerm
