@@ -73,8 +73,8 @@ DestroyModuleConfig FvwmScroll: *
 #
 # The following is used in various menus and also sets the terminal
 # that FvwmConsole uses. Change this to your terminal of choice
-#InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
-InfoStoreAdd terminal      xterm
+InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
+#InfoStoreAdd terminal      xterm
 InfoStoreAdd gnome-term    gnome-terminal
 InfoStoreAdd kde-terminal  konsole
 InfoStoreAdd terminator    terminator
@@ -259,15 +259,15 @@ AddToFunc autohide
 + I TestRc (!Match) All ($0, !shaded) autohide_hide $1 $2
 
 AddToFunc autohide_hide
-+ I Schedule $0 $[w.id] WindowShade $2
++ I Schedule $0 $[w.id] WindowShade $1
 + I Schedule $0 $[w.id] Deschedule $[w.id]
 
 #下面以"+ I"开头的是你设定要隐藏的模块。最后一个参数“S”表示隐藏的方向，这里是“向上隐藏”。
 #相应的参数有N, S, E, W, NW, NE, SW or SE。
 # Add the windows you want to autohide
 AddToFunc enter_handler
-#+ I autohide MyDock  50 S
-+ I autohide FvwmPager 50 S
+#+ I autohide MyDock  5  N
+#+ I autohide FvwmPager 50 S
 
 # + I autohide FvwmTaskBar 500 N 
 # #由于taskbar（任务条）还可以在f.taskbar里设置隐藏功能，我就在这里注销了这句。
@@ -350,8 +350,10 @@ Style * Animation
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 #Style * FocusFollowsMouse 
 Style * DecorateTransient, #Layer 4
+
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
-Style *term* TitleAtLeft
+Style *term*     TitleAtLeft
+Style  konsole   TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -506,7 +508,7 @@ MenuStyle * TrianglesSolid, TrianglesUseFore, Animation
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=18:encoding=iso10646-1"
+MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=14:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
@@ -1292,8 +1294,10 @@ Style * RecaptureHonorsStartsOnPage, CaptureHonorsStartsOnPage
 Style    "Firefox"                  StartsOnPage 0 0
 Style    "*Google Chrome"           StartsOnPage 0 0
 
-Style    "xterm"                    StartsOnPage 0 1
-Style    "gnome-terminal*"          StartsOnPage 0 1
+#aStyle    "xterm"                  StartsOnPage 0 1
+#Style    "gnome-terminal*"         StartsOnPage 0 1
+#Style    "konsole*"                StartsOnPage 0 1
+#Style    "terminator*"             StartsOnPage 0 1
 
 Style    "dolphin"                 StartsOnPage 1 1
 Style    "pcmanfm"                 StartsOnPage 1 1
@@ -1304,8 +1308,8 @@ Style    "gnome-control-center"    StartsOnPage 1 1
 Style    "*texstudio"               StartsOnDesk  2, StartsOnPage 0 0
 Style    "*lyx"                     StartsOnDesk  2, StartsOnPage 0 0
 Style    "wps"                      StartsOnDesk  2, StartsOnPage 0 1
-Style    "*pdf"                  StartsOnDesk  2, StartsOnPage 0 1
-Style    "*ppt"                 StartsOnDesk  2, StartsOnPage 0 1
+Style    "*pdf"                     StartsOnDesk  2, StartsOnPage 0 1
+Style    "*ppt"                     StartsOnDesk  2, StartsOnPage 0 1
 Style    "*et"                      StartsOnDesk  2, StartsOnPage 0 1
 Style    "*Okular"                  StartsOnDesk  2, StartsOnPage 1 0
 
@@ -1313,7 +1317,7 @@ Style    "*Okular"                  StartsOnDesk  2, StartsOnPage 1 0
 Style    "*netease-cloud-music"     StartsOnDesk  3, StartsOnPage 0 0
 Style    "*smplayer"                StartsOnDesk  3, StartsOnPage 0 1
 Style    "vlc"                      StartsOnDesk  3, StartsOnPage 1 0
-Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
+Style    "mplayer"                  StartsOnDesk  3, StartsOnPage 1 1
 
 
 
@@ -1323,6 +1327,7 @@ Style    "mplayer"                      StartsOnDesk  3, StartsOnPage 1 1
 Colorset 20  Transparent,fg white #完全透明颜色
 #半透明
 Colorset 21 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
+Colorset 22 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
 
 Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
   CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
@@ -1331,7 +1336,7 @@ DestroyModuleConfig MyDock:*
 
 #设置FvwmButtons的出现在屏幕的位置
 *MyDock: Geometry 420x60+500-0
-*MyDock: Colorset 21
+*MyDock: Colorset 22
 *MyDock: BoxSize smart
 *MyDock: Foreground grey90
 *MyDock: Background #1c5572
@@ -1380,4 +1385,4 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 1) `Exec exec systemsettings5`,\
   Action(Mouse 3) `Exec exec xscreensaver-demo`)
 
-################### Dock结束######################################
+#################### Dock结束######################################
