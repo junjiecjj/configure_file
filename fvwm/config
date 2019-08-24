@@ -1189,7 +1189,7 @@ Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
         CirculateSkipIcon, CirculateSkip, HandleWidth 0, BorderWidth 0, \
-        NeverFocus, Layer 1, StaysOnBottom
+        NeverFocus, Layer 1, #StaysOnBottom
 
 
 DestroyModuleConfig FvwmIconMan:*
@@ -1330,7 +1330,7 @@ Colorset 21 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
 Colorset 22 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
 
 Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
-  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+  CirculateSkip, FixedPosition, FixedSize, !Iconifiable, #StaysOnBottom
 
 DestroyModuleConfig MyDock:*
 
