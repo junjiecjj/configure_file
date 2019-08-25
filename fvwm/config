@@ -1398,3 +1398,4 @@ DestroyModuleConfig MyDock:*
 DestroyModuleConfig FvwmBacker*
 *FvwmBacker: Command (Desk 0) -solid black
 *FvwmBacker: Command (Desk 1) -solid blue
+######################################
