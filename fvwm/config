@@ -453,7 +453,7 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置激活窗口title栏的颜色
-Colorset 2  fg  #0000FF, bg green, hi red, sh red, Plain red, NoShape
+Colorset 2  fg  #000000, bg green, hi red, sh red, Plain red, NoShape
 #Colorset 2 Transient 
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
