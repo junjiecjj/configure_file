@@ -151,7 +151,7 @@ AddToFunc InitFunction
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
 
 #xcompmgr是开启窗口透明需要先打开的软件,
-+ I Exec    xcompmgr
+#+ I Exec    xcompmgr
 #+ I Exec    hsetroot -solid #000000
 ###########################  InitFunction结束设置##########################
 
@@ -356,8 +356,8 @@ Style   *term*     TitleAtLeft
 Style   *konsole   TitleAtLeft
 
 # Default Font
-DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
-Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=12:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
+Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=14:encoding=iso10646-1"
 # Window Placement
 Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition
 
@@ -453,7 +453,7 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置激活窗口title栏的颜色
-Colorset 2 RootTransparent, fg black, bg gold, hi red, sh red, Plain red, NoShape, Tint green 90, bgTint green 60
+Colorset 2  fg  #0000FF, bg green, hi red, sh red, Plain red, NoShape
 #Colorset 2 Transient 
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
@@ -508,7 +508,7 @@ MenuStyle * TrianglesSolid, TrianglesUseFore, Animation
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=14:encoding=iso10646-1"
+MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=18:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
@@ -971,8 +971,8 @@ Mouse 3  T   C     Style    konsole*   TitleAtTop
 Mouse 3  T   CM     Style   terminator*  TitleAtTop
 
 #窗口透明，首先需要安装xcompmgr
-Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
-Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
+#Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
+#Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
 
 
 #######
@@ -1398,4 +1398,4 @@ DestroyModuleConfig MyDock:*
 DestroyModuleConfig FvwmBacker*
 *FvwmBacker: Command (Desk 0) -solid black
 *FvwmBacker: Command (Desk 1) -solid blue
-######################################
+################################################################
