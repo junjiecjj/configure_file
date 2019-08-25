@@ -141,18 +141,18 @@ AddToFunc   StartFunction
 + I Module FvwmButtons MyDock
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
+#+ I  Module FvwmBacker
 
-
-Module FvwmAnimate
 ###########################  InitFunction设置##########################
 #DestroyFunc InitFunction
 AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
 + I Exec exec gnome-terminal
 + I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
-#xcompmgr是开启窗口透明需要先打开的软件
-#+ I Exec xcompmgr
 
+#xcompmgr是开启窗口透明需要先打开的软件,
++ I Exec    xcompmgr
+#+ I Exec    hsetroot -solid #000000
 ###########################  InitFunction结束设置##########################
 
 
@@ -352,8 +352,8 @@ Style * Animation
 Style * DecorateTransient, #Layer 4
 
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
-Style *term*     TitleAtLeft
-Style  konsole   TitleAtLeft
+Style   *term*     TitleAtLeft
+Style   *konsole   TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -408,9 +408,9 @@ Style   "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style   "FvwmPager"          StaysOnTop
 #Style   "FvwmBanner"         StaysOnTop
 #Style   "FvwmTaskBar"        StaysOnTop
-#Style  "*RightPanel"        StaysOnTop
+#Style  "*RightPanel"         StaysOnTop
 #Style   "fcitx"              StaysOnTop
-Style   "*Google Chrome"     NoTitle
+Style   "*Google Chrome"      NoTitle
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
 #Style  "FvwmButtons" StaysOnTop,ClickToFocus
@@ -532,7 +532,7 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
 + "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec $[infostore.terminal]
-+ "&gnome_Term   %$[fvwm_icons]/terminal1.png%" Exec exec gnome-terminal
++ "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
 + "&kde_Term     %$[fvwm_icons]/terminal1.png%" Exec exec konsole
 + "" Nop
 + "XDG &Menu     %$[fvwm_icons]/apps.png%" Popup XDGMenu
@@ -618,9 +618,9 @@ Test (x pcmanfm) + "%$[fvwm_exicons2]/folder.png% Pcmanfm"    Exec exec  pcmanfm
 DestroyMenu MenuYule
 AddToMenu   MenuYule    "音乐视频" Title
 Test (x netease-cloud-music) + "%$[fvwm_exicons2]/netesase.png% 网易云音乐" Exec exec netease-cloud-music
-Test (x smplayer) +   "%$[fvwm_exicons2]/cd-player.png %SMPlayer射手影音" Exec exec smplayer
-Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png % VLC媒体播放器" Exec exec vlc
-Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png % Mplayer媒体播放器" Exec exec mpv
+Test (x smplayer) +   "%$[fvwm_exicons2]/disk-cd.png%SMPlayer射手影音" Exec exec smplayer
+Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png% VLC媒体播放器" Exec exec vlc
+Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png% Mplayer媒体播放器" Exec exec mpv
 
 ################图片相关##########################################
 DestroyMenu MenuPhoto
@@ -971,8 +971,8 @@ Mouse 3  T   C     Style    konsole*   TitleAtTop
 Mouse 3  T   CM     Style   terminator*  TitleAtTop
 
 #窗口透明，首先需要安装xcompmgr
-#Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
-#Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
+Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
+Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
 
 
 #######
@@ -1189,7 +1189,7 @@ Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
         CirculateSkipIcon, CirculateSkip, HandleWidth 0, BorderWidth 0, \
-        NeverFocus, Layer 1, #StaysOnBottom
+        NeverFocus, Layer 1, StaysOnBottom
 
 
 DestroyModuleConfig FvwmIconMan:*
@@ -1326,17 +1326,17 @@ Style    "mplayer"                  StartsOnDesk  3, StartsOnPage 1 1
 ##################################
 Colorset 20  Transparent,fg white #完全透明颜色
 #半透明
-Colorset 21 fg white, bg white, hi white, RootTransparent buffer, Tint white 30
-Colorset 22 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
+Colorset 22 fg #FFFFFF, bg #FFFFFF, hi #FFFFFF, RootTransparent buffer, Tint #FFFFFF 30
+Colorset 23 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
 
 Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
-  CirculateSkip, FixedPosition, FixedSize, !Iconifiable, #StaysOnBottom
+  CirculateSkip, FixedPosition, FixedSize, !Iconifiable,  #StayOnBottom
 
 DestroyModuleConfig MyDock:*
 
 #设置FvwmButtons的出现在屏幕的位置
-*MyDock: Geometry 420x60+500-0
-*MyDock: Colorset 22
+*MyDock: Geometry 480x60+500-0
+*MyDock: Colorset 23
 *MyDock: BoxSize smart
 *MyDock: Foreground grey90
 *MyDock: Background #1c5572
@@ -1345,7 +1345,7 @@ DestroyModuleConfig MyDock:*
 #*MyDock: ActiveColorset 12
 #*MyDcok: PressColorset 10
 *MyDock: Rows 1  #显示 一行
-*MyDock: Columns 8  #显示8个按钮
+*MyDock: Columns 9  #显示8个按钮
 *MyDock: Frame 0
 #*MyDock: Padding 2 2
 *MyDock: Pixmap none
@@ -1372,17 +1372,29 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
   Action(Mouse 1) `Exec exec texstudio` ,\
+  Action(Mouse 2) `Exec exec hsetroot -solid "#000000"`,\
   Action(Mouse 3) `Exec exec lyx`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
   Action(Mosue 1) `Exec exec gvim`,\
+  Action(Mouse 2) `Exec exec gedit`
   Action(Mosue 3) `Exec exec vim`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
   Action(Mouse 1) `Exec exec netease-cloud-music`)
 
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/disk-cd.png, \
+  Action(Mouse 1) `Exec exec smplayer`,\
+  Action(Mouse 2) `Exec exec vlc`,\
+  Action(Mouse 3) `Exec exec mpv`)
+
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
   Action(Mouse 1) `Exec exec systemsettings5`,\
   Action(Mouse 3) `Exec exec xscreensaver-demo`)
 
-#################### Dock结束######################################
+################### Dock结束######################################
+
+
+DestroyModuleConfig FvwmBacker*
+*FvwmBacker: Command (Desk 0) -solid black
+*FvwmBacker: Command (Desk 1) -solid blue
