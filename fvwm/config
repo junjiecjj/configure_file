@@ -1,4 +1,3 @@
-
 ##################################
 #  ____________________________
 # (   _________________________)
@@ -627,11 +626,11 @@ DestroyMenu MenuPhoto
 AddToMenu   MenuPhoto "图片查看、编辑" Title
 Test (x gwenview) +   "图片查看gwenview  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gwenview
 Test (x shotwell) +   "图片查看shotwell  %$[fvwm_exicons2]/image-viewer.png%" Exec exec shotwell
-Test (x deepin-screenshot) + "深度截图 %$[fvwm_exicons2]/deepinscreenshot.png%" Exec exec deepin-screenshot
-Test (x lximage-qt) +   "选择截图screenshot  %$[fvwm_exicons2]/image-processor.png%" Exec exec lximage-qt --screenshot
+Test (x deepin-screenshot) +  "深度截图 %$[fvwm_exicons2]/deepinscreenshot.png%" Exec exec deepin-screenshot
+Test (x lximage-qt) +         "选择截图screenshot  %$[fvwm_exicons2]/image-processor.png%" Exec exec lximage-qt --screenshot
 Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gnome-screenshot
-Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
-Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
+Test (x inkscape) +           "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
+Test (x gimp) +               "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
 ################通信软件相关##########################################
 DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
@@ -1364,11 +1363,13 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
   Action(Mouse 1) `Exec exec dolphin`, \
+  Action(Mouse 2) `Exec exec nautilus`,\
   Action(Mouse 3) `Exec exec pcmanfm`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
   Action(Mouse 1) `Exec exec gwenview` ,\
-  Action(Mouse 3) `Exec exec deepin-screenshot` )
+  Action(Mouse 2) `Exec exec deepin-screenshot`,\
+  Action(Mouse 3) `Exec exec inkscape`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
   Action(Mouse 1) `Exec exec texstudio` ,\
@@ -1398,4 +1399,3 @@ DestroyModuleConfig MyDock:*
 DestroyModuleConfig FvwmBacker*
 *FvwmBacker: Command (Desk 0) -solid black
 *FvwmBacker: Command (Desk 1) -solid blue
-################################################################
