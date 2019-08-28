@@ -133,4 +133,4 @@ ${color white}磁盘频谱图 ${hr 1}${color yellow}
 ${color #FFA500}读: ${diskio_read}/s ${alignr}${color #00FA9A}写: ${diskio_write}/s
 ${color #FFA500}${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff}${color #00FA9A} ${alignr}${diskiograph_read /dev/sda 25,80 #ff0000 #0000ff}
 ${color #FFFF00} ${hr 2}
-]
+]]
