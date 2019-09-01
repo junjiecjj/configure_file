@@ -1235,7 +1235,8 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1   TipsDelays 500 200
 *FvwmIconMan: 1   TipsBorderWidth 4
 
-*FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand "Iconify"
+*FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand Raise
+#sendcommand "Iconify"
 *FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
 *FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
 
