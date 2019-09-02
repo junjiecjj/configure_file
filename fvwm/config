@@ -854,9 +854,24 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 Silent Key F1 A M Menu MenuFvwmRoot
 Silent Key Menu A A Menu MenuFvwmRoot
 
-#Silent Key Tab A M WindowList Root c c DeskSort, SelectOnRelease Meta_L
+#Silent Key Tab A M WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
 #Silent Key Tab A M WindowList Root c c NoDeskSort
-Silent  Key Tab A M WindowList "Prev SwitchToWindow"
+
+#Key Tab    A    M    WindowList (CurrentDesk) Root c c CurrentAtEnd \
+                     CurrentDesk IconifiedAtEnd NoGeometry MaxLabelWidth 40 \
+                     NoCurrentDeskTitle SelectOnRelease Meta_L
+
+Key Tab A M WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, NoIcons
+
+#Silent  Key Tab A M WindowList "Prev SwitchToWindow"
+
+#Key Tab A M alttab
+
+AddToFunc alttab
++ I Next (AcceptsFocus CurrentDesk CurrentPage !Iconic) Focus
++ I Prev (AcceptsFocus CurrentDesk CurrentPage !Iconic) WarpToWindow 50 50
++ I WindowList Root c c NoCurrentDeskTitle,NoGeometry,CurrentDesk,Icons,Sticky, \
+                        OnTop,OnBottom,MaxLabelWidth 320,IconifiedAtEnd,SelectOnRelease Alt_L
 
 #
 Silent Key 1 A C GotoDesk 0 0
