@@ -861,7 +861,7 @@ Silent Key Menu A A Menu MenuFvwmRoot
                      CurrentDesk IconifiedAtEnd NoGeometry MaxLabelWidth 40 \
                      NoCurrentDeskTitle SelectOnRelease Meta_L
 
-Key Tab A M WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, NoIcons,NoDeskSort
+Key Tab A M WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, Icons,NoDeskSort
 
 #Silent  Key Tab A M WindowList "Prev SwitchToWindow"
 
