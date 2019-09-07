@@ -1,4 +1,4 @@
-! Xterm settings
+! Xterm 配置文件
 !copy & paste
 
 !外观重点的是下面第一行
@@ -38,6 +38,7 @@ xterm*geometry:70x18+200+150
 XTerm*scrollBar:true
 XTerm*rightScrollBar:true
 XTerm*saveLines:  4096
+XTerm*fastScroll:true
 
 Xterm*bellIsUrgent: true
 XTerm*allowBoldFonts: true
