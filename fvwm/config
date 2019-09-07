@@ -887,7 +887,7 @@ Silent Key 4 A C GotoDesk 0 3
 #Silent Key t A CM Exec exec $[infostore.terminal]
 Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
 Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
-Silent Key x  A   CM     Exec exec $[infostore.terminal]
+Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 
@@ -980,15 +980,17 @@ Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CS    Style  gnome-terminal*  TitleAtLeft
-Mouse 1  T   M     Style   xterm*  TitleAtLeft
-Mouse 1  T   C     Style   konsole*  TitleAtLeft
-Mouse 1  T   CM     Style   terminator*  TitleAtLeft
+Mouse 1  T   CS     Style    gnome-terminal*   TitleAtLeft
+Mouse 1  T   M      Style    xterm*            TitleAtLeft
+Mouse 1  T   C      Style    konsole*          TitleAtLeft
+Mouse 1  T   CM     Style   terminator*        TitleAtLeft
+Mouse 1  T   C      Style    urxvt*            TitleAtLeft
 
-Mouse 3  T   CS    Style   gnome-terminal*   TitleAtTop
-Mouse 3  T   M     Style   xterm*   TitleAtTop
-Mouse 3  T   C     Style    konsole*   TitleAtTop
-Mouse 3  T   CM     Style   terminator*  TitleAtTop
+Mouse 3  T   CS     Style    gnome-terminal*   TitleAtTop
+Mouse 3  T   M      Style    xterm*            TitleAtTop
+Mouse 3  T   C      Style    konsole*          TitleAtTop
+Mouse 3  T   CM     Style    terminator*       TitleAtTop
+Mouse 3  T   C      Style    urxvt*       TitleAtTop
 
 #窗口透明，首先需要安装xcompmgr
 Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
