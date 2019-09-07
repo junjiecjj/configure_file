@@ -889,6 +889,8 @@ Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
 Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.terminal]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
+Silent Key u  A   CM     Exec exec $[infostore.urxvt]
+
 
 #Ctrl+Alt+n打开文件管理器
 Silent key f A CM Exec exec   dolphin &
