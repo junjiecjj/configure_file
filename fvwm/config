@@ -75,9 +75,10 @@ DestroyModuleConfig FvwmScroll: *
 # that FvwmConsole uses. Change this to your terminal of choice
 InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
 #InfoStoreAdd terminal      xterm
-InfoStoreAdd gnome-term    gnome-terminal
-InfoStoreAdd kde-terminal  konsole
-InfoStoreAdd terminator    terminator
+InfoStoreAdd   urxvt         urxvt
+InfoStoreAdd   gnome-term    gnome-terminal
+InfoStoreAdd   kde-terminal  konsole
+InfoStoreAdd   terminator    terminator
 #############添加环境变量##################
 SetEnv fvwm_home           $[HOME]/.fvwm
 SetEnv fvwm_img            $[fvwm_home]/images
@@ -354,6 +355,8 @@ Style * DecorateTransient, #Layer 4
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
 Style   *term*     TitleAtLeft
 Style   *konsole   TitleAtLeft
+Style   *urxvt*   TitleAtLeft
+
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
