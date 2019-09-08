@@ -44,12 +44,12 @@ Xterm*bellIsUrgent: true
 XTerm*allowBoldFonts: true
 
 !背景色及字体顔色
-xterm*background:grey11
-xterm*foreground:green2
+xterm*background:#000000
+xterm*foreground:#00FF00
 xterm.borderLess: true
 xterm.cursorBlink: true
-xterm*colorUL: yellow
-xterm*colorBD: white
+xterm*colorUL: Green
+xterm*colorBD: #FFFF00
 
 !input method  好像不起作用
 XTerm*inputMethod:fcitx  
@@ -58,20 +58,37 @@ XTerm*inputMethod:fcitx
 XTerm*scaleHeight: 1.01
 
 !-- Tango color scheme Tango配色方案
-*xterm*color0: #2e3436
+!*xterm*color0: #2e3436
+!*xterm*color1: #cc0000
+!*xterm*color2: #4e9a06
+!*xterm*color3: #c4a000
+!*xterm*color4: #3465a4
+!*xterm*color5: #75507b
+!*xterm*color6: #0b939b
+!*xterm*color7: #d3d7cf
+!*xterm*color8: #555753
+!*xterm*color9: #ef2929
+!*xterm*color10: #8ae234
+!*xterm*color11: #fce94f
+!*xterm*color12: #729fcf
+!*xterm*color13: #ad7fa8
+!*xterm*color14: #00f5e9
+!*xterm*color15: #eeeeec
+
+*xterm*color0: #000000
 *xterm*color1: #cc0000
-*xterm*color2: #4e9a06
-*xterm*color3: #c4a000
-*xterm*color4: #3465a4
-*xterm*color5: #75507b
-*xterm*color6: #0b939b
-*xterm*color7: #d3d7cf
-*xterm*color8: #555753
+*xterm*color2: #A020F0
+*xterm*color3: #FA8072
+*xterm*color4: #FFFF00
+*xterm*color5: #EE00EE
+*xterm*color6: #63B8FF
+*xterm*color7: #CFCFCF
+*xterm*color8: #E8E8E8
 *xterm*color9: #ef2929
 *xterm*color10: #8ae234
 *xterm*color11: #fce94f
-*xterm*color12: #729fcf
-*xterm*color13: #ad7fa8
+*xterm*color12: #0000FF
+*xterm*color13: #FF6EB4
 *xterm*color14: #00f5e9
 *xterm*color15: #eeeeec
 
