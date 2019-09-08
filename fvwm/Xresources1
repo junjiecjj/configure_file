@@ -81,14 +81,13 @@ URxvt.tabbed.tab-bg: 0
 URxvt.tabbed.tabbar-fg: 4
 URxvt.tabbed.tabbar-bg: 0
 
-multichar_encoding:utf8
 
 URxvt.clipboard.autocopy: true
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 
 ! window geometry set
-URxvt.geometry: 90x25+180+200
+URxvt.geometry: 90x25-80-200
 URxvt.title:URxvt
 
 !icons
@@ -116,9 +115,9 @@ URxvt.tintCddolor: white
 URxvt.shading: 80 
 URxvt.fading: 60
 
-URxvt.pointerBlank: true
-*pointerColorBackground: #586e75
-*pointerColorForeground: #93a1a1
+!URxvt.pointerBlank: true
+!*pointerColorBackground: #586e75
+!*pointerColorForeground: #93a1a1
 URxvt*letterSpace: -1  
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
