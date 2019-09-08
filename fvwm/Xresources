@@ -91,7 +91,3 @@ URxvt.title:URxvt
 
 !icons
 URxvt.iconFile: ~/.fvwm/images/icons/16x16-crystalclear/terminal.png
-
-
-!xrdb -merge ~/.Xresources
-!把上述加到/etc/X11/app_defaults/URxvt中开机自动生效
