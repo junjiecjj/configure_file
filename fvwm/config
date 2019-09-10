@@ -385,6 +385,7 @@ Style * WindowShadeScrolls, WindowShadeSteps 10
 IgnoreModifiers L25
 
 # Decor Styles
+#HandleWidth是控制窗口边框的宽度
 Style * BorderWidth 2, HandleWidth 6, BorderColorset 1, MWMButtons, FvwmBorder, FirmBorder
 Style * Colorset 1, HilightColorset 2, 
 Style * BorderColorset 3, HilightBorderColorset 4
