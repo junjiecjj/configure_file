@@ -1211,7 +1211,7 @@ Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
-        CirculateSkipIcon, CirculateSkip, HandleWidth 0, BorderWidth 0, \
+        CirculateSkipIcon, CirculateSkip, HandleWidth 2, BorderWidth 2, \
         NeverFocus, Layer 1, StaysOnBottom
 
 
