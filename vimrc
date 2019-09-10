@@ -537,7 +537,11 @@ func SetTitle()
         call append(line(".")+4, "\# mail: 2716705056@qq.com") 
         call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d")) 
         call append(line(".")+6, "\#########################################################################") 
-        call append(line(".")+7, "")
+        call append(line(".")+7, "import pandas as pd")
+        call append(line(".")+8, "import numpy as np")
+        call append(line(".")+9, "import matplotlib.pyplot as plt")
+        call append(line(".")+10, "import os, time")
+        call append(line(".")+11, "")
     else 
         call setline(1, "/*************************************************************************") 
         call append(line("."), ">> File Name: ".expand("%")) 
@@ -552,7 +556,8 @@ func SetTitle()
     if &filetype == 'cpp'
         call append(line(".")+6, "#include<bits/stdc++.h>")
         call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
+        call append(line(".")+8, "int main(int argc, char *argv[]){}")
+        call append(line(".")+9, "")
     endif
     if &filetype == 'c'
         call append(line(".")+6, "#include<stdio.h>")
@@ -563,9 +568,11 @@ func SetTitle()
         call append(line(".")+11, "#include<string.h>")
         call append(line(".")+12, "#include<sys/socket.h>")
         call append(line(".")+13, "#include<stddef.h>")
-        call append(line(".")+14, "#include<local.h>")
+        call append(line(".")+14, "#include<locale.h>")
         call append(line(".")+15, "#include<time.h>")
-        call append(line(".")+16, "")
+        call append(line(".")+16, "#include<complex.h>")
+        call append(line(".")+18, "int main(int argc, char *argv[]){}")
+        call append(line(".")+19, "")
     endif
 endfunc
 
