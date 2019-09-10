@@ -556,9 +556,11 @@ func SetTitle()
     if &filetype == 'cpp'
         call append(line(".")+6, "#include<bits/stdc++.h>")
         call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "int main(int argc, char *argv[])")
-        call append(line(".")+9, "{}")
-        call append(line(".")+10, "")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "")
+        call append(line(".")+10, "int main(int argc, char *argv[])")
+        call append(line(".")+11, "{}")
+        call append(line(".")+12, "")
     endif
     if &filetype == 'c'
         call append(line(".")+6, "#include<stdio.h>")
@@ -572,9 +574,11 @@ func SetTitle()
         call append(line(".")+14, "#include<locale.h>")
         call append(line(".")+15, "#include<time.h>")
         call append(line(".")+16, "#include<complex.h>")
-        call append(line(".")+17, "int main(int argc, char *argv[])")
-        call append(line(".")+18, "{}")
-        call append(line(".")+19, "")
+        call append(line(".")+17, "")
+        call append(line(".")+18, "")
+        call append(line(".")+19, "int main(int argc, char *argv[])")
+        call append(line(".")+20, "{}")
+        call append(line(".")+21, "")
     endif
 endfunc
 
