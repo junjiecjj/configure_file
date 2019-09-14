@@ -616,6 +616,8 @@ AddToMenu   MenuFile "文件管理器" Title
 Test (x dolphin) + "%$[fvwm_exicons2]/folder-open.png% Dolphin"   Exec   exec dolphin 
 Test (x nautilus) + "%$[fvwm_exicons2]/folder.png% Nautilus"    Exec exec nautilus
 Test (x pcmanfm) + "%$[fvwm_exicons2]/folder.png% Pcmanfm"    Exec exec  pcmanfm 
+Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop 
+
 
 ##################娱乐##########################################
 
@@ -1388,6 +1390,7 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
   Action(Mouse 1) `Exec exec dolphin`, \
+  Action(Mouse 2) `Exec exec mendeleydesktop`,\
   Action(Mouse 3) `Exec exec pcmanfm`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
