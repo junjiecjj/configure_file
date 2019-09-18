@@ -224,10 +224,10 @@ augroup END
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " 设置宽度
-let NERDTreeWinSize=17
-let NERDTreeShowHidden=1
-let g:NERDTreeShowIgnoredStatus = 1
-let g:nerdtree_tabs_open_on_console_startup=1
+let NERDTreeWinSize=17  "目录树的宽度
+let NERDTreeShowHidden=1   "是否显示隐藏目录
+let g:NERDTreeShowIgnoredStatus = 1  
+let g:nerdtree_tabs_open_on_console_startup=1  "是否打开目录树
 " 显示目录行号
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
