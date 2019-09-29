@@ -137,7 +137,7 @@ AddToFunc   StartFunction
 + I Module FvwmEvent EventNewDesk
 + I Exec exec fcitx    #启用中文输入法
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
-+ I Exec xpmroot  $[fvwm_bgicons]/bg10.xpm  #背景
++ I Exec xpmroot  $[fvwm_bgicons]/极光1.png  #背景
 + I Exec exec conky &
 + I Module FvwmButtons MyDock
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
@@ -673,6 +673,10 @@ AddToMenu   BGMenu "Wallpapers" Title
 + "黑"          SetBG1 bg17.xpm
 + "黑"          SetBG1 bg18.xpm
 + "黑"          SetBG1 bg19.xpm
++ "极光1"       SetBG1 极光1.png
++ "极光2"       SetBG1 极光2.png
++ "极光3"       SetBG1 极光3.png
+
 
 # Window Operations Menus
 DestroyMenu MenuWindowOps
