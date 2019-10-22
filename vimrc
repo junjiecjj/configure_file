@@ -373,7 +373,7 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 "Flagging Unnecessary Whitespace
 "ctermfg是设置字体颜色，cterm是字体是否加粗，ctermbg别动，因为
 "很难看;
-"Comment在python中是#键后面的内容;
+"Comment在python中是#键后面的内容，C语言里//注释的内容;
 "String是字符串(“”，‘’)里面的内容，C语言里#include<stdio.h>中<>里面的内容的颜色;
 "Number是数字;
 "statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if、for等的颜色;
