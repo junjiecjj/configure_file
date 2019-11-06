@@ -371,37 +371,108 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
 
 "Flagging Unnecessary Whitespace
-"ctermfg是设置字体颜色，cterm是字体是否加粗，ctermbg别动，因为
-"很难看;
-"Comment在python中是#键后面的内容，C语言里//注释的内容;
-"String是字符串(“”，‘’)里面的内容，C语言里#include<stdio.h>中<>里面的内容的颜色;
+"ctermfg是设置字体颜色，cterm是字体是否加粗，ctermbg别动，因为很难看;
+"identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色；
+"Statement：关键字，例如if，else，do，while，等
+"Comment：注释内容;
+"Type：数据类型，如int,double,string等
+"PreProc：预处理器语句，如#include
+"Constant：常量的颜色，如真假，数字等
+"Special：特殊符号，如"、"
+"Underline：下划线
+"Error：错误
+"String是字符串(“”，‘’)里面的内容,以及#include<xxx>中xxx的颜色;
 "Number是数字;
-"statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if、for等的颜色;
+"Statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if,for,return等的颜色;
 "Include可以是C/C++里面的，也可以是python里面的import;
-"operator在python里面是in、and等的颜色
+"Operator在python里面是in、and等的颜色
 
-"2:绿色;3:黄色4:蓝色；5:紫色；7：白色；8：灰色；9:酒红色；11：黄色；12：蓝色；13：粉红；14：青色；
-"16：黑色;22:淡绿,46:绿色；
+"2:绿色;3:黄色4:蓝色；5:紫色；6:青绿色 7：白色；8：灰色；9:酒红色；10:亮绿色 
+"11：黄色；12：蓝色；13：粉红；14：青色；15:白色  16：黑色 17,18 :暗蓝  22:淡绿,
+"23:墨绿  24:墨绿 25,26,27：淡蓝 28:深绿 34,35,36:绿色  46:绿色；
+"51:亮青 
+"61:淡紫色
+"81:#98F5FF 
+"91:#A020F0
+"https://blog.csdn.net/cp3alai/article/details/45509459
+"https://blog.csdn.net/rainysia/article/details/7419839
 
-highlight BadWhitespace ctermbg=226 ctermfg=gray guifg= gray guibg=darkred
-highlight Comment  term=bold ctermfg=14 cterm=none
-hi Indentifer ctermbg=blue cterm=none
-hi Number ctermfg=13
-hi Type ctermfg=13
-hi Constant ctermfg=blue
-hi String ctermfg=10
-hi Statement ctermfg=11 cterm=bold
-hi Search ctermfg=7
-hi Include ctermfg=13
-hi Directory ctermfg=11
-hi Operator ctermfg=9
-hi Keyword ctermfg=13
-hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
+highlight  BadWhitespace ctermbg=226 ctermfg=gray guifg= gray guibg=darkred
+highlight  Comment  term=bold ctermfg=14 cterm=bold
+:hi Identifier ctermbg=16  ctermfg=202 cterm=bold
+:hi Number ctermfg=13
+:hi Type ctermfg=13 cterm=bold
+:hi Constant ctermfg=4
+:hi String ctermfg=10
+:hi Statement ctermfg=11 cterm=bold
+:hi Search ctermfg=7
+:hi Include ctermfg=13
+:hi Directory ctermfg=11
+:hi Preproc ctermfg=11
+:hi Operator ctermfg=9
+:hi Keyword ctermfg=13
+:hi Special ctermfg=5
+:hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
+
+"预处理命令 #include
+:hi Include ctermfg=226 ctermbg=16 cterm=bold
+
+"预处理命令 #define
+:hi Define ctermfg=11  ctermbg=20  cterm=bold
+
+"预处理命令 #if、#else、#endif
+:hi PreCondit ctermfg=11  ctermbg=20 cterm=bold
+
+"等同于 Define
+:hi  Macro ctermfg=11 ctermbg=20 cterm=bold
+
+"一个 typedef
+:hi Typedef ctermfg=11 ctermbg=20 cterm=bold
+
+"注释里的特殊字符
+:hi SpecialComment ctermfg=160  ctermbg=16 cterm=bold
+
+"警告消息
+:hi  WarningMsg ctermfg=11  ctermbg=16 cterm=bold
+
+"任何有错的构造
+:hi Error ctermfg=124  ctermbg=16 cterm=bold
+
+"if、then、else、endif、switch
+"hi Conditional ctermbg=16  ctermfg=16 cterm=bold    
+"for、do、while 等
+"hi Repeat ctermbg=16  ctermfg=11 cterm=bold        
+"case、default 等
+"hi Label ctermbg=16  ctermfg=16  cterm=bold
+
+"一个布尔型常数: TRUE、false
+:hi  Boolean ctermfg=196 ctermbg=16 cterm=bold
+
+"一个字符常数: 'c'、'\n'
+:hi  Character ctermfg=lightmagenta ctermbg=black cterm=bold
+
+"一个数字常数: 234、0xff
+:hi  Number ctermfg=124 ctermbg=16 cterm=bold
+
+"一个浮点常数: 2.3e10
+:hi  Float ctermfg=124 ctermbg=black cterm=bold
+
+"static、register、volatile 等
+:hi  StorageClass  ctermfg=11  ctermbg=black cterm=bold
+
+"函数名 (也包括: 类的方法名)
+:hi  Function ctermbg=16  ctermfg=202 cterm=bold
+
+"sizeof"、"+"、"*" 等
+:hi Operator ctermfg=226  ctermbg=16  cterm=bold
 
 highlight Search ctermbg=white ctermfg=black 
 highlight IncSearch ctermbg=black ctermfg=yellow 
-highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
+highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3
+"匹配的内容的颜色
+hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=reverse
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""
+
 
 "一键执行python代码
 map <F5> :call RunPython()<CR> "一键执行python代码
