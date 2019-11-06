@@ -397,8 +397,11 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 "https://blog.csdn.net/cp3alai/article/details/45509459
 "https://blog.csdn.net/rainysia/article/details/7419839
 
-highlight  BadWhitespace ctermbg=226 ctermfg=gray guifg= gray guibg=darkred
-highlight  Comment  term=bold ctermfg=14 cterm=bold
+:hi BadWhitespace ctermbg=226 ctermfg=gray guifg= gray guibg=darkred
+
+"任何注释
+:hi Comment  term=bold ctermfg=14 cterm=bold
+
 :hi Identifier ctermbg=16  ctermfg=202 cterm=bold
 :hi Number ctermfg=13
 :hi Type ctermfg=13 cterm=bold
@@ -415,10 +418,10 @@ highlight  Comment  term=bold ctermfg=14 cterm=bold
 :hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
 
 "预处理命令 #include
-:hi Include ctermfg=226 ctermbg=16 cterm=bold
+:hi Include ctermfg=11 ctermbg=16 cterm=bold
 
 "预处理命令 #define
-:hi Define ctermfg=11  ctermbg=20  cterm=bold
+:hi Define ctermfg=11  ctermbg=27  cterm=bold
 
 "预处理命令 #if、#else、#endif
 :hi PreCondit ctermfg=11  ctermbg=20 cterm=bold
@@ -429,8 +432,20 @@ highlight  Comment  term=bold ctermfg=14 cterm=bold
 "一个 typedef
 :hi Typedef ctermfg=11 ctermbg=20 cterm=bold
 
+"struct、union、enum 等
+:hi Structure ctermfg=11 ctermbg=20 cterm=bold
+
+"任何特殊符号
+:hi Special ctermfg=33 ctermbg=16 cterm=bold
+
+"常数中的特殊字符
+:hi SpecialChar ctermfg=33 ctermbg=16 cterm=bold
+
 "注释里的特殊字符
 :hi SpecialComment ctermfg=160  ctermbg=16 cterm=bold
+
+"任何需要特殊注意的部分
+:hi Todo ctermfg=52  ctermbg=16 cterm=bold
 
 "警告消息
 :hi  WarningMsg ctermfg=11  ctermbg=16 cterm=bold
@@ -438,10 +453,36 @@ highlight  Comment  term=bold ctermfg=14 cterm=bold
 "任何有错的构造
 :hi Error ctermfg=124  ctermbg=16 cterm=bold
 
+"try、catch、throw
+:hi Exception ctermfg=52  ctermbg=16 cterm=bold
+
+"当前窗口的状态行
+:hi StatusLine ctermfg=11   ctermbg=57  cterm=bold
+
+"光标所在的字符
+":hi  Cursor         ctermfg=black    ctermbg=lightgreen    term=bold
+
+"光标所在的屏幕列
+":hi  CursorColumn    ctermbg=black      cterm=bold
+
+"光标所在的屏幕行
+":hi  CursorLine       ctermbg=black     cterm=bold
+
+"非活动标签页标签
+":hi  TabLine   ctermfg=16   ctermbg=16   cterm=bold
+
+"没有标签的地方
+":hi  TabLineFill   ctermfg=16     ctermbg=239         cterm=bold
+
+"活动标签页标签
+":hi  TabLineSel    ctermfg=11    ctermbg=20         cterm=bold
+
 "if、then、else、endif、switch
-"hi Conditional ctermbg=16  ctermfg=16 cterm=bold    
+":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
+
 "for、do、while 等
-"hi Repeat ctermbg=16  ctermfg=11 cterm=bold        
+"hi Repeat ctermbg=16  ctermfg=11 cterm=bold
+
 "case、default 等
 "hi Label ctermbg=16  ctermfg=16  cterm=bold
 
@@ -449,10 +490,13 @@ highlight  Comment  term=bold ctermfg=14 cterm=bold
 :hi  Boolean ctermfg=196 ctermbg=16 cterm=bold
 
 "一个字符常数: 'c'、'\n'
-:hi  Character ctermfg=lightmagenta ctermbg=black cterm=bold
+:hi  Character ctermfg=124  ctermbg=16 cterm=bold
 
 "一个数字常数: 234、0xff
 :hi  Number ctermfg=124 ctermbg=16 cterm=bold
+
+"一个字符串常数: 字符串
+:hi String  ctermfg=34 ctermbg=16 cterm=bold
 
 "一个浮点常数: 2.3e10
 :hi  Float ctermfg=124 ctermbg=black cterm=bold
