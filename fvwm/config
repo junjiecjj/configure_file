@@ -473,6 +473,7 @@ Colorset 4  fg red, bg green, hi #474747, sh #101010, Plain, NoShape
 Colorset 5  fg Black, bg lemonChiffon, hi red, sh red, Plain, NoShape
 
 #Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
+#6是鼠标所在的menu的颜色
 Colorset 6  fg Black, bg lawngreen, hi, sh, Plain, NoShape
 
 #Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
