@@ -647,14 +647,16 @@ autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
 func SetTitle() 
     "如果文件类型为.sh文件 
     if &filetype == 'sh' 
-        call setline(1,"\#########################################################################") 
-        call append(line("."), "\# File Name: ".expand("%")) 
-        call append(line(".")+1, "\# Author:陈俊杰") 
-        call append(line(".")+2, "\# mail: 2716705056@qq.com") 
-        call append(line(".")+3, "\# Created Time: ".strftime("%Y.%m.%d")) 
-        call append(line(".")+4, "\#########################################################################") 
-        call append(line(".")+5, "\#!/bin/bash") 
+        call setline(1,"\#!/bin/bash") 
+        call append(line("."),"\#########################################################################") 
+        call append(line(".")+1, "\# File Name: ".expand("%")) 
+        call append(line(".")+2, "\# Author:陈俊杰") 
+        call append(line(".")+3, "\# mail: 2716705056@qq.com") 
+        call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d")) 
+        call append(line(".")+5, "\#########################################################################") 
         call append(line(".")+6, "") 
+        call append(line(".")+7, "") 
+        call append(line(".")+8, "") 
     elseif &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python3") 
         call append(line("."), "\#!-*-coding=utf-8-*-") 
