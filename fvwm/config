@@ -360,7 +360,7 @@ Style   *urxvt*   TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
-Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
+Style * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=13:encoding=iso10646-1"
 # Window Placement
 Style * MinOverlapPlacement, GrabFocusOff, !UsePPosition
 
@@ -494,7 +494,7 @@ Colorset 11 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 #右边iconman被鼠标点击时的颜色，就是右边的小条条
-Colorset 12 fg black, bg yellow, hi blue, sh blue, Plain, NoShape
+Colorset 12 fg black, bg  #FFA500, hi blue, sh blue, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
 #右边四个page，当鼠标在哪个page时的颜色(当鼠标指在page上时，弹出的小框叫fvwmBalloon)
@@ -1016,7 +1016,7 @@ Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]
 #   6 - Minimize
 ############
 #下面这句话控制的是窗口标题栏中字的位置和标题栏的高度
-TitleStyle Centered Height  24 -- Flat
+TitleStyle Centered Height  22 -- Flat
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
                 15x15@3 -- Flat
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
