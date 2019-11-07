@@ -417,6 +417,9 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 :hi Special ctermfg=5
 :hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
 
+"通用预处理命令
+:hi  PreProc ctermfg=11 ctermbg=16  cterm=BOLD
+
 "预处理命令 #include
 :hi Include ctermfg=11 ctermbg=16 cterm=bold
 
@@ -446,6 +449,9 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 
 "任何需要特殊注意的部分
 :hi Todo ctermfg=52  ctermbg=16 cterm=bold
+
+"需要注意的字符
+:hi  Delimiter ctermfg=lightgreen ctermbg=black  cterm=bold
 
 "警告消息
 :hi  WarningMsg ctermfg=11  ctermbg=16 cterm=bold
@@ -484,7 +490,10 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 "hi Repeat ctermbg=16  ctermfg=11 cterm=bold
 
 "case、default 等
-"hi Label ctermbg=16  ctermfg=16  cterm=bold
+":hi Label ctermbg=16  ctermfg=16  cterm=bold
+
+"int、long、char 等
+:hi  Type   ctermfg=13  ctermbg=16  cterm=bold
 
 "一个布尔型常数: TRUE、false
 :hi  Boolean ctermfg=196 ctermbg=16 cterm=bold
@@ -508,7 +517,10 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 :hi  Function ctermbg=16  ctermfg=202 cterm=bold
 
 "sizeof"、"+"、"*" 等
-:hi Operator ctermfg=226  ctermbg=16  cterm=bold
+:hi  Operator ctermfg=226  ctermbg=16  cterm=bold
+
+"任何其它关键字
+:hi   Keyword  ctermfg=yellow   ctermbg=black   cterm=bold
 
 highlight Search ctermbg=white ctermfg=black 
 highlight IncSearch ctermbg=black ctermfg=yellow 
