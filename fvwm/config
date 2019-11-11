@@ -414,7 +414,16 @@ Style   "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style   "FvwmTaskBar"        StaysOnTop
 #Style  "*RightPanel"         StaysOnTop
 #Style   "fcitx"              StaysOnTop
-Style   "*Google Chrome"      NoTitle
+
+Colorset 24   fg  #FFFFFF, bg 	#006400, hi red, sh red, Plain,  NoShape
+Style   "*Google Chrome"     HilightColorset 24
+
+Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
+Style    "gedit"              TitleAtRight, HilightColorset 23
+
+Colorset 22   fg #000000, bg #00FFFF, hi red, sh red, Plain,  NoShape
+Style    "TeXstudio"         HilightColorset 22
+
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
 #Style  "FvwmButtons" StaysOnTop,ClickToFocus
@@ -457,16 +466,16 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置激活窗口title栏的颜色
-Colorset 2 RootTransparent, fg black, bg gold, hi red, sh red, Plain red, NoShape, Tint green 90, bgTint green 60
+Colorset 2  fg black, bg #00FF00, hi red, sh red, Plain , NoShape
 #Colorset 2 Transient 
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 #未激活窗口的框框颜色
 Colorset 3  Transparent,fg blue, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 
-#Colorset 4  fg black, bg #2d2d2d, hi #474747, sh #101010, Plain, NoShape
+#Colorset 4  fg black, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
 #激活窗口的框框颜色
-Colorset 4  fg red, bg green, hi #474747, sh #101010, Plain, NoShape
+Colorset 4  fg red, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
 
 #Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
 #5是调节menu的颜色
@@ -488,13 +497,13 @@ Colorset 8  fg black, bg gold, hi blue, sh blue, bold
 Colorset 10  fg #ffffff, bg #003c3c, hi red, sh red, Plain, NoShape
 
 #Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
-#右边iconman激活的颜色，也是鼠标所在窗口的颜色，就是右边的小条条(小条条指Iconman,后面会讲到当鼠标放在小条条上时会弹出放大版的IconMan
-#这叫Tips)
+#右边iconman激活的颜色，也是鼠标所在窗口的颜色，就是右边的小条条(小条条指Iconman,后面会讲到当鼠标放在小
+#条条上时会弹出放大版的IconMan,这叫Tips)
 Colorset 11 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 #右边iconman被鼠标点击时的颜色，就是右边的小条条
-Colorset 12 fg black, bg  #FFA500, hi blue, sh blue, Plain, NoShape
+Colorset 12 fg black, bg #FFA500, hi blue, sh blue, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
 #右边四个page，当鼠标在哪个page时的颜色(当鼠标指在page上时，弹出的小框叫fvwmBalloon)
