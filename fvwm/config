@@ -73,8 +73,8 @@ DestroyModuleConfig FvwmScroll: *
 #
 # The following is used in various menus and also sets the terminal
 # that FvwmConsole uses. Change this to your terminal of choice
-InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
-#InfoStoreAdd terminal      xterm
+#InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
+InfoStoreAdd   xterm         xterm
 InfoStoreAdd   urxvt         urxvt
 InfoStoreAdd   gnome-term    gnome-terminal
 InfoStoreAdd   kde-terminal  konsole
@@ -128,13 +128,13 @@ SetEnv m_size       32x32
 # actions that are run after a restart.
 DestroyFunc StartFunction
 AddToFunc   StartFunction
-+ I Module  FvwmAnimate
-+ I Module  FvwmTaskBar
+#+ I Module  FvwmAnimate
+#+ I Module  FvwmTaskBar
 + I Module  FvwmIconMan
-+ I Module  FvwmPager 0 3
++ I Module  FvwmPager 0 0
 + I Test (Init) Module FvwmBanner
 #+ I Module FvwmButtons RightPanel
-+ I Module FvwmEvent EventNewDesk
++ I Module  FvwmEvent EventNewDesk
 + I Exec exec fcitx    #启用中文输入法
 + I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
 + I Exec xpmroot  $[fvwm_bgicons]/极光1.png  #背景
@@ -142,18 +142,18 @@ AddToFunc   StartFunction
 + I Module FvwmButtons MyDock
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 10  Raise Nop
-#+ I  Module FvwmBacker
 
+
+Module FvwmAnimate
 ###########################  InitFunction设置##########################
 #DestroyFunc InitFunction
 AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
-+ I Exec exec gnome-terminal
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
+#+ I Exec exec gnome-terminal
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
+#xcompmgr是开启窗口透明需要先打开的软件
+#+ I Exec xcompmgr
 
-#xcompmgr是开启窗口透明需要先打开的软件,
-+ I Exec    xcompmgr
-#+ I Exec    hsetroot -solid #000000
 ###########################  InitFunction结束设置##########################
 
 
@@ -170,7 +170,7 @@ AddToFunc ExitFunction
 ##################   RestartFunction设置   ######################
 AddToFunc RestartFunction
 + I All (xclock) Close
-+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x28-0-0 -norender -padding 1
+#+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x28-0-0 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  week:%w   -geometry 90x28-0-32 -norender -padding 1
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %y/%m/%d  -geometry 90x28-0-0 -norender -padding 1
 
@@ -245,9 +245,9 @@ AddToFunc   ToggleTitle
 DestroyFunc ChangeDesk
 AddToFunc   ChangeDesk
 + I SendToModule FvwmButtons ChangeButton desk0 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
-+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk1 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk2 Colorset 10
+#+ I SendToModule FvwmButtons ChangeButton desk3 Colorset 10
 + I SendToModule FvwmButtons ChangeButton desk$0 Colorset 11
 
 
@@ -260,14 +260,14 @@ AddToFunc autohide
 + I TestRc (!Match) All ($0, !shaded) autohide_hide $1 $2
 
 AddToFunc autohide_hide
-+ I Schedule $0 $[w.id] WindowShade $1
++ I Schedule $0 $[w.id] WindowShade $2
 + I Schedule $0 $[w.id] Deschedule $[w.id]
 
 #下面以"+ I"开头的是你设定要隐藏的模块。最后一个参数“S”表示隐藏的方向，这里是“向上隐藏”。
 #相应的参数有N, S, E, W, NW, NE, SW or SE。
 # Add the windows you want to autohide
 AddToFunc enter_handler
-#+ I autohide MyDock  5  N
+#+ I autohide MyDock  50 S
 #+ I autohide FvwmPager 50 S
 
 # + I autohide FvwmTaskBar 500 N 
@@ -296,11 +296,11 @@ AddToFunc StartFunction
 #   +---+---+
 #
 #配置一：
-DesktopSize 2x2   #这里的axb是指有a列b行
-DesktopName 0 主桌面
-DesktopName 1 程序
-DesktopName 2 文档
-DesktopName 3 娱乐
+DesktopSize 2x4   #这里的axb是指有a列b行
+DesktopName 0   主桌面
+#DesktopName 1  程序
+#DesktopName 2  文档
+#DesktopName 3  娱乐
 
 
 #DesktopName desk name. 定义第desk号桌面的名字叫 name.
@@ -329,7 +329,7 @@ Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化时上下左右离屏幕的距离,命令格式为“EwmhBaseStruts 左 右 上 下”
-EwmhBaseStruts 10 140 10 10
+EwmhBaseStruts 10 110 10 60
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -351,12 +351,10 @@ Style * Animation
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 #Style * FocusFollowsMouse 
 Style * DecorateTransient, #Layer 4
-
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
 Style   *term*     TitleAtLeft
 Style   *konsole   TitleAtLeft
 Style   *urxvt*   TitleAtLeft
-
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -384,9 +382,8 @@ Style * WindowShadeScrolls, WindowShadeSteps 10
 # See http://fvwm.org/documentation/faq/#why-do-numlock-capslock-and-scrolllock-interfere-with-clicktofocus-andor-my-mouse-bindings
 IgnoreModifiers L25
 
-# Decor Styles
-#HandleWidth是控制窗口边框的宽度
-Style * BorderWidth 2, HandleWidth 6, BorderColorset 1, MWMButtons, FvwmBorder, FirmBorder
+# Decor Stylekuandu2
+Style * BorderWidth 2, HandleWidth 4, BorderColorset 1, MWMButtons, FvwmBorder, FirmBorder
 Style * Colorset 1, HilightColorset 2, 
 Style * BorderColorset 3, HilightBorderColorset 4
 
@@ -412,7 +409,7 @@ Style   "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style   "FvwmPager"          StaysOnTop
 #Style   "FvwmBanner"         StaysOnTop
 #Style   "FvwmTaskBar"        StaysOnTop
-#Style  "*RightPanel"         StaysOnTop
+#Style  "*RightPanel"        StaysOnTop
 #Style   "fcitx"              StaysOnTop
 
 Colorset 24   fg  #FFFFFF, bg 	#006400, hi red, sh red, Plain,  NoShape
@@ -421,9 +418,9 @@ Style   "*Google Chrome"     HilightColorset 24
 Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
 Style    "gedit"              TitleAtRight, HilightColorset 23
 
+
 Colorset 22   fg #000000, bg #00FFFF, hi red, sh red, Plain,  NoShape
 Style    "TeXstudio"         HilightColorset 22
-
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
 #Style  "FvwmButtons" StaysOnTop,ClickToFocus
@@ -522,7 +519,7 @@ MenuStyle * TrianglesSolid, TrianglesUseFore, Animation
 MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 #MenuStyle * Font "xft:Sans:Bold:size=8:antialias=True"
 ############这是我自己加的###################
-MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=14:encoding=iso10646-1"
+MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=18:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
 SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
@@ -546,7 +543,7 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
 + "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec $[infostore.terminal]
-+ "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
++ "&gnome_Term   %$[fvwm_icons]/terminal1.png%" Exec exec gnome-terminal
 + "&kde_Term     %$[fvwm_icons]/terminal1.png%" Exec exec konsole
 + "" Nop
 + "XDG &Menu     %$[fvwm_icons]/apps.png%" Popup XDGMenu
@@ -628,15 +625,14 @@ Test (x nautilus) + "%$[fvwm_exicons2]/folder.png% Nautilus"    Exec exec nautil
 Test (x pcmanfm) + "%$[fvwm_exicons2]/folder.png% Pcmanfm"    Exec exec  pcmanfm 
 Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop 
 
-
 ##################娱乐##########################################
 
 DestroyMenu MenuYule
 AddToMenu   MenuYule    "音乐视频" Title
 Test (x netease-cloud-music) + "%$[fvwm_exicons2]/netesase.png% 网易云音乐" Exec exec netease-cloud-music
-Test (x smplayer) +   "%$[fvwm_exicons2]/disk-cd.png%SMPlayer射手影音" Exec exec smplayer
-Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png% VLC媒体播放器" Exec exec vlc
-Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png% Mplayer媒体播放器" Exec exec mpv
+Test (x smplayer) +   "%$[fvwm_exicons2]/cd-player.png %SMPlayer射手影音" Exec exec smplayer
+Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png % VLC媒体播放器" Exec exec vlc
+Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png % Mplayer媒体播放器" Exec exec mpv
 
 ################图片相关##########################################
 DestroyMenu MenuPhoto
@@ -679,14 +675,13 @@ AddToMenu   BGMenu "Wallpapers" Title
 + "悬崖"        SetBG1 bg13.xpm
 + "暗黑"        SetBG1 bg14.png
 + "黑"          SetBG1 bg15.xpm
-+ "撞地球"          SetBG1 bg16.xpm
++ "撞地球"      SetBG1 bg16.xpm
 + "黑"          SetBG1 bg17.xpm
 + "黑"          SetBG1 bg18.xpm
 + "黑"          SetBG1 bg19.xpm
 + "极光1"       SetBG1 极光1.png
 + "极光2"       SetBG1 极光2.png
 + "极光3"       SetBG1 极光3.png
-
 
 # Window Operations Menus
 DestroyMenu MenuWindowOps
@@ -708,8 +703,8 @@ AddToMenu   MenuWindowOpsLong
 + "(De)Iconify"         Iconify
 + "(Un)Maximize"        Maximize
 + "(Un)Shade"           WindowShade
-+ "(Un)Sticky"		Stick
-+ "(No)TitleBar"	Pick (CirculateHit) ToggleTitle
++ "(Un)Sticky"		    Stick
++ "(No)TitleBar"	    Pick (CirculateHit) ToggleTitle
 + "Send To"             Popup MenuSendTo
 + "" Nop
 + "Close"               Close
@@ -762,8 +757,13 @@ DestroyMenu MenuSendToPage
 AddToMenu   MenuSendToPage
 + "Page (0,0)"	MoveToPage 0 0
 + "Page (0,1)"	MoveToPage 0 1
++ "Page (0,2)"  MoveToPage 0 2
++ "Page (0,3)"  MoveToPage 0 3
 + "Page (1,0)"	MoveToPage 1 0
 + "Page (1,1)"	MoveToPage 1 1
++ "Page (1,2)"  MoveToPage 1 2
++ "Page (1,3)"  MoveToPage 1 3
+
 ##
 #+ "Page (2,0)"	MoveToPage 2 0
 #+ "Page (2,1)"	MoveToPage 2 1
@@ -826,7 +826,7 @@ AddToMenu MenuFvwmModules "Fvwm Modules"  Title
 + "&N. Banner"            Module FvwmBanner
 + "&C. Console"           Module FvwmConsole
 + "&P. Pager"             Module FvwmPager 0 0
-+ "&2. Pager (2 desks)"   Module FvwmPager 0 3
++ "&2. Pager (4 desks)"   Module FvwmPager 0 3
 + "&R. Backer"            Module FvwmBacker
 #+ "&S. ScrollBar"         Module FvwmScroll 50 50
 + "&T. FvwmTaskBar"       Module FvwmTaskBar
@@ -871,17 +871,18 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 # Super_R (windows key) will launch a terminal.
 #
 # Silent supresses any errors (such as keyboards with no Menu key).
-Silent Key F1 A M Menu MenuFvwmRoot
-Silent Key Menu A A Menu MenuFvwmRoot
+Silent Key    F1      A M Menu MenuFvwmRoot
+Silent Key    Menu    A A Menu MenuFvwmRoot
 
 #Silent Key Tab A M WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
 #Silent Key Tab A M WindowList Root c c NoDeskSort
 
-#Key Tab    A    M    WindowList (CurrentDesk) Root c c CurrentAtEnd \
-                     CurrentDesk IconifiedAtEnd NoGeometry MaxLabelWidth 40 \
-                     NoCurrentDeskTitle SelectOnRelease Meta_L
+#Key Tab    A    M    WindowList (CurrentDesk) Root c c CurrentAtEnd, \
+                     CurrentDesk, IconifiedAtEnd, NoGeometry, MaxLabelWidth 200, \
+                     NoCurrentDeskTitle, SelectOnRelease, Meta_L
 
-Key Tab A M WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd, Icons,NoDeskSort
+Key Tab A M WindowList Root c c CurrentDesk, NoGeometry, CurrentAtEnd,IconifiedAtEnd,Icons,NoDeskSort,Sticky,SelectOnRelease,Meta_L
+
 
 #Silent  Key Tab A M WindowList "Prev SwitchToWindow"
 
@@ -891,7 +892,8 @@ AddToFunc alttab
 + I Next (AcceptsFocus CurrentDesk CurrentPage !Iconic) Focus
 + I Prev (AcceptsFocus CurrentDesk CurrentPage !Iconic) WarpToWindow 50 50
 + I WindowList Root c c NoCurrentDeskTitle,NoGeometry,CurrentDesk,Icons,Sticky, \
-                        OnTop,OnBottom,MaxLabelWidth 320,IconifiedAtEnd,SelectOnRelease Alt_L
+                        OnTop,OnBottom,MaxLabelWidth 320,IconifiedAtEnd,SelectOnRelease Meta_L
+
 
 #
 Silent Key 1 A C GotoDesk 0 0
@@ -899,6 +901,15 @@ Silent Key 2 A C GotoDesk 0 1
 Silent Key 3 A C GotoDesk 0 2
 Silent Key 4 A C GotoDesk 0 3
 
+
+#Silent Key 1 A C MoveToPager 0 0
+#Silent Key 2 A C MoveToPager 0 1
+#Silent Key 3 A C GotoPager 0 2
+#Silent Key 4 A C GotoPager 0 3
+#Silent Key 5 A C GotoPager 1 0
+#Silent Key 6 A C GotoPager 1 1
+#Silent Key 7 A C GotoPager 1 2
+#Silent Key 8 A C GotoPager 1 3
 
 
 #Silent Key t A CM Exec exec $[infostore.terminal]
@@ -908,10 +919,9 @@ Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 
-
 #Ctrl+Alt+n打开文件管理器
-Silent key f A CM Exec exec   dolphin &
-#Silent key f A CM Exec exec  /usr/bin/nautilus
+#Silent key f A CM Exec exec   dolphin &
+Silent key f A CM Exec exec  /usr/bin/nautilus
 #Ctrl+Alt+g打开谷歌浏览器
 Silent key g A CM Exec exec    google-chrome-stable &
 #Ctrl+Alt+s打开texStduio
@@ -921,15 +931,15 @@ Silent key l A CM Exec exec    lyx &
 #Ctrl+Alt+d 打开spyder
 Silent key d A CM Exec exec   /home/jack/anaconda3/bin/spyder &
 #Ctrl+Alt+n打开控制中心/设置
-Silent key n  A CM Exec exec systemsettings5
-#Silent key n  A CM Exec exec gnome-control-center
+#Silent key n  A CM Exec exec systemsettings5
+Silent key n  A CM Exec exec gnome-control-center
 
 # Shift+左      左卷一屏
 # Shift+右      右卷一屏
 # Shift+下      下卷一屏
 # Shift+上      上卷一屏
-Key Left    A  S    Scroll -100 0
-Key Right   A  S    Scroll +100 +0
+Key Left    A  S    Scroll -100  +0
+Key Right   A  S    Scroll +100  +0
 Key Up      A  S    Scroll +0   -100
 Key Down    A  S    Scroll +0   +100
 
@@ -940,23 +950,23 @@ Silent Key   F6      A  M    Function LockScreen
 Silent Key   F11		A	C	Maximize	
 
 # 按windows_L 当前page全部最小化
-Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmButtons !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
+Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
 
 # Ctrl+q 关闭当前窗口，直至退出桌面对话框
 Silent Key   q        A  C   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
- Key   w        w    M   Iconify
+Silent  Key   w        w    M   Iconify
 
 # Ctrl+shift+q 关闭当前page所有窗口
-Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmButtons !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
+Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
 
 # shift + win_L 最大化当前page的所有窗口
-Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmButtons !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
+Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
 #Shift + Ctrl +  l  锁屏
-Silent Key l          A  CS   Exec exec xscreensaver-command -lock
+Silent Key l          A  SC   Exec exec xscreensaver-command -lock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
@@ -979,39 +989,40 @@ Mouse 1 6 A Iconify
 #                Right Click - WindowOps Menu
 #                Middle Click - Window List Menu
 #   Right click TitleBar/Borders for WindowOps Menu
-Mouse 1	T    N   RaiseMoveX Move Maximize
-Mouse 1	FS   N     RaiseMove Resize
+Mouse  1	 T    N     RaiseMoveX Move Maximize
+Mouse  1	 FS   N     RaiseMove Resize
 # 在窗口标题栏上向上滚动鼠标，收起窗口
-Mouse 4	T    N    WindowShade True
+Mouse  4 	T    N      WindowShade True
 # 在窗口标题栏上向下滚动鼠标，展开窗口
-Mouse 5	T    N    WindowShade False
+Mouse  5	 T    N     WindowShade False
 
-Mouse 1	R    N   Menu MenuFvwmRoot
-Mouse 2	R    N   WindowList
+Mouse  1	R    N   Menu MenuFvwmRoot
+Mouse  2	R    N   WindowList
 Mouse 3	R    N   Menu MenuWindowOpsLong
-Mouse 1	I    N   RaiseMoveX Move "Iconify off"
-Mouse 3	T    N   Menu MenuWindowOpsLong
-Mouse 3 I    N   Menu MenuIconOps
+#Mouse  3	R    N   Menu MenuFvwmRoot
+Mouse  1	I    N   RaiseMoveX Move "Iconify off"
+Mouse  3	T    N   Menu MenuWindowOpsLong
+Mouse  3    I    N   Menu MenuIconOps
 
 Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CS     Style    gnome-terminal*   TitleAtLeft
-Mouse 1  T   M      Style    xterm*            TitleAtLeft
-Mouse 1  T   C      Style    konsole*          TitleAtLeft
-Mouse 1  T   CM     Style   terminator*        TitleAtLeft
-Mouse 1  T   C      Style    urxvt*            TitleAtLeft
+Mouse 1  T   CS     Style      gnome-terminal*  TitleAtLeft
+Mouse 1  T   C      Style      xterm*           TitleAtLeft
+Mouse 1  T   M      Style      konsole*         TitleAtLeft
+Mouse 1  T   CM     Style      terminator*      TitleAtLeft
+Mouse 1  T   M      Style       urxvt*       TitleAtLeft
 
-Mouse 3  T   CS     Style    gnome-terminal*   TitleAtTop
-Mouse 3  T   M      Style    xterm*            TitleAtTop
-Mouse 3  T   C      Style    konsole*          TitleAtTop
-Mouse 3  T   CM     Style    terminator*       TitleAtTop
-Mouse 3  T   C      Style    urxvt*       TitleAtTop
+Mouse 3  T   CS     Style      gnome-terminal*   TitleAtTop
+Mouse 3  T   C      Style      xterm*            TitleAtTop
+Mouse 3  T   M      Style      konsole*          TitleAtTop
+Mouse 3  T   CM     Style      terminator*       TitleAtTop
+Mouse 3  T   M      Style      urxvt*            TitleAtTop
 
 #窗口透明，首先需要安装xcompmgr
-Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
-Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
+#Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
+#Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]  
 
 
 #######
@@ -1104,11 +1115,10 @@ Colorset 17 fg #000000, bg #FFFF00, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 17 fg white, bg #1883f1
 
 Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030
-,Sticky, WindowListSkip, \
-CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+,Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig FvwmPager:*
-*FvwmPager: Geometry 120x480-0+0
+*FvwmPager: Geometry 100x200-0+0
 *FvwmPager: BorderWidth 10
 *FvwmPager: Layer 0
 *FvwmPager: Colorset * 15
@@ -1127,8 +1137,9 @@ DestroyModuleConfig FvwmPager:*
 *FvwmPager: BalloonColorset * 0
 *FvwmPager: BalloonBorderWidth 2   #设置提示窗口边框的宽度
 
-*FvwmPager: Rows 4
-*FvwmPager: Columns 1
+*FvwmPager: Rows      1
+*FvwmPager: Columns   1
+
 #*FvwmPager: NoSeparators  #每个边框有没有虚线
 *FvwmPager: WindowBorderWidth 1
 *FvwmPager: WindowLabelFormat "%c : %t"
@@ -1144,7 +1155,6 @@ DestroyModuleConfig FvwmPager:*
 
 ####################开始配置TaskBar#######################
 
-Colorset 21  fg rgb:00/00/00, hi rgb:00/00/00, sh rgb:00/00/00, bg rgb:e9/e9/d9
 
 Style "FvwmTaskBar" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
   CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
@@ -1158,7 +1168,7 @@ DestroyModuleConfig FvwmTaskBar:*
 #*FvwmTaskBar: StatusFont fixed
 
 # TaskBar的初始行数
-*FvwmTaskBar: Rows 3
+*FvwmTaskBar: Rows 1
 *FvwmTaskBar: Colorset 18
 *FvwmTaskBar: IconColorset 18
 *FvwmTaskBar: FocusColorset 18
@@ -1240,7 +1250,7 @@ DestroyModuleConfig FvwmIconMan:*
 #多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有
 #确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
 #*FvwmIconMan: 1 ManagerGeometry 8x1+0+0
-*FvwmIconMan: 1   ManagerGeometry 1x0-0-42
+*FvwmIconMan: 1   ManagerGeometry 1x0-0-0
 *FvwmIconMan: 1   UseWinList true
 *FvwmIconMan: 1   Background #003c3c
 *FvwmIconMan: 1   Foreground #ffffff
@@ -1260,22 +1270,21 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1   DrawIcons always
 
 #%t,%i,%c,和%r， 分别表示窗口的title、icon、class和resource name。默认是"%c:%i"。
-*FvwmIconMan: 1   TipsFormat "%c : %t"
-*FvwmIconMan: 1   Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
-*FvwmIconMan: 1   Sort        name
-*FvwmIconMan: 1   Title       "FvwmIconMan"
-*FvwmIconMan: 1   Resolution global
-*FvwmIconMan: 1   Tips needed
-*FvwmIconMan: 1   Sort name
+*FvwmIconMan: 1    TipsFormat "%c : %t"
+*FvwmIconMan: 1    Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
+*FvwmIconMan: 1    Sort        name
+*FvwmIconMan: 1    Title       "FvwmIconMan"
+*FvwmIconMan: 1    Resolution global
+*FvwmIconMan: 1    Tips needed
+*FvwmIconMan: 1    Sort name
 
 #Tips指当鼠标放在右边的Iconman上时会出现一个放大的提示框,
 *FvwmIconMan: 1    TipsFont "StringEncoding=UTF-8:xft:文泉驿微米黑:Bold:antialias=True:size=22:encoding=iso10646-1"
 *FvwmIconMan: 1    TipsColorset 0
-*FvwmIconMan: 1   TipsDelays 500 200
-*FvwmIconMan: 1   TipsBorderWidth 4
+*FvwmIconMan: 1    TipsDelays 500 200
+*FvwmIconMan: 1    TipsBorderWidth 4
 
-*FvwmIconMan: action      Mouse   1 N sendcommand Focus, sendcommand Raise
-#sendcommand "Iconify"
+*FvwmIconMan: action      Mouse   1 N sendcommand Focus,sendcommand Raise,sendcommand Iconify
 *FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
 *FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
 
@@ -1313,9 +1322,9 @@ MenuStyle WindowList SelectOnRelease Meta_L
 MenuStyle WindowList ActiveFore rgb:ff/ff/e0, HilightBack rgb:cd/5c/5c, BorderWidth 3
 MenuStyle WindowList Font "Shadow=0 C:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=9:encoding=iso10646-1:pixelsize=22"
 #MenuStyle WindowList    MenuColorset ,  Geometry 120x80+0+0
+
 AddToFunc SwitchToWindow
 + I WindowListFunc
-
 
 
 # 关闭显示屏函数
@@ -1331,33 +1340,31 @@ AddToFunc LockScreen
 #Style * PositionPlacement Center
 Style * RecaptureHonorsStartsOnPage, CaptureHonorsStartsOnPage
 
-Style    "Firefox"                  StartsOnPage 0 0
-Style    "*Google Chrome"           StartsOnPage 0 0
+#Style    "Firefox"                  StartsOnPage 0 0
+#Style    "*Google Chrome"           StartsOnPage 0 0
 
-#aStyle    "xterm"                  StartsOnPage 0 1
-#Style    "gnome-terminal*"         StartsOnPage 0 1
-#Style    "konsole*"                StartsOnPage 0 1
-#Style    "terminator*"             StartsOnPage 0 1
+#Style    "xterm"                    StartsOnPage 0 1
+#Style    "gnome-terminal*"          StartsOnPage 0 1
 
-Style    "dolphin"                 StartsOnPage 1 1
-Style    "pcmanfm"                 StartsOnPage 1 1
-Style    "systemsettings5"         StartsOnPage 1 1
-Style    "gnome-control-center"    StartsOnPage 1 1
+Style    "dolphin"                   StartsOnPage 1 1
+Style    "pcmanfm"                   StartsOnPage 1 1
+Style    "systemsettings5"           StartsOnPage 1 1
+Style    "gnome-control-center"      StartsOnPage 1 1
 
 
-Style    "*texstudio"               StartsOnDesk  2, StartsOnPage 0 0
-Style    "*lyx"                     StartsOnDesk  2, StartsOnPage 0 0
-Style    "wps"                      StartsOnDesk  2, StartsOnPage 0 1
-Style    "*pdf"                     StartsOnDesk  2, StartsOnPage 0 1
-Style    "*ppt"                     StartsOnDesk  2, StartsOnPage 0 1
-Style    "*et"                      StartsOnDesk  2, StartsOnPage 0 1
-Style    "*Okular"                  StartsOnDesk  2, StartsOnPage 1 0
+#Style    "*texstudio"                StartsOnDesk  2, StartsOnPage 0 0
+#Style    "*lyx"                      StartsOnDesk  2, StartsOnPage 0 0
+#Style    "wps"                       StartsOnDesk  2, StartsOnPage 0 1
+#Style    "*pdf"                      StartsOnDesk  2, StartsOnPage 0 1
+#Style    "*ppt"                      StartsOnDesk  2, StartsOnPage 0 1
+#Style    "*et"                       StartsOnDesk  2, StartsOnPage 0 1
+#Style    "*Okular"                   StartsOnDesk  2, StartsOnPage 1 0
 
 
-Style    "*netease-cloud-music"     StartsOnDesk  3, StartsOnPage 0 0
-Style    "*smplayer"                StartsOnDesk  3, StartsOnPage 0 1
-Style    "vlc"                      StartsOnDesk  3, StartsOnPage 1 0
-Style    "mplayer"                  StartsOnDesk  3, StartsOnPage 1 1
+#Style    "*netease-cloud-music"      StartsOnDesk  3, StartsOnPage 0 0
+#Style    "*smplayer"                 StartsOnDesk  3, StartsOnPage 0 1
+#Style    "vlc"                       StartsOnDesk  3, StartsOnPage 1 0
+#Style    "mplayer"                   StartsOnDesk  3, StartsOnPage 1 1
 
 
 
@@ -1366,20 +1373,20 @@ Style    "mplayer"                  StartsOnDesk  3, StartsOnPage 1 1
 ##################################
 Colorset 20  Transparent,fg white #完全透明颜色
 #半透明
-Colorset 21 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
+Colorset 21 fg #696969, bg  #696969, hi #696969, RootTransparent buffer, Tint #696969 30
 
 Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
-  CirculateSkip, FixedPosition, FixedSize, !Iconifiable,  #StayOnBottom
+  CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig MyDock:*
 
 #设置FvwmButtons的出现在屏幕的位置
-*MyDock: Geometry 480x60+500-0
+*MyDock: Geometry 480x60+700-0
 *MyDock: Colorset 21
 *MyDock: BoxSize smart
 *MyDock: Foreground grey90
 *MyDock: Background #1c5572
-*MyDock: background LightGoldenrodYellow
+#*MyDock: background LightGoldenrodYellow
 *MyDock: Window3DBorders
 #*MyDock: ActiveColorset 12
 #*MyDcok: PressColorset 10
@@ -1394,15 +1401,15 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec terminator`, \
-  Action(Mouse 2) `Exec exec xterm`, \
-  Action(Mouse 3) `Exec exec konsole`)
+  Action(Mouse 2) `Exec exec urxvt`, \
+  Action(Mouse 3) `Exec exec xterm`2
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
   Action(Mouse 1) `Exec exec google-chrome-stable`, \
   Action(Mouse 3)  `Exec exec firefox` )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
-  Action(Mouse 1) `Exec exec dolphin`, \
+  Action(Mouse 1) `Exec exec nautilus`, \
   Action(Mouse 2) `Exec exec mendeleydesktop`,\
   Action(Mouse 3) `Exec exec pcmanfm`)
 
@@ -1412,12 +1419,10 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
   Action(Mouse 1) `Exec exec texstudio` ,\
-  Action(Mouse 2) `Exec exec hsetroot -solid "#000000"`,\
   Action(Mouse 3) `Exec exec lyx`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
   Action(Mosue 1) `Exec exec gvim`,\
-  Action(Mouse 2) `Exec exec gedit`
   Action(Mosue 3) `Exec exec vim`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
@@ -1433,9 +1438,3 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 3) `Exec exec xscreensaver-demo`)
 
 ################### Dock结束######################################
-
-
-DestroyModuleConfig FvwmBacker*
-*FvwmBacker: Command (Desk 0) -solid black
-*FvwmBacker: Command (Desk 1) -solid blue
-##################################################################
