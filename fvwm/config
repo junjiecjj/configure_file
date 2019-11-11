@@ -1366,8 +1366,7 @@ Style    "mplayer"                  StartsOnDesk  3, StartsOnPage 1 1
 ##################################
 Colorset 20  Transparent,fg white #完全透明颜色
 #半透明
-Colorset 22 fg #FFFFFF, bg #FFFFFF, hi #FFFFFF, RootTransparent buffer, Tint #FFFFFF 30
-Colorset 23 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
+Colorset 21 fg #696969, bg #696969, hi #696969, RootTransparent buffer, Tint #696969 30
 
 Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
   CirculateSkip, FixedPosition, FixedSize, !Iconifiable,  #StayOnBottom
@@ -1376,7 +1375,7 @@ DestroyModuleConfig MyDock:*
 
 #设置FvwmButtons的出现在屏幕的位置
 *MyDock: Geometry 480x60+500-0
-*MyDock: Colorset 23
+*MyDock: Colorset 21
 *MyDock: BoxSize smart
 *MyDock: Foreground grey90
 *MyDock: Background #1c5572
