@@ -420,7 +420,12 @@ Style    "gedit"              TitleAtRight, HilightColorset 23
 
 
 Colorset 22   fg #000000, bg #00FFFF, hi red, sh red, Plain,  NoShape
-Style    "TeXstudio"         HilightColorset 22
+Style    "TeXstudio"         HilightColorset 23
+Style    "okular"         HilightColorset 23
+Style    "wps"         HilightColorset 23
+Style    "et"         HilightColorset 23
+Style    "wpp"         HilightColorset 23
+
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
 #Style  "FvwmButtons" StaysOnTop,ClickToFocus
