@@ -94,6 +94,6 @@ XTerm*scaleHeight: 1.01
 
 
 ！xrdb -merge ~/.Xresources
-或
+！或
 ！在/etc/X11/app-defaults/XTerm里面加上面的东西
 ！/usr/share/X11/app-defaults/XTerm
