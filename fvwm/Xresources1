@@ -121,3 +121,10 @@ URxvt.fading: 60
 URxvt*letterSpace: -1  
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
+
+
+
+！xrdb -merge ~/.Xresources
+！或
+！在/etc/X11/app-defaults/URxvt里面加上面的东西
+！/usr/share/X11/app-defaults/URxvt
