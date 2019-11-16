@@ -1,0 +1,80 @@
+conky.config = {
+
+    alignment = "top_right" ,
+    --是否嵌入桌面
+    background=true,
+    double_buffer=true,
+
+    --是否绘制窗口边框
+    draw_borders=false,
+    draw_shades = false,
+    draw_outline =false,
+    draw_graph_borders = false,
+
+    show_graph_scale = false,
+    show_graph_range = false,
+
+    --窗口边框
+    border_width = 1,
+    --#是否输出结果到终端，主要在判断Conky在哪里出错时使用，一般情况下为“no”即可。
+    out_to_console = false,
+    out_to_stderr = false,
+    no_buffers = true,
+
+
+    --#是否使用xft字体，一般为“yes”。
+    use_xft = true,
+    font =  "WenQuanYi Micro Hei:size=9" ,
+    --xftfont = " WenQuanYi Micro Hei:size=6",
+    --#overriggde_utf8_locale yes
+
+    xftalpha = 0.8,
+    --#更新时间单位秒
+    update_interval =  1,
+
+    double_buffer = true,
+
+    --#自己的窗口
+    own_window = true,
+    own_window_class = 'Conky', 
+    own_window_type = 'desktop',
+    --#窗口完全透明
+    own_window_transparent = true,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    own_window_argb_visual = true,
+    --#own_window_argb_value改到255就是不透明。
+    own_window_argb_value =  30,
+
+    --#设定Conky的边界范围，最小宽度为280像素，最小高度为5像素
+    --#minimum_size =  180 5,
+    minimum_height = 0,
+    minimum_width =  0,
+    --#两条设定Conky输出范围距离屏幕边界的像素数量，最小为10像素。 
+    gap_x  = 110,
+    gap_y =  0,
+
+    default_color =  "#FFFFFF",
+    default_shade_color = "#000000",
+    default_outline_color = "#000000",
+
+
+    cpu_avg_samples =  2,
+    net_avg_samples = 2,
+    --# set to yes if you want all text to be in uppercase
+    uppercase = false,
+
+    color0  = "cyan",
+    color1 =   "green",
+    color2 =  "orange",
+    color3  =   "#204A87",
+
+    wangka = "enp2s0"
+--${#00FF00}${font WenQuanYi Micro Hei:style=Bold:pixelsize=20}${alignc}${time %H:%M:%S}
+--${font WenQuanYi Micro Hei:pixelsize=18}${alignc}${time %b%d日星期%a}${alignc}
+}
+
+conky.text = [[
+${color #FFFF00}${hr 4}
+${alignc}${color #00FF00}${font WenQuanYi Micro Hei:style=Bold::size=16}${time %Y年%m月%d日}${font Liberation Sans:Bold:size=16}${color #FF0000}+${voffset -1}${color0}${font WenQuanYi Micro Hei:style=Bold:size=16}${time 星期%a}${font Liberation Sans:Bold:size=16}${color #FF0000}+${voffset -1}${color2}${font Liberation Sans:Bold:size=18}${time %H:%M:%S}
+${color #FFFF00}${hr 4}
+]]
