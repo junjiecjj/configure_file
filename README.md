@@ -31,6 +31,11 @@ if [ "$color_prompt" = yes ]; then
     
     PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期:\[\e[01;31m\]周\d日,\[\e[01;32m\]时间:\[\e[01;31m\]\t\[\e[01;32m\]]\n\[\e[01;32m\]\$ '
     
+或者
+
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][ 日期:\[\e[47;31m\]周\d日\[\e[m\],\[\e[01;32m\]时间: \[\e[47;31m\]\t\[\e[01;32m\]\[\e[m\] ]\n\[\e[01;32m\]\$ '
+
+    
 else
 
 PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
