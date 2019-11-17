@@ -1413,7 +1413,7 @@ DestroyModuleConfig MyDock:*
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec terminator`, \
   Action(Mouse 2) `Exec exec urxvt`, \
-  Action(Mouse 3) `Exec exec xterm`2
+  Action(Mouse 3) `Exec exec xterm`）
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
   Action(Mouse 1) `Exec exec google-chrome-stable`, \
