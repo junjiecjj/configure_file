@@ -414,26 +414,28 @@ Style   "Fvwm*"              NoTitle, Sticky, WindowListSkip
 
 Colorset  24   fg  #FFFFFF, bg #006400, hi red, sh red, Plain,  NoShape
 Style     "*Google Chrome"                 HilightColorset 24
-Style     "*Firefox"                                    HilightColorset 24
+Style     "*Firefox"                                   HilightColorset 24
 
 Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
-Style     "gedit"                        TitleAtLeft,  HilightColorset 23
+Style     "gedit"                                        TitleAtLeft,  HilightColorset 23
 
 Colorset 25   fg  #000000, bg 	#FF1493, hi red, sh red, Plain,  NoShape
-Style     "smplayer"                     HilightColorset 25
+Style     "smplayer"                               HilightColorset 25
 Style     "netease-cloud-music"          HilightColorset 25
-Style     "vlc"                          HilightColorset 25
-Style     "mpv"                          HilightColorset 25
+Style     "vlc"                                           HilightColorset 25
+Style     "mpv"                                         HilightColorset 25
 
-
+Colorset 26   fg  #000000, bg 	#FFA500, hi red, sh red, Plain,  NoShape
+Style     "nautilus"                            HilightColorset 26
+Style     "pcmanfm"                        HilightColorset 26
 
 Colorset 22   fg #000000, bg #00FFFF, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
-Style         "lyx"                      HilightColorset 22
-Style         "okular"                   HilightColorset 22
-Style         "wps"                      HilightColorset 22
-Style         "et"                       HilightColorset 22
-Style         "wpp"                      HilightColorset 22
+Style         "lyx"                              HilightColorset 22
+Style         "okular"                       HilightColorset 22
+Style         "wps"                           HilightColorset 22
+Style         "et"                               HilightColorset 22
+Style         "wpp"                          HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
