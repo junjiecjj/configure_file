@@ -426,9 +426,14 @@ Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
 
 Colorset 26   fg  #000000, bg 	#FFA500, hi red, sh red, Plain,  NoShape
-Style     "nautilus"                           HilightColorset 26
-Style     "dolphin"                            HilightColorset 26
+Style     "nautilus"                        HilightColorset 26
+Style     "dolphin"                        HilightColorset 26
 Style     "pcmanfm"                        HilightColorset 26
+
+Colorset 27   fg  	#000000, bg 	#FFFF00, hi red, sh red, Plain,  NoShape
+Style     "*WeChat"                        HilightColorset 27
+Style     "qq"                             HilightColorset 27
+
 
 Colorset 22   fg #000000, bg #00FFFF, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
