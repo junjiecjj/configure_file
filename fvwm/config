@@ -604,6 +604,7 @@ DestroyMenu MenuEditor
 AddToMenu   MenuEditor "编辑器" Title
 Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
+Test (x  gedit) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs" Exec exec xemacs
 
 
