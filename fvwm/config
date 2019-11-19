@@ -1004,8 +1004,8 @@ Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic 
 # shift + win_L 最大化当前page的所有窗口
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
-#Shift + Ctrl +  l  锁屏
-Silent Key   Super_L          A        M     Exec exec xscreensaver-command -lock
+#alt +  l  锁屏
+Silent Key   l          A        M     Exec exec xscreensaver-command -lock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
