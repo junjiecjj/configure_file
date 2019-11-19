@@ -1,4 +1,3 @@
-
 ##################################
 #  ____________________________
 # (   _________________________)
@@ -37,7 +36,7 @@
 ############################ 自己加的Module############################################
 
 
-########动画设置  Module   ########## ############
+########  动画设置  Module   ######################
 
 
 Style FvwmAnimate  !Handles
@@ -141,7 +140,7 @@ AddToFunc   StartFunction
 + I Exec exec conky &
 + I Module FvwmButtons MyDock
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
-#+ I Module FvwmAuto 10  Raise Nop
+#+ I Module FvwmAuto 100  Raise Nop
 
 
 Module FvwmAnimate
@@ -400,39 +399,41 @@ Style Conky !Title, !Borders, !Iconifiable, WindowListSkip, StayOnBottom,FixedPo
 #Sticky 窗口总是在屏幕上显示，好像粘在上面一样。这对于显示像clocks和xbiffs那样的应用非
 #常方便，
 
-Style ConfirmQuit !Title, PositionPlacement Center, WindowListSkip, Layer 6
-Style FvwmIdent WindowListSkip
+Style ConfirmQuit   !Title, PositionPlacement Center, WindowListSkip, Layer 6
+Style FvwmIdent      WindowListSkip
 
 #########################################
 #所有名字以 "Fvwm" 开头的窗口(在这里一般都是 FVWM 内部的模块),没有标题栏(NoTitle)
-Style   "Fvwm*"              NoTitle, Sticky, WindowListSkip
-#Style   "FvwmPager"          StaysOnTop
-#Style   "FvwmBanner"         StaysOnTop
-#Style   "FvwmTaskBar"        StaysOnTop
-#Style  "*RightPanel"        StaysOnTop
-#Style   "fcitx"              StaysOnTop
+Style     "Fvwm*"              NoTitle, Sticky, WindowListSkip
+#Style    "FvwmPager"          StaysOnTop
+#Style    "FvwmBanner"         StaysOnTop
+#Style    "FvwmTaskBar"        StaysOnTop
+#Style    "*RightPanel"         StaysOnTop
+#Style    "fcitx"              StaysOnTop
 
 Colorset  24   fg  #FFFFFF, bg #006400, hi red, sh red, Plain,  NoShape
-Style     "*Google Chrome"                       HilightColorset 24
-Style     "*Firefox"                                         HilightColorset 24
+Style     "*Google Chrome"                 HilightColorset 24
+Style     "*Firefox"                       HilightColorset 24
 
 Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
-Style     "gedit"                                               TitleAtLeft,  HilightColorset 23
+Style     "gedit"                        TitleAtLeft,  HilightColorset 23
+Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
+Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi red, sh red, Plain,  NoShape
-Style     "smplayer"                                     HilightColorset 25
+Style     "smplayer"                     HilightColorset 25
 Style     "netease-cloud-music"          HilightColorset 25
-Style     "vlc"                                               HilightColorset 25
-Style     "mpv"                                            HilightColorset 25
+Style     "vlc"                          HilightColorset 25
+Style     "mpv"                          HilightColorset 25
 
 Colorset 26   fg  #000000, bg 	#FFA500, hi red, sh red, Plain,  NoShape
-Style     "nautilus"                           HilightColorset 26
-Style     "dolphin"                            HilightColorset 26
+Style     "nautilus"                        HilightColorset 26
+Style     "dolphin"                        HilightColorset 26
 Style     "pcmanfm"                        HilightColorset 26
 
 Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi red, sh red, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
-Style     "qq"                                     HilightColorset 27
+Style     "qq"                             HilightColorset 27
 
 Colorset 28   fg  #FFFFFF, bg  #0000EE, hi red, sh red, Plain,  NoShape
 Style     "shotwell"                        HilightColorset 28
@@ -440,9 +441,10 @@ Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
 
+
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
-Style         "lyx"                               HilightColorset 22
+Style         "lyx"                      HilightColorset 22
 Style         "okular"                   HilightColorset 22
 Style         "wps"                      HilightColorset 22
 Style         "et"                       HilightColorset 22
@@ -451,7 +453,7 @@ Style         "wpspdf"                   HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
-#Style  "FvwmButtons" StaysOnTop,ClickToFocus
+#Style  "FvwmButtons"   StaysOnTop, ClickToFocu2
 #Style   FvwmPager		NoHandles
 ###########################################
 #Style "Google Chrome" Icon $[fvwm_icons]/chrome.png, MiniIcon $[fvwm_icons]/chrome1.png
@@ -491,7 +493,7 @@ Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #2是设置激活窗口title栏的颜色
-Colorset 2  fg black, bg #00FF00, hi red, sh red, Plain , NoShape
+Colorset 2  fg #000000, bg #00FF00, hi red, sh red, Plain , NoShape
 #Colorset 2 Transient 
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
@@ -600,8 +602,8 @@ PipeRead "fvwm-menu-desktop -e"
 # lines as this is only to help make this menu portable.
 DestroyMenu MenuEditor
 AddToMenu   MenuEditor "编辑器" Title
-Test (x gvim)  + "gVim" Exec exec gvim
-Test (x  vim) + "Vim"  Exec exec vim
+Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim
+Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x xemacs) + "XEmacs" Exec exec xemacs
 
 
@@ -613,7 +615,7 @@ Test (x systemsettings5)  + "KDE系统设置" Exec exec systemsettings5
 Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-center
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
-Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manage2
+Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manager
 Test (x /usr/NX/bin/nxplayer) + "NoMachine"  Exec exec /usr/NX/bin/nxplayer
 Test (x vncviewer) + "VNC" Exec exec vncviewer
 Test (x xscreensaver-demo) + "xscreensaver设置"   Exec exec  xscreensaver-demo
@@ -688,6 +690,7 @@ Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-TIM" Exec exec /opt/deep
 Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
 Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux &
+
 
 # Background Menu
 #
@@ -930,7 +933,7 @@ AddToFunc alttab
                         OnTop,OnBottom,MaxLabelWidth 320,IconifiedAtEnd,SelectOnRelease Meta_L
 
 
-#
+
 Silent Key 1 A C GotoDesk 0 0
 Silent Key 2 A C GotoDesk 0 1
 Silent Key 3 A C GotoDesk 0 2
@@ -1000,8 +1003,8 @@ Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic 
 # shift + win_L 最大化当前page的所有窗口
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
-#Super_L +  alt 锁屏
-Silent Key   Super_L          A   A   Exec exec xscreensaver-command -lock
+#Shift + Ctrl +  l  锁屏
+Silent Key   Super_L          A  A   Exec exec xscreensaver-command -lock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
@@ -1047,7 +1050,7 @@ Mouse 1  T   CS     Style      gnome-terminal*  TitleAtLeft
 Mouse 1  T   C      Style      xterm*           TitleAtLeft
 Mouse 1  T   M      Style      konsole*         TitleAtLeft
 Mouse 1  T   CM     Style      terminator*      TitleAtLeft
-Mouse 1  T   M      Style       urxvt*       TitleAtLeft
+Mouse 1  T   M      Style       urxvt*          TitleAtLeft
 
 Mouse 3  T   CS     Style      gnome-terminal*   TitleAtTop
 Mouse 3  T   C      Style      xterm*            TitleAtTop
@@ -1153,7 +1156,7 @@ Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030
 ,Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig FvwmPager:*
-*FvwmPager: Geometry 100x200-0+0
+*FvwmPager: Geometry 100x120-0+0
 *FvwmPager: BorderWidth 10
 *FvwmPager: Layer 0
 *FvwmPager: Colorset * 15
@@ -1437,7 +1440,7 @@ DestroyModuleConfig MyDock:*
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec terminator`, \
   Action(Mouse 2) `Exec exec urxvt`, \
-  Action(Mouse 3) `Exec exec xterm`）
+  Action(Mouse 3) `Exec exec xterm`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
   Action(Mouse 1) `Exec exec google-chrome-stable`, \
@@ -1458,7 +1461,8 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
   Action(Mosue 1) `Exec exec gvim`,\
-  Action(Mosue 3) `Exec exec vim`)
+  Action(Mouse 2) `Exec exec gedit`,\
+  Action(Mosue 3) `Exec exec /usr/bin/vim`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/netesase.png, \
   Action(Mouse 1) `Exec exec netease-cloud-music`)
