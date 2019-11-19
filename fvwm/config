@@ -434,6 +434,11 @@ Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi red, sh red, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                                     HilightColorset 27
 
+Colorset 28   fg  #FFFFFF, bg  #0000EE, hi red, sh red, Plain,  NoShape
+Style     "shotwell"                        HilightColorset 28
+Style     "inkscape"                        HilightColorset 28
+Style     "gthumb"                          HilightColorset 28
+Style     "gimp"                            HilightColorset 28
 
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
@@ -635,6 +640,8 @@ Test (x wpp)  +     "wps-ppt %$[fvwm_exicons2]/wps-ppt.png%" Exec exec wpp &
 Test (x et)  +      "wps-excel %$[fvwm_exicons2]/wps-excel.png%" Exec exec et &
 Test (x okular)  +  "okular %$[fvwm_exicons2]/okular.png%" Exec exec okular &
 Test (x wpspdf)  +  "wps-pdf %$[fvwm_exicons2]/wps-pdf.png%" Exec exec wpspdf &
+
+
 ############这是浏览器软件菜单##########################
 DestroyMenu MenuBrowser
 AddToMenu   MenuBrowser "浏览器 " Title
@@ -669,19 +676,18 @@ Test (x lximage-qt) +   "选择截图screenshot  %$[fvwm_exicons2]/image-process
 Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-viewer.png%" Exec exec gnome-screenshot
 Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
 Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
+Test (x gthumb) + "gThumb图像编辑 %$[fvwm_exicons2]/gimp.png%" Exec gthumb
 
 
 ################通信软件相关##########################################
 DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
-Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-QQ" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
-Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ" Exec exec /usr/share/tencent-qq/qq
+Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
+Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
 Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-TIM" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
-Test (x electronic-wechat) + "微信electronic" Exec exec /snap/bin/electronic-wechat
-Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
+Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
+Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux &
-
-
 
 # Background Menu
 #
