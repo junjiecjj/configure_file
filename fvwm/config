@@ -1454,6 +1454,7 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
   Action(Mouse 1) `Exec exec gwenview` ,\
+  Action(Mouse 2) `Exec exec gthumb`,\
   Action(Mouse 3) `Exec exec deepin-screenshot` )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
