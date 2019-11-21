@@ -1385,10 +1385,10 @@ Style * RecaptureHonorsStartsOnPage, CaptureHonorsStartsOnPage
 #Style    "xterm"                    StartsOnPage 0 1
 #Style    "gnome-terminal*"          StartsOnPage 0 1
 
-Style    "dolphin"                   StartsOnPage 1 1
-Style    "pcmanfm"                   StartsOnPage 1 1
-Style    "systemsettings5"           StartsOnPage 1 1
-Style    "gnome-control-center"      StartsOnPage 1 1
+#Style    "dolphin"                   StartsOnPage 1 1
+#Style    "pcmanfm"                   StartsOnPage 1 1
+#Style    "systemsettings5"           StartsOnPage 1 1
+#Style    "gnome-control-center"      StartsOnPage 1 1
 
 
 #Style    "*texstudio"                StartsOnDesk  2, StartsOnPage 0 0
