@@ -1439,9 +1439,11 @@ DestroyModuleConfig MyDock:*
 #*MyDock: (2x1, Frame 0, Title(Center) "FVWM")
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
-  Action(Mouse 1) `Exec exec terminator`, \
+  Action(Mouse 1) `Exec exec xterm`, \
   Action(Mouse 2) `Exec exec urxvt`, \
-  Action(Mouse 3) `Exec exec xterm`)
+  Action(Mouse 3) `Exec exec terminator`, \
+  Action(Mouse 4) `Exec exec gnome-terminal`, \
+  Action(Mouse 5) `Exec exec konsole`, )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
   Action(Mouse 1) `Exec exec google-chrome-stable`, \
@@ -1449,13 +1451,16 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/file-manager.png, \
   Action(Mouse 1) `Exec exec nautilus`, \
-  Action(Mouse 2) `Exec exec mendeleydesktop`,\
-  Action(Mouse 3) `Exec exec pcmanfm`)
+  Action(Mouse 2) `Exec exec pcmanfm`, \
+  Action(Mouse 3) `Exec exec dolphin`,\
+  Action(Mouse 4) `Exec exec mendeleydesktop`,)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/graphics.png, \
   Action(Mouse 1) `Exec exec gwenview` ,\
   Action(Mouse 2) `Exec exec gthumb`,\
-  Action(Mouse 3) `Exec exec deepin-screenshot` )
+  Action(Mouse 3) `Exec exec deepin-screenshot`,\
+  Action(Mouse 4) `Exec exec inkscape`,\
+  Action(Mouse 5) `Exec exec gimp` )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/lyx.png, \
   Action(Mouse 1) `Exec exec texstudio` ,\
@@ -1476,6 +1481,8 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
   Action(Mouse 1) `Exec exec systemsettings5`,\
-  Action(Mouse 3) `Exec exec xscreensaver-demo`)
+  Action(Mouse 3) `Exec exec xscreensaver-demo`,\
+  Action(Mouse 4) `Exec exec /usr/NX/bin/nxplayer `,\
+  Action(Mouse 5) `Exec exec vncviewer`,)
 
 ################### Dock结束######################################
