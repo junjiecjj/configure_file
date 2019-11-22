@@ -1288,8 +1288,9 @@ DestroyModuleConfig FvwmIconMan:*
 #ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 
 #多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有
 #确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
-#*FvwmIconMan: 1 ManagerGeometry 8x1+0+0
-*FvwmIconMan: 1   ManagerGeometry 1x0-0-0
+*FvwmIconMan: 1 ManagerGeometry 12x1+0+0
+#*FvwmIconMan: 1 ManagerGeometry 0x1+0+0
+#*FvwmIconMan: 1   ManagerGeometry 1x0-0-0
 *FvwmIconMan: 1   UseWinList true
 *FvwmIconMan: 1   Background #003c3c
 *FvwmIconMan: 1   Foreground #ffffff
