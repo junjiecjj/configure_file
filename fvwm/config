@@ -483,7 +483,7 @@ Style         "wpspdf"                   HilightColorset 22
 #      12 - Module ActiveButton (Mouse Hover)
 #      13 - FvwmPager Active Page
 #      14 - FvwmIconMan Iconified Button
-###########
+#################################################################
 #Colorset 0  fg #ffffff, bg #003c3c, hi #FF00FF ,  sh  #FF00FF, Plain, NoShape
 Colorset 0  fg 	#000000, bg	#00FF00, hi, sh, Plain, NoShape
 
@@ -498,7 +498,7 @@ Colorset 2  fg #000000, bg #00FF00, hi red, sh red, Plain , NoShape
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 #未激活窗口的框框颜色
-Colorset 3  Transparent,fg blue, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
+Colorset 3  fg blue, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 
 #Colorset 4  fg black, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
 #激活窗口的框框颜色
@@ -506,18 +506,18 @@ Colorset 4  fg red, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
 
 #Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
 #5是调节menu的颜色
-Colorset 5  fg Black, bg lemonChiffon, hi red, sh red, Plain, NoShape
+Colorset 5  fg #000000, bg #FFFACD, hi red, sh red, Plain, NoShape
 
 #Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
 #6是鼠标所在的menu的颜色
-Colorset 6  fg Black, bg lawngreen, hi, sh, Plain, NoShape
+Colorset 6  fg #000000, bg #7CFC00, hi, sh, Plain, NoShape
 
 #Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
-Colorset 7  fg yellow, bg #ffffff, hi, sh, Plain, NoShape
+Colorset 7  fg #FFFF00, bg #ffffff, hi, sh, Plain, NoShape
 
 #Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
 #设置meun的title颜色
-Colorset 8  fg black, bg gold, hi blue, sh blue, bold
+Colorset 8  fg #000000, bg #FFD700, hi blue, sh blue, bold
 
 #Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 #默认的颜色，bg是右边时钟和最上面page背景色，hi,sh是每个page里面打开的应用的外框的颜色
@@ -526,20 +526,20 @@ Colorset 10  fg #ffffff, bg #003c3c, hi red, sh red, Plain, NoShape
 #Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
 #右边iconman激活的颜色，也是鼠标所在窗口的颜色，就是右边的小条条(小条条指Iconman,后面会讲到当鼠标放在小
 #条条上时会弹出放大版的IconMan,这叫Tips)
-Colorset 11 fg black, bg green, hi green, sh #ffffff, Plain, NoShape
+Colorset 11 fg #000000, bg #00FF00, hi green, sh #ffffff, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 #右边iconman被鼠标点击时的颜色，就是右边的小条条
-Colorset 12 fg black, bg #FFA500, hi blue, sh blue, Plain, NoShape
+Colorset 12 fg #000000, bg #FFA500, hi blue, sh blue, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
 #右边四个page，当鼠标在哪个page时的颜色(当鼠标指在page上时，弹出的小框叫fvwmBalloon)
-Colorset 13 fg black, bg white, hi blue, sh blue, Plain, NoShape
+Colorset 13 fg #000000, bg #FFFFFF, hi blue, sh blue, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 #Colorset 14 Transparent buffer, fg  #FF0000, bg #0000FF, hi #aaaaaa, sh #999999, Plain, NoShape
 #窗口最小化右边小条条的颜色，
-Colorset 14 Transparent buffer, fg  #FFFFFF, bg #000000, hi #aaaaaa, sh #999999, Plain, NoShape
+Colorset 14  fg  #FF1493, bg #000000, hi #aaaaaa, sh #999999, Plain, NoShape
 
 #######
 # 4: Menus
