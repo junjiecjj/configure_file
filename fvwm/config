@@ -1154,7 +1154,7 @@ Colorset 16 fg #000000, bg #00FF00, hi #FF1493, sh #FF1493, Plain, NoShape
 Colorset 17 fg #000000, bg #FFFF00, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 17 fg white, bg #1883f1
 
-Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030
+Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030 \
 ,Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
 
 DestroyModuleConfig FvwmPager:*
@@ -1278,8 +1278,7 @@ Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
 #Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
-Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
-        CirculateSkipIcon, CirculateSkip, HandleWidth 2, BorderWidth 2, \
+Style FvwmIconMan NoTitle, Sticky, WindowListSkip,  CirculateSkip, HandleWidth 2, BorderWidth 2, \
         NeverFocus, Layer 1, StaysOnBottom
 
 
