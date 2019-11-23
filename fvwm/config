@@ -1264,15 +1264,17 @@ DestroyModuleConfig FvwmTaskBar:*
 
 ####################  TaskBar结束######################################
 
-
 # FvwmIconMan
 #https://www.jianshu.com/p/09aec14684d5
 # FvwmIconMan is a powerful tool to list and manage windows. This
 # is used as the window list in the panel or taskbar.
 
-Colorset 18  RootTransparent, fg rgb:00/00/00, bg average, \
+#Colorset 18  RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
-Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
+Colorset 18   fg  #FFFFFF, bg  #7D26CD, hi red, sh red, Plain,  NoShape
+
+Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
+#Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, \
@@ -1304,7 +1306,7 @@ DestroyModuleConfig FvwmIconMan:*
 
 *FvwmIconMan: 1   FollowFocus false
 *FvwmIconMan: 1   IconAndSelectColorset 12
-*FvwmIconMan: 1   ReliefThickness 0
+*FvwmIconMan: 1   ReliefThickness 2
 
 #*FvwmIconMan: 1   Resolution  page
 *FvwmIconMan: 1   DrawIcons always
@@ -1329,7 +1331,7 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
 
 
-####################### FvwmEvent
+####################### FvwmEvent##############################
 #
 # FvwmEvent is a module that can run an action or function
 # on specific events. This instance changes which desk number
