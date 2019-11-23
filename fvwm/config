@@ -445,11 +445,11 @@ Style     "gimp"                            HilightColorset 28
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                              HilightColorset 22
-Style         "okular"                      HilightColorset 22
-Style         "wps"                         TitleAtBottom, HilightColorset 22
-Style         "et"                             TitleAtBottom, HilightColorset 22
-Style         "wpp"                       TitleAtBottom, HilightColorset 22
-Style         "wpspdf"                TitleAtBottom, HilightColorset 22
+Style         "okular"                    HilightColorset 22
+Style         "wps"                        TitleAtLeft, HilightColorset 22
+Style         "et"                             TitleAtLeft, HilightColorset 22
+Style         "wpp"                       TitleAtLeft, HilightColorset 22
+Style         "wpspdf"                TitleAtLeft, HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
