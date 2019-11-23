@@ -537,8 +537,9 @@ Colorset 12 fg black, bg #FFA500, hi blue, sh blue, Plain, NoShape
 Colorset 13 fg black, bg white, hi blue, sh blue, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
+#Colorset 14 Transparent buffer, fg  #FF0000, bg #0000FF, hi #aaaaaa, sh #999999, Plain, NoShape
 #窗口最小化右边小条条的颜色，
-Colorset 14 Transparent buffer, fg  red, bg blue, hi #aaaaaa, sh #999999, Plain, NoShape
+Colorset 14 Transparent buffer, fg  #FFFFFF, bg #000000, hi #aaaaaa, sh #999999, Plain, NoShape
 
 #######
 # 4: Menus
