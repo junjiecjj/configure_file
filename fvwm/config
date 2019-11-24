@@ -623,9 +623,6 @@ Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-cen
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manager
-Test (x /usr/NX/bin/nxplayer) + "NoMachine"  Exec exec /usr/NX/bin/nxplayer
-Test (x vncviewer) + "VNC" Exec exec vncviewer
-Test (x xscreensaver-demo) + "xscreensaver设置"   Exec exec  xscreensaver-demo
 #Test (x gimp) + "Gimp" Exec exec gimp
 
 
@@ -635,8 +632,6 @@ AddToMenu   NetworkMenu  "网络设置" Title
 Test (x nmtui) + "GnomeNetworkManager-nmtui" Exec exec nmtui
 Test (x nm-connection-editor) + "图形界面nm-connection-editor" Exec exec nm-connection-editor
 Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
-
-
 
 ############这是办公软件菜单##########################
 DestroyMenu MenuOffice
@@ -671,9 +666,9 @@ Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"
 DestroyMenu MenuYule
 AddToMenu   MenuYule    "音乐视频" Title
 Test (x netease-cloud-music) + "%$[fvwm_exicons2]/netesase.png% 网易云音乐" Exec exec netease-cloud-music
-Test (x smplayer) +   "%$[fvwm_exicons2]/cd-player.png %SMPlayer射手影音" Exec exec smplayer
-Test (x vlc) +       "%$[fvwm_exicons2]/cd-player.png % VLC媒体播放器" Exec exec vlc
-Test (x mpv) +       "%$[fvwm_exicons2]/cd-player.png % Mplayer媒体播放器" Exec exec mpv
+Test (x smplayer) +   "SMPlayer射手影音 %$[fvwm_exicons2]/smplayer.png%" Exec exec smplayer
+Test (x vlc) +       "VLC媒体播放器 %$[fvwm_exicons2]/cd-player.png%" Exec exec vlc
+Test (x mpv) +       "Mplayer媒体播放器 %$[fvwm_exicons2]/MPlayer.png%" Exec exec mpv
 
 ################图片相关##########################################
 DestroyMenu MenuPhoto
@@ -697,7 +692,10 @@ Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec 
 Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
 Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
 Test (x /opt/baidunetdisk/baidunetdisk) + "百度云盘 %$[fvwm_exicons2]/baidunetdisk.png%" Exec exec /opt/baidunetdisk/baidunetdisk
-Test (x skypeforlinux) + "skype" Exec exec skypeforlinux &
+Test (x skypeforlinux) + "skype" Exec exec skypeforlinux
+Test (x /usr/NX/bin/nxplayer) + "NoMachine %$[fvwm_exicons2]/NMLogo.png%"  Exec exec /usr/NX/bin/nxplayer
+Test (x vncviewer) + "VNC %$[fvwm_exicons2]/VNC.png%" Exec exec vncviewer
+Test (x xscreensaver-demo) + "xscreensaver设置 %$[fvwm_exicons2]/xscreensaver.png%"   Exec exec  xscreensaver-demo
 
 
 # Background Menu
