@@ -435,12 +435,17 @@ Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi red, sh red, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
 
-Colorset 28   fg  #FFFFFF, bg  #0000EE, hi red, sh red, Plain,  NoShape
+Colorset 28   fg  #FFFFFF, bg  #0000FF, hi red, sh red, Plain,  NoShape
 Style     "shotwell"                        HilightColorset 28
 Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
 
+Colorset 29   fg  #000000, bg  #B3EE3A, hi red, sh red, Plain,  NoShape
+Style     "Mendeley*"                        HilightColorset 29
+Style     "NoMachine"                        HilightColorset 29
+Style     "百度网盘"                        HilightColorset 29
+Style     "Mendeley"                        HilightColorset 29
 
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
