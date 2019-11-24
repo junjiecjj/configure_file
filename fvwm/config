@@ -441,7 +441,7 @@ Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
 
-Colorset 29   fg  #000000, bg  #B3EE3A, hi red, sh red, Plain,  NoShape
+Colorset 29   fg  #000000, bg  #00FFFF, hi red, sh red, Plain,  NoShape
 Style     "Mendeley*"                        HilightColorset 29
 Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
