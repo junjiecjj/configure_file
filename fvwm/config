@@ -578,9 +578,9 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&网络管理器    %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
 + "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
-+ "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec $[infostore.terminal]
-+ "&gnome_Term   %$[fvwm_icons]/terminal1.png%" Exec exec gnome-terminal
-+ "&kde_Term     %$[fvwm_icons]/terminal1.png%" Exec exec konsole
++ "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec xterm
++ "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
++ "&URxvt     %$[fvwm_icons]/terminal1.png%" Exec exec urxvt
 + "" Nop
 + "XDG &Menu     %$[fvwm_icons]/apps.png%" Popup XDGMenu
 + "" Nop
