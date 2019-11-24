@@ -686,11 +686,12 @@ Test (x gthumb) + "gThumb图像编辑 %$[fvwm_exicons2]/gimp.png%" Exec gthumb
 ################通信软件相关##########################################
 DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
-Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
-Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
+Test (x /opt/deepinwine/apps/Deepin-QQ/run.sh) + "wine-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /opt/deepinwine/apps/Deepin-qq/run.sh
 Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-TIM" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
+Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
 Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
 Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
+Test (x /opt/baidunetdisk/baidunetdisk) + "百度云盘 %$[fvwm_exicons2]/baidunetdisk.png%" Exec exec /opt/baidunetdisk/baidunetdisk
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux &
 
 
