@@ -445,7 +445,7 @@ Colorset 29   fg  #000000, bg  #00FFFF, hi red, sh red, Plain,  NoShape
 Style     "Mendeley*"                        HilightColorset 29
 Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
-Style     "Mendeley"                        HilightColorset 29
+Style     "VNC Viewer"                        HilightColorset 29
 
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
