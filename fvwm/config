@@ -412,13 +412,14 @@ Style     "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style    "fcitx"              StaysOnTop
 
 Colorset  24   fg  #FFFFFF, bg #006400, hi red, sh red, Plain,  NoShape
-Style     "*Google Chrome"                 HilightColorset 24
+Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
 Style     "*Firefox"                       HilightColorset 24
 
 Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
 Style     "gedit"                        TitleAtLeft,  HilightColorset 23
 Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
+Style     "xterm"                        TitleAtLeft,  HilightColorset 2
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi red, sh red, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
@@ -436,7 +437,7 @@ Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
 
 Colorset 28   fg  #FFFFFF, bg  #0000FF, hi red, sh red, Plain,  NoShape
-Style     "shotwell"                        HilightColorset 28
+Style     "*Shotwell"                    TitleAtTop, HilightColorset 28
 Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
@@ -447,21 +448,24 @@ Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
+
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
-Style         "lyx"                              HilightColorset 22
-Style         "okular"                    HilightColorset 22
-Style         "wps"                        TitleAtLeft, HilightColorset 22
-Style         "et"                             TitleAtLeft, HilightColorset 22
-Style         "wpp"                       TitleAtLeft, HilightColorset 22
-Style         "wpspdf"                TitleAtLeft, HilightColorset 22
+Style         "lyx"                      HilightColorset 22
+Style         "okular"                   HilightColorset 22
+Style         "wps"            TitleAtLeft, HilightColorset 22
+Style         "et"             TitleAtLeft, HilightColorset 22
+Style         "wpp"            TitleAtLeft, HilightColorset 22
+Style         "wpspdf"         TitleAtLeft, HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
 #Style  "FvwmButtons"   StaysOnTop, ClickToFocu2
 #Style   FvwmPager		NoHandles
 ###########################################
-#Style "Google Chrome" Icon $[fvwm_icons]/chrome.png, MiniIcon $[fvwm_icons]/chrome1.png
+#Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
+Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
+Style "urxvt" Icon $[fvwm_exicons2]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
 
 
 #######
