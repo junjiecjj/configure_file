@@ -448,6 +448,12 @@ Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
+Colorset 30   fg  #000000, bg #FF7F00 , hi red, sh red, Plain,  NoShape
+#Style     "xterm"                            HilightColorset 30
+Style     "urxvt"                            HilightColorset 30
+Style     "konsole"                          HilightColorset 30
+Style     "*gnome-terminal*"                    HilightColorset 30
+Style     "terminator"                       HilightColorset 30
 
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
