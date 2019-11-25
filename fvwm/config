@@ -627,6 +627,7 @@ Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-cen
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manager
+Test (x xscreensaver-demo) + "xscreensaver设置 %$[fvwm_exicons2]/xscreensaver.png%"   Exec exec  xscreensaver-demo
 #Test (x gimp) + "Gimp" Exec exec gimp
 
 
@@ -657,13 +658,12 @@ Test (x chromium )  + "Chromium %$[fvwm_exicons2]/chromium.png% " Exec exec chro
 Test (x firefox )  + "Firefox %$[fvwm_exicons2]/Firefox.png% " Exec exec firefox &
 Test (x google-chrome-stable )  + "Google-Chrome %$[fvwm_exicons2]/chrome.png% " Exec exec google-chrome-stable &
 
-##################MenuFile菜单######################
+##################  文件管理器  ######################
 DestroyMenu MenuFile
 AddToMenu   MenuFile "文件管理器" Title
 Test (x dolphin) + "%$[fvwm_exicons2]/folder-open.png% Dolphin"   Exec   exec dolphin 
 Test (x nautilus) + "%$[fvwm_exicons2]/folder.png% Nautilus"    Exec exec nautilus
 Test (x pcmanfm) + "%$[fvwm_exicons2]/folder.png% Pcmanfm"    Exec exec  pcmanfm 
-Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop 
 
 ##################娱乐##########################################
 
@@ -699,7 +699,7 @@ Test (x /opt/baidunetdisk/baidunetdisk) + "百度云盘 %$[fvwm_exicons2]/baidun
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux
 Test (x /usr/NX/bin/nxplayer) + "NoMachine %$[fvwm_exicons2]/NMLogo.png%"  Exec exec /usr/NX/bin/nxplayer
 Test (x vncviewer) + "VNC %$[fvwm_exicons2]/VNC.png%" Exec exec vncviewer
-Test (x xscreensaver-demo) + "xscreensaver设置 %$[fvwm_exicons2]/xscreensaver.png%"   Exec exec  xscreensaver-demo
+Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop
 
 
 # Background Menu
