@@ -152,7 +152,7 @@ AddToFunc InitFunction
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
 #xcompmgr是开启窗口透明需要先打开的软件
 #+ I Exec xcompmgr
-
+#+ I Exec    hsetroot -solid #000000
 ###########################  InitFunction结束设置##########################
 
 
