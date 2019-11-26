@@ -43,8 +43,8 @@ Style FvwmAnimate  !Handles
 
 DestroyModuleConfig FvwmAnimate:*
 *FvwmAnimate: Color blue
-*FvwmAnimate: Delay 3000
-*FvwmAnimate: Iterations 5000
+*FvwmAnimate: Delay 30
+*FvwmAnimate: Iterations 50
 *FvwmAnimate: Twist 5
 # 动画效果：Frame, Lines, Flip, Turn, Zoom3D, Twist Random, None
 *FvwmAnimate: Effect Zoom3D
@@ -131,28 +131,28 @@ AddToFunc   StartFunction
 #+ I Module  FvwmTaskBar
 + I Module  FvwmIconMan
 + I Module  FvwmPager 0 0
-+ I Module FvwmButtons MyDock
 + I Test (Init) Module FvwmBanner
 #+ I Module FvwmButtons RightPanel
 + I Module  FvwmEvent EventNewDesk
 + I Exec exec fcitx    #启用中文输入法
-+ I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg10.xpm
-+ I Exec xpmroot  $[fvwm_bgicons]/极光1.png  #背景
++ I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg1.png
++ I Exec xpmroot  $[fvwm_bgicons]/bg1.png  #背景
 + I Exec exec conky &
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 100  Raise Nop
++ I Module FvwmButtons MyDock
 
 
-Module FvwmAnimate
+#Module FvwmAnimate
 ###########################  InitFunction设置##########################
 #DestroyFunc InitFunction
 AddToFunc InitFunction
 + I Exec exec xscreensaver -no-splash &
-+ I Exec exec xterm
+#+ I Exec exec xterm
 #+ I Exec exec xclock -d -fg green -bg black -update 1 -strftime  %H:%M:%S  -geometry 90x30-0-0 -norender -padding 1
 #xcompmgr是开启窗口透明需要先打开的软件
 #+ I Exec xcompmgr
-#+ I Exec    hsetroot -solid #000000
+
 ###########################  InitFunction结束设置##########################
 
 
@@ -266,15 +266,19 @@ AddToFunc autohide_hide
 #相应的参数有N, S, E, W, NW, NE, SW or SE。
 # Add the windows you want to autohide
 AddToFunc enter_handler
-#+ I autohide MyDock  50 S
-#+ I autohide FvwmPager 50 S
+#+ I autohide MyDock  500  N
+#+ I autohide FvwmPager 500   S
 
 # + I autohide FvwmTaskBar 500 N 
 # #由于taskbar（任务条）还可以在f.taskbar里设置隐藏功能，我就在这里注销了这句。
 
+#####################END######################
+
+
 # Start FvwmAuto
 AddToFunc StartFunction
 + I Module FvwmAuto FvwmAutohide -menter enter_handler
++ I Module FvwmAuto FvwmAutohide -menter FuncAutoEnter 
 
 #####################END######################
 
@@ -345,7 +349,7 @@ Style * TileCascadePlacement
 #Style * CenterPlacement
 
 #开启动画
-Style * Animation
+#Style * Animation
 
 #所有窗口，都是鼠标移进去的时候得到键盘聚焦，鼠标移出来就失去聚焦
 #Style * FocusFollowsMouse 
@@ -372,7 +376,7 @@ Style *   DontLowerTransient, StackTransientParent
 Style *   !FPGrabFocusTransient, FPReleaseFocusTransient
 Style *   GrabFocusTransientOff
 
-SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
+#SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 
 # WindowShade
 Style * WindowShadeScrolls, WindowShadeSteps 10
@@ -389,15 +393,14 @@ Style * BorderColorset 3, HilightBorderColorset 4
 # Disable Icons from appearing on desktop.
 # Comment this out or use Style * Icon to get the icons back.
 #Style * !Icon
-Style * !Icon
-
+Style * Icon
+IconFont   "StringEncoding=UTF-8:xft:文泉驿微米黑:style=Bold:antialias=True:size=10:encoding=iso10646-1"
 
 Style *xclock*  StaysOnTop, NoTitle, Sticky, WindowListSkip
 Style *xclock*  Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
-Style Conky !Title, !Borders, !Iconifiable, WindowListSkip, StayOnBottom,FixedPosition, FixedSize, Sticky
+Style  "*conky*"     !Title, !Borders, !Iconifiable, WindowListSkip, StaysOnTop,FixedPosition, FixedSize, Sticky
 # Sticky也就是说即使桌面切换，它们也一直显示在屏幕上
-#Sticky 窗口总是在屏幕上显示，好像粘在上面一样。这对于显示像clocks和xbiffs那样的应用非
-#常方便，
+#Sticky 窗口总是在屏幕上显示，好像粘在上面一样。这对于显示像clocks和xbiffs那样的应用非常方便，
 
 Style ConfirmQuit   !Title, PositionPlacement Center, WindowListSkip, Layer 6
 Style FvwmIdent      WindowListSkip
@@ -451,9 +454,9 @@ Style     "VNC Viewer"                        HilightColorset 29
 Colorset 30   fg  #000000, bg #FF7F00 , hi red, sh red, Plain,  NoShape
 #Style     "xterm"                            HilightColorset 30
 Style     "urxvt"                            HilightColorset 30
-Style     "konsole"                          HilightColorset 30
-Style     "*gnome-terminal*"                    HilightColorset 30
-Style     "terminator"                       HilightColorset 30
+#Style     "konsole"                          HilightColorset 30
+#Style     "*gnome-terminal*"                    HilightColorset 30
+#Style     "terminator"                       HilightColorset 30
 
 Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
@@ -472,7 +475,6 @@ Style         "wpspdf"         TitleAtLeft, HilightColorset 22
 #Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
 Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
 Style "urxvt" Icon $[fvwm_exicons2]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
-
 
 #######
 # 3: Colorsets
@@ -498,7 +500,7 @@ Style "urxvt" Icon $[fvwm_exicons2]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.p
 #      12 - Module ActiveButton (Mouse Hover)
 #      13 - FvwmPager Active Page
 #      14 - FvwmIconMan Iconified Button
-#################################################################
+###########
 #Colorset 0  fg #ffffff, bg #003c3c, hi #FF00FF ,  sh  #FF00FF, Plain, NoShape
 Colorset 0  fg 	#000000, bg	#00FF00, hi, sh, Plain, NoShape
 
@@ -567,7 +569,6 @@ MenuStyle * ItemFormat "%|%3.1i%5.3l%5.3>%|"
 ############这是我自己加的###################
 MenuStyle * Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=18:encoding=iso10646-1"
 MenuStyle * PopupDelayed, PopupDelay 160, Animation, TitleWarp
-SetAnimation 10 -.01 0 .01 .03 .08 .18 .3 .45 .6 .75 .85 .90 .94 .97 .99 1.0
 MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572 
 
 ####################自己加的结束##########################
@@ -620,8 +621,8 @@ DestroyMenu MenuEditor
 AddToMenu   MenuEditor "编辑器" Title
 Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
-Test (x  gedit) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
-Test (x xemacs) + "XEmacs" Exec exec xemacs
+Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
+Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
 
 
 ##################系统设置##########################
@@ -705,7 +706,7 @@ Test (x /opt/baidunetdisk/baidunetdisk) + "百度云盘 %$[fvwm_exicons2]/baidun
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux
 Test (x /usr/NX/bin/nxplayer) + "NoMachine %$[fvwm_exicons2]/NMLogo.png%"  Exec exec /usr/NX/bin/nxplayer
 Test (x vncviewer) + "VNC %$[fvwm_exicons2]/VNC.png%" Exec exec vncviewer
-Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop
+Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop 
 
 
 # Background Menu
@@ -1019,8 +1020,8 @@ Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic 
 # shift + win_L 最大化当前page的所有窗口
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
-#alt +  l  锁屏
-Silent Key   l          A        M     Exec exec xscreensaver-command -lock
+#Shift + Ctrl +  l  锁屏
+Silent Key   l          A  M   Exec exec xscreensaver-command -lock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
@@ -1169,7 +1170,8 @@ Colorset 17 fg #000000, bg #FFFF00, hi #FF1493, sh #FF1493, Plain, NoShape
 #Colorset 17 fg white, bg #1883f1
 
 Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030 \
-,Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+          ,Sticky, WindowListSkip, CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
+#StaysOnBottom
 
 DestroyModuleConfig FvwmPager:*
 *FvwmPager: Geometry 100x120-0+0
@@ -1292,7 +1294,7 @@ Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
 #Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
-Style FvwmIconMan NoTitle, Sticky, WindowListSkip,  CirculateSkip, HandleWidth 2, BorderWidth 2, \
+Style FvwmIconMan NoTitle, Sticky, WindowListSkip, CirculateSkip, HandleWidth 2, BorderWidth 2, \
         NeverFocus, Layer 1, StaysOnBottom
 
 
@@ -1328,8 +1330,8 @@ DestroyModuleConfig FvwmIconMan:*
 #%t,%i,%c,和%r， 分别表示窗口的title、icon、class和resource name。默认是"%c:%i"。
 *FvwmIconMan: 1    TipsFormat "%c : %t"
 *FvwmIconMan: 1    Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
-*FvwmIconMan: 1    Sort        name
-*FvwmIconMan: 1    Title       "FvwmIconMan"
+*FvwmIconMan: 1    Sort  name
+*FvwmIconMan: 1    Title "FvwmIconMan"
 *FvwmIconMan: 1    Resolution global
 *FvwmIconMan: 1    Tips needed
 *FvwmIconMan: 1    Sort name
@@ -1340,12 +1342,12 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1    TipsDelays 500 200
 *FvwmIconMan: 1    TipsBorderWidth 4
 
-*FvwmIconMan: action      Mouse   1 N sendcommand Focus,sendcommand Raise,sendcommand Iconify
-*FvwmIconMan: action      Mouse   2 N sendcommand "Iconify 1"
-*FvwmIconMan: action      Mouse   3 N sendcommand "FvwmIdent"
+*FvwmIconMan: 1  action      Mouse   1 N sendcommand "Focus",sendcommand "Raise",sendcommand "Iconify"
+*FvwmIconMan: 1  action      Mouse   2 N sendcommand "Iconify 1"
+*FvwmIconMan: 1  action      Mouse   3 N sendcommand "FvwmIdent"
 
 
-####################### FvwmEvent##############################
+####################### FvwmEvent##################
 #
 # FvwmEvent is a module that can run an action or function
 # on specific events. This instance changes which desk number
