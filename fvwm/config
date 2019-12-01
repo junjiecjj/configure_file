@@ -425,7 +425,7 @@ Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 Style     "xterm"                        TitleAtLeft,  HilightColorset 2
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi red, sh red, Plain,  NoShape
-Style     "smplayer"                     HilightColorset 25
+Style     "smplayer"                     HilightColorset 24
 Style     "netease-cloud-music"          HilightColorset 25
 Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
@@ -438,6 +438,7 @@ Style     "pcmanfm"                        HilightColorset 26
 Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi red, sh red, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
+Style     "zoom"                             HilightColorset 27
 
 Colorset 28   fg  #FFFFFF, bg  #0000FF, hi red, sh red, Plain,  NoShape
 Style     "*Shotwell"                    TitleAtTop, HilightColorset 28
@@ -475,6 +476,7 @@ Style         "wpspdf"         TitleAtLeft, HilightColorset 22
 #Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
 Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
 Style "urxvt" Icon $[fvwm_exicons2]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
+Style "gvim" Icon $[fvwm_exicons2]/vim.png, MiniIcon $[fvwm_exicons2]/vim.png
 
 #######
 # 3: Colorsets
@@ -619,7 +621,7 @@ PipeRead "fvwm-menu-desktop -e"
 # lines as this is only to help make this menu portable.
 DestroyMenu MenuEditor
 AddToMenu   MenuEditor "编辑器" Title
-Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim
+Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
@@ -702,6 +704,7 @@ Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-TIM" Exec exec /opt/deep
 Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
 Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
 Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
+Test (x zoom) + "Zoom %$[fvwm_exicons2]/zoom.png%" Exec exec zoom
 Test (x /opt/baidunetdisk/baidunetdisk) + "百度云盘 %$[fvwm_exicons2]/baidunetdisk.png%" Exec exec /opt/baidunetdisk/baidunetdisk
 Test (x skypeforlinux) + "skype" Exec exec skypeforlinux
 Test (x /usr/NX/bin/nxplayer) + "NoMachine %$[fvwm_exicons2]/NMLogo.png%"  Exec exec /usr/NX/bin/nxplayer
@@ -1486,7 +1489,7 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 3) `Exec exec lyx`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/vim.png, \
-  Action(Mosue 1) `Exec exec gvim`,\
+  Action(Mosue 1) `Exec exec gvim &`,\
   Action(Mouse 2) `Exec exec gedit`,\
   Action(Mosue 3) `Exec exec /usr/bin/vim`)
 
