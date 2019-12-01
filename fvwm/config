@@ -459,7 +459,7 @@ Style     "urxvt"                            HilightColorset 30
 #Style     "*gnome-terminal*"                    HilightColorset 30
 #Style     "terminator"                       HilightColorset 30
 
-Colorset 31   fg  #0000CD, bg #EE7600 , hi red, sh red, Plain,  NoShape
+Colorset 31   fg  #0000FF, bg #CD661D , hi red, sh red, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
 Style     "Anaconda"                            HilightColorset 31
 Style     "PyCharm"                             HilightColorset 31
