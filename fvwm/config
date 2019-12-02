@@ -414,27 +414,27 @@ Style     "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style    "*RightPanel"         StaysOnTop
 #Style    "fcitx"              StaysOnTop
 
-Colorset  24   fg  #FFFFFF, bg #006400, hi #006400, sh #006400, Plain,  NoShape
+Colorset  24   fg  #FFFFFF, bg #006400, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
 Style     "*Firefox"                       HilightColorset 24
 
-Colorset 23   fg  #FFFF00, bg 	#006400, hi #006400, sh #006400, Plain,  NoShape
+Colorset 23   fg  #FFFF00, bg 	#006400, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "gedit"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
-Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #B22222, sh #B22222, Plain,  NoShape
+Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
 Style     "netease-cloud-music"          HilightColorset 25
 Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
 
-Colorset 26   fg  #000000, bg 	#FFA500, hi #FFA500, sh #FFA500, Plain,  NoShape
+Colorset 26   fg  #000000, bg 	#FFA500, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "nautilus"                        HilightColorset 26
 Style     "dolphin"                        HilightColorset 26
 Style     "pcmanfm"                        HilightColorset 26
 
-Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #7D26CD, sh #7D26CD, Plain,  NoShape
+Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
 Style     "zoom"                             HilightColorset 27
@@ -445,20 +445,20 @@ Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
 
-Colorset 29   fg  #000000, bg  #00FFFF, hi #00FFFF, sh #00FFFF, Plain,  NoShape
+Colorset 29   fg  #000000, bg  #00FFFF, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "Mendeley*"                        HilightColorset 29
 Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
-Colorset 30   fg  #000000, bg #FF7F00 , hi #FF7F00, sh #FF7F00, Plain,  NoShape
+Colorset 30   fg  #000000, bg #FF7F00 , hi #0000FF, sh #0000FF, Plain,  NoShape
 #Style     "xterm"                            HilightColorset 30
 Style     "urxvt"                            HilightColorset 30
 Style     "konsole"                          HilightColorset 30
 Style     "*gnome-terminal*"                    HilightColorset 30
 #Style     "terminator"                       HilightColorset 30
 
-Colorset 31   fg  #0000FF, bg #CD661D , hi #CD661D, sh #CD661D, Plain,  NoShape
+Colorset 31   fg  #0000FF, bg #CD661D , hi #0000FF, sh #0000FF, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
 Style     "Anaconda"                            HilightColorset 31
 Style     "PyCharm"                             HilightColorset 31
@@ -467,7 +467,7 @@ Style     "Qt"                                  HilightColorset 31
 Style     "CodeBlock"                           HilightColorset 31
 
 #Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
-Colorset 22   fg  #0000CD,  bg #CD3700, hi #CD3700, sh #CD3700, Plain,  NoShape
+Colorset 22   fg  #0000CD,  bg #CD3700, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                      HilightColorset 22
 Style         "okular"                   HilightColorset 22
