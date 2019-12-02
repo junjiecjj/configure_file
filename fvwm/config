@@ -419,13 +419,12 @@ Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
 Style     "*Firefox"                       HilightColorset 24
 
 Colorset 23   fg  #FFFF00, bg 	#006400, hi red, sh red, Plain,  NoShape
-Style     "gedit"                        TitleAtLeft,  HilightColorset 23
+Style     "gedit"                       TitleAtLeft,  HilightColorset 23
 Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
-Style     "xterm"                        TitleAtLeft,  HilightColorset 2
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi red, sh red, Plain,  NoShape
-Style     "smplayer"                     HilightColorset 24
+Style     "smplayer"                     HilightColorset 25
 Style     "netease-cloud-music"          HilightColorset 25
 Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
@@ -455,8 +454,8 @@ Style     "VNC Viewer"                        HilightColorset 29
 Colorset 30   fg  #000000, bg #FF7F00 , hi red, sh red, Plain,  NoShape
 #Style     "xterm"                            HilightColorset 30
 Style     "urxvt"                            HilightColorset 30
-#Style     "konsole"                          HilightColorset 30
-#Style     "*gnome-terminal*"                    HilightColorset 30
+Style     "konsole"                          HilightColorset 30
+Style     "*gnome-terminal*"                    HilightColorset 30
 #Style     "terminator"                       HilightColorset 30
 
 Colorset 31   fg  #0000FF, bg #CD661D , hi red, sh red, Plain,  NoShape
@@ -467,7 +466,8 @@ Style     "IntelliJ"                            HilightColorset 31
 Style     "Qt"                                  HilightColorset 31
 Style     "CodeBlock"                           HilightColorset 31
 
-Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
+#Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
+Colorset 22   fg  #0000CD,  bg #CD3700, hi red, sh red, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                      HilightColorset 22
 Style         "okular"                   HilightColorset 22
@@ -1102,7 +1102,7 @@ Mouse 3  T   M      Style      urxvt*            TitleAtTop
 #   6 - Minimize
 ############
 #下面这句话控制的是窗口标题栏中字的位置和标题栏的高度
-TitleStyle Centered Height  22 -- Flat
+TitleStyle Centered Height  21 -- Flat
 ButtonStyle All ActiveUp Vector 5 15x15@4 15x85@3 85x85@3 85x15@3 \
                 15x15@3 -- Flat
 ButtonStyle All ToggledActiveUp Vector 5 15x15@4 15x85@3 85x85@3 \
