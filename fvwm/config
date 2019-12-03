@@ -566,8 +566,8 @@ Colorset 13 fg #000000, bg #FFFFFF, hi #0000FF, sh #0000FF, Plain, NoShape
 
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 #Colorset 14 Transparent buffer, fg  #FF0000, bg #0000FF, hi #aaaaaa, sh #999999, Plain, NoShape
-#窗口最小化右边小条条的颜色，
-Colorset 14  fg  #FF1493, bg #000000, hi #00FF00, sh #00FF00, Plain, NoShape
+#窗口最小化时右边小条条的颜色，
+Colorset 14  fg  #FF1493, bg #4F4F4F, hi #00FF00, sh #00FF00, Plain, NoShape
 
 #######
 # 4: Menus
@@ -1344,9 +1344,9 @@ DestroyModuleConfig FvwmIconMan:*
 
 #%t,%i,%c,和%r， 分别表示窗口的title、icon、class和resource name。默认是"%c:%i"。
 *FvwmIconMan: 1    TipsFormat "%c : %t"
-*FvwmIconMan: 1    Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
+*FvwmIconMan: 1    Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=12:encoding=iso10646-1"
 *FvwmIconMan: 1    Sort  name
-*FvwmIconMan: 1    Title "FvwmIconMan"
+*FvwmIconMan: 1    Title "应用程序栏"
 *FvwmIconMan: 1    Resolution global
 *FvwmIconMan: 1    Tips needed
 *FvwmIconMan: 1    Sort name
