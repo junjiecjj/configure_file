@@ -414,51 +414,51 @@ Style     "Fvwm*"              NoTitle, Sticky, WindowListSkip
 #Style    "*RightPanel"         StaysOnTop
 #Style    "fcitx"              StaysOnTop
 
-Colorset  24   fg  #FFFFFF, bg #006400, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset  24   fg  #FFFFFF, bg #006400, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
 Style     "*Firefox"                       HilightColorset 24
 
-Colorset 23   fg  #FFFF00, bg 	#006400, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 23   fg  #FFFF00, bg 	#006400, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "gedit"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
-Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
 Style     "netease-cloud-music"          HilightColorset 25
 Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
 
-Colorset 26   fg  #000000, bg 	#FFA500, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 26   fg  #000000, bg 	#FFA500, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "nautilus"                        HilightColorset 26
 Style     "dolphin"                        HilightColorset 26
 Style     "pcmanfm"                        HilightColorset 26
 
-Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
 Style     "zoom"                             HilightColorset 27
 
-Colorset 28   fg  #FFFFFF, bg  #0000FF, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 28   fg  #FFFFFF, bg  #0000FF, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*Shotwell"                    TitleAtTop, HilightColorset 28
 Style     "inkscape"                        HilightColorset 28
 Style     "gthumb"                          HilightColorset 28
 Style     "gimp"                            HilightColorset 28
 
-Colorset 29   fg  #000000, bg  #00FFFF, hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 29   fg  #000000, bg  #00FFFF, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "Mendeley*"                        HilightColorset 29
 Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
-Colorset 30   fg  #000000, bg #FF7F00 , hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 30   fg  #000000, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
 #Style     "xterm"                            HilightColorset 30
-Style     "urxvt"                            HilightColorset 30
-Style     "konsole"                          HilightColorset 30
-Style     "*gnome-terminal*"                    HilightColorset 30
+#Style     "urxvt"                            HilightColorset 30
+#Style     "konsole"                          HilightColorset 30
+#Style     "*gnome-terminal*"                    HilightColorset 30
 #Style     "terminator"                       HilightColorset 30
 
-Colorset 31   fg  #0000FF, bg #CD661D , hi #0000FF, sh #0000FF, Plain,  NoShape
+Colorset 31   fg  #0000FF, bg #CD661D , hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
 Style     "Anaconda"                            HilightColorset 31
 Style     "PyCharm"                             HilightColorset 31
@@ -466,8 +466,9 @@ Style     "IntelliJ"                            HilightColorset 31
 Style     "Qt"                                  HilightColorset 31
 Style     "CodeBlock"                           HilightColorset 31
 
-#Colorset 22   fg #000000,  bg #00CDCD, hi red, sh red, Plain,  NoShape
-Colorset 22   fg  #0000CD,  bg #CD3700, hi #0000FF, sh #0000FF, Plain,  NoShape
+#Colorset 22   fg #000000,  bg #00CDCD, hi #FF3030, sh #FF3030, Plain,  NoShape
+Colorset  22   fg  #0000CD, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
+#Colorset 22   fg  #000000,  bg #CD3700, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                      HilightColorset 22
 Style         "okular"                   HilightColorset 22
@@ -1306,7 +1307,8 @@ Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
 #Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
-Colorset 32  fg #FF1493, bg #32CD32, hi #0000FF, sh #0000FF, Plain, NoShape
+#Colorset 32  fg #FF1493, bg #32CD32, hi #0000FF, sh #0000FF, Plain, NoShape
+Colorset 32  fg #FF1493, bg #696969, hi #0000FF, sh #0000FF, Plain, NoShape
 Colorset 33  fg #000000, bg #00FF00, hi #FF0000, sh #FF0000, Plain, NoShape
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, CirculateSkip, HandleWidth 2, BorderWidth 2, \
@@ -1317,7 +1319,7 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan:     NumManagers   1
 #ButtonGeometry geometry 以像素为单位指定单个按钮的初始尺寸。如果height为0，则按钮的高取决于字体的大小。X和Y坐标被忽略。
 #*FvwmIconMan: 1 ButtonGeometry  175x26
-*FvwmIconMan: 1   ButtonGeometry  100x0
+*FvwmIconMan: 1   ButtonGeometry  120x0
 #ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 
 #多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有
 #确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
@@ -1332,10 +1334,12 @@ DestroyModuleConfig FvwmIconMan:*
 *FvwmIconMan: 1   FocusAndSelectColorset 33
 *FvwmIconMan: 1   FocusColorset 11
 *FvwmIconMan: 1   PlainColorset   19
-*FvwmIconMan: 1   SelectColorset 12
+*FvwmIconMan: 1   SelectColorset 19
+#*FvwmIconMan: 1   SelectColorset 12
 *FvwmIconMan: 1   IconColorset 14
 
 *FvwmIconMan: 1   FollowFocus false
+#*FvwmIconMan: 1   IconAndSelectColorset 32
 *FvwmIconMan: 1   IconAndSelectColorset 32
 *FvwmIconMan: 1   ReliefThickness 2
 
