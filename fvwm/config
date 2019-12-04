@@ -1307,9 +1307,9 @@ Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
 #Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
-#Colorset 32  fg #FF1493, bg #32CD32, hi #0000FF, sh #0000FF, Plain, NoShape
-Colorset 32  fg #FF1493, bg #696969, hi #0000FF, sh #0000FF, Plain, NoShape
-Colorset 33  fg #000000, bg #00FF00, hi #FF0000, sh #FF0000, Plain, NoShape
+#Colorset 32  fg  #FF1493, bg  #32CD32, hi  #0000FF, sh  #0000FF, Plain, NoShape
+Colorset 32  fg  #FF1493, bg  #828282, hi  #0000FF, sh  #0000FF, Plain, NoShape
+Colorset 33  fg  #000000, bg  #00FF00, hi  #FF0000, sh  #FF0000, Plain, NoShape
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, CirculateSkip, HandleWidth 2, BorderWidth 2, \
         NeverFocus, Layer 1, StaysOnBottom
