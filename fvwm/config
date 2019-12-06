@@ -467,7 +467,7 @@ Style     "Qt"                                  HilightColorset 31
 Style     "CodeBlock"                           HilightColorset 31
 
 #Colorset 22   fg #000000,  bg #00CDCD, hi #FF3030, sh #FF3030, Plain,  NoShape
-Colorset  22   fg  #0000CD, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
+Colorset  22   fg  #0000FF, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
 #Colorset 22   fg  #000000,  bg #CD3700, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                      HilightColorset 22
@@ -559,7 +559,7 @@ Colorset 11 fg #000000, bg #00FF00, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 12 fg #2d2d2d, bg #ffffff, hi, sh, Plain, NoShape
 #右边iconman被鼠标点击时的颜色，就是右边的小条条
-Colorset 12 fg #000000, bg #FFA500, hi #0000FF, sh #0000FF, Plain, NoShape
+Colorset 12  fg #000000, bg #FFA500, hi #0000FF, sh #0000FF, Plain, NoShape
 
 #Colorset 13 fg #ffffff, bg #006c6c, hi, sh, Plain, NoShape
 #右边四个page，当鼠标在哪个page时的颜色(当鼠标指在page上时，弹出的小框叫fvwmBalloon)
@@ -568,7 +568,7 @@ Colorset 13 fg #000000, bg #FFFFFF, hi #0000FF, sh #0000FF, Plain, NoShape
 #Colorset 14 fg #555555, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
 #Colorset 14 Transparent buffer, fg  #FF0000, bg #0000FF, hi #aaaaaa, sh #999999, Plain, NoShape
 #窗口最小化时右边小条条的颜色，
-Colorset 14  fg  #FF1493, bg #4F4F4F, hi #00FF00, sh #00FF00, Plain, NoShape
+Colorset 14  fg  #FF1493, bg #3a4045, hi #00FF00, sh #00FF00, Plain, NoShape
 
 #######
 # 4: Menus
@@ -1187,7 +1187,8 @@ Style "FvwmPager" NoTitle, !Handles, BorderWidth 3,BorderColorset #FF3030 \
 #StaysOnBottom
 
 DestroyModuleConfig FvwmPager:*
-*FvwmPager: Geometry 100x120-0+0
+*FvwmPager: Geometry 100x120+0+0
+#*FvwmPager: Geometry 100x120-0+0
 *FvwmPager: BorderWidth 10
 *FvwmPager: Layer 0
 *FvwmPager: Colorset * 15
@@ -1307,9 +1308,9 @@ Colorset 19   fg  #000000, bg  #FFFFFF, hi #FFA500, sh #FFA500, Plain,  NoShape
 #Colorset 19   RootTransparent, fg rgb:00/00/00, bg average, \
   Tint white 40, bgTint white 40, RootTransparent
 
-#Colorset 32  fg  #FF1493, bg  #32CD32, hi  #0000FF, sh  #0000FF, Plain, NoShape
-Colorset 32  fg  #FF1493, bg  #828282, hi  #0000FF, sh  #0000FF, Plain, NoShape
-Colorset 33  fg  #000000, bg  #00FF00, hi  #FF0000, sh  #FF0000, Plain, NoShape
+#Colorset 32  fg #FF1493, bg #32CD32, hi #0000FF, sh #0000FF, Plain, NoShape
+Colorset 32  fg #FF1493, bg #4F4F4F, hi #0000FF, sh #0000FF, Plain, NoShape
+Colorset 33  fg #000000, bg #00FF00, hi #FF0000, sh #FF0000, Plain, NoShape
 
 Style FvwmIconMan NoTitle, Sticky, WindowListSkip, CirculateSkip, HandleWidth 2, BorderWidth 2, \
         NeverFocus, Layer 1, StaysOnBottom
@@ -1323,7 +1324,8 @@ DestroyModuleConfig FvwmIconMan:*
 #ManagerGeometry geometry 指定管理器的初始位置和尺寸，以按钮为单位。如果height为0，则这个管理器将有width列，一旦它拥有 
 #多于width个窗口，它将垂直伸长。同样，如果width为0，则它有height行，并水平伸长。如果两个都为 非0值，则该管理器窗口将有
 #确定的大小。如果指定负的y坐标，这个管理器将向上伸长。否则，向下伸长。
-*FvwmIconMan: 1 ManagerGeometry 12x1+0+0
+*FvwmIconMan: 1 ManagerGeometry 12x1-0+0
+#*FvwmIconMan: 1 ManagerGeometry 12x1+0+0
 #*FvwmIconMan: 1 ManagerGeometry 0x1+0+0
 #*FvwmIconMan: 1   ManagerGeometry 1x0-0-0
 *FvwmIconMan: 1   UseWinList true
