@@ -46,6 +46,8 @@ Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'luochen1990/rainbow'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'mattn/emmet-vim'
@@ -220,14 +222,72 @@ augroup VimCSS3Syntax
 augroup END
 
 "************************************************************
-""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""vim-rainbow配置""""""""""""""""""""
+
+
+" rainbow 对于不同的括号，渲染成不同颜色
+let g:rainbow_active = 1
+let g:rainbow_operators=2
+let g:rainbow_conf = {
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['lightgray', 'lightblue', 'lightmagenta', 'lightcyan'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+            \       },
+            \       'vim': {
+            \           'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
+            \       },
+            \       'tex': {
+            \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+            \       },
+            \       'css': 0,
+            \       'stylus': 0,
+            \   }
+            \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""
+
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 " 设置宽度
-let NERDTreeWinSize=17  "目录树的宽度
-let NERDTreeShowHidden=1   "是否显示隐藏目录
-let g:NERDTreeShowIgnoredStatus = 1  
-let g:nerdtree_tabs_open_on_console_startup=1  "是否打开目录树
+let NERDTreeWinSize=16
+let NERDTreeShowHidden=1
+let g:NERDTreeShowIgnoredStatus =1
+let g:nerdtree_tabs_open_on_console_startup=0  "是否打开目录树
 " 显示目录行号
 let NERDTreeShowLineNumbers=0
 let NERDTreeAutoCenter=1
@@ -529,7 +589,6 @@ highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3
 hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=reverse
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""
 
-
 "一键执行python代码
 map <F5> :call RunPython()<CR> "一键执行python代码
 map <C-n> :NERDTreeToggle<CR>
@@ -674,11 +733,11 @@ func SetTitle()
     else 
         call setline(1, "/*************************************************************************") 
         call append(line("."), ">> File Name: ".expand("%")) 
-        "call append(line(".")+1, ">> Author: 陈俊杰")
+        "call append(line(".")+1, ">> Author: chenjunjie")
         call append(line(".")+1, ">> Author: 陈俊杰") 
         call append(line(".")+2, ">> Mail: 2716705056qq.com") 
-        "call append(line(".")+3, ">> Created Time: ".strftime("%Y.%m.%d"))
-        call append(line(".")+3, "# Created Time: ".strftime("%c"))
+        call append(line(".")+3, ">> Created Time: ".strftime("%Y年%m月%d日"))
+        "call append(line(".")+3, ">> Created Time: ".strftime("%c"))
         call append(line(".")+4, "************************************************************************/") 
         call append(line(".")+5, "")
     endif
@@ -706,8 +765,8 @@ func SetTitle()
         call append(line(".")+17, "")
         call append(line(".")+18, "")
         call append(line(".")+19, "int main(int argc, char *argv[])")
-        call append(line(".")+20, "{}")
-        call append(line(".")+21, "")
+        call append(line(".")+20, "{")
+        call append(line(".")+21, "}")
     endif
 endfunc
 
