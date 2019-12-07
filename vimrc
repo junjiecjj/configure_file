@@ -222,16 +222,17 @@ augroup VimCSS3Syntax
 augroup END
 
 "************************************************************
-""""""""""""""""""""vim-rainbow配置""""""""""""""""""""
 
+
+""""""""""""""""""""vim-rainbow配置""""""""""""""""""""
 
 " rainbow 对于不同的括号，渲染成不同颜色
 let g:rainbow_active = 1
 let g:rainbow_operators=2
 let g:rainbow_conf = {
-            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-            \   'ctermfgs': ['lightgray', 'lightblue', 'lightmagenta', 'lightcyan'],
-            \   'operators': '_,_',
+            \   'guifgs': ['magenta1', 'maroon1', 'red1', 'orange1'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,\|+\|-_',
             \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
             \   'separately': {
             \       '*': {},
@@ -275,10 +276,17 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 au VimEnter * RainbowParenthesesToggle
+"RainbowParenthesesLoadRound 选项用于开启对 圆括号 () 的多彩色高亮匹配，该选项默认被开启；
 au Syntax * RainbowParenthesesLoadRound
+"RainbowParenthesesLoadSquare 选项用于开启对 方括号 [] 的多彩色高亮匹配；
 au Syntax * RainbowParenthesesLoadSquare
+"RainbowParenthesesLoadBraces 选项用于开启对 大括号 {} 的多彩色高亮匹配；
 au Syntax * RainbowParenthesesLoadBraces
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"RainbowParenthesesLoadChevrons 选项用于开启对 尖括号 <> 的多彩色高亮匹配。
+"au Syntax * RainbowParenthesesLoadChevrons "
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
