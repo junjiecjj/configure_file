@@ -19,13 +19,12 @@ Plugin 'ervandew/supertab'              " 补全记忆插件
 Plugin 'AutoComplPop'                   " 自动代码提示
 "Plugin 'othree/html5.vim'               " html全能补全
 Plugin 'tyru/open-browser.vim'          " 打开浏览器
-
 Plugin 'vim-scripts/indentpython.vim' "写python代码自动缩进
 Plugin 'Yggdroot/indentLine' "缩进指示线
 Plugin 'jiangmiao/auto-pairs' "自动补全括号等
 Plugin 'kien/ctrlp.vim' "在vim中搜索文件
 Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
-Plugin 'vim-syntastic/syntastic' "语法检查
+"Plugin 'vim-syntastic/syntastic' "语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic' "语法检查
 Plugin 'nvie/vim-flake8' "falke代码风格检查
 Plugin 'jnurmine/Zenburn'
@@ -82,7 +81,6 @@ set encoding=utf-8  "支持UTF8编码
 set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
 set termencoding=utf-8
 set fileencodings=utf-8,cp936,ucs-bom
-set fileencoding=utf-8
 
 set mouse=a                     "启动鼠标
 set hlsearch                     "搜索高亮"
@@ -287,6 +285,16 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""" ale settings""""""""""""""""""""""""""""""""""""""
+"let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 1 
+" python checker
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\   'python': ['pylint']
+\}
+
 
 """""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
@@ -435,7 +443,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 \ set shiftwidth=2 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色"""""""""""""""""""'""
-colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+colorscheme  desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
 
 "Flagging Unnecessary Whitespace
@@ -472,10 +480,10 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 
 :hi Identifier ctermbg=16  ctermfg=202 cterm=bold
 :hi Number ctermfg=13
-:hi Type ctermfg=13 cterm=bold
+:hi Type ctermbg=16  ctermfg=13 cterm=bold
 :hi Constant ctermfg=4
 :hi String ctermfg=10
-:hi Statement ctermfg=11 cterm=bold
+:hi Statement ctermbg=16  ctermfg=11 cterm=bold
 :hi Search ctermfg=7
 :hi Include ctermfg=13
 :hi Directory ctermfg=11
@@ -483,10 +491,10 @@ colorscheme desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff
 :hi Operator ctermfg=9
 :hi Keyword ctermfg=13
 :hi Special ctermfg=5
-:hi pythonSelf ctermfg=174,guifg=#6094DB,cterm=bold
+:hi pythonSelf ctermbg=174,ctermfg=#6094DB,cterm=bold
 
 "通用预处理命令
-:hi  PreProc ctermfg=11 ctermbg=16  cterm=BOLD
+:hi  PreProc ctermfg=11 ctermbg=16  cterm=bold
 
 "预处理命令 #include
 :hi Include ctermfg=11 ctermbg=16 cterm=bold
