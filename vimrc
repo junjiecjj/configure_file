@@ -349,7 +349,7 @@ let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 0
 "自定义error和warning图标
 let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'    "⚡  ✗ ⚠ 
+let g:ale_sign_warning = '⚠'    "⚡  ✗ ⚠ ● ▶
 "在vim自带的状态栏中整合ale
 let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
 "显示Linter名称,出错或警告等相关信息
@@ -365,9 +365,11 @@ nmap <Leader>o :ALEToggle<CR>
 nmap <Leader>d :ALEDetail<CR>
 
 "文件内容发生变化时不进行检查
-"let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_text_changed = 'never'
 "打开文件时不进行检查
-"let g:ale_lint_on_enter = 0
+let g:ale_lint_on_enter = 0
+"保存文件时不进行检查
+let g:ale_lint_on_save = 0
 
 "对于 Java 如果安装在中文的系统上，错误和警告信息都会乱码，可以进行下面的设置
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
