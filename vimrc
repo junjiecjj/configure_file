@@ -41,6 +41,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
+Plugin 'itchyny/lightline.vim'
 Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -285,16 +286,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""" ale settings""""""""""""""""""""""""""""""""""""""
-"let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 1 
-" python checker
-let g:ale_fixers = {
-\   'javascript': ['standard'],
-\   'python': ['pylint']
-\}
-
 
 """""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
@@ -320,7 +311,41 @@ let g:NERDTreeIndicatorMapCustom = {
     \ 'Ignored'   : '☒',
     \ "Unknown"   : "?"
     \ }
+
+""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
+    \ },
+    \ 'component': {
+    \   'helloworld': 'I am writing shit...'
+    \ },
+    \ }
+
+set laststatus=2
+
+""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""
+nnoremap <leader>p  :CtrlP<CR>
+nnoremap <leader>b  :CtrlPBuffer<CR>
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = ''
+
+
+
 """""""""""""""""""""""""""""""""""""""""配置ale""""""""""""""""""""""""""""""""""""""""
+"let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 1 
+" python checker
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\   'python': ['pylint']
+\}
+
+
 let g:ale_linters = {
 \    'javascript': ['eslint'],
 \    'css': ['stylelint'],
@@ -331,27 +356,24 @@ let g:ale_fixers = {
 \}
 
 let g:ale_fix_on_save = 1
+
 augroup YourGroup
     autocmd!
     autocmd User ALELint call YourFunction()
 augroup END
 
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
+
 
 "ale
 "始终开启标志列
 let g:ale_sign_column_always = 1
-let g:ale_set_highlights = 0
+let g:ale_set_highlights = 1
 "自定义error和warning图标
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'    "⚡  ✗ ⚠ ● ▶
 "在vim自带的状态栏中整合ale
 let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
+"let g:ale_statusline_format =  ['⨉ %d', '⚠ %d', '⬥ ok']
 "显示Linter名称,出错或警告等相关信息
 let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
@@ -364,6 +386,9 @@ nmap <Leader>o :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>d :ALEDetail<CR>
 
+" 我的状态行显示的内容（包括文件类型和解码）
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+
 "文件内容发生变化时不进行检查
 let g:ale_lint_on_text_changed = 'never'
 "打开文件时不进行检查
@@ -373,6 +398,14 @@ let g:ale_lint_on_save = 0
 
 "对于 Java 如果安装在中文的系统上，错误和警告信息都会乱码，可以进行下面的设置
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
+
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+let g:ale_linters = {
+\   'c++': ['clang'],
+\   'c': ['clang'],
+\   'python': ['pylint'],
+\}
+
 
 augroup YourGroup
     autocmd!
@@ -399,6 +432,9 @@ let g:user_emmet_settings = {
          \ },
       \ }
 
+
+
+""""""""""""""""""""""""""""""配置vim-css3-syntax/vim-css-color""""""""""""""""""""""""""""""
 augroup VimCSS3Syntax
   autocmd!
 
