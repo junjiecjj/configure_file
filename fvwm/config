@@ -135,8 +135,8 @@ AddToFunc   StartFunction
 #+ I Module FvwmButtons RightPanel
 + I Module  FvwmEvent EventNewDesk
 + I Exec exec fcitx    #启用中文输入法
-+ I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg1.png
-+ I Exec xpmroot  $[fvwm_bgicons]/bg1.png  #背景
++ I Exec exec fvwm-root --retain-pixmap $[FVWM_DATADIR]/default-config/images/background/bg18.xpm
++ I Exec xpmroot  $[fvwm_bgicons]/bg18.xpm  #背景
 + I Exec exec conky &
 #当鼠标放在某个窗口时，这个窗口50ms上升到最顶层，而不需要点击
 #+ I Module FvwmAuto 100  Raise Nop
@@ -332,7 +332,7 @@ Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化时上下左右离屏幕的距离,命令格式为“EwmhBaseStruts 左 右 上 下”
-EwmhBaseStruts 10 110 10 60
+EwmhBaseStruts 110 20 25 20
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -472,10 +472,10 @@ Colorset  22   fg  #0000FF, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                      HilightColorset 22
 Style         "okular"                   HilightColorset 22
-Style         "wps"            TitleAtLeft, HilightColorset 22
-Style         "et"             TitleAtLeft, HilightColorset 22
-Style         "wpp"            TitleAtLeft, HilightColorset 22
-Style         "wpspdf"         TitleAtLeft, HilightColorset 22
+Style         "wps"                      TitleAtLeft,  HilightColorset 22
+Style         "et"                       TitleAtLeft,  HilightColorset 22
+Style         "wpp"                      TitleAtLeft,  HilightColorset 22
+Style         "wpspdf"                   TitleAtLeft,  HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
@@ -601,6 +601,8 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "&网络管理器    %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
 + "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
++ "集成开发环境     %$[fvwm_icons]/programs.png%" Popup InterIDE
++ "" Nop
 + "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec xterm
 + "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
 + "&URxvt     %$[fvwm_icons]/terminal1.png%" Exec exec urxvt
@@ -635,6 +637,14 @@ Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
+
+
+#################集成开发环境IDE##################
+DestroyMenu InterIDE
+AddToMenu   InterIDE "IDE" Title
+Test (x /home/jack/anaconda3/bin/spyder)  + "Spyder %$[fvwm_exicons2]/spyder.png%" Exec exec spyder &
+Test (x  /home/jack/anaconda3/bin/anaconda-navigator) + "Anaconda %$[fvwm_exicons2]/anaconda.png%"  Exec exec anaconda-navigator &
+Test (x  intellij) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec intellij &
 
 
 ##################系统设置##########################
@@ -1460,7 +1470,7 @@ Style "MyDock" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
 DestroyModuleConfig MyDock:*
 
 #设置FvwmButtons的出现在屏幕的位置
-*MyDock: Geometry 480x60+700-0
+*MyDock: Geometry 540x60+700-0
 *MyDock: Colorset 21
 *MyDock: BoxSize smart
 *MyDock: Foreground grey90
@@ -1518,6 +1528,12 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 1) `Exec exec smplayer`,\
   Action(Mouse 2) `Exec exec vlc`,\
   Action(Mouse 3) `Exec exec mpv`)
+
+*MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/spyder.png, \
+  Action(Mouse 1) `Exec exec spyder &`,\
+  Action(Mouse 2) `Exec exec anaconda-navigator &`,\
+  Action(Mouse 3) `Exec exec intellij &`)
+
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
   Action(Mouse 1) `Exec exec systemsettings5`,\
