@@ -131,6 +131,16 @@ set cursorcolumn              "光标所在行一竖线
 highlight CursorLine   cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 highlight CursorColumn cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
+
+hi CursorLine                    guibg=#3E3D32
+hi CursorColumn                  guibg=#3E3D32
+
+hi CursorLine                  ctermbg=234   cterm=none
+hi CursorColumn                ctermbg=234
+
+set cursorline 
+hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+
 set showcmd                    " 输入的命令显示出来，看的清楚些  
 set showmode
 set ruler                               "打开状态栏标尺
@@ -327,13 +337,10 @@ nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = ''
-
-
-
 """""""""""""""""""""""""""""""""""""""""配置ale""""""""""""""""""""""""""""""""""""""""
 "let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 1 
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 0
 " python checker
 let g:ale_fixers = {
 \   'javascript': ['standard'],
@@ -389,7 +396,7 @@ let g:ale_lint_on_text_changed = 'never'
 "打开文件时不进行检查
 let g:ale_lint_on_enter = 0
 "保存文件时不进行检查
-let g:ale_lint_on_save = 0
+let g:ale_lint_on_save = 1
 
 "对于 Java 如果安装在中文的系统上，错误和警告信息都会乱码，可以进行下面的设置
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
@@ -406,6 +413,9 @@ augroup YourGroup
     autocmd!
     autocmd User ALELint call YourFunction()
 augroup END
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:jsx_ext_required = 0
@@ -809,52 +819,29 @@ if &t_Co > 255
    hi PmenuSbar                   ctermbg=232
    hi PmenuThumb      ctermfg=81
    hi PreCondit       ctermfg=118               cterm=bold
-
    hi PreProc         ctermfg=118
-
    hi Question        ctermfg=81
-
    hi Repeat          ctermfg=161               cterm=bold
-
    hi Search          ctermfg=0   ctermbg=222   cterm=NONE
-
-
-
    " marks column
-
    hi SignColumn      ctermfg=118 ctermbg=235
-
    hi SpecialChar     ctermfg=161               cterm=bold
-
    hi SpecialComment  ctermfg=245               cterm=bold
-
    hi Special         ctermfg=81
-
    if has("spell")
-
        hi SpellBad                ctermbg=52
-
        hi SpellCap                ctermbg=17
-
        hi SpellLocal              ctermbg=17
-
        hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
-
    endif
-
    hi Statement       ctermfg=161               cterm=bold
-
    hi StatusLine      ctermfg=238 ctermbg=253
-
    hi StatusLineNC    ctermfg=244 ctermbg=232
-
    hi StorageClass    ctermfg=208
-
    hi Structure       ctermfg=81
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-
    hi Typedef         ctermfg=81
    hi Type            ctermfg=81                cterm=none
    hi Underlined      ctermfg=244               cterm=underline
@@ -881,7 +868,6 @@ if &t_Co > 255
        hi Constant        ctermfg=141               cterm=bold
        hi DiffDelete      ctermfg=125 ctermbg=233
        hi Directory       ctermfg=154               cterm=bold
-
        hi Error           ctermfg=222 ctermbg=233
        hi Exception       ctermfg=154               cterm=bold
        hi Float           ctermfg=141
@@ -902,7 +888,6 @@ if &t_Co > 255
        hi SpecialKey      ctermfg=239
    endif
 end
-
 
 set background=dark
 filetype on
@@ -926,9 +911,7 @@ if version > 580
     " no guarantees for version 5.8 and below, but this makes it stop
     " complaining
     hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
+
 endif
 let g:colors_name="molokai"
 
@@ -1021,10 +1004,9 @@ if &t_Co > 255
 end
 
 
-
 " color scheme (双引号开头的行表示注释)
 
-set t_Co=256 
+set t_Co=256  
 
 colo molokai   
 
@@ -1032,23 +1014,151 @@ colo molokai
 autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
 autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
 
-"(上面两行为了匹配函数名的，为下面的给函数名定义颜色做准备)
 hi cfunctions ctermfg=81 
+
 
 hi Type ctermfg=118 cterm=none
 hi Structure ctermfg=118 cterm=none
 hi Macro ctermfg=161 cterm=bold
 hi PreCondit ctermfg=161 cterm=bold
 set cursorline 
-"hi CursorLine cterm=underline（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""
+" highlight for Vim Syntax Colors 
+hi  link    vimHiAttrib      Constant
+hi  link    vimHiCtermColor  Constant
+hi  link    vimGroup         Identifier
+"
+" highlight for some c and cpp characters
+"Attention: 1. / will cover up COMMENT 
+"           2. - % directly will cover up PreProc
+"syn match     cMyChart      "[!?^@~%&><=:{()}\/[].;+-*|]"
+"
+syn match     cMyChMath     "[ * % ]"
+syn match     cMyChBrac     "[ () \[\] ]"
+syn match     cMyChFunc     "[ {} ]"
+syn match     cMyChBool     "[ !?><=:\-\+ ]"
+syn match     cMyChLogic    "[ ^~&| ]"
+syn match     cMyChSym      "[ @.,; \ ]"
+"
+hi  link      cMyChBrac     ModeMsg
+hi  link      cMyChFunc     Type
+hi  link      cMyChSym      Type
+hi  link      cMyChBool     Constant
+hi  link      cMyChLogic    Special
+hi  link      cMyChMath     Special
+hi  link      MyStatement   SpecialKey
 
+" highlight for some C and C++ library 
+syn keyword   cMyFunc   main argc argv sprintf printf
+syn keyword   cMyOpt    bool false true string
+syn keyword   cppFun1   cout  cin    endl   class   new   delete  close creat  lseek   open  read     write
+syn keyword   cFun2     abs   acos   asin   atan    atn2  atof    atoi  atol   calloc  ceil  clearerr cos
+syn keyword   cFun3     cosh  exit   exp    fabs    fclose  feof   ferror  fflush   fgetc   fgets   floor
+syn keyword   cFun4     fmod  fopen fprintf fputc   fputs   fread  free    freopen  fscanf  fseek
+syn keyword   cFun5     ftell fwrite  getc  getchar getenv  gets   isalnum isalpha  isascii iscntr
+syn keyword   cFun6     isdigit  isgraph  islower isprint  ispunct  isspace   isupper isxdigit log longjmp
+syn keyword   cFun7     malloc   perror   pow   printf   putc   putchar puts   rand realloc remove   rewind
+syn keyword   cFun8     scanf setbuf  setjmp sin sinh   sleep sprintf  sqrt srand   sscanf   stderr   stdin
+syn keyword   cFun9     stdout strcat  strchr strcmp   strcpy strcspn     strlen   strncat  strncmp strncpy
+syn keyword   cFun0     strpbrk strrchr strspn strtok tan tanh tolower toupper ungetc
+"
+hi  link      Function    MyStatement
+hi  link      cMyFunc     MyStatement
+hi  link      cMyOpt      Identifier
+hi  link      cppFun1     MyStatement
+hi  link      cFun2       MyStatement
+hi  link      cFun3       MyStatement
+hi  link      cFun4       MyStatement
+hi  link      cFun5       MyStatement
+hi  link      cFun6       MyStatement
+hi  link      cFun7       MyStatement
+hi  link      cFun8       MyStatement
+hi  link      cFun9       MyStatement
+hi  link      cFun0       MyStatement
+" highlight for C and C++ language keywords
+"
+" Operator     ={ sizeof } 
+" Structure    ={ struct union enum typedef }
+" StorageClass ={ static register auto volatile extern const inline restrict }
+" Repeat       ={ while for do }
+" Conditional  ={ if else switch }
+" Lable        ={ case default }
+" Statement    ={ goto break return continue asm } = cStatement
+"
+hi cComment     term=bold        ctermfg=DarkCyan
+hi cFormat      term=bold        ctermfg=Cyan
+hi Operator     term=bold        ctermfg=Cyan
+hi Structure    term=bold        ctermfg=Yellow
+hi StorageClass term=bold        ctermfg=Yellow
+hi Repeat       term=bold        ctermfg=Yellow
+hi cConditional term=bold        ctermfg=Magenta
+hi cLable       term=bold        ctermfg=Yellow
+hi cInclude     term=bold        ctermfg=DarkGreen
+hi Macro        term=bold        ctermfg=Cyan
+hi PreCondit    term=bold        ctermfg=Cyan
+hi cSpecial     term=bold        ctermfg=Red
+hi Float        term=bold        ctermfg=DarkMagenta
+hi SpecialChar  term=bold        ctermfg=Red
 
+" Function name and Struct name
+syntax keyword cTypeDefStruct1 typedef struct  contained
+syntax match   cStructName1 display "^\s*typedef\s\+struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+syntax match   cStructName1 "^\s*typedef\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+syntax match   cStructName1 "^\s*struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+hi link cStructName1 Constant
+
+" color terminal definitions
+hi Normal       term=bold        ctermfg=Gray
+hi Comment      term=bold        ctermfg=Brown
+hi Constant     term=bold        ctermfg=Yellow
+hi Conditional  term=bold        ctermfg=Yellow
+hi Identifier   term=bold        ctermfg=Cyan
+hi LineNr       term=bold        ctermfg=DarkCyan
+hi PreProc      term=bold        ctermfg=DarkMagenta
+hi Special      term=bold        ctermfg=Red
+hi Statement    term=bold        ctermfg=Green
+hi Type         term=bold        ctermfg=Cyan
+"
+hi Ignore       term=bold        ctermfg=White
+hi Todo         term=standout    ctermfg=Black
+hi Underlined   cterm=underline  ctermfg=DarkMagenta
+hi SpecialKey   cterm=bold       ctermfg=Darkgreen
+hi NonText      cterm=bold       ctermfg=DarkBlue
+hi Directory    cterm=bold       ctermfg=DarkCyan
+"
+hi Error        cterm=bold       ctermfg=LightGray    ctermbg=Red term=reverse
+hi ErrorMsg     cterm=bold       ctermfg=Black        ctermbg=Gray
+hi IncSearch    cterm=NONE       ctermfg=Yellow       ctermbg=Green
+hi Search       cterm=NONE       ctermfg=Black        ctermbg=Gray
+hi MoreMsg      cterm=NONE       ctermfg=DarkGreen
+hi ModeMsg      cterm=NONE       ctermfg=Brown
+"hi StatusLine   cterm=bold,reverse
+"hi StatusLineNC cterm=reverse
+hi StatusLineNC cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
+hi StatusLine   cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
+hi VertSplit    cterm=reverse
+hi Visual       cterm=reverse
+hi VisualNOS    cterm=bold,underline
+hi DiffText     cterm=bold                            ctermbg=Red
+hi DiffDelete   cterm=bold       ctermfg=DarkBlue     ctermbg=DarkCyan
+hi DiffAdd                                            ctermbg=DarkBlue
+hi DiffChange                                         ctermbg=DarkMagenta
+hi WarningMsg                    ctermfg=Red
+hi Question                      ctermfg=Green
+hi Title                         ctermfg=DarkMagenta
+hi WildMenu                      ctermfg=Black        ctermbg=Brown
+hi Folded                        ctermfg=DarkGrey     ctermbg=NONE
+hi FoldColumn                    ctermfg=DarkGrey     ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""
+
+
+
+
 
 "一键执行python代码
 map <F5> :call RunPython()<CR> "一键执行python代码
