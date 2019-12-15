@@ -41,6 +41,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
+"Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
 Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'
@@ -312,19 +313,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
-let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
-    \ },
-    \ 'component': {
-    \   'helloworld': 'I am writing shit...'
-    \ },
-    \ }
 
-set laststatus=2
 
 """"""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""
 nnoremap <leader>p  :CtrlP<CR>
@@ -412,7 +401,7 @@ augroup YourGroup
     autocmd User ALELint call YourFunction()
 augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme='papercolor'
+"let g:airline_theme='papercolor'
 
 let g:jsx_ext_required = 0
 let g:instant_markdown_slow = 1
@@ -752,7 +741,57 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
+function! Buf_total_num()
+    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+endfunction
+function! File_size(f)
+    let l:size = getfsize(expand(a:f))
+    if l:size == 0 || l:size == -1 || l:size == -2
+        return ''
+    endif
+    if l:size < 1024
+        return l:size.' bytes'
+    elseif l:size < 1024*1024
+        return printf('%.1f', l:size/1024.0).'k'
+    elseif l:size < 1024*1024*1024
+        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
+    else
+        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+    endif
+endfunction
+set statusline=%<%1*[B-%n]%*
+" TOT is an abbreviation for total
+set statusline+=%2*[TOT:%{Buf_total_num()}]%*
+set statusline+=%3*\ %{File_size(@%)}\ %*
+set statusline+=%4*\ %F\ %*
+set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+set statusline+=%6*\ %m%r%y\ %*
+set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
+set statusline+=%8*\ %P\ %*
+" default bg for statusline is 236 in space-vim-dark
+hi User1 cterm=bold ctermfg=232 ctermbg=179
+hi User2 cterm=None ctermfg=214 ctermbg=242
+hi User3 cterm=None ctermfg=251 ctermbg=240
+hi User4 cterm=bold ctermfg=169 ctermbg=239
+hi User5 cterm=None ctermfg=208 ctermbg=238
+hi User6 cterm=None ctermfg=246 ctermbg=237
+hi User7 cterm=None ctermfg=250 ctermbg=238
+hi User8 cterm=None ctermfg=249 ctermbg=240
 
+""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
+    \ },
+    \ 'component': {
+    \   'helloworld': 'I am writing shit...'
+    \ },
+    \ }
+
+set laststatus=2
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
 autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
