@@ -41,7 +41,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
-"Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
 Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'
