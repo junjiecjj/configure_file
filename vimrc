@@ -401,7 +401,6 @@ augroup YourGroup
     autocmd User ALELint call YourFunction()
 augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:airline_theme='papercolor'
 
 let g:jsx_ext_required = 0
 let g:instant_markdown_slow = 1
@@ -792,6 +791,10 @@ let g:lightline = {
     \ }
 
 set laststatus=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"let g:airline_theme='papercolor'
+
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
 autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
