@@ -68,6 +68,9 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 "All of your Plugins must be added before the following line
 call vundle#end()
 
+set t_Co=256
+
+set background=dark
 
 set splitbelow
 set splitright
@@ -485,6 +488,15 @@ au BufNewFile,BufRead *.js,*.html,*.css
 
 
 
+
+
+
+
+
+
+
+
+
 """""""""""""""""""""""""""""""配色molokai"""""""""""""""""""""""""""""""
 hi clear
 
@@ -739,6 +751,7 @@ autocmd! bufwritepost $HOME/.vimrc source %
 
 
 
+
 """"""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""
 " highlight for Vim Syntax Colors 
 hi clear
@@ -879,6 +892,7 @@ hi FoldColumn                    ctermfg=DarkGrey     ctermbg=NONE
 
 
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""'""
 hi clear
 
@@ -888,7 +902,8 @@ if version > 580
         syntax reset
     endif
 endif
-colorscheme  desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+
+colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
 
 "Flagging Unnecessary Whitespace
@@ -924,13 +939,13 @@ colorscheme  desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuf
 ":hi Comment  term=bold ctermfg=14 cterm=bold
 :hi Comment  guifg=#7C7C7C guibg=NONE gui=NONE   ctermfg=darkgray ctermbg=NONE   cterm=NONE
 
-:hi Identifier ctermbg=16  ctermfg=202 cterm=bold
+:hi Identifier   ctermfg=202 cterm=bold
 :hi Number ctermfg=13
-:hi Type ctermbg=16  ctermfg=13 cterm=bold
+:hi Type   ctermfg=13 cterm=bold
 :hi Constant ctermfg=4
 :hi String ctermfg=10
-:hi Statement ctermbg=16  ctermfg=1 cterm=bold
-:hi Search  ctermbg=16  ctermfg=10 
+:hi Statement   ctermfg=1 cterm=bold
+:hi Search    ctermfg=10 
 :hi Include ctermfg=13
 :hi Directory ctermfg=11
 :hi Preproc ctermfg=11
@@ -939,60 +954,62 @@ colorscheme  desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuf
 :hi Special ctermfg=5
 :hi pythonSelf ctermbg=174,ctermfg=#6094DB,cterm=bold
 
-hi Underlined      ctermfg=244               cterm=underline
+hi Underlined      ctermfg=244   cterm=underline
 
 "通用预处理命令
-:hi  PreProc ctermfg=11 ctermbg=16  cterm=bold
+:hi  PreProc ctermfg=11  ctermbg=16 cterm=bold
 :hi PreProc         ctermfg=118
 
 "预处理命令 #include
-:hi Include ctermfg= 13 ctermbg=16 cterm=bold
+:hi Include ctermfg= 13  ctermbg=16  cterm=bold
 
 "预处理命令 #define
-:hi Define ctermfg=11  ctermbg=16  cterm=bold
+:hi Define ctermfg=11  ctermbg=16 ctermbg=16   cterm=bold
 hi Define          ctermfg=81
 
 "预处理命令 #if、#else、#endif
-:hi PreCondit ctermfg=11  ctermbg=16 cterm=bold
+:hi PreCondit ctermfg=161   cterm=bold
 "hi PreCondit       ctermfg=118               cterm=bold
 
 "等同于 Define
-:hi  Macro ctermfg=11 ctermbg=16 cterm=bold
+:hi  Macro ctermfg=51 ctermbg=16   cterm=bold
+hi Macro ctermfg=161    cterm=bold
 
 "一个 typedef
-hi Typedef ctermfg=15 ctermbg=12  cterm=bold
+hi Typedef ctermfg=51     cterm=bold
 "hi Typedef         ctermfg=81
 
 "struct、union、enum 等
-:hi Structure ctermfg=11 ctermbg=16 cterm=bold
+:hi Structure ctermfg=51  ctermbg=16   cterm=bold
 "hi Structure       ctermfg=81
 
 "任何特殊符号
-:hi Special ctermfg=33 ctermbg=16 cterm=bold
+:hi Special ctermfg=33 ctermbg=16   cterm=bold
 hi link Tag             Special
+
 "常数中的特殊字符
-:hi SpecialChar ctermfg=33 ctermbg=16 cterm=bold
+:hi SpecialChar ctermfg=33 ctermbg=16   cterm=bold
 
 "注释里的特殊字符
-:hi SpecialComment ctermfg=160  ctermbg=16 cterm=bold
+:hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
 
 "任何需要特殊注意的部分
-:hi Todo ctermfg=52  ctermbg=16 cterm=none
+:hi Todo ctermfg=52  ctermbg=16  cterm=none
 
 "需要注意的字符
 :hi  Delimiter ctermfg=lightgreen ctermbg=black  cterm=bold
 
 "警告消息
-:hi  WarningMsg ctermfg=11  ctermbg=16 cterm=bold
+:hi  WarningMsg ctermfg=11   cterm=bold
 
 "任何有错的构造
-:hi Error ctermfg=124  ctermbg=16 cterm=bold
+:hi Error ctermfg=124   cterm=bold
 
 "try、catch、throw
-:hi Exception ctermfg=52  ctermbg=16 cterm=bold
+:hi Exception ctermfg=52   cterm=bold
 
 "当前窗口的状态行
-:hi StatusLine ctermfg=11   ctermbg=57  cterm=bold
+:hi StatusLine ctermfg=11     cterm=bold
 
 "hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
 highlight  IncSearch ctermfg=yellow ctermbg=lightblue  cterm=BOLD  "incsearch 高亮
@@ -1002,7 +1019,8 @@ highlight  IncSearch ctermfg=yellow ctermbg=lightblue  cterm=BOLD  "incsearch �
 "光标所在的屏幕列
 ":hi  CursorColumn    ctermbg=black      cterm=bold
 hi Cursor          ctermfg=16  ctermbg=253
-hi CursorLine                  ctermbg=234   cterm=BOLD
+hi CursorLine                  ctermbg=234   cterm=bold
+"hi CursorLineNr    guifg=#FD971F               gui=none
 hi CursorColumn                ctermbg=234
 set cursorline 
 hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
@@ -1022,10 +1040,10 @@ hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 
 "if、then、else、endif、switch
 ":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
-hi Conditional  guifg=#6699CC   guibg=NONE gui=NONE ctermfg=3  ctermbg=black   cterm=bold  " if else end
+hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
 
 "for、do、while 等
-hi  Repeat  guifg=#6699CC   guibg=NONE gui=NONE ctermfg=3  ctermbg=black  cterm=bold  " for while
+hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
 "hi Repeat ctermbg=16  ctermfg=11 cterm=bold
 
 "case、default 等
@@ -1033,35 +1051,35 @@ hi Label           ctermfg=229               cterm=bold
 ":hi Label ctermbg=16  ctermfg=16  cterm=bold
 
 "int、long、char 等
-:hi  Type   ctermfg=13  ctermbg=16  cterm=bold
+:hi  Type   ctermfg=13    cterm=bold
 
 "一个布尔型常数: TRUE、false
-:hi  Boolean ctermfg=196 ctermbg=16 cterm=bold
+:hi  Boolean ctermfg=196  cterm=bold
 
 "一个字符常数: 'c'、'\n'
-:hi  Character ctermfg=124  ctermbg=16 cterm=bold
+:hi  Character ctermfg=124   cterm=bold
 
 "一个数字常数: 234、0xff
-:hi  Number ctermfg=124 ctermbg=16 cterm=bold
+:hi  Number ctermfg=124  cterm=bold
 
 "一个字符串常数: 字符串
-:hi String  ctermfg=34 ctermbg=16 cterm=bold
+:hi String  ctermfg=28  cterm=bold
 
 "一个浮点常数: 2.3e10
-:hi  Float ctermfg=124 ctermbg=black cterm=bold
+:hi  Float ctermfg=124  cterm=bold
 
 "static、register、volatile 等
-:hi  StorageClass  ctermfg=11  ctermbg=black cterm=bold
+:hi  StorageClass  ctermfg=11   cterm=bold
 
 "函数名 (也包括: 类的方法名)
-:hi  Function ctermbg=16  ctermfg=16 cterm=bold
+:hi  Function   ctermfg=202 cterm=bold
 
 "sizeof"、"+"、"*" 等
-:hi  Operator ctermfg=226  ctermbg=16  cterm=bold
+:hi  Operator ctermfg=226    cterm=bold
 "任何其它关键字
-:hi   Keyword  ctermfg=yellow   ctermbg=black   cterm=bold
+:hi   Keyword  ctermfg=11      cterm=bold
 
-hi cfunctions ctermfg=202
+hi cfunctions ctermfg=202  cterm=bold
 
 highlight Search ctermbg=blue ctermfg=white
 highlight IncSearch ctermbg=blue ctermfg=white
@@ -1085,13 +1103,13 @@ hi DiffDelete      ctermfg=162 ctermbg=53
 hi DiffText                    ctermbg=102 cterm=bold
 
 hi Directory       ctermfg=118               cterm=bold
-hi Error           ctermfg=219 ctermbg=89
-hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+hi Error           ctermfg=219  ctermbg=89
+hi ErrorMsg        ctermfg=199  ctermbg=16   cterm=bold
 "hi FoldColumn      ctermfg=67  ctermbg=16
 "hi Folded          ctermfg=67  ctermbg=16
-hi Function        ctermfg=118
+hi Function        ctermfg=118   cterm=bold
 "hi Identifier      ctermfg=208
-hi Ignore          ctermfg=244 ctermbg=16
+hi Ignore          ctermfg=244  ctermbg=16
 
 hi Macro           ctermfg=193
 hi SpecialKey      ctermfg=81
@@ -1122,17 +1140,21 @@ hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
 hi VisualNOS                   ctermbg=238
 hi Visual                      ctermbg=235
-hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+hi WarningMsg      ctermfg=231   ctermbg=238 cterm=bold
 hi WildMenu        ctermfg=81  ctermbg=16
 
+" complete menu
+hi Pmenu           ctermfg=81  ctermbg=16
+hi PmenuSel                    ctermbg=16
+hi PmenuSbar                   ctermbg=16
+hi PmenuThumb      ctermfg=81
 
-"整体背景的颜色
-"hi Normal          ctermfg=252 ctermbg=234
-"hi LineNr          ctermfg=250 ctermbg=234
-hi NonText         ctermfg=1 ctermbg=234
+"整体字体的颜色
+hi Normal       term=bold        ctermfg=253   "22,28,2,10,82,34,231
+"hi LineNr          ctermfg=250  ctermbg=234
+hi NonText         ctermfg=1 
 
 set t_Co=256  
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1255,6 +1277,8 @@ hi PreCondit ctermfg=161 cterm=bold
 set cursorline 
 hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""
 
