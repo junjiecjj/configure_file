@@ -105,11 +105,55 @@ set nocompatible                       "不适用vi的键盘模式，使用vim�
 set hlsearch                          "搜索逐字符高亮
 set incsearch                          " 开启增量搜索模式
 set ts=4
-set autoread                     "设置当前文件被改动时自动载入
+set ar
+
+set updatetime=1000
+" 自动重新读入
+set autoread                " 当文件在外部被修改，自动更新该文件
+"set autowriteall                  "可使切换文件时，修改的文件被自动保存
+set autowrite                       " 设置自动保存
 set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行分割
 
-"统一缩进为4
+" 当文件在外部被修改，自动更新该文件
+" 方法1:
+"set autoread
+"augroup checktime
+ "   au!
+  "  if !has("gui_running")
+        "silent! necessary otherwise throws errors when using command
+        "line window.
+        "autocmd BufEnter        * silent! checktime
+        "autocmd CursorHold      * silent! checktime
+        "autocmd CursorHoldI     * silent! checktime
+        "these two _may_ slow things down. Remove if they do.
+        "autocmd CursorMoved     * silent! checktime
+        "autocmd CursorMovedI    * silent! checktime
+ "   endif
+"augroup END
+
+"方法2:
+if ! exists("g:CheckUpdateStarted")
+    let g:CheckUpdateStarted=1
+    call timer_start(1,'CheckUpdate')
+endif
+function! CheckUpdate(timer)
+    silent! checktime
+    call timer_start(1000,'CheckUpdate')
+endfunction
+
+
+"方法3:
+"autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+"autocmd FileChangedShellPost *
+"\ echohl WarningMsg | echo "文件在外部被改动,已重新加载..." | echohl None
+
+" ======= 设置当文件被外部改变的时侯自动读入文件 ======= "  
+
+
+" 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
+
+" 设置格式化时制表符占用空格数
 set shiftwidth=4
 
 " 我的状态行显示的内容（包括文件类型和解码）
@@ -125,6 +169,7 @@ filetype on                 " 侦测文件类型
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
+" 将制表符扩展为空格
 set expandtab
 set laststatus=2            "显示当前编辑文件名
 set cursorline              "光标所在行一横线
@@ -150,6 +195,8 @@ set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
+" 设置状态栏主题风格
+"let g:Powerline_colorscheme='solarized256'   
 
 "让补全行为与一般IDE一样
 "set completeopt = preview,meun
@@ -157,9 +204,10 @@ set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 "在接受补全后不分裂出一个窗口显示接受的项
 "set completeopt-=preview
 
-
-syntax on "语法高亮显示
+"开启语法高亮功能
 syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on 
 
 
 let python_highlight_all=1
@@ -730,6 +778,8 @@ end
 set background=dark
 filetype on
 set autoindent
+
+" 设置编辑时制表符占用空格数
 set tabstop=4
 set showmatch
 set ruler
@@ -744,6 +794,125 @@ autocmd! bufwritepost $HOME/.vimrc source %
 
 
 
+"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi clear
+
+set background=dark
+if version > 580
+    hi clear
+
+endif
+let g:colors_name="molokai"
+
+"
+" Support for 256-color terminal
+"
+if &t_Co > 255
+   hi Boolean         ctermfg=135
+   hi Character       ctermfg=144
+   hi Number          ctermfg=135
+   hi String          ctermfg=144
+   hi Conditional     ctermfg=161               cterm=bold
+   hi Constant        ctermfg=135               cterm=bold
+   hi Cursor          ctermfg=16  ctermbg=253
+   hi Debug           ctermfg=225               cterm=bold
+   hi Define          ctermfg=81
+   hi Delimiter       ctermfg=241
+
+   hi DiffAdd                     ctermbg=24
+   hi DiffChange      ctermfg=181 ctermbg=239
+   hi DiffDelete      ctermfg=162 ctermbg=53
+   hi DiffText                    ctermbg=102 cterm=bold
+
+   hi Directory       ctermfg=118               cterm=bold
+   hi Error           ctermfg=219 ctermbg=89
+   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+   hi Exception       ctermfg=118               cterm=bold
+   hi Float           ctermfg=135
+   hi FoldColumn      ctermfg=67  ctermbg=16
+   hi Folded          ctermfg=67  ctermbg=16
+   hi Function        ctermfg=118
+   hi Identifier      ctermfg=208
+   hi Ignore          ctermfg=244 ctermbg=232
+   hi IncSearch       ctermfg=193 ctermbg=16
+
+   hi Keyword         ctermfg=161               cterm=bold
+   hi Label           ctermfg=229               cterm=none
+   hi Macro           ctermfg=193
+   hi SpecialKey      ctermfg=81
+
+   hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+   hi ModeMsg         ctermfg=229
+   hi MoreMsg         ctermfg=229
+   hi Operator        ctermfg=161
+
+   " complete menu
+   hi Pmenu           ctermfg=81  ctermbg=16
+   hi PmenuSel                    ctermbg=244
+   hi PmenuSbar                   ctermbg=232
+   hi PmenuThumb      ctermfg=81
+
+   hi PreCondit       ctermfg=118               cterm=bold
+   hi PreProc         ctermfg=118
+   hi Question        ctermfg=81
+   hi Repeat          ctermfg=161               cterm=bold
+   hi Search          ctermfg=253 ctermbg=66
+
+   " marks column
+   hi SignColumn      ctermfg=118 ctermbg=235
+   hi SpecialChar     ctermfg=161               cterm=bold
+   hi SpecialComment  ctermfg=245               cterm=bold
+   hi Special         ctermfg=81  ctermbg=232
+   hi SpecialKey      ctermfg=245
+
+   hi Statement       ctermfg=161               cterm=bold
+   hi StatusLine      ctermfg=238 ctermbg=253
+   hi StatusLineNC    ctermfg=244 ctermbg=232
+   hi StorageClass    ctermfg=208
+   hi Structure       ctermfg=81
+   hi Tag             ctermfg=161
+   hi Title           ctermfg=166
+   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+
+   hi Typedef         ctermfg=81
+   hi Type            ctermfg=81                cterm=none
+   hi Underlined      ctermfg=244               cterm=underline
+
+   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+   hi VisualNOS                   ctermbg=238
+   hi Visual                      ctermbg=235
+   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+   hi WildMenu        ctermfg=81  ctermbg=16
+
+   hi Normal          ctermfg=252 ctermbg=234
+   hi Comment         ctermfg=59
+   hi CursorLine                  ctermbg=234   cterm=none
+   hi CursorColumn                ctermbg=234
+   hi LineNr          ctermfg=250 ctermbg=234
+   hi NonText         ctermfg=1 ctermbg=234
+end
+
+
+" color scheme (双引号开头的行表示注释)
+
+set t_Co=256  
+
+colo molokai   
+
+" hilight function name
+autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
+autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
+
+hi cfunctions ctermfg=81 
+
+
+hi Type ctermfg=118 cterm=none
+hi Structure ctermfg=118 cterm=none
+hi Macro ctermfg=161 cterm=bold
+hi PreCondit ctermfg=161 cterm=bold
+set cursorline 
+hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""
@@ -882,129 +1051,21 @@ hi Title                         ctermfg=DarkMagenta
 hi WildMenu                      ctermfg=Black        ctermbg=Brown
 hi Folded                        ctermfg=DarkGrey     ctermbg=NONE
 hi FoldColumn                    ctermfg=DarkGrey     ctermbg=NONE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-hi clear
+""光标所在的字符
+hi Cursor          ctermfg=16  ctermbg=253
 
-set background=dark
-if version > 580
-    hi clear
-
-endif
-let g:colors_name="molokai"
-
+"光标所在的屏幕行
+hi CursorLine       ctermbg=234   cterm=bold
+"hi CursorLineNr    guifg=#FD971F               gui=none
 "
-" Support for 256-color terminal
-"
-if &t_Co > 255
-   hi Boolean         ctermfg=135
-   hi Character       ctermfg=144
-   hi Number          ctermfg=135
-   hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
-   hi Constant        ctermfg=135               cterm=bold
-   hi Cursor          ctermfg=16  ctermbg=253
-   hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
-   hi Delimiter       ctermfg=241
-
-   hi DiffAdd                     ctermbg=24
-   hi DiffChange      ctermfg=181 ctermbg=239
-   hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold
-
-   hi Directory       ctermfg=118               cterm=bold
-   hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-   hi Exception       ctermfg=118               cterm=bold
-   hi Float           ctermfg=135
-   hi FoldColumn      ctermfg=67  ctermbg=16
-   hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208
-   hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=193 ctermbg=16
-
-   hi Keyword         ctermfg=161               cterm=bold
-   hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
-
-   hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
-
-   " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel                    ctermbg=244
-   hi PmenuSbar                   ctermbg=232
-   hi PmenuThumb      ctermfg=81
-
-   hi PreCondit       ctermfg=118               cterm=bold
-   hi PreProc         ctermfg=118
-   hi Question        ctermfg=81
-   hi Repeat          ctermfg=161               cterm=bold
-   hi Search          ctermfg=253 ctermbg=66
-
-   " marks column
-   hi SignColumn      ctermfg=118 ctermbg=235
-   hi SpecialChar     ctermfg=161               cterm=bold
-   hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  ctermbg=232
-   hi SpecialKey      ctermfg=245
-
-   hi Statement       ctermfg=161               cterm=bold
-   hi StatusLine      ctermfg=238 ctermbg=253
-   hi StatusLineNC    ctermfg=244 ctermbg=232
-   hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
-   hi Tag             ctermfg=161
-   hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-
-   hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
-   hi Underlined      ctermfg=244               cterm=underline
-
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=235
-   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-   hi WildMenu        ctermfg=81  ctermbg=16
-
-   hi Normal          ctermfg=252 ctermbg=234
-   hi Comment         ctermfg=59
-   hi CursorLine                  ctermbg=234   cterm=none
-   hi CursorColumn                ctermbg=234
-   hi LineNr          ctermfg=250 ctermbg=234
-   hi NonText         ctermfg=1 ctermbg=234
-end
-
-
-" color scheme (双引号开头的行表示注释)
-
-set t_Co=256  
-
-colo molokai   
-
-" hilight function name
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
-
-hi cfunctions ctermfg=81 
-
-
-hi Type ctermfg=118 cterm=none
-hi Structure ctermfg=118 cterm=none
-hi Macro ctermfg=161 cterm=bold
-hi PreCondit ctermfg=161 cterm=bold
+"  "光标所在的屏幕列
+hi CursorColumn                ctermbg=234
 set cursorline 
 hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""'""
 hi clear
@@ -1016,6 +1077,7 @@ if version > 580
     endif
 endif
 
+set background=dark
 colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
 
@@ -1300,8 +1362,6 @@ set t_Co=256
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
-
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 "一键执行python代码
@@ -1384,7 +1444,8 @@ augroup ccompile
     autocmd Filetype c map <F5> <Esc>:w<CR>:!time gcc % -std=c99 -g -o %< -lm <CR>
     autocmd Filetype cpp map <F5> <Esc>:w<CR>:!time g++ % -std=c++11 -g -o %< -lm <CR>
     "autocmd Filetype python map <F5> <Esc>:w<CR>:!python2 % <CR>
-    autocmd Filetype python map <F5> <Esc>:w<CR>:!time python3.6 % <CR>
+    "autocmd Filetype python map <F5> <Esc>:w<CR>:!time python3.6 % <CR>
+    autocmd Filetype python map <F5> <Esc>:w<CR>:!time ipython  % <CR>
     autocmd Filetype java map <F5> <Esc>:w<CR>:!time javac % <CR>
     autocmd Filetype sh map <F5> <Esc>:w<CR>:!./% <CR>
 augroup END
@@ -1464,9 +1525,11 @@ let g:lightline = {
     \ },
     \ }
 
-set laststatus=2
+set laststatus=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"================30s,自动保存文件=============="
+let autosave=10
 "let g:airline_theme='papercolor'
 
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
