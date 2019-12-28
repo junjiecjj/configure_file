@@ -110,6 +110,8 @@ set ar
 set updatetime=1000
 " 自动重新读入
 set autoread                " 当文件在外部被修改，自动更新该文件
+":set autoread | au CursorHold * checktime | call feedkeys("lh")
+":set autoread | au CursorHold,FocusGained,BufEnter * checktime | call feedkeys("lh")
 "set autowriteall                  "可使切换文件时，修改的文件被自动保存
 set autowrite                       " 设置自动保存
 set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行分割
@@ -138,8 +140,9 @@ if ! exists("g:CheckUpdateStarted")
 endif
 function! CheckUpdate(timer)
     silent! checktime
-    call timer_start(1000,'CheckUpdate')
+    call timer_start(2000,'CheckUpdate')
 endfunction
+
 
 
 "方法3:
@@ -288,8 +291,56 @@ augroup END
 
 "************************************************************
 
+""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""
+"The NERD Commenter
+"注释符号后面空一格
+let g:NERDSpaceDelims=1
 
-""""""""""""""""""""vim-rainbow配置""""""""""""""""""""
+"let mapleader=","
+
+" ,ca，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
+" ,cc，注释当前行
+" ,c，切换注释/非注释状态
+" ,cs，以”性感”的方式注释
+" ,cA，在当前行尾添加注释符，并进入Insert模式
+" ,cu，取消注释
+" Normal模式下，几乎所有命令前面都可以指定行数。  比如  输入  6,cs    的意思就是以性感方式注释光标所在行开始6行代码
+" Visual模式下执行命令，会对选中的特定区块进行注释/反注释
+
+
+""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
+
+"设置ctags路径
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+"启动vim后自动打开taglist窗口
+let Tlist_Auto_Open = 1
+
+"不同时显示多个文件的tag，仅显示一个
+let Tlist_Show_One_File = 1
+
+"taglist为最后一个窗口时，退出vim
+let Tlist_Exit_OnlyWindow = 1
+
+"taglist窗口显示在右侧，缺省为左侧
+let Tlist_Use_Right_Window =1
+
+"设置taglist窗口大小
+"let Tlist_WinHeight = 100
+let Tlist_WinWidth = 40
+
+"设置taglist打开关闭的快捷键F1
+map <F1> <Esc>:TlistToggle<Cr>
+
+
+"更新ctags标签文件快捷键设置
+noremap <F6> :!ctags -R<CR>
+
+"打开文件时候不自动打开Taglist窗口
+let Tlist_Auto_Open=0
+
+
+"""""""""""""""""""vim-rainbow配置""""""""""""""""""""
 
 " rainbow 对于不同的括号，渲染成不同颜色
 let g:rainbow_active = 1
@@ -1349,9 +1400,8 @@ hi WarningMsg      ctermfg=231   ctermbg=238 cterm=bold
 hi WildMenu        ctermfg=81  ctermbg=16
 
 
-
 "整体字体的颜色
-hi Normal       term=bold        ctermfg=253  cterm=bold  "22,28,2,10,82,34,231
+hi Normal       term=bold        ctermfg=231   cterm=bold  "7,15,195,225,231,253
 
 "置位 number 选项时的行号
 "hi LineNr          ctermfg=250  ctermbg=234
@@ -1518,12 +1568,49 @@ let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ]
+    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
     \ },
     \ 'component': {
+    \ 'charvaluehex': '0x%B',
+    \   'gitbranch': 'fugitive#head',
     \   'helloworld': 'I am writing shit...'
     \ },
+    \ 'component_function': {
+    \   'filename': 'LightlineFilename',
+    \   'mode': 'LightlineMode',
+    \   'filetype': 'LightlineFiletype',
+    \ },
     \ }
+
+
+function! LightlineMode()
+  return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
+        \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
+        \ &filetype ==# 'unite' ? 'Unite' :
+        \ &filetype ==# 'vimfiler' ? 'VimFiler' :
+        \ &filetype ==# 'vimshell' ? 'VimShell' :
+        \ lightline#mode()
+endfunction
+
+
+function! LightlineFilename()
+  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
 
 set laststatus=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
