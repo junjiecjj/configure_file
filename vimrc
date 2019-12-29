@@ -1,6 +1,6 @@
 
 set nocompatible               "required
-filetype off                  "required开启探测文件类型,on off
+filetype on                  "required开启探测文件类型,on off
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -281,7 +281,7 @@ let g:ycm_max_num_identifier_candidates = 20
 
 
 " 设置YCM的日志记录级别，可以是debug，info，warning，error或critical。debug是最详细的
-let g:ycm_log_level = 'info'
+" let g:ycm_log_level = 'info'
 
 let g:ycm_collect_identifiers_from_tags_files = 0
 
@@ -358,11 +358,16 @@ inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDow
 inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
-"let g:ycm_key_list_select_completion=['<c-n>']
+"设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
 let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_select_completion=['<c-n>']
+
+"设置用于向上选择补全列表中的选项的快捷键，默认为shift+tab，和方向上键
 "let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 
+"设置用于关闭补全列表的快捷键，默认为ctrl+y
+let g:ycm_key_list_stop_completion =  ['<C-y>']
 
 let g:ycm_filetype_blacklist = {
         \ 'tagbar' : 1,
