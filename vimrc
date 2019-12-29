@@ -181,11 +181,14 @@ set cursorcolumn              "光标所在行一竖线
 highlight CursorLine   cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 highlight CursorColumn cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
 
-hi CursorLine                    guibg=#3E3D32
-hi CursorColumn                  guibg=#3E3D32
+
 
 hi CursorLine                  ctermbg=234   cterm=none
 hi CursorColumn                ctermbg=234
+
+set guioptions-=T           " 隐藏工具栏
+set guioptions-=m           " 隐藏菜单栏
+
 
 set cursorline 
 hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
@@ -226,8 +229,8 @@ let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 " 自动弹出是由键映射，对于通过移动来避免自动弹出是很有用
 let g:AutoComplPop_MappingDriven = 1
 " 修改GUI高亮参数 该设置全局有效
-hi Pmenu guibg=#444444
-hi PmenuSel ctermfg=7 ctermbg=4 guibg=#555555 guifg=#ffffff
+hi Pmenu     ctermfg=0    ctermbg=241    guibg=#444444
+hi PmenuSel   ctermfg=196    ctermbg=251   guibg=#555555 guifg=#ffffff
  
 " 加载PHP函数字典，配置PHP函数自动补全，注意文件位置
 au FileType php setlocal dict+=$VIM/vimfiles/bundle/AutoComplPop/dict/php_funclist.txt
@@ -258,30 +261,130 @@ let g:openbrowser_search_engines = {
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 "寻找全局配置文件
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_min_num_of_chars_for_completion = 2             "开始补全的字符数
-let g:ycm_python_binary_path = 'python'                   "jedi模块所在python解释器路径
-let g:ycm_seed_identifiers_with_syntax = 1                "开启使用语言的一些关键字查询
-let g:ycm_autoclose_preview_window_after_completion=1     "补全后自动关闭预览窗口
+let g:ycm_min_num_of_chars_for_completion = 2
+"开始补全的字符数
+
+"与syntastic有冲突，建议关闭
+let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_error_symbol = '✗'
+"let g:ycm_warning_symbol = '⚠'
+
+"jedi模块所在python解释器路径
+let g:ycm_python_binary_path = 'python'                   
+
+"开启使用语言的一些关键字查询
+let g:ycm_seed_identifiers_with_syntax = 1                
+
+"补全后自动关闭预览窗口
+let g:ycm_autoclose_preview_window_after_completion=1     
+
+"在实现和声明之间跳转,并分屏打开
+let g:ycm_goto_buffer_command = 'horizontal-split'
+
 "let g:ycm_auto_trigger = 0   "turn off
 let g:ycm_auto_trigger = 1   "turn on ,打开ycm
 
-let g:ycm_seed_indetifiers_with_syntax = 1   "关键字补全
+"关键字补全
+let g:ycm_seed_indetifiers_with_syntax = 1
 
-let g:ycm_complete_in_comments=1  " 在注释中也可以补全
+" 在注释中也可以补全
+let g:ycm_complete_in_comments=1
 
-let g:ycm_complete_in_comments = 1                          " 在注释输入中也能补全
-let g:ycm_complete_in_strings = 1                           " 在字符串输入中也能补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 1 " 注释和字符串中的文字也会被收入补全
-let g:ycm_confirm_extra_conf=0       "不显示开启vim时是否检查ycm_extra_conf文件的信息，直接加载该文件
-let g:ycm_cache_omnifunc=0         "每次重新生成匹配项，禁止缓存匹配项
+" 在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+
+" 在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+
+" 注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+
+"不显示开启vim时是否检查ycm_extra_conf文件的信息，直接加载该文件
+let g:ycm_confirm_extra_conf=0
+
+"每次重新生成匹配项，禁止缓存匹配项
+let g:ycm_cache_omnifunc=0
+
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_echo_current_diagnostic = 0
+
+
 map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
 
 let mapleader = '\'
 nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR> 
+
 " 跳转到声明处
 nnoremap <leader>gd :YcmCompleter GoToDefinition<CR> 
 
+
+set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+let g:ycm_add_preview_to_completeopt = 0
+
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif	
+
+"回车即选中当前项
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	
+
+"上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+"let g:ycm_key_list_select_completion=['<c-n>']
+let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion=['<c-p>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+
+
+let g:ycm_filetype_blacklist = {
+        \ 'tagbar' : 1,
+        \ 'qf' : 1,
+        \ 'notes' : 1,
+        \ 'markdown' : 1,
+        \ 'unite' : 1,
+        \ 'text' : 1,
+        \ 'vimwiki' : 1,
+        \ 'pandoc' : 1,
+        \ 'infolog' : 1,
+        \ 'mail' : 1
+        \}
+let g:ycm_filetype_specific_completion_to_disable = {
+        \ 'gitcommit': 1
+        \}
+
+let g:ycm_filetype_whitelist = { 
+			\ "c":1,
+			\ "cpp":1, 
+			\ "objc":1,
+			\ "sh":1,
+			\ "zsh":1,
+			\ "zimbu":1,
+			\ }
+
+let g:ycm_semantic_triggers =  {
+  \   'c' : ['->', '.'],
+  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+  \             're!\[.*\]\s'],
+  \   'ocaml' : ['.', '#'],
+  \   'cpp,objcpp' : ['->', '.', '::'],
+  \   'perl' : ['->'],
+  \   'php' : ['->', '::'],
+  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+  \   'ruby' : ['.', '::'],
+  \   'lua' : ['.', ':'],
+  \   'erlang' : [':'],
+  \ }
+
+
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
+
+
 "************************************************************
 augroup VimCSS3Syntax
   autocmd!
@@ -368,6 +471,7 @@ let g:rainbow_conf = {
             \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """"""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""
 
 
@@ -1183,14 +1287,14 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 hi Underlined      ctermfg=244   cterm=underline
 
 "通用预处理命令
-:hi  PreProc ctermfg=11  ctermbg=16 cterm=bold
-:hi PreProc         ctermfg=118
+hi  PreProc ctermfg=11  ctermbg=16 cterm=bold
+hi PreProc         ctermfg=118
 
 "预处理命令 #include
-:hi Include ctermfg=13  ctermbg=16  cterm=bold
+hi Include ctermfg=13  ctermbg=16  cterm=bold
 
 "预处理命令 #define
-:hi Define ctermfg=11  ctermbg=16 ctermbg=16   cterm=bold
+hi Define ctermfg=11  ctermbg=16 ctermbg=16   cterm=bold
 hi Define          ctermfg=81
 
 "预处理命令 #if、#else、#endif
@@ -1198,7 +1302,7 @@ hi Define          ctermfg=81
 "hi PreCondit       ctermfg=118               cterm=bold
 
 "等同于 Define
-:hi  Macro ctermfg=51 ctermbg=16   cterm=bold
+hi  Macro ctermfg=51 ctermbg=16   cterm=bold
 hi Macro ctermfg=161    cterm=bold
 
 "一个 typedef
@@ -1206,36 +1310,37 @@ hi Typedef ctermfg=51     cterm=bold
 "hi Typedef         ctermfg=81
 
 "struct、union、enum 等
-:hi Structure ctermfg=51  ctermbg=16   cterm=bold
+hi Structure ctermfg=51  ctermbg=16   cterm=bold
 "hi Structure       ctermfg=81
 
 "任何特殊符号
-:hi Special ctermfg=33 ctermbg=16   cterm=bold
+hi Special ctermfg=33 ctermbg=16   cterm=bold
 hi link Tag    Special
 
 "常数中的特殊字符
-:hi SpecialChar ctermfg=33 ctermbg=16   cterm=bold
+hi SpecialChar ctermfg=33 ctermbg=16   cterm=bold
+hi SpecialChar     ctermfg=161               cterm=bold
 
 "注释里的特殊字符
-:hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
+hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
 
 "任何需要特殊注意的部分
-:hi Todo ctermfg=52  ctermbg=16  cterm=none
+hi Todo ctermfg=52  ctermbg=16  cterm=none
 
 "需要注意的字符
-:hi  Delimiter ctermfg=75    cterm=bold
+hi  Delimiter ctermfg=75    cterm=bold
 
 "警告消息
-:hi  WarningMsg ctermfg=11   cterm=bold
+hi  WarningMsg ctermfg=11   cterm=bold
 
 "任何有错的构造
-:hi Error ctermfg=124   cterm=bold
+hi Error ctermfg=124   cterm=bold
 
 "try、catch、throw
-:hi Exception ctermfg=52   cterm=bold
+hi Exception ctermfg=52   cterm=bold
 
 "当前窗口的状态行
-:hi StatusLine ctermfg=11     cterm=bold
+hi StatusLine ctermfg=11     cterm=bold
 
 "hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
 highlight  IncSearch ctermfg=yellow ctermbg=lightblue  cterm=BOLD  "incsearch 高亮
@@ -1281,38 +1386,38 @@ hi Label           ctermfg=229               cterm=bold
 ":hi Label ctermbg=16  ctermfg=16  cterm=bold
 
 "int、long、char 等
-:hi  Type   ctermfg=13    cterm=bold
+hi  Type   ctermfg=13    cterm=bold
 
 "一个布尔型常数: TRUE、false
-:hi  Boolean ctermfg=196  cterm=bold
+hi  Boolean ctermfg=196  cterm=bold
 
 "一个字符常数: 'c'、'\n'
-:hi  Character ctermfg=124   cterm=bold
+hi  Character ctermfg=124   cterm=bold
 
 "一个数字常数: 234、0xff
-:hi  Number ctermfg=124  cterm=bold
+hi  Number ctermfg=124  cterm=bold
 
 "一个字符串常数: 字符串
-:hi String  ctermfg=28
+hi String  ctermfg=28
 
 "一个浮点常数: 2.3e10
-:hi  Float ctermfg=124  cterm=bold
+hi  Float ctermfg=124  cterm=bold
 
 "static、register、volatile 等
-:hi  StorageClass  ctermfg=11   cterm=bold
+hi  StorageClass  ctermfg=11   cterm=bold
 
 "函数名 (也包括: 类的方法名)
-:hi  Function   ctermfg=202 cterm=bold
+hi  Function   ctermfg=202 cterm=bold
 
 "sizeof"、"+"、"*" 等
-:hi  Operator ctermfg=226    cterm=bold
+hi  Operator ctermfg=226    cterm=bold
 "任何其它关键字
-:hi   Keyword  ctermfg=11      cterm=bold
+hi   Keyword  ctermfg=11      cterm=bold
 
-hi cfunctions ctermfg=202  cterm=bold
+hi  cfunctions ctermfg=202  cterm=bold
 
-highlight Search ctermbg=blue ctermfg=white
-highlight IncSearch ctermbg=blue ctermfg=White
+hi  Search ctermbg=blue ctermfg=white
+hi  IncSearch ctermbg=blue ctermfg=White
 
 "配对的括号
 highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3
@@ -1361,22 +1466,23 @@ hi ModeMsg         ctermfg=229  cterm=bold
 hi MoreMsg         ctermfg=229  cterm=bold
 
 " complete menu
-hi Pmenu           ctermfg=81  ctermbg=16
+"hi Pmenu           ctermfg=81  ctermbg=16
+hi    PMenu      ctermfg=0     ctermbg=241     guifg=black guibg=darkgrey
 
 "弹出菜单选中项目
-hi PmenuSel                    ctermbg=16
+"hi PmenuSel           ctermfg=196      ctermbg=16
+hi    PMenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
 
 "弹出菜单滚动条。
-hi PmenuSbar                   ctermbg=16
+hi    PmenuSbar        ctermbg=34
 
  "弹出菜单滚动条的拇指
-hi PmenuThumb      ctermfg=81  cterm=bold
+hi    PmenuThumb      ctermbg=196    cterm=bold
 
 hi Question        ctermfg=34
 
 " marks column
 hi SignColumn      ctermfg=118 ctermbg=235
-hi SpecialChar     ctermfg=161               cterm=bold
 hi Special         ctermfg=81  ctermbg=232
 hi SpecialKey      ctermfg=245
 
