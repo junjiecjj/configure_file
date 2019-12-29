@@ -1491,17 +1491,23 @@ hi MoreMsg         ctermfg=229  cterm=bold
 
 " complete menu
 "hi Pmenu           ctermfg=81  ctermbg=16
-hi    PMenu      ctermfg=0     ctermbg=241     guifg=black guibg=darkgrey
+hi    PMenu      ctermfg=0     ctermbg=243     guifg=black guibg=darkgrey
 
 "弹出菜单选中项目
 "hi PmenuSel           ctermfg=196      ctermbg=16
 hi    PMenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
 
 "弹出菜单滚动条。
-hi    PmenuSbar        ctermbg=34
+" hi    PmenuSbar        ctermbg=34
+" hi    PmenuSbar        ctermbg=239
+" hi    PmenuSbar        ctermbg=239
+hi    PmenuSbar        ctermbg=239
 
- "弹出菜单滚动条的拇指
-hi    PmenuThumb      ctermbg=196    cterm=bold
+ "弹出菜单滚动条的拇指, 和上面一一对应
+" hi    PmenuThumb      ctermbg=196    cterm=bold
+" hi    PmenuThumb      ctermbg=15    cterm=bold
+" hi    PmenuThumb      ctermbg=196    cterm=bold
+hi    PmenuThumb      ctermbg=34    cterm=bold
 
 hi Question        ctermfg=34
 
