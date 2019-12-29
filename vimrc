@@ -41,6 +41,9 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
 Plugin 'rking/ag.vim'
@@ -202,10 +205,35 @@ setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
 
+""""""""""""""""""" LeaderF 设置 """""""""""""""""""
+" Ctrl + p 打开文件搜索
+let g:Lf_ShortcutF = '<c-p>'    
+"\p 打开函数列表
+noremap <Leader>p :LeaderfFunction<cr>
+
+"文件搜索
+nnoremap <silent> <Leader>f :Leaderf file<CR>
+
+"历史打开过的文件
+nnoremap <silent> <Leader>m :Leaderf mru<CR>
+
+"Buffer
+nnoremap <silent> <Leader>b :Leaderf buffer<CR>
+
+"函数搜索（仅当前文件里）
+nnoremap <silent> <Leader>F :Leaderf function<CR>
+
+"模糊搜索，很强大的功能，迅速秒搜
+nnoremap <silent> <Leader>rg :Leaderf rg<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""" fzf 配置""""""""""""""""""""""
+" nnoremap <silent> <C-p> :Files<CR>
 
 
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "让补全行为与一般IDE一样
 "set completeopt = preview,meun
@@ -431,7 +459,7 @@ augroup END
 "注释符号后面空一格
 let g:NERDSpaceDelims=1
 
-"let mapleader=","
+"let mapleader="\"
 
 " ,ca，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
 " ,cc，注释当前行
