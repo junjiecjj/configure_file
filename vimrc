@@ -320,7 +320,8 @@ nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDefinition<CR> 
 
 
-set completeopt=longest,menu	"让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
+"关闭YCM 自动弹出函数原型预览窗口
+set completeopt=longest,menu
 let g:ycm_add_preview_to_completeopt = 0
 
 "离开插入模式后自动关闭预览窗口
@@ -365,6 +366,7 @@ let g:ycm_filetype_whitelist = {
 			\ "sh":1,
 			\ "zsh":1,
 			\ "zimbu":1,
+			\ "py":1,
 			\ }
 
 let g:ycm_semantic_triggers =  {
