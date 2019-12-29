@@ -232,6 +232,23 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 " nnoremap <silent> <C-p> :Files<CR>
 
 
+" "<Leader>f在当前目录搜索文件
+" nnoremap <silent> <Leader>f :Files<CR>
+" "<Leader>b切换Buffer中的文件
+" nnoremap <silent> <Leader>b :Buffers<CR>
+" "<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+" nnoremap <silent> <Leader>p :Lines<CR>
+" "<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+" nnoremap <silent> <Leader>h :History<CR>
+" "调用Rg进行搜索，包含隐藏文件
+" "command! -bang -nargs=* Rg
+  " \ call fzf#vim#grep(
+  " \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '.shellescape(<q-args>), 1,
+  " \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  " \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  " \   <bang>0)
+
+" "这样输入:Rg <keyword>会调用ripgrep来递归搜索当前目录
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
