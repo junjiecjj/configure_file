@@ -266,12 +266,24 @@ let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.y
 let g:ycm_min_num_of_chars_for_completion = 2
 
 "与syntastic有冲突，建议关闭
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 "let g:ycm_error_symbol = '✗'
 "let g:ycm_warning_symbol = '⚠'
 
 "jedi模块所在python解释器路径
 let g:ycm_python_binary_path = 'python'                   
+
+"选补全框内显示的补全条目的最大数量
+let g:ycm_max_num_candidates = 50
+
+
+let g:ycm_max_num_identifier_candidates = 10
+
+
+" 设置YCM的日志记录级别，可以是debug，info，warning，error或critical。debug是最详细的
+let g:ycm_log_level = 'info'
+
+let g:ycm_collect_identifiers_from_tags_files = 0
 
 "开启使用语言的一些关键字查询
 let g:ycm_seed_identifiers_with_syntax = 1                
@@ -300,6 +312,7 @@ let g:ycm_complete_in_strings = 1
 " 注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 
+let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
 
 "不显示开启vim时是否检查ycm_extra_conf文件的信息，直接加载该文件
 let g:ycm_confirm_extra_conf=0
@@ -307,17 +320,24 @@ let g:ycm_confirm_extra_conf=0
 "每次重新生成匹配项，禁止缓存匹配项
 let g:ycm_cache_omnifunc=0
 
+"在代码中高亮显示YCM诊断对应的内容，如果关闭，则会关闭错误和警告高亮功能，0表示关闭
 let g:ycm_enable_diagnostic_signs = 0
+
+"高亮显示代码中与诊断信息有关的文本或代码，0表示关闭
 let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_echo_current_diagnostic = 0
+
+"当光标移到所在行时显示诊断信息
+let g:ycm_echo_current_diagnostic = 1
 
 
 map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
 
 let mapleader = '\'
+
+"查找光标下的标识符并跳转到其声明，文件类型支持：c，cpp，objc，objcpp，cs，go，java，python，rust，typescript
 nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR> 
 
-" 跳转到声明处
+" 查找光标下的标识符并跳转到其定义
 nnoremap <leader>gd :YcmCompleter GoToDefinition<CR> 
 
 
@@ -360,15 +380,14 @@ let g:ycm_filetype_specific_completion_to_disable = {
         \ 'gitcommit': 1
         \}
 
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1, 
-			\ "objc":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "zimbu":1,
-			\ "py":1,
-			\ }
+" let g:ycm_filetype_whitelist = { 
+            " \ "c":1,
+            " \ "cpp":1, 
+            " \ "objc":1,
+            " \ "sh":1,
+            " \ "zsh":1,
+            " \ "zimbu":1,
+            " \ }
 
 let g:ycm_semantic_triggers =  {
   \   'c' : ['->', '.'],
@@ -383,6 +402,8 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
+
+
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
