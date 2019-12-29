@@ -23,7 +23,7 @@ Plugin 'vim-scripts/indentpython.vim' "写python代码自动缩进
 Plugin 'Yggdroot/indentLine' "缩进指示线
 Plugin 'jiangmiao/auto-pairs' "自动补全括号等
 Plugin 'kien/ctrlp.vim' "在vim中搜索文件
-Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
+" Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
 "Plugin 'vim-syntastic/syntastic' "语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic' "语法检查
 Plugin 'nvie/vim-flake8' "falke代码风格检查
@@ -407,28 +407,29 @@ inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
-let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_select_completion = [ '<TAB>' ,'<Down>']
 "let g:ycm_key_list_select_completion=['<c-n>']
 
 "设置用于向上选择补全列表中的选项的快捷键，默认为shift+tab，和方向上键
 "let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 
 "设置用于关闭补全列表的快捷键，默认为ctrl+y
 let g:ycm_key_list_stop_completion =  ['<C-y>']
 
-let g:ycm_filetype_blacklist = {
-        \ 'tagbar' : 1,
-        \ 'qf' : 1,
-        \ 'notes' : 1,
-        \ 'markdown' : 1,
-        \ 'unite' : 1,
-        \ 'text' : 1,
-        \ 'vimwiki' : 1,
-        \ 'pandoc' : 1,
-        \ 'infolog' : 1,
-        \ 'mail' : 1
-        \}
+" let g:ycm_filetype_blacklist = {
+        " \ 'tagbar' : 1,
+        " \ 'qf' : 1,
+        " \ 'notes' : 1,
+        " \ 'markdown' : 1,
+        " \ 'unite' : 1,
+        " \ 'text' : 1,
+        " \ 'vimwiki' : 1,
+        " \ 'pandoc' : 1,
+        " \ 'infolog' : 1,
+        " \ 'mail' : 1
+        " \}
+
 let g:ycm_filetype_specific_completion_to_disable = {
         \ 'gitcommit': 1
         \}
@@ -455,7 +456,6 @@ let g:ycm_semantic_triggers =  {
   \   'lua' : ['.', ':'],
   \   'erlang' : [':'],
   \ }
-
 
 
 
@@ -1719,44 +1719,6 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
-function! Buf_total_num()
-    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-endfunction
-function! File_size(f)
-    let l:size = getfsize(expand(a:f))
-    if l:size == 0 || l:size == -1 || l:size == -2
-        return ''
-    endif
-    if l:size < 1024
-        return l:size.' bytes'
-    elseif l:size < 1024*1024
-        return printf('%.1f', l:size/1024.0).'k'
-    elseif l:size < 1024*1024*1024
-        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
-    else
-        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
-    endif
-endfunction
-set statusline=%<%1*[B-%n]%*
-" TOT is an abbreviation for total
-set statusline+=%2*[TOT:%{Buf_total_num()}]%*
-set statusline+=%3*\ %{File_size(@%)}\ %*
-set statusline+=%4*\ %F\ %*
-set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
-set statusline+=%6*\ %m%r%y\ %*
-set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
-set statusline+=%8*\ %P\ %*
-" default bg for statusline is 236 in space-vim-dark
-hi User1 cterm=bold ctermfg=232 ctermbg=179
-hi User2 cterm=None ctermfg=214 ctermbg=242
-hi User3 cterm=None ctermfg=251 ctermbg=240
-hi User4 cterm=bold ctermfg=169 ctermbg=239
-hi User5 cterm=None ctermfg=208 ctermbg=238
-hi User6 cterm=None ctermfg=246 ctermbg=237
-hi User7 cterm=None ctermfg=250 ctermbg=238
-hi User8 cterm=None ctermfg=249 ctermbg=240
-
 """"""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
 
 
@@ -1774,7 +1736,7 @@ let g:lightline = {
     \ 'component': {
     \ 'charvaluehex': '0x%B',
     \   'gitbranch': 'fugitive#head',
-    \   'helloworld': 'I am writing shit...'
+    \   'helloworld': 'I am writing something...'
     \ },
     \ 'component_function': {
     \   'filename': 'LightlineFilename',
@@ -1813,11 +1775,7 @@ endfunction
 set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"================30s,自动保存文件=============="
-let autosave=10
-
-
-"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格  """"""""""""""
+"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 """"""""""""""""""""""""""""""
 " let g:Powerline_colorscheme='solarized256'   
 " let g:Powerline_symbols= 'unicode'
 
@@ -1834,7 +1792,7 @@ let g:airline_powerline_fonts = 1
  
 "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
@@ -1878,6 +1836,51 @@ let g:airline_symbols.branch = '⎇'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
+function! Buf_total_num()
+    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+endfunction
+function! File_size(f)
+    let l:size = getfsize(expand(a:f))
+    if l:size == 0 || l:size == -1 || l:size == -2
+        return ''
+    endif
+    if l:size < 1024
+        return l:size.' bytes'
+    elseif l:size < 1024*1024
+        return printf('%.1f', l:size/1024.0).'k'
+    elseif l:size < 1024*1024*1024
+        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
+    else
+        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+    endif
+endfunction
+set statusline=%<%1*[B-%n]%*
+" TOT is an abbreviation for total
+set statusline+=%2*[TOT:%{Buf_total_num()}]%*
+set statusline+=%3*\ %{File_size(@%)}\ %*
+set statusline+=%4*\ %F\ %*
+set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+set statusline+=%6*\ %m%r%y\ %*
+set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
+set statusline+=%8*\ %P\ %*
+" default bg for statusline is 236 in space-vim-dark
+hi User1 cterm=bold ctermfg=232 ctermbg=179
+hi User2 cterm=None ctermfg=214 ctermbg=242
+hi User3 cterm=None ctermfg=251 ctermbg=240
+hi User4 cterm=bold ctermfg=169 ctermbg=239
+hi User5 cterm=None ctermfg=208 ctermbg=238
+hi User6 cterm=None ctermfg=246 ctermbg=237
+hi User7 cterm=None ctermfg=250 ctermbg=238
+hi User8 cterm=None ctermfg=249 ctermbg=240
+
+
+"====================================30s,自动保存文件========================================="
+let autosave=10
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
