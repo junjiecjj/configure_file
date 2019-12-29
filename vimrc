@@ -261,8 +261,9 @@ let g:openbrowser_search_engines = {
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 "寻找全局配置文件
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_min_num_of_chars_for_completion = 2
+
 "开始补全的字符数
+let g:ycm_min_num_of_chars_for_completion = 2
 
 "与syntastic有冲突，建议关闭
 let g:ycm_show_diagnostics_ui = 0
