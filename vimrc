@@ -162,7 +162,7 @@ set shiftwidth=4
 " 我的状态行显示的内容（包括文件类型和解码）
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
 "set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
-set laststatus=1                          " 2为总显示最后一个窗口的状态行
+set laststatus=2                          " 2为总显示最后一个窗口的状态行
                                           " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
                                           " 0不显示最后一个窗口的状态行 
 
@@ -201,8 +201,11 @@ set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
-" 设置状态栏主题风格
-"let g:Powerline_colorscheme='solarized256'   
+
+
+
+
+
 
 "让补全行为与一般IDE一样
 "set completeopt = preview,meun
@@ -455,11 +458,11 @@ let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 
 "taglist窗口显示在右侧，缺省为左侧
-let Tlist_Use_Right_Window =1
+let Tlist_Use_Right_Window =0
 
 "设置taglist窗口大小
 "let Tlist_WinHeight = 100
-let Tlist_WinWidth = 40
+let Tlist_WinWidth = 20
 
 "设置taglist打开关闭的快捷键F1
 map <F1> <Esc>:TlistToggle<Cr>
@@ -1261,6 +1264,11 @@ if version > 580
     endif
 endif
 
+if !has('gui_running')
+  set t_Co=256
+endif
+
+
 set background=dark
 colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
@@ -1705,8 +1713,12 @@ hi User7 cterm=None ctermfg=250 ctermbg=238
 hi User8 cterm=None ctermfg=249 ctermbg=240
 
 """"""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
+
+
+"landscape,solarized
+
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
+    \ 'colorscheme': 'landscape',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
@@ -1753,12 +1765,74 @@ function! LightlineFiletype()
 endfunction
 
 
-set laststatus=1
+set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "================30s,自动保存文件=============="
 let autosave=10
-"let g:airline_theme='papercolor'
+
+
+"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格  """"""""""""""
+" let g:Powerline_colorscheme='solarized256'   
+" let g:Powerline_symbols= 'unicode'
+
+let g:airline_theme='dark'
+
+"dark,murmur,powerlineish,serene
+
+"badwolf,kalisi,laederon,luna,murmur,powerlineish,simple,term,wombat,molokai,dark,serene,laederon,behelit,
+"durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
+
+
+"这个是安装字体后 必须设置此项" 
+let g:airline_powerline_fonts = 1 
+ 
+"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
+"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+ "设置切换Buffer快捷键"
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+
+" 设置中文提示
+language messages zh_CN.utf-8 
+" 设置中文帮助
+set helplang=cn
+" 设置为双字宽显示，否则无法完整显示如:☆
+set ambiwidth=double
+let g:airline#extensions#tabline#left_sep = ' '  "separater
+let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+let g:airline#extensions#tabline#formatter = 'default'  "formater
+
+" 关闭状态显示空白符号计数,这个对我用处不大"
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+
+" " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
+if has('win32')
+  set guifont=Hermit:h13
+  set guifontwide=Microsoft_YaHei_Mono:h12
+endif
+
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"old vim-powerline symbols
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头 
