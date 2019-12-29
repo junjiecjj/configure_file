@@ -1722,7 +1722,9 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 """"""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
 
 
-"landscape,solarized
+" wombat, solarized, powerline, powerlineish,jellybeans, molokai, seoul256, darcula, selenized_dark,
+" Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,Tomorrow_Night_Bright, Tomorrow_Night_Eighties,
+" PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
 
 let g:lightline = {
     \ 'colorscheme': 'landscape',
@@ -1875,6 +1877,8 @@ hi User5 cterm=None ctermfg=208 ctermbg=238
 hi User6 cterm=None ctermfg=246 ctermbg=237
 hi User7 cterm=None ctermfg=250 ctermbg=238
 hi User8 cterm=None ctermfg=249 ctermbg=240
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 "====================================30s,自动保存文件========================================="
