@@ -274,10 +274,10 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_python_binary_path = 'python'                   
 
 "选补全框内显示的补全条目的最大数量
-let g:ycm_max_num_candidates = 50
+let g:ycm_max_num_candidates = 60
 
-
-let g:ycm_max_num_identifier_candidates = 10
+"该选项控制基于identifiers-based引擎的最大候选补全项
+let g:ycm_max_num_identifier_candidates = 20
 
 
 " 设置YCM的日志记录级别，可以是debug，info，warning，error或critical。debug是最详细的
