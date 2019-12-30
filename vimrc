@@ -17,13 +17,13 @@ Plugin 'DoxygenToolkit.vim'		        " 注释文档生成
 Plugin 'VimTweak'					    " 背景透明插件
 Plugin 'ervandew/supertab'              " 补全记忆插件
 Plugin 'AutoComplPop'                   " 自动代码提示
-"Plugin 'othree/html5.vim'               " html全能补全
+Plugin 'othree/html5.vim'               " html全能补全
 Plugin 'tyru/open-browser.vim'          " 打开浏览器
 Plugin 'vim-scripts/indentpython.vim' "写python代码自动缩进
 Plugin 'Yggdroot/indentLine' "缩进指示线
 Plugin 'jiangmiao/auto-pairs' "自动补全括号等
 Plugin 'kien/ctrlp.vim' "在vim中搜索文件
-" Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
+Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
 "Plugin 'vim-syntastic/syntastic' "语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic' "语法检查
 Plugin 'nvie/vim-flake8' "falke代码风格检查
@@ -55,7 +55,6 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'mattn/emmet-vim'
-Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
@@ -1902,8 +1901,8 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
-" let g:Powerline_colorscheme='solarized256'   
-" let g:Powerline_symbols= 'unicode'
+let g:Powerline_colorscheme='solarized256'   
+let g:Powerline_symbols= 'unicode'
 
 let g:airline_theme='dark'
 
