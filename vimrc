@@ -409,19 +409,27 @@ if !exists('g:AutoComplPop_Behavior')
 		\ })
 endif
  
-"************************************************
-"************************************************
-" open-browser配置 打开浏览器
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""
 " 参考：https://mounui.com/343.html
-"************************************************
+"1. 正常模式下光标移动到url上输入 gx 即可打开网址，光标移动到词组上可用设置的引擎搜索改词组；
+"2. 可视模式下输入 gx  即可搜索选中的内容；
+
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-open)
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 " 搜索引擎配置
-let g:openbrowser_default_search = 'Goole'
+let g:openbrowser_default_search = 'goole'
 let g:openbrowser_search_engines = {
-\  'goole': 'https://www.google.com.hk/?hl=zh_CN',
+\  'goole': 'https://www.google.com',
 \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 "寻找全局配置文件
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
