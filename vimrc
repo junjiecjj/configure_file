@@ -41,14 +41,14 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
-Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   "在vim中搜索文件
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   "在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'
+Plugin 'itchyny/lightline.vim'  "美化状态栏，显示正在编辑的文件
 Plugin 'rking/ag.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'   "美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'   "美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -220,11 +220,22 @@ nnoremap <silent> <Leader>m :Leaderf mru<CR>
 "Buffer
 nnoremap <silent> <Leader>b :Leaderf buffer<CR>
 
-"函数搜索（仅当前文件里）
+"函数搜索（仅当前文件里），依赖ctags插件
 nnoremap <silent> <Leader>F :Leaderf function<CR>
 
 "模糊搜索，很强大的功能，迅速秒搜
 nnoremap <silent> <Leader>rg :Leaderf rg<CR>
+
+" <C-C>, <ESC> : 退出 LeaderF.
+" <C-R> : 在模糊匹配和正则式匹配之间切换
+" <C-F> : 在全路径搜索和名字搜索之间切换
+" <Tab> : 在检索模式和选择模式之间切换
+" <C-J>, <C-K> : 在结果列表里选择
+" <C-X> : 在水平窗口打开
+" <C-]> : 在垂直窗口打开
+" <C-T> : 在新标签打开
+" <C-P> : 预览结果
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -494,7 +505,8 @@ let g:NERDSpaceDelims=1
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 
 "启动vim后自动打开taglist窗口
-let Tlist_Auto_Open = 1
+"打开文件时候不自动打开Taglist窗口
+let Tlist_Auto_Open = 0
 
 "不同时显示多个文件的tag，仅显示一个
 let Tlist_Show_One_File = 1
@@ -516,8 +528,6 @@ map <F1> <Esc>:TlistToggle<Cr>
 "更新ctags标签文件快捷键设置
 noremap <F6> :!ctags -R<CR>
 
-"打开文件时候不自动打开Taglist窗口
-let Tlist_Auto_Open=0
 
 
 """""""""""""""""""vim-rainbow配置""""""""""""""""""""
@@ -1008,7 +1018,6 @@ if &t_Co > 255
 end
 
 set background=dark
-filetype on
 set autoindent
 
 " 设置编辑时制表符占用空格数
@@ -1608,25 +1617,7 @@ set t_Co=256
 
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
-"一键执行python代码
-map <F5> :call RunPython()<CR> "一键执行python代码
-map <C-n> :NERDTreeToggle<CR>
 
-func! RunPython()
-    exec "W" 
-    if &filetype=='python'
-        exec"!time python3.6 %" 
-    endif
-endfunc                       "或者把python3.6改为python解释器的位置：/home/jack/anaconda3/bin/python3
-
-
-"C,C++的调试
-map <F8> :call Rungdb()<CR>
-func! Rungdb()
-    exec "w"
-    exec "!g++ % -g -o %<"
-    exec "!gdb ./%<"
-endfunc
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
@@ -1682,6 +1673,26 @@ if has("autocmd")
 endif
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
+"一键执行python代码
+map <F5> :call RunPython()<CR> "一键执行python代码
+
+func! RunPython()
+    exec "W" 
+    if &filetype=='python'
+        exec"!time python3.6 %" 
+    endif
+endfunc                       "或者把python3.6改为python解释器的位置：/home/jack/anaconda3/bin/python3
+
+
+"C,C++的调试
+map <F8> :call Rungdb()<CR>
+func! Rungdb()
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
+endfunc
+
+
 " <F5>编译C/C++/java/，<F6>运行C/C++/java
 " <F5>解释运行python/sh
 augroup ccompile
@@ -1777,7 +1788,7 @@ endfunction
 set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 """"""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
 " let g:Powerline_colorscheme='solarized256'   
 " let g:Powerline_symbols= 'unicode'
 
@@ -1794,7 +1805,7 @@ let g:airline_powerline_fonts = 1
  
 "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
