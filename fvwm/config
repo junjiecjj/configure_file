@@ -86,6 +86,7 @@ SetEnv fvwm_background     $[fvwm_img]/background
 SetEnv fvwm_bgicons        $[fvwm_img]/bgicons
 SetEnv fvwm_exicons1       $[fvwm_icons]/48x48-crystalclear
 SetEnv fvwm_exicons2       $[fvwm_icons]/16x16-crystalclear
+SetEnv fvwm_exicons3       $[fvwm_icons]/64x64-crystalclear
 
 ImagePath +$[fvwm_icons]:$[fvwm_icons];.png:+
 ImagePath +$[fvwm_background]:$[fvwm_background];.png:+
@@ -332,7 +333,7 @@ Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化时上下左右离屏幕的距离,命令格式为“EwmhBaseStruts 左 右 上 下”
-EwmhBaseStruts 110 20 25 20
+EwmhBaseStruts  110 0 0 0
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -357,7 +358,7 @@ Style * DecorateTransient, #Layer 4
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
 Style   *term*     TitleAtLeft
 Style   *konsole   TitleAtLeft
-Style   *urxvt*   TitleAtLeft
+Style   *urxvt*    TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -392,8 +393,10 @@ Style * BorderColorset 3, HilightBorderColorset 4
 
 # Disable Icons from appearing on desktop.
 # Comment this out or use Style * Icon to get the icons back.
-#Style * !Icon
-Style * Icon
+Style * !Icon
+Style  "xterm*"        Icon
+Style  "Terminator*"   Icon
+Style  "urxvt*"        Icon
 IconFont   "StringEncoding=UTF-8:xft:文泉驿微米黑:style=Bold:antialias=True:size=10:encoding=iso10646-1"
 
 Style *xclock*  StaysOnTop, NoTitle, Sticky, WindowListSkip
@@ -484,7 +487,7 @@ Style         "wpspdf"                   TitleAtLeft,  HilightColorset 22
 ###########################################
 #Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
 Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
-Style "urxvt" Icon $[fvwm_exicons2]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
+Style "urxvt" Icon $[fvwm_exicons1]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
 Style "gvim" Icon $[fvwm_exicons2]/vim.png, MiniIcon $[fvwm_exicons2]/vim.png
 
 #######
@@ -1031,14 +1034,14 @@ Silent Key   F11		A	C	Maximize
 Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
 
 # Ctrl+q 关闭当前窗口，直至退出桌面对话框
-Silent Key   q        A  C   Close
+Silent Key   q        A  CS   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
 Silent  Key   w        w    M   Iconify
 
 # Ctrl+shift+q 关闭当前page所有窗口
-Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
+#Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
 
 # shift + win_L 最大化当前page的所有窗口
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
@@ -1486,7 +1489,8 @@ DestroyModuleConfig MyDock:*
 *MyDock: Pixmap none
 *MyDock: ShowTips
 *MyDock: Font "Shadow=3:StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1:pixelsize=14:minspace=True:antialias=True"
-#*MyDock: (2x1, Frame 0, Title(Center) "FVWM")
+
+#*MyDock: (1x2, Frame 0, Title(Center) "FVWM")
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec xterm`, \
@@ -1530,7 +1534,7 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 3) `Exec exec mpv`)
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/spyder.png, \
-  Action(Mouse 1) `Exec exec spyder &`,\
+  Action(Mouse 1) `Exec exec /home/jack/anaconda3/bin/spyder &`,\
   Action(Mouse 2) `Exec exec anaconda-navigator &`,\
   Action(Mouse 3) `Exec exec intellij &`)
 
@@ -1541,4 +1545,5 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 4) `Exec exec /usr/NX/bin/nxplayer `,\
   Action(Mouse 5) `Exec exec vncviewer`,)
 
+#*MyButtons: (1x1, Frame 0)
 ################### Dock结束######################################
