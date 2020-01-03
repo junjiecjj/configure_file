@@ -1572,7 +1572,7 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 :hi Type   ctermfg=13 cterm=bold
 :hi Constant ctermfg=4 
 :hi String ctermfg=10
-:hi Statement   ctermfg=1 cterm=bold
+:hi Statement   ctermfg=1   cterm=bold
 :hi Search    ctermfg=10 
 :hi Include ctermfg=13
 :hi Directory ctermfg=11
@@ -1673,10 +1673,12 @@ hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 
 "if、then、else、endif、switch
 ":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
-hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
+" hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
+hi Conditional  guifg=#6699CC    ctermfg=200     cterm=bold  " if else end
 
 "for、do、while 等
-hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
+" hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
+hi  Repeat  guifg=#6699CC    ctermfg=200    cterm=bold  " for while
 "hi Repeat ctermbg=16  ctermfg=11 cterm=bold
 
 "case、default 等
