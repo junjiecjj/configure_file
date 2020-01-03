@@ -27,6 +27,9 @@ Plugin 'kien/ctrlp.vim'                 "在vim中搜索文件
 "Plugin 'vim-syntastic/syntastic'       "语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic'          "语法检查
 Plugin 'nvie/vim-flake8'                "falke代码风格检查
+Plugin 'lervag/vimtex'                  "latex插件
+Plugin 'SirVer/ultisnips'               "安装引擎 
+Plugin 'honza/vim-snippets'             "安装代码块集合
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chxuan/change-colorscheme'
@@ -199,7 +202,8 @@ set guioptions-=m           " 隐藏菜单栏
 
 
 set cursorline 
-hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine cterm=underline 
 
 set showcmd                    " 输入的命令显示出来，看的清楚些  
 set showmode
@@ -369,9 +373,49 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
+""""""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""
+" 按键    效果             模式
+" \li     文件信息显示         n
+" \lt     打开目录            n
+" \ll     编译文档           n
+" \lv     查看文档           n
+" \lc     清除latex编译文件    n
 
+
+"如果用了自动补全的插件, 需要设置:不然会变得好慢.
+let g:vimtex_fold_manual=1
+
+"我们知道, 在Terminal里, 用pdflatex testLaTeX.tex
+"在vim里, 我们可以用: !pdflatex %   来编译当前文档. 其中, %代表当前文档名. 结果如下
+
+
+imap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
+nmap <F2> <ESC>:w<CR>:!xelatex % && open %:r.pdf<CR><CR>
+" 当你再按一下<F2>键, 就可以编译+打开文档了. 在这里, 我们解析一下这一行代码的含义.
+
+" imap和nmap是定义映射的命令. 开头的i代表insert模式的映射, n代表normal模式下的映射. 如果想定义一个对于所有模式的映射, 可以直接用map来定义.
+" <F2>: 是映射的快捷键.
+" <ESC>:w<CR>: 退出编辑模式, 并保存.
+" :!pdflatex %: 用pdflatex编译该文件.
+" open %:r.pdf<CR><CR>打开编译出来的pdf文件.
+" &&: 命令的连接.
+" ~/.vim/ftplugin/tex.vim: 这是tex文件的local配置文件, 如果没有, 可以自己创建.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""
+
+let g:UltiSnipsExpandTrigger="<tab>"
+" 使用 tab 切换下一个触发点，shit+tab 上一个触发点
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+" 使用 UltiSnipsEdit 命令时垂直分割屏幕
+let g:UltiSnipsEditSplit="vertical"
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 "让补全行为与一般IDE一样
 "set completeopt = preview,meun
