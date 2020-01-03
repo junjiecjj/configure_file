@@ -1673,13 +1673,12 @@ hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 
 "if、then、else、endif、switch
 ":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
-" hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
-hi Conditional  guifg=#6699CC    ctermfg=196     cterm=bold  " if else end
+hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
+" hi Conditional  guifg=#6699CC    ctermfg=196     cterm=bold  " if else end
 
 "for、do、while 等
-" hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
-hi  Repeat  guifg=#6699CC    ctermfg=196    cterm=bold  " for while
-"hi Repeat ctermbg=16  ctermfg=11 cterm=bold
+hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
+" hi  Repeat  guifg=#6699CC    ctermfg=196    cterm=bold  " for while
 
 "case、default 等
 hi Label           ctermfg=229               cterm=bold
@@ -1687,8 +1686,6 @@ hi Label           ctermfg=229               cterm=bold
 
 "int、long、char、float、double 等
 hi  Type   ctermfg=200     cterm=bold
-" hi  Type   ctermfg=57     cterm=bold
-"hi  Type   ctermfg=13    cterm=bold
 
 "一个布尔型常数: TRUE、false
 " hi  Boolean ctermfg=196  cterm=bold
