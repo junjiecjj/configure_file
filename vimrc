@@ -106,8 +106,13 @@ set textwidth=70                   "来设置 n
 "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用 
 "set nowrap                             "不自动折行
 set wrap                              "设置自动折行
+set linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
+set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
+set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
+set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。"
 
-" <F2> 行号开关
+
+"<F2> 行号开关
 nnoremap <F2> :call HideNumber()<CR>
 
 set clipboard=unnamed                  "系统剪切板
@@ -184,7 +189,7 @@ filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
 " 将制表符扩展为空格
-set expandtab
+set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
 set laststatus=2            "显示当前编辑文件名
 set cursorline              "光标所在行一横线
 set cursorcolumn              "光标所在行一竖线
@@ -214,7 +219,12 @@ setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
 
-""""""""""""""""""" LeaderF 设置 """""""""""""""""""
+
+
+
+
+
+"""""""""""""""""" LeaderF 设置 """""""""""""""""""
 " Ctrl + p 打开文件搜索
 let g:Lf_ShortcutF = '<c-p>'    
 "\p 打开函数列表
@@ -385,6 +395,18 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 "如果用了自动补全的插件, 需要设置:不然会变得好慢.
 let g:vimtex_fold_manual=1
 
+let g:vimtex_latexmk_options='-pdf -pdflatex="xelatex -synctex=1 \%S \%O" -verbose -file-line-error -interaction=nonstopmode'
+let g:tex_flavor='latex'
+let g:vimtex_view_method='skim'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+let g:polyglot_disabled = ['latex']
+"估计大家都打开了换行时自动对齐的功能，但是有没有发现这样一个问题，在用 itemize 的时候，每一个 item 都会自动缩进两个，非常麻烦
+let g:tex_indent_items=0    
+
+"%! Tex program = xelatex
 "我们知道, 在Terminal里, 用pdflatex testLaTeX.tex
 "在vim里, 我们可以用: !pdflatex %   来编译当前文档. 其中, %代表当前文档名. 结果如下
 
@@ -401,6 +423,14 @@ nmap <F2> <ESC>:w<CR>:!xelatex % && open %:r.pdf<CR><CR>
 " &&: 命令的连接.
 " ~/.vim/ftplugin/tex.vim: 这是tex文件的local配置文件, 如果没有, 可以自己创建.
 
+
+
+" set spell   "经常写英文的人会用得到的，一不小心打错单词了，Vim 会在单词上加一个下划线提示。你还可以把你认为正确的特殊单词加到字典里面
+" autocmd BufNewFile,BufRead *.tex set spell     " 把这句话加到 .vimrc 里面可以在打开 .tex 文件的时候自动进行拼写检查。
+" set spelllang=en
+
+" autocmd FileType * setlocal spell spelllang=en_us,cjk
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""
@@ -411,7 +441,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 " 使用 UltiSnipsEdit 命令时垂直分割屏幕
 let g:UltiSnipsEditSplit="vertical"
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1773,6 +1802,19 @@ hi Normal       term=bold        ctermfg=231   cterm=bold  "7,15,195,225,231,253
 hi NonText         ctermfg=1  cterm=bold
 
 set t_Co=256  
+
+if has("spell")
+
+    hi SpellBad     gui=undercurl
+
+    hi SpellCap     gui=undercurl
+
+    hi SpellLocal   gui=undercurl
+
+    hi SpellRare    gui=undercurl
+
+endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
