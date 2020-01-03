@@ -19,24 +19,24 @@ Plugin 'ervandew/supertab'              " 补全记忆插件
 Plugin 'AutoComplPop'                   " 自动代码提示
 Plugin 'othree/html5.vim'               " html全能补全
 Plugin 'tyru/open-browser.vim'          " 打开浏览器
-Plugin 'vim-scripts/indentpython.vim' "写python代码自动缩进
-Plugin 'Yggdroot/indentLine' "缩进指示线
-Plugin 'jiangmiao/auto-pairs' "自动补全括号等
-Plugin 'kien/ctrlp.vim' "在vim中搜索文件
-Plugin 'Lokaltog/vim-powerline' "美化状态栏，显示正在编辑的文件
-"Plugin 'vim-syntastic/syntastic' "语法检查,会导致保存python文件时很慢
-"Plugin 'scrooloose/syntastic' "语法检查
-Plugin 'nvie/vim-flake8' "falke代码风格检查
+Plugin 'vim-scripts/indentpython.vim'   "写python代码自动缩进
+Plugin 'Yggdroot/indentLine'            "缩进指示线
+Plugin 'jiangmiao/auto-pairs'           "自动补全括号等
+Plugin 'kien/ctrlp.vim'                 "在vim中搜索文件
+"Plugin 'Lokaltog/vim-powerline'        "美化状态栏，显示正在编辑的文件
+"Plugin 'vim-syntastic/syntastic'       "语法检查,会导致保存python文件时很慢
+"Plugin 'scrooloose/syntastic'          "语法检查
+Plugin 'nvie/vim-flake8'                "falke代码风格检查
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chxuan/change-colorscheme'
-Plugin 'tell-k/vim-autopep8' "按照pep8的标准自动格式化代码
-Plugin 'scrooloose/nerdtree' "添加树形目录
-Plugin 'jistr/vim-nerdtree-tabs' "想用tab键
-Plugin 'tmhedberg/SimpylFold' "自动折叠
+Plugin 'tell-k/vim-autopep8'               "按照pep8的标准自动格式化代码
+Plugin 'scrooloose/nerdtree'               "添加树形目录
+Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
+Plugin 'tmhedberg/SimpylFold'              "自动折叠
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive' "在vim中执行git命令
-Plugin 'Valloric/YouCompleteMe' "自动补全
+Plugin 'tpope/vim-fugitive'                "在vim中执行git命令
+Plugin 'Valloric/YouCompleteMe'             "自动补全
 Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
@@ -45,10 +45,10 @@ Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   "在vim中搜索文件
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   "在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'  "美化状态栏，显示正在编辑的文件
+Plugin 'itchyny/lightline.vim'               "美化状态栏，显示正在编辑的文件
 Plugin 'rking/ag.vim'
-Plugin 'vim-airline/vim-airline'   "美化状态栏，显示正在编辑的文件
-Plugin 'vim-airline/vim-airline-themes'   "美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline'             "美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'      "美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -96,7 +96,13 @@ set hlsearch                     "搜索高亮"
 set foldenable                         "允许折叠
 set foldmethod=indent                  "更具每行的缩进开启折叠 ，manual为手动折叠
 set foldlevel=100
-set nowrap                             "不自动折叠"
+
+"自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
+set textwidth=70                   "来设置 n
+
+"自动折行 是把长的一行用多行显示 , 不在文件里加换行符用 
+"set nowrap                             "不自动折行
+set wrap                              "设置自动折行
 
 " <F2> 行号开关
 nnoremap <F2> :call HideNumber()<CR>
@@ -1849,6 +1855,8 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 " Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,Tomorrow_Night_Bright, Tomorrow_Night_Eighties,
 " PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
 
+"molokai,landscape,solarized,
+
 let g:lightline = {
     \ 'colorscheme': 'landscape',
     \ 'active': {
@@ -1859,9 +1867,8 @@ let g:lightline = {
     \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
     \ },
     \ 'component': {
-    \ 'charvaluehex': '0x%B',
+    \   'charvaluehex': '0x%B',
     \   'gitbranch': 'fugitive#head',
-    \   'helloworld': 'I am writing something...'
     \ },
     \ 'component_function': {
     \   'filename': 'LightlineFilename',
@@ -1869,6 +1876,8 @@ let g:lightline = {
     \   'filetype': 'LightlineFiletype',
     \ },
     \ }
+
+    "\   'helloworld': 'I am writing something...'
 
 
 function! LightlineMode()
@@ -1901,63 +1910,62 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
-let g:Powerline_colorscheme='solarized256'   
-let g:Powerline_symbols= 'unicode'
+" " let g:Powerline_colorscheme='solarized256'   
+" " let g:Powerline_symbols= 'unicode'
 
-let g:airline_theme='dark'
+" let g:airline_theme='dark'
 
-"dark,murmur,powerlineish,serene
+" "dark,murmur,powerlineish,serene
 
-"badwolf,kalisi,laederon,luna,murmur,powerlineish,simple,term,wombat,molokai,dark,serene,laederon,behelit,
-"durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
+" "badwolf,kalisi,laederon,luna,murmur,powerlineish,simple,term,wombat,molokai,dark,serene,laederon,behelit,
+" "durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
 
 
-"这个是安装字体后 必须设置此项" 
-let g:airline_powerline_fonts = 1 
+" "这个是安装字体后 必须设置此项" 
+" let g:airline_powerline_fonts = 1 
  
-"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
-"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
-let g:airline#extensions#tabline#enabled = 0
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
+" "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
+" let g:airline#extensions#tabline#enabled = 0
+" let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
- "设置切换Buffer快捷键"
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
+"  "设置切换Buffer快捷键"
+" nnoremap [b :bp<CR>
+" nnoremap ]b :bn<CR>
 
-" 设置中文提示
-language messages zh_CN.utf-8 
-" 设置中文帮助
-set helplang=cn
-" 设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double
-let g:airline#extensions#tabline#left_sep = ' '  "separater
-let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
-let g:airline#extensions#tabline#formatter = 'default'  "formater
+" " 设置中文提示
+" language messages zh_CN.utf-8 
+" " 设置中文帮助
+" set helplang=cn
+" " 设置为双字宽显示，否则无法完整显示如:☆
+" set ambiwidth=double
+" let g:airline#extensions#tabline#left_sep = ' '  "separater
+" let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+" let g:airline#extensions#tabline#formatter = 'default'  "formater
 
-" 关闭状态显示空白符号计数,这个对我用处不大"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
+" " 关闭状态显示空白符号计数,这个对我用处不大"
+" let g:airline#extensions#whitespace#enabled = 0
+" let g:airline#extensions#whitespace#symbol = '!'
 
-" " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
-if has('win32')
-  set guifont=Hermit:h13
-  set guifontwide=Microsoft_YaHei_Mono:h12
-endif
+" " " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
+" if has('win32')
+"   set guifont=Hermit:h13
+"   set guifontwide=Microsoft_YaHei_Mono:h12
+" endif
 
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+" endif
 
-"old vim-powerline symbols
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-
+" "old vim-powerline symbols
+" let g:airline_left_sep = '▶'
+" let g:airline_left_alt_sep = '❯'
+" let g:airline_right_sep = '◀'
+" let g:airline_right_alt_sep = '❮'
+" let g:airline_symbols.linenr = '¶'
+" let g:airline_symbols.branch = '⎇'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2000,7 +2008,6 @@ hi User5 cterm=None ctermfg=208 ctermbg=238
 hi User6 cterm=None ctermfg=246 ctermbg=237
 hi User7 cterm=None ctermfg=250 ctermbg=238
 hi User8 cterm=None ctermfg=249 ctermbg=240
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
