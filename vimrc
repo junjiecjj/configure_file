@@ -95,17 +95,25 @@ set fileencodings=utf-8,cp936,ucs-bom
 set mouse=a                     "启动鼠标
 set hlsearch                     "搜索高亮"
 
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容并离开
+nmap <Leader>wq :wq<CR>
+
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+
 "折叠
 set foldenable                         "允许折叠
 set foldmethod=indent                  "更具每行的缩进开启折叠 ，manual为手动折叠
 set foldlevel=100
 
 "自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
-set textwidth=70                   "来设置 n
+" set textwidth=70                   "来设置 n
 
 "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用 
-"set nowrap                             "不自动折行
-set wrap                              "设置自动折行
+set nowrap                             "不自动折行
+" set wrap                              "设置自动折行
 set linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
 set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
 set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
