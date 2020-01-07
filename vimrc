@@ -33,7 +33,7 @@ Plugin 'honza/vim-snippets'             "安装代码块集合
 Plugin 'fholgado/minibufexpl.vim'       "多文档编辑
 Plugin 'vim-scripts/winmanager'         "多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'   "vim多重光标选取插件
-Plugin 'gorodinskiy/vim-coloresque'    "颜色符号显示对应颜色
+Plugin 'gorodinskiy/vim-coloresque'     "颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chxuan/change-colorscheme'
@@ -976,9 +976,17 @@ nmap <silent> <C-Right> :wincmd l<CR>
 " fp - 移动光标到字符p
 " <C-n> - 即Ctrl+n, 选择当前单词poorly_named_var
 " <C-n><C-n> - 每按一次<C-n>向下选取一个同样的单词, 这里选择下面的两个pooly_named_var
-" c - 按c开始修改
+" c - 按c开始修改,选中后, 可以进行增删替换a/c/x等
 " name - 输入要修改的内容, 这里是name
 " 按<Esc>回到正常的模式
+
+" 关闭插件默认映射
+" let g:multi_cursor_use_default_mapping=0
+" " Default mapping
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
