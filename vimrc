@@ -30,6 +30,10 @@ Plugin 'nvie/vim-flake8'                "falke代码风格检查
 Plugin 'lervag/vimtex'                  "latex插件
 Plugin 'SirVer/ultisnips'               "安装引擎 
 Plugin 'honza/vim-snippets'             "安装代码块集合
+Plugin 'fholgado/minibufexpl.vim'       "多文档编辑
+Plugin 'vim-scripts/winmanager'         "多窗口管理器
+Plugin 'terryma/vim-multiple-cursors'   "vim多重光标选取插件
+Plugin 'gorodinskiy/vim-coloresque'    "颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'chxuan/change-colorscheme'
@@ -38,6 +42,8 @@ Plugin 'scrooloose/nerdtree'               "添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
 Plugin 'tmhedberg/SimpylFold'              "自动折叠
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'       " add beautiful icons besides Files
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " enhance devicons
 Plugin 'tpope/vim-fugitive'                "在vim中执行git命令
 Plugin 'Valloric/YouCompleteMe'             "自动补全
 Plugin 'Raimondi/delimitMate'
@@ -227,7 +233,7 @@ setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
 
-"""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""
 " 命令行模式
 " ds "              删除一个配对符号 (delete a surrounding)
 " cs "              更改一个配对符号 (change a surrounding)
@@ -240,11 +246,15 @@ set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 " Ctrl + s                    增加一个配对符号
 " Ctrl +s, Ctrl +s        在整行增加一个配对符号，配对符号单独成行并进行缩进
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
-"""""""""""""""""" LeaderF 设置 """""""""""""""""""
+"""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""
+
+" 安装ctags
+" sudo apt-get install ctags
+
 " Ctrl + p 打开文件搜索
 let g:Lf_ShortcutF = '<c-p>'    
 "\p 打开函数列表
@@ -276,7 +286,7 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 " <C-P> : 预览结果
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <C-p> :Files<CR>
@@ -284,10 +294,13 @@ nnoremap <silent> <C-p> :Files<CR>
 
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
+
 "<Leader>b切换Buffer中的文件
 nnoremap <silent> <Leader>b :Buffers<CR>
+
 "<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
 nnoremap <silent> <Leader>p :Lines<CR>
+
 "<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 nnoremap <silent> <Leader>h :History<CR>
 
@@ -403,7 +416,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
-""""""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
 " 按键    效果             模式
 " \li     文件信息显示         n
 " \lt     打开目录            n
@@ -451,9 +464,9 @@ nmap <F2> <ESC>:w<CR>:!xelatex % && open %:r.pdf<CR><CR>
 
 " autocmd FileType * setlocal spell spelllang=en_us,cjk
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""""""""""
 
 let g:UltiSnipsExpandTrigger="<tab>"
 " 使用 tab 切换下一个触发点，shit+tab 上一个触发点
@@ -510,7 +523,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
 " 参考：https://mounui.com/343.html
 "1. 正常模式下光标移动到url上输入 gx 即可打开网址，光标移动到词组上可用设置的引擎搜索改词组；
 "2. 可视模式下输入 gx  即可搜索选中的内容；
@@ -525,7 +538,7 @@ let g:openbrowser_search_engines = {
 \  'goole': 'https://www.google.com',
 \}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
@@ -684,7 +697,7 @@ let g:ycm_semantic_triggers =  {
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
 
 
-"************************************************************
+"*****************************************************************************************************
 augroup VimCSS3Syntax
   autocmd!
 
@@ -693,7 +706,7 @@ augroup END
 
 "************************************************************
 
-""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""
 "The NERD Commenter
 "注释符号后面空一格
 let g:NERDSpaceDelims=1
@@ -710,7 +723,7 @@ let g:NERDSpaceDelims=1
 " Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 
-""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
 
 "设置ctags路径
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
@@ -741,7 +754,7 @@ noremap <F6> :!ctags -R<CR>
 
 
 
-"""""""""""""""""""vim-rainbow配置""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""vim-rainbow配置""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " rainbow 对于不同的括号，渲染成不同颜色
 let g:rainbow_active = 1
@@ -768,9 +781,9 @@ let g:rainbow_conf = {
             \   }
             \}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 let g:rbpt_colorpairs = [
@@ -804,18 +817,71 @@ au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons "
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
 "autocmd vimenter * NERDTree
-map <C-n> :NERDTreeToggle<CR>
+
+
+let g:NERDTreeChDirMode = 2  "Change current folder as root
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
+
+" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
+nmap <Leader>fl :NERDTreeToggle<CR>
+
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="right"
+
+map <C-f> :NERDTreeToggle<CR>
+
+" 开启Nerdtree时自动显示Bookmarks
+let NERDTreeShowBookmarks=1
+
 " 设置宽度
 let NERDTreeWinSize=16
+
+" 显示隐藏文件
 let NERDTreeShowHidden=1
+
+let g:NERDTreeHidden=1     " Don't show hidden files
+
+" 删除文件时自动删除文件对应 buffer
+let NERDTreeAutoDeleteBuffer=1
+
 let g:NERDTreeShowIgnoredStatus =1
-let g:nerdtree_tabs_open_on_console_startup=0  "是否打开目录树
+
+"是否打开目录树
+let g:nerdtree_tabs_open_on_console_startup=0
+
+let NERDTreeQuitOnOpen=1   " Close NERDtree when files was opened
+let NERDTreeMinimalUI=1    " Start NERDTree in minimal UI mode (No help lines)
+let NERDTreeDirArrows=1    " Display arrows instead of ascii art in NERDTree
+let NERDTreeChDirMode=2    " Change current working directory based on root directory in NERDTree
+
 " 显示目录行号
-let NERDTreeShowLineNumbers=0
+let NERDTreeShowLineNumbers=1
+"设置树的显示图标
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
+let g:NERDTreeIndicatorMapCustom = { 
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+\ }
+
+
 let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 let g:NERDTreeIndicatorMapCustom = {
@@ -832,13 +898,86 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 
+"""""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""
+" Tab : 向前循环切换到每个buffer上
+" Shift - Tab : 向后循环切换到每个buffer上
+" Enter : 打开光标所在的buffer
+" d : 删除光标所在的buffer
+" 命令
+" 在一般模式下
+
+" // 打开当前buffer的下一个buffer
+" :bn
+
+" // 打开当强buffer的上一个buffer
+" :bp
+
+" // 打开编号为<num>(即每个buffer前面的数字)的buffer, 
+" :b<num>
+
+" C-w,h j k l    向"左,下,上,右"切换窗口.
+let g:miniBufExplMapWindowNavVim = 1 
+
+" 是用<C-箭头键>切换到上下左右窗口中去
+let g:miniBufExplMapWindowNavArrows = 1
+
+"解决FileExplorer窗口变小问题  
+let g:miniBufExplForceSyntaxEnable = 1  
+let g:miniBufExplorerMoreThanOne=2
+
+let g:miniBufExplModSelTarget = 1  
+let g:miniBufExplMoreThanOne=0
+
+" 以下的两个功能需要在~/.vimrc中增加:
+let g:miniBufExplMapCTabSwitchBufs = 1
+" 试用了下MiniBufferExplore，发现其支持Buffer Explorer的快捷键
+" 输入\be在当前窗口浏览缓存
+" \bv垂直打开一个窗口浏览缓存。
+
+" \bs水平打开一个窗口浏览缓存
+" 如果打开的文件太多在一个平面显示不下，还可以在buffer中用“s” 快捷键排序
+
+
+
+" 显示/隐藏 MiniBufExplorer 窗口
+map <Leader>bl :MBEToggle<cr>
+" buffer 切换快捷键
+map <C-Tab> :MBEbn<cr>
+map <C-S-Tab> :MBEbp<cr>
+
+
+""""""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
+
+let g:winManagerWindowLayout='FileExplorer'
+nmap wm :WMToggle<cr>
+
+
+" 配置Ctrl + 方向键在窗口之间切换
+nmap <silent> <C-Up> :wincmd k<CR>
+nmap <silent> <C-Down> :wincmd j<CR>
+nmap <silent> <C-Left> :wincmd h<CR>
+nmap <silent> <C-Right> :wincmd l<CR>
+
+""""""""""""""""""""""""""""" Vim-multiple-cursors(vim多重光标选取插件)   """""""""""""""""""""""""""""
+" 2G - 跳转到第2行
+" fp - 移动光标到字符p
+" <C-n> - 即Ctrl+n, 选择当前单词poorly_named_var
+" <C-n><C-n> - 每按一次<C-n>向下选取一个同样的单词, 这里选择下面的两个pooly_named_var
+" c - 按c开始修改
+" name - 输入要修改的内容, 这里是name
+" 按<Esc>回到正常的模式
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""""""""""
 nnoremap <leader>p  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = ''
+
+
 """""""""""""""""""""""""""""""""""""""""配置ale""""""""""""""""""""""""""""""""""""""""
 "let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -915,7 +1054,7 @@ augroup YourGroup
     autocmd!
     autocmd User ALELint call YourFunction()
 augroup END
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -948,7 +1087,7 @@ augroup VimCSS3Syntax
 augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""配置vim-javascript"""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""配置vim-javascript"""""""""""""""""""""""""""""""""""""""""""
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
@@ -966,7 +1105,8 @@ let g:javascript_conceal_arrow_function       = "⇒"
 let g:javascript_conceal_noarg_arrow_function = " "
 let g:javascript_conceal_underscore_arrow_function = " "
 set conceallevel=1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
@@ -1831,17 +1971,20 @@ hi NonText         ctermfg=1  cterm=bold
 set t_Co=256  
 
 if has("spell")
-
     hi SpellBad     gui=undercurl
-
     hi SpellCap     gui=undercurl
-
     hi SpellLocal   gui=undercurl
-
     hi SpellRare    gui=undercurl
-
 endif
 
+
+" MiniBufExpl Colors
+" hi MBENormal               guifg=#808080 guibg=fg
+" hi MBEChanged              guifg=#CD5907 guibg=fg
+" hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+" hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+" hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+" hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
