@@ -290,6 +290,8 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
 
+"TagList插件依赖ctags插件
+
 "设置ctags路径
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 
