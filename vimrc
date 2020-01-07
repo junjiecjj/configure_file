@@ -12,7 +12,6 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
 Plugin 'molokai'		                " 配色方案
-Plugin 'colorizer'                      " css颜色显示插件
 Plugin 'DoxygenToolkit.vim'		        " 注释文档生成
 Plugin 'VimTweak'					    " 背景透明插件
 Plugin 'ervandew/supertab'              " 补全记忆插件
@@ -36,16 +35,20 @@ Plugin 'terryma/vim-multiple-cursors'   "vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'     "颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'easymotion/vim-easymotion'      "强大的搜索定位
+Plugin 'godlygeek/tabular'              "快速对齐
+Plugin 'plasticboy/vim-markdown'
 Plugin 'chxuan/change-colorscheme'
 Plugin 'tell-k/vim-autopep8'               "按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'               "添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
 Plugin 'tmhedberg/SimpylFold'              "自动折叠
+Plugin 'bronson/vim-trailing-whitespace'   "显示以及去除行尾空格
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ryanoasis/vim-devicons'       " add beautiful icons besides Files
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " enhance devicons
-Plugin 'tpope/vim-fugitive'                "在vim中执行git命令
-Plugin 'Valloric/YouCompleteMe'             "自动补全
+Plugin 'ryanoasis/vim-devicons'                           " add beautiful icons besides Files
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'          " enhance devicons
+Plugin 'tpope/vim-fugitive'                               "在vim中执行git命令
+Plugin 'Valloric/YouCompleteMe'                           "自动补全
 Plugin 'Raimondi/delimitMate'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
@@ -67,6 +70,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'              "格式化js css等文件
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -85,6 +89,7 @@ set background=dark
 
 set splitbelow
 set splitright
+
 
 set number                      "显示行号
 set showmatch                   "高亮显示匹配的括号
@@ -123,7 +128,7 @@ set nowrap                             "不自动折行
 set linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
 set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
 set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
-set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。"
+" set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。"
 
 
 "<F2> 行号开关
@@ -232,6 +237,11 @@ set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
+"""""""""""""""""""""""""""""""""""""" markdown 配置 """"""""""""""""""""""""""""""""""""""""
+
+" 设置使用markdown插件的类型以及不自动折叠代码
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
+
 
 """"""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""
 " 命令行模式
@@ -248,6 +258,27 @@ set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
+" \\w    # 向后查找单词(find word after)
+" \\W    # 向前查找单词(find word before)
+" \\e    # 向后查找，定位到词尾(find word end after)
+" \\E    # 向前查找，位位到词尾(find word end before)
+" \\f    # 向后查找单字(find letter after)
+" \\F    # 向前查找单字(find letter before)
+" \\s    #快捷键<leader><leader>s(即\\s), 然后输入要搜索的字母, 这个跳转是双向的
+
+let g:EasyMotion_smartcase = 1
+"let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+
+" 行内跳转(hl)
+map <Leader><leader>h <Plug>(easymotion-linebackward)
+map <Leader><leader>l <Plug>(easymotion-lineforward)
+
+" 行级跳转(jk)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
+" 重复上一次操作, 类似repeat插件, 很强大
+map <Leader><leader>. <Plug>(easymotion-repeat)
 
 
 """""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""
@@ -256,7 +287,7 @@ set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 " sudo apt-get install ctags
 
 " Ctrl + p 打开文件搜索
-let g:Lf_ShortcutF = '<c-p>'    
+let g:Lf_ShortcutF = '<c-p>'
 "\p 打开函数列表
 noremap <Leader>p :LeaderfFunction<cr>
 
