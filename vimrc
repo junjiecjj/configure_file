@@ -288,6 +288,41 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
+
+"设置ctags路径
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+"启动vim后自动打开taglist窗口
+"打开文件时候不自动打开Taglist窗口
+let Tlist_Auto_Open = 0
+
+" tag按名字排序
+let Tlist_Sort_Type="name"
+
+"不同时显示多个文件的tag，仅显示一个
+let Tlist_Show_One_File = 1
+
+"taglist为最后一个窗口时，退出vim
+let Tlist_Exit_OnlyWindow = 1
+
+"taglist窗口显示在右侧，缺省为左侧
+" let Tlist_Use_Right_Window = 1
+let Tlist_Use_Right_Window = 0
+
+"设置taglist窗口大小
+"let Tlist_WinHeight = 100
+let Tlist_WinWidth = 20
+
+"设置taglist打开关闭的快捷键F1
+map <F1> <Esc>:TlistToggle<Cr>
+
+
+"更新ctags标签文件快捷键设置
+noremap <F6> :!ctags -R<CR>
+
+
+
 """"""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <C-p> :Files<CR>
 
@@ -723,36 +758,6 @@ let g:NERDSpaceDelims=1
 " Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
-
-"设置ctags路径
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-
-"启动vim后自动打开taglist窗口
-"打开文件时候不自动打开Taglist窗口
-let Tlist_Auto_Open = 0
-
-"不同时显示多个文件的tag，仅显示一个
-let Tlist_Show_One_File = 1
-
-"taglist为最后一个窗口时，退出vim
-let Tlist_Exit_OnlyWindow = 1
-
-"taglist窗口显示在右侧，缺省为左侧
-let Tlist_Use_Right_Window =0
-
-"设置taglist窗口大小
-"let Tlist_WinHeight = 100
-let Tlist_WinWidth = 20
-
-"设置taglist打开关闭的快捷键F1
-map <F1> <Esc>:TlistToggle<Cr>
-
-
-"更新ctags标签文件快捷键设置
-noremap <F6> :!ctags -R<CR>
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""vim-rainbow配置""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -924,12 +929,18 @@ let g:miniBufExplMapWindowNavArrows = 1
 
 "解决FileExplorer窗口变小问题  
 let g:miniBufExplForceSyntaxEnable = 1  
-let g:miniBufExplorerMoreThanOne=2
 
+"该配置含义为minibufexplorer窗口最大高度为2行，默认是没有上限的，你打开的buffer足够多，一会一直增长下去，为了方便阅读我一般将它设为2
+let g:miniBufExplMaxSize = 2
+
+" 设置taglistbuffer的最高限制：
+ let g:bufExplorerMaxHeight=30
+
+" 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 let g:miniBufExplModSelTarget = 1  
 let g:miniBufExplMoreThanOne=0
 
-" 以下的两个功能需要在~/.vimrc中增加:
+"启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持  
 let g:miniBufExplMapCTabSwitchBufs = 1
 " 试用了下MiniBufferExplore，发现其支持Buffer Explorer的快捷键
 " 输入\be在当前窗口浏览缓存
@@ -938,7 +949,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " \bs水平打开一个窗口浏览缓存
 " 如果打开的文件太多在一个平面显示不下，还可以在buffer中用“s” 快捷键排序
 
-
+"  启用以下两个功能：Ctrl+tab移到下一个窗口；Ctrl+Shift+tab移到上一个窗口；ubuntu好像不支持 
+let g:miniBufExplMapCTabSwitchWindows = 1 
 
 " 显示/隐藏 MiniBufExplorer 窗口
 map <Leader>bl :MBEToggle<cr>
