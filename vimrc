@@ -471,7 +471,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 
-
 """"""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
 
 " 安装ctags
@@ -938,7 +937,7 @@ nmap <Leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="right"
 
-map <C-f> :NERDTreeToggle<CR>
+map <C-d> :NERDTreeToggle<CR>
 
 " 开启Nerdtree时自动显示Bookmarks
 let NERDTreeShowBookmarks=1
@@ -1079,7 +1078,7 @@ nmap <silent> <C-Right> :wincmd l<CR>
 " 按<Esc>回到正常的模式
 
 " 关闭插件默认映射
-" let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_use_default_mapping=0
 " " Default mapping
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
