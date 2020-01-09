@@ -34,11 +34,14 @@ Plugin 'vim-scripts/winmanager'         "多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'   "vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'     "颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
+Plugin 'chxuan/change-colorscheme'      "vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'mileszs/ack.vim'                "强大的文本搜索工具
 Plugin 'easymotion/vim-easymotion'      "强大的搜索定位
 Plugin 'godlygeek/tabular'              "快速对齐
+Plugin 'lucasicf/vim-smooth-scroll'     "支持平滑滚动
+Plugin 'Shougo/echodoc.vim'             "函数参数提示
 Plugin 'plasticboy/vim-markdown'
-Plugin 'chxuan/change-colorscheme'
 Plugin 'tell-k/vim-autopep8'               "按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'               "添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
@@ -50,6 +53,7 @@ Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'          " enhance devicons
 Plugin 'tpope/vim-fugitive'                               "在vim中执行git命令
 Plugin 'Valloric/YouCompleteMe'                           "自动补全
 Plugin 'Raimondi/delimitMate'
+Plugin 'chxuan/cpp-mode'                    "提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
@@ -128,10 +132,8 @@ set nowrap                             "不自动折行
 set linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
 set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
 set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
-" set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。"
-
-
-"<F2> 行号开关
+" set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。
+" <F2> 行号开关
 nnoremap <F2> :call HideNumber()<CR>
 
 set clipboard=unnamed                  "系统剪切板
@@ -237,6 +239,55 @@ set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
+
+"""""""""""""""""""""""""""""""""""""""""   ack配置   """""""""""""""""""""""""""""""""""""""""
+" ack插件首先需要安全ag
+" # OSX
+" brew install the_silver_searcher
+" # ArchLinux
+" pacman -S the_silver_searcher
+" # Ubuntu
+" apt-get install silversearcher-ag
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ack_prg = "ag --vimgrep --smart-case"
+
+
+map <F4> :Ack -i 
+imap <F4> :Ack -i 
+
+" 以后在普通模式下输入Ctrl+U便可以自动输入:Ack 了
+map <c-u> :Ack<space>
+
+"""""""""""""""""""""""""""""""""""" echodoc 配置    """"""""""""""""""""""""""""""""""""""""""""""
+
+" Or, you could use vim's popup window feature.
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'popup'
+" To use a custom highlight for the popup window,
+" change Pmenu to your highlight group
+highlight link EchoDocPopup Pmenu
+
+
+""""""""""""""""""""""""""""""""""""""" change-colorscheme 配置  """""""""""""""""""""""""""""""""""""""
+
+map <F12> :NextColorScheme<CR>
+imap <F12> <ESC> :NextColorScheme<CR>
+map <F11> :PreviousColorScheme<CR>
+imap <F11> <ESC> :PreviousColorScheme<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
+
+
+nnoremap <leader>y :CopyCode<cr>
+nnoremap <leader>p :PasteCode<cr>
+nnoremap <leader>U :GoToFunImpl<cr>
+nnoremap <silent> <leader>a :Switch<cr>
+nnoremap <leader><leader>fp :FormatFunParam<cr>
+nnoremap <leader><leader>if :FormatIf<cr>
+
 """""""""""""""""""""""""""""""""""""" markdown 配置 """"""""""""""""""""""""""""""""""""""""
 
 " 设置使用markdown插件的类型以及不自动折叠代码
@@ -283,7 +334,7 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 
-""""""""""""""""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>p  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
