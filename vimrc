@@ -243,20 +243,20 @@ set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
 
 
-""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
 " 命令行模式
 " ds "              删除一个配对符号 (delete a surrounding)
 " cs "              更改一个配对符号 (change a surrounding)
 " ys "              增加一个配对符号 (yank a surrounding)
 " yS "              在新的行增加一个配对符号并进行缩进
-" yss "              在整行增加一个配对符号
-" ySs/Yss  "     在整行增加一个配对符号，配对符号单独成行并进行缩进
+" yss "             在整行增加一个配对符号
+" ySs/Yss  "        在整行增加一个配对符号，配对符号单独成行并进行缩进
 
 "  插入模式
 " Ctrl + s                    增加一个配对符号
 " Ctrl +s, Ctrl +s        在整行增加一个配对符号，配对符号单独成行并进行缩进
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
 " \\w    # 向后查找单词(find word after)
@@ -280,83 +280,18 @@ map <Leader><Leader>k <Plug>(easymotion-k)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
 
-
-"""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""
-
-" 安装ctags
-" sudo apt-get install ctags
-
-" Ctrl + p 打开文件搜索
-let g:Lf_ShortcutF = '<c-p>'
-"\p 打开函数列表
-noremap <Leader>p :LeaderfFunction<cr>
-
-"文件搜索
-nnoremap <silent> <Leader>f :Leaderf file<CR>
-
-"历史打开过的文件
-nnoremap <silent> <Leader>m :Leaderf mru<CR>
-
-"Buffer
-nnoremap <silent> <Leader>b :Leaderf buffer<CR>
-
-"函数搜索（仅当前文件里），依赖ctags插件
-nnoremap <silent> <Leader>F :Leaderf function<CR>
-
-"模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>rg :Leaderf rg<CR>
-
-" <C-C>, <ESC> : 退出 LeaderF.
-" <C-R> : 在模糊匹配和正则式匹配之间切换
-" <C-F> : 在全路径搜索和名字搜索之间切换
-" <Tab> : 在检索模式和选择模式之间切换
-" <C-J>, <C-K> : 在结果列表里选择
-" <C-X> : 在水平窗口打开
-" <C-]> : 在垂直窗口打开
-" <C-T> : 在新标签打开
-" <C-P> : 预览结果
+"注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""
-
-"TagList插件依赖ctags插件
-
-"设置ctags路径
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-
-"启动vim后自动打开taglist窗口
-"打开文件时候不自动打开Taglist窗口
-let Tlist_Auto_Open = 0
-
-" tag按名字排序
-let Tlist_Sort_Type="name"
-
-"不同时显示多个文件的tag，仅显示一个
-let Tlist_Show_One_File = 1
-
-"taglist为最后一个窗口时，退出vim
-let Tlist_Exit_OnlyWindow = 1
-
-"taglist窗口显示在右侧，缺省为左侧
-" let Tlist_Use_Right_Window = 1
-let Tlist_Use_Right_Window = 0
-
-"设置taglist窗口大小
-"let Tlist_WinHeight = 100
-let Tlist_WinWidth = 20
-
-"设置taglist打开关闭的快捷键F1
-map <F1> <Esc>:TlistToggle<Cr>
+""""""""""""""""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""""""""""
+nnoremap <leader>p  :CtrlP<CR>
+nnoremap <leader>b  :CtrlPBuffer<CR>
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = ''
 
 
-"更新ctags标签文件快捷键设置
-noremap <F6> :!ctags -R<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <C-p> :Files<CR>
 
 
@@ -484,6 +419,85 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Advanced customization using autoload functions
 inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
+
+
+""""""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
+
+" 安装ctags
+" sudo apt-get install ctags
+
+" Ctrl + p 打开文件搜索
+let g:Lf_ShortcutF = '<c-p>'
+
+"\p 打开函数列表
+noremap <Leader>p :LeaderfFunction<cr>
+
+"文件搜索
+nnoremap <silent> <Leader>f :Leaderf file<CR>
+
+"历史打开过的文件
+nnoremap <silent> <Leader>m :Leaderf mru<CR>
+
+"Buffer
+nnoremap <silent> <Leader>b :Leaderf buffer<CR>
+
+"函数搜索（仅当前文件里），依赖ctags插件
+nnoremap <silent> <Leader>F :Leaderf function<CR>
+
+"模糊搜索，很强大的功能，迅速秒搜
+nnoremap <silent> <Leader>rg :Leaderf rg<CR>
+
+" <C-C>, <ESC> : 退出 LeaderF.
+" <C-R> : 在模糊匹配和正则式匹配之间切换
+" <C-F> : 在全路径搜索和名字搜索之间切换
+" <Tab> : 在检索模式和选择模式之间切换
+" <C-J>, <C-K> : 在结果列表里选择
+" <C-X> : 在水平窗口打开
+" <C-]> : 在垂直窗口打开
+" <C-T> : 在新标签打开
+" <C-P> : 预览结果
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
+
+"TagList插件依赖ctags插件
+
+"设置ctags路径
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+
+"启动vim后自动打开taglist窗口
+"打开文件时候不自动打开Taglist窗口
+let Tlist_Auto_Open = 0
+
+" tag按名字排序
+let Tlist_Sort_Type="name"
+
+"不同时显示多个文件的tag，仅显示一个
+let Tlist_Show_One_File = 1
+
+"taglist为最后一个窗口时，退出vim
+let Tlist_Exit_OnlyWindow = 1
+
+"taglist窗口显示在右侧，缺省为左侧
+" let Tlist_Use_Right_Window = 1
+let Tlist_Use_Right_Window = 0
+
+"设置taglist窗口大小
+"let Tlist_WinHeight = 100
+let Tlist_WinWidth = 20
+
+"设置taglist打开关闭的快捷键F1
+map <F1> <Esc>:TlistToggle<Cr>
+
+
+"更新ctags标签文件快捷键设置
+noremap <F6> :!ctags -R<CR>
+
+
+
+
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
 " 按键    效果             模式
 " \li     文件信息显示         n
@@ -532,9 +546,9 @@ nmap <F2> <ESC>:w<CR>:!xelatex % && open %:r.pdf<CR><CR>
 
 " autocmd FileType * setlocal spell spelllang=en_us,cjk
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""""""""""
 
 let g:UltiSnipsExpandTrigger="<tab>"
 " 使用 tab 切换下一个触发点，shit+tab 上一个触发点
@@ -544,7 +558,7 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 "让补全行为与一般IDE一样
@@ -563,10 +577,10 @@ let python_highlight_all=1
 let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
 
-"************************************************
+"********************************************************************************************
 " AutoComplPop配置 自动代码提示插件
 " 参考：http://mounui.com/225.html
-"************************************************
+"********************************************************************************************
 " 输入一个字母即可补全
 "let g:acp_behaviorKeywordLength = 1
 " 自动弹出是由键映射，对于通过移动来避免自动弹出是很有用
@@ -622,7 +636,7 @@ let g:ycm_min_num_of_chars_for_completion = 2
 "let g:ycm_warning_symbol = '⚠'
 
 "jedi模块所在python解释器路径
-let g:ycm_python_binary_path = 'python'                   
+let g:ycm_python_binary_path = 'python'
 
 "选补全框内显示的补全条目的最大数量
 let g:ycm_max_num_candidates = 60
@@ -637,10 +651,10 @@ let g:ycm_max_num_identifier_candidates = 20
 let g:ycm_collect_identifiers_from_tags_files = 0
 
 "开启使用语言的一些关键字查询
-let g:ycm_seed_identifiers_with_syntax = 1                
+let g:ycm_seed_identifiers_with_syntax = 1
 
 "补全后自动关闭预览窗口
-let g:ycm_autoclose_preview_window_after_completion=1     
+let g:ycm_autoclose_preview_window_after_completion=1
 
 "在实现和声明之间跳转,并分屏打开
 let g:ycm_goto_buffer_command = 'horizontal-split'
@@ -772,9 +786,9 @@ augroup VimCSS3Syntax
   autocmd FileType css setlocal iskeyword+=-
 augroup END
 
-"************************************************************
+"****************************************************************************************************
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""""""""""""""
 "The NERD Commenter
 "注释符号后面空一格
 let g:NERDSpaceDelims=1
@@ -1022,13 +1036,6 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""配置ctrlP""""""""""""""""""""""""""""""""""""
-nnoremap <leader>p  :CtrlP<CR>
-nnoremap <leader>b  :CtrlPBuffer<CR>
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = ''
 
 
 """""""""""""""""""""""""""""""""""""""""配置ale""""""""""""""""""""""""""""""""""""""""
