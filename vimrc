@@ -513,8 +513,20 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 """"""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
 
 "TagList插件依赖ctags插件
+" 安装ctags
+" sudo apt-get install ctags
+
+" 安装Taglist
+" 下载Taglist，地址是http://sourceforge.net/projects/vim-taglist/files/vim-taglist/
+
+" 解压taglist_45.zip，可以看到有两个目录doc和plugin，结构如下
+
+" cp   ~/下载/doc/taglist.txt  /usr/share/vim/vim72/doc/
+" cp   ~/下载/plugin/taglist.vim  /usr/share/vim/vim72/plugin/
+
 
 "设置ctags路径
+" let Tlist_Ctags_Cmd="/usr/local/bin/ctags" 
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 
 "启动vim后自动打开taglist窗口
@@ -541,6 +553,9 @@ let Tlist_WinWidth = 20
 "设置taglist打开关闭的快捷键F1
 map <F1> <Esc>:TlistToggle<Cr>
 
+
+"将 \t 表示为在命令行模式下输入命令：
+map <silient> <leader>t <Esc>:TlistToggle<Cr>    
 
 "更新ctags标签文件快捷键设置
 noremap <F6> :!ctags -R<CR>
