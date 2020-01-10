@@ -134,7 +134,6 @@ set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的�
 set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
 " set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。
 
-
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
 " <F3> 行号开关
 nnoremap <F3> :call HideNumber()<CR>
@@ -580,12 +579,13 @@ noremap <F6> :!ctags -R<CR>
 
 
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
-" 按键    效果             模式
-" \li     文件信息显示         n
-" \lt     打开目录            n
-" \ll     编译文档           n
-" \lv     查看文档           n
-" \lc     清除latex编译文件    n
+" 按键    效果                               模式
+" \li     文件信息显示                        n
+" \lt     打开目录                            n
+" \ll     编译文档                            n
+" \lv     查看文档                            n
+" \lc     清除latex编译文件                   n
+" \ls: 查看文档, 并跳到当前光标所在的位置.    n
 
 
 "如果用了自动补全的插件, 需要设置:不然会变得好慢.
@@ -593,7 +593,9 @@ let g:vimtex_fold_manual=1
 
 let g:vimtex_latexmk_options='-pdf -pdflatex="xelatex -synctex=1 \%S \%O" -verbose -file-line-error -interaction=nonstopmode'
 let g:tex_flavor='latex'
-let g:vimtex_view_method='skim'
+let g:vimtex_view_method='zathura'
+let g:Tex_ViewRule_pdf='evince'
+let g:livepreview_previewer='open -a Skim'
 let g:vimtex_quickfix_mode=0
 set conceallevel=1
 let g:tex_conceal='abdmg'
@@ -602,13 +604,17 @@ let g:polyglot_disabled = ['latex']
 "估计大家都打开了换行时自动对齐的功能，但是有没有发现这样一个问题，在用 itemize 的时候，每一个 item 都会自动缩进两个，非常麻烦
 let g:tex_indent_items=0    
 
+
+let g:Tex_Com_frac = "\\frac{<++>}{<++>}<++>"
+let g:Tex_EnvLabelprefix_equation = "eq:"
+
 "%! Tex program = xelatex
 "我们知道, 在Terminal里, 用pdflatex testLaTeX.tex
 "在vim里, 我们可以用: !pdflatex %   来编译当前文档. 其中, %代表当前文档名. 结果如下
 
 
 imap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
-nmap <F2> <ESC>:w<CR>:!xelatex % && open %:r.pdf<CR><CR>
+nmap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
 " 当你再按一下<F2>键, 就可以编译+打开文档了. 在这里, 我们解析一下这一行代码的含义.
 
 " imap和nmap是定义映射的命令. 开头的i代表insert模式的映射, n代表normal模式下的映射. 如果想定义一个对于所有模式的映射, 可以直接用map来定义.
@@ -1504,9 +1510,9 @@ set showmatch
 set ruler
 set backspace=2
 
-nnoremap <F4> :set invpaste paste?<CR>
-imap <F4> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F4>
+nnoremap <F5> :set invpaste paste?<CR>
+imap <F5> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F5>
 
 " autoload _vimrc
 autocmd! bufwritepost $HOME/.vimrc source %
