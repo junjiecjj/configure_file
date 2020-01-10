@@ -1,6 +1,6 @@
 
 set nocompatible               "required
-filetype on                  "required开启探测文件类型,on off
+filetype on                    "required开启探测文件类型,on off
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -18,53 +18,53 @@ Plugin 'ervandew/supertab'              " 补全记忆插件
 Plugin 'AutoComplPop'                   " 自动代码提示
 Plugin 'othree/html5.vim'               " html全能补全
 Plugin 'tyru/open-browser.vim'          " 打开浏览器
-Plugin 'vim-scripts/indentpython.vim'   "写python代码自动缩进
-Plugin 'Yggdroot/indentLine'            "缩进指示线
-Plugin 'jiangmiao/auto-pairs'           "自动补全括号等
-Plugin 'kien/ctrlp.vim'                 "在vim中搜索文件
-"Plugin 'Lokaltog/vim-powerline'        "美化状态栏，显示正在编辑的文件
-"Plugin 'vim-syntastic/syntastic'       "语法检查,会导致保存python文件时很慢
-"Plugin 'scrooloose/syntastic'          "语法检查
-Plugin 'nvie/vim-flake8'                "falke代码风格检查
-Plugin 'lervag/vimtex'                  "latex插件
-Plugin 'SirVer/ultisnips'               "安装引擎 
-Plugin 'honza/vim-snippets'             "安装代码块集合
-Plugin 'fholgado/minibufexpl.vim'       "多文档编辑
-Plugin 'vim-scripts/winmanager'         "多窗口管理器
-Plugin 'terryma/vim-multiple-cursors'   "vim多重光标选取插件
-Plugin 'gorodinskiy/vim-coloresque'     "颜色符号显示对应颜色
+Plugin 'vim-scripts/indentpython.vim'   " 写python代码自动缩进
+Plugin 'Yggdroot/indentLine'            " 缩进指示线
+Plugin 'jiangmiao/auto-pairs'           " 自动补全括号等
+Plugin 'kien/ctrlp.vim'                 " 在vim中搜索文件
+"Plugin 'Lokaltog/vim-powerline'        " 美化状态栏，显示正在编辑的文件
+"Plugin 'vim-syntastic/syntastic'       " 语法检查,会导致保存python文件时很慢
+"Plugin 'scrooloose/syntastic'          " 语法检查
+Plugin 'nvie/vim-flake8'                " falke代码风格检查
+Plugin 'lervag/vimtex'                  " latex插件
+Plugin 'SirVer/ultisnips'               " 安装引擎
+Plugin 'honza/vim-snippets'             " 安装代码块集合
+Plugin 'fholgado/minibufexpl.vim'       " 多文档编辑
+Plugin 'vim-scripts/winmanager'         " 多窗口管理器
+Plugin 'terryma/vim-multiple-cursors'   " vim多重光标选取插件
+Plugin 'gorodinskiy/vim-coloresque'     " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
-Plugin 'chxuan/change-colorscheme'      "vim一个快速切换主题的插件
+Plugin 'chxuan/change-colorscheme'      " vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'mileszs/ack.vim'                "强大的文本搜索工具
-Plugin 'easymotion/vim-easymotion'      "强大的搜索定位
-Plugin 'godlygeek/tabular'              "快速对齐
-Plugin 'lucasicf/vim-smooth-scroll'     "支持平滑滚动
-Plugin 'Shougo/echodoc.vim'             "函数参数提示
+Plugin 'mileszs/ack.vim'                " 强大的文本搜索工具
+Plugin 'easymotion/vim-easymotion'      " 强大的搜索定位
+Plugin 'godlygeek/tabular'              " 快速对齐
+Plugin 'lucasicf/vim-smooth-scroll'     " 支持平滑滚动
+Plugin 'Shougo/echodoc.vim'             " 函数参数提示
 Plugin 'plasticboy/vim-markdown'
 Plugin 'tell-k/vim-autopep8'               "按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'               "添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
 Plugin 'tmhedberg/SimpylFold'              "自动折叠
-Plugin 'bronson/vim-trailing-whitespace'   "显示以及去除行尾空格
+" Plugin 'bronson/vim-trailing-whitespace'   "显示以及去除行尾空格
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'                           " add beautiful icons besides Files
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'          " enhance devicons
-Plugin 'tpope/vim-fugitive'                               "在vim中执行git命令
-Plugin 'Valloric/YouCompleteMe'                           "自动补全
+Plugin 'tpope/vim-fugitive'                               " 在vim中执行git命令
+Plugin 'Valloric/YouCompleteMe'                           " 自动补全
 Plugin 'Raimondi/delimitMate'
-Plugin 'chxuan/cpp-mode'                    "提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
+Plugin 'chxuan/cpp-mode'                                  " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
-Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   "在vim中搜索文件
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   "在vim中搜索文件
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                   " 在vim中搜索文件
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " 在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'               "美化状态栏，显示正在编辑的文件
+Plugin 'itchyny/lightline.vim'                              " 美化状态栏，显示正在编辑的文件
 Plugin 'rking/ag.vim'
-Plugin 'vim-airline/vim-airline'             "美化状态栏，显示正在编辑的文件
-Plugin 'vim-airline/vim-airline-themes'      "美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline'                            " 美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'                     " 美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -74,7 +74,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'              "格式化js css等文件
+Plugin 'maksimr/vim-jsbeautify'              " 格式化js css等文件
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -203,7 +203,7 @@ set laststatus=2                          " 2为总显示最后一个窗口的�
                                           " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
                                           " 0不显示最后一个窗口的状态行 
 
-set cmdheight=1             " 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
 
 filetype on                 " 侦测文件类型
 filetype plugin on           " 载入文件类型插件
@@ -970,22 +970,10 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 
-let g:NERDTreeIndicatorMapCustom = { 
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-\ }
-
 
 let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
+
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -1235,14 +1223,12 @@ au BufNewFile,BufRead *.js,*.html,*.css
 \ set tabstop=2 |
 \ set softtabstop=2 |
 \ set shiftwidth=2 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
 
-
-
-"""""""""""""""""""""""""""""""配色molokai"""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""配色molokai"""""""""""""""""""""""""""""""""""""""""
 hi clear
 
 if version > 580
@@ -1497,7 +1483,7 @@ autocmd! bufwritepost $HOME/.vimrc source %
 
 
 
-""""""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""""""""""""""
 " highlight for Vim Syntax Colors 
 hi clear
 
