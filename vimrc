@@ -1,6 +1,6 @@
 
-set nocompatible               "required
-filetype on                    "required开启探测文件类型,on off
+set nocompatible                             " required
+filetype on                                  " required开启探测文件类型,on off
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,60 +11,60 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
-Plugin 'molokai'		                " 配色方案
-Plugin 'DoxygenToolkit.vim'		        " 注释文档生成
-Plugin 'VimTweak'					    " 背景透明插件
-Plugin 'ervandew/supertab'              " 补全记忆插件
-Plugin 'AutoComplPop'                   " 自动代码提示
-Plugin 'othree/html5.vim'               " html全能补全
-Plugin 'tyru/open-browser.vim'          " 打开浏览器
-Plugin 'vim-scripts/indentpython.vim'   " 写python代码自动缩进
-Plugin 'Yggdroot/indentLine'            " 缩进指示线
-Plugin 'jiangmiao/auto-pairs'           " 自动补全括号等
-Plugin 'kien/ctrlp.vim'                 " 在vim中搜索文件
-"Plugin 'Lokaltog/vim-powerline'        " 美化状态栏，显示正在编辑的文件
-"Plugin 'vim-syntastic/syntastic'       " 语法检查,会导致保存python文件时很慢
-"Plugin 'scrooloose/syntastic'          " 语法检查
-Plugin 'nvie/vim-flake8'                " falke代码风格检查
-Plugin 'lervag/vimtex'                  " latex插件
-Plugin 'SirVer/ultisnips'               " 安装引擎
-Plugin 'honza/vim-snippets'             " 安装代码块集合
-Plugin 'fholgado/minibufexpl.vim'       " 多文档编辑
-Plugin 'vim-scripts/winmanager'         " 多窗口管理器
-Plugin 'terryma/vim-multiple-cursors'   " vim多重光标选取插件
-Plugin 'gorodinskiy/vim-coloresque'     " 颜色符号显示对应颜色
+Plugin 'molokai'		                     " 配色方案
+Plugin 'DoxygenToolkit.vim'		             " 注释文档生成
+Plugin 'VimTweak'					         " 背景透明插件
+Plugin 'ervandew/supertab'                   " 补全记忆插件
+Plugin 'AutoComplPop'                        " 自动代码提示
+Plugin 'othree/html5.vim'                    " html全能补全
+Plugin 'tyru/open-browser.vim'               " 打开浏览器
+Plugin 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
+Plugin 'Yggdroot/indentLine'                 " 缩进指示线
+Plugin 'jiangmiao/auto-pairs'                " 自动补全括号等
+Plugin 'kien/ctrlp.vim'                      " 在vim中搜索文件
+"Plugin 'Lokaltog/vim-powerline'             " 美化状态栏，显示正在编辑的文件
+"Plugin 'vim-syntastic/syntastic'            " 语法检查,会导致保存python文件时很慢
+"Plugin 'scrooloose/syntastic'               " 语法检查
+Plugin 'nvie/vim-flake8'                     " falke代码风格检查
+Plugin 'lervag/vimtex'                       " latex插件
+Plugin 'SirVer/ultisnips'                    " 安装引擎
+Plugin 'honza/vim-snippets'                  " 安装代码块集合
+Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
+Plugin 'vim-scripts/winmanager'              " 多窗口管理器
+Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
+Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
-Plugin 'chxuan/change-colorscheme'      " vim一个快速切换主题的插件
+Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'mileszs/ack.vim'                " 强大的文本搜索工具
-Plugin 'easymotion/vim-easymotion'      " 强大的搜索定位
-Plugin 'godlygeek/tabular'              " 快速对齐
-Plugin 'lucasicf/vim-smooth-scroll'     " 支持平滑滚动
-Plugin 'Shougo/echodoc.vim'             " 函数参数提示
+Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
+Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
+Plugin 'godlygeek/tabular'                   " 快速对齐
+Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
+Plugin 'Shougo/echodoc.vim'                  " 函数参数提示
 Plugin 'plasticboy/vim-markdown'
-Plugin 'tell-k/vim-autopep8'               "按照pep8的标准自动格式化代码
-Plugin 'scrooloose/nerdtree'               "添加树形目录
-Plugin 'jistr/vim-nerdtree-tabs'           "想用tab键
-Plugin 'tmhedberg/SimpylFold'              "自动折叠
-" Plugin 'bronson/vim-trailing-whitespace'   "显示以及去除行尾空格
+Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
+Plugin 'scrooloose/nerdtree'                 " 添加树形目录
+Plugin 'jistr/vim-nerdtree-tabs'             " 想用tab键
+Plugin 'tmhedberg/SimpylFold'                " 自动折叠
+" Plugin 'bronson/vim-trailing-whitespace'   " 显示以及去除行尾空格
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'ryanoasis/vim-devicons'                           " add beautiful icons besides Files
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'          " enhance devicons
-Plugin 'tpope/vim-fugitive'                               " 在vim中执行git命令
-Plugin 'Valloric/YouCompleteMe'                           " 自动补全
+Plugin 'ryanoasis/vim-devicons'                                        " add beautiful icons besides Files
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'                       " enhance devicons
+Plugin 'tpope/vim-fugitive'                                            " 在vim中执行git命令
+Plugin 'Valloric/YouCompleteMe'                                        " 自动补全
 Plugin 'Raimondi/delimitMate'
-Plugin 'chxuan/cpp-mode'                                  " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
+Plugin 'chxuan/cpp-mode'                                               " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'
 Plugin 'w0rp/ale'
-Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                   " 在vim中搜索文件
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }   " 在vim中搜索文件
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                    " 在vim中搜索文件
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'                              " 美化状态栏，显示正在编辑的文件
+Plugin 'itchyny/lightline.vim'                                         " 美化状态栏，显示正在编辑的文件
 Plugin 'rking/ag.vim'
-Plugin 'vim-airline/vim-airline'                            " 美化状态栏，显示正在编辑的文件
-Plugin 'vim-airline/vim-airline-themes'                     " 美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline'                                       " 美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'                                " 美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -74,11 +74,11 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 Plugin 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'              " 格式化js css等文件
+Plugin 'maksimr/vim-jsbeautify'                                        " 格式化js css等文件
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql']}
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#autoformat = 0
@@ -133,8 +133,24 @@ set linebreak         "只有遇到指定的符号（比如空格、连词号和
 set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
 set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
 " set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。
-" <F2> 行号开关
-nnoremap <F2> :call HideNumber()<CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
+" <F3> 行号开关
+nnoremap <F3> :call HideNumber()<CR>
+
+function! HideNumber()
+  if(&relativenumber == &number)
+    set relativenumber! number!
+  elseif(&number)
+    set number!
+  else
+    set relativenumber!
+  endif
+  set number?
+endfunc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set clipboard=unnamed                  "系统剪切板
 set autoindent                         "自动缩进
@@ -1487,9 +1503,11 @@ set tabstop=4
 set showmatch
 set ruler
 set backspace=2
-nnoremap <F2> :set invpaste paste?<CR>
-imap <F2> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F2>
+
+nnoremap <F4> :set invpaste paste?<CR>
+imap <F4> <C-O>:set invpaste paste?<CR>
+set pastetoggle=<F4>
+
 " autoload _vimrc
 autocmd! bufwritepost $HOME/.vimrc source %
 
