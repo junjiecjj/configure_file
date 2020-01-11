@@ -36,6 +36,7 @@ Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
+Plugin 'fatih/vim-go', { 'tag': '*' }          "go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    "C++  IDE
 Plugin 'c.vim'                               "C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
@@ -279,6 +280,41 @@ set confirm                              "在处理未保存或只读文件的�
 set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
+
+"""""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
+
+let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
+let g:go_debug=['shell-commands']
+let g:go_metalinter_command = "golangci-lint" "语法校验
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+
+let g:godef_split=2
+
+" vim-go custom mappings
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
 
 """"""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
