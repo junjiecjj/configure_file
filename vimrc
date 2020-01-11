@@ -901,19 +901,20 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	
 
 "上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+inoremap <expr> <Down>       pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>         pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>     pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
 
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
 let g:ycm_key_list_select_completion = [ '<TAB>' ,'<Down>']
-"let g:ycm_key_list_select_completion=['<c-n>']
+" let g:ycm_key_list_select_completion=['<C-n>','<Down>']
 
 "设置用于向上选择补全列表中的选项的快捷键，默认为shift+tab，和方向上键
-"let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" let g:ycm_key_list_previous_completion=['<c-p>','<Up>']
 
 "设置用于关闭补全列表的快捷键，默认为ctrl+y
 let g:ycm_key_list_stop_completion =  ['<C-y>']
