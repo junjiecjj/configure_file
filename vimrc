@@ -13,7 +13,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'klen/python-mode'
 Plugin 'molokai'		                     " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
-Plugin 'matze/vim-move'                      "代码块移动
+Plugin 'matze/vim-move'                      " 代码块移动
 Plugin 'DoxygenToolkit.vim'		             " 注释文档生成
 Plugin 'VimTweak'					         " 背景透明插件
 Plugin 'ervandew/supertab'                   " 补全记忆插件
@@ -36,9 +36,9 @@ Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
-Plugin 'fatih/vim-go', { 'tag': '*' }          "go主要插件
-Plugin 'octol/vim-cpp-enhanced-highlight'    "C++  IDE
-Plugin 'c.vim'                               "C IDE
+Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
+Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
+" Plugin 'c.vim'                               " C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
