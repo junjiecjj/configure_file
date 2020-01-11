@@ -12,6 +12,8 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
 Plugin 'molokai'		                     " 配色方案
+Plugin 'morhetz/gruvbox'                     " 配色方案
+Plugin 'matze/vim-move'                      "代码块移动
 Plugin 'DoxygenToolkit.vim'		             " 注释文档生成
 Plugin 'VimTweak'					         " 背景透明插件
 Plugin 'ervandew/supertab'                   " 补全记忆插件
@@ -34,6 +36,8 @@ Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
+Plugin 'octol/vim-cpp-enhanced-highlight'    "C++  IDE
+Plugin 'c.vim'                               "C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
@@ -274,6 +278,54 @@ set confirm                              "在处理未保存或只读文件的�
 set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
+
+""""""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
+
+let g:move_key_modifier = 'C' 
+
+" <C-k>   Move current line/selection up
+" <C-j>   Move current line/selection down
+" <C-l>   Move current character/selection right
+" <C-h>   Move current character/selection left
+
+""""""""""""""""""""""""""""""""""""""  vim-cpp-enhanced-highlight  配置  """"""""""""""""""""""""""""""""""""""
+"cpp-enhanced-highlight
+"高亮类，成员函数，标准库和模板
+"默认情况下禁用类范围的突出显示。 启用设置
+let g:cpp_class_scope_highlight = 1
+
+" 默认情况下禁用成员变量的突出显示。 启用设置
+let g:cpp_member_variable_highlight = 1
+
+" 默认情况下禁用声明中类名称的突出显示。 启用设置
+let g:cpp_concepts_highlight = 1
+
+" 有两种方法可以突出显示模板函数。 任之一
+let g:cpp_experimental_simple_template_highlight = 1
+"文件较大时使用下面的设置高亮模板速度较快，但会有一些小错误
+"let g:cpp_experimental_template_highlight = 1
+
+" 库概念突出显示为
+let g:cpp_concepts_highlight=1
+
+" 可以禁用用户定义函数的突出显示
+let g:cpp_no_function_highlight=1
+
+let c_no_curly_error = 1
+""""""""""""""""""""""""""""""""""""""""""""""""  C.vim配置  """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let  g:C_UseTool_cmake    = 'yes'
+let  g:C_UseTool_doxygen = 'yes'
+
+
+" 正常模式(ESC)键入\if
+" 在正常模式下键入\im, 得到图三的默认的main函数内容
+
+" 在正常模式下键入\cfu,VIM会提示键入函数名，如图四，会得到如图五的函数说明注释块
+" 在正常模式下键入\cfr， 会得到图6的注释块，并且光标被定位到注释块内，直接可键入注释
+" 在正常模式下键入\p<, 会得到“#include <>”,并且光标被定位到尖括号内，可以直接键入要包含的头文件名
+
+" 保存后编译, \rc
+" 运行 \\r
 
 
 """""""""""""""""""""""""""""""""""""""""   ack配置   """""""""""""""""""""""""""""""""""""""""
