@@ -238,7 +238,8 @@ set shiftwidth=4
 
 " 我的状态行显示的内容（包括文件类型和解码）
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-"set statusline=[%F]%y%r%m%*%=[Line:%l/%L,Column:%c][%p%%]
+
+
 set laststatus=2                          " 2为总显示最后一个窗口的状态行
                                           " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
                                           " 0不显示最后一个窗口的状态行 
@@ -1213,6 +1214,8 @@ let g:multi_cursor_quit_key='<Esc>'
 "let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 1
+
 " python checker
 let g:ale_fixers = {
 \   'javascript': ['standard'],
@@ -1237,7 +1240,6 @@ augroup YourGroup
 augroup END
 
 
-
 "ale
 "始终开启标志列
 let g:ale_sign_column_always = 1
@@ -1253,15 +1255,16 @@ let g:ale_echo_msg_error_str = '✗'
 let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <silent>  sp <Plug>(ale_previous_wrap)
+nmap <silent>  sn <Plug>(ale_next_wrap)
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "<Leader>s触发/关闭语法检查
 nmap <Leader>o :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>d :ALEDetail<CR>
 
-" 我的状态行显示的内容（包括文件类型和解码）
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+
 
 "文件内容发生变化时不进行检查
 let g:ale_lint_on_text_changed = 'never'
@@ -1269,6 +1272,24 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 "保存文件时不进行检查
 let g:ale_lint_on_save = 0
+
+"补全的延迟
+let  g:ale_completion_delay = 500
+
+"停止输入后更新lint标记的延迟
+let  g:ale_lint_delay = 500
+
+"回显的延迟
+let  g:ale_echo_delay = 20
+
+"自定义lint输出格式
+let  g:ale_echo_msg_format = '[%linter%] <%code> %%s'  
+
+"当文字在NORMAL模式下发生更改的时候更新lint，防止YCM频繁刷新
+let  g:ale_lint_on_text_changed = 'normal'
+
+"离开INSERT模式时更新lint
+let  g:ale_lint_on_insert_leave = 1
 
 "对于 Java 如果安装在中文的系统上，错误和警告信息都会乱码，可以进行下面的设置
 let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
