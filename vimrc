@@ -26,7 +26,7 @@ Plugin 'kien/ctrlp.vim'                      " 在vim中搜索文件
 "Plugin 'vim-syntastic/syntastic'            " 语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic'               " 语法检查
 Plugin 'nvie/vim-flake8'                     " falke代码风格检查
-Plugin 'lervag/vimtex'                       " latex插件
+Plugin 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}                       " latex插件
 Plugin 'SirVer/ultisnips'                    " 安装引擎
 Plugin 'honza/vim-snippets'                  " 安装代码块集合
 Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
@@ -140,14 +140,35 @@ nnoremap <F3> :call HideNumber()<CR>
 
 function! HideNumber()
   if(&relativenumber == &number)
-    set relativenumber! number!
+    set  relativenumber!  number!
   elseif(&number)
-    set number!
+    set   number!
   else
     set relativenumber!
   endif
   set number?
 endfunc
+
+
+" 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+" 插入模式下用绝对行号, 普通模式下用相对
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+
+
+" ctrl-n进行相对行号/绝对行号切换
+nnoremap <C-n> :call NumberToggle()<cr>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -574,7 +595,6 @@ map <silient> <leader>t <Esc>:TlistToggle<Cr>
 
 "更新ctags标签文件快捷键设置
 noremap <F6> :!ctags -R<CR>
-
 
 
 
@@ -2213,7 +2233,7 @@ map <F5> :call RunPython()<CR> "一键执行python代码
 func! RunPython()
     exec "W" 
     if &filetype=='python'
-        exec"!time python3.6 %" 
+        exec"!time ipython %" 
     endif
 endfunc                       "或者把python3.6改为python解释器的位置：/home/jack/anaconda3/bin/python3
 
