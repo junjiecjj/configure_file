@@ -579,13 +579,23 @@ noremap <F6> :!ctags -R<CR>
 
 
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
-" 按键    效果                               模式
-" \li     文件信息显示                        n
-" \lt     打开目录                            n
-" \ll     编译文档                            n
-" \lv     查看文档                            n
-" \lc     清除latex编译文件                   n
-" \ls: 查看文档, 并跳到当前光标所在的位置.    n
+" 按键    效果                                   模式
+" \li     文件信息显示                           n
+" \lt     打开目录                               n
+" \ll     编译文档                               n
+" \lv     查看文档                               n
+" \lc     清除latex编译文件                      n
+" \ls     查看文档, 并跳到当前光标所在的位置.    n
+" dse     删除光标周围的\begin \end环境          n
+" dsc     删除光标周围的\command{}环境           n
+" ds$     删除光标周围的$$ 环境                  n
+" dsd     删除光标周围的括号                     n
+" cse     修改光标周围的\begin \end环境          n
+" cs$     修改光标周围的\command{}环境           n
+" csd     修改光标周围的括号模式                 n
+" tsc     \command{}和\command*{}的互换          n
+" tse     \begin{env}和\begin{env*}的互换        n
+" tsd     (...)和\left( ... \right )的互换       n
 
 
 "如果用了自动补全的插件, 需要设置:不然会变得好慢.
@@ -624,6 +634,20 @@ nmap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
 " open %:r.pdf<CR><CR>打开编译出来的pdf文件.
 " &&: 命令的连接.
 " ~/.vim/ftplugin/tex.vim: 这是tex文件的local配置文件, 如果没有, 可以自己创建.
+
+
+let g:vimtex_delim_toggle_mod_list = [
+      \ ['\left', '\right'],
+      \ ['\mleft', '\mright'],
+      \]
+
+
+let g:vimtex_delim_toggle_mod_list = [
+      \ ['\bigl', '\bigr'],
+      \ ['\Bigl', '\Bigr'],
+      \ ['\biggl', '\biggr'],
+      \ ['\Biggl', '\Biggr'],
+      \]
 
 
 
