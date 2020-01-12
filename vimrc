@@ -322,8 +322,8 @@ let g:move_key_modifier = 'C'
 
 " <C-k>   Move current line/selection up
 " <C-j>   Move current line/selection down
-" <C-l>   Move current character/selection right
 " <C-h>   Move current character/selection left
+" <C-l>   Move current character/selection right
 
 """"""""""""""""""""""""""""""""""""""  vim-cpp-enhanced-highlight  配置  """"""""""""""""""""""""""""""""""""""
 "cpp-enhanced-highlight
