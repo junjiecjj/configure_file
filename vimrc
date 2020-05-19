@@ -1,3 +1,5 @@
+"token:  a5076946f4988680c12dd916ddf6a3ef84d8d8e3
+"
 
 set nocompatible                             " required
 filetype on                                  " required开启探测文件类型,on off
