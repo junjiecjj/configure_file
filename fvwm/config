@@ -425,7 +425,9 @@ Colorset 23   fg  #FFFF00, bg 	#006400, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "gedit"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
-Style     "*code"                        TitleAtLeft,  HilightColorset 23
+
+Colorset 34   fg  #00F5FF, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
+Style     "*code"                        TitleAtTop,  HilightColorset 34
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
