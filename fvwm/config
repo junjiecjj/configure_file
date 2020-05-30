@@ -356,9 +356,11 @@ Style * TileCascadePlacement
 #Style * FocusFollowsMouse
 Style * DecorateTransient, #Layer 4
 #让所有以 "term" 结尾的那些窗口的标题拦都在左边。
-Style   *term*     TitleAtLeft
-Style   *konsole   TitleAtLeft
-Style   *urxvt*    TitleAtLeft
+Style   *term*                TitleAtLeft
+Style   *konsole              TitleAtLeft
+Style   *urxvt*                TitleAtLeft
+Style   *terminator*           TitleAtLeft
+Style   *gnome-terminal*       TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -458,11 +460,12 @@ Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
 Colorset 30   fg  #000000, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
-#Style     "xterm"                            HilightColorset 30
-#Style     "urxvt"                            HilightColorset 30
-#Style     "konsole"                          HilightColorset 30
-#Style     "*gnome-terminal*"                    HilightColorset 30
-#Style     "terminator"                       HilightColorset 30
+Colorset 30   fg  #000000, bg #ffffff , hi #FF0000, sh #FF0000, Plain,  NoShape
+Style     "xterm"                                                HilightColorset 30
+Style     "urxvt"                                               HilightColorset 30
+Style     "konsole"                                         HilightColorset 30
+Style     "*gnome-terminal*"                    HilightColorset 30
+Style     "terminator"                                   HilightColorset 30
 
 Colorset 31   fg  #0000FF, bg #CD661D , hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
@@ -945,10 +948,15 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 #     T = Title Bar                   rrrrrr[wwwwwwwww]rrrrr
 #     I = Icon                        rIrrrrv_________>rrrrr
 #                                     rrrrrrrrrrrrrrrrrrrrrr
+#     S(Sidebar)也就是边框. 也可以用 '[', ']', '-' , '_' 分别表示左，右，上，下的边框。
+#     T(Title)标题栏
+#     F(Frame)就是用来resize的那四个角落. 也可以用 '<', '^', '>' and 'v' 分别表示左上，右上，右下，左下的角落。
+#     W(Working Area) 应用程序窗口工作区域
+#     I(Icon window) 图标化的窗口。
 #
 #     Numbers are buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #
-# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta, (N)othing
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt (N)othing
 #
 # Format: Key <X>  <Context> <Modifier> <Action>
 #         Mouse <X> <Context> <Modifier> <Action>
@@ -1047,7 +1055,7 @@ Silent Key   q        A  CS   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
-Silent  Key   w        w    M   Iconify
+Silent  Key   w        W    M   Iconify
 
 # Ctrl+shift+q 关闭当前page所有窗口
 #Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
@@ -1079,6 +1087,8 @@ Mouse 1 6 A Iconify
 #                Right Click - WindowOps Menu
 #                Middle Click - Window List Menu
 #   Right click TitleBar/Borders for WindowOps Menu
+#   Move, Raise, Lower, Resize, ... 這些都是常用的操縱窗口的命令。
+#
 Mouse  1	 T    N     RaiseMoveX Move Maximize
 Mouse  1	 FS   N     RaiseMove Resize
 # 在窗口标题栏上向上滚动鼠标，收起窗口
@@ -1088,7 +1098,7 @@ Mouse  5	 T    N     WindowShade False
 
 Mouse  1	R    N   Menu MenuFvwmRoot
 Mouse  2	R    N   WindowList
-Mouse 3	R    N   Menu MenuWindowOpsLong
+Mouse  3	R    N   Menu MenuWindowOpsLong
 #Mouse  3	R    N   Menu MenuFvwmRoot
 Mouse  1	I    N   RaiseMoveX Move "Iconify off"
 Mouse  3	T    N   Menu MenuWindowOpsLong
@@ -1098,11 +1108,11 @@ Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-#Mouse 1  T   CS     Style      gnome-terminal*  TitleAtLeft
-#Mouse 1  T   C      Style      xterm*           TitleAtLeft
-#Mouse 1  T   M      Style      konsole*         TitleAtLeft
-#Mouse 1  T   CM     Style      terminator*      TitleAtLeft
-#Mouse 1  T   M      Style       urxvt*          TitleAtLeft
+#Mouse 1  T   CS     Style      gnome-terminal*     TitleAtLeft
+#Mouse 1  T   C      Style      xterm*                            TitleAtLeft
+#Mouse 1  T   M      Style      konsole*                       TitleAtLeft
+#Mouse 1  T   CM     Style      terminator*                    TitleAtLeft
+#Mouse 1  T   M      Style       urxvt*                              TitleAtLeft
 
 #Mouse 3  T   CS     Style      gnome-terminal*   TitleAtTop
 #Mouse 3  T   C      Style      xterm*            TitleAtTop
@@ -1110,8 +1120,16 @@ Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 #Mouse 3  T   CM     Style      terminator*       TitleAtTop
 #Mouse 3  T   M      Style      urxvt*            TitleAtTop
 
+DestroyFunc TitleLocation
+AddToFunc TitleLocation
++ I Raise
++ I  Current (Focus) Style * TitleAtLeft
+# + D $1
+
 #让你在任何时候按住 Ctrl 再点击鼠标左键(编号1)，所有应用的窗口的标题栏就会跑到左边去
-Mouse 1  T   C      Style      *           TitleAtLeft
+Mouse       1     T     C           Style   MouseFocus    TitleAtLeft
+#Mouse 1  T   C       TitleLocation
+
 #让你在任何时候按住 Ctrl 再点击鼠标左键(编号3)，所有应用的窗口的标题栏就会跑到上面去
 Mouse 3  T   C      Style      *           TitleAtTop
 #让你在任何时候按住 Ctrl 再点上滑鼠标滚轮(编号4)，所有应用的窗口的标题栏就会跑到右边去
@@ -1119,6 +1137,8 @@ Mouse 4  T   C      Style      *           TitleAtRight
 #让你在任何时候按住 Ctrl 再下滑鼠标滚轮(编号5)，所有应用的窗口的标题栏就会跑到下面去
 Mouse 5  T   C      Style      *           TitleAtBottom
 
+#  按 F5 就可以让当前聚焦窗口上面(North)那个窗口往下长大，直到被当前窗口挡住去路。你有时候想在VIM里抄 Acrobat Reader 里的内容，安排窗口大小的时候就可以用这招。
+Key F5 A A Direction North Maximize True 0 growdown
 
 #窗口透明，首先需要安装xcompmgr
 #Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
@@ -1156,10 +1176,15 @@ AddButtonStyle 4 Active Vector 8 30x70@3 30x30@3 70x30@3 70x70@3 30x70@3 \
 AddButtonStyle 4 ToggledActiveUp Vector 8 30x70@3 30x30@3 70x30@3 70x70@3 \
                  30x70@3 50x30@4 50x50@3 70x50@3
 AddButtonStyle 6 Active Vector 5 35x60@3 65x60@3 65x50@3 35x50@3 35x60@3
+
+ButtonStyle 2 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
+	60x50@0 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 \
+	20x70@0 40x50@1 20x30@0 20x20@1
 ButtonStyle All - Clear
 ButtonStyle 1 - MwmDecorMenu
 ButtonStyle 4 - MwmDecorMax
 ButtonStyle 6 - MwmDecorMin
+
 
 ############
 # 7: Modules
