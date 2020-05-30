@@ -681,7 +681,7 @@ Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
 
 ############这是办公软件菜单##########################
 DestroyMenu MenuOffice
-AddToMenu   MenuOffice "Offices" Title
+AddToMenu   MenuOffice "文本编辑器" Title
 #Test (x chromium) + "Chromium" Exec exec Chromium
 Test (x texstudio)  + "Texstudio %$[fvwm_exicons2]/texstudio.png%" Exec exec texstudio &
 Test (x lyx )  +    "lyx %$[fvwm_exicons2]/lyx.png%" Exec exec lyx &
