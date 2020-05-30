@@ -1,4 +1,3 @@
-
 set nocompatible                             " required
 filetype on                                  " required开启探测文件类型,on off
 
@@ -675,7 +674,7 @@ let Tlist_Use_Right_Window = 0
 "let Tlist_WinHeight = 100
 let Tlist_WinWidth = 20
 
-"设置taglist打开关闭的快捷键F1
+"设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
 map <F1> <Esc>:TlistToggle<Cr>
 
 
@@ -2080,7 +2079,7 @@ hi StatusLine ctermfg=11     cterm=bold
 "hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
 highlight  IncSearch ctermfg=yellow ctermbg=lightblue  cterm=BOLD  "incsearch 高亮
 "光标所在的字符
-":hi  Cursor         ctermfg=black    ctermbg=lightgreen    term=bold
+":hi  Cursor         ctermfg=black    ctermbg=lightgreen    term=bold
 
 "
 ""光标所在的字符
@@ -2095,21 +2094,21 @@ hi CursorColumn                ctermbg=234
 set cursorline 
 hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 "光标所在的屏幕行
-":hi  CursorLine       ctermbg=black     cterm=bold
+":hi  CursorLine       ctermbg=black     cterm=bold
 
 "非活动标签页标签
-"hi  TabLine   ctermfg=16   ctermbg=16   cterm=bold
+"hi  TabLine   ctermfg=16   ctermbg=16   cterm=bold
 hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
 
 "没有标签的地方
 hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
-":hi  TabLineFill   ctermfg=16     ctermbg=239         cterm=bold
+":hi  TabLineFill   ctermfg=16     ctermbg=239         cterm=bold
 
 "活动标签页标签
-":hi  TabLineSel    ctermfg=11    ctermbg=20         cterm=bold
+":hi  TabLineSel    ctermfg=11    ctermbg=20         cterm=bold
 
 "if、then、else、endif、switch
-":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
+":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
 hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
 " hi Conditional  guifg=#6699CC    ctermfg=196     cterm=bold  " if else end
 
@@ -2119,7 +2118,7 @@ hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
 
 "case、default 等
 hi Label           ctermfg=229               cterm=bold
-":hi Label ctermbg=16  ctermfg=16  cterm=bold
+":hi Label ctermbg=16  ctermfg=16  cterm=bold
 
 "int、long、char、float、double 等
 hi  Type   ctermfg=200     cterm=bold
