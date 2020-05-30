@@ -410,12 +410,12 @@ Style FvwmIdent      WindowListSkip
 
 #########################################
 #所有名字以 "Fvwm" 开头的窗口(在这里一般都是 FVWM 内部的模块),没有标题栏(NoTitle)
-Style     "Fvwm*"              NoTitle, Sticky, WindowListSkip
-#Style    "FvwmPager"          StaysOnTop
+Style     "Fvwm*"                        NoTitle, Sticky, WindowListSkip
+#Style    "FvwmPager"             StaysOnTop
 #Style    "FvwmBanner"         StaysOnTop
 #Style    "FvwmTaskBar"        StaysOnTop
-#Style    "*RightPanel"         StaysOnTop
-#Style    "fcitx"              StaysOnTop
+#Style    "*RightPanel"            StaysOnTop
+#Style    "fcitx"                             StaysOnTop
 
 Colorset  24   fg  #FFFFFF, bg #006400, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
@@ -477,12 +477,12 @@ Style     "CodeBlock"                           HilightColorset 31
 Colorset  22   fg  #0000FF, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
 #Colorset 22   fg  #000000,  bg #CD3700, hi #0000FF, sh #0000FF, Plain,  NoShape
 Style         "TeXstudio"                HilightColorset 22
-Style         "lyx"                      HilightColorset 22
-Style         "okular"                   HilightColorset 22
-Style         "wps"                      TitleAtLeft,  HilightColorset 22
-Style         "et"                       TitleAtLeft,  HilightColorset 22
-Style         "wpp"                      TitleAtLeft,  HilightColorset 22
-Style         "wpspdf"                   TitleAtLeft,  HilightColorset 22
+Style         "lyx"                               HilightColorset 22
+Style         "okular"                        HilightColorset 22
+Style         "wps*"                           TitleAtLeft,  HilightColorset 22
+Style         "et*"                               TitleAtLeft,  HilightColorset 22
+Style         "wpp*"                         TitleAtLeft,  HilightColorset 22
+Style         "wpspdf*"                   TitleAtLeft,  HilightColorset 22
 
 #Style  "*Dolphin" NoTitle
 #Style  "Spyder" NoTitle
@@ -523,40 +523,40 @@ Style "gvim" Icon $[fvwm_exicons2]/vim.png, MiniIcon $[fvwm_exicons2]/vim.png
 Colorset 0  fg 	#000000, bg	#00FF00, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 1  fg #000000, bg #8f9f8f, hi, sh, Plain, NoShape
-#1是设置未激活窗口title栏的颜色
+#Colorset 1是设置未激活窗口title栏的颜色
 Colorset 1  fg #000000, bg #8f9f8f, hi #228B22, sh #228B22, Plain, NoShape
 
 #Colorset 2  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
-#2是设置激活窗口title栏的颜色
+#Colorset 2是设置激活窗口title栏的颜色
 Colorset 2  fg #000000, bg #00FF00, hi #FF0000, sh #FF0000, Plain , NoShape
 #Colorset 2 Transient
 
 #Colorset 3  fg black, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
-#未激活窗口的框框颜色
+#Colorset 3未激活窗口的框框颜色
 Colorset 3  fg #0000FF, bg #4d4d4d, hi #676767, sh #303030, Plain, NoShape
 
 #Colorset 4  fg black, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
-#激活窗口的框框颜色
+#Colorset 4激活窗口的框框颜色
 Colorset 4  fg #FF0000, bg #D2691E, hi #474747, sh #101010, Plain, NoShape
 
 #Colorset 5  fg #000000, bg #ffffff, hi, sh, Plain, NoShape
-#5是调节menu的颜色
+#Colorset 5是调节menu的颜色
 Colorset 5  fg #000000, bg #FFFACD, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 6  fg #ffffff, bg #2d2d2d, hi, sh, Plain, NoShape
-#6是鼠标所在的menu的颜色
+#Colorset 6是鼠标所在的menu的颜色
 Colorset 6  fg #000000, bg #7CFC00, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 7  fg grey30, bg #ffffff, hi, sh, Plain, NoShape
-#7是鼠标不在的menu的颜色
+#Colorset 7是鼠标不在的menu的颜色
 Colorset 7  fg #FFFF00, bg #ffffff, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 8  fg #ffffff, bg #003c3c, hi, sh, Plain, NoShape
-#设置meun的title颜色
+#Colorset 8设置meun的title颜色
 Colorset 8  fg #000000, bg #FFD700, hi #0000FF, sh #0000FF, bold
 
 #Colorset 10 fg #ffffff, bg #003c3c, hi #aaaaaa, sh #999999, Plain, NoShape
-#默认的颜色，bg是右边时钟和最上面page背景色，hi,sh是每个page里面打开的应用的外框的颜色
+#Colorset 10默认的颜色，bg是右边时钟和最上面page背景色，hi,sh是每个page里面打开的应用的外框的颜色
 Colorset 10  fg #ffffff, bg #003c3c, hi #FF0000, sh #FF0000, Plain, NoShape
 
 #Colorset 11 fg #ffffff, bg #1a6e99, hi #ffffff, sh #ffffff, Plain, NoShape
@@ -597,16 +597,16 @@ MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572
 # window or using alt-f1 (or menu).
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "Fvwm" Title
-+ "&编辑器       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
++ "&写代码       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
 + "&浏览器       %$[fvwm_exicons2]/www.png%" Popup MenuBrowser
 + "&办公         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
-+ "&文件管理器   %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
-+ "&图片相关     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
++ "&文件夹       %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
++ "&图片     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
 + "&影音         %$[fvwm_exicons2]/game-logic.png%" Popup MenuYule
-+ "&通信工具     %$[fvwm_exicons2]/chat.png%" Popup MenuCommunitation
++ "&通讯     %$[fvwm_exicons2]/chat.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
-+ "&网络管理器    %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
-+ "系统设置     %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
++ "&网络管理器   %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
++ "系统设置      %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
 + "" Nop
 + "集成开发环境     %$[fvwm_icons]/programs.png%" Popup InterIDE
 + "" Nop
@@ -639,12 +639,12 @@ PipeRead "fvwm-menu-desktop -e"
 # When adding programs you don't need to use the Test (x foo)
 # lines as this is only to help make this menu portable.
 DestroyMenu MenuEditor
-AddToMenu   MenuEditor "编辑器" Title
+AddToMenu   MenuEditor "代码编辑器" Title
 Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
-Test (x  code) + "Code %$[fvwm_exicons2]/vscode.png%"  Exec exec code
+Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
 
 
 #################集成开发环境IDE##################
@@ -1098,17 +1098,27 @@ Mouse   4   R   N   Scroll +0 -100  #向上翻pager
 Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
-Mouse 1  T   CS     Style      gnome-terminal*  TitleAtLeft
-Mouse 1  T   C      Style      xterm*           TitleAtLeft
-Mouse 1  T   M      Style      konsole*         TitleAtLeft
-Mouse 1  T   CM     Style      terminator*      TitleAtLeft
-Mouse 1  T   M      Style       urxvt*          TitleAtLeft
+#Mouse 1  T   CS     Style      gnome-terminal*  TitleAtLeft
+#Mouse 1  T   C      Style      xterm*           TitleAtLeft
+#Mouse 1  T   M      Style      konsole*         TitleAtLeft
+#Mouse 1  T   CM     Style      terminator*      TitleAtLeft
+#Mouse 1  T   M      Style       urxvt*          TitleAtLeft
 
-Mouse 3  T   CS     Style      gnome-terminal*   TitleAtTop
-Mouse 3  T   C      Style      xterm*            TitleAtTop
-Mouse 3  T   M      Style      konsole*          TitleAtTop
-Mouse 3  T   CM     Style      terminator*       TitleAtTop
-Mouse 3  T   M      Style      urxvt*            TitleAtTop
+#Mouse 3  T   CS     Style      gnome-terminal*   TitleAtTop
+#Mouse 3  T   C      Style      xterm*            TitleAtTop
+#Mouse 3  T   M      Style      konsole*          TitleAtTop
+#Mouse 3  T   CM     Style      terminator*       TitleAtTop
+#Mouse 3  T   M      Style      urxvt*            TitleAtTop
+
+#让你在任何时候按住 Ctrl 再点击鼠标左键(编号1)，所有应用的窗口的标题栏就会跑到左边去
+Mouse 1  T   C      Style      *           TitleAtLeft
+#让你在任何时候按住 Ctrl 再点击鼠标左键(编号3)，所有应用的窗口的标题栏就会跑到上面去
+Mouse 3  T   C      Style      *           TitleAtTop
+#让你在任何时候按住 Ctrl 再点上滑鼠标滚轮(编号4)，所有应用的窗口的标题栏就会跑到右边去
+Mouse 4  T   C      Style      *           TitleAtRight
+#让你在任何时候按住 Ctrl 再下滑鼠标滚轮(编号5)，所有应用的窗口的标题栏就会跑到下面去
+Mouse 5  T   C      Style      *           TitleAtBottom
+
 
 #窗口透明，首先需要安装xcompmgr
 #Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
