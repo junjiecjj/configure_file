@@ -333,7 +333,7 @@ Style * EdgeMoveDelay 1, EdgeMoveResistance 1
 # Reserves space along the edge(s) of the Screen that will not
 # be covered when maximizing or placing windows.
 # 窗口最大化时上下左右离屏幕的距离,命令格式为“EwmhBaseStruts 左 右 上 下”
-EwmhBaseStruts  110 0 26 0
+EwmhBaseStruts  0 0 26 0
 
 # This sets the ClickTime and MoveThreshold used to determine
 # Double Clicks, Hold and Move for the mouse.
@@ -733,7 +733,8 @@ DestroyMenu MenuCommunitation
 AddToMenu   MenuCommunitation "聊天工具" Title
 Test (x /opt/deepinwine/apps/Deepin-QQ/run.sh) + "wine-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /opt/deepinwine/apps/Deepin-qq/run.sh
 Test (x /opt/deepinwine/apps/Deepin-TIM/run.sh) + "wine-TIM" Exec exec /opt/deepinwine/apps/Deepin-TIM/run.sh
-Test (x /usr/share/tencent-qq/qq) + "Tencent-QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
+Test (x /usr/share/tencent-qq/qq) + "腾讯QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/share/tencent-qq/qq
+Test (x /usr/local/bin/qq) + "腾讯QQ %$[fvwm_exicons2]/qq.png%" Exec exec /usr/local/bin/qq
 Test (x electronic-wechat) + "微信electronic %$[fvwm_exicons2]/wechat.png%" Exec exec /snap/bin/electronic-wechat
 Test (x /opt/deepinwine/apps/Deepin-WeChat/run.sh) + "wine-微信 %$[fvwm_exicons2]/wechat.png%" Exec exec /opt/deepinwine/apps/Deepin-WeChat/run.sh
 Test (x zoom) + "Zoom %$[fvwm_exicons2]/zoom.png%" Exec exec zoom
