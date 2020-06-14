@@ -114,6 +114,7 @@ set fileencodings=utf-8,cp936,ucs-bom
 set mouse=a                     "启动鼠标
 set hlsearch                     "搜索高亮"
 
+let mapleader = '\'
 " 定义快捷键关闭当前分割窗口
 nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
@@ -131,12 +132,13 @@ set foldlevel=100
 " set textwidth=70                   "来设置 n
 
 "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用 
-set nowrap                             "不自动折行
+set  nowrap                             "不自动折行
 " set wrap                              "设置自动折行
-set linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
-set wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
-set sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
-" set visualbell     "出错时，发出视觉提示，通常是屏幕闪烁。
+set  linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
+set  wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
+set  sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
+set  novisualbell     "出错时，不要闪烁 set novisualbell 。
+
 
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
 " <F3> 行号开关
@@ -172,6 +174,28 @@ endfunc
 
 " ctrl-n进行相对行号/绝对行号切换
 nnoremap <C-n> :call NumberToggle()<cr>
+
+" let &t_SI = "\<Esc>]12;red\x7"
+" let &t_SR = "\<Esc>]12;yellow\x7"
+" let &t_EI = "\<Esc>]12;green\x7"
+
+
+" 默认下，不管是插入状态还是非插入状态，都是小方块，但是我更希望能看到插入时光标变成小竖线。
+" Mode Settings
+
+
+let &t_SI.="\e[6 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
+
+"Cursor settings:
+
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -254,21 +278,17 @@ filetype indent on           " 为特定文件类型载入相关缩进文件
 set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
 set laststatus=2            "显示当前编辑文件名
 set cursorline              "光标所在行一横线
+highlight CursorLine   cterm=underline  ctermbg=234   ctermfg=green   guibg=NONE guifg=NONE
+
 set cursorcolumn              "光标所在行一竖线
-
-highlight CursorLine   cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
-highlight CursorColumn cterm=None  ctermbg=black ctermfg=green guibg=NONE guifg=NONE
+highlight CursorColumn cterm=None       ctermbg=234   ctermfg=green   guibg=NONE guifg=NONE
 
 
-
-hi CursorLine                  ctermbg=234   cterm=none
-hi CursorColumn                ctermbg=234
 
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
 
 
-set cursorline 
 "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 hi CursorLine cterm=underline 
 
@@ -916,7 +936,6 @@ let g:ycm_echo_current_diagnostic = 1
 
 map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
 
-let mapleader = '\'
 
 "查找光标下的标识符并跳转到其声明，文件类型支持：c，cpp，objc，objcpp，cs，go，java，python，rust，typescript
 nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR> 
@@ -1821,8 +1840,9 @@ hi CursorLine       ctermbg=234   cterm=bold
 "
 "  "光标所在的屏幕列
 hi CursorColumn                ctermbg=234
-set cursorline 
-hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+
+hi CursorLine cterm=underline 
+"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -2090,9 +2110,11 @@ hi CursorLine       ctermbg=234   cterm=bold
 "hi CursorLineNr    guifg=#FD971F               gui=none
 "
 "  "光标所在的屏幕列
-hi CursorColumn                ctermbg=234
-set cursorline 
-hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorColumn      ctermbg=234
+
+"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine cterm=underline
+
 "光标所在的屏幕行
 ":hi  CursorLine       ctermbg=black     cterm=bold
 
@@ -2640,3 +2662,5 @@ endfunc
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
+
+:set vb t_vb=
