@@ -45,7 +45,8 @@
       //"background": "#013456",
       "padding": "0, 0, 0, 0",
       "hidden": false,
-      "startingDirectory": "%USERPROFILE%",
+      //"startingDirectory": "//wsl$/Ubuntu-20.04/home/junjie",
+      "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~;bash\"",
       "colorScheme": "Snazzy"
     },
     "list": [
@@ -427,3 +428,4 @@
     }
   ]
 }
+
