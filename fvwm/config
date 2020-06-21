@@ -419,7 +419,7 @@ Style     "Fvwm*"                        NoTitle, Sticky, WindowListSkip
 #Style    "*RightPanel"            StaysOnTop
 #Style    "fcitx"                             StaysOnTop
 
-Colorset  24   fg  #FFFFFF, bg #006400, hi #FF0000, sh #FF0000, Plain,  NoShape
+Colorset  24   fg  #FFFFFF, bg  #410688, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*Google Chrome"             TitleAtTop, HilightColorset 24
 Style     "*Firefox"                       HilightColorset 24
 
@@ -428,7 +428,7 @@ Style     "gedit"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
-Colorset 34   fg  #00F5FF, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
+Colorset 34   fg  	#1C1C1C, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*code"                        TitleAtTop,  HilightColorset 34
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
@@ -438,9 +438,9 @@ Style     "vlc"                          HilightColorset 25
 Style     "mpv"                          HilightColorset 25
 
 Colorset 26   fg  #000000, bg 	#FFA500, hi #FF0000, sh #FF0000, Plain,  NoShape
-Style     "nautilus"                        HilightColorset 26
-Style     "dolphin"                        HilightColorset 26
-Style     "pcmanfm"                        HilightColorset 26
+Style     "nautilus"                     HilightColorset 26
+Style     "dolphin"                      HilightColorset 26
+Style     "pcmanfm"                      HilightColorset 26
 
 Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
@@ -459,8 +459,8 @@ Style     "NoMachine"                        HilightColorset 29
 Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
-Colorset 30   fg  #000000, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
-Colorset 30   fg  #000000, bg #ffffff , hi #FF0000, sh #FF0000, Plain,  NoShape
+# Colorset 30   fg  #000000,   bg #FF7F00 ,      hi  #FF0000,    sh #FF0000,   Plain,    NoShape
+Colorset 30      fg  #000000,   bg  #059406 ,      hi  #FF0000,     sh #FF0000,   Plain,   NoShape
 Style     "xterm"                                                HilightColorset 30
 Style     "urxvt"                                               HilightColorset 30
 Style     "konsole"                                         HilightColorset 30
@@ -1043,7 +1043,7 @@ Key Up      A  S    Scroll +0   -100
 Key Down    A  S    Scroll +0   +100
 
 # Alt+F6    关闭显示屏
-Silent Key   F6      A  M    Function LockScreen
+Silent Key   F6      A    M    Function LockScreen
 
 #Ctrl+F11 最大化
 Silent Key   F11		A	C	Maximize
@@ -1121,25 +1121,22 @@ Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 #Mouse 3  T   CM     Style      terminator*       TitleAtTop
 #Mouse 3  T   M      Style      urxvt*            TitleAtTop
 
-DestroyFunc TitleLocation
-AddToFunc TitleLocation
-+ I Raise
-+ I  Current (Focus) Style * TitleAtLeft
+
 # + D $1
 
 #让你在任何时候按住 Ctrl 再点击鼠标左键(编号1)，所有应用的窗口的标题栏就会跑到左边去
-Mouse       1     T     C           Style   MouseFocus    TitleAtLeft
-#Mouse 1  T   C       TitleLocation
+Mouse   1   T   C        Style      *           TitleAtLeft
+# Mouse   1   T   C    AcceptsFocus   TitleAtLeft
 
 #让你在任何时候按住 Ctrl 再点击鼠标左键(编号3)，所有应用的窗口的标题栏就会跑到上面去
-Mouse 3  T   C      Style      *           TitleAtTop
+Mouse   3   T   C   Style      *           TitleAtTop
 #让你在任何时候按住 Ctrl 再点上滑鼠标滚轮(编号4)，所有应用的窗口的标题栏就会跑到右边去
-Mouse 4  T   C      Style      *           TitleAtRight
+Mouse   4   T   C   Style      *           TitleAtRight
 #让你在任何时候按住 Ctrl 再下滑鼠标滚轮(编号5)，所有应用的窗口的标题栏就会跑到下面去
-Mouse 5  T   C      Style      *           TitleAtBottom
+Mouse   5   T   C   Style      *           TitleAtBottom
 
 #  按 F5 就可以让当前聚焦窗口上面(North)那个窗口往下长大，直到被当前窗口挡住去路。你有时候想在VIM里抄 Acrobat Reader 里的内容，安排窗口大小的时候就可以用这招。
-Key F5 A A Direction North Maximize True 0 growdown
+Key   F5  A   A   Direction   North   Maximize   True   0   growdown
 
 #窗口透明，首先需要安装xcompmgr
 #Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
@@ -1181,11 +1178,22 @@ AddButtonStyle 6 Active Vector 5 35x60@3 65x60@3 65x50@3 35x50@3 35x60@3
 ButtonStyle 2 16 20x20@1 30x20@1 50x40@1 70x20@1 80x20@1 80x30@0 \
 	60x50@0 80x80@0 70x80@0 50x60@0 30x80@0 20x80@0 \
 	20x70@0 40x50@1 20x30@0 20x20@1
+
+
+############################################################
+# ButtonStyle Left -- flat
+# ButtonStyle All ActiveUp (-- flat) Inactive (-- flat)
+
+
+#############################################################
 ButtonStyle All - Clear
 ButtonStyle 1 - MwmDecorMenu
 ButtonStyle 4 - MwmDecorMax
 ButtonStyle 6 - MwmDecorMin
 
+################################################################
+
+################################################################
 
 ############
 # 7: Modules
