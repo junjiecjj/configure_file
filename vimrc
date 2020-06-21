@@ -1,3 +1,4 @@
+
 set nocompatible                             " required
 filetype on                                  " required开启探测文件类型,on off
 
@@ -173,7 +174,7 @@ endfunc
 
 
 " ctrl-n进行相对行号/绝对行号切换
-nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-r> :call NumberToggle()<cr>
 
 " let &t_SI = "\<Esc>]12;red\x7"
 " let &t_SR = "\<Esc>]12;yellow\x7"
@@ -958,6 +959,7 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 set completeopt=longest,menu
 let g:ycm_add_preview_to_completeopt = 0
 
+
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif	
 
@@ -1136,6 +1138,7 @@ nmap <Leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="right"
 
+" ctrl + d 打开目录
 map <C-d> :NERDTreeToggle<CR>
 
 " 开启Nerdtree时自动显示Bookmarks
@@ -2674,3 +2677,123 @@ autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 
 :set vb t_vb=
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" Leader键为'\'
+
+" 定义的快捷键为：
+" \q  退出
+" \w  保存
+" F3  行号
+" ctrl + r    相对/绝对行号的切换
+
+" F4       相当于输入:ACK -i 查找
+" ctrl  u   相当于输入:ACK
+" F11   前一个颜色
+" F12   后一个颜色
+
+"""""""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
+" 接下来的是，在normal模式下输入以下命令就可以实现快速查找，查找后会把目标地址以a,b,c..等标记标出，然后按下响应的快捷键就可快速跳转
+" \\w    # 向后查找单词(find word after)
+" \\W    # 向前查找单词(find word before)
+" \\e    # 向后查找，定位到词尾(find word end after)
+" \\E    # 向前查找，位位到词尾(find word end before)
+" \\f    # 向后查找单字(find letter after)
+" \\F    # 向前查找单字(find letter before)
+" \\s    #快捷键<leader><leader>s(即\\s), 然后输入要搜索的字母, 这个跳转是双向的
+
+
+""""""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
+"  <Leader>f在当前目录搜索文件
+"<Leader>b切换Buffer中的文件
+"<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+"<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+
+
+
+""""""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
+"  \p   打开函数列表
+"  \f   文件搜索
+" \m    历史打开过的文件
+"  \F     函数搜索（仅当前文件里），依赖ctags插件
+"  \rg    模糊搜索，很强大的功能，迅速秒搜
+
+
+""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
+"  设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
+
+
+""""""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
+" 按键    效果                                   模式
+" \li     文件信息显示                           n
+" \lt     打开目录                               n
+" \ll     编译文档                               n
+" \lv     查看文档                               n
+" \lc     清除latex编译文件                      n
+" \ls     查看文档, 并跳到当前光标所在的位置.    n
+" dse     删除光标周围的\begin \end环境          n
+" dsc     删除光标周围的\command{}环境           n
+" ds$     删除光标周围的$$ 环境                  n
+" dsd     删除光标周围的括号                     n
+" cse     修改光标周围的\begin \end环境          n
+" cs$     修改光标周围的\command{}环境           n
+" csd     修改光标周围的括号模式                 n
+" tsc     \command{}和\command*{}的互换          n
+" tse     \begin{env}和\begin{env*}的互换        n
+" tsd     (...)和\left( ... \right )的互换       n
+
+
+"""""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
+"  可视模式下输入 gx  即可搜索选中的内容；a
+
+
+
+"""""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
+" ctrl+y  设置用于关闭补全列表的快捷键，默认为ctrl+y
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
+" ctrl + d 打开目录
+
+
+"""""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
+" C-w,h j k l    向"左,下,上,右"切换窗口.
+" ctrl + Tab各个文档之间切换
+
+
+""""""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
+" 配置Ctrl + 方向键在窗口之间切换
+"   Ctrl + Up   切换到上面的窗口
+"   Ctrl + Down 切换到下面的窗口
+"   Ctrl + left  切换到左边的窗口
+"   Ctrl + right    切换到右边的窗口
+
+
+""""""""""""""""""""""""""""" Vim-multiple-cursors(vim多重光标选取插件)   """""""""""""""""""""""""""""
+" 2G - 跳转到第2行
+" fp - 移动光标到字符p
+" <C-n> - 即Ctrl+n, 选择当前单词poorly_named_var
+" <C-n><C-n> - 每按一次<C-n>向下选取一个同样的单词, 这里选择下面的两个pooly_named_var
+" c - 按c开始修改,选中后, 可以进行增删替换a/c/x等
+" name - 输入要修改的内容, 这里是name
+" 按<Esc>回到正常的模式
+
+
+
+"""""""""""""""""""""""""""""""""""""""""配置ale""""""""""""""""""""""""""""""""""""""""
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+"<Leader>s触发/关闭语法检查
+"<Leader>d查看错误或警告的详细信息
+
+
+
+
+"" Ctrl-j 切换到下方的分割窗口 
+" Ctrl-k 切换到上方的分割窗口 
+" Ctrl-l 切换到右侧的分割窗口 
+" Ctrl-h 切换到左侧的分割窗口 
+"  Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
+" F5   一键执行python代码
+" <F5>编译C/C++/java/，<F6>运行C/C++/java
