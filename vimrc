@@ -1049,7 +1049,7 @@ let g:NERDSpaceDelims=1
 " \ca，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
 " \cc，注释当前行
 " \c，切换注释/非注释状态
-" \cs，以”性感”的方式注释
+" \cs，以”性感”的方式注释 
 " \cA，在当前行尾添加注释符，并进入Insert模式
 " \cu，取消注释
 " Normal模式下，几乎所有命令前面都可以指定行数。  比如  输入 6\cs的意思就是以性感方式注释光标所在行开始6行代码
@@ -1977,7 +1977,8 @@ hi Structure ctermfg=118 cterm=none
 hi Macro ctermfg=161 cterm=bold
 hi PreCondit ctermfg=161 cterm=bold
 set cursorline 
-hi CursorLine cterm=underline "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine cterm=underline 
+"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
 
 
@@ -2694,7 +2695,57 @@ autocmd BufNewFile * normal G
 " F11   前一个颜色
 " F12   后一个颜色
 
-"""""""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
+" 命令行模式
+" ds "              删除一个配对符号 (delete a surrounding)
+" cs "              更改一个配对符号 (change a surrounding)
+" cS "              更改一个配对符号 (change a  surrounding),原配对号内的文本做新一行
+" ys "              增加一个配对符号 (yank a surrounding)
+" yS "              在新的行增加一个配对符号并进行缩进
+" yss "             在整行增加一个配对符号
+" ySs/Yss  "        在整行增加一个配对符号，配对符号单独成行并进行缩进
+
+"  插入模式
+" Ctrl + s                    增加一个配对符号
+" Ctrl +s, Ctrl +s        在整行增加一个配对符号，配对符号单独成行并进行缩进
+
+" 可视模式
+" S         选中的部分括起来
+" gS        选中的括起来，括号内文本做新一行
+
+" 如
+" ds"回车           删除"hello, world" -> hello,world
+" cs"(回车          替换 "hello,world"  -> (hello,world)
+" cst" 回车            替换-标签(t=tag)  ==> <a>abc</a>a>  -> "abc"
+" cst<html>回车        替换标签 ==> <a>abc</a>a>  -> <html>abc</html>html>
+" cS"(回车           "hello,world"  -> (
+"                                 hello,world
+"                          )
+" ysw(回车           会在当前光标所在单词w的周围增加一个 () 配对   hello world  ->  hello ( world )
+ 
+" ysw<em回车         hello world  ->   <em>hello</em> world                         
+
+
+" ySw[         hello world -> hello [
+"                                         world
+"                                     ]
+
+" yss"        添加一整行 Hello,world -> "Hello,world"
+" ySS"        添加括起来，括号内文本做新一行 Hello,world -> "
+"                                                            Hello,world
+"                                                           "
+" ySS<div回车               hello world  ->       <div>
+"                                                 hello world
+"                                                 </div>
+
+" 可视模式：
+" S(回车         hello world ->  ( hello world )
+" gS(          hello world   ->         (
+"                                           hello world
+"                                       )
+
+
+"""""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
 " 接下来的是，在normal模式下输入以下命令就可以实现快速查找，查找后会把目标地址以a,b,c..等标记标出，然后按下响应的快捷键就可快速跳转
 " \\w    # 向后查找单词(find word after)
 " \\W    # 向前查找单词(find word before)
