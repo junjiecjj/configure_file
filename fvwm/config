@@ -599,7 +599,7 @@ MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572
 # The root menu will PopUp with a click in the root
 # window or using alt-f1 (or menu).
 DestroyMenu MenuFvwmRoot
-AddToMenu   MenuFvwmRoot "Fvwm" Title
+AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&写代码       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
 + "&浏览器       %$[fvwm_exicons2]/www.png%" Popup MenuBrowser
 + "&办公         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
@@ -623,10 +623,10 @@ AddToMenu   MenuFvwmRoot "Fvwm" Title
 + "帮助          %icons/help.png%" Popup MenuFvwmManPages
 + "模块配置    %$[fvwm_exicons2]/configuration.png%" Popup MenuFvwmModules
 
-+ "" No
++ "" Nop
 + "拷贝配置文件   %icons/conf.png%"       FvwmScript FvwmScript-ConfirmCopyConfig
 #+ "拷贝配置文件% icons/conf.png%"  Exec exec  cp  -f  '/usr/share/fvwm/default-config/config'  '~/.fvwm/config'
-+ "" No
++ "" Nop
 + "Re&fresh      %icons/refresh.png%"        Refresh
 + "&重启FVWM     %icons/restart.png%"       Restart
 #+ "&Quit%icons/quit.png%" Module FvwmScript FvwmScript-ConfirmQuit
