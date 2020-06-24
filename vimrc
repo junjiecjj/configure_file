@@ -92,6 +92,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 "All of your Plugins must be added before the following line
 call vundle#end()
 
+let mapleader = '\'
 set t_Co=256
 
 set background=dark
@@ -123,7 +124,6 @@ set fileencodings=utf-8,cp936,ucs-bom
 set mouse=a                     "启动鼠标
 set hlsearch                     "搜索高亮"
 
-let mapleader = '\'
 " 定义快捷键关闭当前分割窗口
 nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
@@ -2397,6 +2397,23 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
+" 能够漂亮地显示.NFO文件
+set encoding=utf-8
+function! SetFileEncodings(encodings)
+    let b:myfileencodingsbak=&fileencodings
+    let &fileencodings=a:encodings
+endfunction
+function! RestoreFileEncodings()
+    let &fileencodings=b:myfileencodingsbak
+    unlet b:myfileencodingsbak
+endfunction
+
+au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
+au BufReadPost *.nfo call RestoreFileEncodings()
+
+" 高亮显示普通txt文件（需要txt.vim脚本）
+au BufRead,BufNewFile *  setfiletype txt
+
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 "一键执行python代码
 map <F5> :call RunPython()<CR> "一键执行python代码
@@ -2627,7 +2644,7 @@ let autosave=10
 "新建.c,.h,.sh,.java文件，自动插入文件头 
 autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
+function! SetTitle() 
     "如果文件类型为.sh文件 
     if &filetype == 'sh' 
         call setline(1,"\#!/bin/bash") 
@@ -2669,33 +2686,33 @@ func SetTitle()
         call append(line(".")+4, ">> 此程序的功能是：")
         call append(line(".")+5, "************************************************************************/") 
         call append(line(".")+6, "")
-    endif
-    if &filetype == 'cpp'
-        call append(line(".")+7, "#include<bits/stdc++.h>")
-        call append(line(".")+8, "using namespace std;")
-        call append(line(".")+9, "")
-        call append(line(".")+10, "")
-        call append(line(".")+11, "int main(int argc, char *argv[])")
-        call append(line(".")+12, "{")
-        call append(line(".")+13, "}")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+7, "#include<stdio.h>")
-        call append(line(".")+8, "#include<stdlib.h>")
-        call append(line(".")+9, "#include<float.h>")
-        call append(line(".")+10, "#include<limits.h>")
-        call append(line(".")+11, "#include<math.h>")
-        call append(line(".")+12, "#include<string.h>")
-        call append(line(".")+13, "#include<sys/socket.h>")
-        call append(line(".")+14, "#include<stddef.h>")
-        call append(line(".")+15, "#include<locale.h>")
-        call append(line(".")+16, "#include<time.h>")
-        call append(line(".")+17, "#include<complex.h>")
-        call append(line(".")+18, "")
-        call append(line(".")+19, "")
-        call append(line(".")+20, "int main(int argc, char *argv[])")
-        call append(line(".")+21, "{")
-        call append(line(".")+22, "}")
+        
+        if &filetype == 'cpp'
+            call append(line(".")+7, "#include<bits/stdc++.h>")
+            call append(line(".")+8, "using namespace std;")
+            call append(line(".")+9, "")
+            call append(line(".")+10, "")
+            call append(line(".")+11, "int main(int argc, char *argv[])")
+            call append(line(".")+12, "{")
+            call append(line(".")+13, "}")
+        elseif &filetype == 'c'
+            call append(line(".")+7, "#include<stdio.h>")
+            call append(line(".")+8, "#include<stdlib.h>")
+            call append(line(".")+9, "#include<float.h>")
+            call append(line(".")+10, "#include<limits.h>")
+            call append(line(".")+11, "#include<math.h>")
+            call append(line(".")+12, "#include<string.h>")
+            call append(line(".")+13, "#include<sys/socket.h>")
+            call append(line(".")+14, "#include<stddef.h>")
+            call append(line(".")+15, "#include<locale.h>")
+            call append(line(".")+16, "#include<time.h>")
+            call append(line(".")+17, "#include<complex.h>")
+            call append(line(".")+18, "")
+            call append(line(".")+19, "")
+            call append(line(".")+20, "int main(int argc, char *argv[])")
+            call append(line(".")+21, "{")
+            call append(line(".")+22, "}")
+        endif
     endif
 endfunc
 
@@ -2704,7 +2721,8 @@ autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 
 :set vb t_vb=
-
+"自动命令，每次写入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
+autocmd! bufwritepost .vimrc source ~/.vimrc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
