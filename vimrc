@@ -1,6 +1,8 @@
 
 set nocompatible                             " required
 filetype on                                  " required开启探测文件类型,on off
+filetype plugin on           " 载入文件类型插件
+filetype indent on           " 为特定文件类型载入相关缩进文件
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -107,7 +109,7 @@ set showmatch                   "高亮显示匹配的括号
 set scrolloff=3              " 光标移动到buffer的顶部和底部时保持3行距离
 set smartindent              "为c语言自动缩进
 set cindent                  " 使用C样式的缩进
-set autoindent               "自动缩进
+set autoindent               "自动缩进, 继承前一行的缩进方式，适用于多行注释
 
 " 设定默认解码
 " set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
@@ -140,7 +142,7 @@ set foldlevel=100
 "自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
 " set textwidth=70                   "来设置 n
 
-"自动折行 是把长的一行用多行显示 , 不在文件里加换行符用 
+"自动折行 是把长的一行用多行显示 , 不在文件里加换行符用
 set  nowrap                             "不自动折行
 " set wrap                              "设置自动折行
 set  linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
@@ -210,7 +212,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " if has("autocmd")
 "   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
 "   au InsertEnter,InsertChange *
-"     \ if v:insertmode == 'i' | 
+"     \ if v:insertmode == 'i' |
 "     \   silent execute '!echo -ne "\e[6 q"' | redraw! |
 "     \ elseif v:insertmode == 'r' |
 "     \   silent execute '!echo -ne "\e[4 q"' | redraw! |
@@ -269,7 +271,7 @@ endfunction
 "autocmd FileChangedShellPost *
 "\ echohl WarningMsg | echo "文件在外部被改动,已重新加载..." | echohl None
 
-" ======= 设置当文件被外部改变的时侯自动读入文件 ======= "  
+" ======= 设置当文件被外部改变的时侯自动读入文件 ======= "
 
 
 " 让 vim 把连续数量的空格视为一个制表符
@@ -281,7 +283,7 @@ set shiftwidth=4
 " 下面的滚动条开启
 " let g:netrw_winsize = 20
 "添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
-:set guioptions+=b 
+:set guioptions+=b
 
 
 " 水平滚动
@@ -299,17 +301,31 @@ set selection=inclusive "指定在选择文本时，光标所在位置也属于�
 
 " 我的状态行显示的内容（包括文件类型和解码）
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-
+" 设置在状态行显示的信息如下：
+" %f    当前的文件名
+" %F    当前全路径文件名
+" %m    当前文件修改状态
+" %r    当前文件是否只读
+" %Y    当前文件类型
+" %{&fileformat}
+"       当前文件编码
+" %{&fileencoding}
+"       中文编码
+" %b    当前光标处字符的 ASCII 码值
+" %B    当前光标处字符的十六进制值
+" %l    当前光标行号
+" %c    当前光标列号
+" %V    当前光标虚拟列号 (根据字符所占字节数计算)
+" %p    当前行占总行数的百分比
+" %%    百分号
+" %L    当前文件总行数
 
 set laststatus=2                          " 2为总显示最后一个窗口的状态行
                                           " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
-                                          " 0不显示最后一个窗口的状态行 
+                                          " 0不显示最后一个窗口的状态行
 
 set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
 
-filetype on                 " 侦测文件类型
-filetype plugin on           " 载入文件类型插件
-filetype indent on           " 为特定文件类型载入相关缩进文件
 
 " 将制表符扩展为空格
 set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
@@ -327,16 +343,30 @@ set guioptions-=m           " 隐藏菜单栏
 
 
 "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine cterm=underline 
+hi CursorLine cterm=underline
 
-set showcmd                    " 输入的命令显示出来，看的清楚些  
+set showcmd                    " 输入的命令显示出来，看的清楚些
 set showmode
 set ruler                               "打开状态栏标尺
+" 设置编辑时制表符占用空格数
+set tabstop=4
+set backspace=2
 set confirm                              "在处理未保存或只读文件的时候，弹出确认
 set ignorecase                          "忽略大小写
 setlocal noswapfile                     "不要生成swp文件
 set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
+" 可以用 alt+n 来切换，比如 alt+1 切换到第一个 tab,alt+2 切换到第二个 tab。
+:nn <M-1> 1gt
+:nn <M-2> 2gt
+:nn <M-3> 3gt
+:nn <M-4> 4gt
+:nn <M-5> 5gt
+:nn <M-6> 6gt
+:nn <M-7> 7gt
+:nn <M-8> 8gt
+:nn <M-9> 9gt
+:nn <M-0> :tablast<CR>
 """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
 
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
@@ -374,7 +404,7 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 
 """"""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
-let g:move_key_modifier = 'C' 
+" let g:move_key_modifier = 'C'
 
 " <C-k>   Move current line/selection up
 " <C-j>   Move current line/selection down
@@ -434,8 +464,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ack_prg = "ag --vimgrep --smart-case"
 
 
-map <F4> :Ack -i 
-imap <F4> :Ack -i 
+map <F4> :Ack -i
+imap <F4> :Ack -i
 
 " 以后在普通模式下输入Ctrl+U便可以自动输入:Ack 了
 map <c-u> :Ack<space>
@@ -707,7 +737,7 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 
 "设置ctags路径
-" let Tlist_Ctags_Cmd="/usr/local/bin/ctags" 
+" let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 
 "启动vim后自动打开taglist窗口
@@ -736,7 +766,7 @@ map <F1> <Esc>:TlistToggle<Cr>
 
 
 "将 \t 表示为在命令行模式下输入命令：
-map <silient> <leader>t <Esc>:TlistToggle<Cr>    
+map <silient> <leader>t <Esc>:TlistToggle<Cr>
 
 "更新ctags标签文件快捷键设置
 noremap <F6> :!ctags -R<CR>
@@ -777,7 +807,7 @@ let g:tex_conceal='abdmg'
 
 let g:polyglot_disabled = ['latex']
 "估计大家都打开了换行时自动对齐的功能，但是有没有发现这样一个问题，在用 itemize 的时候，每一个 item 都会自动缩进两个，非常麻烦
-let g:tex_indent_items=0    
+let g:tex_indent_items=0
 
 
 let g:Tex_Com_frac = "\\frac{<++>}{<++>}<++>"
@@ -846,7 +876,7 @@ let g:UltiSnipsEditSplit="vertical"
 "开启语法高亮功能
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
-syntax on 
+syntax on
 
 
 let python_highlight_all=1
@@ -864,7 +894,7 @@ let g:AutoComplPop_MappingDriven = 1
 " 修改GUI高亮参数 该设置全局有效
 hi Pmenu     ctermfg=0    ctermbg=241    guibg=#444444
 hi PmenuSel   ctermfg=196    ctermbg=251   guibg=#555555 guifg=#ffffff
- 
+
 " 加载PHP函数字典，配置PHP函数自动补全，注意文件位置
 au FileType php setlocal dict+=$VIM/vimfiles/bundle/AutoComplPop/dict/php_funclist.txt
 " PHP提示触发
@@ -877,7 +907,7 @@ if !exists('g:AutoComplPop_Behavior')
 		\ 'repeat' : 0,
 		\ })
 endif
- 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -975,10 +1005,10 @@ map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
 
 
 "查找光标下的标识符并跳转到其声明，文件类型支持：c，cpp，objc，objcpp，cs，go，java，python，rust，typescript
-nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR> 
+nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR>
 
 " 查找光标下的标识符并跳转到其定义
-nnoremap <leader>gd :YcmCompleter GoToDefinition<CR> 
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 
 
 "关闭YCM 自动弹出函数原型预览窗口
@@ -987,10 +1017,10 @@ let g:ycm_add_preview_to_completeopt = 0
 
 
 "离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif	
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"	
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 "上下左右键的行为 会显示其他信息
 inoremap <expr> <Down>       pumvisible() ? "\<C-n>" : "\<Down>"
@@ -1028,9 +1058,9 @@ let g:ycm_filetype_specific_completion_to_disable = {
         \ 'gitcommit': 1
         \}
 
-" let g:ycm_filetype_whitelist = { 
+" let g:ycm_filetype_whitelist = {
             " \ "c":1,
-            " \ "cpp":1, 
+            " \ "cpp":1,
             " \ "objc":1,
             " \ "sh":1,
             " \ "zsh":1,
@@ -1075,7 +1105,7 @@ let g:NERDSpaceDelims=1
 " \ca，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
 " \cc，注释当前行
 " \c，切换注释/非注释状态
-" \cs，以”性感”的方式注释 
+" \cs，以”性感”的方式注释
 " \cA，在当前行尾添加注释符，并进入Insert模式
 " \cu，取消注释
 " Normal模式下，几乎所有命令前面都可以指定行数。  比如  输入 6\cs的意思就是以性感方式注释光标所在行开始6行代码
@@ -1231,29 +1261,30 @@ let g:NERDTreeIndicatorMapCustom = {
 " // 打开当强buffer的上一个buffer
 " :bp
 
-" // 打开编号为<num>(即每个buffer前面的数字)的buffer, 
+" // 打开编号为<num>(即每个buffer前面的数字)的buffer,
 " :b<num>
 
 " C-w,h j k l    向"左,下,上,右"切换窗口.
-let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavVim = 1
 
 " 是用<C-箭头键>切换到上下左右窗口中去
 let g:miniBufExplMapWindowNavArrows = 1
 
-"解决FileExplorer窗口变小问题  
-let g:miniBufExplForceSyntaxEnable = 1  
+"解决FileExplorer窗口变小问题
+let g:miniBufExplForceSyntaxEnable = 1
+let g:miniBufExplMoreThanOne=0
 
 "该配置含义为minibufexplorer窗口最大高度为2行，默认是没有上限的，你打开的buffer足够多，一会一直增长下去，为了方便阅读我一般将它设为2
 let g:miniBufExplMaxSize = 2
+let g:miniBufExplSplitBelow = 0
 
 " 设置taglistbuffer的最高限制：
  let g:bufExplorerMaxHeight=30
 
 " 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
-let g:miniBufExplModSelTarget = 1  
-let g:miniBufExplMoreThanOne=0
+let g:miniBufExplModSelTarget = 1
 
-"启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持  
+"启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
 let g:miniBufExplMapCTabSwitchBufs = 1
 " 试用了下MiniBufferExplore，发现其支持Buffer Explorer的快捷键
 " 输入\be在当前窗口浏览缓存
@@ -1262,8 +1293,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 " \bs水平打开一个窗口浏览缓存
 " 如果打开的文件太多在一个平面显示不下，还可以在buffer中用“s” 快捷键排序
 
-"  启用以下两个功能：Ctrl+tab移到下一个窗口；Ctrl+Shift+tab移到上一个窗口；ubuntu好像不支持 
-let g:miniBufExplMapCTabSwitchWindows = 1 
+"  启用以下两个功能：Ctrl+tab移到下一个窗口；Ctrl+Shift+tab移到上一个窗口；ubuntu好像不支持
+let g:miniBufExplMapCTabSwitchWindows = 1
 
 " 显示/隐藏 MiniBufExplorer 窗口
 map <Leader>bl :MBEToggle<cr>
@@ -1377,7 +1408,7 @@ let  g:ale_lint_delay = 500
 let  g:ale_echo_delay = 20
 
 "自定义lint输出格式
-let  g:ale_echo_msg_format = '[%linter%] <%code> %%s'  
+let  g:ale_echo_msg_format = '[%linter%] <%code> %%s'
 
 "当文字在NORMAL模式下发生更改的时候更新lint，防止YCM频繁刷新
 let  g:ale_lint_on_text_changed = 'normal'
@@ -1470,7 +1501,7 @@ au BufNewFile,BufRead *.py
 au BufNewFile,BufRead *.js,*.html,*.css
 \ set tabstop=2 |
 \ set softtabstop=2 |
-\ set shiftwidth=2 
+\ set shiftwidth=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1715,18 +1746,14 @@ end
 set background=dark
 set autoindent
 
-" 设置编辑时制表符占用空格数
-set tabstop=4
-set showmatch
-set ruler
-set backspace=2
 
-nnoremap <F5> :set invpaste paste?<CR>
-imap <F5> <C-O>:set invpaste paste?<CR>
-set pastetoggle=<F5>
+
+" nnoremap <F5> :set invpaste paste?<CR>
+" imap <F5> <C-O>:set invpaste paste?<CR>
+" set pastetoggle=<F5>
 
 " autoload _vimrc
-autocmd! bufwritepost $HOME/.vimrc source %
+" autocmd! bufwritepost $HOME/.vimrc source %
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1734,7 +1761,7 @@ autocmd! bufwritepost $HOME/.vimrc source %
 
 
 """"""""""""""""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""""""""""""""
-" highlight for Vim Syntax Colors 
+" highlight for Vim Syntax Colors
 hi clear
 
 if version > 580
@@ -1749,7 +1776,7 @@ hi  link    vimHiCtermColor  Constant
 hi  link    vimGroup         Identifier
 "
 " highlight for some c and cpp characters
-"Attention: 1. / will cover up COMMENT 
+"Attention: 1. / will cover up COMMENT
 "           2. - % directly will cover up PreProc
 "syn match     cMyChart      "[!?^@~%&><=:{()}\/[].;+-*|]"
 "
@@ -1768,7 +1795,7 @@ hi  link      cMyChLogic    Special
 hi  link      cMyChMath     Special
 hi  link      MyStatement   SpecialKey
 
-" highlight for some C and C++ library 
+" highlight for some C and C++ library
 syn keyword   cMyFunc   main argc argv sprintf printf
 syn keyword   cMyOpt    bool false true string
 syn keyword   cppFun1   cout  cin    endl   class   new   delete  close creat  lseek   open  read     write
@@ -1797,7 +1824,7 @@ hi  link      cFun9       MyStatement
 hi  link      cFun0       MyStatement
 " highlight for C and C++ language keywords
 "
-" Operator     ={ sizeof } 
+" Operator     ={ sizeof }
 " Structure    ={ struct union enum typedef }
 " StorageClass ={ static register auto volatile extern const inline restrict }
 " Repeat       ={ while for do }
@@ -1880,7 +1907,7 @@ hi CursorLine       ctermbg=234   cterm=bold
 "  "光标所在的屏幕列
 hi CursorColumn                ctermbg=234
 
-hi CursorLine cterm=underline 
+hi CursorLine cterm=underline
 "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 
 
@@ -1987,23 +2014,23 @@ end
 
 " color scheme (双引号开头的行表示注释)
 
-set t_Co=256  
+set t_Co=256
 
-colo molokai   
+colo molokai
 
 " hilight function name
 autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
 autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
 
-hi cfunctions ctermfg=81 
+hi cfunctions ctermfg=81
 
 
 hi Type ctermfg=118 cterm=none
 hi Structure ctermfg=118 cterm=none
 hi Macro ctermfg=161 cterm=bold
 hi PreCondit ctermfg=161 cterm=bold
-set cursorline 
-hi CursorLine cterm=underline 
+set cursorline
+hi CursorLine cterm=underline
 "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
 
@@ -2047,12 +2074,12 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 "Include可以是C/C++里面的，也可以是python里面的import;
 "Operator在python里面是in、and等的颜色
 
-"2:绿色;3:黄色4:蓝色；5:紫色；6:青绿色 7：白色；8：灰色；9:酒红色；10:亮绿色 
+"2:绿色;3:黄色4:蓝色；5:紫色；6:青绿色 7：白色；8：灰色；9:酒红色；10:亮绿色
 "11：黄色；12：蓝色；13：粉红；14：青色；15:白色  16：黑色 17,18 :暗蓝  22:淡绿,
 "23:墨绿  24:墨绿 25,26,27：淡蓝 28:深绿 34,35,36:绿色  46:绿色；
-"51:亮青 
+"51:亮青
 "61:淡紫色
-"81:#98F5FF 
+"81:#98F5FF
 "91:#A020F0
 "https://blog.csdn.net/cp3alai/article/details/45509459
 "https://blog.csdn.net/rainysia/article/details/7419839
@@ -2066,10 +2093,10 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 :hi Identifier   ctermfg=202 cterm=bold
 :hi Number ctermfg=13
 :hi Type   ctermfg=13 cterm=bold
-:hi Constant ctermfg=4 
+:hi Constant ctermfg=4
 :hi String ctermfg=10
 :hi Statement   ctermfg=1   cterm=bold
-:hi Search    ctermfg=10 
+:hi Search    ctermfg=10
 :hi Include ctermfg=13
 :hi Directory ctermfg=11
 :hi Preproc ctermfg=11
@@ -2318,7 +2345,7 @@ hi Normal       term=bold        ctermfg=231   cterm=bold  "7,15,195,225,231,253
 "hi LineNr          ctermfg=250  ctermbg=234
 hi NonText         ctermfg=1  cterm=bold
 
-set t_Co=256  
+set t_Co=256
 
 if has("spell")
     hi SpellBad     gui=undercurl
@@ -2346,7 +2373,7 @@ endif
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-noremap <C-A> ggvG$ 
+noremap <C-A> ggvG$
 inoremap <C-A> <Esc>ggvG$
 vnoremap <C-C> "+y<Esc>
 map <C-V> "+p
@@ -2384,11 +2411,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <space> za                  
+nnoremap <space> za
 "组合快捷键：
-" Ctrl-j 切换到下方的分割窗口 
-" Ctrl-k 切换到上方的分割窗口 
-" Ctrl-l 切换到右侧的分割窗口 
+" Ctrl-j 切换到下方的分割窗口
+" Ctrl-k 切换到上方的分割窗口
+" Ctrl-l 切换到右侧的分割窗口
 " Ctrl-h 切换到左侧的分割窗口
 "用空格代替za进行折叠代码
 
@@ -2419,9 +2446,9 @@ au BufRead,BufNewFile *  setfiletype txt
 map <F5> :call RunPython()<CR> "一键执行python代码
 
 func! RunPython()
-    exec "W" 
+    exec "W"
     if &filetype=='python'
-        exec"!time ipython %" 
+        exec"!time ipython %"
     endif
 endfunc                       "或者把python3.6改为python解释器的位置：/home/jack/anaconda3/bin/python3
 
@@ -2534,7 +2561,7 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
-" let g:Powerline_colorscheme='solarized256'   
+" let g:Powerline_colorscheme='solarized256'
 " let g:Powerline_symbols= 'unicode'
 
 " let g:airline_theme='dark'
@@ -2547,9 +2574,9 @@ set laststatus=2
 "durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
 
 
-"这个是安装字体后 必须设置此项" 
-let g:airline_powerline_fonts = 1 
- 
+"这个是安装字体后 必须设置此项"
+let g:airline_powerline_fonts = 1
+
 "打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
 let g:airline#extensions#tabline#enabled = 1
@@ -2560,8 +2587,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
 
-" 设置中文提示 
-language messages zh_CN.utf-8 
+" 设置中文提示
+language messages zh_CN.utf-8
 " 设置中文帮助
 set helplang=cn
 " 设置为双字宽显示，否则无法完整显示如:☆
@@ -2643,52 +2670,52 @@ let autosave=10
 
 
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-function! SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' 
-        call setline(1,"\#!/bin/bash") 
-        call append(line("."),"\#########################################################################") 
-        call append(line(".")+1, "\# File Name: ".expand("%")) 
-        call append(line(".")+2, "\# Author:陈俊杰") 
-        call append(line(".")+3, "\# mail: 2716705056@qq.com") 
-        call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d")) 
-        call append(line(".")+5, "\# 此程序的功能是：") 
-        call append(line(".")+6, "\#########################################################################") 
-        call append(line(".")+7, "") 
-        call append(line(".")+8, "") 
-        call append(line(".")+9, "") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+function! SetTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1,"\#!/bin/bash")
+        call append(line("."),"\#########################################################################")
+        call append(line(".")+1, "\# File Name: ".expand("%"))
+        call append(line(".")+2, "\# Author:陈俊杰")
+        call append(line(".")+3, "\# mail: 2716705056@qq.com")
+        call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d"))
+        call append(line(".")+5, "\# 此程序的功能是：")
+        call append(line(".")+6, "\#########################################################################")
+        call append(line(".")+7, "")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "")
     elseif &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python3") 
-        call append(line("."), "\#!-*-coding=utf-8-*-") 
-        call append(line(".")+1, "\#########################################################################") 
-        call append(line(".")+2, "\# File Name: ".expand("%")) 
-        call append(line(".")+3, "\# Author: 陈俊杰") 
-        call append(line(".")+4, "\# mail: 2716705056@qq.com") 
-        call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d")) 
-        call append(line(".")+6, "'''") 
-        call append(line(".")+7, "此程序的功能是：") 
-        call append(line(".")+8, "'''") 
-        call append(line(".")+9, "\#########################################################################") 
+        call setline(1, "\#!/usr/bin/env python3")
+        call append(line("."), "\#!-*-coding=utf-8-*-")
+        call append(line(".")+1, "\#########################################################################")
+        call append(line(".")+2, "\# File Name: ".expand("%"))
+        call append(line(".")+3, "\# Author: 陈俊杰")
+        call append(line(".")+4, "\# mail: 2716705056@qq.com")
+        call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d"))
+        call append(line(".")+6, "'''")
+        call append(line(".")+7, "此程序的功能是：")
+        call append(line(".")+8, "'''")
+        call append(line(".")+9, "\#########################################################################")
         call append(line(".")+10, "import pandas as pd")
         call append(line(".")+11, "import numpy as np")
         call append(line(".")+12, "import matplotlib.pyplot as plt")
         call append(line(".")+13, "import os, time")
         call append(line(".")+14, "")
-    else 
-        call setline(1, "/*************************************************************************") 
-        call append(line("."), ">> File Name: ".expand("%")) 
+    else
+        call setline(1, "/*************************************************************************")
+        call append(line("."), ">> File Name: ".expand("%"))
         "call append(line(".")+1, ">> Author: chenjunjie")
-        call append(line(".")+1, ">> Author: 陈俊杰") 
-        call append(line(".")+2, ">> Mail: 2716705056qq.com") 
+        call append(line(".")+1, ">> Author: 陈俊杰")
+        call append(line(".")+2, ">> Mail: 2716705056qq.com")
         call append(line(".")+3, ">> Created Time: ".strftime("%Y年%m月%d日"))
         "call append(line(".")+3, ">> Created Time: ".strftime("%c"))
         call append(line(".")+4, ">> 此程序的功能是：")
-        call append(line(".")+5, "************************************************************************/") 
+        call append(line(".")+5, "************************************************************************/")
         call append(line(".")+6, "")
-        
+
         if &filetype == 'cpp'
             call append(line(".")+7, "#include<bits/stdc++.h>")
             call append(line(".")+8, "using namespace std;")
@@ -2724,7 +2751,10 @@ autocmd BufNewFile * normal G
 
 :set vb t_vb=
 "自动命令，每次写入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
+autocmd! bufwritepost $HOME/.vimrc source %
 autocmd! bufwritepost .vimrc source ~/.vimrc
+" 读文件时自动设定当前目录为刚读入文件所在的目录
+autocmd BufReadPost * cd %:p:h
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -2740,7 +2770,17 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 " ctrl  u   相当于输入:ACK
 " F11   前一个颜色
 " F12   后一个颜色
+"
 
+
+"""""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
+
+" let g:move_key_modifier = 'C'
+
+" <C-k>   Move current line/selection up
+" <C-j>   Move current line/selection down
+" <C-h>   Move current character/selection left
+" <C-l>   Move current character/selection right
 """"""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
 " 命令行模式
 " ds "              删除一个配对符号 (delete a surrounding)
@@ -2768,8 +2808,8 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 "                                 hello,world
 "                          )
 " ysw(回车           会在当前光标所在单词w的周围增加一个 () 配对   hello world  ->  hello ( world )
- 
-" ysw<em回车         hello world  ->   <em>hello</em> world                         
+
+" ysw<em回车         hello world  ->   <em>hello</em> world
 
 
 " ySw[         hello world -> hello [
@@ -2845,19 +2885,41 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 """""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
 "  可视模式下输入 gx  即可搜索选中的内容；a
 
+"""""""""""""""""""""""""""""""""""""""  ULtisnips 插件 """""""""""""""""""""""""""""""""""""""""""
 
+" 使用 tab 切换下一个触发点，shit+tab 上一个触发点
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 " ctrl+y  设置用于关闭补全列表的快捷键，默认为ctrl+y
-
+"  Tab         用来补全下一个
+"  Shift+Tab   用来补全上一个
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
 " ctrl + d 打开目录
 
 
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
+
+
+" Tab : 向前循环切换到每个buffer上
+" Shift - Tab : 向后循环切换到每个buffer上
+" Enter : 打开光标所在的buffer
+" d : 删除光标所在的buffer
+" 命令
+" 在一般模式下
+
+" // 打开当前buffer的下一个buffer
+" :bn
+
+" // 打开当强buffer的上一个buffer
+" :bp
+
+" // 打开编号为<num>(即每个buffer前面的数字)的buffer,
+" :b<num>
+
 " C-w,h j k l    向"左,下,上,右"切换窗口.
-" ctrl + Tab各个文档之间切换
+
+" 是用<C-箭头键>切换到上下左右窗口中去
 
 
 """"""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
@@ -2887,10 +2949,10 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 
 
 
-"" Ctrl-j 切换到下方的分割窗口 
-" Ctrl-k 切换到上方的分割窗口 
-" Ctrl-l 切换到右侧的分割窗口 
-" Ctrl-h 切换到左侧的分割窗口 
+"" Ctrl-j 切换到下方的分割窗口
+" Ctrl-k 切换到上方的分割窗口
+" Ctrl-l 切换到右侧的分割窗口
+" Ctrl-h 切换到左侧的分割窗口
 "  Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 " F5   一键执行python代码
 " <F5>编译C/C++/java/，<F6>运行C/C++/javascript
