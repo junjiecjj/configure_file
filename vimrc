@@ -105,8 +105,16 @@ set showmatch                   "高亮显示匹配的括号
 
 set scrolloff=3              " 光标移动到buffer的顶部和底部时保持3行距离
 set smartindent              "为c语言自动缩进
-set cindent
+set cindent                  " 使用C样式的缩进
+set autoindent               "自动缩进
 
+" 设定默认解码
+" set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
+set bsdir=buffer
+set fenc=utf-8
+set langmenu=zh_CN.UTF-8
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,latin1,gb2312,gb18030,cp936,gbk,big5
 set encoding=utf-8  "支持UTF8编码
 set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
 set termencoding=utf-8
@@ -211,8 +219,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set clipboard=unnamed                  "系统剪切板
-set autoindent                         "自动缩进
+set clipboard+=unnamed                  "系统剪切板
 set nocompatible                       "不适用vi的键盘模式，使用vim自己的
 set hlsearch                          "搜索逐字符高亮
 set incsearch                          " 开启增量搜索模式
@@ -267,9 +274,28 @@ endfunction
 
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
-
+" 在行和段开始处使用制表符
+set smarttab
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
+" 下面的滚动条开启
+" let g:netrw_winsize = 20
+"添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
+:set guioptions+=b 
+
+
+" 水平滚动
+" 向左
+map <F8> 10zh
+imap <F8> <ESC>10zhi
+" 向右
+map <F9> 10zl
+imap <F9> <ESC>10zli
+" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
+set ambiwidth=double "防止特殊符号无法正常显示
+
+set selection=inclusive "指定在选择文本时，光标所在位置也属于被选中的范围。
 
 " 我的状态行显示的内容（包括文件类型和解码）
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
@@ -2384,7 +2410,7 @@ endfunc                       "或者把python3.6改为python解释器的位置�
 
 
 "C,C++的调试
-map <F8> :call Rungdb()<CR>
+map <F7> :call Rungdb()<CR>
 func! Rungdb()
     exec "w"
     exec "!g++ % -g -o %<"
@@ -2847,4 +2873,6 @@ autocmd BufNewFile * normal G
 " Ctrl-h 切换到左侧的分割窗口 
 "  Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 " F5   一键执行python代码
-" <F5>编译C/C++/java/，<F6>运行C/C++/java
+" <F5>编译C/C++/java/，<F6>运行C/C++/javascript
+" <F7>C,C++的调试
+" 在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
