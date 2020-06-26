@@ -39,6 +39,7 @@ Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
+Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
 Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
 " Plugin 'c.vim'                               " C IDE
@@ -739,6 +740,27 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
+
+" 设置 tagbar 使用的 ctags 的插件，必须要设置对
+
+let g:tagbar_ctags_bin='/usr/bin/ctags'
+" 设置 tagbar 的窗口宽度 
+let g:tagbar_width=30
+" 设置 tagbar 的窗口显示的位置，为右边
+let g:tagbar_right_=1
+" 打开文件自动 打开
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+
+" 映射 tagbar 的快捷键
+" map <F4> :TagbarToggle<CR>
+
+" nmap <Leader>tb :TagbarToggle<CR>  
+nmap <F10> :TagbarToggle<CR>
+" 将开启tagbar的快捷键设置为　<Leader>tb
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
 
