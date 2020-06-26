@@ -749,7 +749,7 @@ let g:tagbar_ctags_bin='/usr/bin/ctags'
 " 设置 tagbar 的窗口宽度 
 let g:tagbar_width=30
 " 设置 tagbar 的窗口显示的位置，为右边
-let g:tagbar_right_=1
+let g:tagbar_left = 1
 " 打开文件自动 打开
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
 
@@ -1212,7 +1212,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap <Leader>fl :NERDTreeToggle<CR>
 
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 
 " ctrl + d 打开目录
 map <C-d> :NERDTreeToggle<CR>
@@ -2879,7 +2879,10 @@ autocmd BufReadPost * cd %:p:h
 "  \F     函数搜索（仅当前文件里），依赖ctags插件
 "  \rg    模糊搜索，很强大的功能，迅速秒搜
 
+""""""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
+" 映射 tagbar 的快捷键
+" nmap <F10> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
 "  设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
 
