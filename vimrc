@@ -18,6 +18,7 @@ Plugin 'morhetz/gruvbox'                     " 配色方案
 Plugin 'matze/vim-move'                      " 代码块移动
 Plugin 'DoxygenToolkit.vim'		             " 注释文档生成
 Plugin 'VimTweak'					         " 背景透明插件
+Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'                   " 补全记忆插件
 Plugin 'AutoComplPop'                        " 自动代码提示
 Plugin 'othree/html5.vim'                    " html全能补全
@@ -102,6 +103,20 @@ set background=dark
 set splitbelow
 set splitright
 
+"让补全行为与一般IDE一样
+"set completeopt = preview,meun
+"
+"在接受补全后不分裂出一个窗口显示接受的项
+"set completeopt-=preview
+
+"开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+
+
+let python_highlight_all=1
+let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
 set number                      "显示行号
 set showmatch                   "高亮显示匹配的括号
@@ -402,6 +417,10 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 
 
+""""""""""""""""""""""jedi-vim配置""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "context"
+let g:jedi#popup_on_dot = 0
+
 """"""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
 " let g:move_key_modifier = 'C'
@@ -555,7 +574,6 @@ let g:ctrlp_working_path_mode = ''
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <C-p> :Files<CR>
-
 
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
@@ -867,20 +885,6 @@ let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"让补全行为与一般IDE一样
-"set completeopt = preview,meun
-"
-"在接受补全后不分裂出一个窗口显示接受的项
-"set completeopt-=preview
-
-"开启语法高亮功能
-syntax enable
-" 允许用指定语法高亮配色方案替换默认方案
-syntax on
-
-
-let python_highlight_all=1
-let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
 
 "********************************************************************************************
@@ -1086,14 +1090,7 @@ let g:ycm_semantic_triggers =  {
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
 
 
-"*****************************************************************************************************
-augroup VimCSS3Syntax
-  autocmd!
 
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
-
-"****************************************************************************************************
 
 """""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""""""""""""""
 "The NERD Commenter
@@ -1246,6 +1243,12 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 
 
+let g:NERDSpaceDelims =1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCustomDelimiters = {
+            \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
+            \ 'less': { 'left': '/**', 'right': '*/' }
+        \ }
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
 " Tab : 向前循环切换到每个buffer上
@@ -1440,12 +1443,8 @@ let g:jsx_ext_required = 0
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 
-let g:NERDSpaceDelims =1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCustomDelimiters = {
-            \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
-            \ 'less': { 'left': '/**', 'right': '*/' }
-        \ }
+
+""""""""""""""""""""""""""""""""vim-emmet配置""""""""""""""""""""""""""""""""
 
 "let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
