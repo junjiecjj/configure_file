@@ -751,15 +751,20 @@ let g:tagbar_width=30
 " 设置 tagbar 的窗口显示的位置，为右边
 let g:tagbar_left = 1
 " 打开文件自动 打开
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 
 " 映射 tagbar 的快捷键
 " map <F4> :TagbarToggle<CR>
 
 " nmap <Leader>tb :TagbarToggle<CR>  
 nmap <F10> :TagbarToggle<CR>
+map <F10> :TagbarToggle<CR>
+map! <F10> <Esc> :TagbarToggle<CR>
 " 将开启tagbar的快捷键设置为　<Leader>tb
-
+"开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
+let g:tagbar_autopreview = 1
+"关闭排序,即按标签本身在文件中的位置排序
+let g:tagbar_sort = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
