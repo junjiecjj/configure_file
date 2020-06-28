@@ -13,11 +13,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
-Plugin 'molokai'		                     " 配色方案
+Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
 Plugin 'matze/vim-move'                      " 代码块移动
-Plugin 'DoxygenToolkit.vim'		             " 注释文档生成
-Plugin 'VimTweak'					         " 背景透明插件
+Plugin 'DoxygenToolkit.vim'                  " 注释文档生成
+Plugin 'VimTweak'                            " 背景透明插件
 Plugin 'davidhalter/jedi-vim'
 Plugin 'ervandew/supertab'                   " 补全记忆插件
 Plugin 'AutoComplPop'                        " 自动代码提示
@@ -39,6 +39,7 @@ Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 Plugin 'jnurmine/Zenburn'
+Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
 Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
 Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
@@ -60,7 +61,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'                                        " add beautiful icons besides Files
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'                       " enhance devicons
 Plugin 'tpope/vim-fugitive'                                            " 在vim中执行git命令
-Plugin 'Valloric/YouCompleteMe'                                        " 自动补全
+Plugin 'Valloric/YouCompleteMe'                                        " 自动补全括号等
+Plugin 'rip-rip/clang_complete'
+Plugin 'rhysd/vim-clang-format'
 Plugin 'Raimondi/delimitMate'
 Plugin 'chxuan/cpp-mode'                                               " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -86,8 +89,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'maksimr/vim-jsbeautify'                                        " 格式化js css等文件
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql']}
+            \ 'do': 'yarn install',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql']}
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#autoformat = 0
@@ -172,14 +175,14 @@ set  novisualbell     "出错时，不要闪烁 set novisualbell 。
 nnoremap <F3> :call HideNumber()<CR>
 
 function! HideNumber()
-  if(&relativenumber == &number)
-    set  relativenumber!  number!
-  elseif(&number)
-    set   number!
-  else
-    set relativenumber!
-  endif
-  set number?
+    if(&relativenumber == &number)
+        set  relativenumber!  number!
+    elseif(&number)
+        set   number!
+    else
+        set relativenumber!
+    endif
+    set number?
 endfunc
 
 
@@ -191,11 +194,11 @@ au FocusGained * :set relativenumber
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber number
-  else
-    set relativenumber
-  endif
+    if(&relativenumber == 1)
+        set norelativenumber number
+    else
+        set relativenumber
+    endif
 endfunc
 
 
@@ -257,17 +260,17 @@ set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行�
 " 方法1:
 "set autoread
 "augroup checktime
- "   au!
-  "  if !has("gui_running")
-        "silent! necessary otherwise throws errors when using command
-        "line window.
-        "autocmd BufEnter        * silent! checktime
-        "autocmd CursorHold      * silent! checktime
-        "autocmd CursorHoldI     * silent! checktime
-        "these two _may_ slow things down. Remove if they do.
-        "autocmd CursorMoved     * silent! checktime
-        "autocmd CursorMovedI    * silent! checktime
- "   endif
+"   au!
+"  if !has("gui_running")
+"silent! necessary otherwise throws errors when using command
+"line window.
+"autocmd BufEnter        * silent! checktime
+"autocmd CursorHold      * silent! checktime
+"autocmd CursorHoldI     * silent! checktime
+"these two _may_ slow things down. Remove if they do.
+"autocmd CursorMoved     * silent! checktime
+"autocmd CursorMovedI    * silent! checktime
+"   endif
 "augroup END
 
 "方法2:
@@ -337,8 +340,8 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 " %L    当前文件总行数
 
 set laststatus=2                          " 2为总显示最后一个窗口的状态行
-                                          " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
-                                          " 0不显示最后一个窗口的状态行
+" 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
+" 0不显示最后一个窗口的状态行
 
 set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
 
@@ -351,8 +354,6 @@ highlight CursorLine   cterm=underline  ctermbg=234   ctermfg=green   guibg=NONE
 
 set cursorcolumn              "光标所在行一竖线
 highlight CursorColumn cterm=None       ctermbg=234   ctermfg=green   guibg=NONE guifg=NONE
-
-
 
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
@@ -592,18 +593,18 @@ nnoremap <silent> <Leader>h :History<CR>
 "调用Rg进行搜索，包含隐藏文件
 "这样输入:Rg <keyword>会调用ripgrep来递归搜索当前目录
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case --hidden '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 
 " This is the default extra key bindings
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
@@ -616,19 +617,19 @@ let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -656,36 +657,36 @@ let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 " Command for git grep
 " - fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+            \ call fzf#vim#grep(
+            \   'git grep --line-number '.shellescape(<q-args>), 0,
+            \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
 
 " Override Colors command. You can safely do this in your .vimrc as fzf.vim
 " will not override existing commands.
 command! -bang Colors
-  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+            \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
 
 
 command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+            \ call fzf#vim#ag(<q-args>,
+            \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+            \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \                 <bang>0)
 nnoremap <silent> <Leader>A :Ag<CR>
 
 
 "调用Rg进行搜索，包含隐藏文件
 "这样输入:Rg <keyword>会调用ripgrep来递归搜索当前目录
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview('up:60%')
+            \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+            \   <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+            \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -878,17 +879,17 @@ nmap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
 
 
 let g:vimtex_delim_toggle_mod_list = [
-      \ ['\left', '\right'],
-      \ ['\mleft', '\mright'],
-      \]
+            \ ['\left', '\right'],
+            \ ['\mleft', '\mright'],
+            \]
 
 
 let g:vimtex_delim_toggle_mod_list = [
-      \ ['\bigl', '\bigr'],
-      \ ['\Bigl', '\Bigr'],
-      \ ['\biggl', '\biggr'],
-      \ ['\Biggl', '\Biggr'],
-      \]
+            \ ['\bigl', '\bigr'],
+            \ ['\Bigl', '\Bigr'],
+            \ ['\biggl', '\biggr'],
+            \ ['\Biggl', '\Biggr'],
+            \]
 
 
 
@@ -931,13 +932,13 @@ hi PmenuSel   ctermfg=196    ctermbg=251   guibg=#555555 guifg=#ffffff
 au FileType php setlocal dict+=$VIM/vimfiles/bundle/AutoComplPop/dict/php_funclist.txt
 " PHP提示触发
 if !exists('g:AutoComplPop_Behavior')
-	let g:AutoComplPop_Behavior = {}
-	let g:AutoComplPop_Behavior['php'] = []
-	call add(g:AutoComplPop_Behavior['php'], {
-		\ 'command' : "\<C-x>\<C-o>",
-		\ 'pattern' : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
-		\ 'repeat' : 0,
-		\ })
+    let g:AutoComplPop_Behavior = {}
+    let g:AutoComplPop_Behavior['php'] = []
+    call add(g:AutoComplPop_Behavior['php'], {
+                \ 'command' : "\<C-x>\<C-o>",
+                \ 'pattern' : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
+                \ 'repeat' : 0,
+                \ })
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -955,10 +956,120 @@ vmap gx <Plug>(openbrowser-smart-search)
 " 搜索引擎配置
 let g:openbrowser_default_search = 'goole'
 let g:openbrowser_search_engines = {
-\  'goole': 'https://www.google.com',
-\}
+            \  'goole': 'https://www.google.com',
+            \}
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""clang_complete配置""""""""""""""""""""""""""""
+
+"clang complete
+"自动选择第一个匹配项但不插入到代码中
+let g:clang_auto_select = 1
+"在->. ., ::后自动补全
+let g:clang_complete_auto = 1
+"发现错误之后打开QuickFix窗口
+let g:clang_complete_copen = 1
+"高亮警告和错误
+let g:clang_hl_errors = 1
+"插入第一个补全后关闭预览窗口
+let g:clang_close_preview = 1
+"开启对C++11的编译支持
+let g:clang_user_options = '-stdlib=libc++ -std=c++11 -IIncludePath'
+"设定clang库路径
+let g:clang_use_library = 1
+" let g:clang_periodic_quickfix=1
+let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
+"补全预处理指令，宏和常数，默认为0，不补全
+let g:clang_complete_macros = 1
+"补全代码模式，比如循环等，默认为0，不补全
+let g:clang_complete_patterns = 1
+"<C-]>跳转到声明
+let g:clang_jumpto_declaration_key = "<C-]>"
+"<C-w>]在预览窗口中打开声明
+let g:clang_jumpto_declaration_in_preview_key = "<C-w>]"
+"<C-t>回跳
+let g:clang_jumpto_back_key = "<C-t>"
+"使用UltiSnips进行代码片段补全
+let g:clang_snippets = 1
+let g:clang_snippets_engine = 'ultisnips'
+
+
+"vim-clang
+"开启对C11和C++11的支持
+let g:clang_c_options = '-std=gnu11'
+let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+"关闭语法检查
+let g:clang_check_syntax_auto = 0
+"不要自动格式化代码
+let g:clang_format_auto = 0
+"代码格式化风格选项依次有LLVM，Google，Chromium，Mozilla，WebKit
+"let g:clang_format_style = 'LLVM'
+"使得vim-clang的补全与其他IDE一致
+let g:clang_cpp_completeopt = 'longest,menuone,preview'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""vim-autoformat格式化代码配置""""""""""""""""""""""""""""""""""""""""
+" sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify 
+
+"开启详细模式便于查错
+let g:autoformat_verbosemode=1
+"设置发生保存文件时执行格式化
+" au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat 
+
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+autocmd FileType vim,tex let b:autoformat_autoindent=0
+:retab 
+
+" 我比较喜欢 google 风格的代码
+" let g:formatdef_clangformat_google = '"clang-format -style google -"' 
+" let g:formatters_c = ['clangformat_google']
+
+let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
+let g:formatters_cpp = ['allman']
+let g:formatters_c = ['allman']
+
+let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
+let g:formatters_sql = ['sqlformat']
+
+"默认情况下是pep8，还可以选择google,facebook和chromium
+let g:formatter_yapf_style = 'pep8'
+
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatters_python = ['autopep8']
+
+" <!-- 指定html格式化工具，并设置缩进为两个空格 -->
+let g:formatdef_my_html = '"html-beautify -s 2"'
+let g:formatters_html = ['my_html']
+
+"F3自动格式化代码
+noremap <F3> :Autoformat<CR>:w<CR>
+" 当然，格式化代码也不一定非要安装插件才能实现，因为 Vim 可以执行外部命令，因此你也可以写一个函数调用外部工具来实现代码格式化，比如下面就用函数调用 astyle和autopep8 来格式化代码
+" map <F3> :call FormatCode()<CR>
+" func! FormatCode()
+"     exec "w"
+"     if &filetype == 'c' || &filetype == 'h'
+"         exec "!astyle --style=allman --suffix=none %"
+"     elseif &filetype == 'cpp' || &filetype == 'cc' || &filetype == 'hpp'
+"         exec "!astyle --style=allman --suffix=none %"
+"     elseif &filetype == 'perl'
+"         exec "!astyle --style=gnu --suffix=none %"
+"     elseif &filetype == 'py'|| &filetype == 'python'
+"         exec "!autopep8 --in-place --aggressive %"
+"     elseif &filetype == 'java'
+"         exec "!astyle --style=java --suffix=none %"
+"     elseif &filetype == 'jsp'
+"         exec "!astyle --style=gnu --suffix=none %"
+"     elseif &filetype == 'xml'
+"         exec "!astyle --style=gnu --suffix=none %"
+"     else
+"         exec "normal gg=G"
+"         return
+"     endif
+" endfunc
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
@@ -1074,44 +1185,44 @@ let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
 let g:ycm_key_list_stop_completion =  ['<C-y>']
 
 " let g:ycm_filetype_blacklist = {
-        " \ 'tagbar' : 1,
-        " \ 'qf' : 1,
-        " \ 'notes' : 1,
-        " \ 'markdown' : 1,
-        " \ 'unite' : 1,
-        " \ 'text' : 1,
-        " \ 'vimwiki' : 1,
-        " \ 'pandoc' : 1,
-        " \ 'infolog' : 1,
-        " \ 'mail' : 1
-        " \}
+" \ 'tagbar' : 1,
+" \ 'qf' : 1,
+" \ 'notes' : 1,
+" \ 'markdown' : 1,
+" \ 'unite' : 1,
+" \ 'text' : 1,
+" \ 'vimwiki' : 1,
+" \ 'pandoc' : 1,
+" \ 'infolog' : 1,
+" \ 'mail' : 1
+" \}
 
 let g:ycm_filetype_specific_completion_to_disable = {
-        \ 'gitcommit': 1
-        \}
+            \ 'gitcommit': 1
+            \}
 
 " let g:ycm_filetype_whitelist = {
-            " \ "c":1,
-            " \ "cpp":1,
-            " \ "objc":1,
-            " \ "sh":1,
-            " \ "zsh":1,
-            " \ "zimbu":1,
-            " \ }
+" \ "c":1,
+" \ "cpp":1,
+" \ "objc":1,
+" \ "sh":1,
+" \ "zsh":1,
+" \ "zimbu":1,
+" \ }
 
 let g:ycm_semantic_triggers =  {
-  \   'c' : ['->', '.'],
-  \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-  \             're!\[.*\]\s'],
-  \   'ocaml' : ['.', '#'],
-  \   'cpp,objcpp' : ['->', '.', '::'],
-  \   'perl' : ['->'],
-  \   'php' : ['->', '::'],
-  \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-  \   'ruby' : ['.', '::'],
-  \   'lua' : ['.', ':'],
-  \   'erlang' : [':'],
-  \ }
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \             're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
 
 
 
@@ -1171,22 +1282,22 @@ let g:rainbow_conf = {
 
 
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
+            \ ['brown',       'RoyalBlue3'],
+            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkgray',    'DarkOrchid3'],
+            \ ['darkgreen',   'firebrick3'],
+            \ ['darkcyan',    'RoyalBlue3'],
+            \ ['darkred',     'SeaGreen3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['brown',       'firebrick3'],
+            \ ['gray',        'RoyalBlue3'],
+            \ ['darkmagenta', 'DarkOrchid3'],
+            \ ['Darkblue',    'firebrick3'],
+            \ ['darkgreen',   'RoyalBlue3'],
+            \ ['darkcyan',    'SeaGreen3'],
+            \ ['darkred',     'DarkOrchid3'],
+            \ ['red',         'firebrick3'],
+            \ ]
 
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
@@ -1258,17 +1369,17 @@ let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ 'Ignored'   : '☒',
+            \ "Unknown"   : "?"
+            \ }
 
 
 let g:NERDSpaceDelims =1
@@ -1276,7 +1387,7 @@ let g:NERDDefaultAlign = 'left'
 let g:NERDCustomDelimiters = {
             \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
             \ 'less': { 'left': '/**', 'right': '*/' }
-        \ }
+            \ }
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
 " Tab : 向前循环切换到每个buffer上
@@ -1310,7 +1421,7 @@ let g:miniBufExplMaxSize = 2
 let g:miniBufExplSplitBelow = 0
 
 " 设置taglistbuffer的最高限制：
- let g:bufExplorerMaxHeight=30
+let g:bufExplorerMaxHeight=30
 
 " 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 let g:miniBufExplModSelTarget = 1
@@ -1374,19 +1485,19 @@ let g:ale_keep_list_window_open = 1
 
 " python checker
 let g:ale_fixers = {
-\   'javascript': ['standard'],
-\   'python': ['pylint']
-\}
+            \   'javascript': ['standard'],
+            \   'python': ['pylint']
+            \}
 
 
 let g:ale_linters = {
-\    'javascript': ['eslint'],
-\    'css': ['stylelint'],
-\}
+            \    'javascript': ['eslint'],
+            \    'css': ['stylelint'],
+            \}
 let g:ale_fixers = {
-\    'javascript': ['eslint'],
-\    'css': ['stylelint'],
-\}
+            \    'javascript': ['eslint'],
+            \    'css': ['stylelint'],
+            \}
 
 let g:ale_fix_on_save = 1
 
@@ -1452,10 +1563,10 @@ let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en'
 
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
+            \   'c++': ['clang'],
+            \   'c': ['clang'],
+            \   'python': ['pylint'],
+            \}
 
 
 augroup YourGroup
@@ -1476,18 +1587,18 @@ let g:instant_markdown_autostart = 0
 
 "let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
-         \ 'javascript.jsx' : {
+            \ 'javascript.jsx' : {
             \ 'extends' : 'jsx',
-         \ },
-      \ }
+            \ },
+            \ }
 
 
 
 """"""""""""""""""""""""""""""配置vim-css3-syntax/vim-css-color""""""""""""""""""""""""""""""
 augroup VimCSS3Syntax
-  autocmd!
+    autocmd!
 
-  autocmd FileType css setlocal iskeyword+=-
+    autocmd FileType css setlocal iskeyword+=-
 augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1518,17 +1629,17 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "�
 "autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
 "为python添加pep8的代码风格
 au BufNewFile,BufRead *.py
-\ set tabstop=4 | "tab宽度"
-\ set softtabstop=4 |
-\ set shiftwidth=4 |
-\ set textwidth=100 | "行最大宽"
-\ set autoindent |  "自动缩进"
-\ set fileformat=unix "保存文件的格式"
+            \ set tabstop=4 | "tab宽度"
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=100 | "行最大宽"
+            \ set autoindent |  "自动缩进"
+            \ set fileformat=unix "保存文件的格式"
 
 au BufNewFile,BufRead *.js,*.html,*.css
-\ set tabstop=2 |
-\ set softtabstop=2 |
-\ set shiftwidth=2
+            \ set tabstop=2 |
+            \ set softtabstop=2 |
+            \ set shiftwidth=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -1630,144 +1741,144 @@ hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 
 hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
 if s:molokai_original == 1
-   hi Normal          guifg=#F8F8F2 guibg=#272822
-   hi Comment         guifg=#75715E
-   hi CursorLine                    guibg=#3E3D32
-   hi CursorLineNr    guifg=#FD971F               gui=none
-   hi CursorColumn                  guibg=#3E3D32
-   hi ColorColumn                   guibg=#3B3A32
-   hi LineNr          guifg=#BCBCBC guibg=#3B3A32
-   hi NonText         guifg=#75715E
-   hi SpecialKey      guifg=#75715E
+    hi Normal          guifg=#F8F8F2 guibg=#272822
+    hi Comment         guifg=#75715E
+    hi CursorLine                    guibg=#3E3D32
+    hi CursorLineNr    guifg=#FD971F               gui=none
+    hi CursorColumn                  guibg=#3E3D32
+    hi ColorColumn                   guibg=#3B3A32
+    hi LineNr          guifg=#BCBCBC guibg=#3B3A32
+    hi NonText         guifg=#75715E
+    hi SpecialKey      guifg=#75715E
 else
-   hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
-   hi Comment         guifg=#7E8E91
-   hi CursorLine                    guibg=#293739
-   hi CursorLineNr    guifg=#FD971F               gui=none
-   hi CursorColumn                  guibg=#293739
-   hi ColorColumn                   guibg=#232526
-   hi LineNr          guifg=#465457 guibg=#232526
-   hi NonText         guifg=#465457
-   hi SpecialKey      guifg=#465457
+    hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
+    hi Comment         guifg=#7E8E91
+    hi CursorLine                    guibg=#293739
+    hi CursorLineNr    guifg=#FD971F               gui=none
+    hi CursorColumn                  guibg=#293739
+    hi ColorColumn                   guibg=#232526
+    hi LineNr          guifg=#465457 guibg=#232526
+    hi NonText         guifg=#465457
+    hi SpecialKey      guifg=#465457
 end
 
 if &t_Co > 255
 
-   if s:molokai_original == 1
-      hi Normal                   ctermbg=234
-      hi CursorLine               ctermbg=235   cterm=none
-      hi CursorLineNr ctermfg=208               cterm=none
-   else
-      hi Normal       ctermfg=252 ctermbg=233
-      hi CursorLine               ctermbg=234   cterm=none
-      hi CursorLineNr ctermfg=208               cterm=none
-   endif
-   hi Boolean         ctermfg=135
-   hi Character       ctermfg=144
-   hi Number          ctermfg=135
-   hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
-   hi Constant        ctermfg=135               cterm=bold
-   hi Cursor          ctermfg=16  ctermbg=253
-   hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
-   hi Delimiter       ctermfg=241
-   hi DiffAdd                     ctermbg=24
-   hi DiffChange      ctermfg=181 ctermbg=239
-   hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold
-   hi Directory       ctermfg=118               cterm=bold
-   hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-   hi Exception       ctermfg=118               cterm=bold
-   hi Float           ctermfg=135
-   hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208               cterm=none
-   hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=193 ctermbg=16
-   hi keyword         ctermfg=161               cterm=bold
-   hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
-   hi MatchParen      ctermfg=233  ctermbg=208 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
-   " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel        ctermfg=255 ctermbg=242
-   hi PmenuSbar                   ctermbg=232
-   hi PmenuThumb      ctermfg=81
-   hi PreCondit       ctermfg=118               cterm=bold
-   hi PreProc         ctermfg=118
-   hi Question        ctermfg=81
-   hi Repeat          ctermfg=161               cterm=bold
-   hi Search          ctermfg=0   ctermbg=222   cterm=NONE
-   " marks column
-   hi SignColumn      ctermfg=118 ctermbg=235
-   hi SpecialChar     ctermfg=161               cterm=bold
-   hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81
-   if has("spell")
-       hi SpellBad                ctermbg=52
-       hi SpellCap                ctermbg=17
-       hi SpellLocal              ctermbg=17
-       hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
-   endif
-   hi Statement       ctermfg=161               cterm=bold
-   hi StatusLine      ctermfg=238 ctermbg=253
-   hi StatusLineNC    ctermfg=244 ctermbg=232
-   hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
-   hi Tag             ctermfg=161
-   hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-   hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
-   hi Underlined      ctermfg=244               cterm=underline
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=235
-   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-   hi WildMenu        ctermfg=81  ctermbg=16
-   hi Comment         ctermfg=59
-   hi CursorColumn                ctermbg=236
-   hi ColorColumn                 ctermbg=236
-   hi LineNr          ctermfg=250 ctermbg=236
-   hi NonText         ctermfg=59
-   hi SpecialKey      ctermfg=59
-   if exists("g:rehash256") && g:rehash256 == 1
-       hi Normal       ctermfg=252 ctermbg=234
-       hi CursorLine               ctermbg=236   cterm=none
-       hi CursorLineNr ctermfg=208               cterm=none
-       hi Boolean         ctermfg=141
-       hi Character       ctermfg=222
-       hi Number          ctermfg=141
-       hi String          ctermfg=222
-       hi Conditional     ctermfg=197               cterm=bold
-       hi Constant        ctermfg=141               cterm=bold
-       hi DiffDelete      ctermfg=125 ctermbg=233
-       hi Directory       ctermfg=154               cterm=bold
-       hi Error           ctermfg=222 ctermbg=233
-       hi Exception       ctermfg=154               cterm=bold
-       hi Float           ctermfg=141
-       hi Function        ctermfg=154
-       hi Identifier      ctermfg=208
-       hi Keyword         ctermfg=197               cterm=bold
-       hi Operator        ctermfg=197
-       hi PreCondit       ctermfg=154               cterm=bold
-       hi PreProc         ctermfg=154
-       hi Repeat          ctermfg=197               cterm=bold
-       hi Statement       ctermfg=197               cterm=bold
-       hi Tag             ctermfg=197
-       hi Title           ctermfg=203
-       hi Visual                      ctermbg=238
-       hi Comment         ctermfg=244
-       hi LineNr          ctermfg=239 ctermbg=235
-       hi NonText         ctermfg=239
-       hi SpecialKey      ctermfg=239
-   endif
+    if s:molokai_original == 1
+        hi Normal                   ctermbg=234
+        hi CursorLine               ctermbg=235   cterm=none
+        hi CursorLineNr ctermfg=208               cterm=none
+    else
+        hi Normal       ctermfg=252 ctermbg=233
+        hi CursorLine               ctermbg=234   cterm=none
+        hi CursorLineNr ctermfg=208               cterm=none
+    endif
+    hi Boolean         ctermfg=135
+    hi Character       ctermfg=144
+    hi Number          ctermfg=135
+    hi String          ctermfg=144
+    hi Conditional     ctermfg=161               cterm=bold
+    hi Constant        ctermfg=135               cterm=bold
+    hi Cursor          ctermfg=16  ctermbg=253
+    hi Debug           ctermfg=225               cterm=bold
+    hi Define          ctermfg=81
+    hi Delimiter       ctermfg=241
+    hi DiffAdd                     ctermbg=24
+    hi DiffChange      ctermfg=181 ctermbg=239
+    hi DiffDelete      ctermfg=162 ctermbg=53
+    hi DiffText                    ctermbg=102 cterm=bold
+    hi Directory       ctermfg=118               cterm=bold
+    hi Error           ctermfg=219 ctermbg=89
+    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+    hi Exception       ctermfg=118               cterm=bold
+    hi Float           ctermfg=135
+    hi Folded          ctermfg=67  ctermbg=16
+    hi Function        ctermfg=118
+    hi Identifier      ctermfg=208               cterm=none
+    hi Ignore          ctermfg=244 ctermbg=232
+    hi IncSearch       ctermfg=193 ctermbg=16
+    hi keyword         ctermfg=161               cterm=bold
+    hi Label           ctermfg=229               cterm=none
+    hi Macro           ctermfg=193
+    hi SpecialKey      ctermfg=81
+    hi MatchParen      ctermfg=233  ctermbg=208 cterm=bold
+    hi ModeMsg         ctermfg=229
+    hi MoreMsg         ctermfg=229
+    hi Operator        ctermfg=161
+    " complete menu
+    hi Pmenu           ctermfg=81  ctermbg=16
+    hi PmenuSel        ctermfg=255 ctermbg=242
+    hi PmenuSbar                   ctermbg=232
+    hi PmenuThumb      ctermfg=81
+    hi PreCondit       ctermfg=118               cterm=bold
+    hi PreProc         ctermfg=118
+    hi Question        ctermfg=81
+    hi Repeat          ctermfg=161               cterm=bold
+    hi Search          ctermfg=0   ctermbg=222   cterm=NONE
+    " marks column
+    hi SignColumn      ctermfg=118 ctermbg=235
+    hi SpecialChar     ctermfg=161               cterm=bold
+    hi SpecialComment  ctermfg=245               cterm=bold
+    hi Special         ctermfg=81
+    if has("spell")
+        hi SpellBad                ctermbg=52
+        hi SpellCap                ctermbg=17
+        hi SpellLocal              ctermbg=17
+        hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
+    endif
+    hi Statement       ctermfg=161               cterm=bold
+    hi StatusLine      ctermfg=238 ctermbg=253
+    hi StatusLineNC    ctermfg=244 ctermbg=232
+    hi StorageClass    ctermfg=208
+    hi Structure       ctermfg=81
+    hi Tag             ctermfg=161
+    hi Title           ctermfg=166
+    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+    hi Typedef         ctermfg=81
+    hi Type            ctermfg=81                cterm=none
+    hi Underlined      ctermfg=244               cterm=underline
+    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+    hi VisualNOS                   ctermbg=238
+    hi Visual                      ctermbg=235
+    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+    hi WildMenu        ctermfg=81  ctermbg=16
+    hi Comment         ctermfg=59
+    hi CursorColumn                ctermbg=236
+    hi ColorColumn                 ctermbg=236
+    hi LineNr          ctermfg=250 ctermbg=236
+    hi NonText         ctermfg=59
+    hi SpecialKey      ctermfg=59
+    if exists("g:rehash256") && g:rehash256 == 1
+        hi Normal       ctermfg=252 ctermbg=234
+        hi CursorLine               ctermbg=236   cterm=none
+        hi CursorLineNr ctermfg=208               cterm=none
+        hi Boolean         ctermfg=141
+        hi Character       ctermfg=222
+        hi Number          ctermfg=141
+        hi String          ctermfg=222
+        hi Conditional     ctermfg=197               cterm=bold
+        hi Constant        ctermfg=141               cterm=bold
+        hi DiffDelete      ctermfg=125 ctermbg=233
+        hi Directory       ctermfg=154               cterm=bold
+        hi Error           ctermfg=222 ctermbg=233
+        hi Exception       ctermfg=154               cterm=bold
+        hi Float           ctermfg=141
+        hi Function        ctermfg=154
+        hi Identifier      ctermfg=208
+        hi Keyword         ctermfg=197               cterm=bold
+        hi Operator        ctermfg=197
+        hi PreCondit       ctermfg=154               cterm=bold
+        hi PreProc         ctermfg=154
+        hi Repeat          ctermfg=197               cterm=bold
+        hi Statement       ctermfg=197               cterm=bold
+        hi Tag             ctermfg=197
+        hi Title           ctermfg=203
+        hi Visual                      ctermbg=238
+        hi Comment         ctermfg=244
+        hi LineNr          ctermfg=239 ctermbg=235
+        hi NonText         ctermfg=239
+        hi SpecialKey      ctermfg=239
+    endif
 end
 
 set background=dark
@@ -1954,88 +2065,88 @@ let g:colors_name="molokai"
 " Support for 256-color terminal
 "
 if &t_Co > 255
-   hi Boolean         ctermfg=135
-   hi Character       ctermfg=144
-   hi Number          ctermfg=135
-   hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
-   hi Constant        ctermfg=135               cterm=bold
-   hi Cursor          ctermfg=16  ctermbg=253
-   hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
-   hi Delimiter       ctermfg=241
+    hi Boolean         ctermfg=135
+    hi Character       ctermfg=144
+    hi Number          ctermfg=135
+    hi String          ctermfg=144
+    hi Conditional     ctermfg=161               cterm=bold
+    hi Constant        ctermfg=135               cterm=bold
+    hi Cursor          ctermfg=16  ctermbg=253
+    hi Debug           ctermfg=225               cterm=bold
+    hi Define          ctermfg=81
+    hi Delimiter       ctermfg=241
 
-   hi DiffAdd                     ctermbg=24
-   hi DiffChange      ctermfg=181 ctermbg=239
-   hi DiffDelete      ctermfg=162 ctermbg=53
-   hi DiffText                    ctermbg=102 cterm=bold
+    hi DiffAdd                     ctermbg=24
+    hi DiffChange      ctermfg=181 ctermbg=239
+    hi DiffDelete      ctermfg=162 ctermbg=53
+    hi DiffText                    ctermbg=102 cterm=bold
 
-   hi Directory       ctermfg=118               cterm=bold
-   hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-   hi Exception       ctermfg=118               cterm=bold
-   hi Float           ctermfg=135
-   hi FoldColumn      ctermfg=67  ctermbg=16
-   hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
-   hi Identifier      ctermfg=208
-   hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=193 ctermbg=16
+    hi Directory       ctermfg=118               cterm=bold
+    hi Error           ctermfg=219 ctermbg=89
+    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+    hi Exception       ctermfg=118               cterm=bold
+    hi Float           ctermfg=135
+    hi FoldColumn      ctermfg=67  ctermbg=16
+    hi Folded          ctermfg=67  ctermbg=16
+    hi Function        ctermfg=118
+    hi Identifier      ctermfg=208
+    hi Ignore          ctermfg=244 ctermbg=232
+    hi IncSearch       ctermfg=193 ctermbg=16
 
-   hi Keyword         ctermfg=161               cterm=bold
-   hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
+    hi Keyword         ctermfg=161               cterm=bold
+    hi Label           ctermfg=229               cterm=none
+    hi Macro           ctermfg=193
+    hi SpecialKey      ctermfg=81
 
-   hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-   hi ModeMsg         ctermfg=229
-   hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+    hi ModeMsg         ctermfg=229
+    hi MoreMsg         ctermfg=229
+    hi Operator        ctermfg=161
 
-   " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
-   hi PmenuSel                    ctermbg=244
-   hi PmenuSbar                   ctermbg=232
-   hi PmenuThumb      ctermfg=81
+    " complete menu
+    hi Pmenu           ctermfg=81  ctermbg=16
+    hi PmenuSel                    ctermbg=244
+    hi PmenuSbar                   ctermbg=232
+    hi PmenuThumb      ctermfg=81
 
-   hi PreCondit       ctermfg=118               cterm=bold
-   hi PreProc         ctermfg=118
-   hi Question        ctermfg=81
-   hi Repeat          ctermfg=161               cterm=bold
-   hi Search          ctermfg=253 ctermbg=66
+    hi PreCondit       ctermfg=118               cterm=bold
+    hi PreProc         ctermfg=118
+    hi Question        ctermfg=81
+    hi Repeat          ctermfg=161               cterm=bold
+    hi Search          ctermfg=253 ctermbg=66
 
-   " marks column
-   hi SignColumn      ctermfg=118 ctermbg=235
-   hi SpecialChar     ctermfg=161               cterm=bold
-   hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  ctermbg=232
-   hi SpecialKey      ctermfg=245
+    " marks column
+    hi SignColumn      ctermfg=118 ctermbg=235
+    hi SpecialChar     ctermfg=161               cterm=bold
+    hi SpecialComment  ctermfg=245               cterm=bold
+    hi Special         ctermfg=81  ctermbg=232
+    hi SpecialKey      ctermfg=245
 
-   hi Statement       ctermfg=161               cterm=bold
-   hi StatusLine      ctermfg=238 ctermbg=253
-   hi StatusLineNC    ctermfg=244 ctermbg=232
-   hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
-   hi Tag             ctermfg=161
-   hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+    hi Statement       ctermfg=161               cterm=bold
+    hi StatusLine      ctermfg=238 ctermbg=253
+    hi StatusLineNC    ctermfg=244 ctermbg=232
+    hi StorageClass    ctermfg=208
+    hi Structure       ctermfg=81
+    hi Tag             ctermfg=161
+    hi Title           ctermfg=166
+    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 
-   hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
-   hi Underlined      ctermfg=244               cterm=underline
+    hi Typedef         ctermfg=81
+    hi Type            ctermfg=81                cterm=none
+    hi Underlined      ctermfg=244               cterm=underline
 
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=235
-   hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-   hi WildMenu        ctermfg=81  ctermbg=16
+    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+    hi VisualNOS                   ctermbg=238
+    hi Visual                      ctermbg=235
+    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+    hi WildMenu        ctermfg=81  ctermbg=16
 
-   hi Normal          ctermfg=252 ctermbg=234
-   hi Comment         ctermfg=59
-   hi CursorLine                  ctermbg=234   cterm=none
-   hi CursorColumn                ctermbg=234
-   hi LineNr          ctermfg=250 ctermbg=234
-   hi NonText         ctermfg=1 ctermbg=234
+    hi Normal          ctermfg=252 ctermbg=234
+    hi Comment         ctermfg=59
+    hi CursorLine                  ctermbg=234   cterm=none
+    hi CursorColumn                ctermbg=234
+    hi LineNr          ctermfg=250 ctermbg=234
+    hi NonText         ctermfg=1 ctermbg=234
 end
 
 
@@ -2075,7 +2186,7 @@ if version > 580
 endif
 
 if !has('gui_running')
-  set t_Co=256
+    set t_Co=256
 endif
 
 
@@ -2287,7 +2398,7 @@ hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cter
 hi Debug           ctermfg=225               cterm=bold
 hi Delimiter       ctermfg=241
 
- "diff: 增加的行
+"diff: 增加的行
 hi DiffAdd                     ctermbg=24
 
 "diff: 改变的行
@@ -2296,14 +2407,14 @@ hi DiffChange      ctermfg=181 ctermbg=239
 "diff: 删除的行
 hi DiffDelete      ctermfg=162 ctermbg=53
 
- "diff: 改变行里的改动文本
+"diff: 改变行里的改动文本
 hi DiffText                    ctermbg=102 cterm=bold
 
- "目录名
+"目录名
 hi Directory       ctermfg=118               cterm=bold
 hi Error           ctermfg=219  ctermbg=89
 
-  "命令行上的错误信息
+"命令行上的错误信息
 hi ErrorMsg        ctermfg=199  ctermbg=16   cterm=bold
 "hi FoldColumn      ctermfg=67  ctermbg=16
 "hi Folded          ctermfg=67  ctermbg=16
@@ -2332,7 +2443,7 @@ hi    PMenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
 " hi    PmenuSbar        ctermbg=239
 hi    PmenuSbar        ctermbg=239
 
- "弹出菜单滚动条的拇指, 和上面一一对应
+"弹出菜单滚动条的拇指, 和上面一一对应
 " hi    PmenuThumb      ctermbg=196    cterm=bold
 " hi    PmenuThumb      ctermbg=15    cterm=bold
 " hi    PmenuThumb      ctermbg=196    cterm=bold
@@ -2352,11 +2463,11 @@ hi Tag             ctermfg=161  cterm=bold
 ":set all 等输出的标题
 hi Title           ctermfg=166  cterm=bold
 
- "任何需要特殊注意的部分
+"任何需要特殊注意的部分
 hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 
- "分离垂直分割窗口的列
-hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+"分离垂直分割窗口的列
+hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold
 hi VisualNOS                   ctermbg=238
 
 "可视模式的选择区
@@ -2448,7 +2559,7 @@ nnoremap <space> za
 
 "重新打开已创建的文件时自动定位光标到上次关闭文件时的位置,包括具体的列，如果只需要定位到行，不需要列，则把g`(右撇)改为g'(左撇)
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
 " 能够漂亮地显示.NFO文件
@@ -2536,43 +2647,43 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 "molokai,landscape,solarized,
 
 let g:lightline = {
-    \ 'colorscheme': 'landscape',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
-    \   'right': [ [ 'lineinfo' ],
-    \              [ 'percent' ],
-    \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
-    \ },
-    \ 'component': {
-    \   'charvaluehex': '0x%B',
-    \   'gitbranch': 'fugitive#head',
-    \ },
-    \ 'component_function': {
-    \   'filename': 'LightlineFilename',
-    \   'mode': 'LightlineMode',
-    \   'filetype': 'LightlineFiletype',
-    \ },
-    \ }
+            \ 'colorscheme': 'landscape',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+            \   'right': [ [ 'lineinfo' ],
+            \              [ 'percent' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
+            \ },
+            \ 'component': {
+            \   'charvaluehex': '0x%B',
+            \   'gitbranch': 'fugitive#head',
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'mode': 'LightlineMode',
+            \   'filetype': 'LightlineFiletype',
+            \ },
+            \ }
 
-    "\   'helloworld': 'I am writing something...'
+"\   'helloworld': 'I am writing something...'
 
 
 function! LightlineMode()
-  return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
-        \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
-        \ &filetype ==# 'unite' ? 'Unite' :
-        \ &filetype ==# 'vimfiler' ? 'VimFiler' :
-        \ &filetype ==# 'vimshell' ? 'VimShell' :
-        \ lightline#mode()
+    return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
+                \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
+                \ &filetype ==# 'unite' ? 'Unite' :
+                \ &filetype ==# 'vimfiler' ? 'VimFiler' :
+                \ &filetype ==# 'vimshell' ? 'VimShell' :
+                \ lightline#mode()
 endfunction
 
 
 function! LightlineFilename()
-  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-        \ &filetype ==# 'unite' ? unite#get_status_string() :
-        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-        \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+                \ &filetype ==# 'unite' ? unite#get_status_string() :
+                \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+                \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
@@ -2580,7 +2691,7 @@ let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 
 function! LightlineFiletype()
-  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
 endfunction
 
 
@@ -2610,7 +2721,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 
- "设置切换Buffer快捷键"
+"设置切换Buffer快捷键"
 nnoremap [b :bp<CR>
 nnoremap ]b :bn<CR>
 
@@ -2630,8 +2741,8 @@ let g:airline#extensions#whitespace#symbol = '!'
 
 " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
 if has('win32')
-  set guifont=Hermit:h13
-  set guifontwide=Microsoft_YaHei_Mono:h12
+    set guifont=Hermit:h13
+    set guifontwide=Microsoft_YaHei_Mono:h12
 endif
 
 
