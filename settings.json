@@ -27,9 +27,11 @@
     "defaults": {
       // 所有 Profile 共用的设置可以放这里，就不用写多次了
       // 字体设置
-      //"fontFace": "Cascadia Code",
+      "fontFace": "Cascadia Code",
       //"fontFace": "DejaVu Sans Mono",
-      "fontFace": "Monospace Regular",
+      //"fontFace": "Monospace Regular",
+      // "fontFace": "文泉驿微米黑",
+      "fontFace": "DroidSansMono NF",
       "fontSize": 11,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
       "cursorShape": "bar",
