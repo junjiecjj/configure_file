@@ -43,7 +43,7 @@ Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自�
 Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
 Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
-" Plugin 'c.vim'                               " C IDE
+" Plugin 'c.vim'                             " C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
@@ -55,11 +55,11 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'                 " 添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'             " 想用tab键
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'                       " enhance devicons
 Plugin 'tmhedberg/SimpylFold'                " 自动折叠
 " Plugin 'bronson/vim-trailing-whitespace'   " 显示以及去除行尾空格
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'                                        " add beautiful icons besides Files
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'                       " enhance devicons
 Plugin 'tpope/vim-fugitive'                                            " 在vim中执行git命令
 Plugin 'Valloric/YouCompleteMe'                                        " 自动补全括号等
 Plugin 'rip-rip/clang_complete'
@@ -132,6 +132,7 @@ set autoindent               "自动缩进, 继承前一行的缩进方式，适
 
 " 设定默认解码
 " set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
+set guifont=DroidSansMono\ Nerd\ Font\ Book\ 12
 set bsdir=buffer
 set fenc=utf-8
 set langmenu=zh_CN.UTF-8
@@ -422,6 +423,9 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 """"""""""""""""""""""jedi-vim配置""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
 let g:jedi#popup_on_dot = 0
+
+
+
 
 """"""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
@@ -964,51 +968,54 @@ let g:openbrowser_search_engines = {
 
 """"""""""""""""""""""""""""clang_complete配置""""""""""""""""""""""""""""
 
-"clang complete
-"自动选择第一个匹配项但不插入到代码中
-let g:clang_auto_select = 1
-"在->. ., ::后自动补全
-let g:clang_complete_auto = 1
-"发现错误之后打开QuickFix窗口
-let g:clang_complete_copen = 1
-"高亮警告和错误
-let g:clang_hl_errors = 1
-"插入第一个补全后关闭预览窗口
-let g:clang_close_preview = 1
-"开启对C++11的编译支持
-let g:clang_user_options = '-stdlib=libc++ -std=c++11 -IIncludePath'
-"设定clang库路径
-let g:clang_use_library = 1
-" let g:clang_periodic_quickfix=1
-let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
-"补全预处理指令，宏和常数，默认为0，不补全
-let g:clang_complete_macros = 1
-"补全代码模式，比如循环等，默认为0，不补全
-let g:clang_complete_patterns = 1
-"<C-]>跳转到声明
-let g:clang_jumpto_declaration_key = "<C-]>"
-"<C-w>]在预览窗口中打开声明
-let g:clang_jumpto_declaration_in_preview_key = "<C-w>]"
-"<C-t>回跳
-let g:clang_jumpto_back_key = "<C-t>"
-"使用UltiSnips进行代码片段补全
-let g:clang_snippets = 1
-let g:clang_snippets_engine = 'ultisnips'
+" "clang complete
+" "自动选择第一个匹配项但不插入到代码中
+" let g:clang_auto_select = 1
+" "在->. ., ::后自动补全
+" let g:clang_complete_auto = 1
+" "发现错误之后打开QuickFix窗口
+" let g:clang_complete_copen = 1
+" "高亮警告和错误
+" let g:clang_hl_errors = 1
+" "插入第一个补全后关闭预览窗口
+" let g:clang_close_preview = 1
+" "开启对C++11的编译支持
+" let g:clang_user_options = '-stdlib=libc++ -std=c++11 -IIncludePath'
+" "设定clang库路径
+" let g:clang_use_library = 1
+" " let g:clang_periodic_quickfix=1
+" let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
+" "补全预处理指令，宏和常数，默认为0，不补全
+" let g:clang_complete_macros = 1
+" "补全代码模式，比如循环等，默认为0，不补全
+" let g:clang_complete_patterns = 1
+" "<C-]>跳转到声明
+" let g:clang_jumpto_declaration_key = "<C-]>"
+" "<C-w>]在预览窗口中打开声明
+" let g:clang_jumpto_declaration_in_preview_key = "<C-w>]"
+" "<C-t>回跳
+" let g:clang_jumpto_back_key = "<C-t>"
+" "使用UltiSnips进行代码片段补全
+" let g:clang_snippets = 1
+" let g:clang_snippets_engine = 'ultisnips'
 
 
-"vim-clang
-"开启对C11和C++11的支持
-let g:clang_c_options = '-std=gnu11'
-let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-"关闭语法检查
-let g:clang_check_syntax_auto = 0
-"不要自动格式化代码
-let g:clang_format_auto = 0
-"代码格式化风格选项依次有LLVM，Google，Chromium，Mozilla，WebKit
-"let g:clang_format_style = 'LLVM'
-"使得vim-clang的补全与其他IDE一致
-let g:clang_cpp_completeopt = 'longest,menuone,preview'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" "vim-clang
+" "开启对C11和C++11的支持
+" let g:clang_c_options = '-std=gnu11'
+" let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+" "关闭语法检查
+" let g:clang_check_syntax_auto = 0
+" "不要自动格式化代码
+" let g:clang_format_auto = 0
+" "代码格式化风格选项依次有LLVM，Google，Chromium，Mozilla，WebKit
+" "let g:clang_format_style = 'LLVM'
+" "使得vim-clang的补全与其他IDE一致
+" let g:clang_cpp_completeopt = 'longest,menuone,preview'
+"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""vim-autoformat格式化代码配置""""""""""""""""""""""""""""""""""""""""
 " sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify 
@@ -1347,7 +1354,6 @@ let g:NERDTreeHidden=1     " Don't show hidden files
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
 
-let g:NERDTreeShowIgnoredStatus =1
 
 "是否打开目录树
 let g:nerdtree_tabs_open_on_console_startup=0
@@ -1368,6 +1374,11 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
+"""""""""""""""""""""""""""""""""""
+"nerdtree-git-plugin 配置
+"""""""""""""""""""""""""""""""""""
+
+let g:NERDTreeShowIgnoredStatus =1
 let g:NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -1388,6 +1399,107 @@ let g:NERDCustomDelimiters = {
             \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
             \ 'less': { 'left': '/**', 'right': '*/' }
             \ }
+
+"""""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
+"加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
+autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+
+"Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+
+"whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+"adding to vim-airline's tabline
+let g:webdevicons_enable_airline_tabline = 1
+
+"adding to vim-airline's statusline
+let g:webdevicons_enable_airline_statusline = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""vim-nerdtree-syntax-highlight配置"""""""""""""""""""""""""""""""""""""""
+" let g:NERDTreeDisableFileExtensionHighlight=1
+" let g:NERDTreeDisableExactMatchHighlight=1
+" let g:NERDTreeDisablePatternMatchHighlight=1
+
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeHighlightFolders = 1
+
+"highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
+
+" 禁用不常见的文件扩展名突出显示 (这是一个好主意，当你在滚动时遇到延迟时。 在下一次会话中查找有关延迟的更多信息。)
+" let g:NERDTreeLimitedSyntax=1
+
+" 禁用所有默认文件扩展名 (你可以使用它轻松自定义你想要突出显示的扩展名)
+" let g:NERDTreeSyntaxDisableDefaultExtensions=1
+
+" 缓解延迟问题
+let g:NERDTreeLimitedSyntax=1
+let g:NERDTreeHighlightCursorline=0
+
+let g:NERDTreeSyntaxEnabledExtensions= ['c', 'h', 'c++', 'php', 'rb', 'js', 'css']
+
+"you can add these colors to your .vimrc to help customizing
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:Turquoise = "40E0D0"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:Cyan1 = "00FFFF"
+let s:DarkOliveGreen = "556B2F"
+let s:rspec_red = "FE405F"
+let s:git_orange = "F54D27"
+let s:gray = "808A87"
+
+let g:NERDTreeExtensionHighlightColor = {} 
+" this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray 
+" sets the color of o files to blue
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue 
+" sets the color of h files to blue
+let g:NERDTreeExtensionHighlightColor['c'] = s:green 
+" sets the color of c files to blue
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green 
+" sets the color of cpp files to blue
+let g:NERDTreeExtensionHighlightColor['css'] = s:purple
+
+let g:NERDTreeExtensionHighlightColor['py'] = s:yellow
+
+let g:NERDTreeExtensionHighlightColor['sh'] = s:red
+
+let g:NERDTreeExtensionHighlightColor['coffee'] = s:red
+
+let g:NERDTreeExtensionHighlightColor['md'] = s:salmon
+
+let g:NERDTreeExtensionHighlightColor['java'] = s:brown
+
+let g:NERDTreeExtensionHighlightColor['php'] = s:brown
+
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green 
+" sets the color of c++ files to blue
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
 " Tab : 向前循环切换到每个buffer上
@@ -1646,531 +1758,524 @@ au BufNewFile,BufRead *.js,*.html,*.css
 
 
 """""""""""""""""""""""""""""""""""""""""配色molokai"""""""""""""""""""""""""""""""""""""""""
-hi clear
+" hi clear
 
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
+" if version > 580
+"     hi clear
+"     if exists("syntax_on")
+"         syntax reset
+"     endif
+" endif
 
-let g:colors_name="molokai"
-if exists("g:molokai_original")
-    let s:molokai_original = g:molokai_original
-else
-    let s:molokai_original = 0
-endif
-hi Boolean         guifg=#AE81FF
-hi Character       guifg=#E6DB74
-hi Number          guifg=#AE81FF
-hi String          guifg=#E6DB74
-hi Conditional     guifg=#F92672               gui=bold
-hi Constant        guifg=#AE81FF               gui=bold
-hi Cursor          guifg=#000000 guibg=#F8F8F0
-hi iCursor         guifg=#000000 guibg=#F8F8F0
-hi Debug           guifg=#BCA3A3               gui=bold
-hi Define          guifg=#66D9EF
-hi Delimiter       guifg=#8F8F8F
-hi DiffAdd                       guibg=#13354A
-hi DiffChange      guifg=#89807D guibg=#4C4745
-hi DiffDelete      guifg=#960050 guibg=#1E0010
-hi DiffText                      guibg=#4C4745 gui=italic,bold
-hi Directory       guifg=#A6E22E               gui=bold
-hi Error           guifg=#E6DB74 guibg=#1E0010
-hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
-hi Exception       guifg=#A6E22E               gui=bold
-hi Float           guifg=#AE81FF
-hi FoldColumn      guifg=#465457 guibg=#000000
-hi Folded          guifg=#465457 guibg=#000000
-hi Function        guifg=#A6E22E
-hi Identifier      guifg=#FD971F
-hi Ignore          guifg=#808080 guibg=bg
-hi Keyword         guifg=#F92672               gui=bold
-hi Label           guifg=#E6DB74               gui=none
-hi Macro           guifg=#C4BE89               gui=italic
-hi SpecialKey      guifg=#66D9EF               gui=italic
-hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
-hi ModeMsg         guifg=#E6DB74
-hi MoreMsg         guifg=#E6DB74
-hi Operator        guifg=#F92672
-hi Pmenu           guifg=#66D9EF guibg=#000000
-hi PmenuSel                      guibg=#808080
-hi PmenuSbar                     guibg=#080808
-hi PmenuThumb      guifg=#66D9EF
-hi PreCondit       guifg=#A6E22E               gui=bold
-hi PreProc         guifg=#A6E22E
-hi Question        guifg=#66D9EF
-hi Repeat          guifg=#F92672               gui=bold
-hi Search          guifg=#000000 guibg=#FFE792
+" let g:colors_name="molokai"
+" if exists("g:molokai_original")
+"     let s:molokai_original = g:molokai_original
+" else
+"     let s:molokai_original = 0
+" endif
+" hi Boolean         guifg=#AE81FF
+" hi Character       guifg=#E6DB74
+" hi Number          guifg=#AE81FF
+" hi String          guifg=#E6DB74
+" hi Conditional     guifg=#F92672               gui=bold
+" hi Constant        guifg=#AE81FF               gui=bold
+" hi Cursor          guifg=#000000 guibg=#F8F8F0
+" hi iCursor         guifg=#000000 guibg=#F8F8F0
+" hi Debug           guifg=#BCA3A3               gui=bold
+" hi Define          guifg=#66D9EF
+" hi Delimiter       guifg=#8F8F8F
+" hi DiffAdd                       guibg=#13354A
+" hi DiffChange      guifg=#89807D guibg=#4C4745
+" hi DiffDelete      guifg=#960050 guibg=#1E0010
+" hi DiffText                      guibg=#4C4745 gui=italic,bold
+" hi Directory       guifg=#A6E22E               gui=bold
+" hi Error           guifg=#E6DB74 guibg=#1E0010
+" hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
+" hi Exception       guifg=#A6E22E               gui=bold
+" hi Float           guifg=#AE81FF
+" hi FoldColumn      guifg=#465457 guibg=#000000
+" hi Folded          guifg=#465457 guibg=#000000
+" hi Function        guifg=#A6E22E
+" hi Identifier      guifg=#FD971F
+" hi Ignore          guifg=#808080 guibg=bg
+" hi Keyword         guifg=#F92672               gui=bold
+" hi Label           guifg=#E6DB74               gui=none
+" hi Macro           guifg=#C4BE89               gui=italic
+" hi SpecialKey      guifg=#66D9EF               gui=italic
+" hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
+" hi ModeMsg         guifg=#E6DB74
+" hi MoreMsg         guifg=#E6DB74
+" hi Operator        guifg=#F92672
+" hi Pmenu           guifg=#66D9EF guibg=#000000
+" hi PmenuSel                      guibg=#808080
+" hi PmenuSbar                     guibg=#080808
+" hi PmenuThumb      guifg=#66D9EF
+" hi PreCondit       guifg=#A6E22E               gui=bold
+" hi PreProc         guifg=#A6E22E
+" hi Question        guifg=#66D9EF
+" hi Repeat          guifg=#F92672               gui=bold
+" hi Search          guifg=#000000 guibg=#FFE792
 
-hi SignColumn      guifg=#A6E22E guibg=#232526
-hi SpecialChar     guifg=#F92672               gui=bold
-hi SpecialComment  guifg=#7E8E91               gui=bold
-hi Special         guifg=#66D9EF guibg=bg      gui=italic
+" hi SignColumn      guifg=#A6E22E guibg=#232526
+" hi SpecialChar     guifg=#F92672               gui=bold
+" hi SpecialComment  guifg=#7E8E91               gui=bold
+" hi Special         guifg=#66D9EF guibg=bg      gui=italic
 
-if has("spell")
+" if has("spell")
 
-    hi SpellBad    guisp=#FF0000 gui=undercurl
+"     hi SpellBad    guisp=#FF0000 gui=undercurl
 
-    hi SpellCap    guisp=#7070F0 gui=undercurl
+"     hi SpellCap    guisp=#7070F0 gui=undercurl
 
-    hi SpellLocal  guisp=#70F0F0 gui=undercurl
+"     hi SpellLocal  guisp=#70F0F0 gui=undercurl
 
-    hi SpellRare   guisp=#FFFFFF gui=undercurl
+"     hi SpellRare   guisp=#FFFFFF gui=undercurl
 
-endif
+" endif
 
-hi Statement       guifg=#F92672               gui=bold
-hi StatusLine      guifg=#455354 guibg=fg
-hi StatusLineNC    guifg=#808080 guibg=#080808
-hi StorageClass    guifg=#FD971F               gui=italic
-hi Structure       guifg=#66D9EF
-hi Tag             guifg=#F92672               gui=italic
-hi Title           guifg=#ef5939
-hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
-hi Typedef         guifg=#66D9EF
-hi Type            guifg=#66D9EF               gui=none
-hi Underlined      guifg=#808080               gui=underline
-hi VertSplit       guifg=#808080 guibg=#080808 gui=bold
-hi VisualNOS                     guibg=#403D3D
-hi Visual                        guibg=#403D3D
-hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
-hi WildMenu        guifg=#66D9EF guibg=#000000
-hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
+" hi Statement       guifg=#F92672               gui=bold
+" hi StatusLine      guifg=#455354 guibg=fg
+" hi StatusLineNC    guifg=#808080 guibg=#080808
+" hi StorageClass    guifg=#FD971F               gui=italic
+" hi Structure       guifg=#66D9EF
+" hi Tag             guifg=#F92672               gui=italic
+" hi Title           guifg=#ef5939
+" hi Todo            guifg=#FFFFFF guibg=bg      gui=bold
+" hi Typedef         guifg=#66D9EF
+" hi Type            guifg=#66D9EF               gui=none
+" hi Underlined      guifg=#808080               gui=underline
+" hi VertSplit       guifg=#808080 guibg=#080808 gui=bold
+" hi VisualNOS                     guibg=#403D3D
+" hi Visual                        guibg=#403D3D
+" hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
+" hi WildMenu        guifg=#66D9EF guibg=#000000
+" hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
 
-hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
-if s:molokai_original == 1
-    hi Normal          guifg=#F8F8F2 guibg=#272822
-    hi Comment         guifg=#75715E
-    hi CursorLine                    guibg=#3E3D32
-    hi CursorLineNr    guifg=#FD971F               gui=none
-    hi CursorColumn                  guibg=#3E3D32
-    hi ColorColumn                   guibg=#3B3A32
-    hi LineNr          guifg=#BCBCBC guibg=#3B3A32
-    hi NonText         guifg=#75715E
-    hi SpecialKey      guifg=#75715E
-else
-    hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
-    hi Comment         guifg=#7E8E91
-    hi CursorLine                    guibg=#293739
-    hi CursorLineNr    guifg=#FD971F               gui=none
-    hi CursorColumn                  guibg=#293739
-    hi ColorColumn                   guibg=#232526
-    hi LineNr          guifg=#465457 guibg=#232526
-    hi NonText         guifg=#465457
-    hi SpecialKey      guifg=#465457
-end
+" hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
+" if s:molokai_original == 1
+"     hi Normal          guifg=#F8F8F2 guibg=#272822
+"     hi Comment         guifg=#75715E
+"     hi CursorLine                    guibg=#3E3D32
+"     hi CursorLineNr    guifg=#FD971F               gui=none
+"     hi CursorColumn                  guibg=#3E3D32
+"     hi ColorColumn                   guibg=#3B3A32
+"     hi LineNr          guifg=#BCBCBC guibg=#3B3A32
+"     hi NonText         guifg=#75715E
+"     hi SpecialKey      guifg=#75715E
+" else
+"     hi Normal          guifg=#F8F8F2 guibg=#1B1D1E
+"     hi Comment         guifg=#7E8E91
+"     hi CursorLine                    guibg=#293739
+"     hi CursorLineNr    guifg=#FD971F               gui=none
+"     hi CursorColumn                  guibg=#293739
+"     hi ColorColumn                   guibg=#232526
+"     hi LineNr          guifg=#465457 guibg=#232526
+"     hi NonText         guifg=#465457
+"     hi SpecialKey      guifg=#465457
+" end
 
-if &t_Co > 255
+" if &t_Co > 255
 
-    if s:molokai_original == 1
-        hi Normal                   ctermbg=234
-        hi CursorLine               ctermbg=235   cterm=none
-        hi CursorLineNr ctermfg=208               cterm=none
-    else
-        hi Normal       ctermfg=252 ctermbg=233
-        hi CursorLine               ctermbg=234   cterm=none
-        hi CursorLineNr ctermfg=208               cterm=none
-    endif
-    hi Boolean         ctermfg=135
-    hi Character       ctermfg=144
-    hi Number          ctermfg=135
-    hi String          ctermfg=144
-    hi Conditional     ctermfg=161               cterm=bold
-    hi Constant        ctermfg=135               cterm=bold
-    hi Cursor          ctermfg=16  ctermbg=253
-    hi Debug           ctermfg=225               cterm=bold
-    hi Define          ctermfg=81
-    hi Delimiter       ctermfg=241
-    hi DiffAdd                     ctermbg=24
-    hi DiffChange      ctermfg=181 ctermbg=239
-    hi DiffDelete      ctermfg=162 ctermbg=53
-    hi DiffText                    ctermbg=102 cterm=bold
-    hi Directory       ctermfg=118               cterm=bold
-    hi Error           ctermfg=219 ctermbg=89
-    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-    hi Exception       ctermfg=118               cterm=bold
-    hi Float           ctermfg=135
-    hi Folded          ctermfg=67  ctermbg=16
-    hi Function        ctermfg=118
-    hi Identifier      ctermfg=208               cterm=none
-    hi Ignore          ctermfg=244 ctermbg=232
-    hi IncSearch       ctermfg=193 ctermbg=16
-    hi keyword         ctermfg=161               cterm=bold
-    hi Label           ctermfg=229               cterm=none
-    hi Macro           ctermfg=193
-    hi SpecialKey      ctermfg=81
-    hi MatchParen      ctermfg=233  ctermbg=208 cterm=bold
-    hi ModeMsg         ctermfg=229
-    hi MoreMsg         ctermfg=229
-    hi Operator        ctermfg=161
-    " complete menu
-    hi Pmenu           ctermfg=81  ctermbg=16
-    hi PmenuSel        ctermfg=255 ctermbg=242
-    hi PmenuSbar                   ctermbg=232
-    hi PmenuThumb      ctermfg=81
-    hi PreCondit       ctermfg=118               cterm=bold
-    hi PreProc         ctermfg=118
-    hi Question        ctermfg=81
-    hi Repeat          ctermfg=161               cterm=bold
-    hi Search          ctermfg=0   ctermbg=222   cterm=NONE
-    " marks column
-    hi SignColumn      ctermfg=118 ctermbg=235
-    hi SpecialChar     ctermfg=161               cterm=bold
-    hi SpecialComment  ctermfg=245               cterm=bold
-    hi Special         ctermfg=81
-    if has("spell")
-        hi SpellBad                ctermbg=52
-        hi SpellCap                ctermbg=17
-        hi SpellLocal              ctermbg=17
-        hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
-    endif
-    hi Statement       ctermfg=161               cterm=bold
-    hi StatusLine      ctermfg=238 ctermbg=253
-    hi StatusLineNC    ctermfg=244 ctermbg=232
-    hi StorageClass    ctermfg=208
-    hi Structure       ctermfg=81
-    hi Tag             ctermfg=161
-    hi Title           ctermfg=166
-    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-    hi Typedef         ctermfg=81
-    hi Type            ctermfg=81                cterm=none
-    hi Underlined      ctermfg=244               cterm=underline
-    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-    hi VisualNOS                   ctermbg=238
-    hi Visual                      ctermbg=235
-    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-    hi WildMenu        ctermfg=81  ctermbg=16
-    hi Comment         ctermfg=59
-    hi CursorColumn                ctermbg=236
-    hi ColorColumn                 ctermbg=236
-    hi LineNr          ctermfg=250 ctermbg=236
-    hi NonText         ctermfg=59
-    hi SpecialKey      ctermfg=59
-    if exists("g:rehash256") && g:rehash256 == 1
-        hi Normal       ctermfg=252 ctermbg=234
-        hi CursorLine               ctermbg=236   cterm=none
-        hi CursorLineNr ctermfg=208               cterm=none
-        hi Boolean         ctermfg=141
-        hi Character       ctermfg=222
-        hi Number          ctermfg=141
-        hi String          ctermfg=222
-        hi Conditional     ctermfg=197               cterm=bold
-        hi Constant        ctermfg=141               cterm=bold
-        hi DiffDelete      ctermfg=125 ctermbg=233
-        hi Directory       ctermfg=154               cterm=bold
-        hi Error           ctermfg=222 ctermbg=233
-        hi Exception       ctermfg=154               cterm=bold
-        hi Float           ctermfg=141
-        hi Function        ctermfg=154
-        hi Identifier      ctermfg=208
-        hi Keyword         ctermfg=197               cterm=bold
-        hi Operator        ctermfg=197
-        hi PreCondit       ctermfg=154               cterm=bold
-        hi PreProc         ctermfg=154
-        hi Repeat          ctermfg=197               cterm=bold
-        hi Statement       ctermfg=197               cterm=bold
-        hi Tag             ctermfg=197
-        hi Title           ctermfg=203
-        hi Visual                      ctermbg=238
-        hi Comment         ctermfg=244
-        hi LineNr          ctermfg=239 ctermbg=235
-        hi NonText         ctermfg=239
-        hi SpecialKey      ctermfg=239
-    endif
-end
+"     if s:molokai_original == 1
+"         hi Normal                   ctermbg=234
+"         hi CursorLine               ctermbg=235   cterm=none
+"         hi CursorLineNr ctermfg=208               cterm=none
+"     else
+"         hi Normal       ctermfg=252 ctermbg=233
+"         hi CursorLine               ctermbg=234   cterm=none
+"         hi CursorLineNr ctermfg=208               cterm=none
+"     endif
+"     hi Boolean         ctermfg=135
+"     hi Character       ctermfg=144
+"     hi Number          ctermfg=135
+"     hi String          ctermfg=144
+"     hi Conditional     ctermfg=161               cterm=bold
+"     hi Constant        ctermfg=135               cterm=bold
+"     hi Cursor          ctermfg=16  ctermbg=253
+"     hi Debug           ctermfg=225               cterm=bold
+"     hi Define          ctermfg=81
+"     hi Delimiter       ctermfg=241
+"     hi DiffAdd                     ctermbg=24
+"     hi DiffChange      ctermfg=181 ctermbg=239
+"     hi DiffDelete      ctermfg=162 ctermbg=53
+"     hi DiffText                    ctermbg=102 cterm=bold
+"     hi Directory       ctermfg=118               cterm=bold
+"     hi Error           ctermfg=219 ctermbg=89
+"     hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+"     hi Exception       ctermfg=118               cterm=bold
+"     hi Float           ctermfg=135
+"     hi Folded          ctermfg=67  ctermbg=16
+"     hi Function        ctermfg=118
+"     hi Identifier      ctermfg=208               cterm=none
+"     hi Ignore          ctermfg=244 ctermbg=232
+"     hi IncSearch       ctermfg=193 ctermbg=16
+"     hi keyword         ctermfg=161               cterm=bold
+"     hi Label           ctermfg=229               cterm=none
+"     hi Macro           ctermfg=193
+"     hi SpecialKey      ctermfg=81
+"     hi MatchParen      ctermfg=233  ctermbg=208 cterm=bold
+"     hi ModeMsg         ctermfg=229
+"     hi MoreMsg         ctermfg=229
+"     hi Operator        ctermfg=161
+"     " complete menu
+"     hi Pmenu           ctermfg=81  ctermbg=16
+"     hi PmenuSel        ctermfg=255 ctermbg=242
+"     hi PmenuSbar                   ctermbg=232
+"     hi PmenuThumb      ctermfg=81
+"     hi PreCondit       ctermfg=118               cterm=bold
+"     hi PreProc         ctermfg=118
+"     hi Question        ctermfg=81
+"     hi Repeat          ctermfg=161               cterm=bold
+"     hi Search          ctermfg=0   ctermbg=222   cterm=NONE
+"     " marks column
+"     hi SignColumn      ctermfg=118 ctermbg=235
+"     hi SpecialChar     ctermfg=161               cterm=bold
+"     hi SpecialComment  ctermfg=245               cterm=bold
+"     hi Special         ctermfg=81
+"     if has("spell")
+"         hi SpellBad                ctermbg=52
+"         hi SpellCap                ctermbg=17
+"         hi SpellLocal              ctermbg=17
+"         hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
+"     endif
+"     hi Statement       ctermfg=161               cterm=bold
+"     hi StatusLine      ctermfg=238 ctermbg=253
+"     hi StatusLineNC    ctermfg=244 ctermbg=232
+"     hi StorageClass    ctermfg=208
+"     hi Structure       ctermfg=81
+"     hi Tag             ctermfg=161
+"     hi Title           ctermfg=166
+"     hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+"     hi Typedef         ctermfg=81
+"     hi Type            ctermfg=81                cterm=none
+"     hi Underlined      ctermfg=244               cterm=underline
+"     hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+"     hi VisualNOS                   ctermbg=238
+"     hi Visual                      ctermbg=235
+"     hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+"     hi WildMenu        ctermfg=81  ctermbg=16
+"     hi Comment         ctermfg=59
+"     hi CursorColumn                ctermbg=236
+"     hi ColorColumn                 ctermbg=236
+"     hi LineNr          ctermfg=250 ctermbg=236
+"     hi NonText         ctermfg=59
+"     hi SpecialKey      ctermfg=59
+"     if exists("g:rehash256") && g:rehash256 == 1
+"         hi Normal       ctermfg=252 ctermbg=234
+"         hi CursorLine               ctermbg=236   cterm=none
+"         hi CursorLineNr ctermfg=208               cterm=none
+"         hi Boolean         ctermfg=141
+"         hi Character       ctermfg=222
+"         hi Number          ctermfg=141
+"         hi String          ctermfg=222
+"         hi Conditional     ctermfg=197               cterm=bold
+"         hi Constant        ctermfg=141               cterm=bold
+"         hi DiffDelete      ctermfg=125 ctermbg=233
+"         hi Directory       ctermfg=154               cterm=bold
+"         hi Error           ctermfg=222 ctermbg=233
+"         hi Exception       ctermfg=154               cterm=bold
+"         hi Float           ctermfg=141
+"         hi Function        ctermfg=154
+"         hi Identifier      ctermfg=208
+"         hi Keyword         ctermfg=197               cterm=bold
+"         hi Operator        ctermfg=197
+"         hi PreCondit       ctermfg=154               cterm=bold
+"         hi PreProc         ctermfg=154
+"         hi Repeat          ctermfg=197               cterm=bold
+"         hi Statement       ctermfg=197               cterm=bold
+"         hi Tag             ctermfg=197
+"         hi Title           ctermfg=203
+"         hi Visual                      ctermbg=238
+"         hi Comment         ctermfg=244
+"         hi LineNr          ctermfg=239 ctermbg=235
+"         hi NonText         ctermfg=239
+"         hi SpecialKey      ctermfg=239
+"     endif
+" end
 
-set background=dark
-set autoindent
+" set background=dark
+" set autoindent
 
 
 
-" nnoremap <F5> :set invpaste paste?<CR>
-" imap <F5> <C-O>:set invpaste paste?<CR>
-" set pastetoggle=<F5>
-
-" autoload _vimrc
-" autocmd! bufwritepost $HOME/.vimrc source %
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
 
-""""""""""""""""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""""""""""""""
-" highlight for Vim Syntax Colors
-hi clear
+" """"""""""""""""""""""""""""""""""""""""""配色方案3"""""""""""""""""""""""""""""""""""""""""""""""
+" " highlight for Vim Syntax Colors
+" hi clear
 
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
+" if version > 580
+"     hi clear
+"     if exists("syntax_on")
+"         syntax reset
+"     endif
+" endif
 
-hi  link    vimHiAttrib      Constant
-hi  link    vimHiCtermColor  Constant
-hi  link    vimGroup         Identifier
-"
-" highlight for some c and cpp characters
-"Attention: 1. / will cover up COMMENT
-"           2. - % directly will cover up PreProc
-"syn match     cMyChart      "[!?^@~%&><=:{()}\/[].;+-*|]"
-"
-syn match     cMyChMath     "[ * % ]"
-syn match     cMyChBrac     "[ () \[\] ]"
-syn match     cMyChFunc     "[ {} ]"
-syn match     cMyChBool     "[ !?><=:\-\+ ]"
-syn match     cMyChLogic    "[ ^~&| ]"
-syn match     cMyChSym      "[ @.,; \ ]"
-"
-hi  link      cMyChBrac     ModeMsg
-hi  link      cMyChFunc     Type
-hi  link      cMyChSym      Type
-hi  link      cMyChBool     Constant
-hi  link      cMyChLogic    Special
-hi  link      cMyChMath     Special
-hi  link      MyStatement   SpecialKey
+" hi  link    vimHiAttrib      Constant
+" hi  link    vimHiCtermColor  Constant
+" hi  link    vimGroup         Identifier
+" "
+" " highlight for some c and cpp characters
+" "Attention: 1. / will cover up COMMENT
+" "           2. - % directly will cover up PreProc
+" "syn match     cMyChart      "[!?^@~%&><=:{()}\/[].;+-*|]"
+" "
+" syn match     cMyChMath     "[ * % ]"
+" syn match     cMyChBrac     "[ () \[\] ]"
+" syn match     cMyChFunc     "[ {} ]"
+" syn match     cMyChBool     "[ !?><=:\-\+ ]"
+" syn match     cMyChLogic    "[ ^~&| ]"
+" syn match     cMyChSym      "[ @.,; \ ]"
+" "
+" hi  link      cMyChBrac     ModeMsg
+" hi  link      cMyChFunc     Type
+" hi  link      cMyChSym      Type
+" hi  link      cMyChBool     Constant
+" hi  link      cMyChLogic    Special
+" hi  link      cMyChMath     Special
+" hi  link      MyStatement   SpecialKey
 
-" highlight for some C and C++ library
-syn keyword   cMyFunc   main argc argv sprintf printf
-syn keyword   cMyOpt    bool false true string
-syn keyword   cppFun1   cout  cin    endl   class   new   delete  close creat  lseek   open  read     write
-syn keyword   cFun2     abs   acos   asin   atan    atn2  atof    atoi  atol   calloc  ceil  clearerr cos
-syn keyword   cFun3     cosh  exit   exp    fabs    fclose  feof   ferror  fflush   fgetc   fgets   floor
-syn keyword   cFun4     fmod  fopen fprintf fputc   fputs   fread  free    freopen  fscanf  fseek
-syn keyword   cFun5     ftell fwrite  getc  getchar getenv  gets   isalnum isalpha  isascii iscntr
-syn keyword   cFun6     isdigit  isgraph  islower isprint  ispunct  isspace   isupper isxdigit log longjmp
-syn keyword   cFun7     malloc   perror   pow   printf   putc   putchar puts   rand realloc remove   rewind
-syn keyword   cFun8     scanf setbuf  setjmp sin sinh   sleep sprintf  sqrt srand   sscanf   stderr   stdin
-syn keyword   cFun9     stdout strcat  strchr strcmp   strcpy strcspn     strlen   strncat  strncmp strncpy
-syn keyword   cFun0     strpbrk strrchr strspn strtok tan tanh tolower toupper ungetc
-"
-hi  link      Function    MyStatement
-hi  link      cMyFunc     MyStatement
-hi  link      cMyOpt      Identifier
-hi  link      cppFun1     MyStatement
-hi  link      cFun2       MyStatement
-hi  link      cFun3       MyStatement
-hi  link      cFun4       MyStatement
-hi  link      cFun5       MyStatement
-hi  link      cFun6       MyStatement
-hi  link      cFun7       MyStatement
-hi  link      cFun8       MyStatement
-hi  link      cFun9       MyStatement
-hi  link      cFun0       MyStatement
-" highlight for C and C++ language keywords
-"
-" Operator     ={ sizeof }
-" Structure    ={ struct union enum typedef }
-" StorageClass ={ static register auto volatile extern const inline restrict }
-" Repeat       ={ while for do }
-" Conditional  ={ if else switch }
-" Lable        ={ case default }
-" Statement    ={ goto break return continue asm } = cStatement
-"
-hi cComment     term=bold        ctermfg=DarkCyan
-hi cFormat      term=bold        ctermfg=Cyan
-hi Operator     term=bold        ctermfg=Cyan
-hi Structure    term=bold        ctermfg=Yellow
-hi StorageClass term=bold        ctermfg=Yellow
-hi Repeat       term=bold        ctermfg=Yellow
-hi cConditional term=bold        ctermfg=Magenta
-hi cLable       term=bold        ctermfg=Yellow
-hi cInclude     term=bold        ctermfg=DarkGreen
-hi Macro        term=bold        ctermfg=Cyan
-hi PreCondit    term=bold        ctermfg=Cyan
-hi cSpecial     term=bold        ctermfg=Red
-hi Float        term=bold        ctermfg=DarkMagenta
-hi SpecialChar  term=bold        ctermfg=Red
+" " highlight for some C and C++ library
+" syn keyword   cMyFunc   main argc argv sprintf printf
+" syn keyword   cMyOpt    bool false true string
+" syn keyword   cppFun1   cout  cin    endl   class   new   delete  close creat  lseek   open  read     write
+" syn keyword   cFun2     abs   acos   asin   atan    atn2  atof    atoi  atol   calloc  ceil  clearerr cos
+" syn keyword   cFun3     cosh  exit   exp    fabs    fclose  feof   ferror  fflush   fgetc   fgets   floor
+" syn keyword   cFun4     fmod  fopen fprintf fputc   fputs   fread  free    freopen  fscanf  fseek
+" syn keyword   cFun5     ftell fwrite  getc  getchar getenv  gets   isalnum isalpha  isascii iscntr
+" syn keyword   cFun6     isdigit  isgraph  islower isprint  ispunct  isspace   isupper isxdigit log longjmp
+" syn keyword   cFun7     malloc   perror   pow   printf   putc   putchar puts   rand realloc remove   rewind
+" syn keyword   cFun8     scanf setbuf  setjmp sin sinh   sleep sprintf  sqrt srand   sscanf   stderr   stdin
+" syn keyword   cFun9     stdout strcat  strchr strcmp   strcpy strcspn     strlen   strncat  strncmp strncpy
+" syn keyword   cFun0     strpbrk strrchr strspn strtok tan tanh tolower toupper ungetc
+" "
+" hi  link      Function    MyStatement
+" hi  link      cMyFunc     MyStatement
+" hi  link      cMyOpt      Identifier
+" hi  link      cppFun1     MyStatement
+" hi  link      cFun2       MyStatement
+" hi  link      cFun3       MyStatement
+" hi  link      cFun4       MyStatement
+" hi  link      cFun5       MyStatement
+" hi  link      cFun6       MyStatement
+" hi  link      cFun7       MyStatement
+" hi  link      cFun8       MyStatement
+" hi  link      cFun9       MyStatement
+" hi  link      cFun0       MyStatement
+" " highlight for C and C++ language keywords
+" "
+" " Operator     ={ sizeof }
+" " Structure    ={ struct union enum typedef }
+" " StorageClass ={ static register auto volatile extern const inline restrict }
+" " Repeat       ={ while for do }
+" " Conditional  ={ if else switch }
+" " Lable        ={ case default }
+" " Statement    ={ goto break return continue asm } = cStatement
+" "
+" hi cComment     term=bold        ctermfg=DarkCyan
+" hi cFormat      term=bold        ctermfg=Cyan
+" hi Operator     term=bold        ctermfg=Cyan
+" hi Structure    term=bold        ctermfg=Yellow
+" hi StorageClass term=bold        ctermfg=Yellow
+" hi Repeat       term=bold        ctermfg=Yellow
+" hi cConditional term=bold        ctermfg=Magenta
+" hi cLable       term=bold        ctermfg=Yellow
+" hi cInclude     term=bold        ctermfg=DarkGreen
+" hi Macro        term=bold        ctermfg=Cyan
+" hi PreCondit    term=bold        ctermfg=Cyan
+" hi cSpecial     term=bold        ctermfg=Red
+" hi Float        term=bold        ctermfg=DarkMagenta
+" hi SpecialChar  term=bold        ctermfg=Red
 
-" Function name and Struct name
-syntax keyword cTypeDefStruct1 typedef struct  contained
-syntax match   cStructName1 display "^\s*typedef\s\+struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
-syntax match   cStructName1 "^\s*typedef\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
-syntax match   cStructName1 "^\s*struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
-hi link cStructName1 Constant
+" " Function name and Struct name
+" syntax keyword cTypeDefStruct1 typedef struct  contained
+" syntax match   cStructName1 display "^\s*typedef\s\+struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+" syntax match   cStructName1 "^\s*typedef\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+" syntax match   cStructName1 "^\s*struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+" hi link cStructName1 Constant
 
-" color terminal definitions
-hi Normal       term=bold        ctermfg=Gray
-hi Comment      term=bold        ctermfg=Brown
-hi Constant     term=bold        ctermfg=Yellow
-hi Conditional  term=bold        ctermfg=Yellow
-hi Identifier   term=bold        ctermfg=Cyan
-hi LineNr       term=bold        ctermfg=DarkCyan
-hi PreProc      term=bold        ctermfg=DarkMagenta
-hi Special      term=bold        ctermfg=Red
-hi Statement    term=bold        ctermfg=Green
-hi Type         term=bold        ctermfg=Cyan
-"
-hi Ignore       term=bold        ctermfg=White
-hi Todo         term=standout    ctermfg=Black
-hi Underlined   cterm=underline  ctermfg=DarkMagenta
-hi SpecialKey   cterm=bold       ctermfg=Darkgreen
-hi NonText      cterm=bold       ctermfg=DarkBlue
-hi Directory    cterm=bold       ctermfg=DarkCyan
-"
-hi Error        cterm=bold       ctermfg=LightGray    ctermbg=Red term=reverse
-hi ErrorMsg     cterm=bold       ctermfg=Black        ctermbg=Gray
-hi IncSearch    cterm=NONE       ctermfg=Yellow       ctermbg=Green
-hi Search       cterm=NONE       ctermfg=Black        ctermbg=Gray
-hi MoreMsg      cterm=NONE       ctermfg=DarkGreen
-hi ModeMsg      cterm=NONE       ctermfg=Brown
-"hi StatusLine   cterm=bold,reverse
-"hi StatusLineNC cterm=reverse
-hi StatusLineNC cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
-hi StatusLine   cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
-hi VertSplit    cterm=reverse
-hi Visual       cterm=reverse
-hi VisualNOS    cterm=bold,underline
-hi DiffText     cterm=bold                            ctermbg=Red
-hi DiffDelete   cterm=bold       ctermfg=DarkBlue     ctermbg=DarkCyan
-hi DiffAdd                                            ctermbg=DarkBlue
-hi DiffChange                                         ctermbg=DarkMagenta
-hi WarningMsg                    ctermfg=Red
-hi Question                      ctermfg=Green
-hi Title                         ctermfg=DarkMagenta
-hi WildMenu                      ctermfg=Black        ctermbg=Brown
-hi Folded                        ctermfg=DarkGrey     ctermbg=NONE
-hi FoldColumn                    ctermfg=DarkGrey     ctermbg=NONE
+" " color terminal definitions
+" hi Normal       term=bold        ctermfg=Gray
+" hi Comment      term=bold        ctermfg=Brown
+" hi Constant     term=bold        ctermfg=Yellow
+" hi Conditional  term=bold        ctermfg=Yellow
+" hi Identifier   term=bold        ctermfg=Cyan
+" hi LineNr       term=bold        ctermfg=DarkCyan
+" hi PreProc      term=bold        ctermfg=DarkMagenta
+" hi Special      term=bold        ctermfg=Red
+" hi Statement    term=bold        ctermfg=Green
+" hi Type         term=bold        ctermfg=Cyan
+" "
+" hi Ignore       term=bold        ctermfg=White
+" hi Todo         term=standout    ctermfg=Black
+" hi Underlined   cterm=underline  ctermfg=DarkMagenta
+" hi SpecialKey   cterm=bold       ctermfg=Darkgreen
+" hi NonText      cterm=bold       ctermfg=DarkBlue
+" hi Directory    cterm=bold       ctermfg=DarkCyan
+" "
+" hi Error        cterm=bold       ctermfg=LightGray    ctermbg=Red term=reverse
+" hi ErrorMsg     cterm=bold       ctermfg=Black        ctermbg=Gray
+" hi IncSearch    cterm=NONE       ctermfg=Yellow       ctermbg=Green
+" hi Search       cterm=NONE       ctermfg=Black        ctermbg=Gray
+" hi MoreMsg      cterm=NONE       ctermfg=DarkGreen
+" hi ModeMsg      cterm=NONE       ctermfg=Brown
+" "hi StatusLine   cterm=bold,reverse
+" "hi StatusLineNC cterm=reverse
+" hi StatusLineNC cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
+" hi StatusLine   cterm=bold       ctermfg=Yellow       ctermbg=DarkBlue
+" hi VertSplit    cterm=reverse
+" hi Visual       cterm=reverse
+" hi VisualNOS    cterm=bold,underline
+" hi DiffText     cterm=bold                            ctermbg=Red
+" hi DiffDelete   cterm=bold       ctermfg=DarkBlue     ctermbg=DarkCyan
+" hi DiffAdd                                            ctermbg=DarkBlue
+" hi DiffChange                                         ctermbg=DarkMagenta
+" hi WarningMsg                    ctermfg=Red
+" hi Question                      ctermfg=Green
+" hi Title                         ctermfg=DarkMagenta
+" hi WildMenu                      ctermfg=Black        ctermbg=Brown
+" hi Folded                        ctermfg=DarkGrey     ctermbg=NONE
+" hi FoldColumn                    ctermfg=DarkGrey     ctermbg=NONE
 
-""光标所在的字符
-hi Cursor          ctermfg=16  ctermbg=253
+" ""光标所在的字符
+" hi Cursor          ctermfg=16  ctermbg=253
 
-"光标所在的屏幕行
-hi CursorLine       ctermbg=234   cterm=bold
-"hi CursorLineNr    guifg=#FD971F               gui=none
-"
-"  "光标所在的屏幕列
-hi CursorColumn                ctermbg=234
+" "光标所在的屏幕行
+" hi CursorLine       ctermbg=234   cterm=bold
+" "hi CursorLineNr    guifg=#FD971F               gui=none
+" "
+" "  "光标所在的屏幕列
+" hi CursorColumn                ctermbg=234
 
-hi CursorLine cterm=underline
-"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-hi clear
-
-set background=dark
-if version > 580
-    hi clear
-
-endif
-let g:colors_name="molokai"
-
-"
-" Support for 256-color terminal
-"
-if &t_Co > 255
-    hi Boolean         ctermfg=135
-    hi Character       ctermfg=144
-    hi Number          ctermfg=135
-    hi String          ctermfg=144
-    hi Conditional     ctermfg=161               cterm=bold
-    hi Constant        ctermfg=135               cterm=bold
-    hi Cursor          ctermfg=16  ctermbg=253
-    hi Debug           ctermfg=225               cterm=bold
-    hi Define          ctermfg=81
-    hi Delimiter       ctermfg=241
-
-    hi DiffAdd                     ctermbg=24
-    hi DiffChange      ctermfg=181 ctermbg=239
-    hi DiffDelete      ctermfg=162 ctermbg=53
-    hi DiffText                    ctermbg=102 cterm=bold
-
-    hi Directory       ctermfg=118               cterm=bold
-    hi Error           ctermfg=219 ctermbg=89
-    hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
-    hi Exception       ctermfg=118               cterm=bold
-    hi Float           ctermfg=135
-    hi FoldColumn      ctermfg=67  ctermbg=16
-    hi Folded          ctermfg=67  ctermbg=16
-    hi Function        ctermfg=118
-    hi Identifier      ctermfg=208
-    hi Ignore          ctermfg=244 ctermbg=232
-    hi IncSearch       ctermfg=193 ctermbg=16
-
-    hi Keyword         ctermfg=161               cterm=bold
-    hi Label           ctermfg=229               cterm=none
-    hi Macro           ctermfg=193
-    hi SpecialKey      ctermfg=81
-
-    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-    hi ModeMsg         ctermfg=229
-    hi MoreMsg         ctermfg=229
-    hi Operator        ctermfg=161
-
-    " complete menu
-    hi Pmenu           ctermfg=81  ctermbg=16
-    hi PmenuSel                    ctermbg=244
-    hi PmenuSbar                   ctermbg=232
-    hi PmenuThumb      ctermfg=81
-
-    hi PreCondit       ctermfg=118               cterm=bold
-    hi PreProc         ctermfg=118
-    hi Question        ctermfg=81
-    hi Repeat          ctermfg=161               cterm=bold
-    hi Search          ctermfg=253 ctermbg=66
-
-    " marks column
-    hi SignColumn      ctermfg=118 ctermbg=235
-    hi SpecialChar     ctermfg=161               cterm=bold
-    hi SpecialComment  ctermfg=245               cterm=bold
-    hi Special         ctermfg=81  ctermbg=232
-    hi SpecialKey      ctermfg=245
-
-    hi Statement       ctermfg=161               cterm=bold
-    hi StatusLine      ctermfg=238 ctermbg=253
-    hi StatusLineNC    ctermfg=244 ctermbg=232
-    hi StorageClass    ctermfg=208
-    hi Structure       ctermfg=81
-    hi Tag             ctermfg=161
-    hi Title           ctermfg=166
-    hi Todo            ctermfg=231 ctermbg=232   cterm=bold
-
-    hi Typedef         ctermfg=81
-    hi Type            ctermfg=81                cterm=none
-    hi Underlined      ctermfg=244               cterm=underline
-
-    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-    hi VisualNOS                   ctermbg=238
-    hi Visual                      ctermbg=235
-    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-    hi WildMenu        ctermfg=81  ctermbg=16
-
-    hi Normal          ctermfg=252 ctermbg=234
-    hi Comment         ctermfg=59
-    hi CursorLine                  ctermbg=234   cterm=none
-    hi CursorColumn                ctermbg=234
-    hi LineNr          ctermfg=250 ctermbg=234
-    hi NonText         ctermfg=1 ctermbg=234
-end
+" hi CursorLine cterm=underline
+" "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 
 
-" color scheme (双引号开头的行表示注释)
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set t_Co=256
+" """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" hi clear
 
-colo molokai
+" set background=dark
+" if version > 580
+"     hi clear
 
-" hilight function name
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
-autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
+" endif
+" let g:colors_name="molokai"
 
-hi cfunctions ctermfg=81
+" "
+" " Support for 256-color terminal
+" "
+" if &t_Co > 255
+"     hi Boolean         ctermfg=135
+"     hi Character       ctermfg=144
+"     hi Number          ctermfg=135
+"     hi String          ctermfg=144
+"     hi Conditional     ctermfg=161               cterm=bold
+"     hi Constant        ctermfg=135               cterm=bold
+"     hi Cursor          ctermfg=16  ctermbg=253
+"     hi Debug           ctermfg=225               cterm=bold
+"     hi Define          ctermfg=81
+"     hi Delimiter       ctermfg=241
+
+"     hi DiffAdd                     ctermbg=24
+"     hi DiffChange      ctermfg=181 ctermbg=239
+"     hi DiffDelete      ctermfg=162 ctermbg=53
+"     hi DiffText                    ctermbg=102 cterm=bold
+
+"     hi Directory       ctermfg=118               cterm=bold
+"     hi Error           ctermfg=219 ctermbg=89
+"     hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=bold
+"     hi Exception       ctermfg=118               cterm=bold
+"     hi Float           ctermfg=135
+"     hi FoldColumn      ctermfg=67  ctermbg=16
+"     hi Folded          ctermfg=67  ctermbg=16
+"     hi Function        ctermfg=118
+"     hi Identifier      ctermfg=208
+"     hi Ignore          ctermfg=244 ctermbg=232
+"     hi IncSearch       ctermfg=193 ctermbg=16
+
+"     hi Keyword         ctermfg=161               cterm=bold
+"     hi Label           ctermfg=229               cterm=none
+"     hi Macro           ctermfg=193
+"     hi SpecialKey      ctermfg=81
+
+"     hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+"     hi ModeMsg         ctermfg=229
+"     hi MoreMsg         ctermfg=229
+"     hi Operator        ctermfg=161
+
+"     " complete menu
+"     hi Pmenu           ctermfg=81  ctermbg=16
+"     hi PmenuSel                    ctermbg=244
+"     hi PmenuSbar                   ctermbg=232
+"     hi PmenuThumb      ctermfg=81
+
+"     hi PreCondit       ctermfg=118               cterm=bold
+"     hi PreProc         ctermfg=118
+"     hi Question        ctermfg=81
+"     hi Repeat          ctermfg=161               cterm=bold
+"     hi Search          ctermfg=253 ctermbg=66
+
+"     " marks column
+"     hi SignColumn      ctermfg=118 ctermbg=235
+"     hi SpecialChar     ctermfg=161               cterm=bold
+"     hi SpecialComment  ctermfg=245               cterm=bold
+"     hi Special         ctermfg=81  ctermbg=232
+"     hi SpecialKey      ctermfg=245
+
+"     hi Statement       ctermfg=161               cterm=bold
+"     hi StatusLine      ctermfg=238 ctermbg=253
+"     hi StatusLineNC    ctermfg=244 ctermbg=232
+"     hi StorageClass    ctermfg=208
+"     hi Structure       ctermfg=81
+"     hi Tag             ctermfg=161
+"     hi Title           ctermfg=166
+"     hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+
+"     hi Typedef         ctermfg=81
+"     hi Type            ctermfg=81                cterm=none
+"     hi Underlined      ctermfg=244               cterm=underline
+
+"     hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
+"     hi VisualNOS                   ctermbg=238
+"     hi Visual                      ctermbg=235
+"     hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
+"     hi WildMenu        ctermfg=81  ctermbg=16
+
+"     hi Normal          ctermfg=252 ctermbg=234
+"     hi Comment         ctermfg=59
+"     hi CursorLine                  ctermbg=234   cterm=none
+"     hi CursorColumn                ctermbg=234
+"     hi LineNr          ctermfg=250 ctermbg=234
+"     hi NonText         ctermfg=1 ctermbg=234
+" end
 
 
-hi Type ctermfg=118 cterm=none
-hi Structure ctermfg=118 cterm=none
-hi Macro ctermfg=161 cterm=bold
-hi PreCondit ctermfg=161 cterm=bold
-set cursorline
-hi CursorLine cterm=underline
-"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-"""""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
+" " color scheme (双引号开头的行表示注释)
+
+" set t_Co=256
+
+" colo molokai
+
+" " hilight function name
+" autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2
+" autocmd BufNewFile,BufRead * :syntax match cfunctions "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1
+
+" hi cfunctions ctermfg=81
+
+
+" hi Type ctermfg=118 cterm=none
+" hi Structure ctermfg=118 cterm=none
+" hi Macro ctermfg=161 cterm=bold
+" hi PreCondit ctermfg=161 cterm=bold
+" set cursorline
+" hi CursorLine cterm=underline
+" "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+" """""""""""""""""""""""配色方案2""""""""""""""""""""""""""""""""""""
 
 
 
@@ -2819,7 +2924,8 @@ function! SetTitle()
         call append(line(".")+1, "\# File Name: ".expand("%"))
         call append(line(".")+2, "\# Author:陈俊杰")
         call append(line(".")+3, "\# mail: 2716705056@qq.com")
-        call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d"))
+        " call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d"))
+        call append(line(".")+4, "\# Created Time: ".strftime("%c"))
         call append(line(".")+5, "\# 此程序的功能是：")
         call append(line(".")+6, "\#########################################################################")
         call append(line(".")+7, "")
@@ -2832,7 +2938,8 @@ function! SetTitle()
         call append(line(".")+2, "\# File Name: ".expand("%"))
         call append(line(".")+3, "\# Author: 陈俊杰")
         call append(line(".")+4, "\# mail: 2716705056@qq.com")
-        call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d"))
+        " call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d"))
+        call append(line(".")+5, "\# Created Time: ".strftime("%c"))
         call append(line(".")+6, "'''")
         call append(line(".")+7, "此程序的功能是：")
         call append(line(".")+8, "'''")
@@ -2848,8 +2955,8 @@ function! SetTitle()
         "call append(line(".")+1, ">> Author: chenjunjie")
         call append(line(".")+1, ">> Author: 陈俊杰")
         call append(line(".")+2, ">> Mail: 2716705056qq.com")
-        call append(line(".")+3, ">> Created Time: ".strftime("%Y年%m月%d日"))
-        "call append(line(".")+3, ">> Created Time: ".strftime("%c"))
+        " call append(line(".")+3, ">> Created Time: ".strftime("%Y年%m月%d日"))
+        call append(line(".")+3, ">> Created Time: ".strftime("%c"))
         call append(line(".")+4, ">> 此程序的功能是：")
         call append(line(".")+5, "************************************************************************/")
         call append(line(".")+6, "")
