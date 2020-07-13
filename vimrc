@@ -203,7 +203,7 @@ function! NumberToggle()
 endfunc
 
 
-" ctrl-n进行相对行号/绝对行号切换
+" ctrl-r进行相对行号/绝对行号切换
 nnoremap <C-r> :call NumberToggle()<cr>
 
 " let &t_SI = "\<Esc>]12;red\x7"
@@ -571,6 +571,8 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 
+" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
+" Tab : 向前循环切换到每个buffer上
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>p  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
@@ -580,7 +582,12 @@ let g:ctrlp_working_path_mode = ''
 
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl + p 查看文件列表
 nnoremap <silent> <C-p> :Files<CR>
+
+" Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
+nmap <C-e> :Buffers<CR>
+let g:fzf_action = { 'ctrl-e': 'edit' }
 
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
@@ -1402,7 +1409,7 @@ let g:NERDCustomDelimiters = {
 
 """""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
 "加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
-autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
+" autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 "Can be enabled or disabled
 let g:webdevicons_enable_nerdtree = 1
@@ -1500,6 +1507,8 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
+" vim 的多文档编辑涉及三个概念:buffer、window、tab。vim 把加载进内存的文件叫做 buffer,buffer 不一定可见； 若要 buffer 可见，则必须通过 window 作为载体呈现；同个看面上的多个 window 组合成一个 tab。
+" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
 
 " Tab : 向前循环切换到每个buffer上
 " Shift - Tab : 向后循环切换到每个buffer上
@@ -1749,24 +1758,172 @@ let g:javascript_conceal_underscore_arrow_function = " "
 set conceallevel=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
+
+
+" wombat, solarized, powerline, powerlineish,jellybeans, molokai, seoul256, darcula, selenized_dark,
+" Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,Tomorrow_Night_Bright, Tomorrow_Night_Eighties,
+" PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
+
+"molokai,landscape,solarized,
+
+let g:lightline = {
+            \ 'colorscheme': 'landscape',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+            \   'right': [ [ 'lineinfo' ],
+            \              [ 'percent' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
+            \ },
+            \ 'component': {
+            \   'charvaluehex': '0x%B',
+            \   'gitbranch': 'fugitive#head',
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'mode': 'LightlineMode',
+            \   'filetype': 'LightlineFiletype',
+            \ },
+            \ }
+
+"\   'helloworld': 'I am writing something...'
+
+
+function! LightlineMode()
+    return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
+                \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
+                \ &filetype ==# 'unite' ? 'Unite' :
+                \ &filetype ==# 'vimfiler' ? 'VimFiler' :
+                \ &filetype ==# 'vimshell' ? 'VimShell' :
+                \ lightline#mode()
+endfunction
+
+
+function! LightlineFilename()
+    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+                \ &filetype ==# 'unite' ? unite#get_status_string() :
+                \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+                \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+
+function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+
+set laststatus=2
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
+" let g:Powerline_colorscheme='solarized256'
+" let g:Powerline_symbols= 'unicode'
+
+" let g:airline_theme='dark'
+" let g:airline_theme='bubblegum'
+"选择主题
+
+"dark,murmur,powerlineish,serene
+
+"badwolf,kalisi,laederon,luna,murmur,powerlineish,simple,term,wombat,molokai,dark,serene,laederon,behelit,
+"durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
+
+
+"这个是安装字体后 必须设置此项"
+let g:airline_powerline_fonts = 1
+
+"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
+"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+
+
+"设置切换Buffer快捷键"
+nnoremap [b :bp<CR>
+nnoremap ]b :bn<CR>
+
+" 设置中文提示
+language messages zh_CN.utf-8
+" 设置中文帮助
+set helplang=cn
+" 设置为双字宽显示，否则无法完整显示如:☆
+set ambiwidth=double
+let g:airline#extensions#tabline#left_sep = ' '  "separater
+let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+let g:airline#extensions#tabline#formatter = 'default'  "formater
+
+" 关闭状态显示空白符号计数,这个对我用处不大"
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#symbol = '!'
+
+" 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
+if has('win32')
+    set guifont=Hermit:h13
+    set guifontwide=Microsoft_YaHei_Mono:h12
+endif
+
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"old vim-powerline symbols
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '❯'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '❮'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
+function! Buf_total_num()
+    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+endfunction
+function! File_size(f)
+    let l:size = getfsize(expand(a:f))
+    if l:size == 0 || l:size == -1 || l:size == -2
+        return ''
+    endif
+    if l:size < 1024
+        return l:size.' bytes'
+    elseif l:size < 1024*1024
+        return printf('%.1f', l:size/1024.0).'k'
+    elseif l:size < 1024*1024*1024
+        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
+    else
+        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+    endif
+endfunction
+set statusline=%<%1*[B-%n]%*
+" TOT is an abbreviation for total
+set statusline+=%2*[TOT:%{Buf_total_num()}]%*
+set statusline+=%3*\ %{File_size(@%)}\ %*
+set statusline+=%4*\ %F\ %*
+set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+set statusline+=%6*\ %m%r%y\ %*
+set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
+set statusline+=%8*\ %P\ %*
+" default bg for statusline is 236 in space-vim-dark
+hi User1 cterm=bold ctermfg=232 ctermbg=179
+hi User2 cterm=None ctermfg=214 ctermbg=242
+hi User3 cterm=None ctermfg=251 ctermbg=240
+hi User4 cterm=bold ctermfg=169 ctermbg=239
+hi User5 cterm=None ctermfg=208 ctermbg=238
+hi User6 cterm=None ctermfg=246 ctermbg=237
+hi User7 cterm=None ctermfg=250 ctermbg=238
+hi User8 cterm=None ctermfg=249 ctermbg=240
+"""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
 
-"autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
-"为python添加pep8的代码风格
-au BufNewFile,BufRead *.py
-            \ set tabstop=4 | "tab宽度"
-            \ set softtabstop=4 |
-            \ set shiftwidth=4 |
-            \ set textwidth=100 | "行最大宽"
-            \ set autoindent |  "自动缩进"
-            \ set fileformat=unix "保存文件的格式"
-
-au BufNewFile,BufRead *.js,*.html,*.css
-            \ set tabstop=2 |
-            \ set softtabstop=2 |
-            \ set shiftwidth=2
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -2620,7 +2777,22 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
 
+"autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
+"为python添加pep8的代码风格
+au BufNewFile,BufRead *.py
+            \ set tabstop=4 | "tab宽度"
+            \ set softtabstop=4 |
+            \ set shiftwidth=4 |
+            \ set textwidth=100 | "行最大宽"
+            \ set autoindent |  "自动缩进"
+            \ set fileformat=unix "保存文件的格式"
+
+au BufNewFile,BufRead *.js,*.html,*.css
+            \ set tabstop=2 |
+            \ set softtabstop=2 |
+            \ set shiftwidth=2
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
@@ -2750,169 +2922,7 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
-
-
-" wombat, solarized, powerline, powerlineish,jellybeans, molokai, seoul256, darcula, selenized_dark,
-" Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,Tomorrow_Night_Bright, Tomorrow_Night_Eighties,
-" PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
-
-"molokai,landscape,solarized,
-
-let g:lightline = {
-            \ 'colorscheme': 'landscape',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
-            \   'right': [ [ 'lineinfo' ],
-            \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
-            \ },
-            \ 'component': {
-            \   'charvaluehex': '0x%B',
-            \   'gitbranch': 'fugitive#head',
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'mode': 'LightlineMode',
-            \   'filetype': 'LightlineFiletype',
-            \ },
-            \ }
-
-"\   'helloworld': 'I am writing something...'
-
-
-function! LightlineMode()
-    return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
-                \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
-                \ &filetype ==# 'unite' ? 'Unite' :
-                \ &filetype ==# 'vimfiler' ? 'VimFiler' :
-                \ &filetype ==# 'vimshell' ? 'VimShell' :
-                \ lightline#mode()
-endfunction
-
-
-function! LightlineFilename()
-    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-                \ &filetype ==# 'unite' ? unite#get_status_string() :
-                \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-                \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-
-function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-
-
-set laststatus=2
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
-" let g:Powerline_colorscheme='solarized256'
-" let g:Powerline_symbols= 'unicode'
-
-" let g:airline_theme='dark'
-" let g:airline_theme='bubblegum'
-"选择主题
-
-"dark,murmur,powerlineish,serene
-
-"badwolf,kalisi,laederon,luna,murmur,powerlineish,simple,term,wombat,molokai,dark,serene,laederon,behelit,
-"durant,hybridline,kolor,light,lucius,monochrome,raven,serene,solarized,sol,tomorrow
-
-
-"这个是安装字体后 必须设置此项"
-let g:airline_powerline_fonts = 1
-
-"打开tabline功能,方便查看Buffer和切换，这个功能比较不错"
-"我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-
-
-"设置切换Buffer快捷键"
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
-
-" 设置中文提示
-language messages zh_CN.utf-8
-" 设置中文帮助
-set helplang=cn
-" 设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double
-let g:airline#extensions#tabline#left_sep = ' '  "separater
-let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
-let g:airline#extensions#tabline#formatter = 'default'  "formater
-
-" 关闭状态显示空白符号计数,这个对我用处不大"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
-
-" 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
-if has('win32')
-    set guifont=Hermit:h13
-    set guifontwide=Microsoft_YaHei_Mono:h12
-endif
-
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-"old vim-powerline symbols
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
-function! Buf_total_num()
-    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-endfunction
-function! File_size(f)
-    let l:size = getfsize(expand(a:f))
-    if l:size == 0 || l:size == -1 || l:size == -2
-        return ''
-    endif
-    if l:size < 1024
-        return l:size.' bytes'
-    elseif l:size < 1024*1024
-        return printf('%.1f', l:size/1024.0).'k'
-    elseif l:size < 1024*1024*1024
-        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
-    else
-        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
-    endif
-endfunction
-set statusline=%<%1*[B-%n]%*
-" TOT is an abbreviation for total
-set statusline+=%2*[TOT:%{Buf_total_num()}]%*
-set statusline+=%3*\ %{File_size(@%)}\ %*
-set statusline+=%4*\ %F\ %*
-set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
-set statusline+=%6*\ %m%r%y\ %*
-set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
-set statusline+=%8*\ %P\ %*
-" default bg for statusline is 236 in space-vim-dark
-hi User1 cterm=bold ctermfg=232 ctermbg=179
-hi User2 cterm=None ctermfg=214 ctermbg=242
-hi User3 cterm=None ctermfg=251 ctermbg=240
-hi User4 cterm=bold ctermfg=169 ctermbg=239
-hi User5 cterm=None ctermfg=208 ctermbg=238
-hi User6 cterm=None ctermfg=246 ctermbg=237
-hi User7 cterm=None ctermfg=250 ctermbg=238
-hi User8 cterm=None ctermfg=249 ctermbg=240
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 "====================================30s,自动保存文件========================================="
@@ -3004,7 +3014,7 @@ autocmd BufNewFile * normal G
 
 :set vb t_vb=
 "自动命令，每次写入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
-autocmd! bufwritepost $HOME/.vimrc source %
+" autocmd! bufwritepost $HOME/.vimrc source %
 autocmd! bufwritepost .vimrc source ~/.vimrc
 " 读文件时自动设定当前目录为刚读入文件所在的目录
 autocmd BufReadPost * cd %:p:h
@@ -3016,7 +3026,7 @@ autocmd BufReadPost * cd %:p:h
 " 定义的快捷键为：
 " \q  退出
 " \w  保存
-" F3  行号
+" F3  行号开关
 " ctrl + r    相对/绝对行号的切换
 
 " F4       相当于输入:ACK -i 查找
@@ -3024,7 +3034,18 @@ autocmd BufReadPost * cd %:p:h
 " F11   前一个颜色
 " F12   后一个颜色
 "
-
+" 水平滚动, 向左滚动F8，向右滚动F9
+" 可以用 alt+n 来切换，比如 alt+1 切换到第一个 tab,alt+2 切换到第二个 tab。
+" :nn <M-1> 1gt
+" :nn <M-2> 2gt
+" :nn <M-3> 3gt
+" :nn <M-4> 4gt
+" :nn <M-5> 5gt
+" :nn <M-6> 6gt
+" :nn <M-7> 7gt
+" :nn <M-8> 8gt
+" :nn <M-9> 9gt
+" :nn <M-0> :tablast<CR>
 
 """""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
@@ -3034,7 +3055,11 @@ autocmd BufReadPost * cd %:p:h
 " <C-j>   Move current line/selection down
 " <C-h>   Move current character/selection left
 " <C-l>   Move current character/selection right
-""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""  Ack快捷键 """""""""""""""""""""""""""""""""
+" F4 搜索
+
+"""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
 " 命令行模式
 " ds "              删除一个配对符号 (delete a surrounding)
 " cs "              更改一个配对符号 (change a surrounding)
@@ -3096,14 +3121,17 @@ autocmd BufReadPost * cd %:p:h
 
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl + p 查看文件列表
+" Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
 "  <Leader>f在当前目录搜索文件
-"<Leader>b切换Buffer中的文件
-"<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
-"<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+"  <Leader>b切换Buffer中的文件
+"  <Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+"  <Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 
 
 
 """"""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl + p 打开文件搜索
 "  \p   打开函数列表
 "  \f   文件搜索
 " \m    历史打开过的文件
@@ -3137,6 +3165,7 @@ autocmd BufReadPost * cd %:p:h
 " tse     \begin{env}和\begin{env*}的互换        n
 " tsd     (...)和\left( ... \right )的互换       n
 
+" 当你再按一下<F2>键, 就可以编译+打开文档了. 在这里, 我们解析一下这一行代码的含义.
 
 """""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
 "  可视模式下输入 gx  即可搜索选中的内容；a
@@ -3150,15 +3179,52 @@ autocmd BufReadPost * cd %:p:h
 "  Tab         用来补全下一个
 "  Shift+Tab   用来补全上一个
 
+"""""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
+" 参考：https://mounui.com/343.html
+"1. 正常模式下光标移动到url上输入 gx 即可打开网址，光标移动到词组上可用设置的引擎搜索改词组；
+"2. 可视模式下输入 gx  即可搜索选中的内容；
+
+""""""""""""""""""""""""""""""""""""""""vim-autoformat格式化代码配置""""""""""""""""""""""""""""""""""""""""
+
+"F3自动格式化代码
+
+
+
+"""""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+"设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
+" let g:ycm_key_list_select_completion = [ '<TAB>' ,'<Down>']
+" let g:ycm_key_list_select_completion=['<C-n>','<Down>']
+
+"设置用于向上选择补全列表中的选项的快捷键，默认为shift+tab，和方向上键
+" let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" let g:ycm_key_list_previous_completion=['<c-p>','<Up>']
+
+"设置用于关闭补全列表的快捷键，默认为ctrl+y
+" let g:ycm_key_list_stop_completion =  ['<C-y>']
+
+"""""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""""""""""""""
+
+"let mapleader="\"
+
+" \ca，在可选的注释方式之间切换，比如C/C++ 的块注释/* */和行注释//
+" \cc，注释当前行
+" \c，切换注释/非注释状态
+" \cs，以”性感”的方式注释
+" \cA，在当前行尾添加注释符，并进入Insert模式
+" \cu，取消注释
+" Normal模式下，几乎所有命令前面都可以指定行数。  比如  输入 6\cs的意思就是以性感方式注释光标所在行开始6行代码
+" Visual模式下执行命令，会对选中的特定区块进行注释/反注释
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
 " ctrl + d 打开目录
-
-
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
-
-" Tab : 向前循环切换到每个buffer上
-" Shift - Tab : 向后循环切换到每个buffer上
+" buffer 切换快捷键
+" map <C-b> :MBEbn<cr>
+" map <C-S-b> :MBEbp<cr>
+" ctrl + b : 向前循环切换到每个buffer上
+" Ctrl + Shift +b : 向后循环切换到每个buffer上
 " Enter : 打开光标所在的buffer
 " d : 删除光标所在的buffer
 " 命令
@@ -3204,12 +3270,13 @@ autocmd BufReadPost * cd %:p:h
 
 
 
-
-"" Ctrl-j 切换到下方的分割窗口
-" Ctrl-k 切换到上方的分割窗口
-" Ctrl-l 切换到右侧的分割窗口
-" Ctrl-h 切换到左侧的分割窗口
 "  Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
+
+"  Ctrl-j 切换到下方的分割窗口
+"  Ctrl-k 切换到上方的分割窗口
+"  Ctrl-l 切换到右侧的分割窗口
+"  Ctrl-h 切换到左侧的分割窗口
+
 " F5   一键执行python代码
 " <F5>编译C/C++/java/，<F6>运行C/C++/javascript
 " <F7>C,C++的调试
