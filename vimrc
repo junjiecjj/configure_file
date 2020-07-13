@@ -1495,7 +1495,6 @@ let g:NERDTreeExtensionHighlightColor['java'] = s:brown
 let g:NERDTreeExtensionHighlightColor['php'] = s:brown
 
 let g:NERDTreeExtensionHighlightColor['c++'] = s:green 
-" sets the color of c++ files to blue
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1526,14 +1525,14 @@ let g:miniBufExplMapWindowNavArrows = 1
 
 "解决FileExplorer窗口变小问题
 let g:miniBufExplForceSyntaxEnable = 1
-let g:miniBufExplMoreThanOne=0
+let g:miniBufExplorerMoreThanOne=0
 
 "该配置含义为minibufexplorer窗口最大高度为2行，默认是没有上限的，你打开的buffer足够多，一会一直增长下去，为了方便阅读我一般将它设为2
 let g:miniBufExplMaxSize = 2
 let g:miniBufExplSplitBelow = 0
 
 " 设置taglistbuffer的最高限制：
-let g:bufExplorerMaxHeight=30
+let g:bufExplorerMaxHeight=23
 
 " 不要在不可编辑内容的窗口（如TagList窗口）中打开选中的buffer
 let g:miniBufExplModSelTarget = 1
@@ -1553,9 +1552,25 @@ let g:miniBufExplMapCTabSwitchWindows = 1
 " 显示/隐藏 MiniBufExplorer 窗口
 map <Leader>bl :MBEToggle<cr>
 " buffer 切换快捷键
-map <C-Tab> :MBEbn<cr>
-map <C-S-Tab> :MBEbp<cr>
+map <C-b> :MBEbn<cr>
+map <C-S-b> :MBEbp<cr>
 
+
+" MiniBufExpl 配色
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+
+
+hi MBENormal               ctermfg=8     ctermbg=240
+hi MBEChanged              ctermfg=202   ctermbg=240
+hi MBEVisibleNormal        ctermfg=39    ctermbg=240
+hi MBEVisibleChanged       ctermfg=196   ctermbg=240
+hi MBEVisibleActiveNormal  ctermfg=118   ctermbg=240
+hi MBEVisibleActiveChanged ctermfg=196   ctermbg=240
 
 """"""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
 
@@ -2598,13 +2613,6 @@ if has("spell")
 endif
 
 
-" MiniBufExpl Colors
-" hi MBENormal               guifg=#808080 guibg=fg
-" hi MBEChanged              guifg=#CD5907 guibg=fg
-" hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-" hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-" hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-" hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
