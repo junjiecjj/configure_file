@@ -2774,8 +2774,6 @@ hi SignColumn      ctermfg=118 ctermbg=235
 "static、register、volatile 等
 hi StorageClass    ctermfg=208
 
-
-
 ":set all 等输出的标题
 hi Title           ctermfg=166  cterm=bold
 
