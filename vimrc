@@ -3009,9 +3009,16 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 
+" :tabe <文件名> 在新标签页中打开指定的文件。
+" :tabnew <文件名> 在新标签页中编辑新的文件。
+" :tabc       关闭当前的 tab
+" :tabc i     关闭第i个的标签
+" :tabo       关闭除当前标签页的所有其他的标签
+" :tabn或gt   移动到下一个标签页。
+" :tabp或gT   移动到上一个标签页。
+" {i}gt       移动到第i个标签页 
 
-
-"-----------------------美化标签栏-----------------------
+""-----------------------美化标签栏-----------------------
 " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
 " highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
 " highlight TabLineSel     term=bold         cterm=bold   ctermbg=Red  ctermfg=yellow
