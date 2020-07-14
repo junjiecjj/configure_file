@@ -4,6 +4,9 @@ filetype on                                  " required开启探测文件类型,
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
+" 打开文件类型检测, 加了这句才可以用智能补全
+" filetype plugin indent on           
+
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
@@ -136,12 +139,10 @@ set guifont=DroidSansMono\ Nerd\ Font\ Book\ 12
 set bsdir=buffer
 set fenc=utf-8
 set langmenu=zh_CN.UTF-8
-set encoding=utf-8
 set fileencodings=utf-8,ucs-bom,latin1,gb2312,gb18030,cp936,gbk,big5
 set encoding=utf-8  "支持UTF8编码
 set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
 set termencoding=utf-8
-set fileencodings=utf-8,cp936,ucs-bom
 
 set mouse=a                     "启动鼠标
 set hlsearch                     "搜索高亮"
@@ -169,6 +170,98 @@ set  linebreak         "只有遇到指定的符号（比如空格、连词号�
 set  wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
 set  sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
 set  novisualbell     "出错时，不要闪烁 set novisualbell 。
+
+
+set clipboard+=unnamed                  "系统剪切板
+set nocompatible                       "不适用vi的键盘模式，使用vim自己的
+set hlsearch                          "搜索逐字符高亮
+set incsearch                          " 开启增量搜索模式
+set ts=4
+set ar
+
+set updatetime=1000
+" 自动重新读入
+set autoread                " 当文件在外部被修改，自动更新该文件
+":set autoread | au CursorHold * checktime | call feedkeys("lh")
+":set autoread | au CursorHold,FocusGained,BufEnter * checktime | call feedkeys("lh")
+"set autowriteall                  "可使切换文件时，修改的文件被自动保存
+set autowrite                       " 设置自动保存
+set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行分割
+
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+" 在行和段开始处使用制表符
+set smarttab
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 下面的滚动条开启
+" let g:netrw_winsize = 20
+"添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
+:set guioptions+=b
+
+
+" 水平滚动
+" 向左
+map <F8> 10zh
+imap <F8> <ESC>10zhi
+" 向右
+map <F9> 10zl
+imap <F9> <ESC>10zli
+" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
+set ambiwidth=double "防止特殊符号无法正常显示
+
+set selection=inclusive "指定在选择文本时，光标所在位置也属于被选中的范围。
+
+" 我的状态行显示的内容（包括文件类型和解码）
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+" 设置在状态行显示的信息如下：
+" %f    当前的文件名
+" %F    当前全路径文件名
+" %m    当前文件修改状态
+" %r    当前文件是否只读
+" %Y    当前文件类型
+" %{&fileformat}
+"       当前文件编码
+" %{&fileencoding}
+"       中文编码
+" %b    当前光标处字符的 ASCII 码值
+" %B    当前光标处字符的十六进制值
+" %l    当前光标行号
+" %c    当前光标列号
+" %V    当前光标虚拟列号 (根据字符所占字节数计算)
+" %p    当前行占总行数的百分比
+" %%    百分号
+" %L    当前文件总行数
+
+set laststatus=2                          " 2为总显示最后一个窗口的状态行
+" 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
+" 0不显示最后一个窗口的状态行
+
+set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
+
+
+" 将制表符扩展为空格
+set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
+set laststatus=2            "显示当前编辑文件名
+set cursorline              "光标所在行一横线
+
+set cursorcolumn              "光标所在行一竖线
+
+set guioptions-=T           " 隐藏工具栏
+set guioptions-=m           " 隐藏菜单栏
+
+
+set showcmd                    " 输入的命令显示出来，看的清楚些
+set showmode
+set ruler                               "打开状态栏标尺
+" 设置编辑时制表符占用空格数
+set tabstop=4
+set backspace=2
+set confirm                              "在处理未保存或只读文件的时候，弹出确认
+set ignorecase                          "忽略大小写
+setlocal noswapfile                     "不要生成swp文件
+set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
 
 
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
@@ -241,23 +334,12 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set clipboard+=unnamed                  "系统剪切板
-set nocompatible                       "不适用vi的键盘模式，使用vim自己的
-set hlsearch                          "搜索逐字符高亮
-set incsearch                          " 开启增量搜索模式
-set ts=4
-set ar
 
-set updatetime=1000
-" 自动重新读入
-set autoread                " 当文件在外部被修改，自动更新该文件
-":set autoread | au CursorHold * checktime | call feedkeys("lh")
-":set autoread | au CursorHold,FocusGained,BufEnter * checktime | call feedkeys("lh")
-"set autowriteall                  "可使切换文件时，修改的文件被自动保存
-set autowrite                       " 设置自动保存
-set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行分割
+"###################################################
+"当文件在外部被修改，自动更新该文件
+"####################################################
 
-" 当文件在外部被修改，自动更新该文件
+
 " 方法1:
 "set autoread
 "augroup checktime
@@ -294,97 +376,7 @@ endfunction
 " ======= 设置当文件被外部改变的时侯自动读入文件 ======= "
 
 
-" 让 vim 把连续数量的空格视为一个制表符
-set softtabstop=4
-" 在行和段开始处使用制表符
-set smarttab
-" 设置格式化时制表符占用空格数
-set shiftwidth=4
-" 下面的滚动条开启
-" let g:netrw_winsize = 20
-"添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
-:set guioptions+=b
 
-
-" 水平滚动
-" 向左
-map <F8> 10zh
-imap <F8> <ESC>10zhi
-" 向右
-map <F9> 10zl
-imap <F9> <ESC>10zli
-" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
-
-set ambiwidth=double "防止特殊符号无法正常显示
-
-set selection=inclusive "指定在选择文本时，光标所在位置也属于被选中的范围。
-
-" 我的状态行显示的内容（包括文件类型和解码）
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-" 设置在状态行显示的信息如下：
-" %f    当前的文件名
-" %F    当前全路径文件名
-" %m    当前文件修改状态
-" %r    当前文件是否只读
-" %Y    当前文件类型
-" %{&fileformat}
-"       当前文件编码
-" %{&fileencoding}
-"       中文编码
-" %b    当前光标处字符的 ASCII 码值
-" %B    当前光标处字符的十六进制值
-" %l    当前光标行号
-" %c    当前光标列号
-" %V    当前光标虚拟列号 (根据字符所占字节数计算)
-" %p    当前行占总行数的百分比
-" %%    百分号
-" %L    当前文件总行数
-
-set laststatus=2                          " 2为总显示最后一个窗口的状态行
-" 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
-" 0不显示最后一个窗口的状态行
-
-set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
-
-
-" 将制表符扩展为空格
-set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
-set laststatus=2            "显示当前编辑文件名
-set cursorline              "光标所在行一横线
-highlight CursorLine   cterm=underline  ctermbg=234   ctermfg=green   guibg=NONE guifg=NONE
-
-set cursorcolumn              "光标所在行一竖线
-highlight CursorColumn cterm=None       ctermbg=234   ctermfg=green   guibg=NONE guifg=NONE
-
-set guioptions-=T           " 隐藏工具栏
-set guioptions-=m           " 隐藏菜单栏
-
-
-"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine cterm=underline
-
-set showcmd                    " 输入的命令显示出来，看的清楚些
-set showmode
-set ruler                               "打开状态栏标尺
-" 设置编辑时制表符占用空格数
-set tabstop=4
-set backspace=2
-set confirm                              "在处理未保存或只读文件的时候，弹出确认
-set ignorecase                          "忽略大小写
-setlocal noswapfile                     "不要生成swp文件
-set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
-
-" 可以用 alt+n 来切换，比如 alt+1 切换到第一个 tab,alt+2 切换到第二个 tab。
-:nn <M-1> 1gt
-:nn <M-2> 2gt
-:nn <M-3> 3gt
-:nn <M-4> 4gt
-:nn <M-5> 5gt
-:nn <M-6> 6gt
-:nn <M-7> 7gt
-:nn <M-8> 8gt
-:nn <M-9> 9gt
-:nn <M-0> :tablast<CR>
 """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
 
 let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
@@ -496,15 +488,12 @@ imap <F4> :Ack -i
 map <c-u> :Ack<space>
 
 """""""""""""""""""""""""""""""""""" echodoc 配置    """"""""""""""""""""""""""""""""""""""""""""""
-
-" Or, you could use vim's popup window feature.
-set cmdheight=2
-" To use a custom highlight for the popup window,
-" change Pmenu to your highlight group
-" let g:deoplete#enable_at_startup = 1
+"底部不显示三种模式,不然echodoc.vim会冲突
+" set noshowmode
 let g:echodoc#enable_at_startup = 1
 let g:EchoDocEnable = 1
 let g:echodoc#type = "echo"
+" let g:echodoc#type = 'floating'
 highlight link EchoDocPopup Pmenu
 
 """"""""""""""""""""""""""""""""""""""" change-colorscheme 配置  """""""""""""""""""""""""""""""""""""""
@@ -571,8 +560,6 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 
-" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
-" Tab : 向前循环切换到每个buffer上
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>p  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
@@ -753,6 +740,14 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""Ctags配置""""""""""""""""""""""""""""""""
+" 配置Ctrl + F12为生产ctags的快捷键
+map <C-F12> :!ctags <CR>
+
+"更新ctags标签文件快捷键设置
+noremap <F6> :!ctags -R<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
 " 设置 tagbar 使用的 ctags 的插件，必须要设置对
@@ -768,11 +763,11 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 " 映射 tagbar 的快捷键
 " map <F4> :TagbarToggle<CR>
 
-" nmap <Leader>tb :TagbarToggle<CR>  
+" 将开启tagbar的快捷键设置为　<Leader>tb
+nmap <Leader>tb :TagbarToggle<CR>  
 nmap <F10> :TagbarToggle<CR>
 map <F10> :TagbarToggle<CR>
 map! <F10> <Esc> :TagbarToggle<CR>
-" 将开启tagbar的快捷键设置为　<Leader>tb
 "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
 let g:tagbar_autopreview = 1
 "关闭排序,即按标签本身在文件中的位置排序
@@ -811,6 +806,12 @@ let Tlist_Show_One_File = 1
 "taglist为最后一个窗口时，退出vim
 let Tlist_Exit_OnlyWindow = 1
 
+" 显示taglist菜单
+" let Tlist_Show_Menu=1 
+
+" 鼠标单击跳转到tag定义, 要开启鼠标功能
+let Tlist_Use_SingleClick=1  
+
 "taglist窗口显示在右侧，缺省为左侧
 " let Tlist_Use_Right_Window = 1
 let Tlist_Use_Right_Window = 0
@@ -824,10 +825,9 @@ map <F1> <Esc>:TlistToggle<Cr>
 
 
 "将 \t 表示为在命令行模式下输入命令：
-map <silient> <leader>t <Esc>:TlistToggle<Cr>
+nmap <Leader>tl <Esc>:TlistToggle<Cr>
 
-"更新ctags标签文件快捷键设置
-noremap <F6> :!ctags -R<CR>
+
 
 
 
@@ -923,8 +923,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 
 
 "********************************************************************************************
@@ -1102,7 +1100,7 @@ let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_python_binary_path = 'python'
 
 "选补全框内显示的补全条目的最大数量
-let g:ycm_max_num_candidates = 60
+let g:ycm_max_num_candidates = 20
 
 "该选项控制基于identifiers-based引擎的最大候选补全项
 let g:ycm_max_num_identifier_candidates = 20
@@ -1122,8 +1120,9 @@ let g:ycm_autoclose_preview_window_after_completion=1
 "在实现和声明之间跳转,并分屏打开
 let g:ycm_goto_buffer_command = 'horizontal-split'
 
-"let g:ycm_auto_trigger = 0   "turn off
+" let g:ycm_auto_trigger = 0   "turn off
 let g:ycm_auto_trigger = 1   "turn on ,打开ycm
+
 
 "关键字补全
 let g:ycm_seed_indetifiers_with_syntax = 1
@@ -1131,8 +1130,6 @@ let g:ycm_seed_indetifiers_with_syntax = 1
 " 在注释中也可以补全
 let g:ycm_complete_in_comments=1
 
-" 在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
 
 " 在字符串输入中也能补全
 let g:ycm_complete_in_strings = 1
@@ -1169,9 +1166,11 @@ nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
 
 
 "关闭YCM 自动弹出函数原型预览窗口
-set completeopt=longest,menu
-let g:ycm_add_preview_to_completeopt = 0
+" set completeopt=longest,menu
+" let g:ycm_add_preview_to_completeopt = 0
 
+" YCM默认会显示诊断信息，语言标注出来你代码问题,屏蔽YCM 的诊断信息
+let g:ycm_show_diagnostics_ui = 0
 
 "离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -1236,8 +1235,12 @@ let g:ycm_semantic_triggers =  {
             \   'ruby' : ['.', '::'],
             \   'lua' : ['.', ':'],
             \   'erlang' : [':'],
+            \   'py' : ['.'],
             \ }
-
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
@@ -1377,13 +1380,72 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 
-
 let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
-"""""""""""""""""""""""""""""""""""
+"-----------------------------打开目录树-------------------------
+" F7    打开或关闭 NERDTree，此键可以根据自己需求定义。
+" :NERDTreeToggle   同 F7
+" :NERDTree 打开 NERDTree
+" :NERDTreeClose    关闭 NERDTree
+" q 关闭这个 NERDTree 窗口；
+" A 调整 NERDTree 窗口大小（最大化、最小化）
+
+"-----------------------------书签-------------------------
+" :Bookmark <name>  将目录树保存为指定名字的书签；
+" :NERDTreeFromBookmark <name>  打开指定书签名的目录树；
+" :ClearBookmarks <name>    删除指定书签；
+" :ClearAllBookmarks    删除所有书签；
+
+"-----------------------------过滤-------------------------
+" I 大写 "i"，显示或者隐藏 "." 号开头的文件和目录；
+" f 切换是否使用文件筛选；
+" F 切换是否显示文件；
+" B 切换是否显示书签表；
+
+"-----------------------------根目录-------------------------
+" :NERDTreeCWD  将 CWD 设为目录树根目录；
+" CD    将 CWD 目录作为目录树的根目录；
+" C 将当前目录作为目录树的根目录；
+" u 将当前根目录的上级目录作为根目录；
+" U 同 u;
+" cd    将选定的目录作为 CWD 目录；
+
+"-----------------------------刷新-------------------------
+" R 刷新当前根目录
+" r 刷新当前目录 
+
+"-----------------------------目录-------------------------
+" o 打开 \ 关闭文件或目录，打开文件时光标会跳到编辑区域；
+" O 递归打开当前目录下的所有目录
+" x 关闭父目录；
+" X 关闭所有子目录；
+
+"-----------------------------定位-------------------------
+" :NERDTreeFind 在目录树中定位到当前打开的文件；
+" P 跳转到根目录
+" p 跳转到上层目录
+" K 到同级第一个节点
+" J 到同级最后一个节点
+" k 跳转到上一个节点；
+" j 跳转到下一个节点；
+" <C-K> 跳转到同级上一个节点；
+" <C-J> 跳转到同级下一个节点；
+
+"-----------------------------文件-------------------------
+" m 显示文件系统管理菜单（添加、删除、移动、复制、现在属性等操作）
+" o 打开/关闭文件或目录，打开文件时光标会跳到编辑区域；
+" go    打开目录树光标所在文件，但光标依然保留在目录树中；
+" i 在水平分割割的窗口中打开选定文件；
+" gi    同 i，但光标依然保留在目录树中；
+" s 在垂直分割割的窗口中打开选定文件；
+" gs    同 s，但光标依然保留在目录树中；
+" t 在新标签页中打开文件，并使新的标签到 focus 状态；
+" T 在新标签页中打开文件，保留原标签的 focus 状态；
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "nerdtree-git-plugin 配置
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:NERDTreeShowIgnoredStatus =1
 let g:NERDTreeIndicatorMapCustom = {
@@ -1451,7 +1513,7 @@ let g:NERDTreeHighlightFoldersFullName = 1
 let g:NERDTreeLimitedSyntax=1
 let g:NERDTreeHighlightCursorline=0
 
-let g:NERDTreeSyntaxEnabledExtensions= ['c', 'h', 'c++', 'php', 'rb', 'js', 'css']
+let g:NERDTreeSyntaxEnabledExtensions= ['c', 'h', 'c++', 'php', 'py', 'md', 'java', 'rb', 'js', 'css']
 
 "you can add these colors to your .vimrc to help customizing
 let s:brown = "905532"
@@ -1507,8 +1569,10 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
-" vim 的多文档编辑涉及三个概念:buffer、window、tab。vim 把加载进内存的文件叫做 buffer,buffer 不一定可见； 若要 buffer 可见，则必须通过 window 作为载体呈现；同个看面上的多个 window 组合成一个 tab。
-" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
+" vim 的多文档编辑涉及三个概念:buffer、window、tab。vim 把加载进内存的文件叫做 buffer,buffer 不一定可见； 
+" 若要 buffer 可见，则必须通过 window 作为载体呈现；同个看面上的多个 window 组合成一个 tab。
+" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 
+" 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
 
 " Tab : 向前循环切换到每个buffer上
 " Shift - Tab : 向后循环切换到每个buffer上
@@ -1566,20 +1630,14 @@ map <C-S-b> :MBEbp<cr>
 
 
 " MiniBufExpl 配色
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+hi MBENormal               guifg=#808080 guibg=fg   ctermfg=8     ctermbg=253
+hi MBEChanged              guifg=#CD5907 guibg=fg   ctermfg=202   ctermbg=240
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg   ctermfg=39    ctermbg=253
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg   ctermfg=1     ctermbg=240
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg   ctermfg=118   ctermbg=253
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg   ctermfg=196   ctermbg=240
 
 
-hi MBENormal               ctermfg=8     ctermbg=240
-hi MBEChanged              ctermfg=202   ctermbg=240
-hi MBEVisibleNormal        ctermfg=39    ctermbg=240
-hi MBEVisibleChanged       ctermfg=196   ctermbg=240
-hi MBEVisibleActiveNormal  ctermfg=118   ctermbg=240
-hi MBEVisibleActiveChanged ctermfg=196   ctermbg=240
 
 """"""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
 
@@ -1920,9 +1978,10 @@ hi User5 cterm=None ctermfg=208 ctermbg=238
 hi User6 cterm=None ctermfg=246 ctermbg=237
 hi User7 cterm=None ctermfg=250 ctermbg=238
 hi User8 cterm=None ctermfg=249 ctermbg=240
-"""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2520,6 +2579,8 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 :hi Special ctermfg=5
 :hi pythonSelf ctermbg=174,ctermfg=#6094DB,cterm=bold
 
+
+"需要突出的文本，HTML 链接
 hi Underlined      ctermfg=244   cterm=underline
 
 "通用预处理命令
@@ -2590,34 +2651,29 @@ hi Cursor          ctermfg=16  ctermbg=253
 "光标所在的屏幕行
 hi CursorLine       ctermbg=234   cterm=bold
 "hi CursorLineNr    guifg=#FD971F               gui=none
-"
-"  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234
-
 "（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 hi CursorLine cterm=underline
 
-"光标所在的屏幕行
-":hi  CursorLine       ctermbg=black     cterm=bold
+"  "光标所在的屏幕列
+hi CursorColumn      ctermbg=234
+
 
 "非活动标签页标签
-"hi  TabLine   ctermfg=16   ctermbg=16   cterm=bold
-hi TabLine         guibg=#1B1D1E guifg=#808080 gui=none
+hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold
 
 "没有标签的地方
-hi TabLineFill     guifg=#1B1D1E guibg=#1B1D1E
-":hi  TabLineFill   ctermfg=16     ctermbg=239         cterm=bold
+hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold
 
 "活动标签页标签
-":hi  TabLineSel    ctermfg=11    ctermbg=20         cterm=bold
+hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold
 
 "if、then、else、endif、switch
 ":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
-hi Conditional  guifg=#6699CC    ctermfg=3     cterm=bold  " if else end
+hi Conditional  guifg=#6699CC    ctermfg=11     cterm=bold  " if else end
 " hi Conditional  guifg=#6699CC    ctermfg=196     cterm=bold  " if else end
 
 "for、do、while 等
-hi  Repeat  guifg=#6699CC    ctermfg=3    cterm=bold  " for while
+hi  Repeat  guifg=#6699CC    ctermfg=11    cterm=bold
 " hi  Repeat  guifg=#6699CC    ctermfg=196    cterm=bold  " for while
 
 "case、default 等
@@ -2718,14 +2774,12 @@ hi    PMenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
 " hi    PmenuSbar        ctermbg=34
 " hi    PmenuSbar        ctermbg=239
 " hi    PmenuSbar        ctermbg=239
-hi    PmenuSbar        ctermbg=239
+hi    PmenuSbar        ctermbg=15
 
 "弹出菜单滚动条的拇指, 和上面一一对应
-" hi    PmenuThumb      ctermbg=196    cterm=bold
-" hi    PmenuThumb      ctermbg=15    cterm=bold
-" hi    PmenuThumb      ctermbg=196    cterm=bold
 hi    PmenuThumb      ctermbg=34    cterm=bold
 
+" 提示和 yes/no 问题
 hi Question        ctermfg=34
 
 " marks column
@@ -2750,11 +2804,13 @@ hi VisualNOS                   ctermbg=238
 "可视模式的选择区
 hi Visual                      ctermbg=235
 hi WarningMsg      ctermfg=231   ctermbg=238 cterm=bold
-hi WildMenu        ctermfg=81  ctermbg=16
+
+" wildmenu补全的当前匹配
+hi WildMenu   cterm=BOLD  term=bold   ctermfg=46   ctermbg=16
 
 
 "整体字体的颜色
-hi Normal       term=bold        ctermfg=231   cterm=bold  "7,15,195,225,231,253
+hi Normal       term=bold      ctermfg=231   cterm=bold  "7,15,195,225,231,253
 
 "置位 number 选项时的行号
 "hi LineNr          ctermfg=250  ctermbg=234
@@ -2769,14 +2825,11 @@ if has("spell")
     hi SpellRare    gui=undercurl
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
-
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
 
 "autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
@@ -2793,6 +2846,12 @@ au BufNewFile,BufRead *.js,*.html,*.css
             \ set tabstop=2 |
             \ set softtabstop=2 |
             \ set shiftwidth=2
+
+
+"###################################################
+"复制粘贴快捷键
+"####################################################
+
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
@@ -2827,20 +2886,179 @@ function! ClosePair(char)
     endif
 endfunction
 
-filetype plugin indent on           "打开文件类型检测, 加了这句才可以用智能补全
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"---------------- 窗口、标签页、缓冲区的切换--------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"########################### 切换窗口####################################
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+nnoremap <C-h> <C-W>h
+nnoremap <C-w> <C-W>w
+
+nnoremap <C-q> <C-W>q
+nnoremap <C-t> <C-W>T
+nnoremap <C-o> <C-W>o
 nnoremap <space> za
 "组合快捷键：
 " Ctrl-j 切换到下方的分割窗口
 " Ctrl-k 切换到上方的分割窗口
 " Ctrl-l 切换到右侧的分割窗口
 " Ctrl-h 切换到左侧的分割窗口
-"用空格代替za进行折叠代码
+" Ctrl-w 遍历切换窗口
+
+" Ctrl-q 关闭当前窗口，如果只剩最后一个了，则退出 vim
+" Ctrl-t 当前窗口移动到新标签页
+" Ctrl-o 关闭出当前窗口之外的所有窗口
+" 用空格代替za进行折叠代码
+
+" " 移动窗口
+nnoremap <C-J> <C-W>J
+nnoremap <C-K> <C-W>K
+nnoremap <C-L> <C-W>L
+nnoremap <C-H> <C-W>H
+
+" 多窗口分屏时改变窗口大小 +/- 3 
+nnoremap <M-left>  :vertical resize -2<cr>
+nnoremap <M-down>  :resize +2<cr>
+nnoremap <M-up>    :resize -2<cr>
+nnoremap <M-right> :vertical resize +2<cr>
+
+
+
+"#################################### 多标签页切换####################################
+noremap <silent><tab>m :tabnew<cr>
+noremap <silent><tab>c :tabclose<cr>
+noremap <silent><tab>n :tabn<cr>
+noremap <silent><tab>p :tabp<cr>
+noremap <silent><leader>t :tabnew<cr>
+noremap <silent><leader>c :tabclose<cr>
+" noremap <silent><leader>1 :tabn 1<cr>
+" noremap <silent><leader>2 :tabn 2<cr>
+" noremap <silent><leader>3 :tabn 3<cr>
+" noremap <silent><leader>4 :tabn 4<cr>
+" noremap <silent><leader>5 :tabn 5<cr>
+" noremap <silent><leader>6 :tabn 6<cr>
+" noremap <silent><leader>7 :tabn 7<cr>
+" noremap <silent><leader>8 :tabn 8<cr>
+" noremap <silent><leader>9 :tabn 9<cr>
+" noremap <silent><leader>0 :tabn 10<cr>
+noremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
+
+" 正常模式下切换到确切的 tab
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<CR>
+
+
+
+"-----------------------美化标签栏-----------------------
+" TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
+" highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
+" highlight TabLineSel     term=bold         cterm=bold   ctermbg=Red  ctermfg=yellow
+
+" 不显示标签栏 
+" set showtabline=0 
+" 这是默认设置，意思是，在创建标签页后才显示标签栏。 
+set showtabline=1 
+" 总是显示标签栏 
+" set showtabline=2 
+
+" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
+set wildmenu wildmode=full
+set wildchar=<Tab> wildcharm=<C-Z>
+" 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj
+let g:tablineclosebutton=1
+
+" 定义颜色
+hi SelectTabLine     term=Bold     cterm=Bold         ctermfg=196       ctermbg=black
+hi SelectPageNum     term=Bold     cterm=Bold         ctermfg=Red      ctermbg=black
+hi Selectkuohao      term=Bold     cterm=Bold         ctermfg=10       ctermbg=black
+
+hi NormalTabLine     term=Bold     cterm=Bold        ctermfg=blue          ctermbg=246
+hi NormalPageNum     term=Bold     cterm=Bold        ctermfg=93            ctermbg=246
+hi Normalkuohao      term=Bold     cterm=Bold        ctermfg=16         ctermbg=246
+set tabpagemax=15
+
+"没有标签的地方
+hi  TabLineFill   ctermfg=2     ctermbg=246     term=Bold   cterm=bold
+
+
+
+" " (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
+if exists("+showtabline")
+    function! MyTabLine()
+        let s = ''
+        let wn = ''
+        let t = tabpagenr()
+        let i = 1
+        while i <= tabpagenr('$')
+            let buflist = tabpagebuflist(i)
+            let winnr = tabpagewinnr(i)
+            let s .= '%' . i . 'T'
+            let s .= (i == t ? '%1*' : '%2*')
+            let s .= ' '
+            let wn = tabpagewinnr(i,'$')
+
+            " let s .= '%#TabNum#'
+            let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
+            let s .=  '['
+            let s .= (i == t ? '%#SelectPageNum#' : '%#NormalPageNum#')
+            let s .=  i
+            " let s .= '%*'
+            let s .= (i == t ? '%#SelectTabLine#' : '%#NormalTabLine#')
+
+            for bufnr in buflist
+                if getbufvar(bufnr, "&modified")
+                    let s .= '+' 
+                    break
+                endif
+            endfor
+
+            let bufnr = buflist[winnr - 1]
+            let file = bufname(bufnr)
+            let buftype = getbufvar(bufnr, 'buftype')
+            if buftype == 'nofile'
+                if file =~ '\/.'
+                    let file = substitute(file, '.*\/\ze.', '', '')
+                endif
+            else
+                let file = fnamemodify(file, ':p:t')
+            endif
+            if file == ''
+                let file = '[新建文件]'
+            endif
+            let s .= ' ' . file .''
+            let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
+            let s .=  ']'
+            let i = i + 1
+        endwhile
+        let s .= '%T%#TabLineFill#%='
+        let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+        return s
+    endfunction
+    set stal=2
+    set tabline=%!MyTabLine()
+endif
+
+"-----------------------美化标签栏结束-----------------------
+
+
+"######################################################################################
+
+" 实现按 \sa 全选当前文件所有文本的效果
+map <leader>sa ggVG"
+
 
 "重新打开已创建的文件时自动定位光标到上次关闭文件时的位置,包括具体的列，如果只需要定位到行，不需要列，则把g`(右撇)改为g'(左撇)
 if has("autocmd")
@@ -2848,7 +3066,7 @@ if has("autocmd")
 endif
 
 " 能够漂亮地显示.NFO文件
-set encoding=utf-8
+" set encoding=utf-8
 function! SetFileEncodings(encodings)
     let b:myfileencodingsbak=&fileencodings
     let &fileencodings=a:encodings
@@ -3020,7 +3238,9 @@ autocmd! bufwritepost .vimrc source ~/.vimrc
 autocmd BufReadPost * cd %:p:h
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-
+"############################################################
+"   插件的快捷键
+"############################################################
 " Leader键为'\'
 
 " 定义的快捷键为：
@@ -3174,10 +3394,8 @@ autocmd BufReadPost * cd %:p:h
 
 " 使用 tab 切换下一个触发点，shit+tab 上一个触发点
 
-"""""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
-" ctrl+y  设置用于关闭补全列表的快捷键，默认为ctrl+y
-"  Tab         用来补全下一个
-"  Shift+Tab   用来补全上一个
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""open-browser配置打开浏览器""""""""""""""""""""""""""""""""""""""""""
 " 参考：https://mounui.com/343.html
@@ -3191,6 +3409,9 @@ autocmd BufReadPost * cd %:p:h
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
+" ctrl+y  设置用于关闭补全列表的快捷键，默认为ctrl+y
+"  Tab         用来补全下一个
+"  Shift+Tab   用来补全上一个
 "youcompleteme  默认tab  s-tab 和自动补全冲突
 "设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
 " let g:ycm_key_list_select_completion = [ '<TAB>' ,'<Down>']
@@ -3281,3 +3502,24 @@ autocmd BufReadPost * cd %:p:h
 " <F5>编译C/C++/java/，<F6>运行C/C++/javascript
 " <F7>C,C++的调试
 " 在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+"
+
+"########################################################
+"vim 原本的快捷键
+"########################################################
+
+" d$ 删除光标到本行的结尾
+" d0 删除光标到本行的开始
+" h 或退格：光标左移一个字符；
+" l 或空格：光标右移一个字符；
+" j : 光标下移一行；
+" k : 光标上移一行；
+" fc : 把光标移到同一行的下一个 c 字符处
+" Fc : 把光标移到同一行的上一个 c 字符处
+" tc : 把光标移到同一行的下一个 c 字符前
+" Tc : 把光标移到同一行的上一个 c 字符后
+" H : 把光标移到屏幕最顶端一行。
+" M : 把光标移到屏幕中间一行。
+" L : 把光标移到屏幕最底端一行。
+"
+"-------------------vim常用的快捷键------------------------
