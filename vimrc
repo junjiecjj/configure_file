@@ -12,6 +12,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
+
 "let Vundle manage Vundle,require
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
@@ -145,7 +146,6 @@ set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
 set termencoding=utf-8
 
 set mouse=a                     "启动鼠标
-set hlsearch                     "搜索高亮"
 
 " 定义快捷键关闭当前分割窗口
 nmap <Leader>q :q<CR>
@@ -2570,7 +2570,6 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 :hi Constant ctermfg=4
 :hi String ctermfg=10
 :hi Statement   ctermfg=1   cterm=bold
-:hi Search    ctermfg=10
 :hi Include ctermfg=13
 :hi Directory ctermfg=11
 :hi Preproc ctermfg=11
@@ -2584,8 +2583,7 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 hi Underlined      ctermfg=244   cterm=underline
 
 "通用预处理命令
-hi  PreProc ctermfg=11  ctermbg=16 cterm=bold
-hi PreProc         ctermfg=118
+hi  PreProc ctermfg=118  ctermbg=16 cterm=bold
 
 "预处理命令 #include
 hi Include ctermfg=13  ctermbg=16  cterm=bold
@@ -2599,8 +2597,7 @@ hi Define          ctermfg=81
 "hi PreCondit       ctermfg=118               cterm=bold
 
 "等同于 Define
-hi  Macro ctermfg=51 ctermbg=16   cterm=bold
-hi Macro ctermfg=161    cterm=bold
+hi Macro ctermfg=161  ctermbg=16  cterm=bold
 
 "一个 typedef
 hi Typedef ctermfg=51     cterm=bold
@@ -2610,16 +2607,21 @@ hi Typedef ctermfg=51     cterm=bold
 hi Structure ctermfg=51  ctermbg=16   cterm=bold
 "hi Structure       ctermfg=81
 
+"这里可以使用 CTRL-]
+hi Tag             ctermfg=161  cterm=bold
+
 "任何特殊符号
-hi Special ctermfg=33 ctermbg=16   cterm=bold
-hi link Tag    Special
+hi Special         ctermfg=81  ctermbg=232
+
 
 "常数中的特殊字符
-hi SpecialChar ctermfg=33 ctermbg=16   cterm=bold
-hi SpecialChar     ctermfg=161               cterm=bold
+hi SpecialChar ctermfg=161 ctermbg=16   cterm=bold
 
 "注释里的特殊字符
 hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
+
+"特殊键，字符和'listchars'
+hi SpecialKey      ctermfg=81  cterm=bold
 
 "任何需要特殊注意的部分
 hi Todo ctermfg=52  ctermbg=16  cterm=none
@@ -2627,8 +2629,6 @@ hi Todo ctermfg=52  ctermbg=16  cterm=none
 "需要注意的字符
 hi  Delimiter ctermfg=75    cterm=bold
 
-"警告消息
-hi  WarningMsg ctermfg=11   cterm=bold
 
 "任何有错的构造
 hi Error ctermfg=124   cterm=bold
@@ -2636,23 +2636,20 @@ hi Error ctermfg=124   cterm=bold
 "try、catch、throw
 hi Exception ctermfg=52   cterm=bold
 
-"当前窗口的状态行
-hi StatusLine ctermfg=11     cterm=bold
+"当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
+hi StatusLine ctermfg=15    cterm=bold
 
-"hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
-highlight  IncSearch ctermfg=yellow ctermbg=lightblue  cterm=BOLD  "incsearch 高亮
-"光标所在的字符
-":hi  Cursor         ctermfg=black    ctermbg=lightgreen    term=bold
+"非当前窗口的状态行
+hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD 
 
-"
 ""光标所在的字符
 hi Cursor          ctermfg=16  ctermbg=253
 
-"光标所在的屏幕行
-hi CursorLine       ctermbg=234   cterm=bold
-"hi CursorLineNr    guifg=#FD971F               gui=none
-"（这句我给注掉了，是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine cterm=underline
+"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine       ctermbg=234   cterm=underline
+
+" 光标所在行的行号的颜色
+hi CursorLineNr    ctermfg=2  ctermbg=234   cterm=bold
 
 "  "光标所在的屏幕列
 hi CursorColumn      ctermbg=234
@@ -2668,24 +2665,18 @@ hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold
 hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold
 
 "if、then、else、endif、switch
-":hi Conditional ctermbg=16  ctermfg=16 cterm=bold
 hi Conditional  guifg=#6699CC    ctermfg=11     cterm=bold  " if else end
-" hi Conditional  guifg=#6699CC    ctermfg=196     cterm=bold  " if else end
 
 "for、do、while 等
 hi  Repeat  guifg=#6699CC    ctermfg=11    cterm=bold
-" hi  Repeat  guifg=#6699CC    ctermfg=196    cterm=bold  " for while
 
 "case、default 等
 hi Label           ctermfg=229               cterm=bold
-":hi Label ctermbg=16  ctermfg=16  cterm=bold
 
 "int、long、char、float、double 等
 hi  Type   ctermfg=200     cterm=bold
 
 "一个布尔型常数: TRUE、false
-" hi  Boolean ctermfg=196  cterm=bold
-" hi  Boolean ctermfg=57   cterm=bold
 hi  Boolean ctermfg=129   cterm=bold
 
 "一个字符常数: 'c'、'\n'
@@ -2713,23 +2704,19 @@ hi   Keyword  ctermfg=11      cterm=bold
 
 hi  cfunctions ctermfg=202  cterm=bold
 
-hi  Search ctermbg=blue ctermfg=white
-hi  IncSearch ctermbg=blue ctermfg=White
+" "最近搜索模式的高亮
+hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
+
+" 'incsearch' 高亮
+hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
 
 "配对的括号
 highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3
 "匹配的内容的颜色
 hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=reverse
 
-""""""""""""""""
-"hi Boolean         ctermfg=135
-"hi Character       ctermfg=144
-"hi Number          ctermfg=135
-"hi String          ctermfg=144
-"hi Conditional     ctermfg=161               cterm=bold
-"hi Constant        ctermfg=135               cterm=bold
+" 调试语句
 hi Debug           ctermfg=225               cterm=bold
-hi Delimiter       ctermfg=241
 
 "diff: 增加的行
 hi DiffAdd                     ctermbg=24
@@ -2743,53 +2730,51 @@ hi DiffDelete      ctermfg=162 ctermbg=53
 "diff: 改变行里的改动文本
 hi DiffText                    ctermbg=102 cterm=bold
 
-"目录名
-hi Directory       ctermfg=118               cterm=bold
+"Nerdtree目录树颜色
+hi Directory       ctermfg=202               cterm=bold
 hi Error           ctermfg=219  ctermbg=89
 
-"命令行上的错误信息
+" "命令行上的错误信息 <!--more-->
 hi ErrorMsg        ctermfg=199  ctermbg=16   cterm=bold
-"hi FoldColumn      ctermfg=67  ctermbg=16
-"hi Folded          ctermfg=67  ctermbg=16
+
+"用于关闭的折叠的行
+hi Folded          ctermfg=29  ctermbg=16
+
 hi Function        ctermfg=118   cterm=bold
 "hi Identifier      ctermfg=208
 hi Ignore          ctermfg=244  ctermbg=16  cterm=bold
 
-hi Macro           ctermfg=193  cterm=bold
-hi SpecialKey      ctermfg=81  cterm=bold
-
+"配对的括号
 hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
-hi ModeMsg         ctermfg=229  cterm=bold
-hi MoreMsg         ctermfg=229  cterm=bold
+
+" vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
+hi ModeMsg         ctermfg=202  cterm=bold
+
+"|more-prompt|，文件更改后:q提示是否保存的颜色
+hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
 
 " complete menu
-"hi Pmenu           ctermfg=81  ctermbg=16
-hi    PMenu      ctermfg=0     ctermbg=243     guifg=black guibg=darkgrey
+hi Pmenu      ctermfg=0     ctermbg=243     guifg=black guibg=darkgrey
 
 "弹出菜单选中项目
-"hi PmenuSel           ctermfg=196      ctermbg=16
-hi    PMenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
+hi    PmenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
 
 "弹出菜单滚动条。
-" hi    PmenuSbar        ctermbg=34
-" hi    PmenuSbar        ctermbg=239
-" hi    PmenuSbar        ctermbg=239
 hi    PmenuSbar        ctermbg=15
 
 "弹出菜单滚动条的拇指, 和上面一一对应
 hi    PmenuThumb      ctermbg=34    cterm=bold
 
-" 提示和 yes/no 问题
-hi Question        ctermfg=34
+" 提示(请按Enter或其他命令继续)的颜色
+hi Question        ctermfg=11  ctermbg=16
 
 " marks column
 hi SignColumn      ctermfg=118 ctermbg=235
-hi Special         ctermfg=81  ctermbg=232
-hi SpecialKey      ctermfg=245
 
 "static、register、volatile 等
 hi StorageClass    ctermfg=208
-hi Tag             ctermfg=161  cterm=bold
+
+
 
 ":set all 等输出的标题
 hi Title           ctermfg=166  cterm=bold
@@ -2799,29 +2784,36 @@ hi Todo            ctermfg=231 ctermbg=232   cterm=bold
 
 "分离垂直分割窗口的列
 hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold
-hi VisualNOS                   ctermbg=238
 
 "可视模式的选择区
 hi Visual                      ctermbg=235
-hi WarningMsg      ctermfg=231   ctermbg=238 cterm=bold
+hi VisualNOS                   ctermbg=238
+
+" "警告消息
+hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold
 
 " wildmenu补全的当前匹配
-hi WildMenu   cterm=BOLD  term=bold   ctermfg=46   ctermbg=16
-
+hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold  
 
 "整体字体的颜色
 hi Normal       term=bold      ctermfg=231   cterm=bold  "7,15,195,225,231,253
 
-"置位 number 选项时的行号
-"hi LineNr          ctermfg=250  ctermbg=234
+"置位 number 选项时的行号数字的颜色
+hi LineNr          ctermfg=15  ctermbg=16
+
+" 窗口尾部的'~'和 '@'
 hi NonText         ctermfg=1  cterm=bold
 
 set t_Co=256
 
 if has("spell")
+    "拼写检查器不能识别的单词
     hi SpellBad     gui=undercurl
+    "应该大写字母开头的单词
     hi SpellCap     gui=undercurl
+    "只在其它区域使用的单词
     hi SpellLocal   gui=undercurl
+    "很少使用的单词
     hi SpellRare    gui=undercurl
 endif
 
