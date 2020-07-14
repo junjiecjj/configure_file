@@ -1322,29 +1322,39 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd vimenter * NERDTree
-
+" 启动vim时 自动打开NERDTree
+" autocmd vimenter * NERDTree
 
 let g:NERDTreeChDirMode = 2  "Change current folder as root
 "当NERDTree为剩下的唯一窗口时自动关闭
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
 
+"打开vim时如果没有文件自动打开NERDTree
+autocmd vimenter * if !argc()|NERDTree|endif
+
+" 当vim打开一个目录时，nerdtree自动使用
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
 nmap <Leader>fl :NERDTreeToggle<CR>
-
-" 设置NERDTree子窗口位置
-let NERDTreeWinPos="left"
 
 " ctrl + d 打开目录
 map <C-d> :NERDTreeToggle<CR>
 
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="right"
+
 " 开启Nerdtree时自动显示Bookmarks
 let NERDTreeShowBookmarks=1
+
+"光标自动显示在编辑区
+autocmd VimEnter * wincmd w 
 
 " 设置宽度
 let NERDTreeWinSize=16
 
-" 显示隐藏文件
+" 是否显示隐藏文件
 let NERDTreeShowHidden=1
 
 let g:NERDTreeHidden=1     " Don't show hidden files
@@ -2636,9 +2646,7 @@ hi Error guifg=#CD2626   gui=bold
 hi Exception ctermfg=52   cterm=bold  
 hi Exception guifg=#8B1A1A   gui=bold  
 
-"当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
-hi StatusLine ctermfg=15    cterm=bold 
-hi StatusLine guifg=#E0FFFF    gui=bold 
+
 
 " 非当前窗口的状态行
 hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD  
@@ -2658,12 +2666,12 @@ hi CursorColumn      ctermbg=234
 hi CursorColumn      guibg=#1d251d  
 
 " 光标所在行的行号数字的颜色
-hi CursorLineNr    ctermfg=2  ctermbg=234   cterm=bold  
-hi CursorLineNr    guifg=#008B00   gui=bold  
-"置位 number 选项时的行号数字的颜色
-hi LineNr          ctermfg=15  ctermbg=16   
-hi LineNr          guifg=#FFFFFF  guibg=#000000  
+hi CursorLineNr    ctermfg=51   ctermbg=16   cterm=bold  
+hi CursorLineNr    guifg=#00FFFF  guibg=#000000  gui=bold  
 
+"置位 number 选项时的行号数字的颜色
+hi LineNr          ctermfg=46       ctermbg=16   cterm=bold
+hi LineNr          guifg=#00FF00    guibg=#000000  gui=bold
 
 "非活动标签页标签
 hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold  
@@ -2740,8 +2748,8 @@ hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
 hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF 
 
 "配对的括号
-highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3  
-highlight MatchParen gui=underline guibg=NONE guifg=#EEC900 
+hi   MatchParen cterm=underline ctermbg=NONE ctermfg=3  
+hi   MatchParen gui=underline guibg=NONE guifg=#EEC900 
 
 "匹配的内容的颜色
 hi MatchParen  ctermfg=157 ctermbg=237 cterm=reverse  
@@ -2773,7 +2781,7 @@ hi Directory       guifg=#00FF00               gui=bold
 
 " "命令行上的错误信息 <!--more-->
 hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold  
-hi ErrorMsg        guifg=#C71585        gui=bold  
+hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold  
 
 "用于关闭的折叠的行
 hi Folded          ctermfg=29  ctermbg=16  
@@ -2848,14 +2856,17 @@ hi VisualNOS                   guibg=#8B8386
 hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold    
 hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold    
 
+"当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
+hi StatusLine ctermfg=15    ctermbg=16  cterm=bold 
+hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold 
+
 " wildmenu补全的当前匹配
 hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold   
-hi WildMenu    guifg=#00FF00   guibg=#000000  cterm=BOLD  term=bold   
+hi WildMenu    guifg=#00FF00   guibg=#000000  gui=BOLD
 
 "整体字体的颜色
 hi Normal       term=bold      ctermfg=231   ctermbg=16        cterm=bold  
 hi Normal       term=bold      guifg=#BEBEBE  guibg=#000000    cterm=bold  
-
 
 
 " 窗口尾部的'~'和 '@'
