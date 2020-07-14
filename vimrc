@@ -12,7 +12,6 @@ set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
 
-
 "let Vundle manage Vundle,require
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
@@ -299,6 +298,7 @@ endfunc
 " ctrl-r进行相对行号/绝对行号切换
 nnoremap <C-r> :call NumberToggle()<cr>
 
+
 " let &t_SI = "\<Esc>]12;red\x7"
 " let &t_SR = "\<Esc>]12;yellow\x7"
 " let &t_EI = "\<Esc>]12;green\x7"
@@ -321,17 +321,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
 
-" vim中切换模式时换模式时显示不同的光标形状(放置在家目录中的.vimrc文件中即可)：
-" if has("autocmd")
-"   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-"   au InsertEnter,InsertChange *
-"     \ if v:insertmode == 'i' |
-"     \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-"     \ elseif v:insertmode == 'r' |
-"     \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-"     \ endif
-"   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-" endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -365,8 +355,6 @@ function! CheckUpdate(timer)
     silent! checktime
     call timer_start(2000,'CheckUpdate')
 endfunction
-
-
 
 "方法3:
 "autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
@@ -1363,7 +1351,6 @@ let g:NERDTreeHidden=1     " Don't show hidden files
 
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
-
 
 "是否打开目录树
 let g:nerdtree_tabs_open_on_console_startup=0
@@ -2558,249 +2545,322 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 "https://blog.csdn.net/cp3alai/article/details/45509459
 "https://blog.csdn.net/rainysia/article/details/7419839
 
-:hi BadWhitespace ctermbg=226 ctermfg=gray guifg= gray guibg=darkred
-
+hi BadWhitespace  ctermfg=gray ctermbg=226  
+hi BadWhitespace  guifg= gray guibg=darkred
 "任何注释
-":hi Comment  term=bold ctermfg=14 cterm=bold
-:hi Comment  guifg=#7C7C7C guibg=NONE gui=NONE   ctermfg=darkgray ctermbg=NONE   cterm=NONE
+hi Comment  guifg=#7C7C7C guibg=NONE gui=NONE   ctermfg=darkgray ctermbg=NONE   cterm=NONE
 
-:hi Identifier   ctermfg=202 cterm=bold
-:hi Number ctermfg=13
-:hi Type   ctermfg=13 cterm=bold
-:hi Constant ctermfg=4
-:hi String ctermfg=10
-:hi Statement   ctermfg=1   cterm=bold
-:hi Include ctermfg=13
-:hi Directory ctermfg=11
-:hi Preproc ctermfg=11
-:hi Operator ctermfg=9
-:hi Keyword ctermfg=13  cterm=bold
-:hi Special ctermfg=5
-:hi pythonSelf ctermbg=174,ctermfg=#6094DB,cterm=bold
+" identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
+hi Identifier   ctermfg=202 cterm=bold  
+hi Identifier   guifg=#EE7600 cterm=bold
+
+
+" 常量的颜色，如真假，数字等
+hi Constant ctermfg=4 
+hi Constant guifg=#0000CD 
+
+"Statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if,for,return等的颜色
+hi Statement   ctermfg=1   cterm=bold  
+hi Statement   guifg=#FF1493   cterm=bold  
+
+" hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
 
 
 "需要突出的文本，HTML 链接
-hi Underlined      ctermfg=244   cterm=underline
+hi Underlined      ctermfg=244   cterm=underline  
+hi Underlined      guifg=#D3D3D3   cterm=underline  
 
 "通用预处理命令
-hi  PreProc ctermfg=118  ctermbg=16 cterm=bold
+hi  PreProc ctermfg=118  ctermbg=16 cterm=bold  
+hi  PreProc guifg=#00FF7F  guibg=#000000 cterm=bold  
 
 "预处理命令 #include
-hi Include ctermfg=13  ctermbg=16  cterm=bold
+hi Include ctermfg=13  ctermbg=16  cterm=bold  
+hi Include guifg=#FF00FF  guibg=#000000  cterm=bold  
 
 "预处理命令 #define
-hi Define ctermfg=11  ctermbg=16 ctermbg=16   cterm=bold
-hi Define          ctermfg=81
+hi Define ctermfg=81  ctermbg=16    cterm=bold  
+hi Define guifg=#00BFFF  guibg=#000000    cterm=bold  
 
 "预处理命令 #if、#else、#endif
-:hi PreCondit ctermfg=161   cterm=bold
-"hi PreCondit       ctermfg=118               cterm=bold
+hi PreCondit ctermfg=161   cterm=bold  
+hi PreCondit guifg=#D02090   cterm=bold  
 
 "等同于 Define
-hi Macro ctermfg=161  ctermbg=16  cterm=bold
+hi Macro ctermfg=161  ctermbg=16  cterm=bold  
+hi Macro guifg=#EE1289    gui=bold  
 
 "一个 typedef
-hi Typedef ctermfg=51     cterm=bold
-"hi Typedef         ctermfg=81
+hi Typedef ctermfg=51     cterm=bold  
+hi Typedef guifg=#00F5FF     gui=bold  
 
 "struct、union、enum 等
-hi Structure ctermfg=51  ctermbg=16   cterm=bold
-"hi Structure       ctermfg=81
+hi Structure ctermfg=51    ctermbg=16   cterm=bold  
+hi Structure guifg=#00F5FF  guibg=#000000   gui=bold  
 
 "这里可以使用 CTRL-]
-hi Tag             ctermfg=161  cterm=bold
+hi Tag             ctermfg=161  cterm=bold  
+hi Tag             guifg=#FF0000  gui=bold  
 
 "任何特殊符号
-hi Special         ctermfg=81  ctermbg=232
+hi Special         ctermfg=81  ctermbg=232  
+hi Special         guifg=#00FFFF    
 
 
 "常数中的特殊字符
-hi SpecialChar ctermfg=161 ctermbg=16   cterm=bold
+hi SpecialChar ctermfg=161 ctermbg=16   cterm=bold  
+hi SpecialChar guifg=#B22222   gui=bold  
 
 "注释里的特殊字符
-hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
+hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold  
+hi SpecialComment guifg=#B22222  gui=bold  
 
 "特殊键，字符和'listchars'
-hi SpecialKey      ctermfg=81  cterm=bold
+hi SpecialKey      ctermfg=81  cterm=bold  
+hi SpecialKey      guifg=#00FFFF  gui=bold  
 
 "任何需要特殊注意的部分
-hi Todo ctermfg=52  ctermbg=16  cterm=none
+hi Todo ctermfg=52  ctermbg=16  cterm=none  
+hi Todo guifg=#8B1A1A    gui=none  
 
 "需要注意的字符
-hi  Delimiter ctermfg=75    cterm=bold
+hi  Delimiter ctermfg=75    cterm=bold  
+hi  Delimiter guifg=#1E90FF    gui=bold  
 
 
 "任何有错的构造
-hi Error ctermfg=124   cterm=bold
+hi Error ctermfg=124   cterm=bold 
+hi Error guifg=#CD2626   gui=bold 
 
 "try、catch、throw
-hi Exception ctermfg=52   cterm=bold
+hi Exception ctermfg=52   cterm=bold  
+hi Exception guifg=#8B1A1A   gui=bold  
 
 "当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
-hi StatusLine ctermfg=15    cterm=bold
+hi StatusLine ctermfg=15    cterm=bold 
+hi StatusLine guifg=#E0FFFF    gui=bold 
 
-"非当前窗口的状态行
-hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD 
+" 非当前窗口的状态行
+hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD  
+hi StatusLineNC  guifg=yellow   cterm=BOLD  
 
-""光标所在的字符
-hi Cursor          ctermfg=16  ctermbg=253
+" 光标所在的字符
+hi Cursor           ctermfg=51  ctermbg=51
+
+highlight Cursor guifg=white guibg=green
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine       ctermbg=234   cterm=underline
-
-" 光标所在行的行号的颜色
-hi CursorLineNr    ctermfg=2  ctermbg=234   cterm=bold
-
+hi CursorLine       ctermbg=234   cterm=underline  
+hi CursorLine       guibg=#1d251d   gui=underline  
+ 
 "  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234
+hi CursorColumn      ctermbg=234  
+hi CursorColumn      guibg=#1d251d  
+
+" 光标所在行的行号数字的颜色
+hi CursorLineNr    ctermfg=2  ctermbg=234   cterm=bold  
+hi CursorLineNr    guifg=#008B00   gui=bold  
+"置位 number 选项时的行号数字的颜色
+hi LineNr          ctermfg=15  ctermbg=16   
+hi LineNr          guifg=#FFFFFF  guibg=#000000  
 
 
 "非活动标签页标签
-hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold
+hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold  
+hi  TabLine   guifg=#EE1289      gui=bold  
 
 "没有标签的地方
-hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold
+hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold  
+hi  TabLineFill   guifg=#00EE00    guibg=#696969         gui=bold  
 
 "活动标签页标签
-hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold
+hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold  
+hi  TabLineSel    guifg=#000000    guibg=#7CFC00         gui=bold  
 
 "if、then、else、endif、switch
-hi Conditional  guifg=#6699CC    ctermfg=11     cterm=bold  " if else end
+hi Conditional    ctermfg=11     cterm=bold    
+hi Conditional  guifg=#FFFF00         cterm=bold    
 
 "for、do、while 等
-hi  Repeat  guifg=#6699CC    ctermfg=11    cterm=bold
+hi  Repeat      ctermfg=11           cterm=bold   
+hi  Repeat      guifg=#FFFF00        gui=bold   
 
 "case、default 等
-hi Label           ctermfg=229               cterm=bold
+hi Label           ctermfg=229               cterm=bold  
+hi Label           guifg=#FFFF00               gui=bold  
 
 "int、long、char、float、double 等
-hi  Type   ctermfg=200     cterm=bold
+hi  Type   ctermfg=200     cterm=bold  
+hi  Type   guifg=   #FF1493     gui=bold  
 
 "一个布尔型常数: TRUE、false
-hi  Boolean ctermfg=129   cterm=bold
+hi  Boolean ctermfg=129   cterm=bold  
+hi  Boolean guifg=#9400D3   gui=bold  
 
 "一个字符常数: 'c'、'\n'
-hi  Character ctermfg=124   cterm=bold
+hi  Character ctermfg=124   cterm=bold  
+hi  Character guifg=#CD2626   gui=bold  
 
 "一个数字常数: 234、0xff
-hi  Number ctermfg=124  cterm=bold
+hi  Number ctermfg=124  cterm=bold  
+hi  Number guifg=#CD2626  gui=bold  
 
 "一个字符串常数: 字符串
-hi String  ctermfg=28
+hi String  ctermfg=28  
+hi String  guifg=#008B00  
 
 "一个浮点常数: 2.3e10
-hi  Float ctermfg=124  cterm=bold
+hi  Float ctermfg=124  cterm=bold  
+hi  Float guifg=#CD2626  gui=bold  
 
 "static、register、volatile 等
-hi  StorageClass  ctermfg=11   cterm=bold
+hi  StorageClass  ctermfg=11   cterm=bold  
+hi  StorageClass  guifg=#C0FF3E   gui=bold  
 
 "函数名 (也包括: 类的方法名)
-hi  Function   ctermfg=202 cterm=bold
+hi  Function   ctermfg=202 cterm=bold  
+hi  Function   guifg=#FFA500 gui=bold  
 
 "sizeof"、"+"、"*" 等
-hi  Operator ctermfg=226    cterm=bold
+hi  Operator ctermfg=226    cterm=bold  
+hi  Operator guifg=#FFFF00    gui=bold  
 "任何其它关键字
-hi   Keyword  ctermfg=11      cterm=bold
-
-hi  cfunctions ctermfg=202  cterm=bold
+hi   Keyword  ctermfg=11      cterm=bold  
+hi   Keyword  guifg=#FFFF00     gui=bold  
+ 
+hi  cfunctions ctermfg=202  cterm=bold  
+hi  cfunctions guifg=#FFA500  gui=bold  
 
 " "最近搜索模式的高亮
-hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
+hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15  
+hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF  
 
 " 'incsearch' 高亮
-hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
+hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15  
+hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF 
 
 "配对的括号
-highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3
+highlight MatchParen cterm=underline ctermbg=NONE ctermfg=3  
+highlight MatchParen gui=underline guibg=NONE guifg=#EEC900 
+
 "匹配的内容的颜色
-hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=reverse
+hi MatchParen  ctermfg=157 ctermbg=237 cterm=reverse  
+hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=reverse  
 
 " 调试语句
-hi Debug           ctermfg=225               cterm=bold
+hi Debug           ctermfg=225               cterm=bold  
+hi Debug           guifg=#FFC1C1               gui=bold  
 
 "diff: 增加的行
-hi DiffAdd                     ctermbg=24
+hi DiffAdd                     ctermbg=24  
+hi DiffAdd                     guibg=#00868B  
 
 "diff: 改变的行
-hi DiffChange      ctermfg=181 ctermbg=239
+hi DiffChange      ctermfg=181    ctermbg=239  
+hi DiffChange      guifg=#DA70D6      guibg=    #8B8989  
 
 "diff: 删除的行
-hi DiffDelete      ctermfg=162 ctermbg=53
+hi DiffDelete      ctermfg=162          ctermbg=53  
+hi DiffDelete      guifg=#D02090         guibg=#8B2323  
 
 "diff: 改变行里的改动文本
-hi DiffText                    ctermbg=102 cterm=bold
+hi DiffText                    ctermbg=102   cterm=bold  
+hi DiffText                    guibg=#6A5ACD       gui=bold  
 
 "Nerdtree目录树颜色
-hi Directory       ctermfg=202               cterm=bold
-hi Error           ctermfg=219  ctermbg=89
+hi Directory       ctermfg=46               cterm=bold  
+hi Directory       guifg=#00FF00               gui=bold  
 
 " "命令行上的错误信息 <!--more-->
-hi ErrorMsg        ctermfg=199  ctermbg=16   cterm=bold
+hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold  
+hi ErrorMsg        guifg=#C71585        gui=bold  
 
 "用于关闭的折叠的行
-hi Folded          ctermfg=29  ctermbg=16
+hi Folded          ctermfg=29  ctermbg=16  
+hi Folded          guifg=#66CD00    
 
-hi Function        ctermfg=118   cterm=bold
+hi Function        ctermfg=118   cterm=bold  
+hi Function        guifg=#66CD00   gui=bold  
 "hi Identifier      ctermfg=208
-hi Ignore          ctermfg=244  ctermbg=16  cterm=bold
+hi Ignore          ctermfg=244  ctermbg=16  cterm=bold  
+hi Ignore          guifg=#BEBEBE    gui=bold  
 
 "配对的括号
-hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold  
+hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold  
 
 " vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
-hi ModeMsg         ctermfg=202  cterm=bold
+hi ModeMsg         ctermfg=202  cterm=bold   
+hi ModeMsg         guifg=#CD9B1D  gui=bold   
 
 "|more-prompt|，文件更改后:q提示是否保存的颜色
-hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
+hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold    
+hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD     
 
 " complete menu
-hi Pmenu      ctermfg=0     ctermbg=243     guifg=black guibg=darkgrey
+hi Pmenu      ctermfg=0       ctermbg=243       
+hi Pmenu      guifg=#000000    guibg=darkgrey       
 
 "弹出菜单选中项目
-hi    PmenuSel   ctermfg=196   ctermbg=251    guifg=darkgrey guibg=black
+hi    PmenuSel   ctermfg=196   ctermbg=251        
+hi    PmenuSel   guifg=darkgrey guibg=black        
 
 "弹出菜单滚动条。
-hi    PmenuSbar        ctermbg=15
+hi    PmenuSbar        ctermbg=15   
+hi    PmenuSbar        guibg=#FFFFFF   
 
 "弹出菜单滚动条的拇指, 和上面一一对应
-hi    PmenuThumb      ctermbg=34    cterm=bold
+hi    PmenuThumb      ctermbg=34    cterm=bold  
+hi    PmenuThumb      guibg=#228B22    gui=bold  
 
 " 提示(请按Enter或其他命令继续)的颜色
-hi Question        ctermfg=11  ctermbg=16
+hi Question        ctermfg=11  ctermbg=16   
+hi Question        guifg=#EEEE00  guibg=#000000   
 
-" marks column
-hi SignColumn      ctermfg=118 ctermbg=235
-
+" marks column  
+hi SignColumn      ctermfg=118  ctermbg=235  
+hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE  
+    
 "static、register、volatile 等
-hi StorageClass    ctermfg=208
+hi StorageClass    ctermfg=208  
+hi StorageClass    guifg=#CDAD00  
 
 ":set all 等输出的标题
-hi Title           ctermfg=166  cterm=bold
+hi Title           ctermfg=166  cterm=bold  
+hi Title           guifg=#CD9B1D  gui=bold  
 
 "任何需要特殊注意的部分
-hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+hi Todo            ctermfg=231 ctermbg=232   cterm=bold     
+hi Todo            guifg=#FFF0F5 guibg=#363636   cterm=bold     
 
 "分离垂直分割窗口的列
-hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold
+hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold     
+hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold     
 
 "可视模式的选择区
-hi Visual                      ctermbg=235
-hi VisualNOS                   ctermbg=238
+hi Visual                      ctermbg=235  
+hi Visual                     guibg=#838B83  
+
+hi VisualNOS                   ctermbg=238  
+hi VisualNOS                   guibg=#8B8386  
 
 " "警告消息
-hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold
+hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold    
+hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold    
 
 " wildmenu补全的当前匹配
-hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold  
+hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold   
+hi WildMenu    guifg=#00FF00   guibg=#000000  cterm=BOLD  term=bold   
 
 "整体字体的颜色
-hi Normal       term=bold      ctermfg=231   cterm=bold  "7,15,195,225,231,253
+hi Normal       term=bold      ctermfg=231   ctermbg=16        cterm=bold  
+hi Normal       term=bold      guifg=#BEBEBE  guibg=#000000    cterm=bold  
 
-"置位 number 选项时的行号数字的颜色
-hi LineNr          ctermfg=15  ctermbg=16
+
 
 " 窗口尾部的'~'和 '@'
-hi NonText         ctermfg=1  cterm=bold
+hi NonText         ctermfg=1  cterm=bold    
+hi NonText         guifg=#FF0000  cterm=bold    
 
 set t_Co=256
 
@@ -2971,13 +3031,13 @@ set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 let g:tablineclosebutton=1
 
 " 定义颜色
-hi SelectTabLine     term=Bold     cterm=Bold         ctermfg=196       ctermbg=black
-hi SelectPageNum     term=Bold     cterm=Bold         ctermfg=Red      ctermbg=black
-hi Selectkuohao      term=Bold     cterm=Bold         ctermfg=10       ctermbg=black
+hi SelectTabLine     term=Bold     cterm=Bold         ctermfg=196  guifg=#FF0000     ctermbg=black  guibg=#000000
+hi SelectPageNum     term=Bold     cterm=Bold         ctermfg=Red   guifg=#FF0000    ctermbg=black  guibg=#000000
+hi Selectkuohao      term=Bold     cterm=Bold         ctermfg=10   guifg=#00FF00     ctermbg=black  guibg=#000000
 
-hi NormalTabLine     term=Bold     cterm=Bold        ctermfg=blue          ctermbg=246
-hi NormalPageNum     term=Bold     cterm=Bold        ctermfg=93            ctermbg=246
-hi Normalkuohao      term=Bold     cterm=Bold        ctermfg=16         ctermbg=246
+hi NormalTabLine     term=Bold     cterm=Bold        ctermfg=blue   guifg=#0000FF       ctermbg=246  guibg=#696969
+hi NormalPageNum     term=Bold     cterm=Bold        ctermfg=93     guifg=#9400D3       ctermbg=246   guibg=#696969
+hi Normalkuohao      term=Bold     cterm=Bold        ctermfg=16     guifg=#000000       ctermbg=246     guibg=#696969
 set tabpagemax=15
 
 "没有标签的地方
