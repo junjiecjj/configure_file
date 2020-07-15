@@ -2666,8 +2666,8 @@ hi CursorColumn      ctermbg=234
 hi CursorColumn      guibg=#1d251d  
 
 " 光标所在行的行号数字的颜色
-hi CursorLineNr    ctermfg=51   ctermbg=16   cterm=bold  
-hi CursorLineNr    guifg=#00FFFF  guibg=#000000  gui=bold  
+hi CursorLineNr    ctermfg=214   ctermbg=16   cterm=bold  
+hi CursorLineNr    guifg=#FFA500  guibg=#000000  gui=bold  
 
 "置位 number 选项时的行号数字的颜色
 hi LineNr          ctermfg=46       ctermbg=16   cterm=bold
