@@ -954,10 +954,11 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 #     F(Frame)就是用来resize的那四个角落. 也可以用 '<', '^', '>' and 'v' 分别表示左上，右上，右下，左下的角落。
 #     W(Working Area) 应用程序窗口工作区域
 #     I(Icon window) 图标化的窗口。
+#     A(any where)任何地方
 #
 #     Numbers are buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #
-# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt (N)othing
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt, (N)othing
 #
 # Format: Key <X>  <Context> <Modifier> <Action>
 #         Mouse <X> <Context> <Modifier> <Action>
@@ -1045,8 +1046,15 @@ Key Down    A  S    Scroll +0   +100
 # Alt+F6    关闭显示屏
 Silent Key   F6      A    M    Function LockScreen
 
-#Ctrl+F11 最大化
-Silent Key   F11		A	C	Maximize
+#Ctrl+F10 上下最大化
+Silent Key   F10		A	C	Maximize 0 100
+
+
+# Ctrl + F11 最大化
+Silent Key   F11		A	C	Maximize 100 100
+
+# Ctrl + F12 左右最大化
+Silent Key   F12		A	C	Maximize 100 0
 
 # 按windows_L 当前page全部最小化
 Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
@@ -1077,8 +1085,8 @@ Silent Key   l          A  M   Exec exec xscreensaver-command -lock
 Mouse 1 1 A Menu MenuWindowOpsLong Delete
 Mouse 1 2 A Close
 Mouse 1 4 A Maximize 100 100
-Mouse 2 4 A Maximize 0 100
-Mouse 3 4 A Maximize 100 0
+Mouse 2 4 A Maximize  100  0
+Mouse 3 4 A Maximize 0 100
 Mouse 1 6 A Iconify
 
 #   TitleBar: Click to Raise, Move, Double Click to Maximize
