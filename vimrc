@@ -155,7 +155,6 @@ set linespace=0
 " set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
 " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
 if has('gui_running')
-    set guioptions-=T  " no toolbar
     colorscheme desert
     if has('gui_win32')
       set guifont=DejaVu_Sans_Mono:h10:cANSI
@@ -286,6 +285,14 @@ set shiftwidth=4
 "添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
 :set guioptions+=b
 
+" " 隐藏/不隐藏工具栏
+set guioptions+=T          
+" " 隐藏/不隐藏菜单栏
+set guioptions+=m
+
+set guioptions+=r
+set guioptions+=L
+
 
 " 水平滚动
 " 向左
@@ -339,11 +346,6 @@ set cursorline
 
 set cursorcolumn              
 "光标所在行一竖线
-
-" " 隐藏工具栏
-" set guioptions-=T          
-" " 隐藏菜单栏
-" set guioptions-=m           
 
 
 " 输入的命令显示出来，看的清楚些
@@ -3258,7 +3260,7 @@ endif
 
 "-----------------------美化标签栏结束-----------------------
 " 设置鼠标运行模式为 WINDOWS 模式 
-behave mswin 
+" behave mswin 
 
 " 平台判断
 function! GetSystem()
