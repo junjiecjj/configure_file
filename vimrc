@@ -5,7 +5,7 @@ filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
 " 打开文件类型检测, 加了这句才可以用智能补全
-" filetype plugin indent on           
+" filetype plugin indent on
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -125,17 +125,47 @@ syntax on
 let python_highlight_all=1
 let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
-set number                      "显示行号
-set showmatch                   "高亮显示匹配的括号
+"显示行号
+set number                      
 
-set scrolloff=3              " 光标移动到buffer的顶部和底部时保持3行距离
-set smartindent              "为c语言自动缩进
-set cindent                  " 使用C样式的缩进
-set autoindent               "自动缩进, 继承前一行的缩进方式，适用于多行注释
+"高亮显示匹配的括号
+set showmatch                  
+
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3              
+
+"为c语言自动缩进
+set smartindent              
+
+" 使用C样式的缩进
+set cindent                  
+
+"自动缩进, 继承前一行的缩进方式，适用于多行注释
+set autoindent               
+
+" 字符间插入的像素行数目 
+set linespace=0 
+
+" 设置 VIM 字体及大小
+" Linux/Unix 命令格式：set guifont = 字体 +\\+ 空格 + 字体大小
+"  Windows/Mac 命令格式：set guifont = 字体 + : + 字体大小
+" 不同的是，关于字体大小的表述。Linux/Unix 字体大小直接写字号，Windows/Mac 字号需要加上 h 的高度名。
+" Linux/Unix: set guifont=Monospace\空格14 注意这里需要对空格使用 \ 进行转意
+" Windows: set guifont=Monospace:h14 注意这里的字体大小需要有 h 的标识
+" set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
+" 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
+if has('gui_running')
+    set guioptions-=T  " no toolbar
+    colorscheme desert
+    if has('gui_win32')
+      set guifont=DejaVu_Sans_Mono:h10:cANSI
+    else
+      set guifont=DroidSansMono\ Nerd\ Font\ 12
+      " set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+  endif
 
 " 设定默认解码
-" set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
-set guifont=DroidSansMono\ Nerd\ Font\ Book\ 12
 set bsdir=buffer
 set fenc=utf-8
 set langmenu=zh_CN.UTF-8
@@ -144,7 +174,35 @@ set encoding=utf-8  "支持UTF8编码
 set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
 set termencoding=utf-8
 
-set mouse=a                     "启动鼠标
+" 可以在 buffer 的任何地方使用鼠标（类似 office 中在工作区双击鼠标定位）
+set mouse=a
+" set selectmode=mouse,key
+"指定在选择文本时，光标所在位置也属于被选中的范围。
+set selection=inclusive
+
+" 实现按 \sa 全选当前文件所有文本的效果
+map <leader>sa ggVG"
+
+" 在被分割的窗口间显示空白，便于阅读
+" set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+" 进入当前编辑的文件的目录
+autocmd BufEnter * exec "cd %:p:h"
+
+" 设置路径，多个路径用逗号分隔
+set path=.,"E:/Web/htdocs",,
+
+" 显示 TAB 键-,空格-
+" set listchars=space:c 设置某个字符来显示一个空格
+" set listchars=trail:c 设置某个字符来显示一个行尾空格
+" set listchars=eol:c 设置某个字符来显示每行的行尾结束符
+" set listchars=tab:>-，则会用 >--- 显示 4 个长度的制表符
+"" set list
+" set listchars=tab:>-,trail:-
+
+
+" 输入:set list 命令是应该显示些啥？ 
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
 " 定义快捷键关闭当前分割窗口
 nmap <Leader>q :q<CR>
@@ -155,44 +213,74 @@ nmap <Leader>wq :wq<CR>
 nmap <Leader>w :w<CR>
 
 "折叠
-set foldenable                         "允许折叠
-set foldmethod=indent                  "更具每行的缩进开启折叠 ，manual为手动折叠
+"允许折叠
+set foldenable                         
+
+"更具每行的缩进开启折叠 ，manual为手动折叠
+set foldmethod=indent                  
+
 set foldlevel=100
 
 "自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
 " set textwidth=70                   "来设置 n
-
 "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用
-set  nowrap                             "不自动折行
-" set wrap                              "设置自动折行
-set  linebreak         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
-set  wrapmargin=2    "指定折行处与编辑窗口的右边缘之间空出的字符数。"
-set  sidescrolloff=15  "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
-set  novisualbell     "出错时，不要闪烁 set novisualbell 。
+set  nowrap                             
+"不自动折行
+" set wrap                              
+
+"只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
+set  linebreak         
+
+"指定折行处与编辑窗口的右边缘之间空出的字符数。"
+set  wrapmargin=2    
+
+"水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
+set  sidescrolloff=15  
 
 
-set clipboard+=unnamed                  "系统剪切板
-set nocompatible                       "不适用vi的键盘模式，使用vim自己的
-set hlsearch                          "搜索逐字符高亮
-set incsearch                          " 开启增量搜索模式
+set  novisualbell     
+"出错时，不要闪烁 set novisualbell 。
+
+"系统剪切板
+set clipboard+=unnamed                  
+
+"不适用vi的键盘模式，使用vim自己的
+set nocompatible                       
+
+"搜索逐字符高亮
+set hlsearch                          
+
+" 开启增量搜索模式
+set incsearch                          
+
 set ts=4
+
 set ar
 
-set updatetime=1000
 " 自动重新读入
-set autoread                " 当文件在外部被修改，自动更新该文件
-":set autoread | au CursorHold * checktime | call feedkeys("lh")
-":set autoread | au CursorHold,FocusGained,BufEnter * checktime | call feedkeys("lh")
-"set autowriteall                  "可使切换文件时，修改的文件被自动保存
-set autowrite                       " 设置自动保存
-set iskeyword+=_,$,@,%,#,-        " 带有如下符号的单词不要被换行分割
+set updatetime=1000
+
+
+set autoread                
+
+""可使切换文件时，修改的文件被自动保存
+"set autowriteall                  
+
+set autowrite                       
+" 设置自动保存
+
+" 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-        
 
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
+
 " 在行和段开始处使用制表符
 set smarttab
+
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
+
 " 下面的滚动条开启
 " let g:netrw_winsize = 20
 "添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
@@ -210,7 +298,6 @@ imap <F9> <ESC>10zli
 
 set ambiwidth=double "防止特殊符号无法正常显示
 
-set selection=inclusive "指定在选择文本时，光标所在位置也属于被选中的范围。
 
 " 我的状态行显示的内容（包括文件类型和解码）
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
@@ -233,34 +320,60 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 " %%    百分号
 " %L    当前文件总行数
 
-set laststatus=2                          " 2为总显示最后一个窗口的状态行
+set laststatus=2                          
+" 2为总显示最后一个窗口的状态行
 " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
 " 0不显示最后一个窗口的状态行
 
-set cmdheight=2             " 命令行（在状态行下）的高度，默认为1，这里是2
 
 
 " 将制表符扩展为空格
-set expandtab                "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
-set laststatus=2            "显示当前编辑文件名
-set cursorline              "光标所在行一横线
+set expandtab                
+"由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
 
-set cursorcolumn              "光标所在行一竖线
+"显示当前编辑文件名
+set laststatus=2            
 
-set guioptions-=T           " 隐藏工具栏
-set guioptions-=m           " 隐藏菜单栏
+"光标所在行一横线
+set cursorline              
+
+set cursorcolumn              
+"光标所在行一竖线
+
+" " 隐藏工具栏
+" set guioptions-=T          
+" " 隐藏菜单栏
+" set guioptions-=m           
 
 
-set showcmd                    " 输入的命令显示出来，看的清楚些
+" 输入的命令显示出来，看的清楚些
+set showcmd                    
+
+
+" 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=2
+
+"打开状态栏标尺
 set showmode
-set ruler                               "打开状态栏标尺
+
+set ruler                               
 " 设置编辑时制表符占用空格数
 set tabstop=4
+
 set backspace=2
-set confirm                              "在处理未保存或只读文件的时候，弹出确认
-set ignorecase                          "忽略大小写
-setlocal noswapfile                     "不要生成swp文件
-set whichwrap+=<,>,b,s,[,]             "允许backspace和光标跨越行边界
+
+set confirm                              
+"在处理未保存或只读文件的时候，弹出确认
+
+"忽略大小写
+set ignorecase                          
+
+" 不要生成 swap 文件，当 buffer 被丢弃的时候隐藏它 
+setlocal noswapfile 
+set bufhidden=hide                   
+
+"允许backspace和光标跨越行边界
+set whichwrap+=<,>,b,s,[,]             
 
 
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
@@ -363,6 +476,29 @@ endfunction
 
 " ======= 设置当文件被外部改变的时侯自动读入文件 ======= "
 
+
+
+"重新打开已创建的文件时自动定位光标到上次关闭文件时的位置,包括具体的列，如果只需要定位到行，不需要列，则把g`(右撇)改为g'(左撇)
+if has("autocmd")
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
+" 能够漂亮地显示.NFO文件
+" set encoding=utf-8
+function! SetFileEncodings(encodings)
+    let b:myfileencodingsbak=&fileencodings
+    let &fileencodings=a:encodings
+endfunction
+function! RestoreFileEncodings()
+    let &fileencodings=b:myfileencodingsbak
+    unlet b:myfileencodingsbak
+endfunction
+
+au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
+au BufReadPost *.nfo call RestoreFileEncodings()
+
+" 高亮显示普通txt文件（需要txt.vim脚本）
+au BufRead,BufNewFile *  setfiletype txt
 
 
 """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
@@ -741,7 +877,7 @@ noremap <F6> :!ctags -R<CR>
 " 设置 tagbar 使用的 ctags 的插件，必须要设置对
 
 let g:tagbar_ctags_bin='/usr/bin/ctags'
-" 设置 tagbar 的窗口宽度 
+" 设置 tagbar 的窗口宽度
 let g:tagbar_width=30
 " 设置 tagbar 的窗口显示的位置，为右边
 let g:tagbar_left = 1
@@ -752,7 +888,7 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 " map <F4> :TagbarToggle<CR>
 
 " 将开启tagbar的快捷键设置为　<Leader>tb
-nmap <Leader>tb :TagbarToggle<CR>  
+nmap <Leader>tb :TagbarToggle<CR>
 nmap <F10> :TagbarToggle<CR>
 map <F10> :TagbarToggle<CR>
 map! <F10> <Esc> :TagbarToggle<CR>
@@ -795,10 +931,10 @@ let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 
 " 显示taglist菜单
-" let Tlist_Show_Menu=1 
+" let Tlist_Show_Menu=1
 
 " 鼠标单击跳转到tag定义, 要开启鼠标功能
-let Tlist_Use_SingleClick=1  
+let Tlist_Use_SingleClick=1
 
 "taglist窗口显示在右侧，缺省为左侧
 " let Tlist_Use_Right_Window = 1
@@ -1011,21 +1147,21 @@ let g:openbrowser_search_engines = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""vim-autoformat格式化代码配置""""""""""""""""""""""""""""""""""""""""
-" sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify 
+" sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify
 
 "开启详细模式便于查错
 let g:autoformat_verbosemode=1
 "设置发生保存文件时执行格式化
-" au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat 
+" au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat
 
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 autocmd FileType vim,tex let b:autoformat_autoindent=0
-:retab 
+:retab
 
 " 我比较喜欢 google 风格的代码
-" let g:formatdef_clangformat_google = '"clang-format -style google -"' 
+" let g:formatdef_clangformat_google = '"clang-format -style google -"'
 " let g:formatters_c = ['clangformat_google']
 
 let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
@@ -1349,10 +1485,10 @@ let NERDTreeWinPos="right"
 let NERDTreeShowBookmarks=1
 
 "光标自动显示在编辑区
-autocmd VimEnter * wincmd w 
+autocmd VimEnter * wincmd w
 
 " 设置宽度
-let NERDTreeWinSize=16
+let NERDTreeWinSize=25
 
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
@@ -1410,7 +1546,7 @@ let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
 "-----------------------------刷新-------------------------
 " R 刷新当前根目录
-" r 刷新当前目录 
+" r 刷新当前目录
 
 "-----------------------------目录-------------------------
 " o 打开 \ 关闭文件或目录，打开文件时光标会跳到编辑区域；
@@ -1536,15 +1672,15 @@ let s:rspec_red = "FE405F"
 let s:git_orange = "F54D27"
 let s:gray = "808A87"
 
-let g:NERDTreeExtensionHighlightColor = {} 
+let g:NERDTreeExtensionHighlightColor = {}
 " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['o'] = s:gray 
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray
 " sets the color of o files to blue
-let g:NERDTreeExtensionHighlightColor['h'] = s:blue 
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue
 " sets the color of h files to blue
-let g:NERDTreeExtensionHighlightColor['c'] = s:green 
+let g:NERDTreeExtensionHighlightColor['c'] = s:green
 " sets the color of c files to blue
-let g:NERDTreeExtensionHighlightColor['cpp'] = s:green 
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green
 " sets the color of cpp files to blue
 let g:NERDTreeExtensionHighlightColor['css'] = s:purple
 
@@ -1560,15 +1696,15 @@ let g:NERDTreeExtensionHighlightColor['java'] = s:brown
 
 let g:NERDTreeExtensionHighlightColor['php'] = s:brown
 
-let g:NERDTreeExtensionHighlightColor['c++'] = s:green 
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
-" vim 的多文档编辑涉及三个概念:buffer、window、tab。vim 把加载进内存的文件叫做 buffer,buffer 不一定可见； 
+" vim 的多文档编辑涉及三个概念:buffer、window、tab。vim 把加载进内存的文件叫做 buffer,buffer 不一定可见；
 " 若要 buffer 可见，则必须通过 window 作为载体呈现；同个看面上的多个 window 组合成一个 tab。
-" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer 
+" vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer
 " 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
 
 " Tab : 向前循环切换到每个buffer上
@@ -1915,11 +2051,7 @@ let g:airline#extensions#tabline#formatter = 'default'  "formater
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 
-" 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
-if has('win32')
-    set guifont=Hermit:h13
-    set guifontwide=Microsoft_YaHei_Mono:h12
-endif
+
 
 
 if !exists('g:airline_symbols')
@@ -2485,7 +2617,6 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 " " color scheme (双引号开头的行表示注释)
 
-" set t_Co=256
 
 " colo molokai
 
@@ -2555,102 +2686,104 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 "https://blog.csdn.net/cp3alai/article/details/45509459
 "https://blog.csdn.net/rainysia/article/details/7419839
 
-hi BadWhitespace  ctermfg=gray ctermbg=226  
+hi BadWhitespace  ctermfg=15 ctermbg=15
 hi BadWhitespace  guifg= gray guibg=darkred
+
 "任何注释
-hi Comment  guifg=#7C7C7C guibg=NONE gui=NONE   ctermfg=darkgray ctermbg=NONE   cterm=NONE
+hi Comment     ctermfg=darkgray ctermbg=16   cterm=NONE
+hi Comment  guifg=#7C7C7C guibg=#000000 gui=NONE
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
-hi Identifier   ctermfg=202 cterm=bold  
+hi Identifier   ctermfg=202 cterm=bold
 hi Identifier   guifg=#EE7600 cterm=bold
 
 
 " 常量的颜色，如真假，数字等
-hi Constant ctermfg=4 
-hi Constant guifg=#0000CD 
+hi Constant ctermfg=4
+hi Constant guifg=#0000CD
 
 "Statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if,for,return等的颜色
-hi Statement   ctermfg=1   cterm=bold  
-hi Statement   guifg=#FF1493   cterm=bold  
+hi Statement   ctermfg=1   cterm=bold
+hi Statement   guifg=#FF1493   cterm=bold
 
 " hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
 
 
 "需要突出的文本，HTML 链接
-hi Underlined      ctermfg=244   cterm=underline  
-hi Underlined      guifg=#D3D3D3   cterm=underline  
+hi Underlined      ctermfg=244   cterm=underline
+hi Underlined      guifg=#D3D3D3   cterm=underline
 
 "通用预处理命令
-hi  PreProc ctermfg=118  ctermbg=16 cterm=bold  
-hi  PreProc guifg=#00FF7F  guibg=#000000 cterm=bold  
+hi  PreProc ctermfg=118  ctermbg=16 cterm=bold
+hi  PreProc guifg=#00FF7F  guibg=#000000 cterm=bold
 
 "预处理命令 #include
-hi Include ctermfg=13  ctermbg=16  cterm=bold  
-hi Include guifg=#FF00FF  guibg=#000000  cterm=bold  
+hi Include ctermfg=13  ctermbg=16  cterm=bold
+hi Include guifg=#FF00FF  guibg=#000000  cterm=bold
 
 "预处理命令 #define
-hi Define ctermfg=81  ctermbg=16    cterm=bold  
-hi Define guifg=#00BFFF  guibg=#000000    cterm=bold  
+hi Define ctermfg=81  ctermbg=16    cterm=bold
+hi Define guifg=#00BFFF  guibg=#000000    cterm=bold
 
 "预处理命令 #if、#else、#endif
-hi PreCondit ctermfg=161   cterm=bold  
-hi PreCondit guifg=#D02090   cterm=bold  
+hi PreCondit ctermfg=161   cterm=bold
+hi PreCondit guifg=#D02090   cterm=bold
 
 "等同于 Define
-hi Macro ctermfg=161  ctermbg=16  cterm=bold  
-hi Macro guifg=#EE1289    gui=bold  
+hi Macro ctermfg=161  ctermbg=16  cterm=bold
+hi Macro guifg=#EE1289    gui=bold
 
 "一个 typedef
-hi Typedef ctermfg=51     cterm=bold  
-hi Typedef guifg=#00F5FF     gui=bold  
+hi Typedef ctermfg=51     cterm=bold
+hi Typedef guifg=#00F5FF     gui=bold
 
 "struct、union、enum 等
-hi Structure ctermfg=51    ctermbg=16   cterm=bold  
-hi Structure guifg=#00F5FF  guibg=#000000   gui=bold  
+hi Structure ctermfg=51    ctermbg=16   cterm=bold
+hi Structure guifg=#00F5FF  guibg=#000000   gui=bold
 
 "这里可以使用 CTRL-]
-hi Tag             ctermfg=161  cterm=bold  
-hi Tag             guifg=#FF0000  gui=bold  
+hi Tag             ctermfg=161  cterm=bold
+hi Tag             guifg=#FF0000  gui=bold
 
 "任何特殊符号
-hi Special         ctermfg=81  ctermbg=232  
-hi Special         guifg=#00FFFF    
+hi Special         ctermfg=81  ctermbg=232
+hi Special         guifg=#00FFFF
 
 
 "常数中的特殊字符
-hi SpecialChar ctermfg=161 ctermbg=16   cterm=bold  
-hi SpecialChar guifg=#B22222   gui=bold  
+hi SpecialChar ctermfg=161 ctermbg=16   cterm=bold
+hi SpecialChar guifg=#B22222   gui=bold
 
 "注释里的特殊字符
-hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold  
-hi SpecialComment guifg=#B22222  gui=bold  
+hi SpecialComment ctermfg=160  ctermbg=16  cterm=bold
+hi SpecialComment guifg=#B22222  gui=bold
 
 "特殊键，字符和'listchars'
-hi SpecialKey      ctermfg=81  cterm=bold  
-hi SpecialKey      guifg=#00FFFF  gui=bold  
+hi SpecialKey      ctermfg=81  cterm=bold
+hi SpecialKey      guifg=#00FFFF  gui=bold
 
 "任何需要特殊注意的部分
-hi Todo ctermfg=52  ctermbg=16  cterm=none  
-hi Todo guifg=#8B1A1A    gui=none  
+hi Todo ctermfg=52  ctermbg=16  cterm=none
+hi Todo guifg=#8B1A1A    gui=none
 
 "需要注意的字符
-hi  Delimiter ctermfg=75    cterm=bold  
-hi  Delimiter guifg=#1E90FF    gui=bold  
+hi  Delimiter ctermfg=75    cterm=bold
+hi  Delimiter guifg=#1E90FF    gui=bold
 
 
 "任何有错的构造
-hi Error ctermfg=124   cterm=bold 
-hi Error guifg=#CD2626   gui=bold 
+hi Error ctermfg=124   cterm=bold
+hi Error guifg=#CD2626   gui=bold
 
 "try、catch、throw
-hi Exception ctermfg=52   cterm=bold  
-hi Exception guifg=#8B1A1A   gui=bold  
+hi Exception ctermfg=52   cterm=bold
+hi Exception guifg=#8B1A1A   gui=bold
 
 
 
 " 非当前窗口的状态行
-hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD  
-hi StatusLineNC  guifg=yellow   cterm=BOLD  
+hi StatusLineNC  ctermfg=yellow ctermbg=black  cterm=BOLD
+hi StatusLineNC  guifg=yellow   cterm=BOLD
 
 " 光标所在的字符
 hi Cursor           ctermfg=51  ctermbg=51
@@ -2658,222 +2791,221 @@ hi Cursor           ctermfg=51  ctermbg=51
 highlight Cursor guifg=white guibg=green
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine       ctermbg=234   cterm=underline  
-hi CursorLine       guibg=#1d251d   gui=underline  
- 
+hi CursorLine       ctermbg=234   cterm=underline
+hi CursorLine       guibg=#1d251d   gui=underline
+
 "  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234  
-hi CursorColumn      guibg=#1d251d  
+hi CursorColumn      ctermbg=234
+hi CursorColumn      guibg=#1d251d
 
 " 光标所在行的行号数字的颜色
-hi CursorLineNr    ctermfg=214   ctermbg=16   cterm=bold  
-hi CursorLineNr    guifg=#FFA500  guibg=#000000  gui=bold  
+hi CursorLineNr    ctermfg=214   ctermbg=16   cterm=bold
+hi CursorLineNr    guifg=#FFA500  guibg=#000000  gui=bold
 
 "置位 number 选项时的行号数字的颜色
 hi LineNr          ctermfg=46       ctermbg=16   cterm=bold
 hi LineNr          guifg=#00FF00    guibg=#000000  gui=bold
 
 "非活动标签页标签
-hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold  
-hi  TabLine   guifg=#EE1289      gui=bold  
+hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold
+hi  TabLine   guifg=#EE1289      gui=bold
 
 "没有标签的地方
-hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold  
-hi  TabLineFill   guifg=#00EE00    guibg=#696969         gui=bold  
+hi  TabLineFill   ctermfg=2     ctermbg=239         cterm=bold
+hi  TabLineFill   guifg=#00EE00    guibg=#696969         gui=bold
 
 "活动标签页标签
-hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold  
-hi  TabLineSel    guifg=#000000    guibg=#7CFC00         gui=bold  
+hi  TabLineSel    ctermfg=16    ctermbg=118         cterm=bold
+hi  TabLineSel    guifg=#000000    guibg=#7CFC00         gui=bold
 
 "if、then、else、endif、switch
-hi Conditional    ctermfg=11     cterm=bold    
-hi Conditional  guifg=#FFFF00         cterm=bold    
+hi Conditional    ctermfg=11     cterm=bold
+hi Conditional  guifg=#FFFF00         cterm=bold
 
 "for、do、while 等
-hi  Repeat      ctermfg=11           cterm=bold   
-hi  Repeat      guifg=#FFFF00        gui=bold   
+hi  Repeat      ctermfg=11           cterm=bold
+hi  Repeat      guifg=#FFFF00        gui=bold
 
 "case、default 等
-hi Label           ctermfg=229               cterm=bold  
-hi Label           guifg=#FFFF00               gui=bold  
+hi Label           ctermfg=229               cterm=bold
+hi Label           guifg=#FFFF00               gui=bold
 
 "int、long、char、float、double 等
-hi  Type   ctermfg=200     cterm=bold  
-hi  Type   guifg=   #FF1493     gui=bold  
+hi  Type   ctermfg=200     cterm=bold
+hi  Type   guifg=   #FF1493     gui=bold
 
 "一个布尔型常数: TRUE、false
-hi  Boolean ctermfg=129   cterm=bold  
-hi  Boolean guifg=#9400D3   gui=bold  
+hi  Boolean ctermfg=129   cterm=bold
+hi  Boolean guifg=#9400D3   gui=bold
 
 "一个字符常数: 'c'、'\n'
-hi  Character ctermfg=124   cterm=bold  
-hi  Character guifg=#CD2626   gui=bold  
+hi  Character ctermfg=124   cterm=bold
+hi  Character guifg=#CD2626   gui=bold
 
 "一个数字常数: 234、0xff
-hi  Number ctermfg=124  cterm=bold  
-hi  Number guifg=#CD2626  gui=bold  
+hi  Number ctermfg=124  cterm=bold
+hi  Number guifg=#CD2626  gui=bold
 
 "一个字符串常数: 字符串
-hi String  ctermfg=28  
-hi String  guifg=#008B00  
+hi String  ctermfg=28
+hi String  guifg=#008B00
 
 "一个浮点常数: 2.3e10
-hi  Float ctermfg=124  cterm=bold  
-hi  Float guifg=#CD2626  gui=bold  
+hi  Float ctermfg=124  cterm=bold
+hi  Float guifg=#CD2626  gui=bold
 
 "static、register、volatile 等
-hi  StorageClass  ctermfg=11   cterm=bold  
-hi  StorageClass  guifg=#C0FF3E   gui=bold  
+hi  StorageClass  ctermfg=11   cterm=bold
+hi  StorageClass  guifg=#C0FF3E   gui=bold
 
 "函数名 (也包括: 类的方法名)
-hi  Function   ctermfg=202 cterm=bold  
-hi  Function   guifg=#FFA500 gui=bold  
+hi  Function   ctermfg=202 cterm=bold
+hi  Function   guifg=#FFA500 gui=bold
 
 "sizeof"、"+"、"*" 等
-hi  Operator ctermfg=226    cterm=bold  
-hi  Operator guifg=#FFFF00    gui=bold  
+hi  Operator ctermfg=226    cterm=bold
+hi  Operator guifg=#FFFF00    gui=bold
 "任何其它关键字
-hi   Keyword  ctermfg=11      cterm=bold  
-hi   Keyword  guifg=#FFFF00     gui=bold  
- 
-hi  cfunctions ctermfg=202  cterm=bold  
-hi  cfunctions guifg=#FFA500  gui=bold  
+hi   Keyword  ctermfg=11      cterm=bold
+hi   Keyword  guifg=#FFFF00     gui=bold
+
+hi  cfunctions ctermfg=202  cterm=bold
+hi  cfunctions guifg=#FFA500  gui=bold
 
 " "最近搜索模式的高亮
-hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15  
-hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF  
+hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
+hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF
 
 " 'incsearch' 高亮
-hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15  
-hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF 
+hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
+hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF
 
 "配对的括号
-hi   MatchParen cterm=underline ctermbg=NONE ctermfg=3  
-hi   MatchParen gui=underline guibg=NONE guifg=#EEC900 
+hi   MatchParen cterm=underline ctermbg=NONE ctermfg=3
+hi   MatchParen gui=underline guibg=NONE guifg=#EEC900
 
 "匹配的内容的颜色
-hi MatchParen  ctermfg=157 ctermbg=237 cterm=reverse  
-hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=reverse  
+hi MatchParen  ctermfg=157 ctermbg=237 cterm=reverse
+hi MatchParen guifg=#d0ffc0  guibg=#2f2f2f gui=reverse
 
 " 调试语句
-hi Debug           ctermfg=225               cterm=bold  
-hi Debug           guifg=#FFC1C1               gui=bold  
+hi Debug           ctermfg=225               cterm=bold
+hi Debug           guifg=#FFC1C1               gui=bold
 
 "diff: 增加的行
-hi DiffAdd                     ctermbg=24  
-hi DiffAdd                     guibg=#00868B  
+hi DiffAdd                     ctermbg=24
+hi DiffAdd                     guibg=#00868B
 
 "diff: 改变的行
-hi DiffChange      ctermfg=181    ctermbg=239  
-hi DiffChange      guifg=#DA70D6      guibg=    #8B8989  
+hi DiffChange      ctermfg=181    ctermbg=239
+hi DiffChange      guifg=#DA70D6      guibg=    #8B8989
 
 "diff: 删除的行
-hi DiffDelete      ctermfg=162          ctermbg=53  
-hi DiffDelete      guifg=#D02090         guibg=#8B2323  
+hi DiffDelete      ctermfg=162          ctermbg=53
+hi DiffDelete      guifg=#D02090         guibg=#8B2323
 
 "diff: 改变行里的改动文本
-hi DiffText                    ctermbg=102   cterm=bold  
-hi DiffText                    guibg=#6A5ACD       gui=bold  
+hi DiffText                    ctermbg=102   cterm=bold
+hi DiffText                    guibg=#6A5ACD       gui=bold
 
 "Nerdtree目录树颜色
-hi Directory       ctermfg=46               cterm=bold  
-hi Directory       guifg=#00FF00               gui=bold  
+hi Directory       ctermfg=46               cterm=bold
+hi Directory       guifg=#00FF00               gui=bold
 
 " "命令行上的错误信息 <!--more-->
-hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold  
-hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold  
+hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold
+hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold
 
 "用于关闭的折叠的行
-hi Folded          ctermfg=29  ctermbg=16  
-hi Folded          guifg=#66CD00    
+hi Folded          ctermfg=29  ctermbg=16
+hi Folded          guifg=#66CD00
 
-hi Function        ctermfg=118   cterm=bold  
-hi Function        guifg=#66CD00   gui=bold  
+hi Function        ctermfg=118   cterm=bold
+hi Function        guifg=#66CD00   gui=bold
 "hi Identifier      ctermfg=208
-hi Ignore          ctermfg=244  ctermbg=16  cterm=bold  
-hi Ignore          guifg=#BEBEBE    gui=bold  
+hi Ignore          ctermfg=244  ctermbg=16  cterm=bold
+hi Ignore          guifg=#BEBEBE    gui=bold
 
 "配对的括号
-hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold  
-hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold  
+hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold
+hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold
 
 " vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
-hi ModeMsg         ctermfg=202  cterm=bold   
-hi ModeMsg         guifg=#CD9B1D  gui=bold   
+hi ModeMsg         ctermfg=202  cterm=bold
+hi ModeMsg         guifg=#CD9B1D  gui=bold
 
 "|more-prompt|，文件更改后:q提示是否保存的颜色
-hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold    
-hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD     
+hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
+hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
 
 " complete menu
-hi Pmenu      ctermfg=0       ctermbg=243       
-hi Pmenu      guifg=#000000    guibg=darkgrey       
+hi Pmenu      ctermfg=0       ctermbg=243
+hi Pmenu      guifg=#000000    guibg=darkgrey
 
 "弹出菜单选中项目
-hi    PmenuSel   ctermfg=196   ctermbg=251        
-hi    PmenuSel   guifg=darkgrey guibg=black        
+hi    PmenuSel   ctermfg=196   ctermbg=251
+hi    PmenuSel   guifg=darkgrey guibg=black
 
 "弹出菜单滚动条。
-hi    PmenuSbar        ctermbg=15   
-hi    PmenuSbar        guibg=#FFFFFF   
+hi    PmenuSbar        ctermbg=15
+hi    PmenuSbar        guibg=#FFFFFF
 
 "弹出菜单滚动条的拇指, 和上面一一对应
-hi    PmenuThumb      ctermbg=34    cterm=bold  
-hi    PmenuThumb      guibg=#228B22    gui=bold  
+hi    PmenuThumb      ctermbg=34    cterm=bold
+hi    PmenuThumb      guibg=#228B22    gui=bold
 
 " 提示(请按Enter或其他命令继续)的颜色
-hi Question        ctermfg=11  ctermbg=16   
-hi Question        guifg=#EEEE00  guibg=#000000   
+hi Question        ctermfg=11  ctermbg=16
+hi Question        guifg=#EEEE00  guibg=#000000
 
-" marks column  
-hi SignColumn      ctermfg=118  ctermbg=235  
-hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE  
-    
+" marks column
+hi SignColumn      ctermfg=118  ctermbg=235
+hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
+
 "static、register、volatile 等
-hi StorageClass    ctermfg=208  
-hi StorageClass    guifg=#CDAD00  
+hi StorageClass    ctermfg=208
+hi StorageClass    guifg=#CDAD00
 
 ":set all 等输出的标题
-hi Title           ctermfg=166  cterm=bold  
-hi Title           guifg=#CD9B1D  gui=bold  
+hi Title           ctermfg=166  cterm=bold
+hi Title           guifg=#CD9B1D  gui=bold
 
 "任何需要特殊注意的部分
-hi Todo            ctermfg=231 ctermbg=232   cterm=bold     
-hi Todo            guifg=#FFF0F5 guibg=#363636   cterm=bold     
+hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+hi Todo            guifg=#FFF0F5 guibg=#363636   cterm=bold
 
 "分离垂直分割窗口的列
-hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold     
-hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold     
+hi VertSplit       ctermfg=16   ctermbg=10   cterm=bold
+hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
 "可视模式的选择区
-hi Visual                      ctermbg=235  
-hi Visual                     guibg=#838B83  
+hi Visual                      ctermbg=235
+hi Visual                     guibg=#838B83
 
-hi VisualNOS                   ctermbg=238  
-hi VisualNOS                   guibg=#8B8386  
+hi VisualNOS                   ctermbg=238
+hi VisualNOS                   guibg=#8B8386
 
 " "警告消息
-hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold    
-hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold    
+hi WarningMsg      ctermfg=231   ctermbg=16   cterm=bold
+hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold
 
 "当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
-hi StatusLine ctermfg=15    ctermbg=16  cterm=bold 
-hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold 
+hi StatusLine ctermfg=15    ctermbg=16  cterm=bold
+hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold
 
 " wildmenu补全的当前匹配
-hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold   
+hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold
 hi WildMenu    guifg=#00FF00   guibg=#000000  gui=BOLD
 
 "整体字体的颜色
-hi Normal       term=bold      ctermfg=231   ctermbg=16        cterm=bold  
-hi Normal       term=bold      guifg=#BEBEBE  guibg=#000000    cterm=bold  
+hi Normal       term=bold      ctermfg=231   ctermbg=16        cterm=bold
+hi Normal       term=bold      guifg=#BEBEBE  guibg=#000000    cterm=bold
 
 
 " 窗口尾部的'~'和 '@'
-hi NonText         ctermfg=1  cterm=bold    
-hi NonText         guifg=#FF0000  cterm=bold    
+hi NonText         ctermfg=1  cterm=bold
+hi NonText         guifg=#FF0000  cterm=bold
 
-set t_Co=256
 
 if has("spell")
     "拼写检查器不能识别的单词
@@ -2985,13 +3117,13 @@ nnoremap <C-L> <C-W>L
 nnoremap <C-H> <C-W>H
 
 
-" 多窗口分屏时改变窗口大小 +/- 3 
+" 多窗口分屏时改变窗口大小 +/- 3
 nnoremap <M-left>  :vertical resize -2<cr>
 nnoremap <M-down>  :resize +2<cr>
 nnoremap <M-up>    :resize -2<cr>
 nnoremap <M-right> :vertical resize +2<cr>
 
-
+" 注：M 即 Alt 键
 
 "#################################### 多标签页切换####################################
 noremap <silent><tab>m :tabnew<cr>
@@ -3032,19 +3164,19 @@ noremap <leader>0 :tablast<CR>
 " :tabo       关闭除当前标签页的所有其他的标签
 " :tabn或gt   移动到下一个标签页。
 " :tabp或gT   移动到上一个标签页。
-" {i}gt       移动到第i个标签页 
+" {i}gt       移动到第i个标签页
 
-""-----------------------美化标签栏-----------------------
+"###############################美化标签栏#######################################
 " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
 " highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
 " highlight TabLineSel     term=bold         cterm=bold   ctermbg=Red  ctermfg=yellow
 
-" 不显示标签栏 
-" set showtabline=0 
-" 这是默认设置，意思是，在创建标签页后才显示标签栏。 
-set showtabline=1 
-" 总是显示标签栏 
-" set showtabline=2 
+" 不显示标签栏
+" set showtabline=0
+" 这是默认设置，意思是，在创建标签页后才显示标签栏。
+set showtabline=1
+" 总是显示标签栏
+" set showtabline=2
 
 " 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
 set wildmenu wildmode=full
@@ -3093,7 +3225,7 @@ if exists("+showtabline")
 
             for bufnr in buflist
                 if getbufvar(bufnr, "&modified")
-                    let s .= '+' 
+                    let s .= '+'
                     break
                 endif
             endfor
@@ -3125,35 +3257,82 @@ if exists("+showtabline")
 endif
 
 "-----------------------美化标签栏结束-----------------------
+" 设置鼠标运行模式为 WINDOWS 模式 
+behave mswin 
 
+" 平台判断
+function! GetSystem()
+    if (has("win32") || has("win95") || has("win64") || has("win16"))
+        return "windows"
+    elseif has("unix")
+        return "linux"
+    elseif has("mac")
+        return "mac"
+    endif
+endfunction
+
+
+" =============================================================================
+"        << 判断操作系统是 Windows 还是 Linux 和判断是终端还是 Gvim >>
+" =============================================================================
+
+
+" -----------------------------------------------------------------------------
+"  < 判断操作系统是否是 Windows 还是 Linux >
+" -----------------------------------------------------------------------------
+let g:iswindows = 0
+let g:islinux = 0
+if(has("win32") || has("win64") || has("win95") || has("win16"))
+    let g:iswindows = 1
+else
+    let g:islinux = 1
+endif
+
+
+" -----------------------------------------------------------------------------
+"  < 判断是终端还是 Gvim >
+" -----------------------------------------------------------------------------
+if has("gui_running")
+    let g:isGUI = 1
+else
+    let g:isGUI = 0
+endif
+
+" -----------------------------------------------------------------------------
+"  < Windows Gvim 默认配置> 做了一点修改
+" -----------------------------------------------------------------------------
+if (g:iswindows && g:isGUI)
+    source $VIMRUNTIME/vimrc_example.vim
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
+    set diffexpr=MyDiff()
+    function MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+            if &sh =~ '\<cmd'
+                let cmd = '""' . $VIMRUNTIME . '\diff"'
+                let eq = '"'
+            else
+                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            endif
+        else
+            let cmd = $VIMRUNTIME . '\diff'
+        endif
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
 
 "######################################################################################
 
-" 实现按 \sa 全选当前文件所有文本的效果
-map <leader>sa ggVG"
-
-
-"重新打开已创建的文件时自动定位光标到上次关闭文件时的位置,包括具体的列，如果只需要定位到行，不需要列，则把g`(右撇)改为g'(左撇)
-if has("autocmd")
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-endif
-
-" 能够漂亮地显示.NFO文件
-" set encoding=utf-8
-function! SetFileEncodings(encodings)
-    let b:myfileencodingsbak=&fileencodings
-    let &fileencodings=a:encodings
-endfunction
-function! RestoreFileEncodings()
-    let &fileencodings=b:myfileencodingsbak
-    unlet b:myfileencodingsbak
-endfunction
-
-au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
-au BufReadPost *.nfo call RestoreFileEncodings()
-
-" 高亮显示普通txt文件（需要txt.vim脚本）
-au BufRead,BufNewFile *  setfiletype txt
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 "一键执行python代码
