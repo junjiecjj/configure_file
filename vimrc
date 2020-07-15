@@ -2975,10 +2975,15 @@ nnoremap <space> za
 " 用空格代替za进行折叠代码
 
 " " 移动窗口
+" Ctrl+shift+j当前窗口向上面移动
 nnoremap <C-J> <C-W>J
+" Ctrl+shift+k当前窗口向上方移动
 nnoremap <C-K> <C-W>K
+" Ctrl+shift+l 当前窗口向右边移动
 nnoremap <C-L> <C-W>L
+" Ctrl+shift+h当前窗口向左边移动
 nnoremap <C-H> <C-W>H
+
 
 " 多窗口分屏时改变窗口大小 +/- 3 
 nnoremap <M-left>  :vertical resize -2<cr>
