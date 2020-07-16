@@ -332,8 +332,6 @@ set laststatus=2
 " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
 " 0不显示最后一个窗口的状态行
 
-
-
 " 将制表符扩展为空格
 set expandtab                
 "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
@@ -2801,12 +2799,12 @@ hi CursorColumn      ctermbg=234
 hi CursorColumn      guibg=#1d251d
 
 " 光标所在行的行号数字的颜色
-hi CursorLineNr    ctermfg=214   ctermbg=16   cterm=bold
-hi CursorLineNr    guifg=#FFA500  guibg=#000000  gui=bold
+hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
+hi CursorLineNr    guifg=#00FF00  guibg=#000000  gui=bold
 
 "置位 number 选项时的行号数字的颜色
-hi LineNr          ctermfg=46       ctermbg=16   cterm=bold
-hi LineNr          guifg=#00FF00    guibg=#000000  gui=bold
+hi LineNr          ctermfg=244       ctermbg=16   cterm=bold
+hi LineNr          guifg=#CDC9C9    guibg=#000000  gui=bold
 
 "非活动标签页标签
 hi  TabLine   ctermfg=196   ctermbg=16   cterm=bold
