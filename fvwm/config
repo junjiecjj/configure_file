@@ -665,6 +665,7 @@ Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab
 
 DestroyMenu MenuSysConfig
 AddToMenu   MenuSysConfig "系统工具" Title
+Test (x font-manager)  + "字体管理  %$[fvwm_exicons2]/font.png%" Exec exec font-manager
 Test (x systemsettings5)  + "KDE系统设置" Exec exec systemsettings5
 Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-center
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
