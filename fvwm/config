@@ -78,6 +78,8 @@ InfoStoreAdd   urxvt         urxvt
 InfoStoreAdd   gnome-term    gnome-terminal
 InfoStoreAdd   kde-terminal  konsole
 InfoStoreAdd   terminator    terminator
+InfoStoreAdd   terminator    cool-retro-term
+
 #############添加环境变量##################
 SetEnv fvwm_home           $[HOME]/.fvwm
 SetEnv fvwm_img            $[fvwm_home]/images
@@ -1016,6 +1018,8 @@ Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
+Silent Key u  A   CM     Exec exec $[infostore. cool-retro-term]
+
 
 #Ctrl+Alt+n打开文件管理器
 #Silent key f A CM Exec exec   dolphin &
@@ -1557,7 +1561,7 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 1) `Exec exec xterm`, \
   Action(Mouse 2) `Exec exec urxvt`, \
   Action(Mouse 3) `Exec exec terminator`, \
-  Action(Mouse 4) `Exec exec gnome-terminal`, \
+  Action(Mouse 4) `Exec exec  cool-retro-term`, \
   Action(Mouse 5) `Exec exec konsole`, )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
