@@ -11,6 +11,11 @@ filetype indent on           " 为特定文件类型载入相关缩进文件
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
+"PluginInstall:安装插件
+"PluginClean:移除不要的插件
+"PluginUpdate:更新插件的
+"PluginList:列出所有安装的插件
+"PluginSearch:查找插件
 
 "let Vundle manage Vundle,require
 Plugin 'VundleVim/Vundle.vim'
@@ -1580,8 +1585,21 @@ let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 "nerdtree-git-plugin 配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:NERDTreeShowIgnoredStatus =1
-let g:NERDTreeIndicatorMapCustom = {
+" let g:NERDTreeShowIgnoredStatus =1
+" let g:NERDTreeIndicatorMapCustom = {
+"             \ "Modified"  : "✹",
+"             \ "Staged"    : "✚",
+"             \ "Untracked" : "✭",
+"             \ "Renamed"   : "➜",
+"             \ "Unmerged"  : "═",
+"             \ "Deleted"   : "✖",
+"             \ "Dirty"     : "✗",
+"             \ "Clean"     : "✔︎",
+"             \ 'Ignored'   : '☒',
+"             \ "Unknown"   : "?"
+"             \ }
+let g:NERDTreeGitStatusShowIgnored =1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
             \ "Untracked" : "✭",
@@ -1593,7 +1611,6 @@ let g:NERDTreeIndicatorMapCustom = {
             \ 'Ignored'   : '☒',
             \ "Unknown"   : "?"
             \ }
-
 
 let g:NERDSpaceDelims =1
 let g:NERDDefaultAlign = 'left'
