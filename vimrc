@@ -21,6 +21,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
+"Plugin 'kshenoy/vim-signature'
+"Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
 Plugin 'matze/vim-move'                      " 代码块移动
@@ -131,25 +133,25 @@ let python_highlight_all=1
 let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
 "显示行号
-set number                      
+set number
 
 "高亮显示匹配的括号
-set showmatch                  
+set showmatch
 
 " 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3              
+set scrolloff=3
 
 "为c语言自动缩进
-set smartindent              
+set smartindent
 
 " 使用C样式的缩进
-set cindent                  
+set cindent
 
 "自动缩进, 继承前一行的缩进方式，适用于多行注释
-set autoindent               
+set autoindent
 
-" 字符间插入的像素行数目 
-set linespace=0 
+" 字符间插入的像素行数目
+set linespace=0
 
 " 设置 VIM 字体及大小
 " Linux/Unix 命令格式：set guifont = 字体 +\\+ 空格 + 字体大小
@@ -205,7 +207,7 @@ set path=.,"E:/Web/htdocs",,
 " set listchars=tab:>-,trail:-
 
 
-" 输入:set list 命令是应该显示些啥？ 
+" 输入:set list 命令是应该显示些啥？
 set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
 " 定义快捷键关闭当前分割窗口
@@ -218,44 +220,44 @@ nmap <Leader>w :w<CR>
 
 "折叠
 "允许折叠
-set foldenable                         
+set foldenable
 
 "更具每行的缩进开启折叠 ，manual为手动折叠
-set foldmethod=indent                  
+set foldmethod=indent
 
 set foldlevel=100
 
 "自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
 " set textwidth=70                   "来设置 n
 "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用
-set  nowrap                             
+set  nowrap
 "不自动折行
-" set wrap                              
+" set wrap
 
 "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
-set  linebreak         
+set  linebreak
 
 "指定折行处与编辑窗口的右边缘之间空出的字符数。"
-set  wrapmargin=2    
+set  wrapmargin=2
 
 "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
-set  sidescrolloff=15  
+set  sidescrolloff=15
 
 
-set  novisualbell     
+set  novisualbell
 "出错时，不要闪烁 set novisualbell 。
 
 "系统剪切板
-set clipboard+=unnamed                  
+set clipboard+=unnamed
 
 "不适用vi的键盘模式，使用vim自己的
-set nocompatible                       
+set nocompatible
 
 "搜索逐字符高亮
-set hlsearch                          
+set hlsearch
 
 " 开启增量搜索模式
-set incsearch                          
+set incsearch
 
 set ts=4
 
@@ -265,16 +267,16 @@ set ar
 set updatetime=1000
 
 
-set autoread                
+set autoread
 
 ""可使切换文件时，修改的文件被自动保存
-"set autowriteall                  
+"set autowriteall
 
-set autowrite                       
+set autowrite
 " 设置自动保存
 
 " 带有如下符号的单词不要被换行分割
-set iskeyword+=_,$,@,%,#,-        
+set iskeyword+=_,$,@,%,#,-
 
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=4
@@ -291,7 +293,7 @@ set shiftwidth=4
 :set guioptions+=b
 
 " " 隐藏/不隐藏工具栏
-set guioptions+=T          
+set guioptions+=T
 " " 隐藏/不隐藏菜单栏
 set guioptions+=m
 
@@ -332,27 +334,27 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 " %%    百分号
 " %L    当前文件总行数
 
-set laststatus=2                          
+set laststatus=2
 " 2为总显示最后一个窗口的状态行
 " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
 " 0不显示最后一个窗口的状态行
 
 " 将制表符扩展为空格
-set expandtab                
+set expandtab
 "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
 
 "显示当前编辑文件名
-set laststatus=2            
+set laststatus=2
 
 "光标所在行一横线
-set cursorline              
+set cursorline
 
-set cursorcolumn              
+set cursorcolumn
 "光标所在行一竖线
 
 
 " 输入的命令显示出来，看的清楚些
-set showcmd                    
+set showcmd
 
 
 " 命令行（在状态行下）的高度，默认为1，这里是2
@@ -361,24 +363,24 @@ set cmdheight=2
 "打开状态栏标尺
 set showmode
 
-set ruler                               
+set ruler
 " 设置编辑时制表符占用空格数
 set tabstop=4
 
 set backspace=2
 
-set confirm                              
+set confirm
 "在处理未保存或只读文件的时候，弹出确认
 
 "忽略大小写
-set ignorecase                          
+set ignorecase
 
-" 不要生成 swap 文件，当 buffer 被丢弃的时候隐藏它 
-setlocal noswapfile 
-set bufhidden=hide                   
+" 不要生成 swap 文件，当 buffer 被丢弃的时候隐藏它
+setlocal noswapfile
+set bufhidden=hide
 
 "允许backspace和光标跨越行边界
-set whichwrap+=<,>,b,s,[,]             
+set whichwrap+=<,>,b,s,[,]
 
 
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
@@ -2656,7 +2658,7 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""'""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""""""""""""""""""'""'""
 hi clear
 
 if version > 580
@@ -3274,8 +3276,8 @@ if exists("+showtabline")
 endif
 
 "-----------------------美化标签栏结束-----------------------
-" 设置鼠标运行模式为 WINDOWS 模式 
-" behave mswin 
+" 设置鼠标运行模式为 WINDOWS 模式
+" behave mswin
 
 " 平台判断
 function! GetSystem()
@@ -3419,7 +3421,7 @@ let autosave=10
 
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头
-autocmd BufNewFile *.py,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
+autocmd BufNewFile *.py,  *.cpp, *.c,  *.[ch],  *.sh,  *.java exec ":call SetTitle()"
 ""定义函数SetTitle，自动插入文件头
 function! SetTitle()
     "如果文件类型为.sh文件
