@@ -505,18 +505,79 @@ au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
 au BufReadPost *.nfo call RestoreFileEncodings()
 
 " 高亮显示普通txt文件（需要txt.vim脚本）
-au BufRead,BufNewFile *  setfiletype txt
+"au BufRead,BufNewFile *  setfiletype txt
 
+""""""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
+" au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
+" set tags=tags
+" set autochdir
+" "   let mapleader="\<Space>"
+" nnoremap <leader><Space>i :VerilogFollowInstance<CR>
+" nnoremap <leader><Space>I :VerilogFollowPort<CR>
+" nnoremap <leader><Space>u :VerilogGotoInstanceStart<CR>
 
-let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
-let g:go_debug=['shell-commands']
-let g:go_metalinter_command = "golangci-lint" "语法校验
-let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
+" let b:match_ignorecase=0
+" let b:match_words=
+"   \ '\<begin\>:\<end\>,' .
+"   \ '\<if\>:\<else\>,' .
+"   \ '\<module\>:\<endmodule\>,' .
+"   \ '\<class\>:\<endclass\>,' .
+"   \ '\<program\>:\<endprogram\>,' .
+"   \ '\<clocking\>:\<endclocking\>,' .
+"   \ '\<property\>:\<endproperty\>,' .
+"   \ '\<sequence\>:\<endsequence\>,' .
+"   \ '\<package\>:\<endpackage\>,' .
+"   \ '\<covergroup\>:\<endgroup\>,' .
+"   \ '\<primitive\>:\<endprimitive\>,' .
+"   \ '\<specify\>:\<endspecify\>,' .
+"   \ '\<generate\>:\<endgenerate\>,' .
+"   \ '\<interface\>:\<endinterface\>,' .
+"   \ '\<function\>:\<endfunction\>,' .
+"   \ '\<task\>:\<endtask\>,' .
+"   \ '\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
+"   \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
+"   \ '`ifdef\>:`else\>:`endif\>,'
 
-let g:go_version_warning = 1
+" "建立一个库
+" nmap <F6> <Esc>:!vlib work<CR>
+" "编译一个vhd/v文件
+" nmap <silent> <F7> :ModSimComp<cr><cr>
+" "------------------------------------------------------------------------------
+" "Function    : Model_Sim_Compile()
+"  "Description : Compile with ModelSim
+" "------------------------------------------------------------------------------
+" function Model_Sim_Compile()
+"     let l:file_type_temp = expand("%:e")
+"     if l:file_type_temp == "vhd"
+"         set makeprg=vcom\ -work\ work\ %
+"         execute ':make'
+"         execute ':cw'
+"     else
+"         if l:file_type_temp == "v"
+"             set makeprg=vlog\ -work\ work\ %
+"             execute ':make'
+"             execute ':cw'
+"         else
+"             echohl ErrorMsg
+"             echo "This filetype can't be compiled by modelsim vcom/vlog!"
+"             echohl None
+"         endif
+"     endif
+"  endfunction
+
+" "set error format
+"  set errorformat=\*\*\ %tRROR:\ %f(%l):\ %m,\*\*\ %tRROR:\ %m,\*\*\ %tARNING:\ %m,\*\*\ %tOTE:\ %m,%tRROR:\ %f(%l):\ %m,%tARNING\[%*[0-9]\]:\ %f(%l):\ %m,%tRROR:\ %m,%tARNING\[%*[0-9]\]:\ %m
+
+" """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
+
+" let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
+" let g:go_debug=['shell-commands']
+" let g:go_metalinter_command = "golangci-lint" "语法校验
+" let g:go_autodetect_gopath = 1
+" let g:go_list_type = "quickfix"
+
+" let g:go_version_warning = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -1120,7 +1181,7 @@ let g:openbrowser_search_engines = {
 " "设定clang库路径
 " let g:clang_use_library = 1
 " " let g:clang_periodic_quickfix=1
-" let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
+let g:clang_library_path = '/usr/lib/llvm-6.0/lib'
 " "补全预处理指令，宏和常数，默认为0，不补全
 " let g:clang_complete_macros = 1
 " "补全代码模式，比如循环等，默认为0，不补全
