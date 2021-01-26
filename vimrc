@@ -419,7 +419,7 @@ function! NumberToggle()
     else
         set relativenumber
     endif
-endfunc
+endfunction
 
 
 " ctrl-r进行相对行号/绝对行号切换
@@ -3361,7 +3361,7 @@ function! GetSystem()
         return "windows"
     elseif has("unix")
         return "linux"
-    elseif has("mac")
+    else has("mac")
         return "mac"
     endif
 endfunction
@@ -3495,7 +3495,8 @@ let autosave=10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 "新建.c,.h,.sh,.java文件，自动插入文件头，比如预处理命令，和编码设置。并且可以在每次修改后记录修改时间
-autocmd BufNewFile *.py,  *.cpp, *.v,  *.sv,  *.[ch],  *.sh,  *.java  exec ":call SetTitle()"
+autocmd BufNewFile *.py,*.cpp,*.v,*.sv,*.[ch],*.sh,*.java  exec ":call SetTitle()"
+"上面一行中*.py之间*.v除了逗号不能有空格
 autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 ""定义函数SetTitle，自动插入文件头
 function! SetTitle()
@@ -3525,7 +3526,7 @@ function! SetTitle()
         " call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d"))
         call append(line(".")+6, "\# mail: 2716705056@qq.com")
         call append(line(".")+7, "此程序的功能是：")
-        call append(line(".")+8, "'''")
+        call append(line(".")+8, "")
         call append(line(".")+9, "\#########################################################################")
         call append(line(".")+10, "import pandas as pd")
         call append(line(".")+11, "import numpy as np")
@@ -3549,9 +3550,9 @@ function! SetTitle()
         "call append(line(".")+1, ">> Author: chenjunjie")
         call append(line(".")+1, ">> Author: 陈俊杰")
         call append(line(".")+2, ">> Mail: 2716705056qq.com")
-        call append(line(".")+3, "  ")
+        call append(line(".")+3, " ")
         call append(line(".")+4, ">> Created Time: ".strftime("%c"))
-        call append(line(".")+5, "  ")
+        call append(line(".")+5, "")
         call append(line(".")+6, ">> 此程序的功能是：")
         call append(line(".")+7, "************************************************************************/")
         call append(line(".")+8, "")
@@ -3581,11 +3582,14 @@ function! SetTitle()
             call append(line(".")+22, "int main(int argc, char *argv[])")
             call append(line(".")+23, "{")
             call append(line(".")+24, "}")
+        else
+            call append(line(".")+9, " ")
+
         endif
     endif
     "新建文件后，自动定位到文件末尾
     autocmd BufNewFile * normal G
-endfunc
+endfunction
 
 
 function! SetLastModifiedTime(lineno)
