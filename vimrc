@@ -3540,10 +3540,10 @@ function! SetTitle()
         call setline(4, "\ *\ @mail: 2716705056@qq.com ")
         call setline(5, "\ *\ @File Name: ".expand("%"))
         call setline(6, "\ *\ @Created Time : ".strftime("%c"))
-        call setline(6, "\ *\  ")
-        call setline(7, "\ *\ @此程序的功能是:")
-        call setline(8, "\ */")
-        call setline(9,"")
+        call setline(7, "\ *\  ")
+        call setline(8, "\ *\ @此程序的功能是:")
+        call setline(9, "\ */")
+        call setline(10,"")
     else
         call setline(1, "/*************************************************************************")
         call append(line("."), ">> File Name: ".expand("%"))
@@ -3587,10 +3587,10 @@ function! SetTitle()
 
         endif
     endif
-    "新建文件后，自动定位到文件末尾
-    autocmd BufNewFile * normal G
 endfunction
 
+"新建文件后，自动定位到文件末尾
+autocmd BufNewFile * normal G
 
 function! SetLastModifiedTime(lineno)
     let modif_time = strftime( '%c', getftime(bufname('%')) )
