@@ -522,7 +522,11 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.sv,* set filetype=verilog_systemverilog
+au! BufNewFile,BufRead *.vh,*.vp,*.sv,*.svi,*.svh,*.svp set filetype verilog_systemverilog
+
+au! BufNewFile,BufRead *.v set filetype verilog_systemverilog.verilog
+
 set tags=tags
 set autochdir
 "   let mapleader="\<Space>"
@@ -551,6 +555,11 @@ let b:match_words=
   \ '\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
   \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
   \ '`ifdef\>:`else\>:`endif\>,'
+
+
+:ab zuhe always @(*)<Enter>begin<Enter>if ()begin<Enter><Enter>end<Enter>else begin<Enter><Enter>end<Enter>end
+:ab shixu always @(posedge clk_i or negedge rst_n_i)<Enter>begin<Enter>if ()begin<Enter>end<Enter>else begin<Enter>end<Enter>end
+:ab zhushi //
 
 "建立一个库
 nmap <F6> <Esc>:!vlib work<CR>
@@ -1932,8 +1941,10 @@ augroup END
 let g:ale_sign_column_always = 1
 let g:ale_set_highlights = 1
 "自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'    "⚡  ✗ ⚠ ● ▶
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '🔰'
+" let g:ale_sign_error = '✗'
+" let g:ale_sign_warning = '⚠'    "⚡  ✗ ⚠ ● ▶
 "在vim自带的状态栏中整合ale
 let g:ale_statusline_format = ['✗ %d', '⚠ %d', '✔ OK']
 "let g:ale_statusline_format =  ['⨉ %d', '⚠ %d', '⬥ ok']
