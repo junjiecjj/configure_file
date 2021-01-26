@@ -1,11 +1,10 @@
 
-set nocompatible                             " required
-:filetype on                                  " required开启探测文件类型,on off
-filetype plugin on           " 载入文件类型插件
-filetype indent on           " 为特定文件类型载入相关缩进文件
 
-" 打开文件类型检测, 加了这句才可以用智能补全
-" filetype plugin indent on
+let g:polyglot_disabled = ['markdown.plugin']
+let g:polyglot_disabled = ['autoindent']
+let g:polyglot_disabled = ['sensible']
+let g:polyglot_disabled = ['ftdetect']
+
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -13,7 +12,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 "PluginInstall:安装插件
 "PluginClean:移除不要的插件
-"PluginUpdate:更新插件的
+"PluginUpdate:更新插件
 "PluginList:列出所有安装的插件
 "PluginSearch:查找插件
 
@@ -108,6 +107,14 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 "All of your Plugins must be added before the following line
 call vundle#end()
+
+set nocompatible                             " required
+filetype on                                  " required开启探测文件类型,on off
+filetype plugin on           " 载入文件类型插件
+filetype indent on           " 为特定文件类型载入相关缩进文件
+
+" 打开文件类型检测, 加了这句才可以用智能补全
+filetype plugin indent on
 
 let mapleader = '\'
 set t_Co=256
@@ -522,7 +529,7 @@ set autochdir
 nnoremap <leader><Space>i :VerilogFollowInstance<CR>
 nnoremap <leader><Space>I :VerilogFollowPort<CR>
 nnoremap <leader><Space>u :VerilogGotoInstanceStart<CR>
-
+set foldmethod=syntax
 let b:match_ignorecase=0
 let b:match_words=
   \ '\<begin\>:\<end\>,' .
@@ -553,7 +560,7 @@ nmap <silent> <F7> :ModSimComp<cr><cr>
 "Function    : Model_Sim_Compile()
  "Description : Compile with ModelSim
 "------------------------------------------------------------------------------
-function Model_Sim_Compile()
+function! Model_Sim_Compile()
     let l:file_type_temp = expand("%:e")
     if l:file_type_temp == "vhd"
         set makeprg=vcom\ -work\ work\ %
@@ -2726,6 +2733,8 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""""""""""""""""""'""'""
+
+"/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
 hi clear
 
 if version > 580
@@ -3489,7 +3498,7 @@ let autosave=10
 autocmd BufNewFile *.py,  *.cpp, *.v,  *.sv,  *.[ch],  *.sh,  *.java  exec ":call SetTitle()"
 autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 ""定义函数SetTitle，自动插入文件头
-func SetTitle()
+function! SetTitle()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
         call setline(1,"\#!/bin/bash")
@@ -3523,7 +3532,7 @@ func SetTitle()
         call append(line(".")+12, "import matplotlib.pyplot as plt")
         call append(line(".")+13, "import os, time")
         call append(line(".")+14, "")
-    if &filetype == 'java'
+    elseif &filetype == 'java'
         call setline(1, "//coding=utf8")
         call setline(2, "/**")
         call setline(3, "\ *\ @Author: 陈俊杰")
@@ -3579,26 +3588,28 @@ func SetTitle()
 endfunc
 
 
-
-function SetLastModifiedTime(lineno)
+function! SetLastModifiedTime(lineno)
     let modif_time = strftime( '%c', getftime(bufname('%')) )
     if a:lineno == "-1"
-    let line = getline(7)
+        let line = getline(7)
     else
-    let line = getline(a:lineno)
+        let line = getline(a:lineno)
     endif
+
     if line =~ '^sLast Modified'
-    let line = '>> Last Modified : '.modif_time
+        let line = '>> Last Modified : '.modif_time
     else
-    let line = '>> Last Modified : '.modif_time
+        let line = '>> Last Modified : '.modif_time
     endif
+
     if a:lineno == "-1"
-    call setline(7, line)
+        call setline(7, line)
     else
-    call append(a:lineno, line)
+        call append(a:lineno, line)
     endif
 endfunc
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 :set vb t_vb=
 "自动命令，每次写入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
