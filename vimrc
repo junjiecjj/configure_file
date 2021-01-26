@@ -1,6 +1,6 @@
 
 set nocompatible                             " required
-filetype on                                  " required开启探测文件类型,on off
+:filetype on                                  " required开启探测文件类型,on off
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
@@ -21,8 +21,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
-"Plugin 'kshenoy/vim-signature'
-"Plugin 'vhda/verilog_systemverilog.vim'
+Plugin 'kshenoy/vim-signature'
+Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
 Plugin 'matze/vim-move'                      " 代码块移动
@@ -505,69 +505,75 @@ au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
 au BufReadPost *.nfo call RestoreFileEncodings()
 
 " 高亮显示普通txt文件（需要txt.vim脚本）
-"au BufRead,BufNewFile *  setfiletype txt
+"au BufRead, BufNewFile  *   setfiletype txt
+if has("autocmd")
+       autocmd BufNewFile,Bufread *.txt set syntax=help
+endif
+
+
+
 
 """"""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
 
-" au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
-" set tags=tags
-" set autochdir
-" "   let mapleader="\<Space>"
-" nnoremap <leader><Space>i :VerilogFollowInstance<CR>
-" nnoremap <leader><Space>I :VerilogFollowPort<CR>
-" nnoremap <leader><Space>u :VerilogGotoInstanceStart<CR>
+au BufRead,BufNewFile *.sv set filetype=verilog_systemverilog
+set tags=tags
+set autochdir
+"   let mapleader="\<Space>"
+nnoremap <leader><Space>i :VerilogFollowInstance<CR>
+nnoremap <leader><Space>I :VerilogFollowPort<CR>
+nnoremap <leader><Space>u :VerilogGotoInstanceStart<CR>
 
-" let b:match_ignorecase=0
-" let b:match_words=
-"   \ '\<begin\>:\<end\>,' .
-"   \ '\<if\>:\<else\>,' .
-"   \ '\<module\>:\<endmodule\>,' .
-"   \ '\<class\>:\<endclass\>,' .
-"   \ '\<program\>:\<endprogram\>,' .
-"   \ '\<clocking\>:\<endclocking\>,' .
-"   \ '\<property\>:\<endproperty\>,' .
-"   \ '\<sequence\>:\<endsequence\>,' .
-"   \ '\<package\>:\<endpackage\>,' .
-"   \ '\<covergroup\>:\<endgroup\>,' .
-"   \ '\<primitive\>:\<endprimitive\>,' .
-"   \ '\<specify\>:\<endspecify\>,' .
-"   \ '\<generate\>:\<endgenerate\>,' .
-"   \ '\<interface\>:\<endinterface\>,' .
-"   \ '\<function\>:\<endfunction\>,' .
-"   \ '\<task\>:\<endtask\>,' .
-"   \ '\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
-"   \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
-"   \ '`ifdef\>:`else\>:`endif\>,'
+let b:match_ignorecase=0
+let b:match_words=
+  \ '\<begin\>:\<end\>,' .
+  \ '\<if\>:\<else\>,' .
+  \ '\<module\>:\<endmodule\>,' .
+  \ '\<class\>:\<endclass\>,' .
+  \ '\<program\>:\<endprogram\>,' .
+  \ '\<clocking\>:\<endclocking\>,' .
+  \ '\<property\>:\<endproperty\>,' .
+  \ '\<sequence\>:\<endsequence\>,' .
+  \ '\<package\>:\<endpackage\>,' .
+  \ '\<covergroup\>:\<endgroup\>,' .
+  \ '\<primitive\>:\<endprimitive\>,' .
+  \ '\<specify\>:\<endspecify\>,' .
+  \ '\<generate\>:\<endgenerate\>,' .
+  \ '\<interface\>:\<endinterface\>,' .
+  \ '\<function\>:\<endfunction\>,' .
+  \ '\<task\>:\<endtask\>,' .
+  \ '\<case\>\|\<casex\>\|\<casez\>:\<endcase\>,' .
+  \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
+  \ '`ifdef\>:`else\>:`endif\>,'
 
-" "建立一个库
-" nmap <F6> <Esc>:!vlib work<CR>
-" "编译一个vhd/v文件
-" nmap <silent> <F7> :ModSimComp<cr><cr>
-" "------------------------------------------------------------------------------
-" "Function    : Model_Sim_Compile()
-"  "Description : Compile with ModelSim
-" "------------------------------------------------------------------------------
-" function Model_Sim_Compile()
-"     let l:file_type_temp = expand("%:e")
-"     if l:file_type_temp == "vhd"
-"         set makeprg=vcom\ -work\ work\ %
-"         execute ':make'
-"         execute ':cw'
-"     else
-"         if l:file_type_temp == "v"
-"             set makeprg=vlog\ -work\ work\ %
-"             execute ':make'
-"             execute ':cw'
-"         else
-"             echohl ErrorMsg
-"             echo "This filetype can't be compiled by modelsim vcom/vlog!"
-"             echohl None
-"         endif
-"     endif
-"  endfunction
+"建立一个库
+nmap <F6> <Esc>:!vlib work<CR>
+"编译一个vhd/v文件
+nmap <silent> <F7> :ModSimComp<cr><cr>
+"------------------------------------------------------------------------------
+"Function    : Model_Sim_Compile()
+ "Description : Compile with ModelSim
+"------------------------------------------------------------------------------
+function Model_Sim_Compile()
+    let l:file_type_temp = expand("%:e")
+    if l:file_type_temp == "vhd"
+        set makeprg=vcom\ -work\ work\ %
+        execute ':make'
+        execute ':cw'
+    else
+        if l:file_type_temp == "v"
+            set makeprg=vlog\ -work\ work\ %
+            execute ':make'
+            execute ':cw'
+        else
+            echohl ErrorMsg
+            echo "This filetype can't be compiled by modelsim vcom/vlog!"
+            echohl None
+        endif
+    endif
+ endfunction
 
-" "set error format
-"  set errorformat=\*\*\ %tRROR:\ %f(%l):\ %m,\*\*\ %tRROR:\ %m,\*\*\ %tARNING:\ %m,\*\*\ %tOTE:\ %m,%tRROR:\ %f(%l):\ %m,%tARNING\[%*[0-9]\]:\ %f(%l):\ %m,%tRROR:\ %m,%tARNING\[%*[0-9]\]:\ %m
+"set error format
+set errorformat=\*\*\ %tRROR:\ %f(%l):\ %m,\*\*\ %tRROR:\ %m,\*\*\ %tARNING:\ %m,\*\*\ %tOTE:\ %m,%tRROR:\ %f(%l):\ %m,%tARNING\[%*[0-9]\]:\ %f(%l):\ %m,%tRROR:\ %m,%tARNING\[%*[0-9]\]:\ %m
 
 " """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
 
@@ -3478,13 +3484,12 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 "====================================30s,自动保存文件========================================="
 let autosave=10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头
-autocmd BufNewFile *.py,  *.cpp, *.c,  *.[ch],  *.sh,  *.java exec ":call SetTitle()"
+"新建.c,.h,.sh,.java文件，自动插入文件头，比如预处理命令，和编码设置。并且可以在每次修改后记录修改时间
+autocmd BufNewFile *.py,  *.cpp, *.v,  *.sv,  *.[ch],  *.sh,  *.java  exec ":call SetTitle()"
+autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 ""定义函数SetTitle，自动插入文件头
-function! SetTitle()
+func SetTitle()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
         call setline(1,"\#!/bin/bash")
@@ -3494,21 +3499,22 @@ function! SetTitle()
         call append(line(".")+3, "\# mail: 2716705056@qq.com")
         " call append(line(".")+4, "\# Created Time: ".strftime("%Y.%m.%d"))
         call append(line(".")+4, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+5, "\# 此程序的功能是：")
-        call append(line(".")+6, "\#########################################################################")
-        call append(line(".")+7, "")
+        call append(line(".")+5, " ")
+        call append(line(".")+6, "\# 此程序的功能是：")
+        call append(line(".")+7, "\#########################################################################")
         call append(line(".")+8, "")
         call append(line(".")+9, "")
+        call append(line(".")+10, "")
     elseif &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python3")
         call append(line("."), "\#!-*-coding=utf-8-*-")
         call append(line(".")+1, "\#########################################################################")
         call append(line(".")+2, "\# File Name: ".expand("%"))
         call append(line(".")+3, "\# Author: 陈俊杰")
-        call append(line(".")+4, "\# mail: 2716705056@qq.com")
+        call append(line(".")+4, "\# Created Time: ".strftime("%c"))
+        call append(line(".")+5, " ")
         " call append(line(".")+5, "\# Created Time: ".strftime("%Y.%m.%d"))
-        call append(line(".")+5, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+6, "'''")
+        call append(line(".")+6, "\# mail: 2716705056@qq.com")
         call append(line(".")+7, "此程序的功能是：")
         call append(line(".")+8, "'''")
         call append(line(".")+9, "\#########################################################################")
@@ -3517,58 +3523,90 @@ function! SetTitle()
         call append(line(".")+12, "import matplotlib.pyplot as plt")
         call append(line(".")+13, "import os, time")
         call append(line(".")+14, "")
+    if &filetype == 'java'
+        call setline(1, "//coding=utf8")
+        call setline(2, "/**")
+        call setline(3, "\ *\ @Author: 陈俊杰")
+        call setline(4, "\ *\ @mail: 2716705056@qq.com ")
+        call setline(5, "\ *\ @File Name: ".expand("%"))
+        call setline(6, "\ *\ @Created Time : ".strftime("%c"))
+        call setline(6, "\ *\  ")
+        call setline(7, "\ *\ @此程序的功能是:")
+        call setline(8, "\ */")
+        call setline(9,"")
     else
         call setline(1, "/*************************************************************************")
         call append(line("."), ">> File Name: ".expand("%"))
         "call append(line(".")+1, ">> Author: chenjunjie")
         call append(line(".")+1, ">> Author: 陈俊杰")
         call append(line(".")+2, ">> Mail: 2716705056qq.com")
-        " call append(line(".")+3, ">> Created Time: ".strftime("%Y年%m月%d日"))
-        call append(line(".")+3, ">> Created Time: ".strftime("%c"))
-        call append(line(".")+4, ">> 此程序的功能是：")
-        call append(line(".")+5, "************************************************************************/")
-        call append(line(".")+6, "")
+        call append(line(".")+3, "  ")
+        call append(line(".")+4, ">> Created Time: ".strftime("%c"))
+        call append(line(".")+5, "  ")
+        call append(line(".")+6, ">> 此程序的功能是：")
+        call append(line(".")+7, "************************************************************************/")
+        call append(line(".")+8, "")
 
         if &filetype == 'cpp'
-            call append(line(".")+7, "#include<bits/stdc++.h>")
-            call append(line(".")+8, "using namespace std;")
-            call append(line(".")+9, "")
-            call append(line(".")+10, "")
-            call append(line(".")+11, "int main(int argc, char *argv[])")
-            call append(line(".")+12, "{")
-            call append(line(".")+13, "}")
+            call append(line(".")+9, "#include<bits/stdc++.h>")
+            call append(line(".")+10, "using namespace std;")
+            call append(line(".")+11, "")
+            call append(line(".")+12, "")
+            call append(line(".")+13, "int main(int argc, char *argv[])")
+            call append(line(".")+14, "{")
+            call append(line(".")+15, "}")
         elseif &filetype == 'c'
-            call append(line(".")+7, "#include<stdio.h>")
-            call append(line(".")+8, "#include<stdlib.h>")
-            call append(line(".")+9, "#include<float.h>")
-            call append(line(".")+10, "#include<limits.h>")
-            call append(line(".")+11, "#include<math.h>")
-            call append(line(".")+12, "#include<string.h>")
-            call append(line(".")+13, "#include<sys/socket.h>")
-            call append(line(".")+14, "#include<stddef.h>")
-            call append(line(".")+15, "#include<locale.h>")
-            call append(line(".")+16, "#include<time.h>")
-            call append(line(".")+17, "#include<complex.h>")
-            call append(line(".")+18, "")
-            call append(line(".")+19, "")
-            call append(line(".")+20, "int main(int argc, char *argv[])")
-            call append(line(".")+21, "{")
-            call append(line(".")+22, "}")
+            call append(line(".")+9, "#include<stdio.h>")
+            call append(line(".")+10, "#include<stdlib.h>")
+            call append(line(".")+11, "#include<float.h>")
+            call append(line(".")+12, "#include<limits.h>")
+            call append(line(".")+13, "#include<math.h>")
+            call append(line(".")+14, "#include<string.h>")
+            call append(line(".")+15, "#include<sys/socket.h>")
+            call append(line(".")+16, "#include<stddef.h>")
+            call append(line(".")+17, "#include<locale.h>")
+            call append(line(".")+18, "#include<time.h>")
+            call append(line(".")+19, "#include<complex.h>")
+            call append(line(".")+20, "")
+            call append(line(".")+21, "")
+            call append(line(".")+22, "int main(int argc, char *argv[])")
+            call append(line(".")+23, "{")
+            call append(line(".")+24, "}")
         endif
     endif
+    "新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
 endfunc
 
-"新建文件后，自动定位到文件末尾
-autocmd BufNewFile * normal G
+
+
+function SetLastModifiedTime(lineno)
+    let modif_time = strftime( '%c', getftime(bufname('%')) )
+    if a:lineno == "-1"
+    let line = getline(7)
+    else
+    let line = getline(a:lineno)
+    endif
+    if line =~ '^sLast Modified'
+    let line = '>> Last Modified : '.modif_time
+    else
+    let line = '>> Last Modified : '.modif_time
+    endif
+    if a:lineno == "-1"
+    call setline(7, line)
+    else
+    call append(a:lineno, line)
+    endif
+endfunc
 """"""""""""""""""""""""""""""""""""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""
 
 :set vb t_vb=
 "自动命令，每次写入.vimrc后，都会执行这个自动命令，source一次~/.vimrc
 " autocmd! bufwritepost $HOME/.vimrc source %
-autocmd! bufwritepost .vimrc source ~/.vimrc
+autocmd! bufwritepost .vimrc source   ~/.vimrc
 " 读文件时自动设定当前目录为刚读入文件所在的目录
 autocmd BufReadPost * cd %:p:h
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "############################################################
 "   插件的快捷键
@@ -3608,7 +3646,7 @@ autocmd BufReadPost * cd %:p:h
 " <C-h>   Move current character/selection left
 " <C-l>   Move current character/selection right
 
-"""""""""""""""""""""""""""""""""  Ack快捷键 """""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""  Ack快捷键 """""""""""""""""""""""""""""""""""""""""""""""
 " F4 搜索
 
 """""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
