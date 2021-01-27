@@ -149,13 +149,15 @@ set showmatch
 set scrolloff=3
 
 "为c语言自动缩进
+"smartindent 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别 C 语言关键字的功能。如果一行是以 #开头的，那么这种格式将会被特殊对待而不采用缩进格式
 set smartindent
 
 " 使用C样式的缩进
 set cindent
 
-"自动缩进, 继承前一行的缩进方式，适用于多行注释
-set autoindent
+"自动缩进, 继承前一行的缩进方式，适用于多行注释,
+"autoindent 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。可以使用以下命令，
+"set autoindent
 
 " 字符间插入的像素行数目
 set linespace=0
@@ -285,14 +287,7 @@ set autowrite
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
-" 让 vim 把连续数量的空格视为一个制表符
-set softtabstop=4
 
-" 在行和段开始处使用制表符
-set smarttab
-
-" 设置格式化时制表符占用空格数
-set shiftwidth=4
 
 " 下面的滚动条开启
 " let g:netrw_winsize = 20
@@ -346,9 +341,7 @@ set laststatus=2
 " 设为1则窗口数多于一个的时候显示最后一个窗口的状态行；
 " 0不显示最后一个窗口的状态行
 
-" 将制表符扩展为空格
-set expandtab
-"由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
+
 
 "显示当前编辑文件名
 set laststatus=2
@@ -371,8 +364,7 @@ set cmdheight=2
 set showmode
 
 set ruler
-" 设置编辑时制表符占用空格数
-set tabstop=4
+
 
 set backspace=2
 
@@ -3131,9 +3123,38 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
 
+" 让 vim 把连续数量的空格视为一个制表符,使得按退格键时可以一次删除4个空格"
+set softtabstop=4
+
+" 设置编辑时制表符占用空格数,设置所有的Tab和缩进为4个空格
+set tabstop=4
+
+" 设置格式化时制表符占用空格数,设定<<和>>命令移动时的宽度为4
+set shiftwidth=4
+
+" 在行和段开始处使用制表符
+set smarttab
+
+" 将制表符扩展为空格,使用空格来替换Tab
+set expandtab
+
+
+
+au BufNewFile,BufRead *.sv,*.v set autoindent
+
+autocmd filetype verilog setlocal tabstop=3 softtabstop=3 shiftwidth=3 expandtab 
+autocmd filetype systemverilog setlocal tabstop=3 softtabstop=3 shiftwidth=3
+autocmd filetype verilog set autoindent
+autocmd filetype systemverilog set autoindent 
+
+
+"由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
+if has("autocmd")
+    autocmd BufRead,BufNewFile *.c,*.h set expandtab
+endif
 "autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
 "为python添加pep8的代码风格
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py,*.php,*.c,*.sh,*.cpp,*.java,*.ruby,*.perl
             \ set tabstop=4 | "tab宽度"
             \ set softtabstop=4 |
             \ set shiftwidth=4 |
@@ -3141,12 +3162,23 @@ au BufNewFile,BufRead *.py
             \ set autoindent |  "自动缩进"
             \ set fileformat=unix "保存文件的格式"
 
-au BufNewFile,BufRead *.js,*.html,*.css
+au BufNewFile,BufRead *.js,*.html,*.css,*.xml
             \ set tabstop=2 |
             \ set softtabstop=2 |
             \ set shiftwidth=2
 
 
+autocmd FileType make setlocal noexpandtab
+
+"为不同的文件类型设置不同的空格数替换TAB
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ai
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sw=4
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set ts=4
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp set sts=4
+autocmd FileType javascript,html,css,xml set ai
+autocmd FileType javascript,html,css,xml set sw=2
+autocmd FileType javascript,html,css,xml set ts=2
+autocmd FileType javascript,html,css,xml set sts=2
 "###################################################
 "复制粘贴快捷键
 "####################################################
