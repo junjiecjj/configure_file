@@ -522,7 +522,7 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
 
-au BufRead,BufNewFile *.sv,* set filetype=verilog_systemverilog
+au BufRead,BufNewFile *.sv,  set filetype=verilog_systemverilog
 au! BufNewFile,BufRead *.vh,*.vp,*.sv,*.svi,*.svh,*.svp set filetype verilog_systemverilog
 
 au! BufNewFile,BufRead *.v set filetype verilog_systemverilog.verilog
