@@ -78,8 +78,7 @@ InfoStoreAdd   urxvt         urxvt
 InfoStoreAdd   gnome-term    gnome-terminal
 InfoStoreAdd   kde-terminal  konsole
 InfoStoreAdd   terminator    terminator
-InfoStoreAdd   terminator    cool-retro-term
-
+InfoStoreAdd    cool-retro-term    cool-retro-term
 #############添加环境变量##################
 SetEnv fvwm_home           $[HOME]/.fvwm
 SetEnv fvwm_img            $[fvwm_home]/images
@@ -462,11 +461,11 @@ Style     "百度网盘"                        HilightColorset 29
 Style     "VNC Viewer"                        HilightColorset 29
 
 # Colorset 30   fg  #000000,   bg #FF7F00 ,      hi  #FF0000,    sh #FF0000,   Plain,    NoShape
-Colorset 30      fg  #000000,   bg  #059406 ,      hi  #FF0000,     sh #FF0000,   Plain,   NoShape
-Style     "xterm"                                                HilightColorset 30
-Style     "urxvt"                                               HilightColorset 30
-Style     "konsole"                                         HilightColorset 30
-Style     "*gnome-terminal*"                    HilightColorset 30
+Colorset 30    fg  #000000,   bg  #059406,  hi  #FF0000,     sh #FF0000,   Plain,   NoShape
+Style     "xterm"                                        HilightColorset 30
+Style     "urxvt"                                        HilightColorset 30
+Style     "konsole"                                      HilightColorset 30
+Style     "*gnome-terminal*"                             HilightColorset 30
 Style     "terminator"                                   HilightColorset 30
 
 Colorset 31   fg  #0000FF, bg #CD661D , hi #FF0000, sh #FF0000, Plain,  NoShape
@@ -477,6 +476,15 @@ Style     "PyCharm"                             HilightColorset 31
 Style     "IntelliJ"                            HilightColorset 31
 Style     "Qt"                                  HilightColorset 31
 Style     "CodeBlock"                           HilightColorset 31
+
+Colorset 35   fg  	#000000, bg #BF3EFF , hi	#000000, sh #BF3EFF, Plain,  NoShape
+Style     "Kdenlive"                             HilightColorset 35
+Style     "Openshot"                            HilightColorset 35
+Style     "Shotcut"                             HilightColorset 35
+Style     "Flowbalde"                           HilightColorset 35
+Style     "Lightworks"                          HilightColorset 35
+Style     "Blender"                             HilightColorset 35
+Style     "CodeBlock"                           HilightColorset 35
 
 #Colorset 22   fg #000000,  bg #00CDCD, hi #FF3030, sh #FF3030, Plain,  NoShape
 Colorset  22   fg  #0000FF, bg #FF7F00 , hi #FF0000, sh #FF0000, Plain,  NoShape
@@ -606,7 +614,8 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&浏览器       %$[fvwm_exicons2]/www.png%" Popup MenuBrowser
 + "&办公         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
 + "&文件夹       %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
-+ "&图片     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
++ "&图片查看、编辑     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
++ "&视频编辑     %$[fvwm_exicons2]/video.png%" Popup MenuVideo
 + "&影音         %$[fvwm_exicons2]/game-logic.png%" Popup MenuYule
 + "&通讯     %$[fvwm_exicons2]/chat.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
@@ -665,8 +674,8 @@ Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab
 
 DestroyMenu MenuSysConfig
 AddToMenu   MenuSysConfig "系统工具" Title
-Test (x font-manager)  + "字体管理  %$[fvwm_exicons2]/font.png%" Exec exec font-manager
 Test (x systemsettings5)  + "KDE系统设置" Exec exec systemsettings5
+Test (x font-manager)  + "字体管理  %$[fvwm_exicons2]/font.png%" Exec exec font-manager
 Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-center
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
@@ -729,6 +738,16 @@ Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-v
 Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
 Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
 Test (x gthumb) + "gThumb图像编辑 %$[fvwm_exicons2]/gimp.png%" Exec gthumb
+
+################视频相关##########################################
+DestroyMenu MenuVideo
+AddToMenu   MenuVideo "视频剪辑" Title
+Test (x kdenlive) +   "Kdenlive  %$[fvwm_exicons2]/video.png%" Exec exec kdenlive
+Test (x openshot) +   "Openshot  %$[fvwm_exicons2]/video.png%" Exec exec openshot
+Test (x shotcut) + "ShotCut %$[fvwm_exicons2]/video.png%" Exec exec shotcut
+Test (x flowblade) +   "FlowBlade  %$[fvwm_exicons2]/video.png%" Exec exec flowblade
+Test (x lightworks) +   "LightWorks  %$[fvwm_exicons2]/video.png%" Exec exec lightworks
+Test (x blender) +   "Blender  %$[fvwm_exicons2]/video.png%" Exec exec blender
 
 
 ################通信软件相关##########################################
@@ -957,11 +976,10 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 #     F(Frame)就是用来resize的那四个角落. 也可以用 '<', '^', '>' and 'v' 分别表示左上，右上，右下，左下的角落。
 #     W(Working Area) 应用程序窗口工作区域
 #     I(Icon window) 图标化的窗口。
-#     A(any where)任何地方
 #
 #     Numbers are buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #
-# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt, (N)othing
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt (N)othing
 #
 # Format: Key <X>  <Context> <Modifier> <Action>
 #         Mouse <X> <Context> <Modifier> <Action>
@@ -1019,8 +1037,7 @@ Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
-Silent Key u  A   CM     Exec exec $[infostore. cool-retro-term]
-
+Silent Key o  A   CM     Exec exec $[infostore.cool-retro-term]
 
 #Ctrl+Alt+n打开文件管理器
 #Silent key f A CM Exec exec   dolphin &
@@ -1051,15 +1068,8 @@ Key Down    A  S    Scroll +0   +100
 # Alt+F6    关闭显示屏
 Silent Key   F6      A    M    Function LockScreen
 
-#Ctrl+F10 上下最大化
-Silent Key   F10		A	C	Maximize 0 100
-
-
-# Ctrl + F11 最大化
-Silent Key   F11		A	C	Maximize 100 100
-
-# Ctrl + F12 左右最大化
-Silent Key   F12		A	C	Maximize 100 0
+#Ctrl+F11 最大化
+Silent Key   F11		A	C	Maximize
 
 # 按windows_L 当前page全部最小化
 Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
@@ -1090,8 +1100,8 @@ Silent Key   l          A  M   Exec exec xscreensaver-command -lock
 Mouse 1 1 A Menu MenuWindowOpsLong Delete
 Mouse 1 2 A Close
 Mouse 1 4 A Maximize 100 100
-Mouse 2 4 A Maximize  100  0
-Mouse 3 4 A Maximize 0 100
+Mouse 2 4 A Maximize 0 100
+Mouse 3 4 A Maximize 100 0
 Mouse 1 6 A Iconify
 
 #   TitleBar: Click to Raise, Move, Double Click to Maximize
@@ -1562,7 +1572,7 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 1) `Exec exec xterm`, \
   Action(Mouse 2) `Exec exec urxvt`, \
   Action(Mouse 3) `Exec exec terminator`, \
-  Action(Mouse 4) `Exec exec  cool-retro-term`, \
+  Action(Mouse 4) `Exec exec cool-retro-term`, \
   Action(Mouse 5) `Exec exec konsole`, )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
