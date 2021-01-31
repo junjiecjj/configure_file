@@ -1,3 +1,4 @@
+
 ! Xterm 配置文件
 !copy & paste
 
@@ -19,7 +20,7 @@ XTerm*Font: 7*13
 ! English font
 xterm*faceName:Noto mono:antialas=true:size=14
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=24:antialias=True:pixelsize=24
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=18:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
 xterm*xftAntialias:true
 xterm*cjkWidth:false
@@ -32,7 +33,7 @@ xterm*utf8:true
 xterm*utf8Title:true
 
 !窗口大小及位置
-xterm*geometry:70x18+200+150
+xterm*geometry:100x30-0-0
 
 ! scrollbar
 XTerm*scrollBar:true
