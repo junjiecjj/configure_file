@@ -664,10 +664,10 @@ Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
 #################集成开发环境IDE##################
 DestroyMenu InterIDE
 AddToMenu   InterIDE "IDE" Title
-Test (x /home/jack/anaconda3/bin/spyder)  + "Spyder %$[fvwm_exicons2]/spyder.png%" Exec exec spyder &
-Test (x  /home/jack/anaconda3/bin/anaconda-navigator) + "Anaconda %$[fvwm_exicons2]/anaconda.png%"  Exec exec anaconda-navigator &
+Test (x /home/jack/anaconda3/bin/spyder)  + "Spyder %$[fvwm_exicons2]/spyder.png%" Exec exec /home/jack/anaconda3/bin/spyder &
+Test (x  /home/jack/anaconda3/bin/anaconda-navigator) + "Anaconda %$[fvwm_exicons2]/anaconda.png%"  Exec exec /home/jack/anaconda3/bin/anaconda-navigator &
 Test (x  intellij) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec intellij &
-Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab
+Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab &
 
 
 ##################系统设置##########################
@@ -889,17 +889,17 @@ AddToMenu   MenuSendToPage
 DestroyMenu Quit-Verify
 AddToMenu Quit-Verify "确定离开FVWM?" Title
 + "%$[fvwm_exicons2]/choice-yes.png%确定离开FVWM"    Quit
-+ "%$[fvwm_exicons2]/lock.png%锁屏"          Exec exec xscreensaver-command -lock
-+ "%$[fvwm_exicons2]/restart.png%重启FVWM"   Restart
+# + "%$[fvwm_exicons2]/lock.png%锁屏"          Exec exec xscreensaver-command -lock
+# + "%$[fvwm_exicons2]/restart.png%重启FVWM"   Restart
 + "%$[fvwm_exicons2]/choice-no.png%不..."    Nop
 
 
 DestroyMenu ShutDownMenu
 AddToMenu ShutDownMenu   "确定关机?" Title
 + "%$[fvwm_exicons2]/choice-yes.png%确定"         Exec exec   shutdown -h now
-+ "%$[fvwm_exicons2]/lock.png%锁屏"               Exec exec   xscreensaver-command -lock
-+ "%$[fvwm_exicons2]/restart.png%重启电脑"        Exec exec   reboot
 + "%$[fvwm_exicons2]/choice-no.png%不..."         Nop
++ "%$[fvwm_exicons2]/restart.png%重启电脑"        Exec exec   reboot
++ "%$[fvwm_exicons2]/lock.png%锁屏"               Exec exec   xscreensaver-command -lock
 
 # Fvwm Man Pages (Help) Menu
 DestroyMenu MenuFvwmManPages
@@ -1572,7 +1572,7 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 1) `Exec exec xterm`, \
   Action(Mouse 2) `Exec exec urxvt`, \
   Action(Mouse 3) `Exec exec terminator`, \
-  Action(Mouse 4) `Exec exec cool-retro-term`, \
+  Action(Mouse 4) `Exec exec gnome-terminal`, \
   Action(Mouse 5) `Exec exec konsole`, )
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/chrome.png, \
