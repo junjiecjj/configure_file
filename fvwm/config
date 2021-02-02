@@ -1611,7 +1611,7 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/spyder.png, \
   Action(Mouse 1) `Exec exec /home/jack/anaconda3/bin/spyder &`,\
-  Action(Mouse 2) `Exec exec anaconda-navigator &`,\
+  Action(Mouse 2) `Exec exec /home/jack/anaconda3/bin/anaconda-navigator &`,\
   Action(Mouse 3) `Exec exec intellij &`)
 
 
