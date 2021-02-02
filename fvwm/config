@@ -638,7 +638,7 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "拷贝配置文件   %icons/conf.png%"       FvwmScript FvwmScript-ConfirmCopyConfig
 #+ "拷贝配置文件% icons/conf.png%"  Exec exec  cp  -f  '/usr/share/fvwm/default-config/config'  '~/.fvwm/config'
 + "" Nop
-+ "Re&fresh      %icons/refresh.png%"        Refresh
+# + "Re&fresh      %icons/refresh.png%"        Refresh
 + "&重启FVWM     %icons/restart.png%"       Restart
 #+ "&Quit%icons/quit.png%" Module FvwmScript FvwmScript-ConfirmQuit
 + "&离开FVWM    %icons/quit.png%"          PopUp Quit-Verify
