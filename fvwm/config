@@ -621,25 +621,22 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
 + "&网络管理器   %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
 + "系统设置      %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
-+ "" Nop
++ "&各种终端        %$[fvwm_icons]/terminal.png%" Popup MenuTerminal
 + "集成开发环境     %$[fvwm_icons]/programs.png%" Popup InterIDE
-+ "" Nop
-+ "&XTerm        %$[fvwm_icons]/terminal.png%" Exec exec xterm
-+ "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
-+ "&URxvt     %$[fvwm_icons]/terminal1.png%" Exec exec urxvt
+# + "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
+# + "&URxvt     %$[fvwm_icons]/terminal1.png%" Exec exec urxvt
 + "" Nop
 + "XDG &Menu     %$[fvwm_icons]/apps.png%" Popup XDGMenu
 + "" Nop
 + "Fvwm&Console   %icons/terminal.png%" Module FvwmConsole -terminal $[infostore.terminal]
 + "帮助          %icons/help.png%" Popup MenuFvwmManPages
 + "模块配置    %$[fvwm_exicons2]/configuration.png%" Popup MenuFvwmModules
-
-+ "" Nop
-+ "拷贝配置文件   %icons/conf.png%"       FvwmScript FvwmScript-ConfirmCopyConfig
+# + "拷贝配置文件   %icons/conf.png%"       FvwmScript FvwmScript-ConfirmCopyConfig
 #+ "拷贝配置文件% icons/conf.png%"  Exec exec  cp  -f  '/usr/share/fvwm/default-config/config'  '~/.fvwm/config'
 + "" Nop
 # + "Re&fresh      %icons/refresh.png%"        Refresh
 + "&重启FVWM     %icons/restart.png%"       Restart
++ "" Nop
 #+ "&Quit%icons/quit.png%" Module FvwmScript FvwmScript-ConfirmQuit
 + "&离开FVWM    %icons/quit.png%"          PopUp Quit-Verify
 + "关机         %$[fvwm_exicons2]/quit.png%"    PopUp ShutDownMenu
@@ -653,12 +650,20 @@ PipeRead "fvwm-menu-desktop -e"
 # When adding programs you don't need to use the Test (x foo)
 # lines as this is only to help make this menu portable.
 DestroyMenu MenuEditor
-AddToMenu   MenuEditor "代码编辑器" Title
-Test (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
+AddToMenu   MenuEditor "代码编辑器" TitleTest (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
 Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
+
+#######################打开终端#######################
+DestroyMenu MenuTerminal
+AddToMenu   MenuTerminal "终端类型" Title
+Test (x xterm)  + "&XTerm  %$[fvwm_icons]/terminal.png%" Exec exec xterm
+Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
+Test (x  urxvt) + "&URxvt %$[fvwm_icons]/terminal1.png%"  Exec exec urxvt
+Test (x gnome-terminal) + "&Gnome-terminal %$[fvwm_exicons2]/terminal.png%" Exec exec gnome-terminal
+Test (x  konsole) + "&Konsole %$[fvwm_exicons2]/terminal.png%"  Exec exec konsole
 
 
 #################集成开发环境IDE##################
