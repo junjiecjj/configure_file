@@ -672,17 +672,18 @@ AddToMenu   InterIDE "IDE" Title
 Test (x /home/jack/anaconda3/bin/spyder)  + "Spyder %$[fvwm_exicons2]/spyder.png%" Exec exec /home/jack/anaconda3/bin/spyder &
 Test (x  /home/jack/anaconda3/bin/anaconda-navigator) + "Anaconda %$[fvwm_exicons2]/anaconda.png%"  Exec exec /home/jack/anaconda3/bin/anaconda-navigator &
 Test (x  intellij) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec intellij &
+Test (x  /snap/bin/intellij-idea-educational) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec /snap/bin/intellij-idea-educational &
 Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab &
 
 
 ##################系统设置##########################
-
 DestroyMenu MenuSysConfig
 AddToMenu   MenuSysConfig "系统工具" Title
 Test (x systemsettings5)  + "KDE系统设置" Exec exec systemsettings5
 Test (x font-manager)  + "字体管理  %$[fvwm_exicons2]/font.png%" Exec exec font-manager
 Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-center
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
+Test (x ubuntu-software)  + "Gnome软件仓库" Exec exec ubuntu-software
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manager
 Test (x xscreensaver-demo) + "xscreensaver设置 %$[fvwm_exicons2]/xscreensaver.png%"   Exec exec  xscreensaver-demo
@@ -1617,12 +1618,13 @@ DestroyModuleConfig MyDock:*
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/spyder.png, \
   Action(Mouse 1) `Exec exec /home/jack/anaconda3/bin/spyder &`,\
   Action(Mouse 2) `Exec exec /home/jack/anaconda3/bin/anaconda-navigator &`,\
-  Action(Mouse 3) `Exec exec intellij &`)
+  Action(Mouse 3) `Exec exec /snap/bin/intellij-idea-educational &`)
 
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/configuration.png, \
-  Action(Mouse 1) `Exec exec systemsettings5`,\
-  Action(Mouse 3) `Exec exec xscreensaver-demo`,\
+  Action(Mouse 1) `Exec exec gnome-control-center`,\
+  Action(mouse 2) `Exec exec xscreensaver-demo`,\
+  Action(Mouse 3) `Exec exec systemsettings5`,\
   Action(Mouse 4) `Exec exec /usr/NX/bin/nxplayer `,\
   Action(Mouse 5) `Exec exec vncviewer`,)
 
