@@ -74,11 +74,12 @@ DestroyModuleConfig FvwmScroll: *
 # that FvwmConsole uses. Change this to your terminal of choice
 #InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
 InfoStoreAdd   xterm         xterm
+InfoStoreAdd   kitty         kitty
 InfoStoreAdd   urxvt         urxvt
 InfoStoreAdd   gnome-term    gnome-terminal
 InfoStoreAdd   kde-terminal  konsole
 InfoStoreAdd   terminator    terminator
-InfoStoreAdd    cool-retro-term    cool-retro-term
+InfoStoreAdd   cool-retro-term    cool-retro-term
 #############添加环境变量##################
 SetEnv fvwm_home           $[HOME]/.fvwm
 SetEnv fvwm_img            $[fvwm_home]/images
@@ -610,9 +611,9 @@ MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572
 # window or using alt-f1 (or menu).
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "FVWM菜单" Title
-+ "&写代码       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
++ "&代码编辑器       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
 + "&浏览器       %$[fvwm_exicons2]/www.png%" Popup MenuBrowser
-+ "&办公         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
++ "&文档编辑器         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
 + "&文件夹       %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
 + "&图片查看、编辑     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
 + "&视频编辑     %$[fvwm_exicons2]/video.png%" Popup MenuVideo
@@ -652,6 +653,7 @@ PipeRead "fvwm-menu-desktop -e"
 DestroyMenu MenuEditor
 AddToMenu   MenuEditor "代码编辑器" TitleTest (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
+Test (x  gvim) + "GVIM %$[fvwm_exicons2]/vim.png%"  Exec exec gvim
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
 Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
@@ -661,7 +663,7 @@ DestroyMenu MenuTerminal
 AddToMenu   MenuTerminal "终端类型" Title
 Test (x xterm)  + "&XTerm  %$[fvwm_icons]/terminal.png%" Exec exec xterm
 Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
-Test (x  urxvt) + "&URxvt %$[fvwm_icons]/terminal1.png%"  Exec exec urxvt
+Test (x  kitty) + "&Kitty %$[fvwm_icons]/terminal1.png%"  Exec exec kitty
 Test (x gnome-terminal) + "&Gnome-terminal %$[fvwm_exicons2]/terminal.png%" Exec exec gnome-terminal
 Test (x  konsole) + "&Konsole %$[fvwm_exicons2]/terminal.png%"  Exec exec konsole
 
@@ -1044,6 +1046,7 @@ Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 Silent Key o  A   CM     Exec exec $[infostore.cool-retro-term]
+Silent Key z  A   CM     Exec exec $[infostore.kitty]
 
 #Ctrl+Alt+n打开文件管理器
 #Silent key f A CM Exec exec   dolphin &
@@ -1576,7 +1579,7 @@ DestroyModuleConfig MyDock:*
 
 *MyDock: (5x1, Frame 0, Icon $[fvwm_exicons1]/terminal.png, \
   Action(Mouse 1) `Exec exec xterm`, \
-  Action(Mouse 2) `Exec exec urxvt`, \
+  Action(Mouse 2) `Exec exec kitty`, \
   Action(Mouse 3) `Exec exec terminator`, \
   Action(Mouse 4) `Exec exec gnome-terminal`, \
   Action(Mouse 5) `Exec exec konsole`, )
@@ -1629,4 +1632,12 @@ DestroyModuleConfig MyDock:*
   Action(Mouse 5) `Exec exec vncviewer`,)
 
 #*MyButtons: (1x1, Frame 0)
+
+#kitty终端一些有用的快捷键
+# 向上翻页	ctrl+shift+page_up
+# 向下翻页	ctrl+shift+page_down
+# 新标签页	ctrl+shift+t
+# 拆分窗口	ctrl+shift+enter
+# 新的窗口	ctrl+shift+n
+#
 ################### Dock结束######################################
