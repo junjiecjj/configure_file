@@ -19,8 +19,10 @@ XTerm*Font: 7*13
 
 ! English font
 xterm*faceName:Noto mono:antialas=true:size=14
+!xterm*faceName:Fira Code:antialas=true:size=14
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=18:antialias=True:pixelsize=18
+!xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
 xterm*xftAntialias:true
 xterm*cjkWidth:false
@@ -33,7 +35,7 @@ xterm*utf8:true
 xterm*utf8Title:true
 
 !窗口大小及位置
-xterm*geometry:100x30-0-0
+xterm*geometry:80x20-0-0
 
 ! scrollbar
 XTerm*scrollBar:true
@@ -42,7 +44,9 @@ XTerm*saveLines:  4096
 XTerm*fastScroll:true
 
 Xterm*bellIsUrgent: true
-XTerm*allowBoldFonts: true
+
+!设置字体是否加粗
+XTerm*allowBoldFonts: false
 
 !背景色及字体顔色
 xterm*background:#000000
@@ -58,23 +62,7 @@ XTerm*inputMethod:fcitx
 !调整行距离
 XTerm*scaleHeight: 1.01
 
-!-- Tango color scheme Tango配色方案
-!*xterm*color0: #2e3436
-!*xterm*color1: #cc0000
-!*xterm*color2: #4e9a06
-!*xterm*color3: #c4a000
-!*xterm*color4: #3465a4
-!*xterm*color5: #75507b
-!*xterm*color6: #0b939b
-!*xterm*color7: #d3d7cf
-!*xterm*color8: #555753
-!*xterm*color9: #ef2929
-!*xterm*color10: #8ae234
-!*xterm*color11: #fce94f
-!*xterm*color12: #729fcf
-!*xterm*color13: #ad7fa8
-!*xterm*color14: #00f5e9
-!*xterm*color15: #eeeeec
+
 
 *xterm*color0: #000000
 *xterm*color1: #cc0000
