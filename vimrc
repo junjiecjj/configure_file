@@ -175,7 +175,17 @@ if has('gui_running')
     if has('gui_win32')
       set guifont=DejaVu_Sans_Mono:h10:cANSI
     else
-      set guifont=DroidSansMono\ Nerd\ Font\ 12
+      set guifont=DejaVu\ Sans\ Mono\ 12
+      " set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+  endif
+
+if has('gui_running')
+    colorscheme desert
+    if has('gui_win32')
+      set guifont=Fira_Code:h10:cANSI
+    else
+      set guifont=Fira\ Code\ 12
       " set guifont=DejaVu\ Sans\ Mono\ 10
     endif
   endif
@@ -3142,10 +3152,10 @@ set expandtab
 
 au BufNewFile,BufRead *.sv,*.v set autoindent
 
-autocmd filetype verilog setlocal tabstop=3 softtabstop=3 shiftwidth=3 expandtab 
+autocmd filetype verilog setlocal tabstop=3 softtabstop=3 shiftwidth=3 expandtab
 autocmd filetype systemverilog setlocal tabstop=3 softtabstop=3 shiftwidth=3
 autocmd filetype verilog set autoindent
-autocmd filetype systemverilog set autoindent 
+autocmd filetype systemverilog set autoindent
 
 
 "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
@@ -3951,3 +3961,4 @@ autocmd BufReadPost * cd %:p:h
 " L : 把光标移到屏幕最底端一行。
 "
 "-------------------vim常用的快捷键------------------------
+
