@@ -615,13 +615,13 @@ MenuStyle * MenuFace VGradient 128 1 #2c80A0 1 #1c5572
 DestroyMenu MenuFvwmRoot
 AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&代码编辑器       %$[fvwm_exicons2]/editor.png%" Popup MenuEditor
-+ "&浏览器       %$[fvwm_exicons2]/www.png%" Popup MenuBrowser
-+ "&文档编辑器         %$[fvwm_exicons2]/word-processor.png%" Popup MenuOffice
++ "&浏览器       %$[fvwm_exicons2]/Firefox.png%" Popup MenuBrowser
++ "&文档编辑器         %$[fvwm_exicons2]/wps-word.png%" Popup MenuOffice
 + "&文件夹       %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
 + "&图片查看、编辑     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
 + "&视频编辑     %$[fvwm_exicons2]/video.png%" Popup MenuVideo
-+ "&影音         %$[fvwm_exicons2]/game-logic.png%" Popup MenuYule
-+ "&通讯     %$[fvwm_exicons2]/chat.png%" Popup MenuCommunitation
++ "&影音         %$[fvwm_exicons2]/netesase.png%" Popup MenuYule
++ "&通讯     %$[fvwm_exicons2]/qq.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
 + "&网络管理器   %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
 + "系统设置      %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
