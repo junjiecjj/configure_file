@@ -678,6 +678,9 @@ Test (x /home/jack/anaconda3/bin/spyder)  + "Spyder %$[fvwm_exicons2]/spyder.png
 Test (x  /home/jack/anaconda3/bin/anaconda-navigator) + "Anaconda %$[fvwm_exicons2]/anaconda.png%"  Exec exec /home/jack/anaconda3/bin/anaconda-navigator &
 Test (x  intellij) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec intellij &
 Test (x  /snap/bin/intellij-idea-educational) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec /snap/bin/intellij-idea-educational &
+Test (x  qtcreator) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec qtcreator &
+Test (x  codeblocks) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec codeblocks &
+Test (x  eclipse) + "IntelliJ %$[fvwm_exicons2]/intellij.png%"  Exec exec eclipse &
 Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab &
 
 
