@@ -970,8 +970,9 @@ noremap <F6> :!ctags -R<CR>
 
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 " 设置 tagbar 的窗口宽度
-let g:tagbar_width=30
+let g:tagbar_width=20
 " 设置 tagbar 的窗口显示的位置，为右边
+" let g:tagbar_right = 1
 let g:tagbar_left = 1
 " 打开文件自动 打开
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
@@ -985,7 +986,7 @@ nmap <F10> :TagbarToggle<CR>
 map <F10> :TagbarToggle<CR>
 map! <F10> <Esc> :TagbarToggle<CR>
 "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
-let g:tagbar_autopreview = 1
+let g:tagbar_autopreview = 0
 "关闭排序,即按标签本身在文件中的位置排序
 let g:tagbar_sort = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1029,8 +1030,8 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick=1
 
 "taglist窗口显示在右侧，缺省为左侧
-" let Tlist_Use_Right_Window = 1
-let Tlist_Use_Right_Window = 0
+let Tlist_Use_Left_Window = 1
+" let Tlist_Use_Right_Window = 0
 
 "设置taglist窗口大小
 "let Tlist_WinHeight = 100
