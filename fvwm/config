@@ -624,9 +624,9 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&通讯     %$[fvwm_exicons2]/qq.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
 + "&网络管理器   %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
-+ "系统设置      %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
-+ "&各种终端        %$[fvwm_icons]/terminal.png%" Popup MenuTerminal
-+ "集成开发环境     %$[fvwm_icons]/programs.png%" Popup InterIDE
++ "&系统设置      %$[fvwm_icons]/programs.png%" Popup MenuSysConfig
++ "&各种终端        %$[fvwm_icons]/terminal1.png%" Popup MenuTerminal
++ "&集成开发环境     %$[fvwm_exicons2]/spyder.png%" Popup InterIDE
 # + "&Terminator   %$[fvwm_icons]/terminal1.png%" Exec exec terminator
 # + "&URxvt     %$[fvwm_icons]/terminal1.png%" Exec exec urxvt
 + "" Nop
@@ -643,7 +643,7 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "" Nop
 #+ "&Quit%icons/quit.png%" Module FvwmScript FvwmScript-ConfirmQuit
 + "&离开FVWM    %icons/quit.png%"          PopUp Quit-Verify
-+ "关机         %$[fvwm_exicons2]/quit.png%"    PopUp ShutDownMenu
++ "&关机         %$[fvwm_exicons2]/quit.png%"    PopUp ShutDownMenu
 #测试haode
 # Generate XDGMenu
 PipeRead "fvwm-menu-desktop -e"
