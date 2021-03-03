@@ -689,6 +689,7 @@ Test (x font-manager)  + "字体管理  %$[fvwm_exicons2]/font.png%" Exec exec f
 Test (x gnome-control-center)  + "Gnome系统设置" Exec exec gnome-control-center
 Test (x gnome-software)  + "Gnome软件仓库" Exec exec gnome-software
 Test (x ubuntu-software)  + "Gnome软件仓库" Exec exec ubuntu-software
+Test (x gnome-disks)  + "磁盘" Exec exec gnome-disks
 Test (x software-properties-gtk)  + "Gnome软件和更新" Exec exec software-properties-gtk
 Test (x update-manager)  + "Gnome软件更新器" Exec exec update-manager
 Test (x xscreensaver-demo) + "xscreensaver设置 %$[fvwm_exicons2]/xscreensaver.png%"   Exec exec  xscreensaver-demo
