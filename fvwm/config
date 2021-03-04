@@ -478,8 +478,9 @@ Style     "Anaconda"                            HilightColorset 31
 Style     "matlab*"                             HilightColorset 31
 Style     "PyCharm"                             HilightColorset 31
 Style     "IntelliJ"                            HilightColorset 31
-Style     "Qt"                                  HilightColorset 31
-Style     "CodeBlock"                           HilightColorset 31
+Style     "*Qt Creator*"                        HilightColorset 31
+Style     "*Code::Blocks*"                      HilightColorset 31
+Style     "*Eclipse IDE*"                      HilightColorset 31
 
 Colorset 35   fg  	#000000, bg #BF3EFF , hi	#000000, sh #BF3EFF, Plain,  NoShape
 Style     "Kdenlive"                             HilightColorset 35
