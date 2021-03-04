@@ -659,9 +659,9 @@ DestroyMenu MenuEditor
 AddToMenu   MenuEditor "代码编辑器" TitleTest (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gvim) + "GVIM %$[fvwm_exicons2]/vim.png%"  Exec exec gvim
-Test (x  emacs) + "VSCode %$[fvwm_exicons2]/emacs.png%"  Exec exec emacs
+Test (x  emacs) + "Emacs %$[fvwm_exicons2]/emacs.png%"  Exec exec emacs
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
-Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
+Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/XEmacs.png%" Exec exec xemacs
 Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
 
 #######################打开终端#######################
