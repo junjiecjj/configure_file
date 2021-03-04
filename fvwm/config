@@ -430,6 +430,7 @@ Style     "*Vivaldi"                       TitleAtTop,HilightColorset 24
 
 Colorset 23   fg  #FFFF00, bg 	#006400, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "gedit"                       TitleAtLeft,  HilightColorset 23
+Style     "emacs"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
@@ -658,6 +659,7 @@ DestroyMenu MenuEditor
 AddToMenu   MenuEditor "代码编辑器" TitleTest (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
 Test (x  gvim) + "GVIM %$[fvwm_exicons2]/vim.png%"  Exec exec gvim
+Test (x  emacs) + "VSCode %$[fvwm_exicons2]/emacs.png%"  Exec exec emacs
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/vim.png%" Exec exec xemacs
 Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
