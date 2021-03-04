@@ -756,6 +756,7 @@ Test (x gnome-screenshot) +   "全屏截图screenshot  %$[fvwm_exicons2]/image-v
 Test (x inkscape) +   "Inkscape图片编辑  %$[fvwm_exicons2]/inkscape.png%" Exec exec inkscape
 Test (x gimp) + "Gimp图像处理 %$[fvwm_exicons2]/gimp.png%" Exec exec gimp
 Test (x gthumb) + "gThumb图像编辑 %$[fvwm_exicons2]/gimp.png%" Exec gthumb
+Test (x /usr/bin/plots) +   "函数画图  %$[fvwm_exicons2]/plots.png%" Exec exec /usr/bin/plots
 
 ################视频相关##########################################
 DestroyMenu MenuVideo
