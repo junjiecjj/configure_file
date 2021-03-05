@@ -173,5 +173,3 @@ export EDITOR=/usr/bin/vim
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-
-eval "fcitx > /dev/null 2&>1 &"
