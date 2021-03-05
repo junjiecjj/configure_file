@@ -174,4 +174,4 @@ export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 
-eval "fcitx-autostart > /dev/null 2&>1 &"
+eval "fcitx > /dev/null 2&>1 &"
