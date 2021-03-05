@@ -982,9 +982,9 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 
 " 将开启tagbar的快捷键设置为　<Leader>tb
 nmap <Leader>tb :TagbarToggle<CR>
-nmap <F10> :TagbarToggle<CR>
-map <F10> :TagbarToggle<CR>
-map! <F10> <Esc> :TagbarToggle<CR>
+nmap <F1> :TagbarToggle<CR>
+map <F1> :TagbarToggle<CR>
+map! <F1> <Esc> :TagbarToggle<CR>
 "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
 let g:tagbar_autopreview = 0
 "关闭排序,即按标签本身在文件中的位置排序
@@ -1030,7 +1030,7 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick=1
 
 "taglist窗口显示在右侧，缺省为左侧
-let Tlist_Use_Left_Window = 1
+let Tlist_Use_Right_Window = 1
 " let Tlist_Use_Right_Window = 0
 
 "设置taglist窗口大小
@@ -1038,7 +1038,7 @@ let Tlist_Use_Left_Window = 1
 let Tlist_WinWidth = 20
 
 "设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
-map <F1> <Esc>:TlistToggle<Cr>
+map <F10> <Esc>:TlistToggle<Cr>
 
 
 "将 \t 表示为在命令行模式下输入命令：
