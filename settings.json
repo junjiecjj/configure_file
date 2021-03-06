@@ -32,13 +32,13 @@
       //"fontFace": "Monospace Regular",
       // "fontFace": "文泉驿微米黑",
       "fontFace": "DroidSansMono NF",
-      "fontSize": 11,
+      "fontSize": 9,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
       "cursorShape": "bar",
       // 是否开启背景亚克力透明效果（窗口失去焦点时无效）
       "useAcrylic": false,
       "cursorColor": "#0cee32",
-      "historySize": 9001,
+      "historySize": 2001,
       "snapOnInput": true,
       "acrylicOpacity": 0.8,
       "backgroundImageOpacity": 0.1,
@@ -50,13 +50,21 @@
       //"startingDirectory": "//wsl$/Ubuntu-20.04/home/junjie",
       "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~;bash\"",
       "colorScheme": "Snazzy"
+      //"colorScheme": "Tango Dark"
+      //"colorScheme": "Homebrew"
+      //"colorScheme": "Solarized Dark"
+      //"colorScheme": "Solarized Light"
+      //"colorScheme": "Night Owlish Light"
+      //"colorScheme": "Campbell"
+      //"colorScheme": "Snazzy"
+
     },
     "list": [
       {
         "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
         "hidden": false,
         "name": "Ubuntu-20.04",
-        "tabTitle": "Ubuntu20",
+        "tabTitle": "Ubuntu20.04",
         "source": "Windows.Terminal.Wsl"
       },
       {
