@@ -564,9 +564,9 @@ let b:match_words=
 :ab zhushi //
 
 "建立一个库
-nmap <F6> <Esc>:!vlib work<CR>
+nmap <F8> <Esc>:!vlib work<CR>
 "编译一个vhd/v文件
-nmap <silent> <F7> :ModSimComp<cr><cr>
+nmap <silent> <F9> :ModSimComp<cr><cr>
 "------------------------------------------------------------------------------
 "Function    : Model_Sim_Compile()
  "Description : Compile with ModelSim
@@ -957,7 +957,7 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 map <C-F12> :!ctags <CR>
 
 "更新ctags标签文件快捷键设置
-noremap <F6> :!ctags -R<CR>
+noremap <C-F8> :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
 
