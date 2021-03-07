@@ -57,10 +57,11 @@ Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
 Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
-Plugin 'godlygeek/tabular'                   " 快速对齐
 Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
 Plugin 'Shougo/echodoc.vim'                  " 函数参数提示
+Plugin 'godlygeek/tabular'                   " 快速对齐
 Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
 Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'                 " 添加树形目录
 Plugin 'jistr/vim-nerdtree-tabs'             " 想用tab键
@@ -90,7 +91,6 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'suan/vim-instant-markdown'
 Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
@@ -730,10 +730,25 @@ nnoremap <silent> <leader>a :Switch<cr>
 nnoremap <leader><leader>fp :FormatFunParam<cr>
 nnoremap <leader><leader>if :FormatIf<cr>
 
-"""""""""""""""""""""""""""""""""""""" markdown 配置 """"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
 
+"  vim-instant-markdown 是一款实时显示 markdown 效果的插件，要使用这款插件需要先安装 node.js 和 npm，可以在终端执行
+
+"1.安装node.js
+" sudo add-apt-repository ppa:chris-lea/node.js
+" sudo apt-get install nodejs
+"$ sudo apt-get install nodejs npm
+"$ sudo npm -g install instant-markdown-d
+
+"安装完成以后，你只要打开一个.md 文件，Vim 就会自动打开一个浏览器窗口，实现实时预览。如果你不想自动打开预览窗口的话，你可以在 /etc/vim/vimrc 中写入
+let g:instant_markdown_autostart = 1
+map <F11> :InstantMarkdownPreview<CR>
 " 设置使用markdown插件的类型以及不自动折叠代码
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
+
+let g:jsx_ext_required = 0
+let g:instant_markdown_slow = 1
+
 
 
 """"""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
@@ -1043,9 +1058,6 @@ map <F10> <Esc>:TlistToggle<Cr>
 
 "将 \t 表示为在命令行模式下输入命令：
 nmap <Leader>tl <Esc>:TlistToggle<Cr>
-
-
-
 
 
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
@@ -1610,8 +1622,8 @@ let NERDTreeAutoCenter=1
 let NETDTreeIgnore=['\~$','\.pyc$','\.swp$'] "隐藏.pyc等文件
 
 "-----------------------------打开目录树-------------------------
-" F7    打开或关闭 NERDTree，此键可以根据自己需求定义。
-" :NERDTreeToggle   同 F7
+" \fl    打开或关闭 NERDTree，此键可以根据自己需求定义。
+" :NERDTreeToggle
 " :NERDTree 打开 NERDTree
 " :NERDTreeClose    关闭 NERDTree
 " q 关闭这个 NERDTree 窗口；
@@ -2012,9 +2024,6 @@ augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:jsx_ext_required = 0
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
 
 
 """"""""""""""""""""""""""""""""vim-emmet配置""""""""""""""""""""""""""""""""
