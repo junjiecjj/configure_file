@@ -730,25 +730,6 @@ nnoremap <silent> <leader>a :Switch<cr>
 nnoremap <leader><leader>fp :FormatFunParam<cr>
 nnoremap <leader><leader>if :FormatIf<cr>
 
-""""""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
-
-"  vim-instant-markdown 是一款实时显示 markdown 效果的插件，要使用这款插件需要先安装 node.js 和 npm，可以在终端执行
-
-"1.安装node.js
-" sudo add-apt-repository ppa:chris-lea/node.js
-" sudo apt-get install nodejs
-"$ sudo apt-get install nodejs npm
-"$ sudo npm -g install instant-markdown-d
-
-"安装完成以后，你只要打开一个.md 文件，Vim 就会自动打开一个浏览器窗口，实现实时预览。如果你不想自动打开预览窗口的话，你可以在 /etc/vim/vimrc 中写入
-let g:instant_markdown_autostart = 1
-map <F11> :InstantMarkdownPreview<CR>
-" 设置使用markdown插件的类型以及不自动折叠代码
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
-
-let g:jsx_ext_required = 0
-let g:instant_markdown_slow = 1
-
 
 
 """"""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
@@ -978,6 +959,26 @@ map <C-F12> :!ctags <CR>
 "更新ctags标签文件快捷键设置
 noremap <F6> :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
+
+"  vim-instant-markdown 是一款实时显示 markdown 效果的插件，要使用这款插件需要先安装 node.js 和 npm，可以在终端执行
+
+"1.安装node.js
+" sudo add-apt-repository ppa:chris-lea/node.js
+" sudo apt-get install nodejs
+"$ sudo apt-get install nodejs npm
+"$ sudo npm -g install instant-markdown-d
+
+"安装完成以后，你只要打开一个.md 文件，Vim 就会自动打开一个浏览器窗口，实现实时预览。如果你不想自动打开预览窗口的话，你可以在 /etc/vim/vimrc 中写入
+let g:instant_markdown_autostart = 1
+map <F12> :InstantMarkdownPreview<CR>
+map <Leader>md :InstantMarkdownPreview<CR>
+" 设置使用markdown插件的类型以及不自动折叠代码
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
+
+let g:jsx_ext_required = 0
+let g:instant_markdown_slow = 1
+
 
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
@@ -992,8 +993,6 @@ let g:tagbar_left = 1
 " 打开文件自动 打开
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 
-" 映射 tagbar 的快捷键
-" map <F4> :TagbarToggle<CR>
 
 " 将开启tagbar的快捷键设置为　<Leader>tb
 nmap <Leader>tb :TagbarToggle<CR>
