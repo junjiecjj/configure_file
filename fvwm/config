@@ -658,6 +658,8 @@ PipeRead "fvwm-menu-desktop -e"
 DestroyMenu MenuEditor
 AddToMenu   MenuEditor "代码编辑器" TitleTest (x gvim)  + "gVIM %$[fvwm_exicons2]/vim.png%" Exec exec gvim &
 Test (x  vim) + "VIM %$[fvwm_exicons2]/vim.png%"  Exec exec vim
+Test (x  remarkable) + "Remarkable %$[fvwm_exicons2]/remarkable.png%"  Exec exec remarkable
+Test (x  typora) + "typora %$[fvwm_exicons2]/typora.png%"  Exec exec typora
 Test (x  gvim) + "GVIM %$[fvwm_exicons2]/vim.png%"  Exec exec gvim
 Test (x  emacs) + "Emacs %$[fvwm_exicons2]/emacs.png%"  Exec exec emacs
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
@@ -1059,7 +1061,6 @@ Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
-Silent Key o  A   CM     Exec exec $[infostore.cool-retro-term]
 Silent Key z  A   CM     Exec exec $[infostore.kitty]
 
 #Ctrl+Alt+n打开文件管理器
@@ -1078,6 +1079,10 @@ Silent key d A CM Exec exec   /home/jack/anaconda3/bin/spyder &
 #Ctrl+Alt+n打开控制中心/设置
 #Silent key n  A CM Exec exec systemsettings5
 Silent key n  A CM Exec exec gnome-control-center
+Silent Key o  A   CM     Exec exec  typora
+Silent Key r  A   CM     Exec exec  remarkable
+
+
 
 # Shift+左      左卷一屏
 # Shift+右      右卷一屏
