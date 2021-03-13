@@ -434,7 +434,7 @@ Style     "emacs"                       TitleAtLeft,  HilightColorset 23
 #Style     "*VIM"                        TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
-Colorset 34   fg  	#1C1C1C, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
+Colorset 34   fg  	#000000, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*code"                        TitleAtTop,  HilightColorset 34
 Style     "*Typora"                        TitleAtTop,  HilightColorset 34
 Style     "*Remarkable*"                        TitleAtTop,  HilightColorset 34
