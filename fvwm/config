@@ -436,7 +436,7 @@ Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
 Colorset 34   fg  	#00FFFF, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*code"                        TitleAtTop,  HilightColorset 34
-Style     "*Typora"                        TitleAtTop,  HilightColorset 34
+Style     "*Typora"                        TitleAtLeft,  HilightColorset 34
 Style     "*Remarkable*"                        TitleAtTop,  HilightColorset 34
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
