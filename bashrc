@@ -173,3 +173,5 @@ export EDITOR=/usr/bin/vim
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
+
+LS_COLORS="di=4;92:fi=01;37;40:ex=00;91;40:ln=01;33:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.docx=00;35:*.doc=00;35:*.pdf=00;35:*.tex=00;35:*.c=00;34:*.cpp=00;34:*.md=01;36:"
