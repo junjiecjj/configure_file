@@ -18,10 +18,10 @@ Xterm*eightBitInput: false
 XTerm*Font: 7*13
 
 ! English font
-xterm*faceName:Noto mono:antialas=true:size=14
+xterm*faceName:Noto mono:antialas=true:pixelsize=14
 !xterm*faceName:Fira Code:antialas=true:size=14
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=18:antialias=True:pixelsize=18
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
 xterm*xftAntialias:true
@@ -53,7 +53,7 @@ xterm*background:#000000
 xterm*foreground:#00FF00
 xterm.borderLess: true
 xterm.cursorBlink: true
-xterm*colorUL: Green
+xterm*colorUL: #00af00
 xterm*colorBD: #FFFF00
 
 !input method  好像不起作用
@@ -62,7 +62,13 @@ XTerm*inputMethod:fcitx
 !调整行距离
 XTerm*scaleHeight: 1.01
 
-
+XTerm*faceSize: 12
+XTerm*faceSize1: 12
+XTerm*faceSize2: 12
+XTerm*faceSize3: 12
+XTerm*faceSize4: 12
+XTerm*faceSize5: 12
+XTerm*faceSize6: 12
 
 *xterm*color0: #000000
 *xterm*color1: #cc0000
