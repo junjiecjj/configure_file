@@ -11,11 +11,13 @@ endif
 set t_Co=256
 let g:colors_name = "lilydjwg_dark"
 
+
 "hi WildMenu -- no settings --
 "hi CTagsMember -- no settings --
 "hi CTagsGlobalConstant -- no settings --
 "hi Ignore -- no settings --
-hi Normal guifg=#00ccff guibg=#222222 guisp=#222222 gui=NONE ctermfg=45 ctermbg=NONE cterm=NONE
+" "整体字体的颜色
+hi Normal guifg=#00ccff guibg=#222222 guisp=#000000  gui=NONE ctermfg=45 ctermbg=16 cterm=NONE
 "hi CTagsImport -- no settings --
 "hi CTagsGlobalVariable -- no settings --
 "hi SpellRare -- no settings --
@@ -60,7 +62,7 @@ hi PMenuSel guifg=#80ff00 guibg=#1a1a1a guisp=#1a1a1a gui=NONE ctermfg=118 cterm
 hi Search guifg=#3204ff guibg=#FFFF00 guisp=#FFFF00 gui=NONE ctermfg=21 ctermbg=11 cterm=NONE
 hi Delimiter guifg=#ff00ff guibg=#2d222d guisp=#2d222d gui=NONE ctermfg=201 ctermbg=NONE cterm=NONE
 hi Statement guifg=#ff7b7b guibg=#2d2222 guisp=#2d2222 gui=bold ctermfg=210 ctermbg=NONE cterm=bold
-hi Comment guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=15 ctermbg=NONE cterm=NONE
+hi Comment guifg=#ffffff guibg=NONE guisp=NONE gui=NONE ctermfg=247 ctermbg=NONE cterm=NONE
 hi Character guifg=#1aff05 guibg=NONE guisp=NONE gui=NONE ctermfg=10 ctermbg=NONE cterm=NONE
 hi Float guifg=#1aff05 guibg=NONE guisp=NONE gui=NONE ctermfg=10 ctermbg=NONE cterm=NONE
 hi Number guifg=#1aff05 guibg=NONE guisp=NONE gui=NONE ctermfg=10 ctermbg=NONE cterm=NONE
@@ -76,7 +78,7 @@ hi Define guifg=#ff99ff guibg=#29222f guisp=#29222f gui=NONE ctermfg=213 ctermbg
 hi Function guifg=#986cff guibg=#2d222d guisp=#2d222d gui=NONE ctermfg=99 ctermbg=NONE cterm=NONE
 hi FoldColumn guifg=#0033ff guibg=#333333 guisp=#333333 gui=NONE ctermfg=27 ctermbg=NONE cterm=NONE
 hi PreProc guifg=#ff99ff guibg=#29222f guisp=#29222f gui=NONE ctermfg=213 ctermbg=NONE cterm=NONE
-hi Visual guifg=#d4d4d4 guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=188 ctermbg=237 cterm=NONE
+hi Visual guifg=#d4d4d4 guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=NONE ctermbg=239 cterm=NONE
 hi MoreMsg guifg=#ffff00 guibg=NONE guisp=NONE gui=NONE ctermfg=11 ctermbg=NONE cterm=NONE
 hi VertSplit guifg=#00c4ff guibg=#0000FF guisp=#0000FF gui=NONE ctermfg=45 ctermbg=21 cterm=NONE
 hi Exception guifg=#ff7b7b guibg=#2d2222 guisp=#2d2222 gui=bold ctermfg=210 ctermbg=NONE cterm=bold
@@ -128,3 +130,6 @@ hi htmlboldunderline guifg=NONE guibg=NONE guisp=NONE gui=bold,underline ctermfg
 hi htmlunderline guifg=NONE guibg=NONE guisp=NONE gui=underline ctermfg=NONE ctermbg=NONE cterm=underline
 hi htmlstatement guifg=#ff89ba guibg=NONE guisp=NONE gui=NONE ctermfg=211 ctermbg=NONE cterm=NONE
 hi scrollbar guifg=#ffce7f guibg=#deb887 guisp=#deb887 gui=NONE ctermfg=222 ctermbg=180 cterm=NONE
+
+
+
