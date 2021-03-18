@@ -76,7 +76,7 @@ hi Define guifg=#e68ae6 guibg=#29222f guisp=#29222f gui=NONE ctermfg=176 ctermbg
 hi Function guifg=#8961e6 guibg=#2d222d guisp=#2d222d gui=NONE ctermfg=98 ctermbg=236 cterm=NONE
 hi FoldColumn guifg=#002ee6 guibg=#333333 guisp=#333333 gui=NONE ctermfg=20 ctermbg=236 cterm=NONE
 hi PreProc guifg=#e68ae6 guibg=#29222f guisp=#29222f gui=NONE ctermfg=176 ctermbg=236 cterm=NONE
-hi Visual guifg=#6e6e6e guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=242 ctermbg=237 cterm=NONE
+hi Visual guifg=#6e6e6e guibg=#3D3D3D guisp=#3D3D3D gui=NONE ctermfg=NONE ctermbg=239 cterm=NONE
 hi MoreMsg guifg=#e6e600 guibg=NONE guisp=NONE gui=NONE ctermfg=184 ctermbg=NONE cterm=NONE
 hi VertSplit guifg=#00b0e6 guibg=#0000FF guisp=#0000FF gui=NONE ctermfg=38 ctermbg=21 cterm=NONE
 hi Exception guifg=#e66f6f guibg=#2d2222 guisp=#2d2222 gui=bold ctermfg=167 ctermbg=236 cterm=bold
