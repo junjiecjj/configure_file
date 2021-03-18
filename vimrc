@@ -2776,35 +2776,7 @@ colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpu
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte
 
 
-"Flagging Unnecessary Whitespace
-"ctermfg是设置字体颜色，cterm是字体是否加粗，ctermbg别动，因为很难看;
-"identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色；
-"Statement：关键字，例如if，else，do，while，等
-"Comment：注释内容;
-"Type：数据类型，如int,double,string等
-"PreProc：预处理器语句，如#include
-"Constant：常量的颜色，如真假，数字等
-"Special：特殊符号，如"、"
-"Underline：下划线
-"Error：错误
-"String是字符串(“”，‘’)里面的内容,以及#include<xxx>中xxx的颜色;
-"Number是数字;
-"Statement是def的颜色，也就是申明函数或者变量时的颜色包括as、if,for,return等的颜色;
-"Include可以是C/C++里面的，也可以是python里面的import;
-"Operator在python里面是in、and等的颜色
 
-"2:绿色;3:黄色4:蓝色；5:紫色；6:青绿色 7：白色；8：灰色；9:酒红色；10:亮绿色
-"11：黄色；12：蓝色；13：粉红；14：青色；15:白色  16：黑色 17,18 :暗蓝  22:淡绿,
-"23:墨绿  24:墨绿 25,26,27：淡蓝 28:深绿 34,35,36:绿色  46:绿色；
-"51:亮青
-"61:淡紫色
-"81:#98F5FF
-"91:#A020F0
-"https://blog.csdn.net/cp3alai/article/details/45509459
-"https://blog.csdn.net/rainysia/article/details/7419839
-
-hi BadWhitespace  ctermfg=15 ctermbg=15
-hi BadWhitespace  guifg= gray guibg=darkred
 
 "任何注释
 hi Comment     ctermfg=darkgray ctermbg=16   cterm=NONE
@@ -3152,9 +3124,9 @@ endif
 
 
 " set background=dark
-colorscheme   lilydjwg_dark_modified    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+colorscheme   lilydjwg_dark      "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
-" rci_gui_modified,nightshade_print_modified,
+" rcg_gui_modified,nightshade_print_modified,
 
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
@@ -3178,7 +3150,9 @@ hi Tag             guifg=#FF0000  gui=bold
 hi Special         ctermfg=81   ctermbg=NONE
 hi Special         guifg=#00FFFF
 
-
+" "任何注释
+hi Comment     ctermfg=darkgray ctermbg=NONE   cterm=NONE
+hi Comment    guifg=#7C7C7C guibg=#000000 gui=NONE
 
 "任何有错的构造
 hi Error ctermfg=124   cterm=bold
@@ -3375,10 +3349,10 @@ hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
 hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
 "可视模式的选择区
-hi Visual            ctermfg=NONE          ctermbg=15
+hi Visual            ctermfg=NONE          ctermbg=237
 hi Visual           guifg=NONE           guibg=#ffffff
 
-hi VisualNOS               ctermfg=NONE    ctermbg=238
+hi VisualNOS               ctermfg=NONE    ctermbg=237
 hi VisualNOS              guifg=NONE       guibg=#8B8386
 
 " "警告消息
@@ -3411,10 +3385,14 @@ if has("spell")
 endif
 
 
-
 " "整体字体的颜色
-hi Normal       term=bold         ctermbg=16        cterm=bold
-hi Normal       term=bold         guibg=#000000    cterm=bold
+"hi Normal       term=bold         ctermbg=16        cterm=bold
+" hi Normal       term=bold         guibg=#000000    cterm=bold
+
+
+" colorscheme   lilydjwg_dark       "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+"darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
+" rcg_gui_modified,nightshade_print_modified,
 
 
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
@@ -3422,6 +3400,8 @@ hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+hi BadWhitespace  ctermfg=15 ctermbg=15
+hi BadWhitespace  guifg= gray guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/          "表示不必要的空白字符
 
 " 让 vim 把连续数量的空格视为一个制表符,使得按退格键时可以一次删除4个空格"
