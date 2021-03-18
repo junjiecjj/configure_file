@@ -1,277 +1,332 @@
 
 
-let g : polyglot_disabled = ['markdown.plugin'] let g : polyglot_disabled = ['autoindent'] let g : polyglot_disabled = ['sensible'] let g : polyglot_disabled = ['ftdetect']
+let g:polyglot_disabled = ['markdown.plugin']
+let g:polyglot_disabled = ['autoindent']
+let g:polyglot_disabled = ['sensible']
+let g:polyglot_disabled = ['ftdetect']
 
-                                                                                                                                            "set the runtime path to include Vundle and initialize
-                                                                                                                                            set rtp += ~ /.vim / bundle / Vundle.vim
 
-                                                                                                                                                                              call vundle #begin() "PluginInstall:安装插件
-                                                                                                                                                                                                   "PluginClean:移除不要的插件
-                                                                                                                                                                                                   "PluginUpdate:更新插件
-                                                                                                                                                                                                   "PluginList:列出所有安装的插件
-                                                                                                                                                                                                   "PluginSearch:查找插件
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 
-                                                                                                                                                                                                   "let Vundle manage Vundle,require
-                                                                                                                                                                          Plugin 'VundleVim/Vundle.vim' "Plugin 'Valloric/ListToggle'
-                                                                                                                                                                                                        "Plugin 'klen/python-mode'
-                                                                                                                                                                          Plugin 'kshenoy/vim-signature' Plugin 'vhda/verilog_systemverilog.vim' Plugin 'molokai' " 配色方案
-                                                                                                                                                                          Plugin 'morhetz/gruvbox' " 配色方案
-                                                                                                                                                                          Plugin 'matze/vim-move' " 代码块移动
-                                                                                                                                                                          Plugin 'DoxygenToolkit.vim' " 注释文档生成
-                                                                                                                                                                          Plugin 'VimTweak' " 背景透明插件
-                                                                                                                                                                          Plugin 'davidhalter/jedi-vim' Plugin 'ervandew/supertab' " 补全记忆插件
-                                                                                                                                                                          Plugin 'AutoComplPop' " 自动代码提示
-                                                                                                                                                                          Plugin 'othree/html5.vim' " html全能补全
-                                                                                                                                                                          Plugin 'tyru/open-browser.vim' " 打开浏览器
-                                                                                                                                                                          Plugin 'vim-scripts/indentpython.vim' " 写python代码自动缩进
-                                                                                                                                                                          Plugin 'Yggdroot/indentLine' " 缩进指示线
-                                                                                                                                                                          Plugin 'jiangmiao/auto-pairs' " 自动补全括号等
-                                                                                                                                                                          Plugin 'kien/ctrlp.vim' " 在vim中搜索文件
-                                                                                                                                                                                                  "Plugin 'Lokaltog/vim-powerline'             " 美化状态栏，显示正在编辑的文件 "Plugin 'vim-syntastic/syntastic'            " 语法检查,
-        会导致保存python文件时很慢
-    "Plugin 'scrooloose/syntastic'               " 语法检查
-        Plugin 'nvie/vim-flake8' " falke代码风格检查
-    Plugin 'lervag/vimtex',
-{
-    'for' : [ 'tex', 'plaintex', 'bst' ]
-}
-" latex插件
-    Plugin 'SirVer/ultisnips' " 安装引擎
-    Plugin 'honza/vim-snippets' " 安装代码块集合
-    Plugin 'fholgado/minibufexpl.vim' " 多文档编辑
-    Plugin 'vim-scripts/winmanager' " 多窗口管理器
-    Plugin 'terryma/vim-multiple-cursors' " vim多重光标选取插件
-    Plugin 'gorodinskiy/vim-coloresque' " 颜色符号显示对应颜色
-    Plugin 'jnurmine/Zenburn' Plugin 'Chiel92/vim-autoformat' "格式化代码（或保存时自动格式化）
-    Plugin 'majutsushi/tagbar' "taglist的增强版，显示变量函数宏等
-    Plugin 'fatih/vim-go',
-{
-    'tag' : '*'
-}
-" go主要插件
-    Plugin 'octol/vim-cpp-enhanced-highlight' " C++  IDE
-                                              " Plugin 'c.vim'                             " C IDE
-                                                  Plugin 'chxuan/change-colorscheme' " vim一个快速切换主题的插件
-    Plugin 'altercation/vim-colors-solarized' Plugin 'mileszs/ack.vim' " 强大的文本搜索工具
-    Plugin 'easymotion/vim-easymotion' " 强大的搜索定位
-    Plugin 'lucasicf/vim-smooth-scroll' " 支持平滑滚动
-    Plugin 'Shougo/echodoc.vim' " 函数参数提示
-    Plugin 'godlygeek/tabular' " 快速对齐
-    Plugin 'plasticboy/vim-markdown' Plugin 'suan/vim-instant-markdown' Plugin 'tell-k/vim-autopep8' " 按照pep8的标准自动格式化代码
-    Plugin 'scrooloose/nerdtree' " 添加树形目录
-    Plugin 'jistr/vim-nerdtree-tabs' " 想用tab键
-    Plugin 'Xuyuanp/nerdtree-git-plugin' Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " enhance devicons
-    Plugin 'tmhedberg/SimpylFold' " 自动折叠
-                                  " Plugin 'bronson/vim-trailing-whitespace'   " 显示以及去除行尾空格
-                                      Plugin 'ryanoasis/vim-devicons' " add beautiful icons besides Files
-    Plugin 'tpope/vim-fugitive' " 在vim中执行git命令
-    Plugin 'Valloric/YouCompleteMe' " 自动补全括号等
-    Plugin 'rip-rip/clang_complete' Plugin 'rhysd/vim-clang-format' Plugin 'Raimondi/delimitMate' Plugin 'chxuan/cpp-mode' " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
-    Plugin 'Shougo/deoplete.nvim',
-    {'do' : ':UpdateRemotePlugins'} Plugin 'sheerun/vim-polyglot' Plugin 'w0rp/ale' Plugin 'Yggdroot/LeaderF',
-{
-    'do' : './install.sh'
-}
-" 在vim中搜索文件
-    Plugin 'junegunn/fzf',
-{
-    'dir' : '~/.fzf', 'do' : './install --all'
-}
-" 在vim中搜索文件
-    Plugin 'junegunn/fzf.vim' Plugin 'tpope/vim-surround' Plugin 'itchyny/lightline.vim' " 美化状态栏，显示正在编辑的文件
-    Plugin 'rking/ag.vim' Plugin 'vim-airline/vim-airline' " 美化状态栏，显示正在编辑的文件
-    Plugin 'vim-airline/vim-airline-themes' " 美化状态栏，显示正在编辑的文件
-    Plugin 'scrooloose/nerdcommenter' Plugin 'luochen1990/rainbow' Plugin 'kien/rainbow_parentheses.vim' Plugin 'airblade/vim-gitgutter' Plugin 'mattn/emmet-vim' Plugin 'hail2u/vim-css3-syntax' Plugin 'ap/vim-css-color' Plugin 'pangloss/vim-javascript' Plugin 'maksimr/vim-jsbeautify' " 格式化js css等文件
-    Plugin 'mxw/vim-jsx' Plugin 'prettier/vim-prettier',
-    {
-            \ 'do' : 'yarn install',
-            \ 'for' : [ 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql' ]} let g : prettier #config #bracket_spacing = 'true' let g : prettier #config #jsx_bracket_same_line = 'false' let g : prettier #autoformat = 0 autocmd BufWritePre *.js, *.jsx, *.mjs, *.ts, *.tsx, *.css, *.less, *.scss, *.json, *.graphql PrettierAsync
+call vundle#begin()
+"PluginInstall:安装插件
+"PluginClean:移除不要的插件
+"PluginUpdate:更新插件
+"PluginList:列出所有安装的插件
+"PluginSearch:查找插件
 
-                                                                                                                                                                                                                                                                                                                                    "All of your Plugins must be added before the following line
-                                                                                                                                                                                                                                                                                                                                    call vundle #end()
+"let Vundle manage Vundle,require
+Plugin 'VundleVim/Vundle.vim'
+"Plugin 'Valloric/ListToggle'
+"Plugin 'klen/python-mode'
+Plugin 'kshenoy/vim-signature'
+Plugin 'vhda/verilog_systemverilog.vim'
+Plugin 'molokai'                             " 配色方案
+Plugin 'morhetz/gruvbox'                     " 配色方案
+Plugin 'matze/vim-move'                      " 代码块移动
+Plugin 'DoxygenToolkit.vim'                  " 注释文档生成
+Plugin 'VimTweak'                            " 背景透明插件
+Plugin 'davidhalter/jedi-vim'
+Plugin 'ervandew/supertab'                   " 补全记忆插件
+Plugin 'AutoComplPop'                        " 自动代码提示
+Plugin 'othree/html5.vim'                    " html全能补全
+Plugin 'tyru/open-browser.vim'               " 打开浏览器
+Plugin 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
+Plugin 'Yggdroot/indentLine'                 " 缩进指示线
+Plugin 'jiangmiao/auto-pairs'                " 自动补全括号等
+Plugin 'kien/ctrlp.vim'                      " 在vim中搜索文件
+"Plugin 'Lokaltog/vim-powerline'             " 美化状态栏，显示正在编辑的文件
+"Plugin 'vim-syntastic/syntastic'            " 语法检查,会导致保存python文件时很慢
+"Plugin 'scrooloose/syntastic'               " 语法检查
+Plugin 'nvie/vim-flake8'                     " falke代码风格检查
+Plugin 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}                       " latex插件
+Plugin 'SirVer/ultisnips'                    " 安装引擎
+Plugin 'honza/vim-snippets'                  " 安装代码块集合
+Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
+Plugin 'vim-scripts/winmanager'              " 多窗口管理器
+Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
+Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
+Plugin 'jnurmine/Zenburn'
+Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
+Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
+Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
+Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
+" Plugin 'c.vim'                             " C IDE
+Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
+Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
+Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
+Plugin 'Shougo/echodoc.vim'                  " 函数参数提示
+Plugin 'godlygeek/tabular'                   " 快速对齐
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
+Plugin 'scrooloose/nerdtree'                 " 添加树形目录
+Plugin 'jistr/vim-nerdtree-tabs'             " 想用tab键
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'                       " enhance devicons
+Plugin 'tmhedberg/SimpylFold'                " 自动折叠
+" Plugin 'bronson/vim-trailing-whitespace'   " 显示以及去除行尾空格
+Plugin 'ryanoasis/vim-devicons'                                        " add beautiful icons besides Files
+Plugin 'tpope/vim-fugitive'                                            " 在vim中执行git命令
+Plugin 'Valloric/YouCompleteMe'                                        " 自动补全括号等
+Plugin 'rip-rip/clang_complete'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'Raimondi/delimitMate'
+Plugin 'chxuan/cpp-mode'                                               " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'sheerun/vim-polyglot'
+Plugin 'w0rp/ale'
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                    " 在vim中搜索文件
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'itchyny/lightline.vim'                                         " 美化状态栏，显示正在编辑的文件
+Plugin 'rking/ag.vim'
+Plugin 'vim-airline/vim-airline'                                       " 美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'                                " 美化状态栏，显示正在编辑的文件
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'luochen1990/rainbow'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'mattn/emmet-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'                                        " 格式化js css等文件
+Plugin 'mxw/vim-jsx'
+Plugin 'prettier/vim-prettier', {
+            \ 'do': 'yarn install',
+            \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql']}
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql PrettierAsync
 
-                                                                                                                                                                                                                                                                                                                                        set nocompatible " required
-                                                                                                                                                                                                                                                                                                                                    filetype on " required开启探测文件类型,on off
-                                                                                                                                                                                                                                                                                                                                    filetype plugin on " 载入文件类型插件
-                                                                                                                                                                                                                                                                                                                                    filetype indent on " 为特定文件类型载入相关缩进文件
+"All of your Plugins must be added before the following line
+call vundle#end()
 
-                                                                                                                                                                                                                                                                                                                                                         " 打开文件类型检测, 加了这句才可以用智能补全
-                                                                                                                                                                                                                                                                                                                                    filetype plugin indent on
+set nocompatible                             " required
+filetype on                                  " required开启探测文件类型,on off
+filetype plugin on           " 载入文件类型插件
+filetype indent on           " 为特定文件类型载入相关缩进文件
 
-                                                                                                                                                                                                                                                                                                                                    let mapleader = '\' set t_Co = 256
+" 打开文件类型检测, 加了这句才可以用智能补全
+filetype plugin indent on
 
-                                                                                                                                                                                                                                                                                                                                   set background = dark
+let mapleader = '\'
+set t_Co=256
 
-                                                                                                                                                                                                                                                                                                                                   set splitbelow set splitright
+set background=dark
 
-                                                                                                                                                                                                                                                                                                                                   "让补全行为与一般IDE一样
-                                                                                                                                                                                                                                                                                                                                   "set completeopt = preview,meun
-                                                                                                                                                                                                                                                                                                                                   "
-                                                                                                                                                                                                                                                                                                                                   "在接受补全后不分裂出一个窗口显示接受的项
-                                                                                                                                                                                                                                                                                                                                   "set completeopt-=preview
+set splitbelow
+set splitright
 
-                                                                                                                                                                                                                                                                                                                                   "开启语法高亮功能
-                                                                                                                                                                                                                                                                                                                                   syntax enable " 允许用指定语法高亮配色方案替换默认方案
-                                                                                                                                                                                                                                                                                                                                   syntax on
+"让补全行为与一般IDE一样
+"set completeopt = preview,meun
+"
+"在接受补全后不分裂出一个窗口显示接受的项
+"set completeopt-=preview
 
-                                                                                                                                                                                                                                                                                                                                   let python_highlight_all = 1 let g : SimpleFold_docstring_preview = 1 "看到折叠代码的字符串
+"开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
 
-                                                                                                                                                                                                                                                                                                                                                                                                         "显示行号
-                                                                                                                                                                                                                                                                                                                                                                        set number
 
-                                                                                                                                                                                                                                                                                                                                                                                                         "高亮显示匹配的括号
-                                                                                                                                                                                                                                                                                                                                                                        set showmatch
+let python_highlight_all=1
+let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
 
-                                                                                                                                                                                                                                                                                                                                                                                                         " 光标移动到buffer的顶部和底部时保持3行距离
-                                                                                                                                                                                                                                                                                                                                                                        set scrolloff = 3
+"显示行号
+set number
 
-                                                                                                                                                                                                                                                                                                                                                                        "为c语言自动缩进
-                                                                                                                                                                                                                                                                                                                                                                        "smartindent 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别 C 语言关键字的功能。如果一行是以 #开头的，那么这种格式将会被特殊对待而不采用缩进格式
-                                                                                                                                                                                                                                                                                                                                                                        set smartindent
+"高亮显示匹配的括号
+set showmatch
 
-                                                                                                                                                                                                                                                                                                                                                                        " 使用C样式的缩进
-                                                                                                                                                                                                                                                                                                                                                                        set cindent
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3
 
-                                                                                                                                                                                                                                                                                                                                                                        "自动缩进, 继承前一行的缩进方式，适用于多行注释,
-                                                                                                                                                                                                                                                                                                                                                                        "autoindent 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。可以使用以下命令，
-                                                                                                                                                                                                                                                                                                                                                                        "set autoindent
+"为c语言自动缩进
+"smartindent 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别 C 语言关键字的功能。如果一行是以 #开头的，那么这种格式将会被特殊对待而不采用缩进格式
+set smartindent
 
-                                                                                                                                                                                                                                                                                                                                                                        " 字符间插入的像素行数目
-                                                                                                                                                                                                                                                                                                                                                                        set linespace = 0
+" 使用C样式的缩进
+set cindent
 
-                                                                                                                                                                                                                                                                                                                                                                        " 设置 VIM 字体及大小
-                                                                                                                                                                                                                                                                                                                                                                        " Linux/Unix 命令格式：set guifont = 字体 +\\+ 空格 + 字体大小
-                                                                                                                                                                                                                                                                                                                                                                        "  Windows/Mac 命令格式：set guifont = 字体 + : + 字体大小
-                                                                                                                                                                                                                                                                                                                                                                        " 不同的是，关于字体大小的表述。Linux/Unix 字体大小直接写字号，Windows/Mac 字号需要加上 h 的高度名。
-                                                                                                                                                                                                                                                                                                                                                                        " Linux/Unix: set guifont=Monospace\空格14 注意这里需要对空格使用 \ 进行转意
-                                                                                                                                                                                                                                                                                                                                                                        " Windows: set guifont=Monospace:h14 注意这里的字体大小需要有 h 的标识
-                                                                                                                                                                                                                                                                                                                                                                        " set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
-                                                                                                                                                                                                                                                                                                                                                                        " 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono " if has ('gui_running') colorscheme desert if has ('gui_win32') set guifont = DejaVu_Sans_Mono : h10 : cANSI else set guifont = DejaVu\ Sans\ Mono\ 12 " set guifont=DejaVu\ Sans\ Mono\ 10
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     endif endif
+"自动缩进, 继承前一行的缩进方式，适用于多行注释,
+"autoindent 在这种缩进形式中，新增加的行和前一行使用相同的缩进形式。可以使用以下命令，
+"set autoindent
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     if has ('gui_running') colorscheme desert if has ('gui_win32') set guifont = Fira_Code : h10 : cANSI else set guifont = Fira\ Code\ 12 " set guifont=DejaVu\ Sans\ Mono\ 10
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    endif endif
+" 字符间插入的像素行数目
+set linespace=0
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            " 设定默认解码
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    set bsdir = buffer set fenc = utf - 8 set langmenu = zh_CN.UTF - 8 set fileencodings = utf - 8,
-                                                                                                                          ucs - bom, latin1, gb2312, gb18030, cp936, gbk, big5 set encoding = utf - 8 "支持UTF8编码
-                                                                                                                                                                                              set fencs = utf - 8,
-                                                                                                                          gbk, chinese, big5, cs - bom, shift - jis, gb18030, gb2312, cp936 set termencoding = utf - 8
+" 设置 VIM 字体及大小
+" Linux/Unix 命令格式：set guifont = 字体 +\\+ 空格 + 字体大小
+"  Windows/Mac 命令格式：set guifont = 字体 + : + 字体大小
+" 不同的是，关于字体大小的表述。Linux/Unix 字体大小直接写字号，Windows/Mac 字号需要加上 h 的高度名。
+" Linux/Unix: set guifont=Monospace\空格14 注意这里需要对空格使用 \ 进行转意
+" Windows: set guifont=Monospace:h14 注意这里的字体大小需要有 h 的标识
+" set guifont=-misc-simsun-medium-r-normal-*-*-120-*-*-c-*-iso10646-1
+" 在Gvim中我设置了英文用Hermit， 中文使用 YaHei Mono "
+if has('gui_running')
+    colorscheme desert
+    if has('gui_win32')
+      set guifont=DejaVu_Sans_Mono:h10:cANSI
+    else
+      set guifont=DejaVu\ Sans\ Mono\ 12
+      " set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+  endif
 
-                                                                                                                                                                                                               " 可以在 buffer 的任何地方使用鼠标（类似 office 中在工作区双击鼠标定位）
-                                                                                                                                                                                                               set mouse = a " set selectmode=mouse,key
-                                                                                                                                                                                                                             "指定在选择文本时，光标所在位置也属于被选中的范围。
-                                                                                                                                                                                      set selection = inclusive
+if has('gui_running')
+    colorscheme desert
+    if has('gui_win32')
+      set guifont=Fira_Code:h10:cANSI
+    else
+      set guifont=Fira\ Code\ 12
+      " set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+  endif
 
-                                                                                                                                                                                      " 实现按 \sa 全选当前文件所有文本的效果
-                                                                                                                                                                                      map<leader> sa ggVG "
+" 设定默认解码
+set bsdir=buffer
+set fenc=utf-8
+set langmenu=zh_CN.UTF-8
+set fileencodings=utf-8,ucs-bom,latin1,gb2312,gb18030,cp936,gbk,big5
+set encoding=utf-8  "支持UTF8编码
+set fencs=utf-8,gbk,chinese,big5,cs-bom,shift-jis,gb18030,gb2312,cp936
+set termencoding=utf-8
 
-                                                                                                                                                                                                          " 在被分割的窗口间显示空白，便于阅读
-                                                                                                                                                                                                          " set fillchars=vert:\ ,stl:\ ,stlnc:\
+" 可以在 buffer 的任何地方使用鼠标（类似 office 中在工作区双击鼠标定位）
+set mouse=a
+" set selectmode=mouse,key
+"指定在选择文本时，光标所在位置也属于被选中的范围。
+set selection=inclusive
 
-                                                                                                                                                                                                          " 进入当前编辑的文件的目录
-                                                                                                                                                                                      autocmd BufEnter *exec "cd %:p:h"
+" 实现按 \sa 全选当前文件所有文本的效果
+map <leader>sa ggVG"
 
-                                                                                                                                                                                                             " 设置路径，多个路径用逗号分隔
-                                                                                                                                                                                      set path =.,
-                                                                                                                          "E:/Web/htdocs", ,
+" 在被分割的窗口间显示空白，便于阅读
+" set fillchars=vert:\ ,stl:\ ,stlnc:\
 
-                                                                                                                          " 显示 TAB 键-,空格-
-                                                                                                                          " set listchars=space:c 设置某个字符来显示一个空格
-                                                                                                                          " set listchars=trail:c 设置某个字符来显示一个行尾空格
-                                                                                                                          " set listchars=eol:c 设置某个字符来显示每行的行尾结束符
-                                                                                                                          " set listchars=tab:>-，则会用 >--- 显示 4 个长度的制表符
-                                                                                                                          "" set list
-                                                                                                                          " set listchars=tab:>-,trail:-
+" 进入当前编辑的文件的目录
+autocmd BufEnter * exec "cd %:p:h"
 
-                                                                                                                          " 输入:set list 命令是应该显示些啥？
-                                                                                                                          set listchars = tab :\|\ ,
-                                                                                                                          trail :., extends : >, precedes : <, eol : $
+" 设置路径，多个路径用逗号分隔
+set path=.,"E:/Web/htdocs",,
 
-                                                                                                                                                                     " 定义快捷键关闭当前分割窗口
-                                                                                                                                                                     nmap<Leader> q : q<CR> " 定义快捷键保存当前窗口内容并离开
-                                                                                                                                                                                      nmap<Leader> wq : wq<CR>
+" 显示 TAB 键-,空格-
+" set listchars=space:c 设置某个字符来显示一个空格
+" set listchars=trail:c 设置某个字符来显示一个行尾空格
+" set listchars=eol:c 设置某个字符来显示每行的行尾结束符
+" set listchars=tab:>-，则会用 >--- 显示 4 个长度的制表符
+"" set list
+" set listchars=tab:>-,trail:-
 
-                                                                                                                                                                                                        " 定义快捷键保存当前窗口内容
-                                                                                                                                                                                                        nmap<Leader> w : w<CR>
 
-                                                                                                                                                                                                                         "折叠
-                                                                                                                                                                                                                         "允许折叠
-                                                                                                                                                                                                                         set foldenable
+" 输入:set list 命令是应该显示些啥？
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
-                                                                                                                                                                                                                         "更具每行的缩进开启折叠 ，manual为手动折叠
-                                                                                                                                                                                                                         set foldmethod = indent
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容并离开
+nmap <Leader>wq :wq<CR>
 
-                                                                                                                                                                                                                         set foldlevel = 100
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
 
-                                                                                                                                                                                                                         "自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
-                                                                                                                                                                                                                         " set textwidth=70                   "来设置 n "自动折行 是把长的一行用多行显示 , 不在文件里加换行符用
-                                                                                                                                                                                                                         set nowrap "不自动折行
-                                                                                                                                                                                                                         " set wrap
+"折叠
+"允许折叠
+set foldenable
 
-                                                                                                                                                                                                                         "只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
-                                                                                                                                                                                                                         set linebreak
+"更具每行的缩进开启折叠 ，manual为手动折叠
+set foldmethod=indent
 
-                                                                                                                                                                                                                         "指定折行处与编辑窗口的右边缘之间空出的字符数。" set wrapmargin = 2
+set foldlevel=100
 
-                                                                                                                                                                                                                         "水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。" set sidescrolloff = 15
+"自动换行是每行超过 n 个字的时候 vim 自动加上换行符用
+" set textwidth=70                   "来设置 n
+"自动折行 是把长的一行用多行显示 , 不在文件里加换行符用
+set  nowrap
+"不自动折行
+" set wrap
 
-                                                                                                                                                                                                                         set novisualbell "出错时，不要闪烁 set novisualbell 。
+"只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行。
+set  linebreak
 
-                                                                                                                                                                                                                                          "系统剪切板
-                                                                                                                                                                                                                         set clipboard
-                                                                                                                                                                                                                         += unnamed
+"指定折行处与编辑窗口的右边缘之间空出的字符数。"
+set  wrapmargin=2
 
-                                                                                                                                                                                                                         "不适用vi的键盘模式，使用vim自己的
-                                                                                                                                                                                                                         set nocompatible
+"水平滚动时，光标距离行首或行尾的位置（单位：字符）。该配置在不折行时比较有用。"
+set  sidescrolloff=15
 
-                                                                                                                                                                                                                         "搜索逐字符高亮
-                                                                                                                                                                                                                         set hlsearch
 
-                                                                                                                                                                                                                         " 开启增量搜索模式
-                                                                                                                                                                                                                         set incsearch
+set  novisualbell
+"出错时，不要闪烁 set novisualbell 。
 
-                                                                                                                                                                                                                         set ts = 4
+"系统剪切板
+set clipboard+=unnamed
 
-                                                                                                                                                                                                                         set ar
+"不适用vi的键盘模式，使用vim自己的
+set nocompatible
 
-                                                                                                                                                                                                                         " 自动重新读入
-                                                                                                                                                                                                                         set updatetime = 1000
+"搜索逐字符高亮
+set hlsearch
 
-                                                                                                                                                                                                                         set autoread
+" 开启增量搜索模式
+set incsearch
 
-                                                                                                                                                                                                                         ""可使切换文件时，修改的文件被自动保存
-                                                                                                                                                                                                                         "set autowriteall
+set ts=4
 
-                                                                                                                                                                                                                         set autowrite " 设置自动保存
+set ar
 
-                                                                                                                                                                                                                         " 带有如下符号的单词不要被换行分割
-                                                                                                                                                                                                                         set iskeyword
-                                                                                                                                                                                                                         += _,
-                                                                                                                          $, @, %, #, -
+" 自动重新读入
+set updatetime=1000
 
-                                                                                                                                      " 下面的滚动条开启
-                                                                                                                                      " let g:netrw_winsize = 20
-                                                                                                                                      "添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
-    : set guioptions += b
 
-                                                                                                                                      " " 隐藏
-                                                                                                                                      / 不隐藏工具栏 set guioptions
-                                                                                                                                      += T " " 隐藏 / 不隐藏菜单栏 set guioptions += m
+set autoread
 
-                                                                                                                                      set guioptions
-                                                                                                                                      += r set guioptions += L
+""可使切换文件时，修改的文件被自动保存
+"set autowriteall
 
-                                                                                                                                      " 水平滚动
-                                                                                                                                      " 向左
-                                                                                                                                      map<F8> 10zh imap<F8><ESC> 10zhi " 向右
-                                                                                                                                      map<F9> 10zl imap<F9><ESC> 10zli " 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+set autowrite
+" 设置自动保存
 
-                                                                                                                                      set ambiwidth = double "防止特殊符号无法正常显示
+" 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-
 
-                                                                                                                                                             " 我的状态行显示的内容（包括文件类型和解码）
-                                                                                                                                      set statusline = % F % m % r % h % w\ [FORMAT = % {&ff}]\ [TYPE = % Y]\ [POS = % l, % v][% p % % ]\ %
-{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+
+
+" 下面的滚动条开启
+" let g:netrw_winsize = 20
+"添加水平滚动条。如果你指定了不折行，那为窗口添加一个水平滚动条就非常有必要了
+:set guioptions+=b
+
+" " 隐藏/不隐藏工具栏
+set guioptions+=T
+" " 隐藏/不隐藏菜单栏
+set guioptions+=m
+
+set guioptions+=r
+set guioptions+=L
+
+
+" 水平滚动
+" 向左
+map <F8> 10zh
+imap <F8> <ESC>10zhi
+" 向右
+map <F9> 10zl
+imap <F9> <ESC>10zli
+" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
+set ambiwidth=double "防止特殊符号无法正常显示
+
+
+" 我的状态行显示的内容（包括文件类型和解码）
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
 " 设置在状态行显示的信息如下：
 " %f    当前的文件名
 " %F    当前全路径文件名
@@ -731,8 +786,7 @@ nnoremap <silent> <C-p> :Files<CR>
 
 " Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
 nmap <C-e> :Buffers<CR>
-let g:fzf_action = {
-        'ctrl-e' : 'edit' }
+let g:fzf_action = { 'ctrl-e': 'edit' }
 
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
@@ -758,37 +812,34 @@ command! -bang -nargs=* Rg
 
 " This is the default extra key bindings
 let g:fzf_action = {
-        \ 'ctrl-t' : 'tab split',
-            \ 'ctrl-x' : 'split',
-            \ 'ctrl-v' : 'vsplit' }
+            \ 'ctrl-t': 'tab split',
+            \ 'ctrl-x': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 " - down / up / left / right
-let g:fzf_layout = {
-        'down' : '~40%' }
+let g:fzf_layout = { 'down': '~40%' }
 
 " In Neovim, you can set up fzf window using a Vim command
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = {
-        'window' : '10split enew' }
+let g:fzf_layout = { 'window': '10split enew' }
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
-            \ {
-        'fg' : [ 'fg', 'Normal' ],
-            \ 'bg' : [ 'bg', 'Normal' ],
-            \ 'hl' : [ 'fg', 'Comment' ],
-            \ 'fg+' : [ 'fg', 'CursorLine', 'CursorColumn', 'Normal' ],
-            \ 'bg+' : [ 'bg', 'CursorLine', 'CursorColumn' ],
-            \ 'hl+' : [ 'fg', 'Statement' ],
-            \ 'info' : [ 'fg', 'PreProc' ],
-            \ 'border' : [ 'fg', 'Ignore' ],
-            \ 'prompt' : [ 'fg', 'Conditional' ],
-            \ 'pointer' : [ 'fg', 'Exception' ],
-            \ 'marker' : [ 'fg', 'Keyword' ],
-            \ 'spinner' : [ 'fg', 'Label' ],
-            \ 'header' : [ 'fg', 'Comment' ] }
+            \ { 'fg':      ['fg', 'Normal'],
+            \ 'bg':      ['bg', 'Normal'],
+            \ 'hl':      ['fg', 'Comment'],
+            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+            \ 'hl+':     ['fg', 'Statement'],
+            \ 'info':    ['fg', 'PreProc'],
+            \ 'border':  ['fg', 'Ignore'],
+            \ 'prompt':  ['fg', 'Conditional'],
+            \ 'pointer': ['fg', 'Exception'],
+            \ 'marker':  ['fg', 'Keyword'],
+            \ 'spinner': ['fg', 'Label'],
+            \ 'header':  ['fg', 'Comment'] }
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -1142,7 +1193,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " 搜索引擎配置
 let g:openbrowser_default_search = 'goole'
 let g:openbrowser_search_engines = {
-        \ 'goole' : 'https://www.google.com',
+            \  'goole': 'https://www.google.com',
             \}
 
 
@@ -1388,7 +1439,7 @@ let g:ycm_key_list_stop_completion =  ['<C-y>']
 " \}
 
 let g:ycm_filetype_specific_completion_to_disable = {
-        \ 'gitcommit' : 1
+            \ 'gitcommit': 1
             \}
 
 " let g:ycm_filetype_whitelist = {
@@ -1415,8 +1466,8 @@ let g:ycm_semantic_triggers =  {
             \   'py' : ['.'],
             \ }
 let g:ycm_semantic_triggers =  {
-        \ 'c,cpp,python,java,go,erlang,perl' : ['re!\w{2}'],
-            \ 'cs,lua,javascript' : ['re!\w{2}'],
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
             \ }
 
 
@@ -1449,28 +1500,26 @@ let g:NERDSpaceDelims=1
 let g:rainbow_active = 1
 let g:rainbow_operators=2
 let g:rainbow_conf = {
-        \ 'guifgs' : [ 'magenta1', 'maroon1', 'red1', 'orange1' ],
-            \ 'ctermfgs' : [ 'lightblue', 'lightyellow', 'lightcyan', 'lightmagenta' ],
-            \ 'operators' : '_,\|+\|-_',
-            \ 'parentheses' : [ 'start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold' ],
-            \ 'separately':
-        {
-            \ '*' : {},
-            \ 'lisp' : {
-            \ 'guifgs' : [ 'royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3' ],
-            \ 'ctermfgs' : [ 'darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen' ],
-            \ },
-            \ 'vim' : {
-            \ 'parentheses' : [ [ 'fu\w* \s*.*)', 'endfu\w*' ], [ 'for', 'endfor' ], [ 'while', 'endwhile' ], [ 'if', '_elseif\|else_', 'endif' ], [ '(', ')' ], [ '\[', '\]' ], [ '{', '}' ] ],
-            \ },
-            \ 'tex' : {
-            \ 'parentheses' : [ [ '(', ')' ], [ '\[', '\]' ], [ '\\begin{.*}', '\\end{.*}' ] ],
-            \ },
-            \ 'css' : 0,
-            \ 'stylus' : 0,
-            \
-        }
-        \}
+            \   'guifgs': ['magenta1', 'maroon1', 'red1', 'orange1'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,\|+\|-_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \           'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan', 'darkred', 'darkgreen'],
+            \       },
+            \       'vim': {
+            \           'parentheses': [['fu\w* \s*.*)','endfu\w*'], ['for','endfor'], ['while', 'endwhile'], ['if','_elseif\|else_','endif'], ['(',')'], ['\[','\]'], ['{','}']],
+            \       },
+            \       'tex': {
+            \           'parentheses': [['(',')'], ['\[','\]'], ['\\begin{.*}','\\end{.*}']],
+            \       },
+            \       'css': 0,
+            \       'stylus': 0,
+            \   }
+            \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1665,9 +1714,9 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:NERDSpaceDelims =1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCustomDelimiters = {
-        \ 'javascript' : {'left' : '//', 'leftAlt' : '/**', 'rightAlt' : '*/'},
-            \ 'less': { 'left' : '/**', 'right' : '*/' }
-        \ }
+            \ 'javascript': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
+            \ 'less': { 'left': '/**', 'right': '*/' }
+            \ }
 
 """""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
 "加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
@@ -1980,7 +2029,7 @@ augroup END
 
 "let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
-        \ 'javascript.jsx' : {
+            \ 'javascript.jsx' : {
             \ 'extends' : 'jsx',
             \ },
             \ }
@@ -2025,22 +2074,22 @@ set conceallevel=1
 "molokai,landscape,solarized,
 
 let g:lightline = {
-        \ 'colorscheme' : 'landscape',
-            \ 'active' : {
-            \ 'left' : [ [ 'mode', 'paste' ],
-            \ ['readonly', 'filename', 'modified', 'helloworld'] ],
-            \ 'right' : [ ['lineinfo'],
-            \ ['percent'],
-            \ ['fileformat', 'fileencoding', 'filetype', 'charvaluehex'] ],
+            \ 'colorscheme': 'landscape',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
+            \   'right': [ [ 'lineinfo' ],
+            \              [ 'percent' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
             \ },
-            \ 'component' : {
-            \ 'charvaluehex' : '0x%B',
-            \ 'gitbranch' : 'fugitive#head',
+            \ 'component': {
+            \   'charvaluehex': '0x%B',
+            \   'gitbranch': 'fugitive#head',
             \ },
-            \ 'component_function' : {
-            \ 'filename' : 'LightlineFilename',
-            \ 'mode' : 'LightlineMode',
-            \ 'filetype' : 'LightlineFiletype',
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'mode': 'LightlineMode',
+            \   'filetype': 'LightlineFiletype',
             \ },
             \ }
 
@@ -2158,14 +2207,11 @@ endfunction
 set statusline=%<%1*[B-%n]%*
 " TOT is an abbreviation for total
 set statusline+=%2*[TOT:%{Buf_total_num()}]%*
-set statusline+=%3*\ %{
-        File_size(@ %)}\ %*
+set statusline+=%3*\ %{File_size(@%)}\ %*
 set statusline+=%4*\ %F\ %*
-set statusline+=%5*『\ %{
-        exists('g:loaded_ale') ? ALEGetStatusLine() :''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
 set statusline+=%6*\ %m%r%y\ %*
-set statusline+=%=%7*\ %{
-        &ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
+set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
 set statusline+=%8*\ %P\ %*
 " default bg for statusline is 236 in space-vim-dark
 hi User1 cterm=bold ctermfg=232 ctermbg=179
@@ -2521,14 +2567,9 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 " " Function name and Struct name
 " syntax keyword cTypeDefStruct1 typedef struct  contained
-" syntax match   cStructName1 display "^\s*typedef\s\+struct\s\+\h\w*\s*
-        {
-            "he=e-1  contains=cTypeDefStruct1
-            " syntax match   cStructName1 " ^\s *typedef\s\+\h\w *\s *
-            {
-                "he=e-1  contains=cTypeDefStruct1
-                " syntax match   cStructName1 " ^\s *struct\s\+\h\w *\s *
-                {"he=e-1  contains=cTypeDefStruct1
+" syntax match   cStructName1 display "^\s*typedef\s\+struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+" syntax match   cStructName1 "^\s*typedef\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
+" syntax match   cStructName1 "^\s*struct\s\+\h\w*\s*{"he=e-1  contains=cTypeDefStruct1
 " hi link cStructName1 Constant
 
 " " color terminal definitions
@@ -2731,9 +2772,11 @@ endif
 
 
 set background=dark
-colorscheme   desert     "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
-"darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
-" rcg_gui_modified,nightshade_print_modified,
+colorscheme   desert    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+"darkblue,delek,elflord,industry,koehler,morning,shine,torte
+
+
+
 
 "任何注释
 hi Comment     ctermfg=darkgray ctermbg=16   cterm=NONE
@@ -3063,7 +3106,6 @@ if has("spell")
 endif
 
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
 "/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
@@ -3082,7 +3124,7 @@ endif
 
 
 " set background=dark
-colorscheme   lilydjwg_dark     "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+colorscheme   lilydjwg_dark      "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
 " rcg_gui_modified,nightshade_print_modified,
 
@@ -3307,10 +3349,10 @@ hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
 hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
 "可视模式的选择区
-hi Visual            ctermfg=NONE          ctermbg=15
+hi Visual            ctermfg=NONE          ctermbg=237
 hi Visual           guifg=NONE           guibg=#ffffff
 
-hi VisualNOS               ctermfg=NONE    ctermbg=238
+hi VisualNOS               ctermfg=NONE    ctermbg=237
 hi VisualNOS              guifg=NONE       guibg=#8B8386
 
 " "警告消息
@@ -3344,13 +3386,15 @@ endif
 
 
 " "整体字体的颜色
-hi Normal       term=bold         ctermbg=16        cterm=bold
-hi Normal       term=bold         guibg=#000000    cterm=bold
+"hi Normal       term=bold         ctermbg=16        cterm=bold
+" hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-colorscheme   lilydjwg_dark_modified     "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+" colorscheme   lilydjwg_dark       "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
 "darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
 " rcg_gui_modified,nightshade_print_modified,
+
+
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 
