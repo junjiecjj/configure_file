@@ -3037,8 +3037,6 @@ hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold
 hi Folded          ctermfg=29  ctermbg=16
 hi Folded          guifg=#66CD00
 
-hi Function        ctermfg=118   cterm=bold
-hi Function        guifg=#66CD00   gui=bold
 "hi Identifier      ctermfg=208
 hi Ignore          ctermfg=244  ctermbg=16  cterm=bold
 hi Ignore          guifg=#BEBEBE    gui=bold
@@ -3134,6 +3132,290 @@ if has("spell")
     "很少使用的单词
     hi SpellRare    gui=undercurl
 endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
+
+"/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
+hi clear
+
+if version > 580
+    hi clear
+    if exists("syntax_on")
+        syntax reset
+    endif
+endif
+
+if !has('gui_running')
+    set t_Co=256
+endif
+
+
+" set background=dark
+colorscheme   lilydjwg_dark_modified    "desert,pablo,blue,evening,kalisi,molokai,murphy,peachpuff,ron,slate,zellner,
+"darkblue,delek,elflord,industry,koehler,morning,shine,torte，lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,
+" rci_gui_modified,nightshade_print_modified,
+
+
+" identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
+hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
+hi Identifier   guifg=#EE7600  guibg=NONE cterm=bold
+
+
+" hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
+
+
+"需要突出的文本，HTML 链接
+hi Underlined      ctermfg=244   cterm=underline
+hi Underlined      guifg=#D3D3D3   cterm=underline
+
+
+"这里可以使用 CTRL-]
+hi Tag             ctermfg=161  cterm=bold
+hi Tag             guifg=#FF0000  gui=bold
+
+"任何特殊符号
+hi Special         ctermfg=81   ctermbg=NONE
+hi Special         guifg=#00FFFF
+
+
+
+"任何有错的构造
+hi Error ctermfg=124   cterm=bold
+hi Error guifg=#CD2626   gui=bold
+
+
+" 非当前窗口的状态行
+hi StatusLineNC  ctermfg=yellow    cterm=BOLD
+hi StatusLineNC  guifg=yellow   cterm=BOLD
+
+" 光标所在的字符
+hi Cursor           ctermfg=51  ctermbg=51
+hi  Cursor           guifg=white   guibg=green
+
+"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine       ctermbg=234   cterm=underline
+hi CursorLine       guibg=#1d251d   gui=underline
+
+"  "光标所在的屏幕列
+hi CursorColumn      ctermbg=234
+hi CursorColumn      guibg=#1d251d
+
+" 光标所在行的行号数字的颜色
+hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
+hi CursorLineNr    guifg=#00FF00  guibg=#000000  gui=bold
+
+"置位 number 选项时的行号数字的颜色
+hi LineNr          ctermfg=244       ctermbg=16   cterm=bold
+hi LineNr          guifg=#CDC9C9    guibg=#000000  gui=bold
+
+" "常数中的特殊字符
+hi SpecialChar      ctermbg=NONE   cterm=bold
+hi SpecialChar guifg=#B22222   gui=bold
+
+" "注释里的特殊字符
+hi SpecialComment    ctermbg=NONE cterm=bold
+hi SpecialComment guifg=#B22222  gui=bold
+
+" "特殊键，字符和'listchars'
+hi SpecialKey         cterm=bold
+hi SpecialKey      guifg=#00FFFF  gui=bold
+
+" "任何需要特殊注意的部分
+hi Todo                    ctermbg=NONE  cterm=none
+hi Todo guifg=#8B1A1A    gui=none
+
+" "需要注意的字符
+hi  Delimiter         cterm=bold
+hi  Delimiter guifg=#1E90FF    gui=bold
+
+
+
+" "通用预处理命令
+hi  PreProc     ctermbg=NONE  cterm=bold
+hi  PreProc    guibg=NONE cterm=bold
+
+" "预处理命令 #include
+hi Include    ctermbg=NONE   cterm=bold
+hi Include    guibg=NONE  cterm=bold
+
+" "预处理命令 #define
+hi Define     ctermbg=NONE   cterm=bold
+hi Define    guibg=NONE    cterm=bold
+
+" "等同于 Define
+hi Macro    ctermbg=NONE   cterm=bold
+hi Macro      gui=bold
+
+" "一个 typedef
+hi Typedef    ctermbg=NONE    cterm=bold
+hi Typedef       gui=bold
+
+" "struct、union、enum 等
+hi Structure       ctermbg=NONE   cterm=bold
+hi Structure    guibg=NONE   gui=bold
+
+" "if、then、else、endif、switch
+hi Conditional      ctermbg=NONE     cterm=bold
+hi Conditional              cterm=bold
+
+" "for、do、while 等
+hi  Repeat      ctermbg=NONE          cterm=bold
+hi  Repeat               gui=bold
+
+" "case、default 等
+hi Label          ctermbg=NONE                cterm=bold
+hi Label                          gui=bold
+
+" "int、long、char、float、double 等
+hi  Type     ctermbg=NONE    cterm=bold
+hi  Type       gui=bold
+
+" "一个布尔型常数: TRUE、false
+hi  Boolean    ctermbg=NONE    cterm=bold
+hi  Boolean       gui=bold
+
+" "一个字符常数: 'c'、'\n'
+hi  Character     ctermbg=NONE     cterm=bold
+hi  Character     gui=bold
+
+" "一个数字常数: 234、0xff
+hi  Number        ctermbg=NONE  cterm=bold
+hi  Number guifg=#CD2626  gui=bold
+
+" "一个字符串常数: 字符串
+hi String    ctermbg=NONE  ctermfg=28
+hi String   guifg=#008B00
+
+" "一个浮点常数: 2.3e10
+hi  Float   ctermbg=NONE    cterm=bold
+hi  Float     gui=bold
+
+" "static、register、volatile 等
+hi  StorageClass   ctermbg=NONE    cterm=bold
+hi  StorageClass     gui=bold
+
+"函数名 (也包括: 类的方法名)
+hi  Function   ctermfg=202   ctermbg=NONE     cterm=bold
+hi  Function   guifg=#FFA500     gui=bold
+
+
+hi  cfunctions   ctermfg=202  ctermbg=NONE      cterm=bold
+hi  cfunctions   guifg=#FFA500      gui=bold
+
+" "最近搜索模式的高亮
+hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
+hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF
+
+" 'incsearch' 高亮
+hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
+hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF
+
+"匹配的内容的颜色
+hi MatchParen  ctermfg=157    ctermbg=237 cterm=reverse
+hi MatchParen guifg=#d0ffc0   guibg=#2f2f2f gui=reverse
+
+
+"Nerdtree目录树颜色
+hi Directory       ctermfg=46               cterm=bold
+hi Directory       guifg=#00FF00               gui=bold
+
+" "命令行上的错误信息 <!--more-->
+hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold
+hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold
+
+"用于关闭的折叠的行
+hi Folded          ctermfg=29          ctermbg=16
+hi Folded          guifg=#66CD00
+
+
+"hi Identifier      ctermfg=208
+hi Ignore          ctermfg=244     cterm=bold
+hi Ignore          guifg=#BEBEBE    gui=bold
+
+"配对的括号
+hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold
+hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold
+
+" vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
+hi ModeMsg         ctermfg=202  cterm=bold
+hi ModeMsg         guifg=#CD9B1D  gui=bold
+
+"|more-prompt|，文件更改后:q提示是否保存的颜色
+hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
+hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
+
+" complete menu
+hi Pmenu      ctermfg=0       ctermbg=243
+hi Pmenu      guifg=#000000    guibg=darkgrey
+
+"弹出菜单选中项目
+hi    PmenuSel   ctermfg=196   ctermbg=251
+hi    PmenuSel   guifg=darkgrey guibg=black
+
+"弹出菜单滚动条。
+hi    PmenuSbar        ctermbg=15
+hi    PmenuSbar        guibg=#FFFFFF
+
+"弹出菜单滚动条的拇指, 和上面一一对应
+hi    PmenuThumb      ctermbg=34    cterm=bold
+hi    PmenuThumb      guibg=#228B22    gui=bold
+
+" 提示(请按Enter或其他命令继续)的颜色
+hi Question        ctermfg=11  ctermbg=16
+hi Question        guifg=#EEEE00  guibg=#000000
+
+" marks column
+hi SignColumn      ctermfg=118  ctermbg=235
+hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
+
+
+"分离垂直分割窗口的列
+hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
+hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
+
+"可视模式的选择区
+hi Visual            ctermfg=NONE          ctermbg=15
+hi Visual           guifg=NONE           guibg=#ffffff
+
+hi VisualNOS               ctermfg=NONE    ctermbg=238
+hi VisualNOS              guifg=NONE       guibg=#8B8386
+
+" "警告消息
+hi WarningMsg      ctermfg=231        cterm=bold
+hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold
+
+"当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
+hi StatusLine ctermfg=15    ctermbg=16  cterm=bold
+hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold
+
+" wildmenu补全的当前匹配
+hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold
+hi WildMenu    guifg=#00FF00   guibg=#000000  gui=BOLD
+
+
+" 窗口尾部的'~'和 '@'
+hi NonText         ctermfg=1  cterm=bold
+hi NonText         guifg=#FF0000  cterm=bold
+
+
+if has("spell")
+    "拼写检查器不能识别的单词
+    hi SpellBad     gui=undercurl
+    "应该大写字母开头的单词
+    hi SpellCap     gui=undercurl
+    "只在其它区域使用的单词
+    hi SpellLocal   gui=undercurl
+    "很少使用的单词
+    hi SpellRare    gui=undercurl
+endif
+
+
+
+" "整体字体的颜色
+hi Normal       term=bold         ctermbg=16        cterm=bold
+hi Normal       term=bold         guibg=#000000    cterm=bold
+
 
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
