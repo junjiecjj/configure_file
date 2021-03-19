@@ -716,10 +716,14 @@ highlight link EchoDocPopup Pmenu
 """"""""""""""""""""""""""""""""""""""" change-colorscheme 配置  """""""""""""""""""""""""""""""""""""""
 
 map <F12> :NextColorScheme<CR>
+map <Leader>nc :NextColorScheme<CR>
 imap <F12> <ESC> :NextColorScheme<CR>
-map <F11> :PreviousColorScheme<CR>
-imap <F11> <ESC> :PreviousColorScheme<CR>
+imap <Leader>nc <ESC> :NextColorScheme<CR>
 
+map <F11> :PreviousColorScheme<CR>
+map <Leader>pc :PreviousColorScheme<CR>
+imap <F11> <ESC> :PreviousColorScheme<CR>
+imap <Leader>pc <ESC> :PreviousColorScheme<CR>
 
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
@@ -3389,7 +3393,7 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-colorscheme   SolarizedDark_modified      "desert,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,
+colorscheme   SolarizedDark_modified      "desert,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,
 
 
 
