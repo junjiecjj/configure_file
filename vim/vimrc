@@ -976,7 +976,7 @@ noremap <C-F8> :!ctags -R<CR>
 
 "安装完成以后，你只要打开一个.md 文件，Vim 就会自动打开一个浏览器窗口，实现实时预览。如果你不想自动打开预览窗口的话，你可以在 /etc/vim/vimrc 中写入
 let g:instant_markdown_autostart = 1
-map <F12> :InstantMarkdownPreview<CR>
+" map <F12> :InstantMarkdownPreview<CR>
 map <Leader>md :InstantMarkdownPreview<CR>
 " 设置使用markdown插件的类型以及不自动折叠代码
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
