@@ -51,6 +51,16 @@ XTerm*inputMethod:fcitx
 !调整行距离
 XTerm*scaleHeight: 1.01
 
+
+XTerm*faceSize: 12
+XTerm*faceSize1: 12
+XTerm*faceSize2: 12
+XTerm*faceSize3: 12
+XTerm*faceSize4: 12
+XTerm*faceSize5: 12
+XTerm*faceSize6: 12
+
+
 !背景色及字体顔色
 xterm*background:#262626
 xterm*foreground:#00FF00
