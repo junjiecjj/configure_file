@@ -19,7 +19,7 @@ XTerm*Font: 7*13
 ! English font
 xterm*faceName:Noto mono:antialas=true:pixelsize=12
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=15
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
 !xterm*faceNameDoublesize:SimHei:size=36:antialias=True:pixelsize=36
 xterm*xftAntialias:true
 xterm*cjkWidth:false
@@ -54,38 +54,38 @@ XTerm*scaleHeight: 1.01
 
 
 ! Colours for xterm
-XTerm*background: #272822
-XTerm*foreground: #303030
-XTerm*cursorColor: #303030
+!XTerm*background: #272822
+!XTerm*foreground: #303030
+!XTerm*cursorColor: #303030
 
 
 ! sets colors for everything.
 *background: #272822
 *foreground: #a08080
-*cursorColor: #aaaaaa
+!*cursorColor: #aaaaaa
 
 
 !Theme Nine
-XTerm*background: rgb:1a/1a/1a
-XTerm*foreground: rgb:d6/d6/d6
-XTerm*color0:     rgb:00/00/00
-XTerm*color1:     rgb:9e/18/28
-XTerm*color2:     rgb:00/88/00
-XTerm*color3:     rgb:96/8a/38
-XTerm*color4:     rgb:41/41/71
-XTerm*color5:     rgb:96/3c/59
-XTerm*color6:     rgb:41/81/79
-XTerm*color7:     rgb:be/be/be
-XTerm*color8:     rgb:66/66/66
-XTerm*color9:     rgb:cf/61/71
-XTerm*color10:     rgb:7c/bc/8c
-XTerm*color11:     rgb:ff/f7/96
-XTerm*color12:     rgb:41/86/be
-XTerm*color13:     rgb:cf/9e/be
-XTerm*color14:     rgb:71/be/be
-XTerm*color15:    rgb:ff/ff/ff
+!XTerm*background: rgb:1a/1a/1a
+!XTerm*foreground: rgb:d6/d6/d6
+!XTerm*color0:     rgb:00/00/00
+!XTerm*color1:     rgb:9e/18/28
+!XTerm*color2:     rgb:00/88/00
+!XTerm*color3:     rgb:96/8a/38
+!XTerm*color4:     rgb:41/41/71
+!XTerm*color5:     rgb:96/3c/59
+!XTerm*color6:     rgb:41/81/79
+!XTerm*color7:     rgb:be/be/be
+!XTerm*color8:     rgb:66/66/66
+!XTerm*color9:     rgb:cf/61/71
+!XTerm*color10:     rgb:7c/bc/8c
+!XTerm*color11:     rgb:ff/f7/96
+!XTerm*color12:     rgb:41/86/be
+!XTerm*color13:     rgb:cf/9e/be
+!XTerm*color14:     rgb:71/be/be
+!XTerm*color15:    rgb:ff/ff/ff
 
-XTerm*cursorColor: #d6d6d6
+!XTerm*cursorColor: #d6d6d6
 
 ! Colours are in groups as the second one should be a brighter version.
 
@@ -130,18 +130,14 @@ XTerm*cursorColor: #d6d6d6
 #define _color15 #ffffff
 !#define _color15 #d0d0d0
 
-! General - covering all X clients
-!*background: _background
-!*foreground: _foreground
-! Not sure what this one does - Solarise had it at base3
-!*fadeColor: XXX ! Not sure what this does
+
 
 ! XTerm specific
 XTerm*background: _background
 XTerm*foreground: _foreground
 
 ! Not really required - XTerm defaults to using the foreground colour
-XTerm*cursorColor: _foreground
+!XTerm*cursorColor: _foreground
 
 XTerm*color0: _background
 XTerm*color1: _foreground
@@ -164,5 +160,5 @@ XTerm*color15: _color15
 ! Mouse pointer
 XTerm*pointerColor: white
 XTerm*pointerColorBackground: black
-XTerm*cursorColor: yellow
+XTerm*cursorColor: #FFA500
 XTerm*cursorBlink: true
