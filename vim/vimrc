@@ -1,6 +1,4 @@
 
-
-
 let g:polyglot_disabled = ['markdown.plugin']
 let g:polyglot_disabled = ['autoindent']
 let g:polyglot_disabled = ['sensible']
@@ -3166,17 +3164,7 @@ hi Error guifg=#CD2626   gui=bold
 hi StatusLineNC  ctermfg=yellow    cterm=BOLD
 hi StatusLineNC  guifg=yellow   cterm=BOLD
 
-" 光标所在的字符
-hi Cursor           ctermfg=51  ctermbg=51
-hi  Cursor           guifg=white   guibg=green
 
-"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine       ctermbg=234   cterm=underline
-hi CursorLine       guibg=#1d251d   gui=underline
-
-"  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234
-hi CursorColumn      guibg=#1d251d
 
 " 光标所在行的行号数字的颜色
 hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
@@ -3205,7 +3193,6 @@ hi Todo guifg=#8B1A1A    gui=none
 " "需要注意的字符
 hi  Delimiter         cterm=bold
 hi  Delimiter guifg=#1E90FF    gui=bold
-
 
 
 " "通用预处理命令
@@ -3322,21 +3309,7 @@ hi ModeMsg         guifg=#CD9B1D  gui=bold
 hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
 hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
 
-" complete menu
-hi Pmenu      ctermfg=0       ctermbg=243
-hi Pmenu      guifg=#000000    guibg=darkgrey
 
-"弹出菜单选中项目
-hi    PmenuSel   ctermfg=196   ctermbg=251
-hi    PmenuSel   guifg=darkgrey guibg=black
-
-"弹出菜单滚动条。
-hi    PmenuSbar        ctermbg=15
-hi    PmenuSbar        guibg=#FFFFFF
-
-"弹出菜单滚动条的拇指, 和上面一一对应
-hi    PmenuThumb      ctermbg=34    cterm=bold
-hi    PmenuThumb      guibg=#228B22    gui=bold
 
 " 提示(请按Enter或其他命令继续)的颜色
 hi Question        ctermfg=11  ctermbg=16
@@ -3351,12 +3324,7 @@ hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
 hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
 hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
-"可视模式的选择区
-hi Visual            ctermfg=NONE          ctermbg=237
-hi Visual           guifg=NONE           guibg=#ffffff
 
-hi VisualNOS               ctermfg=NONE    ctermbg=237
-hi VisualNOS              guifg=NONE       guibg=#8B8386
 
 " "警告消息
 hi WarningMsg      ctermfg=231        cterm=bold
@@ -3395,8 +3363,41 @@ endif
 
 colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox
 
+"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+hi CursorLine       ctermbg=234   cterm=underline
+hi CursorLine       guibg=#1d251d   gui=underline
+
+"  "光标所在的屏幕列
+hi CursorColumn      ctermbg=234
+hi CursorColumn      guibg=#1d251d
 
 
+"可视模式的选择区
+hi Visual            ctermfg=NONE          ctermbg=237
+hi Visual           guifg=NONE           guibg=#ffffff
+
+hi VisualNOS               ctermfg=NONE    ctermbg=237
+hi VisualNOS              guifg=NONE       guibg=#8B8386
+
+" 光标所在的字符
+hi Cursor           ctermfg=196  ctermbg=51
+hi  Cursor           guifg=white   guibg=green
+
+" complete menu
+hi Pmenu      ctermfg=0       ctermbg=243
+hi Pmenu      guifg=#000000    guibg=darkgrey
+
+"弹出菜单选中项目
+hi    PmenuSel   ctermfg=196   ctermbg=251
+hi    PmenuSel   guifg=darkgrey guibg=black
+
+"弹出菜单滚动条。
+hi    PmenuSbar        ctermbg=15
+hi    PmenuSbar        guibg=#FFFFFF
+
+"弹出菜单滚动条的拇指, 和上面一一对应
+hi    PmenuThumb      ctermbg=34    cterm=bold
+hi    PmenuThumb      guibg=#228B22    gui=bold
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 
