@@ -3823,7 +3823,7 @@ let autosave=10
 "新建.c,.h,.sh,.java文件，自动插入文件头，比如预处理命令，和编码设置。并且可以在每次修改后记录修改时间
 autocmd BufNewFile *.py,*.cpp,*.v,*.sv,*.[ch],*.sh,*.java  exec ":call SetTitle()"
 "上面一行中*.py之间*.v除了逗号不能有空格
-autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
+
 ""定义函数SetTitle，自动插入文件头
 function! SetTitle()
     "如果文件类型为.sh文件
@@ -3917,7 +3917,7 @@ endfunction
 
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * normal G
-
+" autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 function! SetLastModifiedTime(lineno)
     let modif_time = strftime( '%c', getftime(bufname('%')) )
     if a:lineno == "-1"
