@@ -1,6 +1,59 @@
 !xterm solarized_light 主题
 
 
+xterm*termName: xterm-256color
+
+XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
+!Ctrl p to print screen content to file
+XTerm*VT100.Translations: #override
+    Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
+    <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0)
+    Ctrl <KeyPress> P: print()
+
+XTerm*metaSendsEscape: true
+Xterm*eightBitInput: false
+XTerm*Font: 7*13
+
+! English font
+xterm*faceName:Noto mono:antialas=true:pixelsize=12
+! Chinese font
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
+!xterm*faceNameDoublesize:SimHei:size=36:antialias=True:pixelsize=36
+xterm*xftAntialias:true
+xterm*cjkWidth:false
+
+
+xterm*faceSize:200
+
+XTerm*locale:zh_CN.UTF-8
+xterm*utf8:true
+xterm*utf8Title:true
+
+!窗口大小及位置
+xterm*geometry:70x18+200+150
+
+! scrollbar
+XTerm*scrollBar:true
+XTerm*rightScrollBar:true
+XTerm*saveLines:  4096
+XTerm*fastScroll:true
+
+Xterm*bellIsUrgent: true
+XTerm*allowBoldFonts: true
+
+
+
+!input method  好像不起作用
+XTerm*inputMethod:fcitx
+
+!调整行距离
+XTerm*scaleHeight: 1.01
+!####################################################
+
+
+
 #define S_base03        #002b36
 #define S_base02        #073642
 #define S_base01        #586e75
@@ -10,12 +63,12 @@
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
 
-*background:            S_base3
-*foreground:            S_base00
-*fadeColor:             S_base3
-*cursorColor:           S_base01
-*pointerColorBackground:S_base1
-*pointerColorForeground:S_base01
+XTerm*background:            S_base3
+XTerm*foreground:            S_base00
+XTerm*fadeColor:             S_base3
+XTerm*cursorColor:           S_base01
+XTerm*pointerColorBackground:S_base1
+XTerm*pointerColorForeground:S_base01
 
 #define S_yellow        #b58900
 #define S_orange        #cb4b16
@@ -27,33 +80,33 @@
 #define S_green         #859900
 
 !! black dark/light
-*color0:                S_base02
-*color8:                S_base03
+XTerm*color0:                S_base02
+XTerm*color8:                S_base03
 
 !! red dark/light
-*color1:                S_red
-*color9:                S_orange
+XTerm*color1:                S_red
+XTerm*color9:                S_orange
 
 !! green dark/light
-*color2:                S_green
-*color10:               S_base01
+XTerm*color2:                S_green
+XTerm*color10:               S_base01
 
 !! yellow dark/light
-*color3:                S_yellow
-*color11:               S_base00
+XTerm*color3:                S_yellow
+XTerm*color11:               S_base00
 
 !! blue dark/light
-*color4:                S_blue
-*color12:               S_base0
+XTerm*color4:                S_blue
+XTerm*color12:               S_base0
 
 !! magenta dark/light
-*color5:                S_magenta
-*color13:               S_violet
+XTerm*color5:                S_magenta
+XTerm*color13:               S_violet
 
 !! cyan dark/light
-*color6:                S_cyan
-*color14:               S_base1
+XTerm*color6:                S_cyan
+XTerm*color14:               S_base1
 
 !! white dark/light
-*color7:                S_base2
-*color15:               S_base3
+XTerm*color7:                S_base2
+XTerm*color15:               S_base3
