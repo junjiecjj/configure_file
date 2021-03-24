@@ -20,7 +20,9 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
 Plugin 'kshenoy/vim-signature'
+Plugin 'nightsense/carbonized'
 Plugin 'ayu-theme/ayu-vim' " or other package manager
+Plugin 'nightsense/cosmic_latte'
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
@@ -119,7 +121,7 @@ filetype plugin indent on
 let mapleader = '\'
 set t_Co=256
 
-" set background=dark
+set background=light
 
 set splitbelow
 set splitright
@@ -3128,7 +3130,10 @@ endif
 
 
 " set background=dark
-colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox,cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim
+colorscheme   lilydjwg_dark
+ " cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim,   c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+
+" desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
@@ -3361,22 +3366,30 @@ endif
 "hi Normal       term=bold         ctermbg=16        cterm=bold
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
-if strftime('%H') >= 7 && strftime('%H') < 19
+if strftime('%H') >= 7 && strftime('%H') < 22
   set background=light
+  let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
 else
   set background=dark
+  let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
 endif
-colorscheme cosmic_latte
+
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+colorscheme solarized8
 set background=light
 
-"desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox,stellarized.vim， solarized8.vim， solarized8_low.vim， solarized8_higt.vim， solarized8_flat.vim, ayu.vim, cake16.vim, github1.vim, cosmic_latte.vim, onehalflight.vim, stellarized.vim, carbonized_dark1.vim carbonized_light1.vim,  pencil.vim , 
+"desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox,stellarized.vim， solarized8.vim， solarized8_low.vim， solarized8_higt.vim， solarized8_flat.vim, ayu.vim, cake16.vim, github1.vim, cosmic_latte.vim, onehalflight.vim, stellarized.vim, carbonized_dark1.vim carbonized_light1.vim,  pencil.vim ,
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine       ctermbg=234   cterm=underline
+" hi CursorLine       ctermbg=234   cterm=underline
+hi CursorLine                    cterm=underline
 hi CursorLine       guibg=#1d251d   gui=underline
 
 "  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234
+" hi CursorColumn      ctermbg=234
+hi CursorColumn      ctermbg=255
 hi CursorColumn      guibg=#1d251d
 
 
@@ -3409,12 +3422,12 @@ hi    PmenuThumb      guibg=#228B22    gui=bold
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""ayu配置"""""""""""""""""""""
-
+set background=dark
 set termguicolors     " enable true colors support
-let ayucolor="light"  " for light version of theme
+" let ayucolor="light"  " for light version of theme
 let ayucolor="mirage" " for mirage version of theme
 let ayucolor="dark"   " for dark version of theme
-
+colorscheme ayu
 
 " IndentLine {{
 let g:indentLine_char = ''
