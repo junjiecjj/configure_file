@@ -21,7 +21,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'klen/python-mode'
 Plugin 'kshenoy/vim-signature'
 Plugin 'nightsense/carbonized'
-Plugin 'godlygeek/csapprox'
+"Plugin 'godlygeek/csapprox'
 Plugin 'ayu-theme/ayu-vim' " or other package manager
 Plugin 'nightsense/cosmic_latte'
 Plugin 'vhda/verilog_systemverilog.vim'
@@ -3440,10 +3440,10 @@ let ayucolor="light"  " for light version of theme
 "colorscheme ayu
 
 " IndentLine {{
-let g:indentLine_char = ''
-let g:indentLine_first_char = ''
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
+"let g:indentLine_char = ''
+"let g:indentLine_first_char = ''
+"let g:indentLine_showFirstIndentLevel = 1
+"let g:indentLine_setColors = 0
 " }}
 
 
