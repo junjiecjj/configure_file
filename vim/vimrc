@@ -3127,7 +3127,7 @@ endif
 
 
 " set background=dark
-colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox
+colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox,cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim
 
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
@@ -3361,7 +3361,7 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox
+colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox,cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 hi CursorLine       ctermbg=234   cterm=underline
