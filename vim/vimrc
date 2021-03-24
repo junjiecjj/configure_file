@@ -124,6 +124,13 @@ set t_Co=256
 
 "set background=light
 
+if strftime('%H') >= 7 && strftime('%H') < 22
+    set background=light
+    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
 
 
 set splitbelow
@@ -3132,17 +3139,10 @@ if !has('gui_running')
 endif
 
 
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" set termguicolors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-if strftime('%H') >= 7 && strftime('%H') < 22
-    set background=light
-    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
-else
-    set background=dark
-    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
-endif
 
 
 " set background=dark
@@ -3384,7 +3384,7 @@ endif
 
 
 
-set background=dark
+" set background=dark
 colorscheme solarized8_higt
 
 
