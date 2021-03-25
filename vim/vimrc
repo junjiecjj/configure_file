@@ -131,10 +131,10 @@ set t_Co=256
 
 if strftime('%H') >= 7 && strftime('%H') < 22
     set background=light
-    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+    " let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
 else
     set background=dark
-    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+    " let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
 endif
 
 if strftime("%H") < 7 || strftime("%H") >= 22
@@ -3180,10 +3180,9 @@ else
     let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
 endif
 
-" cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+" cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
 
 " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
-
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
 hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
@@ -3416,30 +3415,23 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-if strftime('%H') >= 7 && strftime('%H') < 22
-    set background=light
-    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
-else
-    set background=dark
-    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
-endif
-set background=light
-colorscheme solarized8_higt
 
+colorscheme flattened_light
 
-" cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+" cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
 
 " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
+
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 " hi CursorLine       ctermbg=234   cterm=underline
 hi CursorLine         ctermbg=NONE              cterm=underline
-hi CursorLine       guibg=#1d251d   gui=underline
+hi CursorLine         guibg=NONE   gui=underline
 
 "  "光标所在的屏幕列
 " hi CursorColumn      ctermbg=234
 hi CursorColumn      ctermbg=255
-hi CursorColumn      guibg=#1d251d
+hi CursorColumn      guibg=#FFFFE0
 
 
 "可视模式的选择区
