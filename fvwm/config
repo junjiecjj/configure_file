@@ -363,6 +363,7 @@ Style   *konsole              TitleAtLeft
 Style   *urxvt*                TitleAtLeft
 Style   *terminator*           TitleAtLeft
 Style   *gnome-terminal*       TitleAtLeft
+Style   *st*       TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
