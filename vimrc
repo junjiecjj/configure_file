@@ -464,9 +464,9 @@ endfunction
 nnoremap <C-r> :call NumberToggle()<cr>
 
 
-let &t_SI = "\<Esc>]12;red\x7"
-let &t_SR = "\<Esc>]12;yellow\x7"
-let &t_EI = "\<Esc>]12;green\x7"
+let &t_SI = "\<Esc>]12;green\x7"
+" let &t_SR = "\<Esc>]12;yellow\x7"
+" let &t_EI = "\<Esc>]12;green\x7"
 
 
 " 默认下，不管是插入状态还是非插入状态，都是小方块，但是我更希望能看到插入时光标变成小竖线。
@@ -3148,266 +3148,226 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
-"/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
-hi clear
-
-if version > 580
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
-
-if !has('gui_running')
-    set t_Co=256
-endif
-
-
-" set termguicolors
-" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-
-
 " set background=dark
 " colorscheme   lilydjwg_dark
 
-if strftime('%H') >= 7 && strftime('%H') < 22
+if strftime('%H') >= 7 && strftime('%H') < 19
     set background=light
-    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
 else
     set background=dark
-    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
 endif
 
-" cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+"/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
+" hi clear
 
-" desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
+" if version > 580
+"     hi clear
+"     if exists("syntax_on")
+"         syntax reset
+"     endif
+" endif
 
-" identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
-hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
-hi Identifier   guifg=#EE7600  guibg=NONE cterm=bold
+" if !has('gui_running')
+"     set t_Co=256
+" endif
 
 
-" hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
+" " set termguicolors
+" " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
-"需要突出的文本，HTML 链接
-hi Underlined      ctermfg=244   cterm=underline
-hi Underlined      guifg=#D3D3D3   cterm=underline
 
+" " cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
 
-"这里可以使用 CTRL-]
-hi Tag             ctermfg=161  cterm=bold
-hi Tag             guifg=#FF0000  gui=bold
+" " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
-"任何特殊符号
-hi Special         ctermfg=81   ctermbg=NONE
-hi Special         guifg=#00FFFF
+" " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
+" hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
+" hi Identifier   guifg=#EE7600  guibg=NONE cterm=bold
 
-" "任何注释
-hi Comment     ctermfg=darkgray ctermbg=NONE   cterm=NONE
-hi Comment    guifg=#7C7C7C guibg=#000000 gui=NONE
 
-"任何有错的构造
-hi Error ctermfg=124   cterm=bold
-hi Error guifg=#CD2626   gui=bold
+" " hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
 
 
-" 非当前窗口的状态行
-hi StatusLineNC  ctermfg=yellow    cterm=BOLD
-hi StatusLineNC  guifg=yellow   cterm=BOLD
+" "需要突出的文本，HTML 链接
+" hi Underlined      ctermfg=244   cterm=underline
+" hi Underlined      guifg=#D3D3D3   cterm=underline
 
 
+" "这里可以使用 CTRL-]
+" hi Tag             ctermfg=161  cterm=bold
+" hi Tag             guifg=#FF0000  gui=bold
 
-" 光标所在行的行号数字的颜色
-hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
-hi CursorLineNr    guifg=#00FF00  guibg=#000000  gui=bold
+" "任何特殊符号
+" hi Special         ctermfg=81   ctermbg=NONE
+" hi Special         guifg=#00FFFF
 
-"置位 number 选项时的行号数字的颜色
-hi LineNr          ctermfg=244       ctermbg=16   cterm=bold
-hi LineNr          guifg=#CDC9C9    guibg=#000000  gui=bold
+" " "任何注释
+" hi Comment     ctermfg=darkgray ctermbg=NONE   cterm=NONE
+" hi Comment    guifg=#7C7C7C guibg=#000000 gui=NONE
 
-" "常数中的特殊字符
-hi SpecialChar      ctermbg=NONE   cterm=bold
-hi SpecialChar guifg=#B22222   gui=bold
+" "任何有错的构造
+" hi Error ctermfg=124   cterm=bold
+" hi Error guifg=#CD2626   gui=bold
 
-" "注释里的特殊字符
-hi SpecialComment    ctermbg=NONE cterm=bold
-hi SpecialComment guifg=#B22222  gui=bold
 
-" "特殊键，字符和'listchars'
-hi SpecialKey         cterm=bold
-hi SpecialKey      guifg=#00FFFF  gui=bold
+" " 非当前窗口的状态行
+" hi StatusLineNC  ctermfg=yellow    cterm=BOLD
+" hi StatusLineNC  guifg=yellow   cterm=BOLD
 
-" "任何需要特殊注意的部分
-hi Todo                    ctermbg=NONE  cterm=none
-hi Todo guifg=#8B1A1A    gui=none
 
-" "需要注意的字符
-hi  Delimiter         cterm=bold
-hi  Delimiter guifg=#1E90FF    gui=bold
 
+" " 光标所在行的行号数字的颜色
+" hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
+" hi CursorLineNr    guifg=#00FF00  guibg=#000000  gui=bold
 
-" "通用预处理命令
-hi  PreProc     ctermbg=NONE  cterm=bold
-hi  PreProc    guibg=NONE cterm=bold
+" "置位 number 选项时的行号数字的颜色
+" hi LineNr          ctermfg=244       ctermbg=16   cterm=bold
+" hi LineNr          guifg=#CDC9C9    guibg=#000000  gui=bold
 
-" "预处理命令 #include
-hi Include    ctermbg=NONE   cterm=bold
-hi Include    guibg=NONE  cterm=bold
+" " "常数中的特殊字符
+" hi SpecialChar      ctermbg=NONE   cterm=bold
+" hi SpecialChar guifg=#B22222   gui=bold
 
-" "预处理命令 #define
-hi Define     ctermbg=NONE   cterm=bold
-hi Define    guibg=NONE    cterm=bold
+" " "注释里的特殊字符
+" hi SpecialComment    ctermbg=NONE cterm=bold
+" hi SpecialComment guifg=#B22222  gui=bold
 
-" "等同于 Define
-hi Macro    ctermbg=NONE   cterm=bold
-hi Macro      gui=bold
+" " "特殊键，字符和'listchars'
+" hi SpecialKey         cterm=bold
+" hi SpecialKey      guifg=#00FFFF  gui=bold
 
-" "一个 typedef
-hi Typedef    ctermbg=NONE    cterm=bold
-hi Typedef       gui=bold
+" " "任何需要特殊注意的部分
+" hi Todo                    ctermbg=NONE  cterm=none
+" hi Todo guifg=#8B1A1A    gui=none
 
-" "struct、union、enum 等
-hi Structure       ctermbg=NONE   cterm=bold
-hi Structure    guibg=NONE   gui=bold
+" " "需要注意的字符
+" hi  Delimiter         cterm=bold
+" hi  Delimiter guifg=#1E90FF    gui=bold
 
-" "if、then、else、endif、switch
-hi Conditional      ctermbg=NONE     cterm=bold
-hi Conditional              cterm=bold
 
-" "for、do、while 等
-hi  Repeat      ctermbg=NONE          cterm=bold
-hi  Repeat               gui=bold
+" " "通用预处理命令
+" hi  PreProc     ctermbg=NONE  cterm=bold
+" hi  PreProc    guibg=NONE cterm=bold
 
-" "case、default 等
-hi Label          ctermbg=NONE                cterm=bold
-hi Label                          gui=bold
+" " "预处理命令 #include
+" hi Include    ctermbg=NONE   cterm=bold
+" hi Include    guibg=NONE  cterm=bold
 
-" "int、long、char、float、double 等
-hi  Type     ctermbg=NONE    cterm=bold
-hi  Type       gui=bold
+" " "预处理命令 #define
+" hi Define     ctermbg=NONE   cterm=bold
+" hi Define    guibg=NONE    cterm=bold
 
-" "一个布尔型常数: TRUE、false
-hi  Boolean    ctermbg=NONE    cterm=bold
-hi  Boolean       gui=bold
+" " "等同于 Define
+" hi Macro    ctermbg=NONE   cterm=bold
+" hi Macro      gui=bold
 
-" "一个字符常数: 'c'、'\n'
-hi  Character     ctermbg=NONE     cterm=bold
-hi  Character     gui=bold
+" " "一个 typedef
+" hi Typedef    ctermbg=NONE    cterm=bold
+" hi Typedef       gui=bold
 
-" "一个数字常数: 234、0xff
-hi  Number        ctermbg=NONE  cterm=bold
-hi  Number guifg=#CD2626  gui=bold
+" " "struct、union、enum 等
+" hi Structure       ctermbg=NONE   cterm=bold
+" hi Structure    guibg=NONE   gui=bold
 
-" "一个字符串常数: 字符串
-hi String    ctermbg=NONE  ctermfg=28
-hi String   guifg=#008B00
+" " "if、then、else、endif、switch
+" hi Conditional      ctermbg=NONE     cterm=bold
+" hi Conditional              cterm=bold
 
-" "一个浮点常数: 2.3e10
-hi  Float   ctermbg=NONE    cterm=bold
-hi  Float     gui=bold
+" " "for、do、while 等
+" hi  Repeat      ctermbg=NONE          cterm=bold
+" hi  Repeat               gui=bold
 
-" "static、register、volatile 等
-hi  StorageClass   ctermbg=NONE    cterm=bold
-hi  StorageClass     gui=bold
+" " "case、default 等
+" hi Label          ctermbg=NONE                cterm=bold
+" hi Label                          gui=bold
 
-"函数名 (也包括: 类的方法名)
-hi  Function   ctermfg=202   ctermbg=NONE     cterm=bold
-hi  Function   guifg=#FFA500     gui=bold
+" " "int、long、char、float、double 等
+" hi  Type     ctermbg=NONE    cterm=bold
+" hi  Type       gui=bold
 
+" " "一个布尔型常数: TRUE、false
+" hi  Boolean    ctermbg=NONE    cterm=bold
+" hi  Boolean       gui=bold
 
-hi  cfunctions   ctermfg=202  ctermbg=NONE      cterm=bold
-hi  cfunctions   guifg=#FFA500      gui=bold
+" " "一个字符常数: 'c'、'\n'
+" hi  Character     ctermbg=NONE     cterm=bold
+" hi  Character     gui=bold
 
-" "最近搜索模式的高亮
-hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
-hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF
+" " "一个数字常数: 234、0xff
+" hi  Number        ctermbg=NONE  cterm=bold
+" hi  Number guifg=#CD2626  gui=bold
 
-" 'incsearch' 高亮
-hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
-hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF
+" " "一个字符串常数: 字符串
+" hi String    ctermbg=NONE  ctermfg=28
+" hi String   guifg=#008B00
 
-"匹配的内容的颜色
-hi MatchParen  ctermfg=157    ctermbg=237 cterm=reverse
-hi MatchParen guifg=#d0ffc0   guibg=#2f2f2f gui=reverse
+" " "一个浮点常数: 2.3e10
+" hi  Float   ctermbg=NONE    cterm=bold
+" hi  Float     gui=bold
 
+" " "static、register、volatile 等
+" hi  StorageClass   ctermbg=NONE    cterm=bold
+" hi  StorageClass     gui=bold
 
-"Nerdtree目录树颜色
-hi Directory       ctermfg=46               cterm=bold
-hi Directory       guifg=#00FF00               gui=bold
+" "函数名 (也包括: 类的方法名)
+" hi  Function   ctermfg=202   ctermbg=NONE     cterm=bold
+" hi  Function   guifg=#FFA500     gui=bold
 
-" "命令行上的错误信息 <!--more-->
-hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold
-hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold
 
-"用于关闭的折叠的行
-hi Folded          ctermfg=29          ctermbg=16
-hi Folded          guifg=#66CD00
+" hi  cfunctions   ctermfg=202  ctermbg=NONE      cterm=bold
+" hi  cfunctions   guifg=#FFA500      gui=bold
 
+" " "最近搜索模式的高亮
+" hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
+" hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF
 
-"hi Identifier      ctermfg=208
-hi Ignore          ctermfg=244     cterm=bold
-hi Ignore          guifg=#BEBEBE    gui=bold
+" " 'incsearch' 高亮
+" hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
+" hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF
 
-"配对的括号
-hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold
-hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold
+" "匹配的内容的颜色
+" hi MatchParen  ctermfg=157    ctermbg=237 cterm=reverse
+" hi MatchParen guifg=#d0ffc0   guibg=#2f2f2f gui=reverse
 
-" vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
-hi ModeMsg         ctermfg=202  cterm=bold
-hi ModeMsg         guifg=#CD9B1D  gui=bold
 
-"|more-prompt|，文件更改后:q提示是否保存的颜色
-hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
-hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
 
 
+" "hi Identifier      ctermfg=208
+" hi Ignore          ctermfg=244     cterm=bold
+" hi Ignore          guifg=#BEBEBE    gui=bold
 
-" 提示(请按Enter或其他命令继续)的颜色
-hi Question        ctermfg=11  ctermbg=16
-hi Question        guifg=#EEEE00  guibg=#000000
+" "配对的括号
+" hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold
+" hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold
 
-" marks column
-hi SignColumn      ctermfg=118  ctermbg=235
-hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
 
+" " marks column
+" hi SignColumn      ctermfg=118  ctermbg=235
+" hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
 
-" "警告消息
-hi WarningMsg      ctermfg=231        cterm=bold
-hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold
 
-"当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
-hi StatusLine ctermfg=15    ctermbg=16  cterm=bold
-hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold
 
-" wildmenu补全的当前匹配
-hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold
-hi WildMenu    guifg=#00FF00   guibg=#000000  gui=BOLD
 
 
-" 窗口尾部的'~'和 '@'
-hi NonText         ctermfg=1  cterm=bold
-hi NonText         guifg=#FF0000  cterm=bold
-
-
-if has("spell")
-    "拼写检查器不能识别的单词
-    hi SpellBad     gui=undercurl
-    "应该大写字母开头的单词
-    hi SpellCap     gui=undercurl
-    "只在其它区域使用的单词
-    hi SpellLocal   gui=undercurl
-    "很少使用的单词
-    hi SpellRare    gui=undercurl
-endif
+" if has("spell")
+"     "拼写检查器不能识别的单词
+"     hi SpellBad     gui=undercurl
+"     "应该大写字母开头的单词
+"     hi SpellCap     gui=undercurl
+"     "只在其它区域使用的单词
+"     hi SpellLocal   gui=undercurl
+"     "很少使用的单词
+"     hi SpellRare    gui=undercurl
+" endif
 
 
 " "整体字体的颜色
 "hi Normal       term=bold         ctermbg=16        cterm=bold
 " hi Normal       term=bold         guibg=#000000    cterm=bold
-
 
 if strftime('%H') >= 7 && strftime('%H') < 19
     set background=light
@@ -3421,8 +3381,8 @@ else
     "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
 endif
 
-colorscheme flattened_light
 
+colorscheme flattened_light
 " cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
 
 " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
@@ -3430,17 +3390,15 @@ colorscheme flattened_light
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 " hi CursorLine       ctermbg=234   cterm=underline
-hi CursorLine         ctermbg=NONE              cterm=underline
+hi CursorLine         ctermbg=NONE         cterm=underline
 hi CursorLine         guibg=NONE   gui=underline
 
 "  "光标所在的屏幕列
-" hi CursorColumn      ctermbg=234
-" hi CursorColumn      ctermbg=255
-" hi CursorColumn      guibg=#FFFFE0
-
-"分离垂直分割窗口的列
-hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
-hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
+"hi CursorColumn      ctermbg=234
+"hi CursorColumn      ctermbg=NONE
+"hi CursorColumn      ctermbg=255
+"hi CursorColumn      guibg= #eeeeee
+"hi CursorColumn      guibg=NONE
 
 "可视模式的选择区
 hi Visual            ctermfg=NONE          ctermbg=237
@@ -3452,6 +3410,52 @@ hi VisualNOS              guifg=NONE       guibg=#8B8386
 " 光标所在的字符
 hi Cursor           ctermfg=196  ctermbg=51
 hi  Cursor           guifg=white   guibg=green
+
+
+" "分离垂直分割窗口的列
+hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
+hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
+
+" "|more-prompt|，文件更改后:q提示是否保存的颜色
+hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
+hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
+
+" " "警告消息
+hi WarningMsg      ctermfg=231        cterm=bold
+hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold
+
+" "当前窗口的状态行，以及wildmenu补全的非当前匹配颜色
+hi StatusLine ctermfg=15    ctermbg=16  cterm=bold
+hi StatusLine guifg=#E0FFFF   guibg=#000000   gui=bold
+
+" " wildmenu补全的当前匹配
+hi WildMenu    ctermfg=46   ctermbg=16  cterm=BOLD  term=bold
+hi WildMenu    guifg=#00FF00   guibg=#000000  gui=BOLD
+
+" " vim最底下一行(--插入--)的颜色,showmode 消息(INSERT)
+hi ModeMsg         ctermfg=202  cterm=bold
+hi ModeMsg         guifg=#CD9B1D  gui=bold
+
+" " 提示(请按Enter或其他命令继续)的颜色
+hi Question        ctermfg=11  ctermbg=16
+hi Question        guifg=#EEEE00  guibg=#000000
+
+
+" " "命令行上的错误信息 <!--more-->
+hi ErrorMsg        ctermfg=199    ctermbg=16   cterm=bold
+hi ErrorMsg        guifg=#C71585   guibg=#000000     gui=bold
+
+" "用于关闭的折叠的行
+hi Folded          ctermfg=29          ctermbg=16
+hi Folded          guifg=#66CD00
+
+" "Nerdtree目录树颜色
+hi Directory       ctermfg=46               cterm=bold
+hi Directory       guifg=#00FF00               gui=bold
+
+" " 窗口尾部的'~'和 '@'
+hi NonText         ctermfg=1  cterm=bold
+hi NonText         guifg=#FF0000  cterm=bold
 
 " complete menu
 hi Pmenu      ctermfg=0       ctermbg=243
