@@ -435,9 +435,9 @@ Style     "emacs"                       TitleAtLeft,  HilightColorset 23
 Style     "gvim"                        TitleAtLeft,  HilightColorset 23
 
 Colorset 34   fg  	#00FFFF, bg 	#A020F0, hi #FF0000, sh #FF0000, Plain,  NoShape
-Style     "*code"                        TitleAtTop,  HilightColorset 34
-Style     "*Typora"                        TitleAtLeft,  HilightColorset 34
-Style     "*Remarkable*"                        TitleAtTop,  HilightColorset 34
+Style     "*code"                       TitleAtTop,  HilightColorset 34
+Style     "*Typora"                     TitleAtLeft,  HilightColorset 34
+Style     "*Remarkable*"               TitleAtTop,  HilightColorset 34
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
@@ -474,6 +474,7 @@ Style     "urxvt"                                        HilightColorset 30
 Style     "konsole"                                      HilightColorset 30
 Style     "*gnome-terminal*"                             HilightColorset 30
 Style     "terminator"                                   HilightColorset 30
+Style     "st"                                TitleAtLeft           HilightColorset 30
 
 Colorset 31   fg  #0000FF, bg #CD661D , hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
@@ -672,6 +673,7 @@ Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
 DestroyMenu MenuTerminal
 AddToMenu   MenuTerminal "终端类型" Title
 Test (x xterm)  + "&XTerm  %$[fvwm_icons]/terminal.png%" Exec exec xterm
+Test (x st)  + "&ST  %$[fvwm_icons]/terminal.png%" Exec exec st
 Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
 Test (x  kitty) + "&Kitty %$[fvwm_icons]/terminal1.png%"  Exec exec kitty
 Test (x gnome-terminal) + "&Gnome-terminal %$[fvwm_exicons2]/terminal.png%" Exec exec gnome-terminal
@@ -1061,6 +1063,7 @@ Silent Key 4 A C GotoDesk 0 3
 Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
 Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
+Silent Key p  A   CM     Exec exec st
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 Silent Key z  A   CM     Exec exec $[infostore.kitty]
