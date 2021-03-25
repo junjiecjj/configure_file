@@ -3415,6 +3415,17 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
+if strftime('%H') >= 7 && strftime('%H') < 19
+    set background=light
+    hi CursorColumn      ctermbg=250
+    hi CursorColumn      guibg= #bcbcbc
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    hi CursorColumn      ctermbg=237
+    hi CursorColumn      guibg= #3a3a3a
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
 
 colorscheme flattened_light
 
@@ -3430,8 +3441,8 @@ hi CursorLine         guibg=NONE   gui=underline
 
 "  "光标所在的屏幕列
 " hi CursorColumn      ctermbg=234
-hi CursorColumn      ctermbg=255
-hi CursorColumn      guibg=#FFFFE0
+" hi CursorColumn      ctermbg=255
+" hi CursorColumn      guibg=#FFFFE0
 
 
 "可视模式的选择区
