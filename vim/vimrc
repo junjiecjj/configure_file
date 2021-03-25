@@ -3147,6 +3147,15 @@ endif
 
 " set background=dark
 " colorscheme   lilydjwg_dark
+
+if strftime('%H') >= 7 && strftime('%H') < 22
+    set background=light
+    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
+
 " cake16.vim Atelier_Dune.vim one.vim github1.vim papaercolor_dark.vim carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim,   c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
 
 " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
