@@ -464,9 +464,9 @@ endfunction
 nnoremap <C-r> :call NumberToggle()<cr>
 
 
-" let &t_SI = "\<Esc>]12;red\x7"
-" let &t_SR = "\<Esc>]12;yellow\x7"
-" let &t_EI = "\<Esc>]12;green\x7"
+let &t_SI = "\<Esc>]12;red\x7"
+let &t_SR = "\<Esc>]12;yellow\x7"
+let &t_EI = "\<Esc>]12;green\x7"
 
 
 " 默认下，不管是插入状态还是非插入状态，都是小方块，但是我更希望能看到插入时光标变成小竖线。
@@ -3374,12 +3374,6 @@ hi SignColumn      ctermfg=118  ctermbg=235
 hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
 
 
-"分离垂直分割窗口的列
-hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
-hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
-
-
-
 " "警告消息
 hi WarningMsg      ctermfg=231        cterm=bold
 hi WarningMsg      guifg=#CDCDB4  guibg=#000000   cterm=bold
@@ -3444,6 +3438,9 @@ hi CursorLine         guibg=NONE   gui=underline
 " hi CursorColumn      ctermbg=255
 " hi CursorColumn      guibg=#FFFFE0
 
+"分离垂直分割窗口的列
+hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
+hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
 "可视模式的选择区
 hi Visual            ctermfg=NONE          ctermbg=237
