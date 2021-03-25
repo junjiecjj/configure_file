@@ -20,10 +20,13 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
 Plugin 'kshenoy/vim-signature'
+
 Plugin 'nightsense/carbonized'
+Plugin 'nightsense/stellarized'
 "Plugin 'godlygeek/csapprox'
 Plugin 'ayu-theme/ayu-vim' " or other package manager
 Plugin 'nightsense/cosmic_latte'
+
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
@@ -57,7 +60,7 @@ Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
 " Plugin 'c.vim'                             " C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
 Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
 Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
@@ -3392,8 +3395,14 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-
-" set background=dark
+if strftime('%H') >= 7 && strftime('%H') < 22
+    set background=light
+    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
+set background=light
 colorscheme solarized8_higt
 
 
