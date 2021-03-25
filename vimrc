@@ -1,6 +1,4 @@
 
-
-
 let g:polyglot_disabled = ['markdown.plugin']
 let g:polyglot_disabled = ['autoindent']
 let g:polyglot_disabled = ['sensible']
@@ -22,6 +20,15 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/ListToggle'
 "Plugin 'klen/python-mode'
 Plugin 'kshenoy/vim-signature'
+
+Plugin 'nightsense/snow'
+Plugin 'nightsense/vimspectr'
+Plugin 'nightsense/carbonized'
+Plugin 'nightsense/stellarized'
+"Plugin 'godlygeek/csapprox'
+Plugin 'ayu-theme/ayu-vim' " or other package manager
+Plugin 'nightsense/cosmic_latte'
+
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
@@ -55,7 +62,7 @@ Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
 " Plugin 'c.vim'                             " C IDE
 Plugin 'chxuan/change-colorscheme'           " vim一个快速切换主题的插件
-Plugin 'altercation/vim-colors-solarized'
+" Plugin 'altercation/vim-colors-solarized'
 Plugin 'mileszs/ack.vim'                     " 强大的文本搜索工具
 Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
 Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
@@ -120,7 +127,35 @@ filetype plugin indent on
 let mapleader = '\'
 set t_Co=256
 
-set background=dark
+"set background=light
+
+if strftime('%H') >= 7 && strftime('%H') < 22
+    set background=light
+    " let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    " let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
+
+if strftime("%H") < 7 || strftime("%H") >= 22
+  let themes = [
+    \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
+    \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
+    \ 'vimspectr150-dark' , 'vimspectr180-dark'  , 'vimspectr210-dark' ,
+    \ 'vimspectr240-dark' , 'vimspectr270-dark'  , 'vimspectr300-dark' ,
+    \ 'vimspectr330-dark' , 'vimspectrgrey-dark'
+    \ ]
+else
+  let themes = [
+    \ 'vimspectr0-light'  , 'vimspectr0-light'   , 'vimspectr30-light' ,
+    \ 'vimspectr60-light' , 'vimspectr90-light'  , 'vimspectr120-light',
+    \ 'vimspectr150-light', 'vimspectr180-light' , 'vimspectr210-light',
+    \ 'vimspectr240-light', 'vimspectr270-light' , 'vimspectr300-light',
+    \ 'vimspectr330-light', 'vimspectrgrey-light'
+    \ ]
+endif
+exe 'colorscheme '.themes[localtime() % len(themes)]
+
 
 set splitbelow
 set splitright
@@ -3128,9 +3163,26 @@ if !has('gui_running')
 endif
 
 
-" set background=dark
-colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox
+" set termguicolors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
+
+
+" set background=dark
+" colorscheme   lilydjwg_dark
+
+if strftime('%H') >= 7 && strftime('%H') < 22
+    set background=light
+    let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
+
+" cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+
+" desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
 " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
 hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
@@ -3166,17 +3218,7 @@ hi Error guifg=#CD2626   gui=bold
 hi StatusLineNC  ctermfg=yellow    cterm=BOLD
 hi StatusLineNC  guifg=yellow   cterm=BOLD
 
-" 光标所在的字符
-hi Cursor           ctermfg=51  ctermbg=51
-hi  Cursor           guifg=white   guibg=green
 
-"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
-hi CursorLine       ctermbg=234   cterm=underline
-hi CursorLine       guibg=#1d251d   gui=underline
-
-"  "光标所在的屏幕列
-hi CursorColumn      ctermbg=234
-hi CursorColumn      guibg=#1d251d
 
 " 光标所在行的行号数字的颜色
 hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
@@ -3205,7 +3247,6 @@ hi Todo guifg=#8B1A1A    gui=none
 " "需要注意的字符
 hi  Delimiter         cterm=bold
 hi  Delimiter guifg=#1E90FF    gui=bold
-
 
 
 " "通用预处理命令
@@ -3322,21 +3363,7 @@ hi ModeMsg         guifg=#CD9B1D  gui=bold
 hi MoreMsg ctermfg=11   ctermbg=16  cterm=BOLD term=Bold
 hi MoreMsg guifg=#FFD700   guibg=#000000  gui=BOLD
 
-" complete menu
-hi Pmenu      ctermfg=0       ctermbg=243
-hi Pmenu      guifg=#000000    guibg=darkgrey
 
-"弹出菜单选中项目
-hi    PmenuSel   ctermfg=196   ctermbg=251
-hi    PmenuSel   guifg=darkgrey guibg=black
-
-"弹出菜单滚动条。
-hi    PmenuSbar        ctermbg=15
-hi    PmenuSbar        guibg=#FFFFFF
-
-"弹出菜单滚动条的拇指, 和上面一一对应
-hi    PmenuThumb      ctermbg=34    cterm=bold
-hi    PmenuThumb      guibg=#228B22    gui=bold
 
 " 提示(请按Enter或其他命令继续)的颜色
 hi Question        ctermfg=11  ctermbg=16
@@ -3351,12 +3378,7 @@ hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
 hi VertSplit       ctermfg=16      ctermbg=10   cterm=bold
 hi VertSplit       guifg=#000000   guibg=#00FF00   cterm=bold
 
-"可视模式的选择区
-hi Visual            ctermfg=NONE          ctermbg=237
-hi Visual           guifg=NONE           guibg=#ffffff
 
-hi VisualNOS               ctermfg=NONE    ctermbg=237
-hi VisualNOS              guifg=NONE       guibg=#8B8386
 
 " "警告消息
 hi WarningMsg      ctermfg=231        cterm=bold
@@ -3393,12 +3415,78 @@ endif
 " hi Normal       term=bold         guibg=#000000    cterm=bold
 
 
-colorscheme   lilydjwg_dark      "desert,blacklight,SolarizedLight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen,c16gui,camo,candycode,carrot,colorful256,colorful,earth,fine_blue,fruity,gobo,inkpot,molokai,navajo,nicotine,nightshade_print,phpx,professional,rainbow_autumn,sf,thegoodluck,umber_green,vividchalk,white,winter,zellner,lilydjwg_dark_modified,SolarizedDark_modified,dante_modified,rcg_gui_modified,nightshade_print_modified,flattened_dark,flattened_light,gruvbox
+if strftime('%H') >= 7 && strftime('%H') < 19
+    set background=light
+    hi CursorColumn      ctermbg=250
+    hi CursorColumn      guibg= #bcbcbc
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_light' }
+else
+    set background=dark
+    hi CursorColumn      ctermbg=237
+    hi CursorColumn      guibg= #3a3a3a
+    "let g:lightline = { 'colorscheme': 'cosmic_latte_dark' }
+endif
+
+colorscheme flattened_light
+
+" cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
+
+" desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
 
+"光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
+" hi CursorLine       ctermbg=234   cterm=underline
+hi CursorLine         ctermbg=NONE              cterm=underline
+hi CursorLine         guibg=NONE   gui=underline
 
+"  "光标所在的屏幕列
+" hi CursorColumn      ctermbg=234
+" hi CursorColumn      ctermbg=255
+" hi CursorColumn      guibg=#FFFFE0
+
+
+"可视模式的选择区
+hi Visual            ctermfg=NONE          ctermbg=237
+hi Visual           guifg=NONE           guibg=#ffffff
+
+hi VisualNOS               ctermfg=NONE    ctermbg=237
+hi VisualNOS              guifg=NONE       guibg=#8B8386
+
+" 光标所在的字符
+hi Cursor           ctermfg=196  ctermbg=51
+hi  Cursor           guifg=white   guibg=green
+
+" complete menu
+hi Pmenu      ctermfg=0       ctermbg=243
+hi Pmenu      guifg=#000000    guibg=darkgrey
+
+"弹出菜单选中项目
+hi    PmenuSel   ctermfg=196   ctermbg=251
+hi    PmenuSel   guifg=darkgrey guibg=black
+
+"弹出菜单滚动条。
+hi    PmenuSbar        ctermbg=15
+hi    PmenuSbar        guibg=#FFFFFF
+
+"弹出菜单滚动条的拇指, 和上面一一对应
+hi    PmenuThumb      ctermbg=34    cterm=bold
+hi    PmenuThumb      guibg=#228B22    gui=bold
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""ayu配置"""""""""""""""""""""
+" set background=dark
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+"let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+"colorscheme ayu
+
+" IndentLine {{
+"let g:indentLine_char = ''
+"let g:indentLine_first_char = ''
+"let g:indentLine_showFirstIndentLevel = 1
+"let g:indentLine_setColors = 0
+" }}
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3823,7 +3911,7 @@ let autosave=10
 "新建.c,.h,.sh,.java文件，自动插入文件头，比如预处理命令，和编码设置。并且可以在每次修改后记录修改时间
 autocmd BufNewFile *.py,*.cpp,*.v,*.sv,*.[ch],*.sh,*.java  exec ":call SetTitle()"
 "上面一行中*.py之间*.v除了逗号不能有空格
-
+autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 ""定义函数SetTitle，自动插入文件头
 function! SetTitle()
     "如果文件类型为.sh文件
@@ -3917,7 +4005,7 @@ endfunction
 
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * normal G
-" autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
+
 function! SetLastModifiedTime(lineno)
     let modif_time = strftime( '%c', getftime(bufname('%')) )
     if a:lineno == "-1"
