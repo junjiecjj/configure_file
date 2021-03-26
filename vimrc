@@ -1593,7 +1593,7 @@ nmap <Leader>fl :NERDTreeToggle<CR>
 map <C-d> :NERDTreeToggle<CR>
 
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 
 " 开启Nerdtree时自动显示Bookmarks
 let NERDTreeShowBookmarks=1
