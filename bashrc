@@ -101,12 +101,12 @@ alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
 
-alias e='exa -lhG'
-alias er='exa -lhG -R'
-alias et='exa -lhG -T'
-alias el='exa -abghHliSr'
-alias elr='exa -abghHliSr -R'
-alias elt='exa -abghHliSr -T'
+alias el='exa -lhG'
+alias elr='exa -lhG -R'
+alias elt='exa -lhG -T'
+alias ell='exa -abghHliSr'
+alias ellr='exa -abghHliSr -R'
+alias ellt='exa -abghHliSr -T'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
