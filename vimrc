@@ -401,7 +401,7 @@ set whichwrap+=<,>,b,s,[,]
 
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
 " <F3> 行号开关
-nnoremap <F3> :call HideNumber()<CR>
+" nnoremap <F3> :call HideNumber()<CR>
 
 function! HideNumber()
     if(&relativenumber == &number)
@@ -570,9 +570,9 @@ let b:match_words=
 :ab zhushi //
 
 "建立一个库
-nmap <F8> <Esc>:!vlib work<CR>
+nmap <C-F8> <Esc>:!vlib work<CR>
 "编译一个vhd/v文件
-nmap <silent> <F9> :ModSimComp<cr><cr>
+nmap <silent> <C-F9> :ModSimComp<cr><cr>
 "------------------------------------------------------------------------------
 "Function    : Model_Sim_Compile()
  "Description : Compile with ModelSim
@@ -707,7 +707,7 @@ map <F4> :Ack -i
 imap <F4> :Ack -i
 
 " 以后在普通模式下输入Ctrl+U便可以自动输入:Ack 了
-map <c-u> :Ack<space>
+map <C-u> :Ack<space>
 
 """""""""""""""""""""""""""""""""""" echodoc 配置    """"""""""""""""""""""""""""""""""""""""""""""
 "底部不显示三种模式,不然echodoc.vim会冲突
@@ -3377,7 +3377,7 @@ let autosave=10
 "新建.c,.h,.sh,.java文件，自动插入文件头，比如预处理命令，和编码设置。并且可以在每次修改后记录修改时间
 autocmd BufNewFile *.py,*.cpp,*.v,*.sv,*.[ch],*.sh,*.java  exec ":call SetTitle()"
 "上面一行中*.py之间*.v除了逗号不能有空格
-autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
+"autocmd BufWrite *.[ch] call SetLastModifiedTime(-1)
 ""定义函数SetTitle，自动插入文件头
 function! SetTitle()
     "如果文件类型为.sh文件
