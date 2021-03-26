@@ -2810,7 +2810,7 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 
 
-if strftime('%H') >= 7 && strftime('%H') < 11
+if strftime('%H') >= 7 && strftime('%H') < 20
     set background=light
     hi CursorColumn      ctermbg=250
     hi CursorColumn      guibg= #bcbcbc
