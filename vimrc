@@ -2810,7 +2810,7 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 
 
-if strftime('%H') >= 7 && strftime('%H') < 20
+if strftime('%H') >= 7 && strftime('%H') < 19
     set background=light
     hi CursorColumn      ctermbg=250
     hi CursorColumn      guibg= #bcbcbc
@@ -2835,9 +2835,9 @@ else
     hi CursorColumn      guibg= #3a3a3a
     let ayucolor="mirage"  " for light version of theme
     let themes = [
-        \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256',
-        \ 'flattened_dark' , 'github', 'lilydjwg_dark_modified', 'molokai', 'solarized8' ,
-        \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','umber_green',
+        \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256','github',
+        \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green',
+        \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
         \ ]
         " \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
         " \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
