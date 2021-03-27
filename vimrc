@@ -2852,8 +2852,6 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 if strftime('%H') >= 7 && strftime('%H') < 19
     set background=light
-    hi CursorColumn      ctermbg=250
-    hi CursorColumn      guibg= #bcbcbc
     let ayucolor="light"  " for light version of theme
     let themes = [
         \ 'cosmic_latte','carbonized_light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
@@ -2864,6 +2862,9 @@ if strftime('%H') >= 7 && strftime('%H') < 19
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
         \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
         \ ]
+    " autocmd vimenter * ++nested colorscheme relaxedgreen
+    hi CursorColumn      ctermbg=250
+    hi CursorColumn      guibg= #bcbcbc
         " \ 'vimspectr0-light'  , 'vimspectr0-light'   , 'vimspectr30-light' ,
         " \ 'vimspectr60-light' , 'vimspectr90-light'  , 'vimspectr120-light',
         " \ 'vimspectr150-light', 'vimspectr180-light' , 'vimspectr210-light',
@@ -2871,8 +2872,6 @@ if strftime('%H') >= 7 && strftime('%H') < 19
         " \ 'vimspectr330-light', 'vimspectrgrey-light',
 else
     set background=dark
-    hi CursorColumn      ctermbg=237
-    hi CursorColumn      guibg= #3a3a3a
     let ayucolor="mirage"  " for light version of theme
     let themes = [
         \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256','github',
@@ -2884,10 +2883,14 @@ else
         " \ 'vimspectr150-dark' , 'vimspectr180-dark'  , 'vimspectr210-dark' ,
         " \ 'vimspectr240-dark' , 'vimspectr270-dark'  , 'vimspectr300-dark' ,
         " \ 'vimspectr330-dark' , 'vimspectrgrey-dark' ,
+    " autocmd vimenter * ++nested colorscheme solarized8_higt
+    hi CursorColumn      ctermbg=237
+    hi CursorColumn      guibg= #3a3a3a
 endif
-exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
-"exe 'colorscheme '.themes[localtime() % len(themes)]
 
+exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
+" exe 'colorscheme '.themes[localtime() % len(themes)]
+" autocmd vimenter * ++nested colorscheme solarized8_higt
 
 " cake16.vim , one.vim github1.vim ,carbonized_dark.vim carbonized_light.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight,professional, cake16, stellarized,cosmic_latte,NeoSolarized.vim,  rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,sf,rainbow_autumn.vim,redstring,relaxedgreen,Ne
 
@@ -3172,6 +3175,33 @@ noremap <leader>0 :tablast<CR>
 " :tabn或gt   移动到下一个标签页。
 " :tabp或gT   移动到上一个标签页。
 " {i}gt       移动到第i个标签页
+
+" vim -p files: 打开多个文件，每个文件占用一个标签页。
+" :tabe, tabnew -- 如果加文件名，就在新的标签中打开这个文件， 否则打开一个空缓冲区。
+" ^w gf -- 在新的标签页里打开光标下路径指定的文件。
+" :tabn -- 切换到下一个标签。Control + PageDown，也可以。
+" :tabp -- 切换到上一个标签。Control + PageUp，也可以。
+" [n] gt -- 切换到下一个标签。如果前面加了 n ， 就切换到第n个标签。第一个标签的序号就是1。
+" :tab split -- 将当前缓冲区的内容在新页签中打开。
+" :tabc[lose] -- 关闭当前的标签页。
+" :tabo[nly] -- 关闭其它的标签页。
+" :tabs -- 列出所有的标签页和它们包含的窗口。
+" :tabm[ove] [N] -- 移动标签页，移动到第N个标签页之后。 如 tabm 0 当前标签页，就会变成第一个标签页。
+
+
+"######################################## 缓冲区#################################
+
+" :buffers或:ls或:files 显示缓冲区列表。
+" ctrl+^：在最近两个缓冲区间切换。
+" :bn -- 下一个缓冲区。
+" :bp -- 上一个缓冲区。
+" :bl -- 最后一个缓冲区。
+" :b[n]或:[n]b -- 切换到第n个缓冲区。
+" :nbw(ipeout) -- 彻底删除第n个缓冲区。
+" :nbd(elete) -- 删除第n个缓冲区，并未真正删除，还在unlisted列表中。
+" :ba[ll] -- 把所有的缓冲区在当前页中打开，每个缓冲区占一个窗口。
+
+
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
 
@@ -4055,8 +4085,55 @@ autocmd BufReadPost * cd %:p:h
 "  /\CWord ： 区分大小写的查找
 "  /\cword ： 不区分大小写的查找
 "
+" :split(:sp) -- 把当前窗水平分割成两个窗口
+" :vsplit(:vsp) -- 把当前窗口分割成水平分布的两个窗口。
+
+" 多标签编辑
+" vim -p files: 打开多个文件，每个文件占用一个标签页。
+" :tabe, tabnew -- 如果加文件名，就在新的标签中打开这个文件， 否则打开一个空缓冲区。
+" ^w gf -- 在新的标签页里打开光标下路径指定的文件。
+" :tabn -- 切换到下一个标签。Control + PageDown，也可以。
+" :tabp -- 切换到上一个标签。Control + PageUp，也可以。
+" [n] gt -- 切换到下一个标签。如果前面加了 n ， 就切换到第n个标签。第一个标签的序号就是1。
+" :tab split -- 将当前缓冲区的内容在新页签中打开。
+" :tabc[lose] -- 关闭当前的标签页。
+" :tabo[nly] -- 关闭其它的标签页。
+" :tabs -- 列出所有的标签页和它们包含的窗口。
+" :tabm[ove] [N] -- 移动标签页，移动到第N个标签页之后。 如 tabm 0 当前标签页，就会变成第一个标签页。
+
+" 缓冲区
+" :buffers或:ls或:files 显示缓冲区列表。
+" ctrl+^：在最近两个缓冲区间切换。
+" :bn -- 下一个缓冲区。
+" :bp -- 上一个缓冲区。
+" :bl -- 最后一个缓冲区。
+" :b[n]或:[n]b -- 切换到第n个缓冲区。
+" :nbw(ipeout) -- 彻底删除第n个缓冲区。
+" :nbd(elete) -- 删除第n个缓冲区，并未真正删除，还在unlisted列表中。
+" :ba[ll] -- 把所有的缓冲区在当前页中打开，每个缓冲区占一个窗口。
 "
 "
+" 文档操作
+" :e file --关闭当前编辑的文件，并开启新的文件。 如果对当前文件的修改未保存，vi会警告。
+" :e! file --放弃对当前文件的修改，编辑新的文件。
+" :e+file -- 开始新的文件，并从文件尾开始编辑。
+" :e+n file -- 开始新的文件，并从第n行开始编辑。
+" :enew --编译一个未命名的新文档。(CTRL-W n)
+" :e -- 重新加载当前文档。
+" :e! -- 重新加载当前文档，并丢弃已做的改动。
+" :e#或ctrl+^ -- 回到刚才编辑的文件，很实用。
+" :f或ctrl+g -- 显示文档名，是否修改，和光标位置。
+" :f filename -- 改变编辑的文件名，这时再保存相当于另存为。
+" gf -- 打开以光标所在字符串为文件名的文件。
+" :w -- 保存修改。
+" :n1,n2w filename -- 选择性保存从某n1行到另n2行的内容。
+" :wq -- 保存并退出。
+" ZZ -- 保存并退出。
+" :x -- 保存并退出。
+" :q[uit] ——退出当前窗口。(CTRL-W q或CTRL-W CTRL-Q)
+" :saveas newfilename -- 另存为
+
+
 "-------------------vim常用的快捷键------------------------------------------------------------------------------
 "
 
