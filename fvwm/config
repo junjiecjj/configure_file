@@ -1113,8 +1113,16 @@ Key Down    A  S    Scroll +0   +100
 # Alt+F6    关闭显示屏
 Silent Key   F6      A    M    Function LockScreen
 
-#Ctrl+F11 最大化
-Silent Key   F11		A	C	Maximize
+
+#Ctrl+F10  横向最大化50%
+Silent Key   F10		A	C	Maximize 50  0
+
+#Ctrl+F11  纵向最大化
+Silent Key   F11		A	C	Maximize 0 100
+
+
+#Ctrl+F12  最大化
+Silent Key   F12		A	C	Maximize 100 100
 
 # 按ctrl + windows_L 当前page全部最小化
 Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
@@ -1149,7 +1157,7 @@ Mouse 1 2 A Close
 Mouse 1 6 A Iconify
 Mouse 1 4 A Maximize 100 100
 Mouse 2 4 A Maximize 0 100
-Mouse 3 4 A Maximize 100 0
+Mouse 3 4 A Maximize 50 0
 
 #   TitleBar: Click to Raise, Move, Double Click to Maximize
 #             Mouse Wheel Up/Down to WindowShade On/Off
