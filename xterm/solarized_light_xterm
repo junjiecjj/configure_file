@@ -3,18 +3,18 @@
 
 xterm*termName: xterm-256color
 
-XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+xterm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 
 !mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
 !Ctrl p to print screen content to file
-XTerm*VT100.Translations: #override
+xterm*VT100.Translations: #override
     Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     Ctrl <KeyPress> P: print()
 
-XTerm*metaSendsEscape: true
+xterm*metaSendsEscape: true
 Xterm*eightBitInput: false
-XTerm*Font: 7*13
+xterm*Font: 7*13
 
 ! English font
 xterm*faceName:Noto mono:antialas=true:pixelsize=12
@@ -27,86 +27,70 @@ xterm*cjkWidth:false
 
 xterm*faceSize:200
 
-XTerm*locale:zh_CN.UTF-8
+xterm*locale:zh_CN.UTF-8
 xterm*utf8:true
 xterm*utf8Title:true
 
 !窗口大小及位置
-xterm*geometry:70x18+200+150
+xterm*geometry:90x25-0-0
 
 ! scrollbar
-XTerm*scrollBar:true
-XTerm*rightScrollBar:true
-XTerm*saveLines:  4096
-XTerm*fastScroll:true
+xterm*scrollBar:true
+xterm*rightScrollBar:true
+xterm*saveLines:  4096
+xterm*fastScroll:true
 
 Xterm*bellIsUrgent: true
-XTerm*allowBoldFonts: true
+xterm*allowBoldFonts: true
 
 
 
 !input method  好像不起作用
-XTerm*inputMethod:fcitx
+xterm*inputMethod:fcitx
 
 !调整行距离
-XTerm*scaleHeight: 1.01
+xterm*scaleHeight: 1.01
 !####################################################
 
 
 
-#define S_base03        #002b36
-#define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
+xterm*background:            #fdf6e3
+xterm*foreground:            #657b83
+xterm*fadeColor:             #fdf6e3
+xterm*cursorColor:           #586e75
+xterm*pointerColorBackground:#93a1a1
+xterm*pointerColorForeground:#586e75
 
-XTerm*background:            S_base3
-XTerm*foreground:            S_base00
-XTerm*fadeColor:             S_base3
-XTerm*cursorColor:           S_base01
-XTerm*pointerColorBackground:S_base1
-XTerm*pointerColorForeground:S_base01
 
-#define S_yellow        #b58900
-#define S_orange        #cb4b16
-#define S_red           #dc322f
-#define S_magenta       #d33682
-#define S_violet        #6c71c4
-#define S_blue          #268bd2
-#define S_cyan          #2aa198
-#define S_green         #859900
 
 !! black dark/light
-XTerm*color0:                S_base02
-XTerm*color8:                S_base03
+xterm*color0:                #073642
+xterm*color8:                #002b36
 
 !! red dark/light
-XTerm*color1:                S_red
-XTerm*color9:                S_orange
+xterm*color1:                #dc322f
+xterm*color9:                #cb4b16
 
 !! green dark/light
-XTerm*color2:                S_green
-XTerm*color10:               S_base01
+xterm*color2:                #859900
+xterm*color10:               #586e75
 
 !! yellow dark/light
-XTerm*color3:                S_yellow
-XTerm*color11:               S_base00
+xterm*color3:                #b58900
+xterm*color11:               #657b83
 
 !! blue dark/light
-XTerm*color4:                S_blue
-XTerm*color12:               S_base0
+xterm*color4:                #268bd2
+xterm*color12:               #839496
 
 !! magenta dark/light
-XTerm*color5:                S_magenta
-XTerm*color13:               S_violet
+xterm*color5:                #d33682
+xterm*color13:               #6c71c4
 
 !! cyan dark/light
-XTerm*color6:                S_cyan
-XTerm*color14:               S_base1
+xterm*color6:                #2aa198
+xterm*color14:               #93a1a1
 
 !! white dark/light
-XTerm*color7:                S_base2
-XTerm*color15:               S_base3
+xterm*color7:                #93a1a1
+xterm*color15:               #fdf6e3
