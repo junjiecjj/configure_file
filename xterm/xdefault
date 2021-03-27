@@ -17,10 +17,10 @@ Xterm*eightBitInput: false
 XTerm*Font: 7*13
 
 ! English font
-xterm*faceName:Noto mono:antialas=true:size=10
+xterm*faceName:Noto mono:antialas=true:pixelsize=12
 !xterm*faceName:Fira Code:antialas=true:size=14
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=11:antialias=True:size=11
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
 !xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
 xterm*xftAntialias:true
