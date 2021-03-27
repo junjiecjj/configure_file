@@ -1908,7 +1908,7 @@ let g:bufExplorerMaxHeight=23
 let g:miniBufExplModSelTarget = 1
 
 "启用以下两个功能：Ctrl+tab移到下一个buffer并在当前窗口打开；Ctrl+Shift+tab移到上一个buffer并在当前窗口打开；ubuntu好像不支持
-let g:miniBufExplMapCTabSwitchBufs = 1
+" let g:miniBufExplMapCTabSwitchBufs = 1
 " 试用了下MiniBufferExplore，发现其支持Buffer Explorer的快捷键
 " 输入\be在当前窗口浏览缓存
 " \bv垂直打开一个窗口浏览缓存。
@@ -1924,7 +1924,8 @@ map <Leader>hm :MBEToggle<cr>
 " buffer 切换快捷键
 map <S-n> :MBEbn<cr>
 map <S-p> :MBEbp<cr>
-
+noremap <C-TAB> :MBEbn<CR>
+noremap <C-S-TAB> :MBEbp<CR>
 
 " MiniBufExpl 配色
 hi MBENormal               guifg=#808080 guibg=fg   ctermfg=8     ctermbg=253
@@ -3104,6 +3105,7 @@ nnoremap <C-l> <C-W>l
 nnoremap <C-h> <C-W>h
 nnoremap <C-w> <C-W>w
 
+
 nnoremap <C-q> <C-W>q
 nnoremap <C-t> <C-W>T
 nnoremap <C-o> <C-W>o
@@ -3170,6 +3172,8 @@ noremap <leader>0 :tablast<CR>
 " :tabn或gt   移动到下一个标签页。
 " :tabp或gT   移动到上一个标签页。
 " {i}gt       移动到第i个标签页
+
+" :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
 
 "###############################美化标签栏#######################################
 " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
