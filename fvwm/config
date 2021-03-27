@@ -1061,37 +1061,43 @@ Silent Key 4 A C GotoDesk 0 3
 
 
 #Silent Key t A CM Exec exec $[infostore.terminal]
-Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
-Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
+# Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
+# Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
-Silent Key p  A   CM     Exec exec st
+Silent Key z  A   CM     Exec exec st
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
-Silent Key u  A   CM     Exec exec $[infostore.urxvt]
-Silent Key z  A   CM     Exec exec $[infostore.kitty]
+# Silent Key u  A   CM     Exec exec $[infostore.urxvt]
+# Silent Key z  A   CM     Exec exec $[infostore.kitty]
 
 #Ctrl+Alt+n打开文件管理器
 #Silent key f A CM Exec exec   dolphin &
 Silent key f A CM Exec exec  /usr/bin/nautilus
+
 #Ctrl+Alt+g打开谷歌浏览器
 Silent key g A CM Exec exec    google-chrome-stable &
+
 #Ctrl+Alt+c打开VScode
 Silent key c A CM Exec exec    code
+
 #Ctrl+Alt+s打开texStduio
 Silent key s A CM Exec exec    texstudio &
+
 #Ctrl+Alt+l 打开 lyx
-Silent key l A CM Exec exec    lyx &
+# Silent key l A CM Exec exec    lyx &
+
 #Ctrl+Alt+d 打开spyder
 Silent key d A CM Exec exec   /home/jack/anaconda3/bin/spyder &
+
 #Ctrl+Alt+n打开控制中心/设置
 #Silent key n  A CM Exec exec systemsettings5
-Silent key n  A CM Exec exec gnome-control-center
+# Silent key n  A CM Exec exec gnome-control-center
 
 #Ctrl+Alt+o打开typora
 Silent Key o  A   CM     Exec exec  typora
 
 
 #Ctrl+Alt+r打开remarkable
-Silent Key r  A   CM     Exec exec  remarkable
+# Silent Key r  A   CM     Exec exec  remarkable
 
 
 
