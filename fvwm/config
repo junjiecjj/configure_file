@@ -1085,7 +1085,12 @@ Silent key d A CM Exec exec   /home/jack/anaconda3/bin/spyder &
 #Ctrl+Alt+n打开控制中心/设置
 #Silent key n  A CM Exec exec systemsettings5
 Silent key n  A CM Exec exec gnome-control-center
+
+#Ctrl+Alt+o打开typora
 Silent Key o  A   CM     Exec exec  typora
+
+
+#Ctrl+Alt+r打开remarkable
 Silent Key r  A   CM     Exec exec  remarkable
 
 
@@ -1105,11 +1110,13 @@ Silent Key   F6      A    M    Function LockScreen
 #Ctrl+F11 最大化
 Silent Key   F11		A	C	Maximize
 
-# 按windows_L 当前page全部最小化
-Silent Key   Super_L	A	N	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
+# 按ctrl + windows_L 当前page全部最小化
+Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
 
-# Ctrl+q 关闭当前窗口，直至退出桌面对话框
-Silent Key   q        A  CS   Close
+# ctrl+shift+q 关闭当前窗口，直至退出桌面对话框
+# Silent Key   q        A  CS   Close
+# alt+q 关闭当前窗口，直至退出桌面对话框
+Silent Key   q        A  M   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
@@ -1133,10 +1140,10 @@ Silent Key   l          A  M   Exec exec xscreensaver-command -lock
 #   6 - Iconify (minimize)
 Mouse 1 1 A Menu MenuWindowOpsLong Delete
 Mouse 1 2 A Close
+Mouse 1 6 A Iconify
 Mouse 1 4 A Maximize 100 100
 Mouse 2 4 A Maximize 0 100
 Mouse 3 4 A Maximize 100 0
-Mouse 1 6 A Iconify
 
 #   TitleBar: Click to Raise, Move, Double Click to Maximize
 #             Mouse Wheel Up/Down to WindowShade On/Off
@@ -1185,7 +1192,7 @@ Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
 Mouse   1   T   C        Style      *           TitleAtLeft
 # Mouse   1   T   C    AcceptsFocus   TitleAtLeft
 
-#让你在任何时候按住 Ctrl 再点击鼠标左键(编号3)，所有应用的窗口的标题栏就会跑到上面去
+#让你在任何时候按住 Ctrl 再点击鼠标右键(编号3)，所有应用的窗口的标题栏就会跑到上面去
 Mouse   3   T   C   Style      *           TitleAtTop
 #让你在任何时候按住 Ctrl 再点上滑鼠标滚轮(编号4)，所有应用的窗口的标题栏就会跑到右边去
 Mouse   4   T   C   Style      *           TitleAtRight
