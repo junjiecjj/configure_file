@@ -397,13 +397,17 @@ Style * Colorset 1, HilightColorset 2,
 Style * BorderColorset 3, HilightBorderColorset 4
 
 # Disable Icons from appearing on desktop.
+IconFont   "StringEncoding=UTF-8:xft:文泉驿微米黑:style=Bold:antialias=True:size=10:encoding=iso10646-1"
 # 最小化后有桌面图标
 Style * !Icon
 # Style  "xterm*"        Icon
-Style  "*st"   Icon
+# Style  "*st"   Icon
 # Style  "Terminator*"   Icon
 # Style  "urxvt*"        Icon
-IconFont   "StringEncoding=UTF-8:xft:文泉驿微米黑:style=Bold:antialias=True:size=10:encoding=iso10646-1"
+# Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
+# Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
+# Style "urxvt" Icon $[fvwm_exicons1]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
+# Style "gvim" Icon $[fvwm_exicons2]/vim.png, MiniIcon $[fvwm_exicons2]/vim.png
 
 Style *xclock*  StaysOnTop, NoTitle, Sticky, WindowListSkip
 Style *xclock*  Font "StringEncoding=UTF-8:xft:文泉驿微米黑:antialias=True:size=10:encoding=iso10646-1"
@@ -513,10 +517,6 @@ Style         "wpspdf*"                   TitleAtLeft,  HilightColorset 22
 #Style  "FvwmButtons"   StaysOnTop, ClickToFocu2
 #Style   FvwmPager		NoHandles
 ###########################################
-#Style "xterm" Icon $[fvwm_exicons2]/xterm.png, MiniIcon $[fvwm_exicons2]/xterm.png
-Style "xterm" Icon $[fvwm_exicons2]/terminal.png, MiniIcon $[fvwm_exicons2]/terminal.png
-Style "urxvt" Icon $[fvwm_exicons1]/urxvt.png, MiniIcon $[fvwm_exicons2]/urxvt.png
-Style "gvim" Icon $[fvwm_exicons2]/vim.png, MiniIcon $[fvwm_exicons2]/vim.png
 
 #######
 # 3: Colorsets
