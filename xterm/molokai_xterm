@@ -55,12 +55,12 @@ xterm*scaleHeight: 1.01
 
 ! Colours for xterm
 ! sets colors for everything.
-*background: #272822
-*foreground: #a08080
-
-
-
 xterm*background: #272822
+xterm*foreground: #a08080
+
+
+
+xterm*background: #000000
 xterm*foreground: #d0d0d0
 
 
