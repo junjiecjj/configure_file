@@ -431,8 +431,8 @@ function! NumberToggle()
 endfunction
 
 
-" ctrl-r进行相对行号/绝对行号切换
-nnoremap <C-r> :call NumberToggle()<cr>
+" ctrl-i进行相对行号/绝对行号切换
+nnoremap <C-i> :call NumberToggle()<cr>
 
 
 let &t_SI = "\<Esc>]12;green\x7"
@@ -570,9 +570,9 @@ let b:match_words=
 :ab zhushi //
 
 "建立一个库
-nmap <C-F8> <Esc>:!vlib work<CR>
+nmap <Leader>vb <Esc>:!vlib work<CR>
 "编译一个vhd/v文件
-nmap <silent> <C-F9> :ModSimComp<cr><cr>
+nmap <silent> <Leader>ms :ModSimComp<cr><cr>
 "------------------------------------------------------------------------------
 "Function    : Model_Sim_Compile()
  "Description : Compile with ModelSim
@@ -620,18 +620,18 @@ let g:go_highlight_generate_tags = 1
 let g:godef_split=2
 
 " vim-go custom mappings
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gs <Plug>(go-implements)
+au FileType go nmap <Leader>gi <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>ge <Plug>(go-rename)
 
 
 """"""""""""""""""""""jedi-vim配置""""""""""""""""""""""
@@ -707,7 +707,7 @@ map <F4> :Ack -i
 imap <F4> :Ack -i
 
 " 以后在普通模式下输入Ctrl+U便可以自动输入:Ack 了
-map <C-u> :Ack<space>
+map <Leader>ack :Ack<space>
 
 """""""""""""""""""""""""""""""""""" echodoc 配置    """"""""""""""""""""""""""""""""""""""""""""""
 "底部不显示三种模式,不然echodoc.vim会冲突
@@ -742,10 +742,11 @@ nnoremap <leader><leader>if :FormatIf<cr>
 
 
 
-""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
 " 命令行模式
 " ds "              删除一个配对符号 (delete a surrounding)
 " cs "              更改一个配对符号 (change a surrounding)
+" cS "              更改一个配对符号 (change a  surrounding),原配对号内的文本做新一行
 " ys "              增加一个配对符号 (yank a surrounding)
 " yS "              在新的行增加一个配对符号并进行缩进
 " yss "             在整行增加一个配对符号
@@ -754,6 +755,41 @@ nnoremap <leader><leader>if :FormatIf<cr>
 "  插入模式
 " Ctrl + s                    增加一个配对符号
 " Ctrl +s, Ctrl +s        在整行增加一个配对符号，配对符号单独成行并进行缩进
+
+" 可视模式
+" S         选中的部分括起来
+" gS        选中的括起来，括号内文本做新一行
+
+" 如
+" ds"回车           删除"hello, world" -> hello,world
+" cs"(回车          替换 "hello,world"  -> (hello,world)
+" cst" 回车            替换-标签(t=tag)  ==> <a>abc</a>a>  -> "abc"
+" cst<html>回车        替换标签 ==> <a>abc</a>a>  -> <html>abc</html>html>
+" cS"(回车           "hello,world"  -> (
+"                                 hello,world
+"                          )
+" ysw(回车           会在当前光标所在单词w的周围增加一个 () 配对   hello world  ->  hello ( world )
+
+" ysw<em回车         hello world  ->   <em>hello</em> world
+
+
+" ySw[         hello world -> hello [
+"                                         world
+"                                     ]
+
+" yss"        添加一整行 Hello,world -> "Hello,world"
+" ySS"        添加括起来，括号内文本做新一行 Hello,world -> "
+"                                                            Hello,world
+"                                                           "
+" ySS<div回车               hello world  ->       <div>
+"                                                 hello world
+"                                                 </div>
+
+" 可视模式：
+" S(回车         hello world ->  ( hello world )
+" gS(          hello world   ->         (
+"                                           hello world
+"                                       )
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -783,7 +819,7 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 
 
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>p  :CtrlP<CR>
+nnoremap <leader>cp  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -799,16 +835,16 @@ nmap <C-e> :Buffers<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
 "<Leader>f在当前目录搜索文件
-nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>ff :Files<CR>
 
 "<Leader>b切换Buffer中的文件
-nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>fb :Buffers<CR>
 
 "<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
-nnoremap <silent> <Leader>p :Lines<CR>
+nnoremap <silent> <Leader>fp :Lines<CR>
 
 "<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
-nnoremap <silent> <Leader>h :History<CR>
+nnoremap <silent> <Leader>fh :History<CR>
 
 "调用Rg进行搜索，包含隐藏文件
 "这样输入:Rg <keyword>会调用ripgrep来递归搜索当前目录
@@ -929,19 +965,19 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 " sudo apt-get install ctags
 
 " Ctrl + p 打开文件搜索
-let g:Lf_ShortcutF = '<c-p>'
+let g:Lf_ShortcutF = '<C-p>'
 
 "\p 打开函数列表
-noremap <Leader>p :LeaderfFunction<cr>
+noremap <Leader>lf :LeaderfFunction<cr>
 
 "文件搜索
-nnoremap <silent> <Leader>f :Leaderf file<CR>
+nnoremap <silent> <Leader>lp :Leaderf file<CR>
 
 "历史打开过的文件
-nnoremap <silent> <Leader>m :Leaderf mru<CR>
+nnoremap <silent> <Leader>lh :Leaderf mru<CR>
 
 "Buffer
-nnoremap <silent> <Leader>b :Leaderf buffer<CR>
+nnoremap <silent> <Leader>lb :Leaderf buffer<CR>
 
 "函数搜索（仅当前文件里），依赖ctags插件
 nnoremap <silent> <Leader>F :Leaderf function<CR>
@@ -963,11 +999,11 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""Ctags配置""""""""""""""""""""""""""""""""
-" 配置Ctrl + F12为生产ctags的快捷键
-map <C-F12> :!ctags <CR>
+" 配置为生产ctags的快捷键
+map <Leadf>ct :!ctags <CR>
 
 "更新ctags标签文件快捷键设置
-noremap <C-F8> :!ctags -R<CR>
+noremap <Leadf>ct :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
 
@@ -1061,7 +1097,7 @@ let Tlist_Use_Right_Window = 1
 "let Tlist_WinHeight = 100
 let Tlist_WinWidth = 20
 
-"设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
+"设置taglist打开关闭的快捷键F10，就是F10会显示代码中的函数，变量，类，宏等
 map <F10> <Esc>:TlistToggle<Cr>
 
 
@@ -1590,7 +1626,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 nmap <Leader>fl :NERDTreeToggle<CR>
 
 " ctrl + d 打开目录
-map <C-d> :NERDTreeToggle<CR>
+" map <C-d> :NERDTreeToggle<CR>
+map <Leader>fd :NERDTreeToggle<CR>
 
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="left"
@@ -1882,10 +1919,10 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplMapCTabSwitchWindows = 1
 
 " 显示/隐藏 MiniBufExplorer 窗口
-map <Leader>bl :MBEToggle<cr>
+map <Leader>hm :MBEToggle<cr>
 " buffer 切换快捷键
-map <C-b> :MBEbn<cr>
-map <C-S-b> :MBEbp<cr>
+map <S-n> :MBEbn<cr>
+map <S-p> :MBEbp<cr>
 
 
 " MiniBufExpl 配色
@@ -1981,7 +2018,8 @@ nmap <silent>  sp <Plug>(ale_previous_wrap)
 nmap <silent>  sn <Plug>(ale_next_wrap)
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
+
+"<Leader>o触发/关闭语法检查
 nmap <Leader>o :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
 nmap <Leader>d :ALEDetail<CR>
@@ -3101,24 +3139,15 @@ nnoremap <M-right> :vertical resize +2<cr>
 " 注：M 即 Alt 键
 
 "#################################### 多标签页切换####################################
-noremap <silent><tab>m :tabnew<cr>
-noremap <silent><tab>c :tabclose<cr>
-noremap <silent><tab>n :tabn<cr>
-noremap <silent><tab>p :tabp<cr>
+noremap <silent><tab>tn :tabnew<cr>
+noremap <silent><tab>tc :tabclose<cr>
 noremap <silent><leader>t :tabnew<cr>
 noremap <silent><leader>c :tabclose<cr>
-" noremap <silent><leader>1 :tabn 1<cr>
-" noremap <silent><leader>2 :tabn 2<cr>
-" noremap <silent><leader>3 :tabn 3<cr>
-" noremap <silent><leader>4 :tabn 4<cr>
-" noremap <silent><leader>5 :tabn 5<cr>
-" noremap <silent><leader>6 :tabn 6<cr>
-" noremap <silent><leader>7 :tabn 7<cr>
-" noremap <silent><leader>8 :tabn 8<cr>
-" noremap <silent><leader>9 :tabn 9<cr>
-" noremap <silent><leader>0 :tabn 10<cr>
+noremap <silent><tab>nt :tabn<cr>
+noremap <silent><tab>pt :tabp<cr>
+
 noremap <silent><s-tab> :tabnext<CR>
-inoremap <silent><s-tab> <ESC>:tabnext<CR>
+
 
 " 正常模式下切换到确切的 tab
 noremap <leader>1 1gt
@@ -3503,36 +3532,84 @@ autocmd! bufwritepost .vimrc source   ~/.vimrc
 autocmd BufReadPost * cd %:p:h
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"############################################################
-"   插件的快捷键
-"############################################################
+"##################################################################
+"#################  插件的快捷键           ##########
+"##################################################################
 " Leader键为'\'
 
 " 定义的快捷键为：
 " \q  退出
 " \w  保存
-" F3  行号开关
-" ctrl + r    相对/绝对行号的切换
 
-" F4       相当于输入:ACK -i 查找
-" ctrl  u   相当于输入:ACK
-" F11   前一个颜色
-" F12   后一个颜色
+" ctrl + i    相对/绝对行号的切换
+
+" nmap <F1> :TagbarToggle<CR>
 "
-" 水平滚动, 向左滚动F8，向右滚动F9
-" 可以用 alt+n 来切换，比如 alt+1 切换到第一个 tab,alt+2 切换到第二个 tab。
-" :nn <M-1> 1gt
-" :nn <M-2> 2gt
-" :nn <M-3> 3gt
-" :nn <M-4> 4gt
-" :nn <M-5> 5gt
-" :nn <M-6> 6gt
-" :nn <M-7> 7gt
-" :nn <M-8> 8gt
-" :nn <M-9> 9gt
-" :nn <M-0> :tablast<CR>
+" imap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
+" nmap <F2> <ESC>:w<CR>:!xelatex  % && open %:r.pdf<CR><CR>
+" 当你再按一下<F2>键, 就可以编译+打开文档了. 在这里, 我们解析一下这一行代码的含义.
 
-"""""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
+" F3自动格式化代码
+" noremap <F3> :Autoformat<CR>:w<CR>
+
+" map <F4> :Ack -i
+" imap <F4> :Ack -i
+" F4       相当于输入:ACK -i 查找
+
+"一键执行python代码
+" map <F5> :call RunPython()<CR> "一键执行python代码
+" <F5>编译C/C++/java/，<F6>运行C/C++/java
+" <F5>解释运行python/sh
+
+" <F7>C,C++的调试
+
+" 在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
+
+
+
+
+"设置taglist打开关闭的快捷键F10，就是F10会显示代码中的函数，变量，类，宏等
+" map <F10> <Esc>:TlistToggle<Cr>
+
+" F11   前一个颜色
+" map <F11> :PreviousColorScheme<CR>
+
+" F12   后一个颜色
+" map <F12> :NextColorScheme<CR>
+
+
+"""""""""""""""""""""""""""""" 行号"""""""""""""""""""""""
+" ctrl-i进行相对行号/绝对行号切换
+" nnoremap <C-i> :call NumberToggle()<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
+
+"建立一个库
+"nmap <Leader>vb <Esc>:!vlib work<CR>
+"编译一个vhd/v文件
+"nmap <silent> <Leader>ms :ModSimComp<cr><cr>
+
+
+" """""""""""""""""""""""""""""""""""""""""""" vim-go配置   """"""""""""""""""""""""""""""""""""""""""""
+" vim-go custom mappings
+" au FileType go nmap <Leader>gs <Plug>(go-implements)
+" au FileType go nmap <Leader>gi <Plug>(go-info)
+" au FileType go nmap <Leader>gd <Plug>(go-doc)
+" au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+" au FileType go nmap <leader>gr <Plug>(go-run)
+" au FileType go nmap <leader>gb <Plug>(go-build)
+" au FileType go nmap <leader>gt <Plug>(go-test)
+" au FileType go nmap <leader>gc <Plug>(go-coverage)
+" au FileType go nmap <Leader>ds <Plug>(go-def-split)
+" au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+" au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+" au FileType go nmap <Leader>ge <Plug>(go-rename)
+
+
+
+""""""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
 
 " let g:move_key_modifier = 'C'
 
@@ -3541,8 +3618,33 @@ autocmd BufReadPost * cd %:p:h
 " <C-h>   Move current character/selection left
 " <C-l>   Move current character/selection right
 
+
 """""""""""""""""""""""""""""""""  Ack快捷键 """""""""""""""""""""""""""""""""""""""""""""""
 " F4 搜索
+
+" map <F4> :Ack -i
+" imap <F4> :Ack -i
+
+" 以后在普通模式下输入Ctrl+U便可以自动输入:Ack 了
+" map <Leader>ack :Ack<space>
+
+
+""""""""""""""""""""""""""""""""""""""" change-colorscheme 配置  """""""""""""""""""""""""""""""""""""""
+" map <F12> :NextColorScheme<CR>
+
+" map <F11> :PreviousColorScheme<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
+
+
+" nnoremap <leader>y :CopyCode<cr>
+" nnoremap <leader>p :PasteCode<cr>
+" nnoremap <leader>U :GoToFunImpl<cr>
+" nnoremap <silent> <leader>a :Switch<cr>
+" nnoremap <leader><leader>fp :FormatFunParam<cr>
+" nnoremap <leader><leader>if :FormatIf<cr>
+
 
 """""""""""""""""""""""""""""""""" vim surround 配置 """"""""""""""""""""""""""""""""""""""""""
 " 命令行模式
@@ -3594,6 +3696,20 @@ autocmd BufReadPost * cd %:p:h
 "                                       )
 
 
+
+"""""""""""""""""""""""""""""""  vim-move配置   """""""""""""""""""""""""""""""""""""""""""
+
+" let g:move_key_modifier = 'C'
+
+" <C-k>   Move current line/selection up
+" <C-j>   Move current line/selection down
+" <C-h>   Move current character/selection left
+" <C-l>   Move current character/selection right
+
+
+
+
+
 """""""""""""""""""""""""""""""""""" Easymotion配置 """"""""""""""""""""""""""""""""""""""
 " 接下来的是，在normal模式下输入以下命令就可以实现快速查找，查找后会把目标地址以a,b,c..等标记标出，然后按下响应的快捷键就可快速跳转
 " \\w    # 向后查找单词(find word after)
@@ -3604,32 +3720,50 @@ autocmd BufReadPost * cd %:p:h
 " \\F    # 向前查找单字(find letter before)
 " \\s    #快捷键<leader><leader>s(即\\s), 然后输入要搜索的字母, 这个跳转是双向的
 
+"""""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
+" nnoremap <leader>cp  :CtrlP<CR>
+" nnoremap <leader>cb  :CtrlPBuffer<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl + p 查看文件列表
 " Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
-"  <Leader>f在当前目录搜索文件
-"  <Leader>b切换Buffer中的文件
-"  <Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
-"  <Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+"  <Leader>ff在当前目录搜索文件
+"  <Leader>fb切换Buffer中的文件
+"  <Leader>fp在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+"  <Leader>fh在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 
 
 
 """"""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl + p 打开文件搜索
-"  \p   打开函数列表
-"  \f   文件搜索
-" \m    历史打开过的文件
+"  \lp   打开函数列表
+"  \lf   文件搜索
+" \lh    历史打开过的文件
 "  \F     函数搜索（仅当前文件里），依赖ctags插件
 "  \rg    模糊搜索，很强大的功能，迅速秒搜
+
+
+"""""""""""""""""""""""""""Ctags配置""""""""""""""""""""""""""""""""
+" 配置为生产ctags的快捷键
+" map <Leadf>ct :!ctags <CR>
+
+"更新ctags标签文件快捷键设置
+" noremap <Leadf>ct :!ctags -R<CR>
 
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
 " 映射 tagbar 的快捷键
-" nmap <F10> :TagbarToggle<CR>
-""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
-"  设置taglist打开关闭的快捷键F1，就是F1会显示代码中的函数，变量，类，宏等
+" nmap <F1> :TagbarToggle<CR>
+" nmap <Leader>tb :TagbarToggle<CR>
 
+
+""""""""""""""""""""""""""""""""""""""""""   Tag List  """"""""""""""""""""""""""""""""""""""""""""""
+"设置taglist打开关闭的快捷键F10，就是F10会显示代码中的函数，变量，类，宏等
+" map <F10> <Esc>:TlistToggle<Cr>
+
+
+"将 \t 表示为在命令行模式下输入命令：
+" nmap <Leader>tl <Esc>:TlistToggle<Cr>
 
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
 " 按键    效果                                   模式
@@ -3703,18 +3837,16 @@ autocmd BufReadPost * cd %:p:h
 " Visual模式下执行命令，会对选中的特定区块进行注释/反注释
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
-" ctrl + d 打开目录
+" \fd 打开目录
+
+
 """""""""""""""""""""""""""""""""""  多文档编辑MiniBufExplorer """""""""""""""""""""""""""""""""""
 
+" 显示/隐藏 MiniBufExplorer 窗口
+" map <Leader>hm :MBEToggle<cr>
 " buffer 切换快捷键
-" map <C-b> :MBEbn<cr>
-" map <C-S-b> :MBEbp<cr>
-" ctrl + b : 向前循环切换到每个buffer上
-" Ctrl + Shift +b : 向后循环切换到每个buffer上
-" Enter : 打开光标所在的buffer
-" d : 删除光标所在的buffer
-" 命令
-" 在一般模式下
+" map <S-n> :MBEbn<cr>
+" map <S-p> :MBEbp<cr>
 
 " // 打开当前buffer的下一个buffer
 " :bn
@@ -3725,7 +3857,6 @@ autocmd BufReadPost * cd %:p:h
 " // 打开编号为<num>(即每个buffer前面的数字)的buffer,
 " :b<num>
 
-" C-w,h j k l    向"左,下,上,右"切换窗口.
 
 " 是用<C-箭头键>切换到上下左右窗口中去
 
@@ -3756,6 +3887,11 @@ autocmd BufReadPost * cd %:p:h
 
 
 
+
+"###############################################
+" ################## 其他
+"#####################################################
+
 "  Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 
 "  Ctrl-j 切换到下方的分割窗口
@@ -3769,12 +3905,70 @@ autocmd BufReadPost * cd %:p:h
 " 在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
 "
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"---------------- 窗口、标签页、缓冲区的切换--------------------------------
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"组合快捷键：
+" Ctrl-j 切换到下方的分割窗口
+" Ctrl-k 切换到上方的分割窗口
+" Ctrl-l 切换到右侧的分割窗口
+" Ctrl-h 切换到左侧的分割窗口
+" Ctrl-w 遍历切换窗口
+
+" Ctrl-q 关闭当前窗口，如果只剩最后一个了，则退出 vim
+" Ctrl-t 当前窗口移动到新标签页
+" Ctrl-o 关闭出当前窗口之外的所有窗口
+" 用空格代替za进行折叠代码
+
+
+" " 移动窗口
+" Ctrl+shift+j当前窗口向上面移动
+"nnoremap <C-J> <C-W>J
+" Ctrl+shift+k当前窗口向上方移动
+"nnoremap <C-K> <C-W>K
+" Ctrl+shift+l 当前窗口向右边移动
+"nnoremap <C-L> <C-W>L
+" Ctrl+shift+h当前窗口向左边移动
+"nnoremap <C-H> <C-W>H
+
+" 多窗口分屏时改变窗口大小 +/- 3
+" nnoremap <M-left>  :vertical resize -2<cr>
+" nnoremap <M-down>  :resize +2<cr>
+" nnoremap <M-up>    :resize -2<cr>
+" nnoremap <M-right> :vertical resize +2<cr>
+
+"#################################### 多标签页切换####################################
+
+" noremap <silent><tab>tn :tabnew<cr>
+" noremap <silent><tab>tc :tabclose<cr>
+" noremap <silent><leader>t :tabnew<cr>
+" noremap <silent><leader>c :tabclose<cr>
+" noremap <silent><tab>nt :tabn<cr>
+" noremap <silent><tab>pt :tabp<cr>
+
+" noremap <silent><s-tab> :tabnext<CR>
+
+
+" 正常模式下切换到确切的 tab
+" noremap <leader>1 1gt
+" noremap <leader>2 2gt
+" noremap <leader>3 3gt
+" noremap <leader>4 4gt
+" noremap <leader>5 5gt
+" noremap <leader>6 6gt
+" noremap <leader>7 7gt
+" noremap <leader>8 8gt
+" noremap <leader>9 9gt
+" noremap <leader>0 :tablast<CR>
+
+
+
+
 "########################################################
 "vim 原本的快捷键
 "########################################################
 
-" d$ 删除光标到本行的结尾
-" d0 删除光标到本行的开始
 " h 或退格：光标左移一个字符；
 " l 或空格：光标右移一个字符；
 " j : 光标下移一行；
@@ -3786,5 +3980,78 @@ autocmd BufReadPost * cd %:p:h
 " H : 把光标移到屏幕最顶端一行。
 " M : 把光标移到屏幕中间一行。
 " L : 把光标移到屏幕最底端一行。
+
+
 "
-"-------------------vim常用的快捷键------------------------
+" 一、移动光标
+" h,j,k,l 上，下，左，右
+" ctrl-f 下翻一页,f = forward
+" ctrl-b 上翻一页,b = backward
+" ctrl-u 上翻半页,u = up
+" ctrl-d 下翻半页,d = down
+" Ctrl-e    向下滚动一行；
+" Ctrl-y    向上滚动一行；
+" zz 让光标所在的行居屏幕中央
+" zt 让光标所在的行居屏幕最上一行 t=top
+" zb 让光标所在的行居屏幕最下一行 b=bottom
+" w 跳到下一个字首，按标点或单词分割
+" W 跳到下一个字首，长跳，如end-of-line被认为是一个字
+" e 跳到下一个字尾
+" E 跳到下一个字尾，长跳
+" b 跳到上一个字
+" B 跳到上一个字，长跳
+" 0 跳至行首，不管有无缩进，就是跳到第0个字符
+" ^ 跳至行首的第一个字符
+" $ 跳至行尾
+" gg 跳至文首
+" G 调至文尾
+" 5gg/5G 调至第5行
+" gd 跳至当前光标所在的变量的声明处
+" fx 在当前行中找x字符，找到了就跳转至
+" ; 重复上一个f命令，而不用重复的输入fx
+" * 查找光标所在处的单词，向下查找
+" # 查找光标所在处的单词，向上查找
+"
+"二、删除复制
+" dd 删除光标所在行
+" dw 删除一个字(word)
+" d/𝐷删除到行末𝑥删除当前字符𝑋删除前一个字符𝑦𝑦复制一行𝑦𝑤复制一个字𝑦/Y 复制到行末
+" p 粘贴粘贴板的内容到当前行的下面
+" P 粘贴粘贴板的内容到当前行的上面
+" d$ 删除光标到本行的结尾
+" d0 删除光标到本行的开始
+"
+"
+"
+" 四、编辑
+" J 将下一行和当前行连接为一行
+" cc 删除当前行并进入编辑模式
+" cw 删除当前字，并进入编辑模式
+" c$ 擦除从当前位置至行末的内容，并进入编辑模式
+" s 删除当前字符并进入编辑模式
+" S 删除光标所在行并进入编辑模式
+" xp 交换当前字符和下一个字符
+" u 撤销
+" ctrl+r 重做
+" ~ 切换大小写，当前字符
+" >> 将当前行右移一个单位
+" << 将当前行左移一个单位(一个tab符)
+" == 自动缩进当前行
+"
+"
+"
+" 五、查找替换
+" /pattern 向后搜索字符串pattern
+" ?pattern 向前搜索字符串pattern
+"  n 下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个)
+"  N 上一个匹配(同上)
+"  :%s/old/new/g 搜索整个文件，将所有的old替换为new
+"  :%s/old/new/gc 搜索整个文件，将所有的old替换为new，每次都要你确认是否替换
+"  /\CWord ： 区分大小写的查找
+"  /\cword ： 不区分大小写的查找
+"
+"
+"
+"-------------------vim常用的快捷键------------------------------------------------------------------------------
+"
+"
