@@ -59,10 +59,10 @@ xterm*scaleHeight: 1.01
 
 
 
-xterm*background:            #fdf6e3
+xterm*background:            #D2B48C
 xterm*foreground:            #657b83
 xterm*fadeColor:             #fdf6e3
-xterm*cursorColor:           #586e75
+xterm*cursorColor:           #363636
 xterm*pointerColorBackground:#93a1a1
 xterm*pointerColorForeground:#586e75
 
