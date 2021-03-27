@@ -37,7 +37,7 @@ xterm*utf8:true
 xterm*utf8Title:true
 
 !窗口大小及位置
-xterm*geometry:90x25-0-0
+xterm*geometry:110x35-0-0
 
 ! scrollbar
 xterm*scrollBar:true
