@@ -1921,11 +1921,17 @@ let g:miniBufExplMapCTabSwitchWindows = 1
 
 " 显示/隐藏 MiniBufExplorer 窗口
 map <Leader>hm :MBEToggle<cr>
+
 " buffer 切换快捷键
-map <S-n> :MBEbn<cr>
-map <S-p> :MBEbp<cr>
-noremap <C-TAB> :MBEbn<CR>
-noremap <C-S-TAB> :MBEbp<CR>
+" shift + b下一个buffer
+"map <S-b> :MBEbn<cr>
+" shift + p上一个buffer
+"map <S-p> :MBEbp<cr>
+" ctrl + tab下一个buffer
+map <C-tab> :MBEbn<CR>
+" ctrl + shift + tab下一个buffer
+map <C-M-tab> :MBEbp<CR>
+
 
 " MiniBufExpl 配色
 hi MBENormal               guifg=#808080 guibg=fg   ctermfg=8     ctermbg=253
@@ -3880,9 +3886,14 @@ autocmd BufReadPost * cd %:p:h
 " 显示/隐藏 MiniBufExplorer 窗口
 " map <Leader>hm :MBEToggle<cr>
 " buffer 切换快捷键
-" map <S-n> :MBEbn<cr>
-" map <S-p> :MBEbp<cr>
-
+" shift + b下一个buffer
+"map <S-b> :MBEbn<cr>
+" shift + p上一个buffer
+"map <S-p> :MBEbp<cr>
+" ctrl + tab下一个buffer
+" map <C-tab> :MBEbn<CR>
+" ctrl + shift + tab下一个buffer
+" map <C-M-tab> :MBEbp<CR>
 " // 打开当前buffer的下一个buffer
 " :bn
 
