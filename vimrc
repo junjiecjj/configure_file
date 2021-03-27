@@ -819,7 +819,8 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 
 
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>cp  :CtrlP<CR>
+" 在当前目录搜索文件
+nnoremap <leader>cf  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -827,15 +828,16 @@ let g:ctrlp_working_path_mode = ''
 
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
-" Ctrl + p 查看文件列表
-nnoremap <silent> <C-p> :Files<CR>
+
 
 " Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
 nmap <C-e> :Buffers<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
 "<Leader>f在当前目录搜索文件
+" Ctrl + f 查看文件列表
 nnoremap <silent> <Leader>ff :Files<CR>
+"nnoremap <silent> <Leader>ff :Files<CR>
 
 "<Leader>b切换Buffer中的文件
 nnoremap <silent> <Leader>fb :Buffers<CR>
@@ -968,10 +970,10 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 let g:Lf_ShortcutF = '<C-p>'
 
 "\p 打开函数列表
-noremap <Leader>lf :LeaderfFunction<cr>
+noremap <Leader>f :LeaderfFunction<cr>
 
 "文件搜索
-nnoremap <silent> <Leader>lp :Leaderf file<CR>
+nnoremap <silent> <Leader><Leader>f :Leaderf file<CR>
 
 "历史打开过的文件
 nnoremap <silent> <Leader>lh :Leaderf mru<CR>
@@ -1870,8 +1872,7 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 " vim 中每打开一个文件，vim 就对应的创建一个 buffer, 多个文件就有多个 buffer, 但默认你只能看到最后 buffer 对应 window，通过插件 MiniBufExplorer
 " 可以把所有 buffer 罗列出来，并且可以显示多个 buffer 对应的 Window。
 
-" Tab : 向前循环切换到每个buffer上
-" Shift - Tab : 向后循环切换到每个buffer上
+
 " Enter : 打开光标所在的buffer
 " d : 删除光标所在的buffer
 " 命令
@@ -3721,23 +3722,23 @@ autocmd BufReadPost * cd %:p:h
 " \\s    #快捷键<leader><leader>s(即\\s), 然后输入要搜索的字母, 这个跳转是双向的
 
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
-" nnoremap <leader>cp  :CtrlP<CR>
-" nnoremap <leader>cb  :CtrlPBuffer<CR>
+" nnoremap <leader>cf  :CtrlP<CR>
+" nnoremap <leader>b  :CtrlPBuffer<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
-" Ctrl + p 查看文件列表
+
 " Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
-"  <Leader>ff在当前目录搜索文件
-"  <Leader>fb切换Buffer中的文件
-"  <Leader>fp在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
-"  <Leader>fh在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+"  \ff 查看文件列表
+"  <Leader>fb 切换Buffer中的文件
+"  <Leader>fp 在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+"  <Leader>fh 在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 
 
 
 """"""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl + p 打开文件搜索
-"  \lp   打开函数列表
-"  \lf   文件搜索
+"  \f   打开函数列表
+"  \\f   文件搜索
 " \lh    历史打开过的文件
 "  \F     函数搜索（仅当前文件里），依赖ctags插件
 "  \rg    模糊搜索，很强大的功能，迅速秒搜
@@ -4054,4 +4055,4 @@ autocmd BufReadPost * cd %:p:h
 "
 "-------------------vim常用的快捷键------------------------------------------------------------------------------
 "
-"
+
