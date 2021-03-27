@@ -1,173 +1,89 @@
-!xterm molokai 主题
+!xterm solarized_light 主题
 
-!外观重点的是下面第一行
-xterm.termName: xterm-256color
-XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+xterm*termName: xterm-256color
+
+xterm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 
 !mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
 !Ctrl p to print screen content to file
-XTerm*VT100.Translations: #override
+xterm*VT100.Translations: #override
     Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     Ctrl <KeyPress> P: print()
 
-XTerm*metaSendsEscape: true
-Xterm*eightBitInput: false
-XTerm*Font: 7*13
+xterm*metaSendsEscape: true
+xterm*eightBitInput: false
+xterm*Font: 7*13
 
 ! English font
-xterm*faceName:Noto mono:antialas=true:size=12
-!xterm*faceName:Fira Code:antialas=true:size=14
+xterm*faceName:Noto mono:antialas=true:pixelsize=12
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=15:antialias=True:pixelsize=15
-!xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
-!xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
+!xterm*faceNameDoublesize:SimHei:size=36:antialias=True:pixelsize=36
 xterm*xftAntialias:true
 xterm*cjkWidth:false
 
 
 xterm*faceSize:200
 
-XTerm*locale:zh_CN.UTF-8
+xterm*locale:zh_CN.UTF-8
 xterm*utf8:true
 xterm*utf8Title:true
 
 !窗口大小及位置
-xterm*geometry:80x25-0-0
+xterm*geometry:90x25-0-0
 
 ! scrollbar
-XTerm*scrollBar:true
-XTerm*rightScrollBar:true
-XTerm*saveLines:  4096
-XTerm*fastScroll:true
+xterm*scrollBar:true
+xterm*rightScrollBar:true
+xterm*saveLines:  4096
+xterm*fastScroll:true
 
-Xterm*bellIsUrgent: true
+xterm*bellIsUrgent: true
+xterm*allowBoldFonts: true
 
-!设置字体是否加粗
-XTerm*allowBoldFonts: false
 
-!背景色及字体顔色
-xterm*background:#000000
-xterm*foreground:#00FF00
-xterm.borderLess: true
-xterm.cursorBlink: true
-xterm*colorUL: Green
-xterm*colorBD: #FFFF00
 
 !input method  好像不起作用
-XTerm*inputMethod:fcitx
+xterm*inputMethod:fcitx
 
 !调整行距离
-XTerm*scaleHeight: 1.01
+xterm*scaleHeight: 1.01
 !####################################################
 
 
 ! Colours for xterm
-!XTerm*background: #272822
-!XTerm*foreground: #303030
-!XTerm*cursorColor: #303030
-
-
 ! sets colors for everything.
 *background: #272822
 *foreground: #a08080
-!*cursorColor: #aaaaaa
-
-
-!Theme Nine
-!XTerm*background: rgb:1a/1a/1a
-!XTerm*foreground: rgb:d6/d6/d6
-!XTerm*color0:     rgb:00/00/00
-!XTerm*color1:     rgb:9e/18/28
-!XTerm*color2:     rgb:00/88/00
-!XTerm*color3:     rgb:96/8a/38
-!XTerm*color4:     rgb:41/41/71
-!XTerm*color5:     rgb:96/3c/59
-!XTerm*color6:     rgb:41/81/79
-!XTerm*color7:     rgb:be/be/be
-!XTerm*color8:     rgb:66/66/66
-!XTerm*color9:     rgb:cf/61/71
-!XTerm*color10:     rgb:7c/bc/8c
-!XTerm*color11:     rgb:ff/f7/96
-!XTerm*color12:     rgb:41/86/be
-!XTerm*color13:     rgb:cf/9e/be
-!XTerm*color14:     rgb:71/be/be
-!XTerm*color15:    rgb:ff/ff/ff
-
-!XTerm*cursorColor: #d6d6d6
-
-! Colours are in groups as the second one should be a brighter version.
-
-! Background: black, dark grey
-#define _background #272822
-#define _color8 #303030
-
-! Color1/foreground: light grey: standard files, cursor
-! Color9: bright pink: soft link e.g. ln -s test1 imaginarytest
-#define _foreground #d0d0d0
-#define _color9 #ff0090
-
-! Color2: dark green: world read/write dir e.g. /tmp
-! Color10: bright green: binaries user can execute /bin
-#define _color2 #66AA11
-#define _color10 #80FF00
-
-! Color3: medium brown: fifo e.g mkfifo fifotest
-! Color11: light brown/sand: block special files e.g ls -l /dev/loop0
-#define _color3 #c47f2c
-#define _color11 #ffba68
-
-! Color4: medium blue: FIXME: unused?
-! Color12: light blue: directory
-#define _color4 #30309b
-#define _color12 #5f5fee
-
-! Color5: dark purple: Not used in ls, in ranger (not sure where it gets it colors from though)
-! Color13: light purple: socket file /var/run/dbus_system_bus_socket
-#define _color5 #7e40a5
-#define _color13 #bb88dd
-
-! Color6: medium magenta: FIXME: unused?
-! Color14: light magenta: symbolic links e.g. ~/Examples /bin/lsmod
-#define _color6 #3579A8
-#define _color14 #4eb4fa
-
-! Color7: medium grey: setuid file e.g. /usr/bin/sudo
-! Color15: light grey: background color for setuid files e.g /usr/bin/sudo
-#define _color7 #9999AA
-! Trying white in case it helps
-#define _color15 #ffffff
-!#define _color15 #d0d0d0
 
 
 
-! XTerm specific
-XTerm*background: _background
-XTerm*foreground: _foreground
+xterm*background: #272822
+xterm*foreground: #d0d0d0
 
-! Not really required - XTerm defaults to using the foreground colour
-!XTerm*cursorColor: _foreground
 
-XTerm*color0: _background
-XTerm*color1: _foreground
-XTerm*color2: _color2
-XTerm*color3: _color3
-XTerm*color4: _color4
-XTerm*color5: _color5
-XTerm*color6: _color6
-XTerm*color7: _color7
+xterm*color0: #272822
+xterm*color1: #d0d0d0
+xterm*color2: #66AA11
+xterm*color3: #c47f2c
+xterm*color4: #30309b
+xterm*color5: #7e40a5
+xterm*color6: #3579A8
+xterm*color7: #9999AA
 ! 8-15 are considered brighter colours of 1-7
-XTerm*color8: _color8
-XTerm*color9: _color9
-XTerm*color10: _color10
-XTerm*color11: _color11
-XTerm*color12: _color12
-XTerm*color13: _color13
-XTerm*color14: _color14
-XTerm*color15: _color15
+xterm*color8: #303030
+xterm*color9: #ff0090
+xterm*color10: #80FF00
+xterm*color11: #ffba68
+xterm*color12: #5f5fee
+xterm*color13: #bb88dd
+xterm*color14: #4eb4fa
+xterm*color15: #ffffff
 
 ! Mouse pointer
-XTerm*pointerColor: white
-XTerm*pointerColorBackground: black
-XTerm*cursorColor: #FFA500
-XTerm*cursorBlink: true
+xterm*pointerColor: #ffffff
+xterm*pointerColorBackground: #000000
+xterm*cursorColor: #FFA500
+xterm*cursorBlink: true
