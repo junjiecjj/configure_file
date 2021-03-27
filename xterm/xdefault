@@ -17,12 +17,15 @@ Xterm*eightBitInput: false
 XTerm*Font: 7*13
 
 ! English font
-xterm*faceName:Noto mono:antialas=true:pixelsize=12
-!xterm*faceName:Fira Code:antialas=true:size=14
+! xterm*faceName:Noto mono:antialas=true:pixelsize=12
+! xterm*faceName:Fire code Regular:antialas=true:pixelsize=12
+xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
-!xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
-!xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
+! xterm*faceNameDoublesize:Fire code Regular:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:JetBrains Mono Regular:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:SimHei:size=36:antialias=True:pixelsize=36
+
 xterm*xftAntialias:true
 xterm*cjkWidth:false
 
@@ -34,7 +37,7 @@ xterm*utf8:true
 xterm*utf8Title:true
 
 ! 窗口大小及位置
- xterm*geometry:80x25-0-0
+ xterm*geometry:110x35-0-0
 
 ! scrollbar
 XTerm*scrollBar:true
