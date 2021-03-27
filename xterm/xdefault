@@ -1,12 +1,11 @@
-
 ! Xterm 配置文件
-!copy & paste
+ !copy & paste
 
-!外观重点的是下面第一行
-xterm.termName: xterm-256color
+! 外观重点的是下面第一行
+ xterm.termName: xterm-256color
 XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 
-!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
+!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v 粘贴，ctrl-p 拷屏。
 !Ctrl p to print screen content to file
 XTerm*VT100.Translations: #override
     Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
@@ -18,10 +17,10 @@ Xterm*eightBitInput: false
 XTerm*Font: 7*13
 
 ! English font
-xterm*faceName:Noto mono:antialas=true:size=12
+xterm*faceName:Noto mono:antialas=true:size=10
 !xterm*faceName:Fira Code:antialas=true:size=14
 ! Chinese font
-xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=15:antialias=True:pixelsize=15
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:size=11:antialias=True:size=11
 !xterm*faceNameDoublesize:Fira Code:size=18:antialias=True:pixelsize=18
 !xterm*faceNameDoublesize:SimHei:size=56:antialias=True:pixelsize=56
 xterm*xftAntialias:true
@@ -34,8 +33,8 @@ XTerm*locale:zh_CN.UTF-8
 xterm*utf8:true
 xterm*utf8Title:true
 
-!窗口大小及位置
-xterm*geometry:80x25-0-0
+! 窗口大小及位置
+ xterm*geometry:80x25-0-0
 
 ! scrollbar
 XTerm*scrollBar:true
@@ -45,11 +44,11 @@ XTerm*fastScroll:true
 
 Xterm*bellIsUrgent: true
 
-!设置字体是否加粗
-XTerm*allowBoldFonts: false
+! 设置字体是否加粗
+ XTerm*allowBoldFonts: false
 
-!背景色及字体顔色
-xterm*background:#000000
+! 背景色及字体顔色
+ xterm*background:#000000
 xterm*foreground:#00FF00
 xterm.borderLess: true
 xterm.cursorBlink: true
@@ -57,10 +56,10 @@ xterm*colorUL: Green
 xterm*colorBD: #FFFF00
 
 !input method  好像不起作用
-XTerm*inputMethod:fcitx  
+ XTerm*inputMethod:fcitx  
 
-!调整行距离
-XTerm*scaleHeight: 1.01
+! 调整行距离
+ XTerm*scaleHeight: 1.01
 
 
 
@@ -101,5 +100,5 @@ XTerm*scaleHeight: 1.01
 
 ！xrdb -merge ~/.Xdefault
 ！或
-！在/etc/X11/app-defaults/XTerm里面加上面的东西
+！在 /etc/X11/app-defaults/XTerm 里面加上面的东西
 ！/usr/share/X11/app-defaults/XTerm
