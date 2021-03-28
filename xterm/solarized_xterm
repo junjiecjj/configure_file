@@ -43,6 +43,7 @@ xterm*saveLines:  4096
 xterm*fastScroll:true
 
 xterm*bellIsUrgent: true
+! 字体是否加粗
 xterm*allowBoldFonts: true
 
 
