@@ -1116,11 +1116,10 @@ Silent Key   F6      A    M    Function LockScreen
 
 
 #Ctrl+F10  横向最大化50%
-Silent Key   F10		A	C	Maximize 50  0
+# Silent Key   F10		A	C	Maximize 50  0
 
 #Ctrl+F11  纵向最大化
-Silent Key   F11		A	C	Maximize 0 100
-
+Silent Key   F11		A	C	Maximize 50 100
 
 #Ctrl+F12  最大化
 Silent Key   F12		A	C	Maximize 100 100
