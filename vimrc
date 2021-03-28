@@ -2861,10 +2861,10 @@ if strftime('%H') >= 7 && strftime('%H') < 19
     let ayucolor="light"  " for light version of theme
     let themes = [
         \ 'cosmic_latte','carbonized_light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
-        \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
+        \ 'cake16','carbonized_light', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
         \ 'gabo','greygull', 'gruvbox', 'habLight', 'navajo',  'nicotine','fine_blue',
-        \ 'nightshade_print_modified','nightshade_print', 'pencil', 'petrel','earth',
-        \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring',
+        \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
+        \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
         \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
         \ ]
@@ -2880,9 +2880,10 @@ else
     set background=dark
     let ayucolor="mirage"  " for light version of theme
     let themes = [
-        \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256','github',
-        \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green',
+        \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
+        \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel',
         \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
+        \ 'vividchalk',
         \ ]
         " \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
         " \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
@@ -2903,9 +2904,9 @@ exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
 
-" 黑色：carbonized_dark, SolarizedDark_modified , colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
+" 黑色：carbonized_dark, SolarizedDark_modified ,NeoSolarized, colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
 
-" 白色：cosmic_latte，carbonized_light, ayu, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gabo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
+" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gabo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
 
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
@@ -4147,4 +4148,3 @@ autocmd BufReadPost * cd %:p:h
 
 "-------------------vim常用的快捷键------------------------------------------------------------------------------
 "
-
