@@ -197,6 +197,18 @@ if has('gui_running')
     endif
   endif
 
+
+if has('gui_running')
+    "colorscheme desert
+    if has('gui_win32')
+      set guifont=JetBrains_Mono_Regular:h8:cANSI
+    else
+      set guifont=JetBrains\ Mono\ Regular\ 9
+      " set guifont=DejaVu\ Sans\ Mono\ 10
+    endif
+  endif
+
+
 " 设定默认解码
 set bsdir=buffer
 set fenc=utf-8
@@ -2987,6 +2999,10 @@ hi    PmenuSbar        guibg=#FFFFFF
 "弹出菜单滚动条的拇指, 和上面一一对应
 hi    PmenuThumb      ctermbg=34    cterm=bold
 hi    PmenuThumb      guibg=#228B22    gui=bold
+
+"没有标签的地方
+hi  TabLineFill   ctermfg=2     ctermbg=246     term=Bold   cterm=bold
+
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""ayu配置"""""""""""""""""""""
@@ -3151,16 +3167,38 @@ nnoremap <M-right> :vertical resize +2<cr>
 
 " 注：M 即 Alt 键
 
-"#################################### 多标签页切换####################################
-noremap <silent><tab>tn :tabnew<cr>
-noremap <silent><tab>tc :tabclose<cr>
-noremap <silent><leader>t :tabnew<cr>
-noremap <silent><leader>c :tabclose<cr>
-noremap <silent><tab>nt :tabn<cr>
-noremap <silent><tab>pt :tabp<cr>
+"#################################### 多标签页配置####################################
+" 不显示标签栏
+" set showtabline=0
+" 这是默认设置，意思是，在创建标签页后才显示标签栏。
+set showtabline=1
+" 总是显示标签栏
+" set showtabline=2
 
+" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
+set wildmenu wildmode=full
+set wildchar=<Tab> wildcharm=<C-Z>
+" 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj
+let g:tablineclosebutton=1
+
+"#################################### 多标签页切换####################################
+
+" 新建标签页
+noremap <silent><tab>tn :tabnew<cr>
+noremap <silent><leader>t :tabnew<cr>
+" 关闭标签页
+noremap <silent><tab>tc :tabclose<cr>
+noremap <silent><leader>c :tabclose<cr>
+"下一个标签页
+noremap <silent><tab>nt :tabn<cr>
+" 上一个标签页
+noremap <silent><tab>pt :tabp<cr>
+"下一个标签页,循环
 noremap <silent><s-tab> :tabnext<CR>
 
+"Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
+set tabpagemax=15
 
 " 正常模式下切换到确切的 tab
 noremap <leader>1 1gt
@@ -3174,7 +3212,9 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 
+" 命令:tabs可以显示已打开标签页的列表，并用“>”标识出当前页面，用“+”标识出已更改的页面。
 " :tabe <文件名> 在新标签页中打开指定的文件。
+" 如果你打开了多个缓冲区，那么使用命令:tab ball将为每一个打开的缓冲区，分别新建单独的标签页。
 " :tabnew <文件名> 在新标签页中编辑新的文件。
 " :tabc       关闭当前的 tab
 " :tabc i     关闭第i个的标签
@@ -3182,6 +3222,9 @@ noremap <leader>0 :tablast<CR>
 " :tabn或gt   移动到下一个标签页。
 " :tabp或gT   移动到上一个标签页。
 " {i}gt       移动到第i个标签页
+" :tablast   切换到最后一个标签
+" :tabfirst   切换到第一个标签
+
 
 " vim -p files: 打开多个文件，每个文件占用一个标签页。
 " :tabe, tabnew -- 如果加文件名，就在新的标签中打开这个文件， 否则打开一个空缓冲区。
@@ -3212,95 +3255,163 @@ noremap <leader>0 :tablast<CR>
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
 
-"###############################美化标签栏#######################################
-" TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
+" "############################### 美化标签栏方法1 #######################################
+" " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
 " highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
 " highlight TabLineSel     term=bold         cterm=bold   ctermbg=Red  ctermfg=yellow
 
-" 不显示标签栏
-" set showtabline=0
-" 这是默认设置，意思是，在创建标签页后才显示标签栏。
-set showtabline=1
-" 总是显示标签栏
-" set showtabline=2
 
-" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
-set wildmenu wildmode=full
-set wildchar=<Tab> wildcharm=<C-Z>
-" 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
-set suffixes=.bak,~,.o,.h,.info,.swp,.obj
-let g:tablineclosebutton=1
 
-" 定义颜色
-hi SelectTabLine     term=Bold     cterm=Bold         ctermfg=196  guifg=#FF0000     ctermbg=black  guibg=#000000
-hi SelectPageNum     term=Bold     cterm=Bold         ctermfg=Red   guifg=#FF0000    ctermbg=black  guibg=#000000
-hi Selectkuohao      term=Bold     cterm=Bold         ctermfg=10   guifg=#00FF00     ctermbg=black  guibg=#000000
+" " 定义颜色
+" hi SelectTabLine     term=Bold     cterm=Bold         ctermfg=196  guifg=#FF0000     ctermbg=black  guibg=#000000
+" hi SelectPageNum     term=Bold     cterm=Bold         ctermfg=Red   guifg=#FF0000    ctermbg=black  guibg=#000000
+" hi Selectkuohao      term=Bold     cterm=Bold         ctermfg=10   guifg=#00FF00     ctermbg=black  guibg=#000000
 
-hi NormalTabLine     term=Bold     cterm=Bold        ctermfg=blue   guifg=#0000FF       ctermbg=246  guibg=#696969
-hi NormalPageNum     term=Bold     cterm=Bold        ctermfg=93     guifg=#9400D3       ctermbg=246   guibg=#696969
-hi Normalkuohao      term=Bold     cterm=Bold        ctermfg=16     guifg=#000000       ctermbg=246     guibg=#696969
-set tabpagemax=15
 
-"没有标签的地方
-hi  TabLineFill   ctermfg=2     ctermbg=246     term=Bold   cterm=bold
+" hi NormalTabLine     term=Bold     cterm=Bold        ctermfg=blue   guifg=#0000FF       ctermbg=246  guibg=#696969
+" hi NormalPageNum     term=Bold     cterm=Bold        ctermfg=93     guifg=#9400D3       ctermbg=246   guibg=#696969
+" hi Normalkuohao      term=Bold     cterm=Bold        ctermfg=16     guifg=#000000       ctermbg=246     guibg=#696969
 
 
 
-" " (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
-if exists("+showtabline")
-    function! MyTabLine()
-        let s = ''
-        let wn = ''
-        let t = tabpagenr()
-        let i = 1
-        while i <= tabpagenr('$')
-            let buflist = tabpagebuflist(i)
-            let winnr = tabpagewinnr(i)
-            let s .= '%' . i . 'T'
-            let s .= (i == t ? '%1*' : '%2*')
-            let s .= ' '
-            let wn = tabpagewinnr(i,'$')
+" " " (Based on http://stackoverflow.com/questions/5927952/whats-implementation-of-vims-default-tabline-function)
+" if exists("+showtabline")
+"     function! MyTabLine()
+"         let s = ''
+"         let wn = ''
+"         let t = tabpagenr()
+"         let i = 1
+"         while i <= tabpagenr('$')
+"             let buflist = tabpagebuflist(i)
+"             let winnr = tabpagewinnr(i)
+"             let s .= '%' . i . 'T'
+"             let s .= (i == t ? '%1*' : '%2*')
+"             let s .= ' '
+"             let wn = tabpagewinnr(i,'$')
 
-            " let s .= '%#TabNum#'
-            let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
-            let s .=  '['
-            let s .= (i == t ? '%#SelectPageNum#' : '%#NormalPageNum#')
-            let s .=  i
-            " let s .= '%*'
-            let s .= (i == t ? '%#SelectTabLine#' : '%#NormalTabLine#')
+"             " let s .= '%#TabNum#'
+"             let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
+"             let s .=  '['
+"             let s .= (i == t ? '%#SelectPageNum#' : '%#NormalPageNum#')
+"             let s .=  i
+"             " let s .= '%*'
+"             let s .= (i == t ? '%#SelectTabLine#' : '%#NormalTabLine#')
 
-            for bufnr in buflist
-                if getbufvar(bufnr, "&modified")
-                    let s .= '+'
-                    break
-                endif
-            endfor
+"             for bufnr in buflist
+"                 if getbufvar(bufnr, "&modified")
+"                     let s .= '+'
+"                     break
+"                 endif
+"             endfor
 
-            let bufnr = buflist[winnr - 1]
-            let file = bufname(bufnr)
-            let buftype = getbufvar(bufnr, 'buftype')
-            if buftype == 'nofile'
-                if file =~ '\/.'
-                    let file = substitute(file, '.*\/\ze.', '', '')
-                endif
+"             let bufnr = buflist[winnr - 1]
+"             let file = bufname(bufnr)
+"             let buftype = getbufvar(bufnr, 'buftype')
+"             if buftype == 'nofile'
+"                 if file =~ '\/.'
+"                     let file = substitute(file, '.*\/\ze.', '', '')
+"                 endif
+"             else
+"                 let file = fnamemodify(file, ':p:t')
+"             endif
+"             if file == ''
+"                 let file = '[新建文件]'
+"             endif
+"             let s .= ' ' . file .''
+"             let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
+"             let s .=  ']'
+"             let i = i + 1
+"         endwhile
+"         let s .= '%T%#TabLineFill#%='
+"         let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+"         return s
+"     endfunction
+"     set stal=2
+"     set tabline=%!MyTabLine()
+" endif
+
+
+"------------------------------------美化标签栏方法2------------------------------------
+"定义颜色
+hi SelectTabLine term=Bold cterm=Bold gui=Bold ctermbg=None
+hi SelectPageNum cterm=None ctermfg=Red ctermbg=None
+hi SelectWindowsNum cterm=None ctermfg=DarkCyan ctermbg=None
+
+hi NormalTabLine cterm=Underline ctermfg=Black ctermbg=LightGray
+hi NormalPageNum cterm=Underline ctermfg=DarkRed ctermbg=LightGray
+hi NormalWindowsNum cterm=Underline ctermfg=DarkMagenta ctermbg=LightGray
+
+function! MyTabLabel(n, select)
+    let label = ''
+    let buflist = tabpagebuflist(a:n)
+    for bufnr in buflist
+        if getbufvar(bufnr, "&modified")
+            let label = '+'
+            break
+        endif
+    endfor
+
+    let winnr = tabpagewinnr(a:n)
+    let name = bufname(buflist[winnr - 1])
+    if name == ''
+        "为没有名字的文档设置个名字
+        if &buftype == 'quickfix'
+            let name = '[Quickfix List]'
+        else
+            let name = '[No Name]'
+        endif
+    else
+        "只取文件名
+        let name = fnamemodify(name, ':t')
+    endif
+
+    let label .= name
+    return label
+endfunction
+
+function! MyTabLine()
+    let s = ''
+    for i in range(tabpagenr('$'))
+        " 选择高亮
+        let hlTab = ''
+        let select = 0
+        if i + 1 == tabpagenr()
+            let hlTab = '%#SelectTabLine#'
+            " 设置标签页号 (用于鼠标点击)
+            let s .= hlTab . "[%#SelectPageNum#%T" . (i + 1) . hlTab
+            let select = 1
+        else
+            let hlTab = '%#NormalTabLine#'
+            " 设置标签页号 (用于鼠标点击)
+            let s .= hlTab . "[%#NormalPageNum#%T" . (i + 1) . hlTab
+        endif
+
+        " MyTabLabel() 提供标签
+        let s .= ' %<%{MyTabLabel(' . (i + 1) . ', ' . select . ')} '
+
+        "追加窗口数量
+        let wincount = tabpagewinnr(i + 1, '$')
+        if wincount > 1
+            if select == 1
+                let s .= "%#SelectWindowsNum#" . wincount
             else
-                let file = fnamemodify(file, ':p:t')
+                let s .= "%#NormalWindowsNum#" . wincount
             endif
-            if file == ''
-                let file = '[新建文件]'
-            endif
-            let s .= ' ' . file .''
-            let s .= (i == t ? '%#Selectkuohao#' : '%#Normalkuohao#')
-            let s .=  ']'
-            let i = i + 1
-        endwhile
-        let s .= '%T%#TabLineFill#%='
-        let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-        return s
-    endfunction
-    set stal=2
-    set tabline=%!MyTabLine()
-endif
+        endif
+        let s .= hlTab . "]"
+    endfor
+
+    " 最后一个标签页之后用 TabLineFill 填充并复位标签页号
+    let s .= '%#TabLineFill#%T'
+
+    " 右对齐用于关闭当前标签页的标签
+    if tabpagenr('$') > 1
+        let s .= '%=%#TabLine#%999XX'
+    endif
+
+    return s
+endfunction
+set tabline=%!MyTabLine()
 
 "-----------------------美化标签栏结束-----------------------
 " 设置鼠标运行模式为 WINDOWS 模式
@@ -4148,3 +4259,4 @@ autocmd BufReadPost * cd %:p:h
 
 "-------------------vim常用的快捷键------------------------------------------------------------------------------
 "
+
