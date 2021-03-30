@@ -1936,9 +1936,9 @@ map <Leader>hm :MBEToggle<cr>
 
 " buffer 切换快捷键
 " alt + b下一个buffer
-"map <M-n> :MBEbn<cr>
+" map <M-n> :MBEbn<cr>
 " alt + p上一个buffer
-"map <M-p> :MBEbp<cr>
+" map <M-p> :MBEbp<cr>
 " ctrl + tab下一个buffer
 map <C-tab> :MBEbn<CR>
 " ctrl + shift + tab下一个buffer
@@ -3306,6 +3306,17 @@ noremap <leader>0 :tablast<CR>
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
 
+" buffer 切换快捷键
+" alt + b下一个buffer
+" map <M-n> :bn<cr>
+" alt + p上一个buffer
+" map <M-p> :bp<cr>
+" ctrl + tab下一个buffer
+map <C-tab> :bn<CR>
+" ctrl + shift + tab下一个buffer
+map <C-M-tab> :bp<CR>
+
+
 " "############################### 美化标签栏方法1 #######################################
 " " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
 " highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
@@ -4163,7 +4174,15 @@ autocmd BufReadPost * cd %:p:h
 " noremap <leader>9 9gt
 " noremap <leader>0 :tablast<CR>
 
-
+" buffer 切换快捷键
+" alt + b下一个buffer
+" map <M-n> :bn<cr>
+" alt + p上一个buffer
+" map <M-p> :bp<cr>
+" ctrl + tab下一个buffer
+" map <C-tab> :bn<CR>
+" ctrl + shift + tab下一个buffer
+" map <C-M-tab> :bp<CR>
 
 
 " "########################################################
