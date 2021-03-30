@@ -2873,7 +2873,7 @@ if strftime('%H') >= 7 && strftime('%H') < 19
     let ayucolor="light"  " for light version of theme
     let themes = [
         \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
-        \ 'cake16','carbonized_light', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
+        \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
         \ 'gabo','greygull', 'gruvbox', 'habLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
