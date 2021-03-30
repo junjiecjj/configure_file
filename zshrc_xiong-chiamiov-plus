@@ -24,9 +24,9 @@ export NVM_LAZY_LOAD=true
 
 
 #打开～/.oh-my-zsh/themes目录下面的任意一个文件
-ZSH_THEME="myys"
+# ZSH_THEME="myys"
 # ZSH_THEME="agnoster"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_THEME="xiong-chiamiov-plus"
 
 plugins=(
