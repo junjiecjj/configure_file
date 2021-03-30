@@ -2872,7 +2872,7 @@ if strftime('%H') >= 7 && strftime('%H') < 19
     set background=light
     let ayucolor="light"  " for light version of theme
     let themes = [
-        \ 'cosmic_latte','carbonized_light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
+        \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
         \ 'cake16','carbonized_light', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
         \ 'gabo','greygull', 'gruvbox', 'habLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
@@ -2892,7 +2892,7 @@ else
     set background=dark
     let ayucolor="mirage"  " for light version of theme
     let themes = [
-        \ 'carbonized_dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
+        \ 'carbonized-dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
         \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel',
         \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
         \ 'vividchalk',
