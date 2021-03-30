@@ -286,7 +286,7 @@
 
     {
       "command": "newTab",
-      "keys": ["ctrl+N"]
+      "keys": ["ctrl+n"]
     },
     {
       "command": "closeTab",
@@ -406,19 +406,23 @@
     },
     {
       "command": { "action": "moveFocus", "direction": "down" },
-      "keys": ["alt+down"]
+      //"keys": ["alt+down"]
+      "keys": ["ctrl+down"]
     },
     {
       "command": { "action": "moveFocus", "direction": "left" },
-      "keys": ["alt+left"]
+      //"keys": ["alt+left"]
+      "keys": ["ctrl+left"]
     },
     {
       "command": { "action": "moveFocus", "direction": "right" },
-      "keys": ["alt+right"]
+      //"keys": ["alt+right"]
+      "keys": ["ctrl+right"]
     },
     {
       "command": { "action": "moveFocus", "direction": "up" },
-      "keys": ["alt+up"]
+      //"keys": ["alt+up"]
+      "keys": ["ctrl+up"]
     },
     {
       "command": { "action": "resizePane", "direction": "down" },
