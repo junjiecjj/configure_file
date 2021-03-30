@@ -1962,16 +1962,16 @@ nmap wm :WMToggle<cr>
 
 
 " 配置Ctrl + 方向键在窗口之间切换
-" nmap <silent> <C-up> :wincmd k<CR>
-" nmap <silent> <C-down> :wincmd j<CR>
-" nmap <silent> <C-left> :wincmd h<CR>
-" nmap <silent> <C-right> :wincmd l<CR>
+nmap <silent> <C-up> :wincmd k<CR>
+nmap <silent> <C-down> :wincmd j<CR>
+nmap <silent> <C-left> :wincmd h<CR>
+nmap <silent> <C-right> :wincmd l<CR>
 
 " 配置Ctrl + h j k l在窗口之间切换
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-l> :wincmd l<CR>
+" nmap <silent> <C-k> :wincmd k<CR>
+" nmap <silent> <C-j> :wincmd j<CR>
+" nmap <silent> <C-h> :wincmd h<CR>
+" nmap <silent> <C-l> :wincmd l<CR>
 
 " 以上两种方式根据快捷键分配来选择用哪种
 """"""""""""""""""""""""""""" Vim-multiple-cursors(vim多重光标选取插件)   """""""""""""""""""""""""""""
@@ -3178,25 +3178,34 @@ vmap <S-right>  <C-f>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "########################### 切换窗口####################################
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
-nnoremap <C-h> <C-W>h
-nnoremap <C-w> <C-W>w
+nnoremap <C-down> <C-W>j
+nnoremap <C-up> <C-W>k
+nnoremap <C-right> <C-W>l
+nnoremap <C-left> <C-W>h
+"组合快捷键：
+" Ctrl-down 切换到下方的分割窗口
+" Ctrl-up 切换到上方的分割窗口
+" Ctrl-right 切换到右侧的分割窗口
+" Ctrl-left 切换到左侧的分割窗口
 
-
-nnoremap <C-q> <C-W>q
-nnoremap <C-t> <C-W>T
-nnoremap <C-o> <C-W>o
-nnoremap <space> za
+" nnoremap <C-j> <C-W>j
+" nnoremap <C-k> <C-W>k
+" nnoremap <C-l> <C-W>l
+" nnoremap <C-h> <C-W>h
 "组合快捷键：
 " Ctrl-j 切换到下方的分割窗口
 " Ctrl-k 切换到上方的分割窗口
 " Ctrl-l 切换到右侧的分割窗口
 " Ctrl-h 切换到左侧的分割窗口
 " 注意，这里的ctrl+hjkl与WinManager的ctrl+上下左右是一样的左右，也就是切换窗口,这里的快捷键覆盖了winmanager的快捷键
-" Ctrl-w 遍历切换窗口
 
+
+nnoremap <C-w> <C-W>w
+nnoremap <C-q> <C-W>q
+nnoremap <C-t> <C-W>T
+nnoremap <C-o> <C-W>o
+nnoremap <space> za
+" Ctrl-w 遍历切换窗口
 " Ctrl-q 关闭当前窗口，如果只剩最后一个了，则退出 vim
 " Ctrl-t 当前窗口移动到新标签页
 " Ctrl-o 关闭出当前窗口之外的所有窗口
