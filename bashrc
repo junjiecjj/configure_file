@@ -180,10 +180,20 @@ LANGUAGE=zh_CN.UTF-8
 LS_COLORS="ow=01;36;40" && export LS_COLORS
 
 export DISPLAY=localhost:0
+export DISPLAY=:0.0
 export EDITOR=/usr/bin/vim
 
-export XMODIFIERS=@im=fcitx
+export LC_ALL=zh_CN.UTF-8
+export LANG=zh_CN.UTF-8
+export LANGUAGE=zh_CN:en_US
+export LC_CTYPE=en_US.UTF-8
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+
 export TERM=xterm-256color
-LS_COLORS="di=01;04;05;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
+LS_COLORS="di=01;04;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
+source "$HOME/.cargo/env"
+
