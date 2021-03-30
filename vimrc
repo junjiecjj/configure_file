@@ -842,8 +842,8 @@ let g:ctrlp_working_path_mode = ''
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
 
 
-" Ctrl + e 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
-nmap <C-e> :Buffers<CR>
+" Ctrl + , 查看当前 Buffer，两次 Ctrl + e 快速切换上次打开的 Buffer
+nmap <C-,> :Buffers<CR>
 let g:fzf_action = { 'ctrl-e': 'edit' }
 
 "<Leader>f在当前目录搜索文件
@@ -985,7 +985,7 @@ let g:Lf_ShortcutF = '<C-p>'
 noremap <Leader>f :LeaderfFunction<cr>
 
 "文件搜索
-nnoremap <silent> <Leader><Leader>f :Leaderf file<CR>
+nnoremap <silent> <Leader>f<Leader> :Leaderf file<CR>
 
 "历史打开过的文件
 nnoremap <silent> <Leader>lh :Leaderf mru<CR>
@@ -3119,9 +3119,9 @@ inoremap <C-x> <Esc>"+x
 
 
 "nnoremap <c-a> I
-nnoremap <c-e> A
+" nnoremap <c-e> A
 "inoremap <c-a> <esc>I
-inoremap <c-e> <esc>A
+" inoremap <c-e> <esc>A
 nnoremap <c-v> "+gp
 nnoremap <c-c> "+y
 
@@ -3157,22 +3157,30 @@ vmap ff <C-f>
 nmap bb <C-b>
 vmap bb <C-b>
 
-" shift+up上翻半页
+" shift+up上翻半页，向上滚半个屏幕；
 nmap <S-up>  <C-u>
 vmap <S-up>  <C-u>
 
-" shift+down下翻半页
+" shift+down下翻半页，向下滚半个屏幕
 nmap <S-down>  <C-d>
 vmap <S-down>  <C-d>
 
 
-" shift+left上翻一页
+" shift+left上翻一页，向上滚一个屏幕
 nmap <S-left>  <C-b>
 vmap <S-left>  <C-b>
 
-" shift+right下翻一页
+" shift+right下翻一页，向下滚一个屏幕
 nmap <S-right>  <C-f>
 vmap <S-right>  <C-f>
+
+" ctrl+alt+left向上翻一行，向上滚一行屏幕，光标不动
+nmap <C-M-left>  <C-y>
+vmap <C-M-left>  <C-y>
+
+" ctrl+alt+right向下翻一行，向下滚一行屏幕，光标不动
+nmap <C-M-right>  <C-e>
+vmap <C-M-right>  <C-e>
 
 "---------------- 窗口、标签页、缓冲区的切换--------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3939,6 +3947,17 @@ autocmd BufReadPost * cd %:p:h
 " \\F    # 向前查找单字(find letter before)
 " \\s    #快捷键<leader><leader>s(即\\s), 然后输入要搜索的字母, 这个跳转是双向的
 
+
+" 行内跳转(hl)
+" map <Leader><leader>h <Plug>(easymotion-linebackward)
+" map <Leader><leader>l <Plug>(easymotion-lineforward)
+
+" 行级跳转(jk)
+" map <Leader><Leader>j <Plug>(easymotion-j)
+" map <Leader><Leader>k <Plug>(easymotion-k)
+" 重复上一次操作, 类似repeat插件, 很强大
+" map <Leader><leader>. <Plug>(easymotion-repeat)
+
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 " nnoremap <leader>cf  :CtrlP<CR>
 " nnoremap <leader>b  :CtrlPBuffer<CR>
@@ -3956,7 +3975,7 @@ autocmd BufReadPost * cd %:p:h
 """"""""""""""""""""""""""""""""""""""""" LeaderF 设置  """""""""""""""""""""""""""""""""""""""""""""""
 " Ctrl + p 打开文件搜索
 "  \f   打开函数列表
-"  \\f   文件搜索
+"  \f\   文件搜索
 " \lh    历史打开过的文件
 "  \F     函数搜索（仅当前文件里），依赖ctags插件
 "  \rg    模糊搜索，很强大的功能，迅速秒搜
@@ -4286,10 +4305,10 @@ autocmd BufReadPost * cd %:p:h
 
 " "---------------------文本插入操作---------------------------
 " i:  在当前光标的前面插入字符
-" a:  在当前光标的后面追加字符
+" a:  在当前光标的后面进入插入模式，追加字符
 " o:  在当前光标的下一行行首插入字符
 " I:  在一行的开头添加文本
-" A:  在一行的结尾处添加文本
+" A:  在一行的结尾处进入插入模式，添加文本
 " O:  在光标当前行的上一行插入文本
 " s:  删除当前光标处的字符并进入到插入模式
 " S:  删除光标所在处的行，并进入到插入模式
