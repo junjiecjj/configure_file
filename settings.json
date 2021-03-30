@@ -60,8 +60,7 @@
       //"colorScheme": "Snazzy"
 
     },
-    "list": [
-      {
+    "list": [{
         "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
         "hidden": false,
         "name": "Ubuntu-20.04",
@@ -102,8 +101,7 @@
 
   // Add custom color schemes to this array.
   // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes
-  "schemes": [
-    {
+  "schemes": [{
       "name": "Tango Dark",
       "foreground": "#A7B191",
       "background": "#0C0C0C",
@@ -260,8 +258,7 @@
     }
   ],
 
-  "keybindings": [
-    {
+  "keybindings": [{
       "command": {
         "action": "copy",
         "singleLine": false
@@ -291,7 +288,7 @@
     },
     {
       "command": "closeTab",
-      "keys": ["ctrl+w"]
+      "keys": ["ctrl+m"]
     },
     {
       "command": "closePane",
@@ -304,11 +301,11 @@
 
     {
       "command": "increaseFontSize",
-      "keys": ["ctrl+]"]
+        "keys": ["ctrl + +"]
     }, //增大字体
     {
       "command": "decreaseFontSize",
-      "keys": ["ctrl+["]
+      "keys": ["ctrl + -"]
     }, //减小字体
     {
       "command": "duplicateTab",
@@ -406,39 +403,67 @@
       "keys": "ctrl+shift+-"
     },
     {
-      "command": { "action": "moveFocus", "direction": "down" },
-      //"keys": ["alt+down"]
-      "keys": ["ctrl+down"]
-    },
-    {
-      "command": { "action": "moveFocus", "direction": "left" },
-      //"keys": ["alt+left"]
-      "keys": ["ctrl+left"]
-    },
-    {
-      "command": { "action": "moveFocus", "direction": "right" },
-      //"keys": ["alt+right"]
-      "keys": ["ctrl+right"]
-    },
-    {
-      "command": { "action": "moveFocus", "direction": "up" },
+      "command": {
+        "action": "moveFocus",
+        "direction": "up"
+      },
       //"keys": ["alt+up"]
-      "keys": ["ctrl+up"]
+      //"keys": ["ctrl+up"]
+      "keys": ["ctrl+g"]
     },
     {
-      "command": { "action": "resizePane", "direction": "down" },
+      "command": {
+        "action": "moveFocus",
+        "direction": "down"
+      },
+      //"keys": ["alt+down"]
+      //"keys": ["ctrl+down"]
+      "keys": ["ctrl+h"]
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "left"
+      },
+      //"keys": ["alt+left"]
+      //"keys": ["ctrl+left"]
+      "keys": ["ctrl+j"]
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "right"
+      },
+      //"keys": ["alt+right"]
+      //"keys": ["ctrl+right"]
+      "keys": ["ctrl+k"]
+    },
+    {
+      "command": {
+        "action": "resizePane",
+        "direction": "down"
+      },
       "keys": ["alt+shift+down"]
     },
     {
-      "command": { "action": "resizePane", "direction": "left" },
+      "command": {
+        "action": "resizePane",
+        "direction": "left"
+      },
       "keys": ["alt+shift+left"]
     },
     {
-      "command": { "action": "resizePane", "direction": "right" },
+      "command": {
+        "action": "resizePane",
+        "direction": "right"
+      },
       "keys": ["alt+shift+right"]
     },
     {
-      "command": { "action": "resizePane", "direction": "up" },
+      "command": {
+        "action": "resizePane",
+        "direction": "up"
+      },
       "keys": ["alt+shift+up"]
     }
   ]
