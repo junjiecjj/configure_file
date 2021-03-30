@@ -32,6 +32,7 @@
       //"fontFace": "Monospace Regular",
       // "fontFace": "文泉驿微米黑",
       "fontFace": "DroidSansMono NF",
+      "fontFace": "JetBrains Mono",
       "fontSize": 9,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
       "cursorShape": "bar",
