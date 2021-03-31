@@ -2881,7 +2881,7 @@ if strftime('%H') >= 7 && strftime('%H') < 19
     let themes = [
         \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
         \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
-        \ 'gabo','greygull', 'gruvbox', 'habLight', 'navajo',  'nicotine','fine_blue',
+        \ 'gabo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
