@@ -181,7 +181,7 @@ set number
 set showmatch
 
 " 光标移动到buffer的顶部和底部时保持3行距离
-set scrolloff=3
+set scrolloff=4
 
 "为c语言自动缩进
 "smartindent 在这种缩进模式中，每一行都和前一行有相同的缩进量，同时这种缩进形式能正确的识别出花括号，当遇到右花括号（}），则取消缩进形式。此外还增加了识别 C 语言关键字的功能。如果一行是以 #开头的，那么这种格式将会被特殊对待而不采用缩进格式
@@ -237,6 +237,12 @@ if has('gui_running')
   endif
 
 
+" ===
+" === Window behaviors在普通模式下输入 :split 可以上下分屏，同时光标会在上面的屏幕，:vsplit 可以左右分屏，光标会停留在左边，使光标停在右边的指令是 :set splitright，然后再输入分屏指令，但是这样太麻烦了，可以修改键位：map sl :set splitright< CR >:vsplit< CR > ，设置完成后，在普通模式下按 sl 即可分屏并且使光标停留在右边屏幕。同理可设置其他几个方向：
+" ===
+set splitright
+set splitbelow
+
 " 设定默认解码
 set bsdir=buffer
 set fenc=utf-8
@@ -284,6 +290,11 @@ nmap <Leader>wq :wq<CR>
 
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
+
+
+" Save & quit
+map Q :q<CR>
+map S :w<CR>
 
 "折叠
 "允许折叠
@@ -401,9 +412,6 @@ set laststatus=2
 
 
 
-"显示当前编辑文件名
-set laststatus=2
-
 "光标所在行一横线
 set cursorline
 
@@ -425,6 +433,12 @@ set ruler
 
 
 set backspace=2
+set backspace=indent,eol,start
+" indent: 如果用了:set indent,:set ai 等自动缩进，想用退格键将字段缩进的删掉，必须设置这个选项。否则不响应。
+" eol: 如果插入模式下在行开头，想通过退格键合并两行，需要设置 eol。
+" start：要想删除此次插入前的输入，需设置这个。
+
+
 
 set confirm
 "在处理未保存或只读文件的时候，弹出确认
@@ -583,7 +597,7 @@ endif
 " :SudaWrite /etc/profile
 
 " 'Password' in french
-let g:suda#prompt = 'Mot de passe:
+let g:suda#prompt = 'Mot de passe:'
 
 
 """""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
@@ -2231,9 +2245,9 @@ set conceallevel=1
 " PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
 
 "molokai,landscape,solarized,
-
+"\ 'colorscheme': 'landscape',
 let g:lightline = {
-            \ 'colorscheme': 'landscape',
+            \ 'colorscheme': 'PaperColor',
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
@@ -2281,7 +2295,7 @@ function! LightlineFiletype()
 endfunction
 
 
-set laststatus=2
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
@@ -2293,7 +2307,7 @@ set laststatus=2
 "选择主题
 
 let airlinethemes = [
-    \ '"alduin"', '"angr"', '"atomic"', '"ayu"', '"ayu_dark"', '"ayu_light"','"ayu_mirage"', '"badwolf"', '"base16"', '"base16_3024"','"base16_adwaita"',
+    \ '"alduin"', '"angr"', '"atomic"', '"ayu"', '"ayu_dark"', '"ayu_light"','"ayu_mirage"', '"badwolf"', '"base16"', '"base16_3024"','"base16_adwaita"','"papercolor"',
     \ '"base16_apathy"','"base16_ashes"' ,'"base16_atelierdune"' ,'"base16_atelierforest"' ,'"base16_atelierheath"' ,
     \ '"base16_atelierlakeside"' ,'"base16_atelierseaside"' ,'"base16_bespin"' ,'"base16_brewer"' ,'"base16_bright"' ,'"base16_chalk"' ,
     \ '"base16_classic"','"base16_codeschool"','"base16_colors"' ,'"base16_default"' ,'"base16_eighties"' ,'"base16_gruvbox_dark_hard"' ,
@@ -2748,7 +2762,41 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 "     hi SpellRare    gui=undercurl
 " endif
 
+""""""""""""""""""""""""""""""""papercolor配置""""""""""""""""""""""""""""""""""""""""
 
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default': {
+  \       'transparent_background': 1
+  \     }
+  \   }
+  \ }
+
+
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'override' : {
+  \         'color00' : ['#080808', '232'],
+  \         'linenumber_bg' : ['#080808', '232']
+  \       }
+  \     }
+  \   }
+  \ }
+
+  let g:PaperColor_Theme_Options = {
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     },
+  \     'cpp': {
+  \       'highlight_standard_library': 1
+  \     },
+  \     'c': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
 " set background=dark
@@ -3305,10 +3353,17 @@ inoremap <C-M-down> <Esc>5<C-e>a
 
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map sk :set splitbelow<CR>:split<CR>
-map sl :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map sh :set splitright<CR>:vsplit<CR>
+" 向左分屏
+map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+" 向下分屏
+map sj :set splitbelow<CR>:split<CR>
+" 向左分屏
+map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+" 向右分屏
+map sl :set splitright<CR>:vsplit<CR>
+
+
+
 "---------------- 窗口、标签页、缓冲区的切换--------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -3366,8 +3421,18 @@ nnoremap <M-down>  :resize +2<cr>
 nnoremap <M-up>    :resize -2<cr>
 " alt+right 左右增大
 nnoremap <M-right> :vertical resize +2<cr>
-
 " 注：M 即 Alt 键
+
+"分屏解决了之后还要考虑每个屏幕的大小，可以使用指令 :res +5 来增加当前屏幕的上下宽度 5，:vertical resize +5 增加当前屏幕的左右宽度 5，同样可以自定义快捷键,
+"注意：设置完这些快捷键之后在普通模式下就不能使用方向键来移动光标了，只能使用 hjkl，读者可按照自己偏好来设置
+" 方向键 上 使上下屏幕增加 5 个宽度
+" map <Up> :res +5
+" 方向键 下 使上下屏幕减少 5 个宽度
+" map <Down> :res -5
+" 方向键 右 使左右屏幕增加 5 个宽度
+" map <Right> :vertical resize+5
+" 方向键 左 使左右屏幕减少 5 个宽度
+" map <Left> :vertical resize-5
 
 
 nnoremap html :%TOhtml<cr>
@@ -3380,7 +3445,10 @@ set showtabline=1
 " set showtabline=2
 
 " 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
-set wildmenu wildmode=full
+" Show command autocomplete
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu                                                 " show a navigable menu for tab completion
+set wildmode=longest,list,full
 set wildchar=<Tab> wildcharm=<C-Z>
 " 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
