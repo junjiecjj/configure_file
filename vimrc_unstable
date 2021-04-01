@@ -21,8 +21,23 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'klen/python-mode'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 " Plugin 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-Plugin 'kshenoy/vim-signature'
 
+Plugin 'kshenoy/vim-signature'  " Bookmarks
+Plugin 'makerj/vim-pdf'
+" 让光标所在单词高亮或者下划线
+Plugin 'lfv89/vim-interestingwords'
+Plugin 'itchyny/vim-cursorword'
+
+Plugin 'NLKNguyen/papercolor-theme'
+" Other visual enhancement
+Plugin 'luochen1990/rainbow'
+Plugin 'mg979/vim-xtabline'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'wincent/terminus'
+
+
+Plugin 'lambdalisue/suda.vim' " do stuff like :sudowrite
+"#########################################################
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
 Plugin 'nightsense/carbonized'
@@ -71,12 +86,17 @@ Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
 Plugin 'Shougo/echodoc.vim'                  " 函数参数提示
 Plugin 'godlygeek/tabular'                   " 快速对齐
 Plugin 'plasticboy/vim-markdown'
-Plugin 'suan/vim-instant-markdown'
+Plugin 'suan/vim-instant-markdown'   , {'for': 'markdown'}
 
 " Markdown
 Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plugin 'vimwiki/vimwiki'
+" Markdown
+Plugin 'suan/vim-instant-markdown', {'for': 'markdown'}
+Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plugin 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
+Plugin 'dkarter/bullets.vim'
 
 Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
 Plugin 'scrooloose/nerdtree'                 " 添加树形目录
@@ -104,7 +124,7 @@ Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'                                       " 美化状态栏，显示正在编辑的文件
 Plugin 'vim-airline/vim-airline-themes'                                " 美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'luochen1990/rainbow'
+
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'mattn/emmet-vim'
@@ -546,6 +566,25 @@ au BufReadPost *.nfo call RestoreFileEncodings()
 if has("autocmd")
        autocmd BufNewFile,Bufread *.txt set syntax=help
 endif
+
+
+""""""""""""""""""""""""""suda配置"""""""""""""""""""""""""""""""""
+"This plugin was built while :w !sudo tee % > /dev/null trick does not work on neovim.
+" Re-open a current file with sudo
+"  :SudaRead
+
+" Open /etc/sudoers with sudo
+"  :SudaRead /etc/sudoers
+
+" Forcedly save a current file with sudo
+" :SudaWrite
+
+" Write contents to /etc/profile
+" :SudaWrite /etc/profile
+
+" 'Password' in french
+let g:suda#prompt = 'Mot de passe:
+
 
 """""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
 " :checkhealth
@@ -3209,6 +3248,9 @@ function! ClosePair(char)
     endif
 endfunction
 
+
+" 解决写入只读文件
+nnoremap tee :w !sudo tee %<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ctrl-f 下翻一页,f = forward
@@ -3327,6 +3369,8 @@ nnoremap <M-right> :vertical resize +2<cr>
 
 " 注：M 即 Alt 键
 
+
+nnoremap html :%TOhtml<cr>
 "#################################### 多标签页配置####################################
 " 不显示标签栏
 " set showtabline=0
@@ -3719,6 +3763,46 @@ augroup END
 
 " 大括号补全
 autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
+
+
+
+" Compile function
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+  exec "w"
+  if &filetype == 'c'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    exec "!g++ % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    silent! exec "!clear"
+    exec "!time python3 %"
+  elseif &filetype == 'html'
+    exec "!firefox % &"
+  elseif &filetype == 'markdown'
+    exec "MarkdownPreview"
+  elseif &filetype == 'vimwiki'
+    exec "MarkdownPreview"
+  endif
+endfunc
+
+
+map <F6> :call CompileBuildrrr()<CR>
+func! CompileBuildrrr()
+  exec "w"
+  if &filetype == 'vim'
+    exec "source $MYVIMRC"
+  elseif &filetype == 'markdown'
+    exec "echo"
+  endif
+endfunc
 
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 
