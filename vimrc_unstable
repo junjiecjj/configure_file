@@ -279,8 +279,8 @@ set path=.,"E:/Web/htdocs",,
 set list
 set listchars=tab:▸\ ,trail:▫
 " 使用:set listchars 命令，可以配置使用何种符号来显示不可见字符。例如以下命令，将制表符（tab）显示为…；将尾部空格（trail）显示为・；将左则超出屏幕范围部分（precedes）标识为 «；将右侧超出屏幕范围部分（extends）标识为 »。
-set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
-
+" set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
+set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<
 """"""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
 
 " 定义快捷键关闭当前分割窗口
@@ -1154,15 +1154,12 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
-" normal/insert
-<Plug>MarkdownPreview
-<Plug>MarkdownPreviewStop
-<Plug>MarkdownPreviewToggle
+
 
 " example
 nmap <M-p> <Plug>MarkdownPreview
 nmap <M-s> <Plug>MarkdownPreviewStop
-nmap <C-t> <Plug>MarkdownPreviewToggle
+nmap <M-t> <Plug>MarkdownPreviewToggle
 
 let g:vimwiki_list = [{
   \ 'automatic_nested_syntaxes':1,
