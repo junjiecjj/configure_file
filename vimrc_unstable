@@ -275,10 +275,10 @@ set path=.,"E:/Web/htdocs",,
 " set listchars=tab:>-,trail:-
 set list
 set listchars=tab:▸\ ,trail:▫
+" 使用:set listchars 命令，可以配置使用何种符号来显示不可见字符。例如以下命令，将制表符（tab）显示为…；将尾部空格（trail）显示为・；将左则超出屏幕范围部分（precedes）标识为 «；将右侧超出屏幕范围部分（extends）标识为 »。
+set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
 
-
-" 输入:set list 命令是应该显示些啥？
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
+""""""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
 
 " 定义快捷键关闭当前分割窗口
 nmap <Leader>q :q<CR>
@@ -301,6 +301,27 @@ vnoremap Y :w !xclip -i -sel c<CR>
 map <LEADER><CR> :nohlsearch<CR>
 noremap = nzz
 noremap - Nzz
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Rotate screens
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
+
+" 水平滚动
+" 向左
+map <F8> 10zh
+imap <F8> <ESC>10zhi
+" 向右
+map <F9> 10zl
+imap <F9> <ESC>10zli
+" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+"===============================================================
+"============快捷键
+"============================================================
 
 "折叠
 "允许折叠
@@ -384,14 +405,7 @@ set guioptions+=r
 set guioptions+=L
 
 
-" 水平滚动
-" 向左
-map <F8> 10zh
-imap <F8> <ESC>10zhi
-" 向右
-map <F9> 10zl
-imap <F9> <ESC>10zli
-" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
 
 set ambiwidth=double "防止特殊符号无法正常显示
 
@@ -472,7 +486,7 @@ map <Leader>rc :e ~/.vimrc<CR>
 " ===
 map <LEADER>gy :Goyo<CR>
 
-map R :source $MYVIMRC<cr>
+map R :source ~/.vimrc<cr>
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
 " <F3> 行号开关
 " nnoremap <F3> :call HideNumber()<CR>
@@ -1137,7 +1151,15 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
+" normal/insert
+<Plug>MarkdownPreview
+<Plug>MarkdownPreviewStop
+<Plug>MarkdownPreviewToggle
 
+" example
+nmap <M-p> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-t> <Plug>MarkdownPreviewToggle
 
 let g:vimwiki_list = [{
   \ 'automatic_nested_syntaxes':1,
@@ -3199,9 +3221,7 @@ hi Folded          guifg=#66CD00
 hi Directory       ctermfg=46               cterm=bold
 hi Directory       guifg=#00FF00               gui=bold
 
-" " 窗口尾部的'~'和 '@'
-hi NonText         ctermfg=1  cterm=bold
-hi NonText         guifg=#FF0000  cterm=bold
+
 
 " complete menu
 hi Pmenu      ctermfg=0       ctermbg=243
@@ -3222,6 +3242,12 @@ hi    PmenuThumb      guibg=#228B22    gui=bold
 "没有标签的地方
 hi  TabLineFill   ctermfg=2     ctermbg=246     term=Bold   cterm=bold
 
+" " 窗口尾部的'~'和 '@'
+hi NonText         ctermfg=1  cterm=bold
+hi NonText         guifg=#FF0000  cterm=bold
+" " "特殊键，字符和'listchars'
+hi SpecialKey         cterm=bold
+hi SpecialKey      guifg=#00FFFF  gui=bold
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""ayu配置"""""""""""""""""""""
