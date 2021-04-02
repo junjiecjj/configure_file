@@ -43,12 +43,18 @@ Plugin 'NLKNguyen/papercolor-theme'
 " Other visual enhancement
 Plugin 'luochen1990/rainbow'
 Plugin 'mg979/vim-xtabline'
-Plugin 'ryanoasis/vim-devicons'
+
 Plugin 'wincent/terminus'
 
 Plugin 'fadein/vim-FIGlet'
 Plugin 'lambdalisue/suda.vim' " do stuff like :sudowrite
 Plugin 'junegunn/goyo.vim' " distraction free writing mode
+" Undo Tree
+Plugin 'mbbill/undotree'
+Plugin 'jungeunn/vim-peekaboo'
+Plugin 'mhinz/vim-startify'   " 此插件为 Vim 和 Neovim 提供一个启动屏幕
+" :h startify
+" :h startify-faq
 "#########################################################
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
@@ -102,10 +108,9 @@ Plugin 'suan/vim-instant-markdown'   , {'for': 'markdown'}
 
 " Markdown
 Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown'] }
-Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+
 Plugin 'vimwiki/vimwiki'
 " Markdown
-Plugin 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
 Plugin 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
 Plugin 'dkarter/bullets.vim'
@@ -170,13 +175,13 @@ let &t_ut=''
 let mapleader = '\'
 set t_Co=256
 
-
+set virtualedit=block,onemore
 set splitbelow
 set splitright
 
 "让补全行为与一般IDE一样
 "set completeopt = preview,meun
-"
+set completeopt=longest,noinsert,menuone,noselect,preview
 "在接受补全后不分裂出一个窗口显示接受的项
 "set completeopt-=preview
 
@@ -184,7 +189,9 @@ set splitright
 syntax enable
 " 允许用指定语法高亮配色方案替换默认方案
 syntax on
-
+" 块选择快速跳转问题
+set virtualedit=block
+set nostartofline
 
 let python_highlight_all=1
 let g:SimpleFold_docstring_preview=1 "看到折叠代码的字符串
@@ -194,7 +201,7 @@ set number
 
 "高亮显示匹配的括号
 set showmatch
-
+set viewoptions=cursor,folds,slash,unix
 " 光标移动到buffer的顶部和底部时保持3行距离
 set scrolloff=4
 
@@ -281,50 +288,7 @@ set listchars=tab:▸\ ,trail:▫
 " 使用:set listchars 命令，可以配置使用何种符号来显示不可见字符。例如以下命令，将制表符（tab）显示为…；将尾部空格（trail）显示为・；将左则超出屏幕范围部分（precedes）标识为 «；将右侧超出屏幕范围部分（extends）标识为 »。
 " set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
 set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<
-""""""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
 
-" 定义快捷键关闭当前分割窗口
-nmap <Leader>q :q<CR>
-" 定义快捷键保存当前窗口内容并离开
-nmap <Leader>wq :wq<CR>
-
-" 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
-
-" Call figlet
-map ;x :r !figlet
-" Save & quit
-map Q :q<CR>
-map S :w<CR>
-
-" Copy to system clipboard
-vnoremap Y :w !xclip -i -sel c<CR>
-
-" Search
-map <LEADER><CR> :nohlsearch<CR>
-noremap = nzz
-noremap - Nzz
-
-" Place the two screens up and down
-noremap sh <C-w>t<C-w>K
-" Place the two screens side by side
-noremap sv <C-w>t<C-w>H
-
-" Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
-
-" 水平滚动
-" 向左
-map <F8> 10zh
-imap <F8> <ESC>10zhi
-" 向右
-map <F9> 10zl
-imap <F9> <ESC>10zli
-" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
-"===============================================================
-"============快捷键
-"============================================================
 
 "折叠
 "允许折叠
@@ -454,12 +418,9 @@ set showcmd
 
 " 命令行（在状态行下）的高度，默认为1，这里是2
 set cmdheight=2
-
 "打开状态栏标尺
 set showmode
-
 set ruler
-
 
 set backspace=2
 set backspace=indent,eol,start
@@ -467,12 +428,8 @@ set backspace=indent,eol,start
 " eol: 如果插入模式下在行开头，想通过退格键合并两行，需要设置 eol。
 " start：要想删除此次插入前的输入，需设置这个。
 
-
-
 set confirm
 "在处理未保存或只读文件的时候，弹出确认
-
-
 
 " 不要生成 swap 文件，当 buffer 被丢弃的时候隐藏它
 setlocal noswapfile
@@ -480,6 +437,65 @@ set bufhidden=hide
 
 "允许backspace和光标跨越行边界
 set whichwrap+=<,>,b,s,[,]
+
+""""""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
+
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容并离开
+nmap <Leader>wq :wq<CR>
+
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+
+" Call figlet
+map ;x :r !figlet
+" Save & quit
+map Q :q<CR>
+map S :w<CR>
+
+" Copy to system clipboard
+vnoremap Y :w !xclip -i -sel c<CR>
+
+" Search
+map <LEADER><CR> :nohlsearch<CR>
+noremap = nzz
+noremap - Nzz
+
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
+
+" Rotate screens
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
+
+" 水平滚动
+" 向左
+map <F8> 10zh
+imap <F8> <ESC>10zhi
+" 向右
+map <F9> 10zl
+imap <F9> <ESC>10zli
+" 这个时候在 Normal 和 Insert 模式下都可以按 <F8><F9> 来水平滚动了。
+
+
+" ===
+" === Other useful stuff
+" ===
+" Open a new instance of st with the cwd
+nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
+
+" Opening a terminal window
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+
+" Press space twice to jump to the next '<++>' and edit it
+noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+" Spelling Check with <space>sc
+noremap <LEADER>sc :set spell!<CR>
+
 
 " Open the vimrc file anytime
 map <Leader>rc :e ~/.vimrc<CR>
@@ -490,6 +506,11 @@ map <Leader>rc :e ~/.vimrc<CR>
 map <LEADER>gy :Goyo<CR>
 
 map R :source ~/.vimrc<cr>
+
+"===============================================================
+"============快捷键
+"============================================================
+
 """"""""""""""""""""""""""""""""""""""""""" 行号   """"""""""""""""""""""""""""""""""""""""""""
 " <F3> 行号开关
 " nnoremap <F3> :call HideNumber()<CR>
@@ -556,22 +577,6 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 "####################################################
 
 
-" 方法1:
-"set autoread
-"augroup checktime
-"   au!
-"  if !has("gui_running")
-"silent! necessary otherwise throws errors when using command
-"line window.
-"autocmd BufEnter        * silent! checktime
-"autocmd CursorHold      * silent! checktime
-"autocmd CursorHoldI     * silent! checktime
-"these two _may_ slow things down. Remove if they do.
-"autocmd CursorMoved     * silent! checktime
-"autocmd CursorMovedI    * silent! checktime
-"   endif
-"augroup END
-
 "方法2:
 if ! exists("g:CheckUpdateStarted")
     let g:CheckUpdateStarted=1
@@ -582,11 +587,6 @@ function! CheckUpdate(timer)
     call timer_start(2000,'CheckUpdate')
 endfunction
 
-"方法3:
-"autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
-"autocmd FileChangedShellPost *
-"\ echohl WarningMsg | echo "文件在外部被改动,已重新加载..." | echohl None
-
 " ======= 设置当文件被外部改变的时侯自动读入文件 ======= "
 
 
@@ -596,7 +596,7 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
-" 能够漂亮地显示.NFO文件
+"================================== 能够漂亮地显示.NFO文件===========================
 " set encoding=utf-8
 function! SetFileEncodings(encodings)
     let b:myfileencodingsbak=&fileencodings
@@ -610,7 +610,7 @@ endfunction
 au BufReadPre *.nfo call SetFileEncodings('cp437')|set ambiwidth=single
 au BufReadPost *.nfo call RestoreFileEncodings()
 
-" 高亮显示普通txt文件（需要txt.vim脚本）
+"=======================高亮显示普通txt文件（需要txt.vim脚本）=======================================
 "au BufRead, BufNewFile  *   setfiletype txt
 if has("autocmd")
        autocmd BufNewFile,Bufread *.txt set syntax=help
@@ -635,13 +635,114 @@ endif
 let g:suda#prompt = 'Mot de passe:'
 
 
+" =============================================================
+" === Undotree
+" ================================================================
+let g:undotree_DiffAutoOpen = 0
+map L :UndotreeToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
 " :checkhealth
 " 安装命令:CocInstall 插件名
 " 移除命令:CocUninstall 插件名
 " 查看已安装:CocList extensions
 " 更新命令:CocUpdate
+let g:coc_global_extensions = [
+	\ 'coc-css',
+	\ 'coc-diagnostic',
+	\ 'coc-explorer',
+	\ 'coc-flutter-tools',
+	\ 'coc-gitignore',
+	\ 'coc-html',
+	\ 'coc-json',
+	\ 'coc-lists',
+	\ 'coc-prettier',
+	\ 'coc-prisma',
+	\ 'coc-pyright',
+	\ 'coc-python',
+	\ 'coc-snippets',
+	\ 'coc-sourcekit',
+	\ 'coc-stylelint',
+	\ 'coc-syntax',
+	\ 'coc-tailwindcss',
+	\ 'coc-tasks',
+	\ 'coc-translator',
+	\ 'coc-tslint-plugin',
+	\ 'coc-tsserver',
+	\ 'coc-vetur',
+	\ 'coc-vimlsp',
+	\ 'coc-yaml',
+	\ 'coc-yank']
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <c-o> coc#refresh()
+function! Show_documentation()
+	call CocActionAsync('highlight')
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
+endfunction
+nnoremap <LEADER>h :call Show_documentation()<CR>
+" set runtimepath^=~/.config/nvim/coc-extensions/coc-flutter-tools/
+" let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+" let $NVIM_COC_LOG_LEVEL = 'debug'
+" let $NVIM_COC_LOG_FILE = '/Users/david/Desktop/log.txt'
 
+nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
+nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
+nnoremap <c-c> :CocCommand<CR>
+" Text Objects
+xmap kf <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap kf <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+xmap kc <Plug>(coc-classobj-i)
+omap kc <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+" Useful commands
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap tt :CocCommand explorer<CR>
+" coc-translator
+nmap ts <Plug>(coc-translator-p)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>aw  <Plug>(coc-codeaction-selected)w
+" coctodolist
+" nnoremap <leader>tn :CocCommand todolist.create<CR>
+" nnoremap <leader>tl :CocList todolist<CR>
+" nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+" coc-tasks
+noremap <silent> <leader>ts :CocList tasks<CR>
+" coc-snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-e> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-e>'
+let g:coc_snippet_prev = '<c-n>'
+imap <C-e> <Plug>(coc-snippets-expand-jump)
+let g:snips_author = 'David Chen'
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
 
 """"""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
@@ -1089,7 +1190,7 @@ let g:Lf_ShortcutF = '<C-p>'
 noremap <Leader>f :LeaderfFunction<cr>
 
 "文件搜索
-nnoremap <silent> <Leader>f<Leader> :Leaderf file<CR>
+nnoremap <silent> <Leader>lf :Leaderf file<CR>
 
 "历史打开过的文件
 nnoremap <silent> <Leader>lh :Leaderf mru<CR>
@@ -1115,6 +1216,34 @@ nnoremap <silent> <Leader>rg :Leaderf rg<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""vim-startify""""""""""""""""""""""""""""""""""
+"设置书签
+let g:startify_bookmarks            = [
+            \ '~/Project/test.cpp',
+            \]
+"起始页显示的列表长度
+let g:startify_files_number = 20
+"自动加载session
+let g:startify_session_autoload = 1
+"过滤列表，支持正则表达式
+let g:startify_skiplist = [
+       \ '^/tmp',
+       \ ]
+"自定义Header和Footer
+let g:startify_custom_header = [
+            \ '+------------------------------+',
+            \ '|                              |',
+            \ '|    Still waters run deep!    |',
+            \ '|                              |',
+            \ '+----------------+-------------+',
+            \]
+let g:startify_custom_footer = [
+            \ '+------------------------------+',
+            \ '|     Keep an open mind!       |',
+            \ '+----------------+-------------+',
+            \]
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""Ctags配置""""""""""""""""""""""""""""""""
 " 配置为生产ctags的快捷键
@@ -1125,7 +1254,7 @@ noremap <Leadf>ct :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " ==========================================================
-" === MarkdownPreview
+" === markdown-preview配置
 " ========================================================
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
@@ -1195,6 +1324,10 @@ autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
+
+" Press space twice to jump to the next '<++>' and edit it
+map <SPACE><SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4i
+
 """"""""""""""""""""""""""""""""""" vim-instant-markdown 插件配置  """""""""""""""""""""""""""""""""""""""""""
 
 "  vim-instant-markdown 是一款实时显示 markdown 效果的插件，要使用这款插件需要先安装 node.js 和 npm，可以在终端执行
@@ -1206,14 +1339,16 @@ autocmd Filetype markdown inoremap ,l --------<Enter>
 "$ sudo npm -g install instant-markdown-d
 
 "安装完成以后，你只要打开一个.md 文件，Vim 就会自动打开一个浏览器窗口，实现实时预览。如果你不想自动打开预览窗口的话，你可以在 /etc/vim/vimrc 中写入
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_slow = 0
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_autoscroll = 1
 " map <F12> :InstantMarkdownPreview<CR>
 map <Leader>md :InstantMarkdownPreview<CR>
 " 设置使用markdown插件的类型以及不自动折叠代码
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown nofoldenable
 
 let g:jsx_ext_required = 0
-let g:instant_markdown_slow = 1
+
 
 
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
@@ -3341,13 +3476,20 @@ autocmd FileType javascript,html,css,xml set sts=2
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-noremap <C-A> ggvG$
-inoremap <C-A> <Esc>ggvG$
+noremap <C-a> ggvG$
+inoremap <C-a> <Esc>ggvG$
 
-vnoremap <C-C> "+y<Esc>
+" set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
+" vnoremap <C-C> "+y<Esc>
+nnoremap <C-c> "+y
+vnoremap <C-c> "+y<Esc>
 
-nnoremap <C-V> "+p
-inoremap <C-V> <Esc>"+pa
+"nnoremap <C-V> "+p
+"inoremap <C-V> <Esc>"+pa
+nnoremap <S-v> "+p
+inoremap <S-v> <Esc>"+pa
+nnoremap <S-v> "+gp
+" "+gp  粘贴并且移动光标到粘贴内容后
 
 map <C-x> "+x
 inoremap <C-x> <Esc>"+x
@@ -3356,12 +3498,7 @@ inoremap <C-x> <Esc>"+x
 " inoremap <C-z> <Esc>"+u
 
 
-"nnoremap <c-a> I
-" nnoremap <c-e> A
-"inoremap <c-a> <esc>I
-" inoremap <c-e> <esc>A
-nnoremap <c-v> "+gp
-nnoremap <c-c> "+y
+
 
 "括号等的自动补全
 :inoremap ( ()<ESC>i
@@ -4830,3 +4967,11 @@ autocmd BufReadPost * cd %:p:h
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
+" 在开发中，可能会遇到一次性给多行代码增加注释的情况。
+" 操作步骤如下：
+" 在命令模式下，移动到要添加注释代码的第一行，按下 "^" 将光标移动到行首。
+" 按下 "Ctrl + v"， 命令模式 --> 可视块模式。
+" 使用 "j" 向下连续选中要添加的代码行。
+" 输入 "I"， 可视块模式 --> 编辑模式。（注意：必须使用 "I"）
+" 输入 "#" 字符，也就是注释的符号。
+" 按下 "Esc"， 编辑模式 --> 命令模式。
