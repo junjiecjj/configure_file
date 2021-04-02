@@ -1107,16 +1107,16 @@ map <Leadf>ct :!ctags <CR>
 noremap <Leadf>ct :!ctags -R<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" ===
+" ==========================================================
 " === MarkdownPreview
-" ===
+" ========================================================
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = 'chromium'
+let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
@@ -1126,7 +1126,11 @@ let g:mkdp_preview_options = {
     \ 'maid': {},
     \ 'disable_sync_scroll': 0,
     \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0
     \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
@@ -1134,7 +1138,42 @@ let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
 
-""""""""""""""""""""""""""""""""""" markdown插件配置  """""""""""""""""""""""""""""""""""""""""""
+
+let g:vimwiki_list = [{
+  \ 'automatic_nested_syntaxes':1,
+  \ 'path_html': '~/wiki_html',
+  \ 'path': '~/wiki',
+  \ 'template_path': '~/.vim/vimwiki/template/',
+  \ 'syntax': 'markdown',
+  \ 'ext':'.md',
+  \ 'template_default':'markdown',
+  \ 'custom_wiki2html': '~/.vim/vimwiki/wiki2html.sh',
+  \ 'template_ext':'.html'
+\}]
+
+au BufRead,BufNewFile *.md set filetype=vimwiki
+
+let g:taskwiki_sort_orders={"C": "pri-"}
+let g:taskwiki_syntax = 'markdown'
+let g:taskwiki_markdown_syntax='markdown'
+let g:taskwiki_markup_syntax='markdown'
+"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l --------<Enter>
+""""""""""""""""""""""""""""""""""" vim-instant-markdown 插件配置  """""""""""""""""""""""""""""""""""""""""""
 
 "  vim-instant-markdown 是一款实时显示 markdown 效果的插件，要使用这款插件需要先安装 node.js 和 npm，可以在终端执行
 
