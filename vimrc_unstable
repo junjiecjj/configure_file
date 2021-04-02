@@ -39,7 +39,7 @@ Plugin 'makerj/vim-pdf'
 Plugin 'lfv89/vim-interestingwords'
 Plugin 'itchyny/vim-cursorword'
 
-Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'nlknguyen/papercolor-theme'
 " Other visual enhancement
 Plugin 'luochen1990/rainbow'
 Plugin 'mg979/vim-xtabline'
@@ -445,6 +445,14 @@ set bufhidden=hide
 "允许backspace和光标跨越行边界
 set whichwrap+=<,>,b,s,[,]
 
+
+" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
+" Show command autocomplete
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu                      " show a navigable menu for tab completion
+set wildmode=list:longest,full
+set wildchar=<Tab> wildcharm=<C-Z>
+
 """"""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
 
 " 定义快捷键关闭当前分割窗口
@@ -454,12 +462,13 @@ nmap <Leader>wq :wq<CR>
 
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
+map Q :q<CR>
+map S :w!<CR>
 
 " Call figlet
 map ;x :r !figlet
 " Save & quit
-map Q :q<CR>
-map S :w<CR>
+
 
 " Copy to system clipboard
 vnoremap Y :w !xclip -i -sel c<CR>
@@ -2667,13 +2676,11 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
-" "/usr/share/vim/vim81/colors/ 目录中包含了大多数文件类型的语法高亮插件。
-" hi clear
+
 
 
 """"""""""""""""""""""""""""""""papercolor配置""""""""""""""""""""""""""""""""""""""""
@@ -2713,225 +2720,14 @@ let g:PaperColor_Theme_Options = {
   \ }
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
-" set background=dark
-" colorscheme   lilydjwg_dark
-
-
-"/usr/share/vim/vim80/syntax 目录中包含了大多数文件类型的语法高亮插件。
+" "/usr/share/vim/vim81/colors/ 目录中包含了大多数文件类型的语法高亮插件。
 " hi clear
 
-" if version > 580
-"     hi clear
-"     if exists("syntax_on")
-"         syntax reset
-"     endif
-" endif
-
-" if !has('gui_running')
-"     set t_Co=256
-" endif
-
-
-" " set termguicolors
-" " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-" " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-
-
-" " cake16.vim Atelier_Dune.vim one.vim github1.vim ,carbonized_dark1.vim carbonized_light1.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight, nightshade_print, rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,
-
-" " desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,professional,sf,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
-
-" " identifier:变量的颜色,C语言中main和定义的函数的颜色，printf的颜色，所有函数的颜色
-" hi Identifier   ctermfg=202  ctermbg=NONE  cterm=bold
-" hi Identifier   guifg=#EE7600  guibg=NONE cterm=bold
-
-
-" " hi pythonSelf ctermbg=174  ctermfg=  cterm=bold
-
-
-" "需要突出的文本，HTML 链接
-" hi Underlined      ctermfg=244   cterm=underline
-" hi Underlined      guifg=#D3D3D3   cterm=underline
-
-
-" "这里可以使用 CTRL-]
-" hi Tag             ctermfg=161  cterm=bold
-" hi Tag             guifg=#FF0000  gui=bold
-
-" "任何特殊符号
-" hi Special         ctermfg=81   ctermbg=NONE
-" hi Special         guifg=#00FFFF
-
-" " "任何注释
-" hi Comment     ctermfg=darkgray ctermbg=NONE   cterm=NONE
-" hi Comment    guifg=#7C7C7C guibg=#000000 gui=NONE
-
-" "任何有错的构造
-" hi Error ctermfg=124   cterm=bold
-" hi Error guifg=#CD2626   gui=bold
-
-
-" " 非当前窗口的状态行
-" hi StatusLineNC  ctermfg=yellow    cterm=BOLD
-" hi StatusLineNC  guifg=yellow   cterm=BOLD
-
-
-
-" " 光标所在行的行号数字的颜色
-" hi CursorLineNr    ctermfg=46   ctermbg=16   cterm=bold
-" hi CursorLineNr    guifg=#00FF00  guibg=#000000  gui=bold
-
-" "置位 number 选项时的行号数字的颜色
-" hi LineNr          ctermfg=244       ctermbg=16   cterm=bold
-" hi LineNr          guifg=#CDC9C9    guibg=#000000  gui=bold
-
-" " "常数中的特殊字符
-" hi SpecialChar      ctermbg=NONE   cterm=bold
-" hi SpecialChar guifg=#B22222   gui=bold
-
-" " "注释里的特殊字符
-" hi SpecialComment    ctermbg=NONE cterm=bold
-" hi SpecialComment guifg=#B22222  gui=bold
-
-" " "特殊键，字符和'listchars'
-" hi SpecialKey         cterm=bold
-" hi SpecialKey      guifg=#00FFFF  gui=bold
-
-" " "任何需要特殊注意的部分
-" hi Todo                    ctermbg=NONE  cterm=none
-" hi Todo guifg=#8B1A1A    gui=none
-
-" " "需要注意的字符
-" hi  Delimiter         cterm=bold
-" hi  Delimiter guifg=#1E90FF    gui=bold
-
-
-" " "通用预处理命令
-" hi  PreProc     ctermbg=NONE  cterm=bold
-" hi  PreProc    guibg=NONE cterm=bold
-
-" " "预处理命令 #include
-" hi Include    ctermbg=NONE   cterm=bold
-" hi Include    guibg=NONE  cterm=bold
-
-" " "预处理命令 #define
-" hi Define     ctermbg=NONE   cterm=bold
-" hi Define    guibg=NONE    cterm=bold
-
-" " "等同于 Define
-" hi Macro    ctermbg=NONE   cterm=bold
-" hi Macro      gui=bold
-
-" " "一个 typedef
-" hi Typedef    ctermbg=NONE    cterm=bold
-" hi Typedef       gui=bold
-
-" " "struct、union、enum 等
-" hi Structure       ctermbg=NONE   cterm=bold
-" hi Structure    guibg=NONE   gui=bold
-
-" " "if、then、else、endif、switch
-" hi Conditional      ctermbg=NONE     cterm=bold
-" hi Conditional              cterm=bold
-
-" " "for、do、while 等
-" hi  Repeat      ctermbg=NONE          cterm=bold
-" hi  Repeat               gui=bold
-
-" " "case、default 等
-" hi Label          ctermbg=NONE                cterm=bold
-" hi Label                          gui=bold
-
-" " "int、long、char、float、double 等
-" hi  Type     ctermbg=NONE    cterm=bold
-" hi  Type       gui=bold
-
-" " "一个布尔型常数: TRUE、false
-" hi  Boolean    ctermbg=NONE    cterm=bold
-" hi  Boolean       gui=bold
-
-" " "一个字符常数: 'c'、'\n'
-" hi  Character     ctermbg=NONE     cterm=bold
-" hi  Character     gui=bold
-
-" " "一个数字常数: 234、0xff
-" hi  Number        ctermbg=NONE  cterm=bold
-" hi  Number guifg=#CD2626  gui=bold
-
-" " "一个字符串常数: 字符串
-" hi String    ctermbg=NONE  ctermfg=28
-" hi String   guifg=#008B00
-
-" " "一个浮点常数: 2.3e10
-" hi  Float   ctermbg=NONE    cterm=bold
-" hi  Float     gui=bold
-
-" " "static、register、volatile 等
-" hi  StorageClass   ctermbg=NONE    cterm=bold
-" hi  StorageClass     gui=bold
-
-" "函数名 (也包括: 类的方法名)
-" hi  Function   ctermfg=202   ctermbg=NONE     cterm=bold
-" hi  Function   guifg=#FFA500     gui=bold
-
-
-" hi  cfunctions   ctermfg=202  ctermbg=NONE      cterm=bold
-" hi  cfunctions   guifg=#FFA500      gui=bold
-
-" " "最近搜索模式的高亮
-" hi  Search     term=bold     cterm=bold       ctermfg=4    ctermbg=15
-" hi  Search     term=bold     gui=bold       guifg=#0000FF   guibg=#FFFFFF
-
-" " 'incsearch' 高亮
-" hi  IncSearch    term=bold     cterm=bold         ctermfg=4    ctermbg=15
-" hi  IncSearch    term=bold     gui=bold         guifg=#0000FF   guibg=#FFFFFF
-
-" "匹配的内容的颜色
-" hi MatchParen  ctermfg=157    ctermbg=237 cterm=reverse
-" hi MatchParen guifg=#d0ffc0   guibg=#2f2f2f gui=reverse
-
-
-
-
-" "hi Identifier      ctermfg=208
-" hi Ignore          ctermfg=244     cterm=bold
-" hi Ignore          guifg=#BEBEBE    gui=bold
-
-" "配对的括号
-" hi MatchParen      ctermfg=16  ctermbg=208  cterm=bold
-" hi MatchParen      guifg=#000000     guibg=#CD9B1D     gui=bold
-
-
-" " marks column
-" hi SignColumn      ctermfg=118  ctermbg=235
-" hi SignColumn      guifg=#ADFF2F   guibg=#BEBEBE
-
-
-
-
-
-" if has("spell")
-"     "拼写检查器不能识别的单词
-"     hi SpellBad     gui=undercurl
-"     "应该大写字母开头的单词
-"     hi SpellCap     gui=undercurl
-"     "只在其它区域使用的单词
-"     hi SpellLocal   gui=undercurl
-"     "很少使用的单词
-"     hi SpellRare    gui=undercurl
-" endif
-
-
-" "整体字体的颜色
-"hi Normal       term=bold         ctermbg=16        cterm=bold
-" hi Normal       term=bold         guibg=#000000    cterm=bold
-
 map <Leader>c1 :set background=dark<CR>:colorscheme lilydjwg_dark<CR> :AirlineTheme base16_color<CR>
-map <Leader>c2 :set background=dark<CR>:colorscheme lilydjwg_dark_modified<CR>:AirlineTheme dracula<CR>
-map <Leader>c3 :set background=dark<CR>:colorscheme solarized8_flat<CR>:AirlineTheme dracula<CR>
-map <Leader>c4 :set background=dark<CR>:colorscheme flattened_dark<CR>:AirlineTheme dracula<CR>
-map <Leader>c5 :set background=dark<CR>:colorscheme vividchalk<CR>AirlineTheme dracula<CR>
+map <Leader>c2 :set background=dark<CR>:colorscheme lilydjwg_dark_modified<CR>:AirlineTheme base16_color<CR>
+map <Leader>c3 :set background=dark<CR>:colorscheme solarized8_flat<CR>:AirlineTheme base16_color<CR>
+map <Leader>c4 :set background=dark<CR>:colorscheme flattened_dark<CR>:AirlineTheme base16_color<CR>
+map <Leader>c5 :set background=dark<CR>:colorscheme vividchalk<CR>AirlineTheme base16_color<CR>
 
 map <Leader>c6 :set background=light<CR>:colorscheme colorful<CR>AirlineTheme dracula<CR>
 map <Leader>c7 :set background=light<CR>:colorscheme NeoSolarized<CR>AirlineTheme dracula<CR>
@@ -2944,7 +2740,7 @@ if strftime('%H') >= 7 && strftime('%H') < 19
     let ayucolor="light"  " for light version of theme
     let themes = [
         \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
-        \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github',
+        \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github','PaperColor',
         \ 'gabo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
@@ -2966,7 +2762,7 @@ else
         \ 'carbonized-dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
         \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel',
         \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
-        \ 'vividchalk',
+        \ 'vividchalk', 'PaperColor',
         \ ]
         " \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
         " \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
@@ -2982,9 +2778,6 @@ exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " exe 'colorscheme '.themes[localtime() % len(themes)]
 " autocmd vimenter * ++nested colorscheme solarized8_higt
 
-" cake16.vim , one.vim github1.vim ,carbonized_dark.vim carbonized_light.vim pencil.vim ayu.vim ayu_light.vim ayu_mirage.vim solarized8.vim solarized8_flat.vim solarized8_low.vim solarized8_higt.vim, snow.vim vimspectr300-light.vim petrel.vim greygull.vim  seagull.vim stormpetrel.vim,  c16gui, molokai, lilydjwg_dark_modified, lilydjwg_dark, nightshade_print, nightshade_print_modified, colorful256,colorful, SolarizedDark_modified,SolarizedLight,professional, cake16, stellarized,cosmic_latte,NeoSolarized.vim,  rainbow_autumn,vividchalk, flattened_light,flattened_dark, thegoodluck,sf,rainbow_autumn.vim,redstring,relaxedgreen,Ne
-
-" desert,blacklight,adrian,darkblack,darkzen,gor,habLight,neverness,putty,redstring,relaxedgreen,satori,tcsoft,cleanphp,autumn,bayQua,bmichaelsen, camo,candycode,carrot ,earth,fine_blue,fruity,gobo,inkpot,navajo,nicotine,phpx,umber_green,white,winter,zellner,dante_modified,rcg_gui_modified,gruvbox,
 
 
 " 黑色：carbonized_dark, SolarizedDark_modified ,NeoSolarized, colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
@@ -3364,12 +3157,7 @@ set showtabline=1
 " 总是显示标签栏
 " set showtabline=2
 
-" 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
-" Show command autocomplete
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
-set wildmenu                                                 " show a navigable menu for tab completion
-set wildmode=longest,list,full
-set wildchar=<Tab> wildcharm=<C-Z>
+
 " 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
 set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 let g:tablineclosebutton=1
@@ -3378,10 +3166,10 @@ let g:tablineclosebutton=1
 
 " 新建标签页
 noremap <silent><tab>tn :tabnew<cr>
-noremap <silent><leader>t :tabnew<cr>
+noremap <silent><tab>t :tabnew<cr>
 " 关闭标签页
 noremap <silent><tab>tc :tabclose<cr>
-noremap <silent><leader>c :tabclose<cr>
+noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab>n :tabn<cr>
 " 上一个标签页
