@@ -496,11 +496,12 @@ imap <F9> <ESC>10zli
 " ===
 " === Other useful stuff
 " ===
-" Open a new instance of st with the cwd
-nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
+" 打开新标签页并在新标签页打开终端
+nnoremap /t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 
-" Opening a terminal window
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+" 上下分屏并在下方打开终端
+noremap <LEADER>t :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+noremap <LEADER>t :split<CR>:res +10<CR>:term<CR>
 
 " Press space twice to jump to the next '<++>' and edit it
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -1443,7 +1444,7 @@ let g:tagbar_left = 1
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 
 
-" 将开启tagbar的快捷键设置为　<Leader>tb
+" 将开启tagbar的快捷键设置为　 tb
 nmap  tb :TagbarToggle<CR>
 nmap <F1> :TagbarToggle<CR>
 map <F1> :TagbarToggle<CR>
