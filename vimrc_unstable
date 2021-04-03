@@ -65,6 +65,8 @@ Plugin 'kdheepak/lazygit.nvim'
 
 " Find & Replace
 Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
+
+
 "#########################################################
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
@@ -657,6 +659,35 @@ let g:suda#prompt = 'Mot de passe:'
 " ================================================================
 let g:undotree_DiffAutoOpen = 0
 map L :UndotreeToggle<CR>
+
+
+" =======================================
+" === vim-signiture
+" ======================================
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "dm-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "dm/",
+        \ 'PurgeMarkers'       :  "dm?",
+        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevLineAlpha'  :  "",
+        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
+        \ 'GotoPrevSpotAlpha'  :  "",
+        \ 'GotoNextLineByPos'  :  "",
+        \ 'GotoPrevLineByPos'  :  "",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "",
+        \ 'GotoPrevMarker'     :  "",
+        \ 'GotoNextMarkerAny'  :  "",
+        \ 'GotoPrevMarkerAny'  :  "",
+        \ 'ListLocalMarks'     :  "m/",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }
+
 
 """""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
 " :checkhealth
@@ -3222,12 +3253,7 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 
-" ctrl + tab下一个buffer
-map <C-tab> :bn<CR>
-nnoremap [b :bp<CR>
-" ctrl + shift + tab下一个buffer
-map <C-M-tab> :bp<CR>
-nnoremap ]b :bn<CR>
+
 
 " 命令:tabs可以显示已打开标签页的列表，并用“>”标识出当前页面，用“+”标识出已更改的页面。
 " :tabe <文件名> 在新标签页中打开指定的文件。
@@ -3250,6 +3276,13 @@ nnoremap ]b :bn<CR>
 " :tabfirst   切换到第一个标签
 
 "######################################## 缓冲区#################################
+
+" ctrl + tab下一个buffer
+map <C-tab> :bn<CR>
+nnoremap [b :bp<CR>
+" ctrl + shift + tab下一个buffer
+map <C-M-tab> :bp<CR>
+nnoremap ]b :bn<CR>
 
 " :buffers或:ls或:files 显示缓冲区列表。
 " ctrl+^：在最近两个缓冲区间切换。
