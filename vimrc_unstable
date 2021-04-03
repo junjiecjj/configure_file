@@ -64,7 +64,7 @@ Plugin 'kdheepak/lazygit.nvim'
 " Find & Replace
 Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
-" Debugger
+" Debugger,代码调试IDE
 Plugin 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 "#########################################################
 Plugin 'nightsense/snow'
@@ -2042,6 +2042,7 @@ au Syntax * RainbowParenthesesLoadBraces
 " let g:SuperTabRetainCompletionType=2
 
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
 " 启动vim时 自动打开NERDTree
 " autocmd vimenter * NERDTree
@@ -2692,6 +2693,17 @@ let g:airline_symbols.branch = '⎇'
 " =================================================
 " === vimspector
 " =====================================================
+
+"""""""""""""""""""""""""""""""""""""""vimspector插件"""""""""""""""""""""""""""""""""""""
+"安装对应语言调试工具
+" cd ~/.vim/plugged/vimspector
+" # c, c++
+" ./install_gadget.py --enable-c
+" # python
+" ./install_gadget.py --enable-python
+" # go
+" ./install_gadget.py --enable-go
+
 let g:vimspector_enable_mappings = 'HUMAN'
 function! s:read_template_into_buffer(template)
 	" has to be a function to avoid the extra space fzf#run insers otherwise
