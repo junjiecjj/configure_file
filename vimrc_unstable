@@ -1001,12 +1001,12 @@ imap <Leader>pc <ESC> :PreviousColorScheme<CR>
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
 
-nnoremap <leader>y :CopyCode<cr>
-nnoremap <leader>p :PasteCode<cr>
-nnoremap <leader>U :GoToFunImpl<cr>
-nnoremap <silent> <leader>a :Switch<cr>
-nnoremap <leader><leader>fp :FormatFunParam<cr>
-nnoremap <leader><leader>if :FormatIf<cr>
+" nnoremap <leader>y :CopyCode<cr>
+" nnoremap <leader>p :PasteCode<cr>
+" nnoremap <leader>U :GoToFunImpl<cr>
+" nnoremap <silent> <leader>a :Switch<cr>
+" nnoremap <leader><leader>fp :FormatFunParam<cr>
+" nnoremap <leader><leader>if :FormatIf<cr>
 
 
 
@@ -1094,7 +1094,17 @@ let g:far#mapping = {
 		\ "replace_undo" : ["l"],
 		\ }
 
+set lazyredraw            " improve scrolling performance when navigating through large results
+set regexpengine=1        " use old regexp engine
+set ignorecase smartcase  " ignore case only when the pattern contains no capital letters
 
+" shortcut for far.vim find
+nnoremap <silent> <Leader>f  :Farf<cr>
+vnoremap <silent> <Leader>f  :Farf<cr>
+
+" shortcut for far.vim replace
+nnoremap <silent> <Leader>r  :Farr<cr>
+vnoremap <silent> <Leader>r  :Farr<cr>
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 " 在当前目录搜索文件
 nnoremap <leader>cp  :CtrlP<CR>
@@ -1247,9 +1257,9 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 let g:Lf_ShortcutF = '<C-p>'
 
 "\p 打开函数列表
-noremap of :LeaderfFunction<cr>
+noremap lf :LeaderfFunction<cr>
 "函数搜索（仅当前文件里），依赖ctags插件
-nnoremap <silent> <Leader>F :Leaderf function<CR>
+nnoremap <silent> lf :Leaderf function<CR>
 
 "文件搜索
 nnoremap <silent> <Leader>lf :Leaderf file<CR>
