@@ -721,11 +721,8 @@ let g:coc_global_extensions = [
 	\ 'coc-vimlsp',
 	\ 'coc-yaml',
 	\ 'coc-yank']
-inoremap <silent><expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 function! s:check_back_space() abort
 	let col = col('.') - 1
@@ -1888,7 +1885,7 @@ let g:ycm_show_diagnostics_ui = 0
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR>   pumvisible() ? "\<C-y>" : "\<CR>"
 
 "上下左右键的行为 会显示其他信息
 inoremap <expr> <Down>       pumvisible() ? "\<C-n>" : "\<Down>"
@@ -2042,7 +2039,8 @@ au Syntax * RainbowParenthesesLoadBraces
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+""""""""""""""""""""""supertab插件""""""""""""""""""""""""""""""""
+" let g:SuperTabRetainCompletionType=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""开始配置nerdtree"""""""""""""""""""""""""""""""""""""""""""""""
