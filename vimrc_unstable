@@ -64,7 +64,8 @@ Plugin 'kdheepak/lazygit.nvim'
 " Find & Replace
 Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
-
+" Debugger
+Plugin 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
 "#########################################################
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
@@ -388,7 +389,7 @@ set ambiwidth=double "防止特殊符号无法正常显示
 
 
 " 我的状态行显示的内容（包括文件类型和解码）
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+" set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
 " 设置在状态行显示的信息如下：
 " %f    当前的文件名
 " %F    当前全路径文件名
@@ -2688,6 +2689,23 @@ let g:airline_symbols.branch = '⎇'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" =================================================
+" === vimspector
+" =====================================================
+let g:vimspector_enable_mappings = 'HUMAN'
+function! s:read_template_into_buffer(template)
+	" has to be a function to avoid the extra space fzf#run insers otherwise
+	execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
+endfunction
+command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
+			\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
+			\   'down': 20,
+			\   'sink': function('<sid>read_template_into_buffer')
+			\ })
+" noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
+sign define vimspectorBP text=☛ texthl=Normal
+sign define vimspectorBPDisabled text=☞ texthl=Normal
+sign define vimspectorPC text=🔶 texthl=SpellBad
 
 """""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
 function! Buf_total_num()
