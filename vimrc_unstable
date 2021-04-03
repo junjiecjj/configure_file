@@ -62,6 +62,9 @@ Plugin 'wincent/terminus'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'cohama/agit.vim'
 Plugin 'kdheepak/lazygit.nvim'
+
+" Find & Replace
+Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 "#########################################################
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
@@ -478,14 +481,7 @@ map <LEADER><CR> :nohlsearch<CR>
 noremap = nzz
 noremap - Nzz
 
-" Place the two screens up and down
-noremap sh <C-w>t<C-w>K
-" Place the two screens side by side
-noremap sv <C-w>t<C-w>H
 
-" Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
 
 " 水平滚动
 " 向左
@@ -509,6 +505,8 @@ noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " Press space twice to jump to the next '<++>' and edit it
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+" auto spell
+autocmd BufRead,BufNewFile *.md setlocal spell
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
 
@@ -521,7 +519,7 @@ map <Leader>rc :e ~/.vimrc<CR>
 " ===
 map <LEADER>gy :Goyo<CR>
 
-map R :source ~/.vimrc<cr>
+map R :source  ~/.vimrc<cr>
 
 "===============================================================
 "============快捷键
@@ -560,7 +558,7 @@ endfunction
 
 
 " ctrl-i进行相对行号/绝对行号切换
-nnoremap <C-i> :call NumberToggle()<cr>
+nnoremap <Leader>nt :call NumberToggle()<cr>
 
 
 let &t_SI = "\<Esc>]12;green\x7"
@@ -1088,9 +1086,18 @@ map <Leader><leader>. <Plug>(easymotion-repeat)
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 
+" ============================================
+" === Far.vim
+" ===============================================
+noremap <Leader>f :F  **/*<left><left><left><left><left>
+let g:far#mapping = {
+		\ "replace_undo" : ["l"],
+		\ }
+
+
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 " 在当前目录搜索文件
-nnoremap <leader>cf  :CtrlP<CR>
+nnoremap <leader>cp  :CtrlP<CR>
 nnoremap <leader>b  :CtrlPBuffer<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
@@ -1240,7 +1247,9 @@ inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 let g:Lf_ShortcutF = '<C-p>'
 
 "\p 打开函数列表
-noremap <Leader>f :LeaderfFunction<cr>
+noremap of :LeaderfFunction<cr>
+"函数搜索（仅当前文件里），依赖ctags插件
+nnoremap <silent> <Leader>F :Leaderf function<CR>
 
 "文件搜索
 nnoremap <silent> <Leader>lf :Leaderf file<CR>
@@ -1251,8 +1260,7 @@ nnoremap <silent> <Leader>lh :Leaderf mru<CR>
 "Buffer
 nnoremap <silent> <Leader>lb :Leaderf buffer<CR>
 
-"函数搜索（仅当前文件里），依赖ctags插件
-nnoremap <silent> <Leader>F :Leaderf function<CR>
+
 
 "模糊搜索，很强大的功能，迅速秒搜
 nnoremap <silent> <Leader>rg :Leaderf rg<CR>
@@ -1379,7 +1387,7 @@ autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap ,l --------<Enter>
 
 " Press space twice to jump to the next '<++>' and edit it
-map <SPACE><SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4i
+map <SPACE><SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 """"""""""""""""""""""""""""""""""" vim-instant-markdown 插件配置  """""""""""""""""""""""""""""""""""""""""""
 
@@ -1402,7 +1410,14 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown 
 
 let g:jsx_ext_required = 0
 
-
+" =========================================
+" === vim-markdown-toc
+" =========================================
+"let g:vmt_auto_update_on_save = 0
+"let g:vmt_dont_insert_fence = 1
+let g:vmt_cycle_list_item_markers = 1
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
 
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
@@ -1419,7 +1434,7 @@ autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.py,*.cc,*.cxx call tagbar#autoopen()
 
 
 " 将开启tagbar的快捷键设置为　<Leader>tb
-nmap <Leader>tb :TagbarToggle<CR>
+nmap  tb :TagbarToggle<CR>
 nmap <F1> :TagbarToggle<CR>
 map <F1> :TagbarToggle<CR>
 map! <F1> <Esc> :TagbarToggle<CR>
@@ -1480,7 +1495,7 @@ map <F10> <Esc>:TlistToggle<Cr>
 
 
 "将 \t 表示为在命令行模式下输入命令：
-nmap <Leader>tl <Esc>:TlistToggle<Cr>
+nmap  tl <Esc>:TlistToggle<Cr>
 
 
 """"""""""""""""""""""""""""""""""" vimtex插件配置  """""""""""""""""""""""""""""""""""""""""""
@@ -1560,7 +1575,7 @@ let g:vimtex_delim_toggle_mod_list = [
 " autocmd BufNewFile,BufRead *.tex set spell     " 把这句话加到 .vimrc 里面可以在打开 .tex 文件的时候自动进行拼写检查。
 " set spelllang=en
 
-" autocmd FileType * setlocal spell spelllang=en_us,cjk
+autocmd FileType * setlocal spell spelllang=en_us,cjk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2002,11 +2017,11 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
-nmap <Leader>fl :NERDTreeToggle<CR>
+nmap nt :NERDTreeToggle<CR>
 
 " ctrl + d 打开目录
 " map <C-d> :NERDTreeToggle<CR>
-map <Leader>fd :NERDTreeToggle<CR>
+map nt :NERDTreeToggle<CR>
 
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="left"
@@ -3056,12 +3071,12 @@ vmap <C-M-right>  <C-e>
 
 " U/E keys for 5 times u/e (faster navigation)
 noremap U 5k
-noremap E 5j
+noremap D 5j
 
 " Ctrl + U or E will move up/down the view port without moving the cursor
 noremap <C-M-up> 5<C-y>
-noremap <C-M-up> 5<C-e>
-inoremap <C-M-down> <Esc>5<C-y>a
+noremap <C-M-down> 5<C-e>
+inoremap <C-M-up> <Esc>5<C-y>a
 inoremap <C-M-down> <Esc>5<C-e>a
 
 
@@ -3075,7 +3090,14 @@ map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 " 向右分屏
 map sl :set splitright<CR>:vsplit<CR>
 
+" Place the two screens up and down
+noremap sh <C-w>t<C-w>K
+" Place the two screens side by side
+noremap sv <C-w>t<C-w>H
 
+" Rotate screens
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
 
 "---------------- 窗口、标签页、缓冲区的切换--------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3106,12 +3128,12 @@ nnoremap <C-left> <C-W>h
 nnoremap <C-w> <C-W>w
 nnoremap <C-q> <C-W>q
 nnoremap <C-t> <C-W>T
-nnoremap <C-o> <C-W>o
+nnoremap <C-S-o> <C-W>o
 nnoremap <space> za
 " Ctrl-w 遍历切换窗口
 " Ctrl-q 关闭当前窗口，如果只剩最后一个了，则退出 vim
 " Ctrl-t 当前窗口移动到新标签页
-" Ctrl-o 关闭出当前窗口之外的所有窗口
+" Ctrl-shift-o 关闭出当前窗口之外的所有窗口
 " 用空格代替za进行折叠代码
 
 " " 移动窗口
@@ -3148,6 +3170,8 @@ nnoremap <M-right> :vertical resize +2<cr>
 " map <Left> :vertical resize-5
 
 
+
+
 nnoremap html :%TOhtml<cr>
 "#################################### 多标签页配置####################################
 " 不显示标签栏
@@ -3165,10 +3189,8 @@ let g:tablineclosebutton=1
 "#################################### 多标签页切换####################################
 
 " 新建标签页
-noremap <silent><tab>tn :tabnew<cr>
 noremap <silent><tab>t :tabnew<cr>
 " 关闭标签页
-noremap <silent><tab>tc :tabclose<cr>
 noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab>n :tabn<cr>
