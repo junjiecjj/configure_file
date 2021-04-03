@@ -51,15 +51,13 @@ Plugin 'lambdalisue/suda.vim' " do stuff like :sudowrite
 Plugin 'junegunn/goyo.vim' " distraction free writing mode
 " Undo Tree
 Plugin 'mbbill/undotree'
-Plugin 'jungeunn/vim-peekaboo'
+"  当你按下 "键时，它会在右侧打开一个寄存器备忘单
+Plugin 'junegunn/vim-peekaboo'
 Plugin 'mhinz/vim-startify'   " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
 " :h startify-faq
 
-Plugin 'wincent/terminus'
-
 "Plug 'mhinz/vim-signify'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'cohama/agit.vim'
 Plugin 'kdheepak/lazygit.nvim'
 
