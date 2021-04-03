@@ -462,7 +462,6 @@ set wildchar=<Tab> wildcharm=<C-Z>
 nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
 nmap <Leader>wq :wq<CR>
-
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
 map Q :q<CR>
@@ -510,6 +509,9 @@ noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 autocmd BufRead,BufNewFile *.md setlocal spell
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
+
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q <C-w>j:q<CR>
 
 
 " Open the vimrc file anytime
@@ -3046,12 +3048,8 @@ nnoremap tee :w !sudo tee %<cr>
 " ctrl-d 下翻半页,d = down
 
 
-"vim原本 ctrl-f 下翻一页,f = forward
-"vim原本 ctrl-b 上翻一页,b = backward
-nmap ff <C-f>
-vmap ff <C-f>
-nmap bb <C-b>
-vmap bb <C-b>
+
+
 
 " shift+up上翻半页，向上滚半个屏幕；
 nmap <S-up>  <C-u>
@@ -3061,34 +3059,33 @@ vmap <S-up>  <C-u>
 nmap <S-down>  <C-d>
 vmap <S-down>  <C-d>
 
-
+"vim原本 ctrl-f 下翻一页,f = forward
+"vim原本 ctrl-b 上翻一页,b = backward
 " shift+left上翻一页，向上滚一个屏幕
 nmap <S-left>  <C-b>
 vmap <S-left>  <C-b>
-
 " shift+right下翻一页，向下滚一个屏幕
 nmap <S-right>  <C-f>
 vmap <S-right>  <C-f>
 
+" Ctrl + U or E will move up/down the view port without moving the cursor
+noremap <C-M-left> 5<C-y>
+noremap <C-M-right> 5<C-e>
+inoremap <C-M-left> <Esc>5<C-y>a
+inoremap <C-M-right> <Esc>5<C-e>a
 " ctrl+alt+left向上翻一行，向上滚一行屏幕，光标不动
-nmap <C-M-left>  <C-y>
-vmap <C-M-left>  <C-y>
-
+nmap <C-M-up>  <C-y>
+vmap <C-M-up>  <C-y>
+inoremap <C-M-up> <Esc><C-y>a
 " ctrl+alt+right向下翻一行，向下滚一行屏幕，光标不动
-nmap <C-M-right>  <C-e>
-vmap <C-M-right>  <C-e>
-
+nmap <C-M-down>  <C-e>
+vmap <C-M-down>  <C-e>
+inoremap <C-M-down> <Esc><C-e>a
 " 光标在当前行的基础上再跳 20 行：20+enter 键
 
 " U/E keys for 5 times u/e (faster navigation)
 noremap U 5k
 noremap D 5j
-
-" Ctrl + U or E will move up/down the view port without moving the cursor
-noremap <C-M-up> 5<C-y>
-noremap <C-M-down> 5<C-e>
-inoremap <C-M-up> <Esc>5<C-y>a
-inoremap <C-M-down> <Esc>5<C-e>a
 
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
@@ -3225,6 +3222,13 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 
+" ctrl + tab下一个buffer
+map <C-tab> :bn<CR>
+nnoremap [b :bp<CR>
+" ctrl + shift + tab下一个buffer
+map <C-M-tab> :bp<CR>
+nnoremap ]b :bn<CR>
+
 " 命令:tabs可以显示已打开标签页的列表，并用“>”标识出当前页面，用“+”标识出已更改的页面。
 " :tabe <文件名> 在新标签页中打开指定的文件。
 " 如果你打开了多个缓冲区，那么使用命令:tab ball将为每一个打开的缓冲区，分别新建单独的标签页。
@@ -3261,19 +3265,7 @@ noremap <leader>0 :tablast<CR>
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
 
-" buffer 切换快捷键
-" alt + b下一个buffer
-" map <M-n> :bn<cr>
-" alt + p上一个buffer
-" map <M-p> :bp<cr>
-" ctrl + tab下一个buffer
-map <C-tab> :bn<CR>
-" ctrl + shift + tab下一个buffer
-map <C-M-tab> :bp<CR>
 
-"设置切换Buffer快捷键"
-nnoremap [b :bp<CR>
-nnoremap ]b :bn<CR>
 " "############################### 美化标签栏方法1 #######################################
 " " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
 " highlight TabLine        term=underline    cterm=bold    ctermfg=9   ctermbg=4
