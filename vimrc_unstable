@@ -88,7 +88,7 @@ Plugin 'tyru/open-browser.vim'               " 打开浏览器
 Plugin 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
 Plugin 'Yggdroot/indentLine'                 " 缩进指示线
 Plugin 'jiangmiao/auto-pairs'                " 自动补全括号等
-Plugin 'kien/ctrlp.vim'                      " 在vim中搜索文件
+" Plugin 'kien/ctrlp.vim'                      " 在vim中搜索文件
 "Plugin 'Lokaltog/vim-powerline'             " 美化状态栏，显示正在编辑的文件
 "Plugin 'vim-syntastic/syntastic'            " 语法检查,会导致保存python文件时很慢
 "Plugin 'scrooloose/syntastic'               " 语法检查
@@ -1107,11 +1107,11 @@ nnoremap <silent> <Leader>r  :Farr<cr>
 vnoremap <silent> <Leader>r  :Farr<cr>
 """""""""""""""""""""""""""""""""""""""" 配置ctrlP """"""""""""""""""""""""""""""""""""""""""""""""
 " 在当前目录搜索文件
-nnoremap <leader>cp  :CtrlP<CR>
-nnoremap <leader>b  :CtrlPBuffer<CR>
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = ''
+" nnoremap <leader>cp  :CtrlP<CR>
+" nnoremap <leader>b  :CtrlPBuffer<CR>
+" let g:ctrlp_match_window = 'bottom,order:ttb'
+" let g:ctrlp_switch_buffer = 0
+" let g:ctrlp_working_path_mode = ''
 
 
 """"""""""""""""""""""""""""""""""""""""""""" fzf 配置""""""""""""""""""""""""""""""""""""""""""""""
