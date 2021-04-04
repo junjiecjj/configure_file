@@ -1,4 +1,4 @@
-" ===
+=
 " === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：
 " ===
 " if empty(glob('~/.vim/autoload/plug.vim'))
@@ -2798,14 +2798,16 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " tabline中buffer显示编号
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_b = '%{strftime("%m/%d/%y - %H:%M")}'
 let g:airline_section_y = 'BN: %{bufnr("%")}'
 " 设置中文提示
 language messages zh_CN.utf-8
 " 设置中文帮助
 set helplang=cn
-
+" tabline中当前buffer两端的分隔字符
 let g:airline#extensions#tabline#left_sep = ' '  "separater
+" tabline中未激活buffer两端的分隔字符
 let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
 let g:airline#extensions#tabline#formatter = 'default'  "formater
 
@@ -3639,43 +3641,47 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 
 " Compile function
-map <F5> :call CompileRunGcc()<CR>
+noremap r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-  exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    silent! exec "!clear"
-    exec "!time python3 %"
-  elseif &filetype == 'html'
-    exec "!firefox % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  elseif &filetype == 'vimwiki'
-    exec "MarkdownPreview"
-  endif
+    exec "w
+    if &filetype == 'c'
+        exec "!gcc % -o %<"
+        exec "!time ./%<"
+    elseif &filetype == 'cpp'
+        set splitbelow
+        exec "!g++ -std=c++11 % -Wall -o %<"
+        :sp
+        :res -15
+        :term ./%<
+    elseif &filetype == 'java'
+        exec "!javac %"
+        exec "!time java %<"
+    elseif &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        set splitbelow
+        :sp
+        :term python3 %
+    elseif &filetype == 'html'
+        silent! exec "!".g:mkdp_browser." % &"
+    elseif &filetype == 'markdown'
+        exec "InstantMarkdownPreview"
+    elseif &filetype == 'tex'
+        silent! exec "VimtexStop"
+        silent! exec "VimtexCompile"
+    elseif &filetype == 'dart'
+        exec "CocCommand flutter.run -d ".g:flutter_default_device." ".g:flutter_run_args
+        silent! exec "CocCommand flutter.dev.openDevLog"
+    elseif &filetype == 'javascript'
+        set splitbelow
+        :sp
+        :term export DEBUG="INFO,ERROR,WARNING"; node --trace-warnings .
+    elseif &filetype == 'go'
+        set splitbelow
+        :sp
+        :term go run .
+    endif
 endfunc
-
-
-map <F6> :call CompileBuildrrr()<CR>
-func! CompileBuildrrr()
-  exec "w"
-  if &filetype == 'vim'
-    exec "source $MYVIMRC"
-  elseif &filetype == 'markdown'
-    exec "echo"
-  endif
-endfunc
-
 """"""""""""""""""""""""""""""""""""""""C语言的编译运行"""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
