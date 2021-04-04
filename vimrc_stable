@@ -2948,7 +2948,7 @@ if strftime('%H') >= 7 && strftime('%H') < 19
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
         \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
-        \ 'vim-colors-violet','space-vim-theme',
+        \ 'violet','space-vim-theme',
         \ ]
     autocmd vimenter * ++nested colorscheme PaperColor
     hi CursorColumn      ctermbg=250
@@ -2965,7 +2965,7 @@ else
         \ 'carbonized-dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
         \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel',
         \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
-        \ 'vividchalk', 'PaperColor', 'vim-colors-violet','space-vim-theme',
+        \ 'vividchalk', 'PaperColor', 'violet','space-vim-theme',
         \ ]
         " \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
         " \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
