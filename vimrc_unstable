@@ -2649,11 +2649,7 @@ set conceallevel=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
-" let g:Powerline_colorscheme='solarized256'
-" let g:Powerline_symbols= 'unicode'
 
-" let g:airline_theme='dark'
-" let g:airline_theme='bubblegum'
 "选择主题
 
 let airlinethemes = [
@@ -2667,9 +2663,6 @@ let airlinethemes = [
     \ ]
 
 exe 'let g:airline_theme= '.airlinethemes[localtime() % len(airlinethemes)]
-
-"alduin, angr, atomic, ayu, ayu_dark, ayu_light,ayu_mirage, badwolf, base16, base16_3024,base16_adwaita,base16_apathy.vim,base16_ashes.vim,base16_atelierdune.vim,base16_atelierforest.vim,base16_atelierheath.vim,base16_atelierlakeside.vim,base16_atelierseaside.vim,base16_bespin.vim,base16_brewer.vim,base16_bright.vim,base16_chalk.vim,base16_classic.vim，base16_codeschool.vim,base16_colors.vim,base16_default.vim,base16_eighties.vim,base16_gruvbox_dark_hard.vim,base16_greenscreen.vim,base16_monokai.vim,base16_oceanicnext.vim,base16_shapeshifter.vim,base16_tomorrow.vim,biogoo.vim,distinguished.vim,google_light.vim,jellybeans.vim,onedark.vim,powerlineish.vim,seoul256.vim,solarized_flood.vim,xtermlight.vim,wombat.vim,base16_google.vim，base16color.vim，molokai.vim，papercolor.vim，term_light.vim，solarized.vim，term_light.vim
-
 
 
 "这个是安装字体后 必须设置此项"
@@ -2746,13 +2739,6 @@ sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""默认"配色方案"""""""""""""""""""""""""""""""""""'""'""
-
 
 
 
