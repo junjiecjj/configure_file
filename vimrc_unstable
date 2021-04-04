@@ -557,6 +557,11 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <M-a> <S-Left>
 cnoremap <M-e> <S-Right>
+
+
+" Space 转化为 Tab
+nnoremap <LEADER>st :%s/    /\t/g
+vnoremap <LEADER>st :s/    /\t/g
 "===============================================================
 "============快捷键
 "============================================================
