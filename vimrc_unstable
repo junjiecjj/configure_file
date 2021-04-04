@@ -39,7 +39,7 @@ Plugin 'makerj/vim-pdf'
 Plugin 'lfv89/vim-interestingwords'
 Plugin 'itchyny/vim-cursorword'
 
-Plugin 'nlknguyen/papercolor-theme'
+
 " Other visual enhancement
 Plugin 'luochen1990/rainbow'
 Plugin 'mg979/vim-xtabline'
@@ -66,7 +66,10 @@ Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }
 
 " Debugger,代码调试IDE
 Plugin 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}
+" Vim Applications
+Plugin 'itchyny/calendar.vim'  "日历，:Calendar 在 Vim 中查看日历
 "#########################################################
+Plugin 'nlknguyen/papercolor-theme'
 Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
 Plugin 'nightsense/carbonized'
@@ -114,12 +117,11 @@ Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位
 Plugin 'lucasicf/vim-smooth-scroll'          " 支持平滑滚动
 Plugin 'Shougo/echodoc.vim'                  " 函数参数提示
 Plugin 'godlygeek/tabular'                   " 快速对齐
-Plugin 'plasticboy/vim-markdown'
-Plugin 'suan/vim-instant-markdown'   , {'for': 'markdown'}
 
 " Markdown
 Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown'] }
-
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'   , {'for': 'markdown'}
 Plugin 'vimwiki/vimwiki'
 " Markdown
 Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
@@ -147,7 +149,7 @@ Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                    " 在vim�
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'                                         " 美化状态栏，显示正在编辑的文件
+" Plugin 'itchyny/lightline.vim'                                         " 美化状态栏，显示正在编辑的文件
 Plugin 'rking/ag.vim'
 Plugin 'vim-airline/vim-airline'                                       " 美化状态栏，显示正在编辑的文件
 Plugin 'vim-airline/vim-airline-themes'                                " 美化状态栏，显示正在编辑的文件
@@ -516,15 +518,45 @@ noremap <LEADER>q <C-w>j:q<CR>
 
 
 " Open the vimrc file anytime
-map <Leader>rc :e ~/.vimrc<CR>
 
+if has('nvim')
+    map <Leader>rc :e ~/.config/nvim/init.vim<CR>
+else
+    map <Leader>rc :e ~/.vimrc<CR>
+endif
 " ===
 " === Goyo
 " ===
 map <LEADER>gy :Goyo<CR>
 
-map R :source  ~/.vimrc<cr>
+if has('nvim')
+    map R :source  ~/.config/nvim/init.vim<cr>
+else
+    map R :source  ~/.vimrc<cr>
+endif
 
+
+
+" Indentation
+nnoremap < <<
+nnoremap > >>
+" =====================================================
+" === Insert Mode Cursor Movement
+" =====================================================
+
+inoremap <C-a> <ESC>A
+inoremap <C-e> <ESC>I
+" =======================
+" === Command Mode Cursor Movement
+" ==================================
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <M-a> <S-Left>
+cnoremap <M-e> <S-Right>
 "===============================================================
 "============快捷键
 "============================================================
@@ -825,7 +857,31 @@ let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating
 let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 let g:lazygit_use_neovim_remote = 1 " for neovim-remote support
 
-
+" ==========================================
+" === vim-calendar
+" ==========================================
+"noremap \c :Calendar -position=here<CR>
+let g:calendar_frame = 'default'
+noremap \\ :Calendar -view=clock -position=here<CR>
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+augroup calendar-mappings
+	autocmd!
+	" diamond cursor
+	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_up)
+	autocmd FileType calendar nmap <buffer> h <Plug>(calendar_left)
+	autocmd FileType calendar nmap <buffer> j <Plug>(calendar_down)
+	autocmd FileType calendar nmap <buffer> l <Plug>(calendar_right)
+	autocmd FileType calendar nmap <buffer> <c-k> <Plug>(calendar_move_up)
+	autocmd FileType calendar nmap <buffer> <c-h> <Plug>(calendar_move_left)
+	autocmd FileType calendar nmap <buffer> <c-j> <Plug>(calendar_move_down)
+	autocmd FileType calendar nmap <buffer> <c-l> <Plug>(calendar_move_right)
+	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_start_insert)
+	autocmd FileType calendar nmap <buffer> K <Plug>(calendar_start_insert_head)
+	" unmap <C-n>, <C-p> for other plugins
+	autocmd FileType calendar nunmap <buffer> <C-n>
+	autocmd FileType calendar nunmap <buffer> <C-p>
+augroup END
 """"""""""""""""""""""""""""""""""""""""""" VeriLog配置""""""""""""""""""""""""""""""""""""""""""""
 
 au BufRead,BufNewFile *.sv,  set filetype=verilog_systemverilog
@@ -1459,6 +1515,8 @@ let g:vmt_cycle_list_item_markers = 1
 let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
 
+
+
 """"""""""""""""""""""""""""""""""""""  Tagbar配置 """"""""""""""""""""""""""""""""""""""
 
 " 设置 tagbar 使用的 ctags 的插件，必须要设置对
@@ -1953,7 +2011,28 @@ let g:ycm_semantic_triggers =  {
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
 
-
+" =========================================
+" === Terminal Behaviors
+" ============================================
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
 
 
 """""""""""""""""""""""""""""""""""""""""  NERD Commenter   """"""""""""""""""""""""""""""""""""""""""""
@@ -2563,62 +2642,7 @@ let g:javascript_conceal_underscore_arrow_function = " "
 set conceallevel=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""配置lightline""""""""""""""""""""""""""""""""
 
-
-" wombat, solarized, powerline, powerlineish,jellybeans, molokai, seoul256, darcula, selenized_dark,
-" Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,Tomorrow_Night_Bright, Tomorrow_Night_Eighties,
-" PaperColor,landscape, one, materia, material, OldHope, nord, deus,srcery_drk, ayu_mirage and 16color
-
-"molokai,landscape,solarized,
-"\ 'colorscheme': 'landscape',
-let g:lightline = {
-            \ 'colorscheme': 'PaperColor',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'readonly', 'filename', 'modified', 'helloworld' ] ],
-            \   'right': [ [ 'lineinfo' ],
-            \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ],
-            \ },
-            \ 'component': {
-            \   'charvaluehex': '0x%B',
-            \   'gitbranch': 'fugitive#head',
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'mode': 'LightlineMode',
-            \   'filetype': 'LightlineFiletype',
-            \ },
-            \ }
-
-"\   'helloworld': 'I am writing something...'
-
-
-function! LightlineMode()
-    return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
-                \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
-                \ &filetype ==# 'unite' ? 'Unite' :
-                \ &filetype ==# 'vimfiler' ? 'VimFiler' :
-                \ &filetype ==# 'vimshell' ? 'VimShell' :
-                \ lightline#mode()
-endfunction
-
-
-function! LightlineFilename()
-    return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-                \ &filetype ==# 'unite' ? unite#get_status_string() :
-                \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-                \ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-
-function! LightlineFiletype()
-    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
 
 
 
@@ -2720,43 +2744,6 @@ sign define vimspectorBP text=☛ texthl=Normal
 sign define vimspectorBPDisabled text=☞ texthl=Normal
 sign define vimspectorPC text=🔶 texthl=SpellBad
 
-"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
-function! Buf_total_num()
-    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-endfunction
-function! File_size(f)
-    let l:size = getfsize(expand(a:f))
-    if l:size == 0 || l:size == -1 || l:size == -2
-        return ''
-    endif
-    if l:size < 1024
-        return l:size.' bytes'
-    elseif l:size < 1024*1024
-        return printf('%.1f', l:size/1024.0).'k'
-    elseif l:size < 1024*1024*1024
-        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
-    else
-        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
-    endif
-endfunction
-set statusline=%<%1*[B-%n]%*
-" TOT is an abbreviation for total
-set statusline+=%2*[TOT:%{Buf_total_num()}]%*
-set statusline+=%3*\ %{File_size(@%)}\ %*
-set statusline+=%4*\ %F\ %*
-set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
-set statusline+=%6*\ %m%r%y\ %*
-set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
-set statusline+=%8*\ %P\ %*
-" default bg for statusline is 236 in space-vim-dark
-hi User1 cterm=bold ctermfg=232 ctermbg=179
-hi User2 cterm=None ctermfg=214 ctermbg=242
-hi User3 cterm=None ctermfg=251 ctermbg=240
-hi User4 cterm=bold ctermfg=169 ctermbg=239
-hi User5 cterm=None ctermfg=208 ctermbg=238
-hi User6 cterm=None ctermfg=246 ctermbg=237
-hi User7 cterm=None ctermfg=250 ctermbg=238
-hi User8 cterm=None ctermfg=249 ctermbg=240
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
