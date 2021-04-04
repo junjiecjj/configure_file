@@ -520,9 +520,9 @@ noremap <LEADER>q <C-w>j:q<CR>
 " Open the vimrc file anytime
 
 if has('nvim')
-    map <Leader>rc :e ~/.config/nvim/init.vim<CR>
+    map <Leader>ev :e ~/.config/nvim/init.vim<CR>
 else
-    map <Leader>rc :e ~/.vimrc<CR>
+    map <Leader>ev :e ~/.vimrc<CR>
 endif
 " ===
 " === Goyo
@@ -530,9 +530,9 @@ endif
 map <LEADER>gy :Goyo<CR>
 
 if has('nvim')
-    map R :source  ~/.config/nvim/init.vim<cr>
+    map <Leader>sv :source  ~/.config/nvim/init.vim<cr>
 else
-    map R :source  ~/.vimrc<cr>
+    map <Leader>sv :source  ~/.vimrc<cr>
 endif
 
 
@@ -817,7 +817,7 @@ vmap <C-e> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-e>'
 let g:coc_snippet_prev = '<c-n>'
 imap <C-e> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'David Chen'
+let g:snips_author = 'jj.Chen'
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
 
