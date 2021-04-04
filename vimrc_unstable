@@ -1673,7 +1673,7 @@ let g:vimtex_delim_toggle_mod_list = [
 " autocmd BufNewFile,BufRead *.tex set spell     " 把这句话加到 .vimrc 里面可以在打开 .tex 文件的时候自动进行拼写检查。
 " set spelllang=en
 
-autocmd FileType * setlocal spell spelllang=en_us,cjk
+" autocmd FileType * setlocal spell spelllang=en_us,cjk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2643,9 +2643,6 @@ set conceallevel=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
@@ -2672,9 +2669,6 @@ let g:airline_powerline_fonts = 1
 "我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-
-
-
 
 " 设置中文提示
 language messages zh_CN.utf-8
