@@ -1,4 +1,4 @@
-=
+" ===
 " === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：
 " ===
 " if empty(glob('~/.vim/autoload/plug.vim'))
@@ -56,6 +56,7 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'lfv89/vim-interestingwords'
 Plugin 'itchyny/vim-cursorword'
 " General Highlighter
+" Plugin 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plugin 'RRethy/vim-illuminate'
 
 " 多层括号配色
@@ -166,7 +167,7 @@ Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自�
 Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
 
 Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
-Plugin 'fatih/vim-go', { 'tag': '*' }        " go主要插件
+Plugin 'fatih/vim-go',{ 'for': ['go', 'vim-plug'], 'tag': '*' }       " go主要插件
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
 
 Plugin 'pechorin/any-jump.vim'
@@ -198,8 +199,12 @@ Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正
 Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
 Plugin 'scrooloose/nerdcommenter'                   "快速注释，取消注释
 
-
+"python
+Plugin 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+Plugin 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+Plugin 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
 " css,js
+Plugin 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
@@ -859,6 +864,11 @@ imap <C-e> <Plug>(coc-snippets-expand-jump)
 let g:snips_author = 'jj.Chen'
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
+""""""""""""""""""""""""""""""lfv89/vim-interestingwords配置""""""""""""""""""""""""""""""
+
+" Highlight with <Leader>k
+" Navigate highlighted words with n and N
+" Clear every word highlight with <Leader>K throughout the buffer
 
 """""""""""""""""""""""""""""luochen1990/rainbow配置"""""""""""""""""""""""""""""""""""""""""
 
