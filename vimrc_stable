@@ -1,4 +1,4 @@
-" ===
+=
 " === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：
 " ===
 " if empty(glob('~/.vim/autoload/plug.vim'))
@@ -376,10 +376,11 @@ set  novisualbell
 "出错时，不要闪烁 set novisualbell 。
 
 "系统剪切板
-set clipboard+=unnamed
+" set clipboard+=unnamed
+set clipboard^=unnamed,unnamedplus
+" set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
+" 其中unnamed代表*寄存器，unnamedplus代表+寄存器。在mac系统中，两者都一样；一般在linux系统中+和*是不同的，+对应ctrl + c,ctrl + v的桌面系统剪贴板，*对应x桌面系统的剪贴板（用鼠标选择复制，用鼠标中键粘贴
 
-"不适用vi的键盘模式，使用vim自己的
-set nocompatible
 
 "搜索逐字符高亮
 set hlsearch
