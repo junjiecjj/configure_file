@@ -303,6 +303,7 @@ set splitbelow
 
 " 设定默认解码
 set bsdir=buffer
+set modifiable
 set fenc=utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=utf-8,ucs-bom,latin1,gb2312,gb18030,cp936,gbk,big5
@@ -704,35 +705,90 @@ hi illuminatedWord cterm=undercurl gui=undercurl
 " 查看已安装:CocList extensions
 " 更新命令:CocUpdate
 let g:coc_global_extensions = [
-    \ 'coc-css',
+    \ 'coc-angular',
+    \ 'coc-blade-formatter',
+    \ 'coc-browser',
+    \ 'coc-calc',
+    \ 'coc-cfn-lint',
     \ 'coc-clangd',
-    \ 'coc-diagnostic',
+    \ 'coc-clang-format-style-options',
     \ 'coc-cmake',
+    \ 'coc-css',
+    \ 'coc-cssmodules',
+    \ 'coc-deno',
+    \ 'coc-denoland',
+    \ 'coc-diagnostic',
+    \ 'coc-discord',
+    \ 'coc-discord-rpc',
+    \ 'coc-dash-complete',
+    \ 'coc-dot-complete',
+    \ 'coc-ecdict',
+    \ 'coc-elixir',
+    \ 'coc-ember',
     \ 'coc-emmet',
-    \ 'coc-git',
-    \ 'coc-highlight',
+    \ 'coc-erlang_ls',
+    \ 'coc-eslint',
     \ 'coc-explorer',
-    \ 'coc-pairs',
-    \ 'coc-flutter-tools',
-    \ 'coc-gitignore',
+    \ 'coc-floaterm',
+    \ 'coc-flow',
+    \ 'coc-flutter',
+    \ 'coc-fsharp',
+    \ 'coc-fzf-preview',
+    \ 'coc-gist',
+    \ 'coc-git',
+    \ 'coc-glslx',
+    \ 'coc-go',
+    \ 'coc-graphql',
+    \ 'coc-highlight',
     \ 'coc-html',
+    \ 'coc-htmlhint',
+    \ 'coc-html-css-support',
+    \ 'coc-java',
+    \ 'coc-jedi',
     \ 'coc-json',
+    \ 'coc-julia',
+    \ 'coc-just-complete',
     \ 'coc-lists',
+    \ 'coc-lsp-wl',
+    \ 'coc-markdownlint',
+    \ 'coc-metals',
+    \ 'coc-omnisharp',
+    \ 'coc-perl',
+    \ 'coc-php-cs-fixer',
+    \ 'coc-phpactor',
+    \ 'coc-phpls',
+    \ 'coc-psalm',
+    \ 'coc-powershell',
     \ 'coc-prettier',
     \ 'coc-prisma',
     \ 'coc-pyright',
     \ 'coc-python',
-    \ 'coc-snippets',
-    \ 'coc-sourcekit',
+    \ 'coc-r-lsp',
+    \ 'coc-reason',
+    \ 'coc-rls',
+    \ 'coc-rome',
+    \ 'coc-rust-analyzer',
+    \ 'coc-sh',
+    \ 'coc-stylelintplus',
     \ 'coc-stylelint',
-    \ 'coc-syntax',
+    \ 'coc-snippets',
+    \ 'coc-solargraph',
+    \ 'coc-sourcekit',
+    \ 'coc-spell-checker',
+    \ 'coc-sql',
+    \ 'coc-svelte',
+    \ 'coc-svg',
+    \ 'coc-swagger',
+    \ 'coc-tabnine',
     \ 'coc-tailwindcss',
     \ 'coc-tasks',
+    \ 'coc-texlab',
+    \ 'coc-toml',
     \ 'coc-translator',
-    \ 'coc-tslint-plugin',
     \ 'coc-tsserver',
     \ 'coc-vetur',
     \ 'coc-vimlsp',
+    \ 'coc-xml',
     \ 'coc-yaml',
     \ 'coc-yank']
 inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" : coc#refresh()
@@ -2937,7 +2993,7 @@ map <Leader>c8 :set background=light<CR>:colorscheme solarized8_flat<CR>AirlineT
 map <Leader>c9 :set background=light<CR>:colorscheme flattened_light<CR>AirlineTheme dracula<CR>
 map <Leader>c10 :set background=light<CR>:colorscheme vividchalk<CR>AirlineTheme dracula<CR>
 
-if strftime('%H') >= 7 && strftime('%H') < 19
+if strftime('%H') >= 7 && strftime('%H') < 22
     set background=light
     let ayucolor="light"  " for light version of theme
     let themes = [
