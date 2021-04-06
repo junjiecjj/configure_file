@@ -251,7 +251,8 @@ set virtualedit=block
 set nostartofline
 
 let python_highlight_all=1
-
+" 允许有未保存的修改时切换缓冲区
+set hidden
 
 "显示行号
 set number
