@@ -24,7 +24,7 @@ let g:polyglot_disabled = ['ftdetect']
 
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-
+" call plug#begin('~/.vim/plugged')如果是vim-plug安装插件
 call vundle#begin()
 "PluginInstall:安装插件
 "PluginClean:移除不要的插件
@@ -221,7 +221,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 "All of your Plugins must be added before the following line
 call vundle#end()
-
+"  call plug#end()
 
 set secure   "会关闭项目中的 shell autocmd write 等命令。
 
