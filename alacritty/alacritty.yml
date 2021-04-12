@@ -38,15 +38,54 @@ colors:
      white:   '0xeeeeec'
 
 # 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
+# 设置字体
 font:
-  size: 13
-
   normal:
-    family: Noto Sans Mono
+    family: "Hack Nerd Font"
     style: Regular
-
   bold:
-    family: Noto Sans Mono
-
+    family: "Hack Nerd Font"
+    style: Bold
   italic:
-    family: Noto Sans Mono
+    family: "Hack Nerd Font"
+    style: Italic
+  bold_italic:
+    family: "Hack Nerd Font"
+    style: Bold Italic
+
+  # 字大小
+  size: 15.0 
+
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+window:
+  padding:
+    x: 2
+    y: 2
+
+
+scrolling:
+# 回滚缓冲区中的最大行数,指定“0”将禁用滚动。
+  history: 10000
+
+  # 滚动行数 
+
+  multiplier: 10
+
+# 如果为‘true’，则使用亮色变体绘制粗体文本。
+draw_bold_text_with_bright_colors: true
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: true
+
+live_config_reload: true
+
+key_bindings:
+  - { key: V, mods: command, action: Paste }
+  - { key: C, mods: command, action: Copy }
