@@ -1,4 +1,4 @@
-
+# ~/.config/alacritty/alacritty.yml
 # 默认窗口无标题栏，16:9的窗口比例启动
 window:
     decorations: "none"
