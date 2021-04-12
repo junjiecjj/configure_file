@@ -1,0 +1,31 @@
+# ~/.vim/.vimspector.json
+
+{
+  "configurations": {
+    "Cpp: Launch": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "name": "Cpp: Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceRoot}/a.out",
+        "args": [],
+        "cwd": "${workspaceRoot}",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb"
+      }
+    },
+    "Cpp: Attach": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "name": "Cpp: Attach",
+        "type": "cppdbg",
+        "request": "attach",
+        "program": "${workspaceRoot}/a.out",
+        "MIMode": "gdb"
+      }
+    }
+  }
+
+}
