@@ -1,0 +1,304 @@
+[bar/bar]
+background = #D93d3c3b
+foreground = #b6a49b
+width                    = 24%
+height                   = 70
+radius                   = 15
+line-size                = 0
+bottom                   = true
+border-bottom-size       = 0
+padding-left             = 0
+padding-right            = 0
+#module-margin-left       = 1
+#module-margin-right      = 1
+
+fixed-center = true
+font-0 = San Francisco Display Regular:size=24;1
+font-1 = unifont:fontformat=truetype:size=24:antialias=false;0
+font-2 = "MaterialIcons:size=24:antialias=false;1"
+font-3 = "icomoon-extended-ultra:size=24:antialias=false;1"
+font-4 = "Ubuntu Nerd Font:size=24:antialias=false;1"
+font-5 = FontAwesome:size=24;1
+
+modules-left =
+modules-center =
+modules-right = date volume eth poweroff
+module-margin = 2
+
+;left - center - right - none
+tray-position = none
+tray-maxsize = 24
+tray-detached = false
+tray-transparent = false
+tray-padding = 2
+tray-scale = 1.0
+
+
+override-redirect = true
+offset-x = 2900
+offset-y = 20
+
+padding = 0
+
+wm-name = bar
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[module/date]
+type = internal/date
+interval = 60
+date = %a %d %b
+time = %l:%M %p
+label = f073 %date% f017 %time%
+;label = f017 %time%
+format-padding = 1
+
+[module/volume]
+type = internal/volume
+format-volume =   <ramp-volume>  <label-volume>
+format-muted = 0% f6a9
+ramp-volume-0 = f026
+ramp-volume-1 = f027
+ramp-volume-2 = f028
+
+[module/poweroff]
+type = custom/script
+exec = echo " f011 "
+click-left = rofi -modi run,drun,window -show drun
+click-right = i3lock-fancy -pg &
+click-middle = /usr/bin/rofi-logout
+format-padding = 1
+
+[module/rofi]
+type = custom/script
+exec = echo " f038 "
+click-left = rofi -modi run,drun,window -show drun
+format-padding = 1
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+format-connected = <label-connected>
+format-connected-prefix = " f6ff "
+format-connected-prefix-foreground = #b6a49b
+label-connected = %downspeed:9%
+format-disconnected = <label-disconnected>
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+format-padding = 1
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+format-connected = <label-connected>
+format-connected-prefix = "f6ff "
+format-connected-prefix-foreground = #b6a49b
+label-connected = %upspeed:5%f062 %downspeed:5%f063
+format-disconnected = <label-disconnected>
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+format-padding = 0
+
+
+;;; CPU usage {{{
+[module/cpu]
+type = internal/cpu
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+format = <label><ramp-load>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load averaged over all cores
+;   %percentage-sum% - Cumulative load on all cores
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label = CPU %percentage%%
+;label-font = 3
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+; ramps for ramp-load
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+; colors for each ramp
+ramp-load-0-foreground = #aaff77
+ramp-load-1-foreground = #aaff77
+ramp-load-2-foreground = #aaff77
+ramp-load-3-foreground = #aaff77
+ramp-load-4-foreground = #fba922
+ramp-load-5-foreground = #fba922
+ramp-load-6-foreground = #ff5555
+ramp-load-7-foreground = #ff5555
+;;; }}}
+
+[module/memory]
+type = internal/memory
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 3.0
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label><ramp-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label = RAM %percentage_used%%
+;label-font = 3
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 50
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+ramp-used-0-foreground = #aaff77
+ramp-used-1-foreground = #aaff77
+ramp-used-2-foreground = #aaff77
+ramp-used-3-foreground = #aaff77
+ramp-used-4-foreground = #fba922
+ramp-used-5-foreground = #fba922
+ramp-used-6-foreground = #ff5555
+ramp-used-7-foreground = #ff5555
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+;;; }}}
+
+;;; battery {{{
+[module/battery]
+type = internal/battery
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = %{F#666}f240%{F#ccfafafa} <label-full>
+#label-charging-font = 3
+#label-discharing-font = 3
+
+ramp-capacity-0 = f244
+ramp-capacity-1 = f242
+ramp-capacity-2 = f240
+; low power alert
+ramp-capacity-0-foreground = #ff5555
+
+; it will display over the three pattern when charing
+; at a framerate 750
+; and each has a foreground color
+animation-charging-0 = f243
+animation-charging-1 = f242
+animation-charging-2 = f241
+animation-charging-2-foreground = #aaff77
+animation-charging-1-foreground = #fba922
+animation-charging-0-foreground = #ff5555
+animation-charging-framerate = 750
+;;; }}}
+
+;;; mpd config {{{
+[module/mpd]
+type = internal/mpd
+
+; format-online = <label-song>  <label-time>  <bar-progress>  <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>
+format-online = <toggle> <label-song> <icon-next>
+format-offline = <label-offline>
+format-offline-foreground = #66
+label-offline = mpd is off
+
+label-song-maxlen = 20
+label-song-font = 8
+
+icon-prev = f104
+icon-seekb = f049
+icon-stop = stop
+icon-play = f04b
+icon-pause = f28b
+icon-next = f105
+icon-seekf = f050
+
+icon-random = f074
+icon-repeat = f01e
+
+toggle-on-foreground = #2278ff
+toggle-off-foreground = #66
+
+bar-progress-width = 15
+bar-progress-indicator = 
+bar-progress-indicator-foreground = #bb
+bar-progress-fill = ─
+bar-progress-fill-foreground = #bb
+bar-progress-fill-font = 3
+bar-progress-empty = ─
+bar-progress-empty-foreground = #44
+bar-progress-empty-font = 3
+
+label-time-foreground = #55
+label-time-font = 8
+;;; }}}
