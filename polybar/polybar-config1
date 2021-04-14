@@ -92,7 +92,7 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 format-connected = <label-connected>
-format-connected-prefix = "\uf6ff "
+format-connected-prefix = "\uf1eb "
 format-connected-prefix-foreground = #b6a49b
 label-connected = %upspeed:5%\uf062 %downspeed:5%\uf063
 format-disconnected = <label-disconnected>
@@ -290,7 +290,7 @@ toggle-on-foreground = #2278ff
 toggle-off-foreground = #66
 
 bar-progress-width = 15
-bar-progress-indicator = 
+bar-progress-indicator = \uf1c8
 bar-progress-indicator-foreground = #bb
 bar-progress-fill = ─
 bar-progress-fill-foreground = #bb
