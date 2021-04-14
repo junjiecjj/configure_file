@@ -48,21 +48,21 @@ type = internal/date
 interval = 60
 date = %a %d %b
 time = %l:%M %p
-label = f073 %date% f017 %time%
-;label = f017 %time%
+label = \uf073 %date% \uf017 %time%
+;label = \uf017 %time%
 format-padding = 1
 
 [module/volume]
 type = internal/volume
 format-volume =   <ramp-volume>  <label-volume>
-format-muted = 0% f6a9
-ramp-volume-0 = f026
-ramp-volume-1 = f027
-ramp-volume-2 = f028
+format-muted = 0% \uf6a9
+ramp-volume-0 = \uf026
+ramp-volume-1 = \uf027
+ramp-volume-2 = \uf028
 
 [module/poweroff]
 type = custom/script
-exec = echo " f011 "
+exec = echo " \uf011 "
 click-left = rofi -modi run,drun,window -show drun
 click-right = i3lock-fancy -pg &
 click-middle = /usr/bin/rofi-logout
@@ -70,7 +70,7 @@ format-padding = 1
 
 [module/rofi]
 type = custom/script
-exec = echo " f038 "
+exec = echo " \uf038 "
 click-left = rofi -modi run,drun,window -show drun
 format-padding = 1
 
@@ -79,7 +79,7 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 format-connected = <label-connected>
-format-connected-prefix = " f6ff "
+format-connected-prefix = " \uf6ff "
 format-connected-prefix-foreground = #b6a49b
 label-connected = %downspeed:9%
 format-disconnected = <label-disconnected>
@@ -92,9 +92,9 @@ type = internal/network
 interface = wlp2s0
 interval = 3.0
 format-connected = <label-connected>
-format-connected-prefix = "f6ff "
+format-connected-prefix = "\uf6ff "
 format-connected-prefix-foreground = #b6a49b
-label-connected = %upspeed:5%f062 %downspeed:5%f063
+label-connected = %upspeed:5%\uf062 %downspeed:5%\uf063
 format-disconnected = <label-disconnected>
 label-disconnected = not connected
 label-disconnected-foreground = #66ffffff
@@ -240,22 +240,22 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-format-full = %{F#666}f240%{F#ccfafafa} <label-full>
+format-full = %{F#666}\uf240%{F#ccfafafa} <label-full>
 #label-charging-font = 3
 #label-discharing-font = 3
 
-ramp-capacity-0 = f244
-ramp-capacity-1 = f242
-ramp-capacity-2 = f240
+ramp-capacity-0 = \uf244
+ramp-capacity-1 = \uf242
+ramp-capacity-2 = \uf240
 ; low power alert
 ramp-capacity-0-foreground = #ff5555
 
 ; it will display over the three pattern when charing
 ; at a framerate 750
 ; and each has a foreground color
-animation-charging-0 = f243
-animation-charging-1 = f242
-animation-charging-2 = f241
+animation-charging-0 = \uf243
+animation-charging-1 = \uf242
+animation-charging-2 = \uf241
 animation-charging-2-foreground = #aaff77
 animation-charging-1-foreground = #fba922
 animation-charging-0-foreground = #ff5555
@@ -275,16 +275,16 @@ label-offline = mpd is off
 label-song-maxlen = 20
 label-song-font = 8
 
-icon-prev = f104
-icon-seekb = f049
-icon-stop = stop
-icon-play = f04b
-icon-pause = f28b
-icon-next = f105
-icon-seekf = f050
+icon-prev = \uf104
+icon-seekb = \uf049
+icon-stop = \uf04d
+icon-play = \uf04b
+icon-pause = \uf28b
+icon-next = \uf105
+icon-seekf = \uf050
 
-icon-random = f074
-icon-repeat = f01e
+icon-random = \uf074
+icon-repeat = \uf01e
 
 toggle-on-foreground = #2278ff
 toggle-off-foreground = #66
