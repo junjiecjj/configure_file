@@ -27,22 +27,22 @@
     "defaults": {
       // 所有 Profile 共用的设置可以放这里，就不用写多次了
       // 字体设置
-      "fontFace": "Cascadia Code",
+      //"fontFace": "Cascadia Code",
       //"fontFace": "DejaVu Sans Mono",
       //"fontFace": "Monospace Regular",
       // "fontFace": "文泉驿微米黑",
-      "fontFace": "DroidSansMono NF",
+      //"fontFace": "DroidSansMono NF",
       "fontFace": "JetBrains Mono",
-      "fontSize": 9,
+      "fontSize": 8,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
       "cursorShape": "bar",
       // 是否开启背景亚克力透明效果（窗口失去焦点时无效）
-      "useAcrylic": false,
+      "useAcrylic": true,
       "cursorColor": "#0cee32",
       "historySize": 2001,
       "snapOnInput": true,
       "acrylicOpacity": 0.8,
-      "backgroundImageOpacity": 0.1,
+      "backgroundImageOpacity": 0.3,
       "foreground": "#A7B191",
       "background": "#000000",
       //"background": "#013456",
@@ -50,7 +50,7 @@
       "hidden": false,
       //"startingDirectory": "//wsl$/Ubuntu-20.04/home/junjie",
       "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~;bash\"",
-      "colorScheme": "Snazzy"
+      "colorScheme": "Homebrew"
       //"colorScheme": "Tango Dark"
       //"colorScheme": "Homebrew"
       //"colorScheme": "Solarized Dark"
@@ -301,7 +301,7 @@
 
     {
       "command": "increaseFontSize",
-        "keys": ["ctrl + +"]
+      "keys": ["ctrl + +"]
     }, //增大字体
     {
       "command": "decreaseFontSize",
@@ -392,7 +392,7 @@
         "split": "vertical",
         "splitMode": "duplicate"
       },
-      "keys": "ctrl+shift+="
+      "keys": "alt+shift+="
     },
     {
       "command": {
@@ -400,43 +400,43 @@
         "split": "horizontal",
         "splitMode": "duplicate"
       },
-      "keys": "ctrl+shift+-"
+      "keys": "alt+shift+-"
     },
     {
       "command": {
         "action": "moveFocus",
         "direction": "up"
       },
-      //"keys": ["alt+up"]
+      //"keys": ["ctrl+g"]
+      "keys": ["alt+up"]
       //"keys": ["ctrl+up"]
-      "keys": ["ctrl+g"]
     },
     {
       "command": {
         "action": "moveFocus",
         "direction": "down"
       },
-      //"keys": ["alt+down"]
+      //"keys": ["ctrl+h"]
+      "keys": ["alt+down"]
       //"keys": ["ctrl+down"]
-      "keys": ["ctrl+h"]
     },
     {
       "command": {
         "action": "moveFocus",
         "direction": "left"
       },
-      //"keys": ["alt+left"]
+      //"keys": ["ctrl+j"]
+      "keys": ["alt+left"]
       //"keys": ["ctrl+left"]
-      "keys": ["ctrl+j"]
     },
     {
       "command": {
         "action": "moveFocus",
         "direction": "right"
       },
-      //"keys": ["alt+right"]
+      //"keys": ["ctrl+k"]
+      "keys": ["alt+right"]
       //"keys": ["ctrl+right"]
-      "keys": ["ctrl+k"]
     },
     {
       "command": {
