@@ -33,11 +33,12 @@
       // "fontFace": "文泉驿微米黑",
       //"fontFace": "DroidSansMono NF",
       "fontFace": "JetBrains Mono",
+      //"fontFace": "SauceCodePro Nerd Font Mono",
       "fontSize": 8,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
       "cursorShape": "bar",
       // 是否开启背景亚克力透明效果（窗口失去焦点时无效）
-      "useAcrylic": true,
+      "useAcrylic": false,
       "cursorColor": "#0cee32",
       "historySize": 2001,
       "snapOnInput": true,
