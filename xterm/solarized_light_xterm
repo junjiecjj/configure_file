@@ -18,13 +18,25 @@ xterm*Font: 7*13
 
 ! English font
 ! xterm*faceName:Noto mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! xterm*faceName:Fire code Regular:antialas=true:pixelsize=12
+! xterm*faceName:SauceCodePro Nerd Font:antialas=true:pixelsize=12
+! xterm*faceName:SauceCodePro Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
+! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
+! xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
 xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
-! xterm*faceNameDoublesize:Fire code Regular:antialias=True:pixelsize=13
 ! xterm*faceNameDoublesize:JetBrains Mono Regular:antialias=True:pixelsize=13
-! xterm*faceNameDoublesize:SimHei:size=36:antialias=True:pixelsize=36
+! xterm*faceNameDoublesize:Fire code Regular:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:SauceCodePro Nerd Font:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:SauceCodePro Nerd Font Mono:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:FiraCode Nerd Font:size=36:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:FiraCode Nerd Font Mono:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:JetBrainsMono Nerd Font:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:JetBrainsMono Nerd Font Mono:antialias=True:pixelsize=13
 
 xterm*xftAntialias:true
 xterm*cjkWidth:false
