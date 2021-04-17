@@ -66,7 +66,7 @@ cursor-scroll = ns-resize
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
-font-2 = Sauce Code Pro Nerd Font:pixelsize=10;1
+font-2 = SauceCodePro Nerd Font:pixelsize=10;1
 font-4 = JetBrainsMono Nerd Font:size=10:antialias=false;1
 font-5 = FiraCode Nerd Font:size=10;1
 
