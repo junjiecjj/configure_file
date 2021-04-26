@@ -794,14 +794,17 @@ noremap s <nop>
 
 " 定义快捷键关闭当前分割窗口
 nmap ;q :q<CR>
+nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
-nmap ;w :w<CR>
 nmap ;wq :wq<CR>
+nmap ;w :w!<CR>
+nmap <Leader>wq :wq<CR>
+nmap <Leader>w :w!<CR>
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
 map Q :q<CR>
 map S :w!<CR>
-" map <C-s> :w<CR>
+map <C-s> :w<CR>
 
 " Call figlet
 map ;x :r !figlet
@@ -3486,7 +3489,7 @@ if strftime('%H') >= 7 && strftime('%H') < 22
         \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
         \ 'violet','space-vim-theme',
         \ ]
-    autocmd vimenter * ++nested colorscheme PaperColor
+    " autocmd vimenter * ++nested colorscheme PaperColor
     hi CursorColumn      ctermbg=250
     hi CursorColumn      guibg= #bcbcbc
         " \ 'vimspectr0-light'  , 'vimspectr0-light'   , 'vimspectr30-light' ,
@@ -3508,12 +3511,12 @@ else
         " \ 'vimspectr150-dark' , 'vimspectr180-dark'  , 'vimspectr210-dark' ,
         " \ 'vimspectr240-dark' , 'vimspectr270-dark'  , 'vimspectr300-dark' ,
         " \ 'vimspectr330-dark' , 'vimspectrgrey-dark' ,
-    autocmd vimenter * ++nested colorscheme
+    " autocmd vimenter * ++nested colorscheme lilydjwg_dark_modified
     hi CursorColumn      ctermbg=237
     hi CursorColumn      guibg= #3a3a3a
 endif
 
-" exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
+exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " exe 'colorscheme '.themes[localtime() % len(themes)]
 " autocmd vimenter * ++nested colorscheme solarized8_higt
 
