@@ -3922,7 +3922,7 @@ noremap <leader>0 :tablast<CR>
 map <C-tab> :bn<CR>
 nnoremap <C-tab> :bn<CR>
 nnoremap  ]b :bn<CR>
-nnoremap  ;e :bp<CR>
+nnoremap  ;e :bn<CR>
 " ctrl + shift + tab下一个buffer
 map <C-M-tab> :bp<CR>
 nnoremap <C-M-tab> :bp<CR>
