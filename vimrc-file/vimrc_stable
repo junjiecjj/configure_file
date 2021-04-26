@@ -9,7 +9,7 @@
 " ===
 " === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：vim+vundle
 " ===
-" if empty(glob('~/.vim/autoload/plug.vim'))
+" if empty(glob('~/.vim/bundle/Vundle.vim'))
 "   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   autocmd VimEnter * PluginInstall --sync | source ~/.vimrc
 " endif
