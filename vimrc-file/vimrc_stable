@@ -61,7 +61,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'glepnir/oceanic-material'
 Plugin 'mhartington/oceanic-next'
-Plugin 'altercation/vim-colors-solarized'    " 配色方案"
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -142,8 +141,10 @@ Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
 "新一代目录树defx
+Plugin 'Shougo/defx.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
-Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins'}
 Plugin 'kristijanhusak/defx-icons'
 Plugin 'tyru/open-browser.vim'                        " 打开浏览器
 Plugin 'lucasicf/vim-smooth-scroll'                    " 支持平滑滚动
@@ -452,7 +453,7 @@ set guioptions+=m
 set guioptions+=r
 set guioptions+=L
 " 设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double "防止特殊符号无法正常显示
+" set ambiwidth=double "防止特殊符号无法正常显示
 
 set laststatus=2
 " 2为总显示最后一个窗口的状态行
@@ -2222,6 +2223,22 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 """"""""""""""""""""'Defx设置"""""""""""""""""""""""""""""""""""""""""""""""''
 noremap <LEADER>df :Defx<CR>
+let g:defx_icons_enable_syntax_highlight = 1
+" 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
+noremap <LEADER>df :Defx  -search=`expand('%:p')` -toggle <cr>
+
+
+"打开vim自动打开defx
+func! ArgFunc() abort
+    let s:arg = argv(0)
+    if isdirectory(s:arg)
+        return s:arg
+    else
+        return fnamemodify(s:arg, ':h')
+    endif
+endfunc
+autocmd VimEnter * Defx `ArgFunc()` -no-focus -search=`expand('%:p')`
+
 
 call defx#custom#option('_', {
 			\ 'resume': 1,
@@ -2231,6 +2248,8 @@ call defx#custom#option('_', {
 			\ 'show_ignored_files': 0,
 			\ 'columns': 'mark:indent:git:icons:filename',
 			\ 'root_marker': '',
+			\ 'buffer_name': '',
+			\ 'toggle': 1,
 			\ })
 
 call defx#custom#column('git', {
@@ -2308,19 +2327,6 @@ function! s:defx_mappings() abort
 
 endfunction
 
-function! s:defx_toggle_tree() abort
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
-endfunction
-
-function! s:defx_toggle_tree() abort
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
-endfunction
 
 let g:defx_icons_column_length = 2
 let g:defx_icons_mark_icon = ''
