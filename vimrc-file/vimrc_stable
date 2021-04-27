@@ -370,7 +370,7 @@ set list
 "set listchars=tab:▸\ ,trail:▫
 " set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
 set listchars=tab:▸\ ,nbsp:+,trail:▫,extends:>,precedes:<
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+" set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 "折叠
 "允许折叠
