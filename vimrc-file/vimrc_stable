@@ -4145,8 +4145,8 @@ if (g:iswindows && g:isGUI)
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
-    set diffexpr=MyDiff()
-    function MyDiff()
+    set diffexpr=MyDiff1()
+    function MyDiff1()
         let opt = '-a --binary '
         if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
         if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
