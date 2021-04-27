@@ -1,3 +1,20 @@
+" ===
+" === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：vim+vim-plug
+" ===
+" if empty(glob('~/.vim/autoload/plug.vim'))
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+" endif
+
+" ===
+" === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：vim+vundle
+" ===
+" if empty(glob('~/.vim/bundle/Vundle.vim'))
+"   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"   autocmd VimEnter * PluginInstall --sync | source ~/.vimrc
+" endif
+
+"如果你用的是 Vim，请把~/.config/nvim/autoload/plug.vim换成~/.vim/autoload/plug.vim
 
 
 let mapleader = '\'
@@ -15,7 +32,7 @@ let g:polyglot_disabled = ['markdown.plugin','autoindent','sensible','ftdetect',
 
 
 "set the runtime path to include Vundle and initialize
-set rtp+=$VIM/vimfiles/bundle/Vundle.vim
+set rtp+=$VIM/vimfiles/bundle//Vundle.vim
 " vim安装在C:\Vim82\Vim\vimfiles\bundle\Vundle.vim
 call vundle#begin('$VIM/vimfiles/bundle/')
 
@@ -45,7 +62,6 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'glepnir/oceanic-material'
 Plugin 'mhartington/oceanic-next'
-Plugin 'altercation/vim-colors-solarized'    " 配色方案"
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -126,8 +142,10 @@ Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
 "新一代目录树defx
+Plugin 'Shougo/defx.nvim'
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
-Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins'}
 Plugin 'kristijanhusak/defx-icons'
 Plugin 'tyru/open-browser.vim'                        " 打开浏览器
 Plugin 'lucasicf/vim-smooth-scroll'                    " 支持平滑滚动
@@ -353,7 +371,7 @@ set list
 "set listchars=tab:▸\ ,trail:▫
 " set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
 set listchars=tab:▸\ ,nbsp:+,trail:▫,extends:>,precedes:<
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+" set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 "折叠
 "允许折叠
@@ -436,7 +454,7 @@ set guioptions+=m
 set guioptions+=r
 set guioptions+=L
 " 设置为双字宽显示，否则无法完整显示如:☆
-set ambiwidth=double "防止特殊符号无法正常显示
+" set ambiwidth=double "防止特殊符号无法正常显示
 
 set laststatus=2
 " 2为总显示最后一个窗口的状态行
@@ -797,14 +815,17 @@ noremap s <nop>
 
 " 定义快捷键关闭当前分割窗口
 nmap ;q :q<CR>
+nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
-nmap ;w :w<CR>
 nmap ;wq :wq<CR>
+nmap ;w :w!<CR>
+nmap <Leader>wq :wq<CR>
+nmap <Leader>w :w!<CR>
 " 定义快捷键保存当前窗口内容
 nmap <Leader>w :w<CR>
 map Q :q<CR>
 map S :w!<CR>
-" map <C-s> :w<CR>
+map <C-s> :w<CR>
 
 " Call figlet
 map ;x :r !figlet
@@ -2203,6 +2224,22 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 """"""""""""""""""""'Defx设置"""""""""""""""""""""""""""""""""""""""""""""""''
 noremap <LEADER>df :Defx<CR>
+let g:defx_icons_enable_syntax_highlight = 1
+" 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
+noremap <LEADER>df :Defx  -search=`expand('%:p')` -toggle <cr>
+
+
+"打开vim自动打开defx
+func! ArgFunc() abort
+    let s:arg = argv(0)
+    if isdirectory(s:arg)
+        return s:arg
+    else
+        return fnamemodify(s:arg, ':h')
+    endif
+endfunc
+autocmd VimEnter * Defx `ArgFunc()` -no-focus -search=`expand('%:p')`
+
 
 call defx#custom#option('_', {
 			\ 'resume': 1,
@@ -2212,6 +2249,8 @@ call defx#custom#option('_', {
 			\ 'show_ignored_files': 0,
 			\ 'columns': 'mark:indent:git:icons:filename',
 			\ 'root_marker': '',
+			\ 'buffer_name': '',
+			\ 'toggle': 1,
 			\ })
 
 call defx#custom#column('git', {
@@ -2289,19 +2328,6 @@ function! s:defx_mappings() abort
 
 endfunction
 
-function! s:defx_toggle_tree() abort
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
-endfunction
-
-function! s:defx_toggle_tree() abort
-	if defx#is_directory()
-		return defx#do_action('open_or_close_tree')
-	endif
-	return defx#do_action('multi', ['drop'])
-endfunction
 
 let g:defx_icons_column_length = 2
 let g:defx_icons_mark_icon = ''
@@ -3489,7 +3515,7 @@ if strftime('%H') >= 7 && strftime('%H') < 22
         \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
         \ 'violet','space-vim-theme',
         \ ]
-    autocmd vimenter * ++nested colorscheme PaperColor
+    " autocmd vimenter * ++nested colorscheme PaperColor
     hi CursorColumn      ctermbg=250
     hi CursorColumn      guibg= #bcbcbc
         " \ 'vimspectr0-light'  , 'vimspectr0-light'   , 'vimspectr30-light' ,
@@ -3511,12 +3537,12 @@ else
         " \ 'vimspectr150-dark' , 'vimspectr180-dark'  , 'vimspectr210-dark' ,
         " \ 'vimspectr240-dark' , 'vimspectr270-dark'  , 'vimspectr300-dark' ,
         " \ 'vimspectr330-dark' , 'vimspectrgrey-dark' ,
-    autocmd vimenter * ++nested colorscheme
+    " autocmd vimenter * ++nested colorscheme lilydjwg_dark_modified
     hi CursorColumn      ctermbg=237
     hi CursorColumn      guibg= #3a3a3a
 endif
 
-" exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
+exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " exe 'colorscheme '.themes[localtime() % len(themes)]
 " autocmd vimenter * ++nested colorscheme solarized8_higt
 
@@ -3875,8 +3901,10 @@ noremap <silent><tab>t :tabnew<cr>
 noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab><right> :tabn<cr>
+noremap <silent>\= :tabn<cr>
 " 上一个标签页
 noremap <silent><tab><left> :tabp<cr>
+noremap <silent>\- :tabp<cr>
 "下一个标签页,循环
 noremap <silent><S-tab> :tabnext<CR>
 
@@ -3923,10 +3951,12 @@ noremap <leader>0 :tablast<CR>
 map <C-tab> :bn<CR>
 nnoremap <C-tab> :bn<CR>
 nnoremap  ]b :bn<CR>
+nnoremap  ;e :bn<CR>
 " ctrl + shift + tab下一个buffer
 map <C-M-tab> :bp<CR>
 nnoremap <C-M-tab> :bp<CR>
 nnoremap  [b :bp<CR>
+nnoremap  ;a :bp<CR>
 
 " :buffers或:ls或:files 显示缓冲区列表。
 " ctrl+^：在最近两个缓冲区间切换。
