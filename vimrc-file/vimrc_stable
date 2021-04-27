@@ -2226,7 +2226,7 @@ noremap <LEADER>df :Defx<CR>
 let g:defx_icons_enable_syntax_highlight = 1
 " 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
 noremap <LEADER>df :Defx  -search=`expand('%:p')` -toggle <cr>
-nmap <silent> ff :Defx  -search=`expand('%:p')` -toggle <cr>
+nmap <silent> df :Defx  -search=`expand('%:p')` -toggle <cr>
 
 " Exit Vim if defxTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:defx') |
