@@ -854,7 +854,7 @@ map \fr 10zl
 " === Other useful stuff
 " ===
 " 打开新标签页并在新标签页打开终端
-nnoremap /t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
+nnoremap ;t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 
 " 上下分屏并在下方打开终端
 noremap <LEADER>td :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
@@ -1825,16 +1825,16 @@ let g:dashboard_custom_shortcut={
 
 """"""""""""""""""""""""""nvim-telescope/telescope.nvim配置"""""""""""""""""""""""""""""""""
 " Find files using Telescope command-line sugar.
-nnoremap /ff <cmd>Telescope find_files<cr>
-nnoremap /fg <cmd>Telescope live_grep<cr>
-nnoremap /fb <cmd>Telescope buffers<cr>
-nnoremap /fh <cmd>Telescope help_tags<cr>
+nnoremap [ff <cmd>Telescope find_files<cr>
+nnoremap [fg <cmd>Telescope live_grep<cr>
+nnoremap [fb <cmd>Telescope buffers<cr>
+nnoremap [fh <cmd>Telescope help_tags<cr>
 
 " Using lua functions
-nnoremap /ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap /fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap /fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap /fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap ,ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap ,fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap ,fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap ,fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 
 highlight TelescopeSelection      guifg=#D79921 gui=bold  ctermfg=11 " selected item
