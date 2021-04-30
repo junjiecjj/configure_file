@@ -227,6 +227,7 @@ Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正
 Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
 " Plug 'glepnir/spaceline.vim'                    " 美化状态栏，
 Plugin 'scrooloose/nerdcommenter'                   "快速注释，取消注释
+Plugin 'tpope/vim-commentary'                     " 快速注释插件，相比于 nerdcommenter 更加简洁实用
 
 "python
 Plugin 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
@@ -2226,7 +2227,7 @@ noremap <LEADER>df :Defx<CR>
 let g:defx_icons_enable_syntax_highlight = 1
 " 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
 noremap <LEADER>df :Defx  -search=`expand('%:p')` -toggle <cr>
-nmap <silent> df :Defx  -search=`expand('%:p')` -toggle <cr>
+nmap <silent> ff :Defx  -search=`expand('%:p')` -toggle <cr>
 
 " Exit Vim if defxTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:defx') |
@@ -2661,12 +2662,51 @@ if !exists('g:AutoComplPop_Behavior')
 endif
 
 
-
-
 """""""""""""""""""""""""'""""vim-clang-format插件"""""""""""""""""""""""""""""""""
 
 let g:clang_format#auto_format_on_insert_leave=1    "退出插入模式时自动格式化
+
+
+"
+" " map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" " if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" " " Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
+
+let g:autoformat_verbosemode=1 "开启详细模式便于查错
+autocmd BufWrite *.sql,*.c,*.cpp,*.py,*.java,*.js :Autoformat "设置发生保存事件时执行格式化
+
+"F3自动格式化代码
+noremap \af :Autoformat<CR>
+let g:autoformat_verbosemode=1
+au BufWrite * :Autoformat  " 保存的时候 格式化"
+let g:clang_format#auto_format=1 " 自动检测.clang-format作为配置的格式"
+
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 1
+let g:autoformat_remove_trailing_spaces = 1
+let g:formatdef_hl_js='"js-beautify"'
+let g:formatdef_hl_c='"clang-format -style=\"{BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, PointerAlignment: Right, ColumnLimit: 150, SpacesBeforeTrailingComments: 1}\""' "指定格式化的方式, 使用配置参数
+let g:formatters_c = ['hl_c']
+let g:formatters_cpp = ['hl_c']
+let g:formatters_json = ['hl_js']
+let g:formatters_js = ['hl_js']
+let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
+let g:formatters_sql = ['sqlformat']
+
+"保存时自动格式化指定文件类型代码
+""au BufWrite * :Autoformat
+"autocmd BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat "设置发生保存事件时执行格式化
+
+"""""""""""""""""""""""""""""""""""""""Autopep8配置"""""""""""""""""""""""""""""""""""""""
+autocmd FileType python noremp <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
 
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
@@ -3556,7 +3596,7 @@ if strftime('%H') >= 7 && strftime('%H') < 22
     let themes = [
         \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
         \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github','PaperColor',
-        \ 'gobo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
+        \ 'gabo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
@@ -4145,8 +4185,8 @@ if (g:iswindows && g:isGUI)
     source $VIMRUNTIME/vimrc_example.vim
     source $VIMRUNTIME/mswin.vim
     behave mswin
-    set diffexpr=MyDiff1()
-    function MyDiff1()
+    set diffexpr=MyDiff()
+    function MyDiff()
         let opt = '-a --binary '
         if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
         if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
