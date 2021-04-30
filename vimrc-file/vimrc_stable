@@ -16,7 +16,6 @@
 
 "如果你用的是 Vim，请把~/.config/nvim/autoload/plug.vim换成~/.vim/autoload/plug.vim
 
-
 let mapleader = '\'
 "不适用vi的键盘模式，使用vim自己的
 set nocompatible                             " required
@@ -124,12 +123,14 @@ Plugin 'Yggdroot/indentLine', { 'for': ['lua', 'c', 'h', 'cpp', 'py', 'json', 'g
 Plugin 'fadein/vim-FIGlet'                " 出现有趣的文字图像
 Plugin 'lambdalisue/suda.vim'             " do stuff like :sudowrite
 Plugin 'junegunn/goyo.vim'                " distraction free writing mode
+Plugin 'junegunn/limelight.vim'
 Plugin 'junegunn/vim-peekaboo'            "  当你按下双引号键时，它会在右侧打开一个寄存器备忘单
 Plugin 'matze/vim-move'                   " 代码块移动
 Plugin 'DoxygenToolkit.vim'               " 注释文档生成
 Plugin 'VimTweak'                         " 背景透明插件
 Plugin 'kshenoy/vim-signature'            " 增加书签
 Plugin 'makerj/vim-pdf'                   "阅读pdf
+Plugin 'machakann/vim-highlightedyank' " 使 yank 的文档半透明高亮
 Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
 " :h startify-faq
@@ -891,10 +892,8 @@ else
 endif
 
 
-"""""""""""" Goyo"""""""""""
-map <LEADER>gy :Goyo<CR>
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
 nnoremap < <<
 nnoremap > >>
@@ -1289,6 +1288,16 @@ let g:rainbow_conf = {
             \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" Goyo和junegunn/limelight.vim配置"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <LEADER>gy :Goyo<CR>
+
+
+let g:limelight_default_coefficient = 0.5    " 设置隐藏区域的黑暗度, 值越大越暗
+let g:limelight_paragraph_span = 2           " 设置暗光的跨度, 暗光所能照亮的范围
+let g:limelight_priority = -1                " 暗光优先级, 防止搜索的高亮效果被覆盖
+autocmd! User GoyoEnter Limelight            " 进入 Goyo 专注插件时, 同时开启暗光效果
+autocmd! User GoyoLeave Limelight!           " 离开 Goyo 专注插件时, 同时退出暗光效果
 
 """"""""""""""""""""""""""""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -2408,8 +2417,11 @@ noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 """"""""""""""""""""""" godlygeek/tabular插件""""""""""""""""
-
-vmap ga :Tabularize /
+vmap ;t= :Tabularize /=
+" :Tabularize /,/ : 将整个缓冲区的所有行按照 , 符号进行对齐
+" :'<,'>Tabularize /,/ : 对高亮选中范围内的行进行对齐
+" :Tabularize /,/l1/c1/r0 : 按照 , 进行对齐，并且为每个分割的文本区域内的文本指定对齐方式，l, c, r 分别为左中右对齐，1 代表空距离分隔符一个空格
+" abc,def,ghi a,b a,b,c :Tabularize /,/r1c1l0 abc , def, ghi a , b a , b , c
 
 """""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
 "加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
@@ -3314,6 +3326,10 @@ let g:NERDToggleCheckAllLines    = 1
 "  vim原本的注释快捷键是 \ci，一次注释，操作两次是取消注释
 "    n\ci是注释n行
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""tpope/vim-commentary配置"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gcc: 注释或反注释
+" gcap: 注释一段
+" gc: visual 模式下直接注释所有已选择的行
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
