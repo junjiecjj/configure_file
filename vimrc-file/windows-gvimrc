@@ -115,6 +115,7 @@ Plugin 'DoxygenToolkit.vim'               " 注释文档生成
 Plugin 'VimTweak'                         " 背景透明插件
 Plugin 'kshenoy/vim-signature'            " 增加书签
 Plugin 'makerj/vim-pdf'                   "阅读pdf
+Plugin 'machakann/vim-highlightedyank'    " 使 yank 的文档半透明高亮
 Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
 " :h startify-faq
@@ -2393,7 +2394,7 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 """"""""""""""""""""""" godlygeek/tabular插件""""""""""""""""
 
-vmap ga :Tabularize /
+vmap ;t= :Tabularize /=
 
 """""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
 "加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
