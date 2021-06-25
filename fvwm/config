@@ -1,4 +1,4 @@
-##################################
+##
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -933,7 +933,8 @@ AddToMenu ShutDownMenu   "确定关机?" Title
 + "%$[fvwm_exicons2]/choice-yes.png%确定"         Exec exec   shutdown -h now
 + "%$[fvwm_exicons2]/choice-no.png%不..."         Nop
 + "%$[fvwm_exicons2]/restart.png%重启电脑"        Exec exec   reboot
-+ "%$[fvwm_exicons2]/lock.png%锁屏"               Exec exec   xscreensaver-command -lock
++ "%$[fvwm_exicons2]/lock.png%xscreensaver锁屏"               Exec exec   xscreensaver-command -lock
++ "%$[fvwm_exicons2]/lock.png%Slock锁屏"               Exec exec   slock
 
 # Fvwm Man Pages (Help) Menu
 DestroyMenu MenuFvwmManPages
@@ -996,6 +997,8 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 
 #######
 # 5: Mouse and Key bindings
+# Format: Key <X>  <Context> <Modifier> <Action>
+#         Mouse <X> <Context> <Modifier> <Action>
 #
 # Contexts:
 #     R = Root Window                 rrrrrrrrrrrrrrrrrrrrrr
@@ -1013,10 +1016,8 @@ AddToMenu MenuFvwmStopModule "Stop Fvwm Modules" Title
 #
 #     Numbers are buttons: [1 3 5 7 9  TTTTT  0 8 6 4 2]
 #
-# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt (N)othing
+# Modifiers: (A)ny, (C)ontrol, (S)hift, (M)eta,在PC上就是Alt, (N)othing
 #
-# Format: Key <X>  <Context> <Modifier> <Action>
-#         Mouse <X> <Context> <Modifier> <Action>
 ####################
 #Meun是右windows键右边的按钮
 # Alt-F1 or Menu to load the root menu and Alt-Tab for a WindowList.
@@ -1074,6 +1075,11 @@ Silent Key t  A   CM     Exec exec $[infostore.terminator]
 # Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 # Silent Key z  A   CM     Exec exec $[infostore.kitty]
 
+#ctr了+ m 打开dmenus_run
+Silent Key m  A   C     Exec exec dmenu_run
+
+
+
 #Ctrl+Alt+n打开文件管理器
 #Silent key f A CM Exec exec   dolphin &
 Silent key f A CM Exec exec  /usr/bin/nautilus
@@ -1106,14 +1112,14 @@ Silent Key o  A   CM     Exec exec  typora
 
 
 
-# Shift+左      左卷一屏
-# Shift+右      右卷一屏
-# Shift+下      下卷一屏
-# Shift+上      上卷一屏
-Key Left    A  S    Scroll -100  +0
-Key Right   A  S    Scroll +100  +0
-Key Up      A  S    Scroll +0   -100
-Key Down    A  S    Scroll +0   +100
+# ctrl+Shift+左      左卷一屏
+# ctrl+Shift+右      右卷一屏
+# ctrl+Shift+下      下卷一屏
+# ctrl+Shift+上      上卷一屏
+Key Left    A  CS    Scroll -100  +0
+Key Right   A  CS    Scroll +100  +0
+Key Up      A  CS    Scroll +0   -100
+Key Down    A  CS    Scroll +0   +100
 
 # Alt+F6    关闭显示屏
 Silent Key   F6      A    M    Function LockScreen
@@ -1134,11 +1140,11 @@ Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Sha
 # ctrl+shift+q 关闭当前窗口，直至退出桌面对话框
 # Silent Key   q        A  CS   Close
 # alt+q 关闭当前窗口，直至退出桌面对话框
-Silent Key   q        A  M   Close
+Silent Key   q          A  M   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
-Silent  Key   w        W    M   Iconify
+Silent  Key   w         W    M   Iconify
 
 # Ctrl+shift+q 关闭当前page所有窗口
 #Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
@@ -1147,7 +1153,8 @@ Silent  Key   w        W    M   Iconify
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
 #Shift + Ctrl +  l  锁屏
-Silent Key   l          A  M   Exec exec xscreensaver-command -lock
+Silent Key   l          A  CM   Exec exec xscreensaver-command -lock
+Silent Key   l          A  CM   Exec exec slock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
@@ -1187,8 +1194,8 @@ Mouse  1	I    N   RaiseMoveX Move "Iconify off"
 Mouse  3	T    N   Menu MenuWindowOpsLong
 Mouse  3    I    N   Menu MenuIconOps
 
-Mouse   4   R   N   Scroll +0 -100  #向上翻pager
-Mouse   5   R   N   Scroll +0 +100  #向下翻Pager
+Mouse   4   R    N   Scroll +0 -100  #向上翻pager
+Mouse   5   R    N   Scroll +0 +100  #向下翻Pager
 
 #让你在任何时候按住 Ctrl-Shift-Alt 再点击鼠标左键(编号1)，名叫gvim的窗口的标题栏就会跑到下面去
 #Mouse 1  T   CS     Style      gnome-terminal*     TitleAtLeft
@@ -1221,8 +1228,8 @@ Mouse   5   T   C   Style      *           TitleAtBottom
 Key   F5  A   A   Direction   North   Maximize   True   0   growdown
 
 #窗口透明，首先需要安装xcompmgr
-#Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
-#Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]
+Mouse 4   T   C   Exec exec transset-df --inc 0.1 -i $[w.id]
+Mouse 5   T   C   Exec exec transset-df --dec 0.1 -i $[w.id]
 
 
 #######
