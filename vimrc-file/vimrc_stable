@@ -811,26 +811,13 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""新增配置""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 启动 Vim 的时候，它会帮你打开你的 vimrc ⽂件
-autocmd VimEnter * nested edit ~/_gvimrc
+" autocmd VimEnter * nested edit ~/_gvimrc
 
 "临时文件管理设置
 "  如果文件夹不存在，则新建文件夹
 " if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
 	" call mkdir($HOME.'/.vim/files')
 " endif
-"  备份⽂件
-set backup
-set backupdir =$HOME/.vim/files/backup/
-set backupext =-vimbackup
-set backupskip =
-"  交换⽂件
-set directory =$HOME/.vim/files/swap//
-set updatecount =100
-"  撤销文件
-set undofile
-set undodir =$HOME/.vim/files/undo/
-" viminfo  文件
-set viminfo ='100,n$HOME/.vim/files/info/viminfo
 
 " s symbol：查找使⽤该符号的引用
 " g global：查找该全局符号的定义
@@ -900,10 +887,6 @@ nnoremap L g_
 
 
 
-" 重新载入保存文件
-" autocmd BufWritePost $MYVIMRC source $MYVIMRC
-autocmd BufWritePost ~/.Xdefaults call system('xrdb ~/.Xdefaults')
-
 " 更加智能的当前高亮
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
@@ -913,7 +896,6 @@ set complete-=t " disable searching tags
 
 " 光标放到当前行末尾之后，默认情况下你是不可能做到的，但是可能通过设置virtualedit 选项达到目的
 "set virtualedit=all
-"
 
 
 "删除行尾空格
