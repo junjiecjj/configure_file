@@ -23,9 +23,6 @@ filetype on                                  " required开启探测文件类型,
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
-" 打开文件类型检测, 加了这句才可以用智能补全
-filetype plugin indent on
-
 "sheerun/vim-polyglot插件配置disable
 let g:polyglot_disabled = ['markdown.plugin','autoindent','sensible','ftdetect','latex','javascript']
 
@@ -33,12 +30,12 @@ let g:polyglot_disabled = ['markdown.plugin','autoindent','sensible','ftdetect',
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-"PluginInstall:安装插件
-"PluginClean:移除不要的插件
-"PluginUpdate:更新插件
-"PluginList:列出所有安装的插件
-"PluginSearch:查找插件
+call vundle#begin('~/.vim/bundle')
+" PluginInstall:安装插件
+" PluginClean:移除不要的插件
+" PluginUpdate:更新插件
+" PluginList:列出所有安装的插件
+" PluginSearch:查找插件
 
 "let Vundle manage Vundle,require
 Plugin 'VundleVim/Vundle.vim'
@@ -60,6 +57,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'glepnir/oceanic-material'
 Plugin 'mhartington/oceanic-next'
+
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -142,7 +140,7 @@ Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
 "新一代目录树defx
-Plugin 'Shougo/defx.nvim'
+Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'roxma/nvim-yarp'
 Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
@@ -330,7 +328,7 @@ if has('gui_running')
         set guifont=SauceCodePro\ Nerd\ Font\ Mono\ 9
       " set guifont=DejaVu\ Sans\ Mono\ 10
     endif
-  endif
+endif
 
 
 " ===
@@ -353,8 +351,6 @@ set mouse=a
 " set selectmode=mouse,key
 "指定在选择文本时，光标所在位置也属于被选中的范围。
 set selection=inclusive
-
-
 
 " 在被分割的窗口间显示空白，便于阅读
 "set fillchars=vert:\ ,stl:\ ,stlnc:\
@@ -732,8 +728,6 @@ endif
 
 " Editor UI {{{
 
-
-set noshowmode          " Don't show mode on bottom
 set noruler             " Disable default status ruler
 set shortmess=aFc
 
@@ -810,31 +804,7 @@ if has('persistent_undo')
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""新增配置""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 启动 Vim 的时候，它会帮你打开你的 vimrc ⽂件
-" autocmd VimEnter * nested edit ~/_gvimrc
 
-"临时文件管理设置
-"  如果文件夹不存在，则新建文件夹
-" if !isdirectory($HOME.'/.vim/files') && exists('*mkdir')
-	" call mkdir($HOME.'/.vim/files')
-" endif
-
-" s symbol：查找使⽤该符号的引用
-" g global：查找该全局符号的定义
-" c calls：查找调用当前方法的位置
-" t text：查找出现该⽂本的位置
-" e egrep：使⽤ egrep 搜索当前单词
-" f file：打开文件名
-" i includes：查询引文了当前文件的⽂件
-" d depends：查找当前方法调用的⽅法
-nnoremap <buffer> <leader>cs :cscope find s <c-r>=expand('<cword>')<cr><cr>
-nnoremap <buffer> <leader>cg :cscope find g <c-r>=expand('<cword>')<cr><cr>
-nnoremap <buffer> <leader>cc :cscope find c <c-r>=expand('<cword>')<cr><cr>
-nnoremap <buffer> <leader>ct :cscope find t <c-r>=expand('<cword>')<cr><cr>
-nnoremap <buffer> <leader>ce :cscope find e <c-r>=expand('<cword>')<cr><cr>
-nnoremap <buffer> <leader>cf :cscope find f <c-r>=expand('<cfile>')<cr><cr>
-nnoremap <buffer> <leader>ci :cscope find i ^<c-r>=expand('<cfile>')<cr>$<cr>
-nnoremap <buffer> <leader>cd :cscope find d <c-r>=expand('<cword>')<cr><cr>
 
 "任何的 Python 文件中使用  % （向前）或  g% （向后）在这三个片断之间跳转
 autocmd FileType python let b:match_words = '\<if\>:\<elif\>:\<else\>'
@@ -915,14 +885,13 @@ noremap s <nop>
 
 " 定义快捷键关闭当前分割窗口
 nmap ;q :q<CR>
-nmap <Leader>q :q<CR>
+" nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
 nmap ;wq :wq<CR>
 nmap ;w :w!<CR>
 nmap <Leader>wq :wq<CR>
 nmap <Leader>w :w!<CR>
 " 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
 map Q :q<CR>
 map S :w!<CR>
 map <C-s> :w<CR>
@@ -937,7 +906,6 @@ nnoremap  V  <C-v>
 map <LEADER><CR> :nohlsearch<CR>
 noremap = nzz
 noremap - Nzz
-
 
 
 " 水平滚动
@@ -1076,7 +1044,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " ===
 set termguicolors
 let g:neoterm_autoscroll = 1
-autocmd TermOpen term://* startinsert
+" autocmd TermOpen term://* startinsert
 let g:space_vim_transp_bg = 1
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
@@ -1448,7 +1416,7 @@ let g:agit_no_default_mappings = 1
 
 
 
-" “”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”kdheepak/lazygit.nvim插件"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""kdheepak/lazygit.nvim插件"""""""""""""""""""""""""""""""""""""
 noremap <c-g> :LazyGit<CR>
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
@@ -2251,9 +2219,7 @@ let g:NERDCustomDelimiters = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""vim-nerdtree-syntax-highlight配置"""""""""""""""""""""""""""""""""""""""
-" let g:NERDTreeDisableFileExtensionHighlight=1
-" let g:NERDTreeDisableExactMatchHighlight=1
-" let g:NERDTreeDisablePatternMatchHighlight=1
+
 
 "Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -2380,7 +2346,6 @@ func! MyTER(context) abort
 endfunc
 
 call defx#custom#option('_', {
-			\ 'resume': 1,
 			\ 'winwidth': 30,
 			\ 'split': 'vertical',
 			\ 'direction': 'topleft',
@@ -2416,7 +2381,6 @@ augroup END
 function! s:jump_dirty(dir) abort
 	let l:icons = get(g:, 'defx_git_indicators', {})
 	let l:icons_pattern = join(values(l:icons), '\|')
-
 	if ! empty(l:icons_pattern)
 		let l:direction = a:dir > 0 ? 'w' : 'bw'
 		return search(printf('\(%s\)', l:icons_pattern), l:direction)
@@ -2773,48 +2737,59 @@ if !exists('g:AutoComplPop_Behavior')
 endif
 
 
-"""""""""""""""""""""""""'""""vim-clang-format插件"""""""""""""""""""""""""""""""""
-
-let g:clang_format#auto_format_on_insert_leave=1    "退出插入模式时自动格式化
-
-
+" """""""""""""""""""""""""'""""vim-clang-format插件"""""""""""""""""""""""""""""""""
 "
-" " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" " if you install vim-operator-user
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-" " " Toggle auto formatting:
-nmap <Leader>C :ClangFormatAutoToggle<CR>
+" let g:clang_format#auto_format_on_insert_leave=1    "退出插入模式时自动格式化
+"
+"
+" " " map to <Leader>cf in C++ code
+" autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+" autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" " " if you install vim-operator-user
+" autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" " " " Toggle auto formatting:
+" nmap <Leader>C :ClangFormatAutoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
 
-let g:autoformat_verbosemode=1 "开启详细模式便于查错
-autocmd BufWrite *.sql,*.c,*.cpp,*.py,*.java,*.js :Autoformat "设置发生保存事件时执行格式化
+" sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify
 
-"F3自动格式化代码
-noremap \af :Autoformat<CR>
+"开启详细模式便于查错
 let g:autoformat_verbosemode=1
-au BufWrite * :Autoformat  " 保存的时候 格式化"
-let g:clang_format#auto_format=1 " 自动检测.clang-format作为配置的格式"
+"设置发生保存文件时执行格式化
+" au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat
 
 let g:autoformat_autoindent = 0
-let g:autoformat_retab = 1
-let g:autoformat_remove_trailing_spaces = 1
-let g:formatdef_hl_js='"js-beautify"'
-let g:formatdef_hl_c='"clang-format -style=\"{BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 4, PointerAlignment: Right, ColumnLimit: 150, SpacesBeforeTrailingComments: 1}\""' "指定格式化的方式, 使用配置参数
-let g:formatters_c = ['hl_c']
-let g:formatters_cpp = ['hl_c']
-let g:formatters_json = ['hl_js']
-let g:formatters_js = ['hl_js']
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+autocmd FileType vim,tex let b:autoformat_autoindent=0
+:retab
+
+" 我比较喜欢 google 风格的代码
+" let g:formatdef_clangformat_google = '"clang-format -style google -"'
+" let g:formatters_c = ['clangformat_google']
+
+let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
+let g:formatters_cpp = ['allman']
+let g:formatters_c = ['allman']
+
 let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
 let g:formatters_sql = ['sqlformat']
 
-"保存时自动格式化指定文件类型代码
-""au BufWrite * :Autoformat
-"autocmd BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat "设置发生保存事件时执行格式化
+"默认情况下是pep8，还可以选择google,facebook和chromium
+let g:formatter_yapf_style = 'pep8'
+
+let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+let g:formatters_python = ['autopep8']
+
+" <!-- 指定html格式化工具，并设置缩进为两个空格 -->
+let g:formatdef_my_html = '"html-beautify -s 2"'
+let g:formatters_html = ['my_html']
+
+"F3自动格式化代码
+" noremap <F3> :Autoformat<CR>:w<CR>
 
 """""""""""""""""""""""""""""""""""""""Autopep8配置"""""""""""""""""""""""""""""""""""""""
 autocmd FileType python noremp <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
@@ -2932,8 +2907,7 @@ hi FloatermBorder guibg=orange guifg=cyan ctermbg=220  ctermfg=46
 hi FloatermNC guibg=gray   ctermbg=246
 "floaterm设置
 set shell=/usr/bin/bash
-hi Floaterm guibg=black
-hi FloatermBorder guibg=none guifg=cyan
+hi FloatermBorder   guifg=cyan
 let g:floaterm_position = 'center'
 let g:floaterm_wintype = 'floating'
 noremap  ftn :FloatermNew<CR>
@@ -3475,11 +3449,6 @@ set conceallevel=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
 
 """"""""""""""""""""""""""""""""papercolor配置""""""""""""""""""""""""""""""""""""""""
 
@@ -3557,8 +3526,6 @@ let g:airline#extensions#tabline#formatter = 'default'  "formater
 " 关闭状态显示空白符号计数,这个对我用处不大"
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
-
-
 
 
 if !exists('g:airline_symbols')
@@ -3861,12 +3828,12 @@ endif
 "autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
 "为python添加pep8的代码风格
 au BufNewFile,BufRead *.py,*.php,*.c,*.sh,*.cpp,*.java,*.ruby,*.perl
-            \ set tabstop=4 | "tab宽度"
+            \ set tabstop=4 |       "tab宽度"
             \ set softtabstop=4 |
             \ set shiftwidth=4 |
-            \ set textwidth=500 | "行最大宽"
-            \ set autoindent |  "自动缩进"
-            \ set fileformat=unix "保存文件的格式"
+            \ set textwidth=500 |   "行最大宽"
+            \ set autoindent |      "自动缩进"
+            \ set fileformat=unix   "保存文件的格式"
 
 au BufNewFile,BufRead *.js,*.html,*.css,*.xml
             \ set tabstop=2 |
@@ -3886,34 +3853,7 @@ autocmd FileType javascript,html,css,xml set sw=2
 autocmd FileType javascript,html,css,xml set ts=2
 autocmd FileType javascript,html,css,xml set sts=2
 
-"""""""""""""""""""""""""""""""""""""""""Ctrl+Up变大 Down变小 Home还原(假设你原来的字体是10)"""""""""""""""""""""""""""""""""""""""""""""""
-let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
-let s:minfontsize = 6
-let s:maxfontsize = 16
- 
-function! AdjustFontSize(amount)
-   if has("gui_gtk2") && has("gui_running")
-     let fontname = substitute(&guifont, s:pattern, '\1', '')
-     let cursize = substitute(&guifont, s:pattern, '\2', '')
-     if (cursize < s:minfontsize) || (cursize > s:maxfontsize)
-       let cursize = 10
-     endif
-       let newsize = cursize + a:amount
-      if (a:amount > 1)
-        let newsize = a:amount
-     endif
-      if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
-       let newfont = fontname . " " . newsize
-       let &guifont = newfont
-     endif
-   else
-     echoerr "You need to run the GTK2 version of Vim to use this function."
-   endif
-endfunction
- 
-map <C-;> :call AdjustFontSize(1) <CR>
-map <C-.> :call AdjustFontSize(-1) <CR>
-map <C-Home> :call AdjustFontSize(10) <CR>
+
 
 ""--------------------vim原本的快捷键映射变更-----------------------------
 "###################################################
