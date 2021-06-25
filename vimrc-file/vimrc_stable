@@ -3904,6 +3904,34 @@ autocmd FileType javascript,html,css,xml set sw=2
 autocmd FileType javascript,html,css,xml set ts=2
 autocmd FileType javascript,html,css,xml set sts=2
 
+"""""""""""""""""""""""""""""""""""""""""Ctrl+Up变大 Down变小 Home还原(假设你原来的字体是10)"""""""""""""""""""""""""""""""""""""""""""""""
+let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+let s:minfontsize = 6
+let s:maxfontsize = 16
+ 
+function! AdjustFontSize(amount)
+   if has("gui_gtk2") && has("gui_running")
+     let fontname = substitute(&guifont, s:pattern, '\1', '')
+     let cursize = substitute(&guifont, s:pattern, '\2', '')
+     if (cursize < s:minfontsize) || (cursize > s:maxfontsize)
+       let cursize = 10
+     endif
+       let newsize = cursize + a:amount
+      if (a:amount > 1)
+        let newsize = a:amount
+     endif
+      if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
+       let newfont = fontname . " " . newsize
+       let &guifont = newfont
+     endif
+   else
+     echoerr "You need to run the GTK2 version of Vim to use this function."
+   endif
+endfunction
+ 
+map <C-;> :call AdjustFontSize(1) <CR>
+map <C-.> :call AdjustFontSize(-1) <CR>
+map <C-Home> :call AdjustFontSize(10) <CR>
 
 ""--------------------vim原本的快捷键映射变更-----------------------------
 "###################################################
