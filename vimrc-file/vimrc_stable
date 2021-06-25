@@ -18,8 +18,8 @@
 
 let mapleader = '\'
 "不适用vi的键盘模式，使用vim自己的
-set nocompatible                             " required
-filetype on                                  " required开启探测文件类型,on off
+set nocompatible             " required
+filetype on                  " required开启探测文件类型,on off
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
@@ -47,7 +47,7 @@ Plugin 'nightsense/snow'
 Plugin 'nightsense/vimspectr'
 Plugin 'nightsense/carbonized'
 Plugin 'nightsense/stellarized'
-Plugin 'ayu-theme/ayu-vim' " or other package manager
+Plugin 'ayu-theme/ayu-vim'              " or other package manager
 Plugin 'nightsense/cosmic_latte'
 Plugin 'molokai'                             " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
@@ -2737,59 +2737,48 @@ if !exists('g:AutoComplPop_Behavior')
 endif
 
 
-" """""""""""""""""""""""""'""""vim-clang-format插件"""""""""""""""""""""""""""""""""
-"
-" let g:clang_format#auto_format_on_insert_leave=1    "退出插入模式时自动格式化
-"
-"
-" " " map to <Leader>cf in C++ code
-" autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-" autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" " " if you install vim-operator-user
-" autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-" " " " Toggle auto formatting:
-" nmap <Leader>C :ClangFormatAutoToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"""""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
-
-" sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify
-
-"开启详细模式便于查错
-let g:autoformat_verbosemode=1
-"设置发生保存文件时执行格式化
-" au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat
-
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-autocmd FileType vim,tex let b:autoformat_autoindent=0
-:retab
-
-" 我比较喜欢 google 风格的代码
-" let g:formatdef_clangformat_google = '"clang-format -style google -"'
-" let g:formatters_c = ['clangformat_google']
-
-let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
-let g:formatters_cpp = ['allman']
-let g:formatters_c = ['allman']
-
-let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
-let g:formatters_sql = ['sqlformat']
-
-"默认情况下是pep8，还可以选择google,facebook和chromium
-let g:formatter_yapf_style = 'pep8'
-
-let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
-let g:formatters_python = ['autopep8']
-
-" <!-- 指定html格式化工具，并设置缩进为两个空格 -->
-let g:formatdef_my_html = '"html-beautify -s 2"'
-let g:formatters_html = ['my_html']
-
-"F3自动格式化代码
-" noremap <F3> :Autoformat<CR>:w<CR>
+" """""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
+"
+" " sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify
+"
+" "开启详细模式便于查错
+" let g:autoformat_verbosemode=1
+" "设置发生保存文件时执行格式化
+" " au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat
+"
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
+" autocmd FileType vim,tex let b:autoformat_autoindent=0
+" :retab
+"
+" " 我比较喜欢 google 风格的代码
+" " let g:formatdef_clangformat_google = '"clang-format -style google -"'
+" " let g:formatters_c = ['clangformat_google']
+"
+" let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
+" let g:formatters_cpp = ['allman']
+" let g:formatters_c = ['allman']
+"
+" let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
+" let g:formatters_sql = ['sqlformat']
+"
+" "默认情况下是pep8，还可以选择google,facebook和chromium
+" let g:formatter_yapf_style = 'pep8'
+"
+" let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+" let g:formatters_python = ['autopep8']
+"
+" " <!-- 指定html格式化工具，并设置缩进为两个空格 -->
+" let g:formatdef_my_html = '"html-beautify -s 2"'
+" let g:formatters_html = ['my_html']
+"
+" "F3自动格式化代码
+" " noremap <F3> :Autoformat<CR>:w<CR>
 
 """""""""""""""""""""""""""""""""""""""Autopep8配置"""""""""""""""""""""""""""""""""""""""
 autocmd FileType python noremp <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
@@ -3556,7 +3545,7 @@ nmap ;- <Plug>AirlineSelectPrevTab
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
 nmap ;+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
-nmap <leader>q :bp<cr>:bd #<cr>
+nmap .q :bp<cr>:bd #<cr>
 " 修改了一些个人不喜欢的字符
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
