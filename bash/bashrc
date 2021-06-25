@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -71,13 +71,13 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+xterm* | rxvt*)
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;01m\]]\n\[\e[01;31m\]$\[\e[01;32m\] '
     PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[01;37m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
     ;;
-*)
-    ;;
+*) ;;
+
 esac
 
 # enable color support of ls and also add handy aliases
@@ -96,29 +96,42 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
+
 alias ll='ls -alF --color=auto -h'
 alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
 
-# alias el='exa -lh'
-alias e='exa -lh'
-alias er='exa -lh -R'
-alias et='exa -lh -T'
-# alias ell='exa -abghHliSr'
-alias ee='exa -abghHliSr'
-alias eer='exa -abghHliSr -R'
-alias eet='exa -abghHliSr -T'
-
-alias v='vim'
-alias nv='nvim'
-alias gd='gedit'
+alias el='exa -lh'
+alias elr='exa -lh -R'
+alias elt='exa -lh -T'
+alias ell='exa -abghHliSr'
+alias ellr='exa -abghHliSr -R'
+alias ellt='exa -abghHliSr -T'
 
 alias cc='cd ~/公共的/c文件/'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
 
+alias update=’sudo apt update’
+alias upgrade=’sudo apt upgrade’
+alias show_dimensions='xdpyinfo | grep '''dimensions:''''
+alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
+
+alias v='vim'
+alias nv='nvim'
+
+
+export LESS_TERMCAP_mb=$'\E[01;34m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;36;44m'
+export LESS_TERMCAP_se=$'\E[0m'
+
+export PATH=”$HOME/.cargo/bin:$PATH”
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -137,11 +150,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    fi
 fi
 # added by Anaconda3 5.3.1 installer
 # >>> conda init >>>
@@ -160,7 +173,7 @@ fi
 # unset __conda_setup
 # <<< conda init <<<
 
-export PATH="/home/jack/anaconda3/bin:$PATH"  
+export PATH="/home/jack/anaconda3/bin:$PATH"
 # commented out by conda initialize
 export PATH=~/Qt5.9.9/Tools/QtCreator/bin:$PATH
 
@@ -180,7 +193,6 @@ export PATH=~/Qt5.9.9/Tools/QtCreator/bin:$PATH
 # # <<< conda initialize <<<
 
 [[ -s /home/jack/.autojump/etc/profile.d/autojump.sh ]] && source /home/jack/.autojump/etc/profile.d/autojump.sh
-
 LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN.UTF-8
 
@@ -205,3 +217,6 @@ export TERM=xterm-256color
 LS_COLORS="di=01;04;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
 source "$HOME/.cargo/env"
 
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
