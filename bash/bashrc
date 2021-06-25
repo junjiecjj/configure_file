@@ -114,6 +114,7 @@ alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
 
+mkd() { mkdir -p "$@" && cd "$1"; }
 alias update=’sudo apt update’
 alias upgrade=’sudo apt upgrade’
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
