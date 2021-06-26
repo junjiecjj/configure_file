@@ -61,8 +61,8 @@ Plugin 'mhartington/oceanic-next'
 " 翻译
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 
-
-" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" 自动补全插件coc.nvim
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 " 让光标所在单词高亮或者下划线
@@ -120,8 +120,8 @@ Plugin 'itchyny/calendar.vim'             "日历，:Calendar 在 Vim 中查看�
 Plugin 'Yggdroot/indentLine', { 'for': ['lua', 'c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }              " 缩进指示线
 Plugin 'fadein/vim-FIGlet'                " 出现有趣的文字图像
 Plugin 'lambdalisue/suda.vim'             " do stuff like :sudowrite
-Plugin 'junegunn/goyo.vim'                " distraction free writing mode
-Plugin 'junegunn/limelight.vim'
+Plugin 'junegunn/goyo.vim'                " 提供一个专注阅读和写作的环境
+Plugin 'junegunn/limelight.vim'            " 实现类似于“关灯看小说”的功能
 Plugin 'junegunn/vim-peekaboo'            "  当你按下双引号键时，它会在右侧打开一个寄存器备忘单
 Plugin 'matze/vim-move'                   " 代码块移动
 Plugin 'DoxygenToolkit.vim'               " 注释文档生成
@@ -133,11 +133,10 @@ Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供�
 " :h startify
 " :h startify-faq
 
-
-Plugin 'tyru/open-browser.vim'                        " 打开浏览器
-Plugin 'lucasicf/vim-smooth-scroll'                    " 支持平滑滚动
-Plugin 'Shougo/echodoc.vim'                           " 函数参数提示
-Plugin 'godlygeek/tabular'                            " 快速对齐
+Plugin 't9md/vim-choosewin'                         " 指定窗口中打开文件
+Plugin 'tyru/open-browser.vim'                      " 打开浏览器
+Plugin 'lucasicf/vim-smooth-scroll'                 " 支持平滑滚动
+Plugin 'Shougo/echodoc.vim'                         " 函数参数提示
 Plugin 'ryanoasis/vim-devicons'                     " 在目录中为文件增加图标
 
 Plugin 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
@@ -145,6 +144,9 @@ Plugin 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(acce
 " FPGA
 Plugin 'vhda/verilog_systemverilog.vim'     "verilog
 
+" 快速对齐
+Plugin 'godlygeek/tabular'                     " 快速对齐
+Plugin 'junegunn/vim-easy-align'               " 用来对齐指定符号的工具
 
 Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
 Plugin 'bagrat/vim-buffet'                    "类似minibuf管理多buffer的
@@ -161,7 +163,6 @@ Plugin 'ervandew/supertab'                   " 补全记忆插件
 
 
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
-
 Plugin 'Raimondi/delimitMate'
 Plugin 'chxuan/cpp-mode'                     " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'tenfyzhong/CompleteParameter.vim',{'for':['lua', 'c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
@@ -868,6 +869,171 @@ let g:solarized_visibility="normal"
 let g:solarized_hitrail=0
 let g:solarized_menu=1
 
+"""""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
+" :checkhealth
+" 安装命令:CocInstall 插件名
+" 移除命令:CocUninstall 插件名
+" 查看已安装:CocList extensions
+" 更新命令:CocUpdate
+let g:coc_global_extensions = [
+    \ 'coc-angular',
+    \ 'coc-browser',
+    \ 'coc-calc',
+    \ 'coc-cfn-lint',
+    \ 'coc-clangd',
+    \ 'coc-cmake',
+    \ 'coc-css',
+    \ 'coc-cssmodules',
+    \ 'coc-deno',
+    \ 'coc-denoland',
+    \ 'coc-diagnostic',
+    \ 'coc-discord',
+    \ 'coc-discord-rpc',
+    \ 'coc-dash-complete',
+    \ 'coc-dot-complete',
+    \ 'coc-ecdict',
+    \ 'coc-elixir',
+    \ 'coc-ember',
+    \ 'coc-emmet',
+    \ 'coc-erlang_ls',
+    \ 'coc-eslint',
+    \ 'coc-explorer',
+    \ 'coc-floaterm',
+    \ 'coc-flow',
+    \ 'coc-flutter',
+    \ 'coc-fsharp',
+    \ 'coc-fzf-preview',
+    \ 'coc-gist',
+    \ 'coc-git',
+    \ 'coc-glslx',
+    \ 'coc-go',
+    \ 'coc-graphql',
+    \ 'coc-highlight',
+    \ 'coc-html',
+    \ 'coc-htmlhint',
+    \ 'coc-html-css-support',
+    \ 'coc-java',
+    \ 'coc-jedi',
+    \ 'coc-json',
+    \ 'coc-julia',
+    \ 'coc-just-complete',
+    \ 'coc-lists',
+    \ 'coc-lsp-wl',
+    \ 'coc-markdownlint',
+    \ 'coc-metals',
+    \ 'coc-omnisharp',
+    \ 'coc-perl',
+    \ 'coc-php-cs-fixer',
+    \ 'coc-phpactor',
+    \ 'coc-phpls',
+    \ 'coc-psalm',
+    \ 'coc-powershell',
+    \ 'coc-prettier',
+    \ 'coc-prisma',
+    \ 'coc-pyright',
+    \ 'coc-python',
+    \ 'coc-r-lsp',
+    \ 'coc-reason',
+    \ 'coc-rls',
+    \ 'coc-rome',
+    \ 'coc-rust-analyzer',
+    \ 'coc-sh',
+    \ 'coc-stylelintplus',
+    \ 'coc-stylelint',
+    \ 'coc-snippets',
+    \ 'coc-solargraph',
+    \ 'coc-sourcekit',
+    \ 'coc-spell-checker',
+    \ 'coc-sql',
+    \ 'coc-svelte',
+    \ 'coc-svg',
+    \ 'coc-swagger',
+    \ 'coc-tabnine',
+    \ 'coc-tailwindcss',
+    \ 'coc-tasks',
+    \ 'coc-texlab',
+    \ 'coc-toml',
+    \ 'coc-translator',
+    \ 'coc-tsserver',
+    \ 'coc-vetur',
+    \ 'coc-vimlsp',
+    \ 'coc-xml',
+    \ 'coc-yaml',
+    \ 'coc-yank']
+inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+if has('nvim')
+    inoremap <silent><expr> <c-space> coc#refresh()
+    " inoremap <silent><expr> <c-o> coc#refresh()
+else
+    inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+function! Show_documentation()
+    call CocActionAsync('highlight')
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+nnoremap <LEADER>h :call Show_documentation()<CR>
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
+nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
+nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap cc :CocCommand<CR>
+" Text Objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+" Useful commands
+nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <leader>rn <Plug>(coc-rename)
+nmap tt :CocCommand explorer<CR>
+" coc-translator
+nmap ts <Plug>(coc-translator-p)
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>aw  <Plug>(coc-codeaction-selected)w
+" coctodolist
+" nnoremap <leader>tn :CocCommand todolist.create<CR>
+" nnoremap <leader>tl :CocList todolist<CR>
+" nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
+" coc-tasks
+noremap <silent> <leader>ct :CocList tasks<CR>
+" coc-snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-e> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<c-e>'
+let g:coc_snippet_prev = '<c-n>'
+imap <C-e> <Plug>(coc-snippets-expand-jump)
+let g:snips_author = 'jj.Chen'
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
 """""""""""""""""""""""lfv89/vim-interestingwords""""""""""""""""""""""""""""""
 
 let g:interestingWordsDefaultMappings = 0
@@ -1431,6 +1597,10 @@ let g:suda#prompt = 'Mot de passe:'
 """"""""""""""""""""""""""""""""""""""""glepnir/galaxyline.nvim设置"""""""""""""""""""""""""""""""
 " luafile ~/.config/nvim/eviline.lua
 
+""""""""""""""""""""junegunn/vim-easy-align 插件"""""""""""""""""""""""''
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
 """"""""""""""""""""itchyny/calendar.vim插件"""""""""""""""""""""""''
 
 "noremap \c :Calendar -position=here<CR>
@@ -1950,8 +2120,6 @@ let g:openbrowser_default_search = 'goole'
 let g:openbrowser_search_engines = {
             \  'goole': 'https://www.google.com',
             \}
-
-
 
 
 """""""""""""""""""""'lucasicf/vim-smooth-scroll插件""""""""""""""""""""""""""""""
@@ -3784,6 +3952,26 @@ nnoremap  ;a :bp<CR>
 
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
+
+
+"""""""""""""""""""""""""""""Terminal Colors"""""""""""""""""""""""""""""""
+
+
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
 
 "############################### 美化标签栏方法1 #######################################
 " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
