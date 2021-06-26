@@ -128,6 +128,8 @@ Plugin 'DoxygenToolkit.vim'               " 注释文档生成
 Plugin 'VimTweak'                         " 背景透明插件
 Plugin 'kshenoy/vim-signature'            " 增加书签
 Plugin 'makerj/vim-pdf'                   "阅读pdf
+Plugin 'chrisbra/changesPlugin'       " 显示vim文档哪些行被修改
+Plugin 'vim-utils/vim-man'            " 在vim中查看相关函数等的man手册，支持水平窗口和垂直窗口打开。
 Plugin 'machakann/vim-highlightedyank'    " 使 yank 的文档半透明高亮
 Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
@@ -1947,7 +1949,7 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""'Defx设置"""""""""""""""""""""""""""""""""""""""""""""""''
+""""""""""""""""""""'Shougo/defx.nvim设置"""""""""""""""""""""""""""""""""""""""""""""""''
 noremap <LEADER>df :Defx<CR>
 let g:defx_icons_enable_syntax_highlight = 1
 " 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
@@ -2084,7 +2086,7 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr> <C-h> defx#do_action('toggle_ignored_files')
 	nnoremap <silent><buffer><expr> ;   defx#do_action('repeat')
 	nnoremap <silent><buffer><expr> a   defx#do_action('cd', ['..'])
-	nnoremap <silent><buffer><expr> ~   defx#do_action('cd')
+	nnoremap <silent><buffer><expr> i   defx#do_action('cd')
 	nnoremap <silent><buffer><expr> q   defx#do_action('quit')
 	nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
 	nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
@@ -3452,6 +3454,47 @@ let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#autoformat = 0
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
+function! Buf_total_num()
+    return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+endfunction
+function! File_size(f)
+    let l:size = getfsize(expand(a:f))
+    if l:size == 0 || l:size == -1 || l:size == -2
+        return ''
+    endif
+    if l:size < 1024
+        return l:size.' bytes'
+    elseif l:size < 1024*1024
+        return printf('%.1f', l:size/1024.0).'k'
+    elseif l:size < 1024*1024*1024
+        return printf('%.1f', l:size/1024.0/1024.0) . 'm'
+    else
+        return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'g'
+    endif
+endfunction
+set statusline=%<%1*[B-%n]%*
+" TOT is an abbreviation for total
+set statusline+=%2*[TOT:%{Buf_total_num()}]%*
+set statusline+=%3*\ %{File_size(@%)}\ %*
+set statusline+=%4*\ %F\ %*
+set statusline+=%5*『\ %{exists('g:loaded_ale')?ALEGetStatusLine():''}』%{exists('g:loaded_fugitive')?fugitive#statusline():''}%*
+set statusline+=%6*\ %m%r%y\ %*
+set statusline+=%=%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \|\"}\ %-14.(%l:%c%V%)%*
+set statusline+=%8*\ %P\ %*
+" default bg for statusline is 236 in space-vim-dark
+hi User1 cterm=bold ctermfg=232 ctermbg=179
+hi User2 cterm=None ctermfg=214 ctermbg=242
+hi User3 cterm=None ctermfg=251 ctermbg=240
+hi User4 cterm=bold ctermfg=169 ctermbg=239
+hi User5 cterm=None ctermfg=208 ctermbg=238
+hi User6 cterm=None ctermfg=246 ctermbg=237
+hi User7 cterm=None ctermfg=250 ctermbg=238
+hi User8 cterm=None ctermfg=249 ctermbg=240
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
 
 " "/usr/share/vim/vim81/colors/ 目录中包含了大多数文件类型的语法高亮插件。
@@ -3879,8 +3922,8 @@ noremap <silent>\- :tabp<cr>
 noremap <silent><S-tab> :tabnext<CR>
 
 " Move around tabs with tn and tp
-noremap tn  :-tabnext<CR>
-noremap tp  :+tabnext<CR>
+noremap tn  :tabn<CR>
+noremap tp  :tabp<CR>
 
 " Create a new tab with tu
 noremap tu :tabe<CR>
