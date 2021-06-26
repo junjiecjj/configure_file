@@ -2589,7 +2589,7 @@ endif
 " " noremap <F3> :Autoformat<CR>:w<CR>
 
 """""""""""""""""""""""""""""""""""""""Autopep8配置"""""""""""""""""""""""""""""""""""""""
-autocmd FileType python noremp <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
+autocmd FileType python noremap <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
 
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
