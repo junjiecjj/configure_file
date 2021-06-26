@@ -58,8 +58,11 @@ Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'glepnir/oceanic-material'
 Plugin 'mhartington/oceanic-next'
 
+" 翻译
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 " 让光标所在单词高亮或者下划线
@@ -79,7 +82,7 @@ Plugin 'wincent/terminus'
 " Git
 Plugin 'rhysd/conflict-marker.vim'          " Highlight, jump and resolve conflict markers quickly.
 Plugin 'tpope/vim-fugitive'                 " 在vim中执行git命令
-" Plug 'gisphm/vim-gitignore', " { 'for': ['gitignore', 'vim-plug'] }
+Plugin 'gisphm/vim-gitignore',  { 'for': ['gitignore', 'vim-plug'] }
 if has('nvim') || has('patch-8.0.902')
     Plugin 'mhinz/vim-signify'          " git/svn版本控制插件vim-signify
 else
@@ -87,22 +90,19 @@ else
 endif
 Plugin 'cohama/agit.vim'
 Plugin 'kdheepak/lazygit.nvim'
-" Plug 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 
 
-" Find & Replace
-Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }               "查找替换
-Plugin 'rking/ag.vim'                          " 查找工具)
+" 查找替换
+Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }    "查找替换
 " CSharp
 Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] }      " omnisharp-vim dependency
-Plugin 'glepnir/dashboard-nvim'                                   " 启动vim时启动界面美化
+Plugin 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] }
 Plugin 'nvim-lua/popup.nvim'
 Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
-Plugin 'liuchengxu/vim-clap'                                         " 在vim中搜索文件
-Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }                    " 在vim中搜索文件
+Plugin 'liuchengxu/vim-clap'                          " 在vim中搜索文件
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   " 在vim中搜索文件
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'                          " 强大的文本搜索工具
@@ -128,23 +128,12 @@ Plugin 'DoxygenToolkit.vim'               " 注释文档生成
 Plugin 'VimTweak'                         " 背景透明插件
 Plugin 'kshenoy/vim-signature'            " 增加书签
 Plugin 'makerj/vim-pdf'                   "阅读pdf
-Plugin 'machakann/vim-highlightedyank' " 使 yank 的文档半透明高亮
+Plugin 'machakann/vim-highlightedyank'    " 使 yank 的文档半透明高亮
 Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
 " :h startify-faq
 
-"目录树
-Plugin 'mbbill/undotree'                              " Undo Tree
-Plugin 'scrooloose/nerdtree'                          " 添加树形目录
-Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
-"新一代目录树defx
-Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'roxma/nvim-yarp'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
-Plugin 'kristijanhusak/defx-icons'
+
 Plugin 'tyru/open-browser.vim'                        " 打开浏览器
 Plugin 'lucasicf/vim-smooth-scroll'                    " 支持平滑滚动
 Plugin 'Shougo/echodoc.vim'                           " 函数参数提示
@@ -166,13 +155,13 @@ Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 "补全
 Plugin 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
 Plugin 'jiangmiao/auto-pairs'                " 自动补全括号等
-" Plug 'Valloric/YouCompleteMe'              " 自动补全
+Plugin 'Valloric/YouCompleteMe'              " 自动补全
 " Plug 'davidhalter/jedi-vim'                " Python自动补齐和静态分析的开源库
 Plugin 'ervandew/supertab'                   " 补全记忆插件
 
 
 Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
-Plugin 'rhysd/vim-clang-format'
+
 Plugin 'Raimondi/delimitMate'
 Plugin 'chxuan/cpp-mode'                     " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
 Plugin 'tenfyzhong/CompleteParameter.vim',{'for':['lua', 'c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
@@ -190,7 +179,8 @@ Plugin 'honza/vim-snippets'                  " 安装代码块集合
 
 
 "格式化代码
-Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
+" Plugin 'rhysd/vim-clang-format'
+" Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
 Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
 Plugin 'sbdchd/neoformat', {'on':'Neoformat'}
 
@@ -198,6 +188,17 @@ Plugin 'sbdchd/neoformat', {'on':'Neoformat'}
 " 目录树
 Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
 Plugin 'liuchengxu/vista.vim',  "{ 'on': ['Vista'] }       tagbar的增强版
+Plugin 'mbbill/undotree'                              " Undo Tree
+Plugin 'scrooloose/nerdtree'                          " 添加树形目录
+Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
+"新一代目录树defx
+Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
+Plugin 'kristijanhusak/defx-icons'
 
 
 Plugin 'fatih/vim-go',{ 'for': ['go', 'vim-plug'], 'tag': '*' }        " go主要插件
@@ -220,7 +221,7 @@ Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'sheerun/vim-polyglot'                  " 语法高亮
 " Plug 'w0rp/ale'
 
-
+"美化状态栏
 Plugin 'vim-airline/vim-airline'                   " 美化状态栏，显示正在编辑的文件
 Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正在编辑的文件
 Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
@@ -523,275 +524,7 @@ set expandtab
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set mouse=nv
-set report=0
-set autochdir
-set fileformats=unix,dos,mac
-set magic
-set path+=**
-set isfname-==
 
-set synmaxcol=2500
-set formatoptions+=1
-set formatoptions-=t
-set formatoptions-=o
-if has('patch-7.3.541')
-	set formatoptions+=j
-endif
-
-if has('vim_starting')
-	set encoding=utf-8
-	scriptencoding utf-8
-endif
-
-if has('mac')
-	let g:clipboard = {
-				\   'name': 'macOS-clipboard',
-				\   'copy': {
-				\      '+': 'pbcopy',
-				\      '*': 'pbcopy',
-				\    },
-				\   'paste': {
-				\      '+': 'pbpaste',
-				\      '*': 'pbpaste',
-				\   },
-				\   'cache_enabled': 0,
-				\ }
-endif
-
-if has('clipboard')
-	set clipboard& clipboard+=unnamedplus
-endif
-
-" Wildmenu {{{
-" --------
-if has('wildmenu')
-	if ! has('nvim')
-		set wildmode=list:longest
-	endif
-
-	" if has('nvim')
-	"		set wildoptions=pum
-	" else
-	"		set nowildmenu
-	"		set wildmode=list:longest,full
-	"		set wildoptions=tagfile
-	" endif
-	set wildignorecase
-	set wildignore+=.git,.hg,.svn,.stversions,*.pyc,*.spl,*.o,*.out,*~,%*
-	set wildignore+=*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store
-	set wildignore+=**/node_modules/**,**/bower_modules/**,*/.sass-cache/*
-	set wildignore+=application/vendor/**,**/vendor/ckeditor/**,media/vendor/**
-	set wildignore+=__pycache__,*.egg-info,.pytest_cache,.mypy_cache/**
-	set wildcharm=<C-z>  " substitue for 'wildchar' (<Tab>) in macros
-endif
-" }}}
-
-" Vim Directories {{{
-" ---------------
-set nobackup
-set nowritebackup
-set undofile noswapfile
-set directory=$DATA_PATH/swap//,$DATA_PATH,~/tmp,/var/tmp,/tmp
-set undodir=$DATA_PATH/undo//,$DATA_PATH,~/tmp,/var/tmp,/tmp
-set backupdir=$DATA_PATH/backup/,$DATA_PATH,~/tmp,/var/tmp,/tmp
-set viewdir=$DATA_PATH/view/
-" Use the coc-spell-checker to do this
-" set spellfile=$VIM_PATH/spell/en.utf-8.add
-
-" History saving
-set history=2000
-
-if has('nvim') && ! has('win32') && ! has('win64')
-	set shada=!,'300,<50,@100,s10,h
-else
-	set viminfo='300,<10,@50,h,n$DATA_PATH/viminfo
-endif
-
-augroup user_persistent_undo
-	autocmd!
-	au BufWritePre /tmp/*          setlocal noundofile
-	au BufWritePre COMMIT_EDITMSG  setlocal noundofile
-	au BufWritePre MERGE_MSG       setlocal noundofile
-	au BufWritePre *.tmp           setlocal noundofile
-	au BufWritePre *.bak           setlocal noundofile
-augroup END
-
-" If sudo, disable vim swap/backup/undo/shada/viminfo writing
-if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
-			\ && $HOME !=# expand('~'.$USER)
-			\ && $HOME ==# expand('~'.$SUDO_USER)
-
-	set noswapfile
-	set nobackup
-	set noundofile
-	if has('nvim')
-		set shada="NONE"
-	else
-		set viminfo="NONE"
-	endif
-endif
-
-" Secure sensitive information, disable backup files in temp directories
-if exists('&backupskip')
-	set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*
-	set backupskip+=.vault.vim
-endif
-
-" Disable swap/undo/viminfo/shada files in temp directories or shm
-augroup user_secure
-	autocmd!
-	silent! autocmd BufNewFile,BufReadPre
-				\ /tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,*/shm/*,/private/var/*,.vault.vim
-				\ setlocal noswapfile noundofile nobackup nowritebackup viminfo= shada=
-augroup END
-
-" }}}
-
-
-" Tabs and Indents {{{
-" ----------------
-set textwidth=100    " Text width maximum chars before wrapping
-set noexpandtab     " Don't expand tabs to spaces
-
-set softtabstop=-1  " Automatically keeps in sync with shiftwidth
-
-
-set shiftround      " Round indent to multiple of 'shiftwidth'
-
-if exists('&breakindent')
-	set breakindentopt=shift:2,min:20
-endif
-
-" }}}
-
-" Timing {{{
-" ------
-set timeout ttimeout
-set timeoutlen=500   " Time out on mappings
-set ttimeoutlen=10   " Time out on key codes
-set updatetime=100   " Idle time to write swap and trigger CursorHold
-set redrawtime=1500  " Time in milliseconds for stopping display redraw
-
-" }}}
-
-" Searching {{{
-" ---------
-
-
-set complete=.,w,b,k  " C-n completion: Scan buffers, windows and dictionary
-
-if exists('+inccommand')
-	set inccommand=nosplit
-endif
-
-if executable('rg')
-	set grepformat=%f:%l:%m
-	let &grepprg = 'rg --vimgrep' . (&smartcase ? ' --smart-case' : '')
-elseif executable('ag')
-	set grepformat=%f:%l:%m
-	let &grepprg = 'ag --vimgrep' . (&smartcase ? ' --smart-case' : '')
-endif
-
-" }}}
-
-" Behavior {{{
-" --------
-
-set linebreak                   " Break long lines at 'breakat'
-set breakat=\ \	;:,!?           " Long lines break chars
-
-set whichwrap+=h,l,<,>,[,],~    " Move to following line on certain keys
-
-set switchbuf=useopen,vsplit    " Jump to the first open window
-
-set diffopt=filler,iwhite       " Diff mode: show fillers, ignore whitespace
-set completeopt=menu,menuone    " Always show menu, even for one item
-set completeopt+=noselect,noinsert
-
-if exists('+completepopup')
-	set completeopt+=popup
-	set completepopup=height:4,width:60,highlight:InfoPopup
-endif
-
-" Use the new Neovim :h jumplist-stack
-if has('nvim-0.5')
-	set jumpoptions=stack
-endif
-
-if has('patch-8.1.0360') || has('nvim-0.4')
-	set diffopt+=internal,algorithm:patience
-	" set diffopt=indent-heuristic,algorithm:patience
-endif
-" }}}
-
-
-" Editor UI {{{
-
-set noruler             " Disable default status ruler
-set shortmess=aFc
-
-"set fillchars+=vert:\|  " add a bar for vertical splits
-" set fcs=eob:\            " hide ~ tila
-set list
-
-set title
-" Title length.
-set titlelen=95
-" Title string.
-let &g:titlestring="
-			\ %{expand('%:p:~:.')}%(%m%r%w%)
-			\ %<\[%{fnamemodify(getcwd(), ':~')}\] - Neovim"
-
-set showmatch           " Jump to matching bracket
-set matchpairs+=<:>     " Add HTML brackets to pair matching
-set matchtime=1         " Tenths of a second to show the matching paren
-
-
-set winwidth=30         " Minimum width for active window
-set winminwidth=10      " Minimum width for inactive windows
-" set winheight=4         " Minimum height for active window
-set winminheight=1      " Minimum height for inactive window
-set pumheight=15        " Pop-up menu's line height
-set helpheight=12       " Minimum help window height
-set previewheight=12    " Completion preview height
-
-
-set noequalalways       " Don't resize windows on split or close
-
-set display=lastline
-
-if has('folding') && has('vim_starting')
-	set foldenable
-	set foldmethod=indent
-	set foldlevelstart=99
-endif
-
-if has('nvim-0.4')
-	set signcolumn=yes:1
-else
-	set signcolumn=yes           " Always show signs column
-endif
-
-if has('conceal') && v:version >= 703
-	" For snippet_complete marker
-	set conceallevel=2 concealcursor=niv
-endif
-
-if exists('+previewpopup')
-	set previewpopup=height:10,width:60
-endif
-
-if &termguicolors
-	if exists('&pumblend')
-		set pumblend=10
-	endif
-	if exists('&winblend')
-		set winblend=10
-	endif
-endif
-
-" }}}
 
 silent !mkdir -p ~/.config/nvim/tmp/backup
 silent !mkdir -p ~/.config/nvim/tmp/undo
@@ -1134,172 +867,6 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 let g:solarized_hitrail=0
 let g:solarized_menu=1
-"""""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
-" :checkhealth
-" 安装命令:CocInstall 插件名
-" 移除命令:CocUninstall 插件名
-" 查看已安装:CocList extensions
-" 更新命令:CocUpdate
-let g:coc_global_extensions = [
-    \ 'coc-angular',
-    \ 'coc-blade-formatter',
-    \ 'coc-browser',
-    \ 'coc-calc',
-    \ 'coc-cfn-lint',
-    \ 'coc-clangd',
-    \ 'coc-clang-format-style-options',
-    \ 'coc-cmake',
-    \ 'coc-css',
-    \ 'coc-cssmodules',
-    \ 'coc-deno',
-    \ 'coc-denoland',
-    \ 'coc-diagnostic',
-    \ 'coc-discord',
-    \ 'coc-discord-rpc',
-    \ 'coc-dash-complete',
-    \ 'coc-dot-complete',
-    \ 'coc-ecdict',
-    \ 'coc-elixir',
-    \ 'coc-emmet',
-    \ 'coc-erlang_ls',
-    \ 'coc-eslint',
-    \ 'coc-explorer',
-    \ 'coc-floaterm',
-    \ 'coc-flow',
-    \ 'coc-flutter',
-    \ 'coc-fsharp',
-    \ 'coc-fzf-preview',
-    \ 'coc-gist',
-    \ 'coc-git',
-    \ 'coc-glslx',
-    \ 'coc-go',
-    \ 'coc-graphql',
-    \ 'coc-highlight',
-    \ 'coc-html',
-    \ 'coc-htmlhint',
-    \ 'coc-html-css-support',
-    \ 'coc-java',
-    \ 'coc-jedi',
-    \ 'coc-json',
-    \ 'coc-julia',
-    \ 'coc-just-complete',
-    \ 'coc-lists',
-    \ 'coc-lsp-wl',
-    \ 'coc-markdownlint',
-    \ 'coc-metals',
-    \ 'coc-omnisharp',
-    \ 'coc-perl',
-    \ 'coc-php-cs-fixer',
-    \ 'coc-phpactor',
-    \ 'coc-phpls',
-    \ 'coc-psalm',
-    \ 'coc-powershell',
-    \ 'coc-prettier',
-    \ 'coc-prisma',
-    \ 'coc-pyright',
-    \ 'coc-python',
-    \ 'coc-r-lsp',
-    \ 'coc-reason',
-    \ 'coc-rls',
-    \ 'coc-rome',
-    \ 'coc-rust-analyzer',
-    \ 'coc-sh',
-    \ 'coc-stylelintplus',
-    \ 'coc-stylelint',
-    \ 'coc-snippets',
-    \ 'coc-solargraph',
-    \ 'coc-sourcekit',
-    \ 'coc-spell-checker',
-    \ 'coc-sql',
-    \ 'coc-svelte',
-    \ 'coc-svg',
-    \ 'coc-swagger',
-    \ 'coc-tabnine',
-    \ 'coc-tailwindcss',
-    \ 'coc-tasks',
-    \ 'coc-texlab',
-    \ 'coc-toml',
-    \ 'coc-translator',
-    \ 'coc-tsserver',
-    \ 'coc-vetur',
-    \ 'coc-vimlsp',
-    \ 'coc-xml',
-    \ 'coc-yaml',
-    \ 'coc-yank']
-inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-    " inoremap <silent><expr> <c-o> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-function! Show_documentation()
-    call CocActionAsync('highlight')
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-nnoremap <LEADER>h :call Show_documentation()<CR>
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
-nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
-nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap cc :CocCommand<CR>
-" Text Objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap tt :CocCommand explorer<CR>
-" coc-translator
-nmap ts <Plug>(coc-translator-p)
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-selected)w
-" coctodolist
-" nnoremap <leader>tn :CocCommand todolist.create<CR>
-" nnoremap <leader>tl :CocList todolist<CR>
-" nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
-" coc-tasks
-noremap <silent> <leader>ct :CocList tasks<CR>
-" coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-e> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-e>'
-let g:coc_snippet_prev = '<c-n>'
-imap <C-e> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'jj.Chen'
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-
 
 """""""""""""""""""""""lfv89/vim-interestingwords""""""""""""""""""""""""""""""
 
@@ -1431,7 +998,7 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 let g:gitgutter_sign_added = '▎'
-let g:gitgutter_sign_modified = ''
+" let g:gitgutter_sign_modified = ''
 let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▒'
@@ -1841,94 +1408,8 @@ sign define vimspectorBPDisabled text=☞ texthl=Normal
 sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
-""""""""""""""""""glepnir/dashboard-nvim设置""""""""""""""""""""""""""""""
-let g:dashboard_default_header = "eval"
-let g:dashboard_custom_header = [
-       \ '',
-       \ '███████╗██╗   ██╗ ██████╗ ██╗    ██╗   ██╗███████╗    ██╗',
-       \ '██╔════╝██║   ██║██╔═══██╗██║    ██║   ██║██╔════╝    ██║',
-       \ '█████╗  ██║   ██║██║   ██║██║    ██║   ██║█████╗      ██║',
-       \ '██╔══╝  ╚██╗ ██╔╝██║   ██║██║    ╚██╗ ██╔╝██╔══╝      ╚═╝',
-       \ '███████╗ ╚████╔╝ ╚██████╔╝███████╗╚████╔╝ ███████╗    ██╗',
-       \ '╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═══╝  ╚══════╝    ╚═╝',
-       \ '',
-       \ '                       [Hello jj.Chen]',
-       \ '',
-\ ]
-let g:dashboard_custom_header = [
-\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-\]
-
-let g:dashboard_preview_command = 'cat'
-let g:dashboard_preview_pipeline = 'lolcat'
-let g:dashboard_preview_file_height = 10
-let g:dashboard_preview_file_width = 80
-" let g:dashboard_default_executive ='telescope'
-" let g:dashboard_default_executive ='clap'
-let g:dashboard_default_executive ='fzf'
-nmap ;ss :<C-u>SessionSave<CR>
-nmap ;sl :<C-u>SessionLoad<CR>
-nnoremap <silent> ;fh :DashboardFindHistory<CR>
-nnoremap <silent> ;ff :DashboardFindFile<CR>
-nnoremap <silent> ;tc :DashboardChangeColorscheme<CR>
-nnoremap <silent> ;fa :DashboardFindWord<CR>
-nnoremap <silent> ;fb :DashboardJumpMark<CR>
-nnoremap <silent> ;cn :DashboardNewFile<CR>
-let g:dashboard_custom_shortcut={
-\ 'last_session'       : 'SPC s l',
-\ 'find_history'       : 'SPC f h',
-\ 'find_file'          : 'SPC f f',
-\ 'new_file'           : 'SPC c n',
-\ 'change_colorscheme' : 'SPC t c',
-\ 'find_word'          : 'SPC f a',
-\ 'book_marks'         : 'SPC f b',
-\ }
-
-" let g:dashboard_custom_shortcut_icon['last_session'] = ' '
-" let g:dashboard_custom_shortcut_icon['find_history'] = 'ﭯ '
-" let g:dashboard_custom_shortcut_icon['find_file'] = ' '
-" let g:dashboard_custom_shortcut_icon['new_file'] = ' '
-" let g:dashboard_custom_shortcut_icon['change_colorscheme'] = ' '
-" let g:dashboard_custom_shortcut_icon['find_word'] = ' '
-" let g:dashboard_custom_shortcut_icon['book_marks'] = ' '
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""""""nvim-telescope/telescope.nvim配置"""""""""""""""""""""""""""""""""
-" Find files using Telescope command-line sugar.
-nnoremap [ff <cmd>Telescope find_files<cr>
-nnoremap [fg <cmd>Telescope live_grep<cr>
-nnoremap [fb <cmd>Telescope buffers<cr>
-nnoremap [fh <cmd>Telescope help_tags<cr>
-
-" Using lua functions
-nnoremap ,ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap ,fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap ,fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap ,fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-
-highlight TelescopeSelection      guifg=#D79921 gui=bold  ctermfg=11 " selected item
-highlight TelescopeSelectionCaret guifg=#CC241D  ctermfg=9  " selection caret
-highlight TelescopeMultiSelection guifg=#928374  ctermfg=241  " multisections
-highlight TelescopeNormal         guibg=#000000   ctermfg=0 " floating windows created by telescope.
-
-" Border highlight groups.
-highlight TelescopeBorder         guifg=#ffffff      ctermfg=15
-highlight TelescopePromptBorder   guifg=#ffffff      ctermfg=15
-highlight TelescopeResultsBorder  guifg=#ffffff      ctermfg=15
-highlight TelescopePreviewBorder  guifg=#ffffff      ctermfg=15
-
-" Used for highlighting characters that you match.
-highlight TelescopeMatching       guifg=blue        ctermfg=12
-
-" Used for the prompt prefix
-highlight TelescopePromptPrefix   guifg=red        ctermfg=9
 """"""""""""""""""""""""""suda配置"""""""""""""""""""""""""""""""""
 "This plugin was built while :w !sudo tee % > /dev/null trick does not work on neovim.
 " Re-open a current file with sudo
@@ -2712,7 +2193,166 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
+"寻找全局配置文件
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
+"开始补全的字符数
+let g:ycm_min_num_of_chars_for_completion = 2
+
+"与syntastic有冲突，建议关闭
+" let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_error_symbol = '✗'
+"let g:ycm_warning_symbol = '⚠'
+
+"jedi模块所在python解释器路径
+let g:ycm_python_binary_path = 'python'
+
+"选补全框内显示的补全条目的最大数量
+let g:ycm_max_num_candidates = 20
+
+"该选项控制基于identifiers-based引擎的最大候选补全项
+let g:ycm_max_num_identifier_candidates = 20
+
+
+" 设置YCM的日志记录级别，可以是debug，info，warning，error或critical。debug是最详细的
+" let g:ycm_log_level = 'info'
+
+let g:ycm_collect_identifiers_from_tags_files = 0
+
+"开启使用语言的一些关键字查询
+let g:ycm_seed_identifiers_with_syntax = 1
+
+"补全后自动关闭预览窗口
+let g:ycm_autoclose_preview_window_after_completion=1
+
+"在实现和声明之间跳转,并分屏打开
+let g:ycm_goto_buffer_command = 'horizontal-split'
+
+" let g:ycm_auto_trigger = 0   "turn off
+let g:ycm_auto_trigger = 1   "turn on ,打开ycm
+
+
+"关键字补全
+let g:ycm_seed_indetifiers_with_syntax = 1
+
+" 在注释中也可以补全
+let g:ycm_complete_in_comments=1
+
+
+" 在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+
+" 注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+
+let g:ycm_extra_conf_globlist = ['~/dev/*','!~/*']
+
+"不显示开启vim时是否检查ycm_extra_conf文件的信息，直接加载该文件
+let g:ycm_confirm_extra_conf=0
+
+"每次重新生成匹配项，禁止缓存匹配项
+let g:ycm_cache_omnifunc=0
+
+"在代码中高亮显示YCM诊断对应的内容，如果关闭，则会关闭错误和警告高亮功能，0表示关闭
+let g:ycm_enable_diagnostic_signs = 0
+
+"高亮显示代码中与诊断信息有关的文本或代码，0表示关闭
+let g:ycm_enable_diagnostic_highlighting = 0
+
+"当光标移到所在行时显示诊断信息
+let g:ycm_echo_current_diagnostic = 1
+
+
+map <leader>g :YouCompleter GoToDefinitionElseDeclaration<CR>
+
+
+"查找光标下的标识符并跳转到其声明，文件类型支持：c，cpp，objc，objcpp，cs，go，java，python，rust，typescript
+nnoremap <leader>gg :YcmCompleter GoToDeclaration<CR>
+
+" 查找光标下的标识符并跳转到其定义
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+
+
+"关闭YCM 自动弹出函数原型预览窗口
+" set completeopt=longest,menu
+" let g:ycm_add_preview_to_completeopt = 0
+
+" YCM默认会显示诊断信息，语言标注出来你代码问题,屏蔽YCM 的诊断信息
+let g:ycm_show_diagnostics_ui = 0
+
+"离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+"回车即选中当前项
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+
+"上下左右键的行为 会显示其他信息
+inoremap <expr> <Down>       pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>         pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>     pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
+
+"youcompleteme  默认tab  s-tab 和自动补全冲突
+"设置用于选择补全列表中的第一个选项以及进入补全列表后向下选择的快捷键
+let g:ycm_key_list_select_completion = [ '<TAB>' ,'<Down>']
+" let g:ycm_key_list_select_completion=['<C-n>','<Down>']
+
+"设置用于向上选择补全列表中的选项的快捷键，默认为shift+tab，和方向上键
+let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" let g:ycm_key_list_previous_completion=['<c-p>','<Up>']
+
+"设置用于关闭补全列表的快捷键，默认为ctrl+y
+let g:ycm_key_list_stop_completion =  ['<C-y>']
+
+" let g:ycm_filetype_blacklist = {
+" \ 'tagbar' : 1,
+" \ 'qf' : 1,
+" \ 'notes' : 1,
+" \ 'markdown' : 1,
+" \ 'unite' : 1,
+" \ 'text' : 1,
+" \ 'vimwiki' : 1,
+" \ 'pandoc' : 1,
+" \ 'infolog' : 1,
+" \ 'mail' : 1
+" \}
+
+let g:ycm_filetype_specific_completion_to_disable = {
+            \ 'gitcommit': 1
+            \}
+
+" let g:ycm_filetype_whitelist = {
+" \ "c":1,
+" \ "cpp":1,
+" \ "objc":1,
+" \ "sh":1,
+" \ "zsh":1,
+" \ "zimbu":1,
+" \ }
+
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \             're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'py' : ['.'],
+            \ }
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+
+
+"""""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""" AutoComplPop配置 """""""""""""""""
 " 输入一个字母即可补全
@@ -3667,7 +3307,7 @@ if strftime('%H') >= 7 && strftime('%H') < 22
     let themes = [
         \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
         \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github','PaperColor',
-        \ 'gabo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
+        \ 'gobo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
         \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
         \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
         \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
@@ -3709,7 +3349,7 @@ exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 
 " 黑色：carbonized_dark, SolarizedDark_modified ,NeoSolarized, colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
 
-" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gabo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
+" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gobo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
 
 
 
@@ -4062,12 +3702,25 @@ noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab><right> :tabn<cr>
 noremap <silent>\= :tabn<cr>
+
 " 上一个标签页
 noremap <silent><tab><left> :tabp<cr>
 noremap <silent>\- :tabp<cr>
+
 "下一个标签页,循环
 noremap <silent><S-tab> :tabnext<CR>
 
+" Move around tabs with tn and tp
+noremap tn  :-tabnext<CR>
+noremap tp  :+tabnext<CR>
+
+" Create a new tab with tu
+noremap tu :tabe<CR>
+noremap tU :tab split<CR>
+
+" Move the tabs with tmn and tmp
+noremap tmn :-tabmove<CR>
+noremap tmp :+tabmove<CR>
 "Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
 set tabpagemax=15
 
