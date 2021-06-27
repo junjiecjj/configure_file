@@ -115,6 +115,7 @@ alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
 
 mkd() { mkdir -p "$@" && cd "$1"; }
+alias install='sudo apt install'
 alias update=’sudo apt update’
 alias upgrade=’sudo apt upgrade’
 alias up='sudo apt update ; sudo apt upgrade'
@@ -200,6 +201,7 @@ LANGUAGE=zh_CN.UTF-8
 
 # Change ls colours
 LS_COLORS="ow=01;36;40" && export LS_COLORS
+LS_COLORS="di=01;04;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
 
 export DISPLAY=localhost:0
 export DISPLAY=:0.0
@@ -216,7 +218,7 @@ export XMODIFIERS=@im=fcitx
 
 
 export TERM=xterm-256color
-LS_COLORS="di=01;04;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
+
 source "$HOME/.cargo/env"
 
 
