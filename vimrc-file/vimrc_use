@@ -49,7 +49,7 @@ Plugin 'nightsense/carbonized'
 Plugin 'nightsense/stellarized'
 Plugin 'ayu-theme/ayu-vim'              " or other package manager
 Plugin 'nightsense/cosmic_latte'
-Plugin 'molokai'                             " 配色方案
+Plugin 'crusoexia/vim-monokai'              " 配色方案
 Plugin 'morhetz/gruvbox'                     " 配色方案
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
@@ -60,6 +60,8 @@ Plugin 'mhartington/oceanic-next'
 
 " 翻译
 Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
+
+Plugin 'bronson/vim-trailing-whitespace'   " 行尾空格处理
 
 " 自动补全插件coc.nvim
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -76,9 +78,9 @@ Plugin 'RRethy/vim-illuminate'
 Plugin 'luochen1990/rainbow'
 Plugin 'kien/rainbow_parentheses.vim'
 
-Plugin 'wincent/terminus'
+Plugin 'wincent/terminus'       " 终端增强
 
-
+Plugin 'craigemery/vim-autotag'
 " Git
 Plugin 'rhysd/conflict-marker.vim'          " Highlight, jump and resolve conflict markers quickly.
 Plugin 'tpope/vim-fugitive'                 " 在vim中执行git命令
@@ -93,21 +95,22 @@ Plugin 'kdheepak/lazygit.nvim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 
+" 弹窗特性
+Plugin 'nvim-lua/popup.nvim'
+Plugin 'nvim-lua/plenary.nvim'
 
 " 查找替换
 Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }    "查找替换
 " CSharp
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] }
-Plugin 'nvim-lua/popup.nvim'
-Plugin 'nvim-lua/plenary.nvim'
 Plugin 'liuchengxu/vim-clap'                          " 在vim中搜索文件
 Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   " 在vim中搜索文件
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
 Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'                          " 强大的文本搜索工具
-Plugin 'easymotion/vim-easymotion'                " 强大的搜索定位，快速移动
-Plugin 'tpope/vim-surround'                         "快速将括号、‘’、“”、[]等替换
+Plugin 'mileszs/ack.vim'                      " 强大的文本搜索工具
+Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位，快速移动
+Plugin 'tpope/vim-surround'                "快速将括号、‘’、“”、[]等替换
 
 "代码调试
 Plugin 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}  " Debugger,代码调试IDE
@@ -230,7 +233,7 @@ Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正
 Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
 " Plug 'glepnir/spaceline.vim'                    " 美化状态栏，
 Plugin 'scrooloose/nerdcommenter'                   "快速注释，取消注释
-Plugin 'tpope/vim-commentary'                     " 快速注释插件，相比于 nerdcommenter 更加简洁实用
+Plugin 'tpope/vim-commentary'          " 快速注释插件，相比于 nerdcommenter 更加简洁实用
 
 "python
 Plugin 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
@@ -244,7 +247,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'ap/vim-css-color'
 " Plug 'pangloss/vim-javascript'
-Plugin 'maksimr/vim-jsbeautify'                                        " 格式化js css等文件
+Plugin 'maksimr/vim-jsbeautify'              " 格式化js css等文件
 Plugin 'mxw/vim-jsx'
 Plugin 'prettier/vim-prettier', {
             \ 'do': 'yarn install',
@@ -605,7 +608,7 @@ set complete-=t " disable searching tags
 
 
 "删除行尾空格
-nnoremap ;se  :%s/\s*$//g<CR>
+nnoremap ;se  :%s/\s\+$//g<CR>
 
 "删除行首空格
 nnoremap ;sh  :%s/^\s*//g<CR>
@@ -871,170 +874,6 @@ let g:solarized_visibility="normal"
 let g:solarized_hitrail=0
 let g:solarized_menu=1
 
-"""""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
-" :checkhealth
-" 安装命令:CocInstall 插件名
-" 移除命令:CocUninstall 插件名
-" 查看已安装:CocList extensions
-" 更新命令:CocUpdate
-let g:coc_global_extensions = [
-    \ 'coc-angular',
-    \ 'coc-browser',
-    \ 'coc-calc',
-    \ 'coc-cfn-lint',
-    \ 'coc-clangd',
-    \ 'coc-cmake',
-    \ 'coc-css',
-    \ 'coc-cssmodules',
-    \ 'coc-deno',
-    \ 'coc-denoland',
-    \ 'coc-diagnostic',
-    \ 'coc-discord',
-    \ 'coc-discord-rpc',
-    \ 'coc-dash-complete',
-    \ 'coc-dot-complete',
-    \ 'coc-ecdict',
-    \ 'coc-elixir',
-    \ 'coc-ember',
-    \ 'coc-emmet',
-    \ 'coc-erlang_ls',
-    \ 'coc-eslint',
-    \ 'coc-explorer',
-    \ 'coc-floaterm',
-    \ 'coc-flow',
-    \ 'coc-flutter',
-    \ 'coc-fsharp',
-    \ 'coc-fzf-preview',
-    \ 'coc-gist',
-    \ 'coc-git',
-    \ 'coc-glslx',
-    \ 'coc-go',
-    \ 'coc-graphql',
-    \ 'coc-highlight',
-    \ 'coc-html',
-    \ 'coc-htmlhint',
-    \ 'coc-html-css-support',
-    \ 'coc-java',
-    \ 'coc-jedi',
-    \ 'coc-json',
-    \ 'coc-julia',
-    \ 'coc-just-complete',
-    \ 'coc-lists',
-    \ 'coc-lsp-wl',
-    \ 'coc-markdownlint',
-    \ 'coc-metals',
-    \ 'coc-omnisharp',
-    \ 'coc-perl',
-    \ 'coc-php-cs-fixer',
-    \ 'coc-phpactor',
-    \ 'coc-phpls',
-    \ 'coc-psalm',
-    \ 'coc-powershell',
-    \ 'coc-prettier',
-    \ 'coc-prisma',
-    \ 'coc-pyright',
-    \ 'coc-python',
-    \ 'coc-r-lsp',
-    \ 'coc-reason',
-    \ 'coc-rls',
-    \ 'coc-rome',
-    \ 'coc-rust-analyzer',
-    \ 'coc-sh',
-    \ 'coc-stylelintplus',
-    \ 'coc-stylelint',
-    \ 'coc-snippets',
-    \ 'coc-solargraph',
-    \ 'coc-sourcekit',
-    \ 'coc-spell-checker',
-    \ 'coc-sql',
-    \ 'coc-svelte',
-    \ 'coc-svg',
-    \ 'coc-swagger',
-    \ 'coc-tabnine',
-    \ 'coc-tailwindcss',
-    \ 'coc-tasks',
-    \ 'coc-texlab',
-    \ 'coc-toml',
-    \ 'coc-translator',
-    \ 'coc-tsserver',
-    \ 'coc-vetur',
-    \ 'coc-vimlsp',
-    \ 'coc-xml',
-    \ 'coc-yaml',
-    \ 'coc-yank']
-inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
-    " inoremap <silent><expr> <c-o> coc#refresh()
-else
-    inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-function! Show_documentation()
-    call CocActionAsync('highlight')
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-nnoremap <LEADER>h :call Show_documentation()<CR>
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-nnoremap <silent><nowait> <LEADER>d :CocList diagnostics<cr>
-nmap <silent> <LEADER>- <Plug>(coc-diagnostic-prev)
-nmap <silent> <LEADER>= <Plug>(coc-diagnostic-next)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap cc :CocCommand<CR>
-" Text Objects
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap tt :CocCommand explorer<CR>
-" coc-translator
-nmap ts <Plug>(coc-translator-p)
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-selected)w
-" coctodolist
-" nnoremap <leader>tn :CocCommand todolist.create<CR>
-" nnoremap <leader>tl :CocList todolist<CR>
-" nnoremap <leader>tu :CocCommand todolist.download<CR>:CocCommand todolist.upload<CR>
-" coc-tasks
-noremap <silent> <leader>ct :CocList tasks<CR>
-" coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-e> <Plug>(coc-snippets-select)
-let g:coc_snippet_next = '<c-e>'
-let g:coc_snippet_prev = '<c-n>'
-imap <C-e> <Plug>(coc-snippets-expand-jump)
-let g:snips_author = 'jj.Chen'
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
 """""""""""""""""""""""lfv89/vim-interestingwords""""""""""""""""""""""""""""""
 
@@ -2363,6 +2202,11 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""Ycraigemery/vim-autotag 配置 """"""""""""""""""""""""""""""""""""""""""
+let g:autotagTagsFile=".tags"
+let g:autotagStartMethod='fork'
+
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 "寻找全局配置文件
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -3064,6 +2908,7 @@ let g:vista_executive_for = {
 			\ 'typescript': 'coc',
 			\ 'typescriptreact': 'coc',
 			\ }
+
 
 """""""""""""""""""""""""""""""""""""""""配置w0rp/ale"""""""""""""""""""""""""""""""""""""""
 "let g:ale_set_loclist = 0
