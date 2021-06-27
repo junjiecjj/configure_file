@@ -64,7 +64,7 @@ Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 Plugin 'bronson/vim-trailing-whitespace'   " 行尾空格处理
 
 " 自动补全插件coc.nvim
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+" Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 
 
 " 让光标所在单词高亮或者下划线
@@ -661,12 +661,12 @@ map \fr 10zl
 " === Other useful stuff
 " ===
 " 打开新标签页并在新标签页打开终端
-nnoremap ;t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
+nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 
 " 上下分屏并在下方打开终端
-noremap <LEADER>td :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+noremap ;t :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " 左右分屏并在下方打开终端
-noremap <LEADER>tr :set splitright<CR>:vsplit<CR>:res +10<CR>:term<CR>
+noremap ;r :set splitright<CR>:vsplit<CR>:res +10<CR>:term<CR>
 
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
