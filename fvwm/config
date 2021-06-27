@@ -1,4 +1,4 @@
-##
+
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -721,6 +721,7 @@ Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
 DestroyMenu MenuOffice
 AddToMenu   MenuOffice "文本编辑器" Title
 Test (x  typora) + "typora %$[fvwm_exicons2]/typora.png%"  Exec exec typora
+Test (x  notepadqq) + "notepadqq %$[fvwm_exicons2]/typora.png%"  Exec exec notepadqq
 Test (x  /usr/local/bin/notion) + "Notion %$[fvwm_exicons2]/typora.png%"  Exec exec /usr/local/bin/notion
 Test (x  /usr/local/bin/wolai) + "WoLai %$[fvwm_exicons2]/typora.png%"  Exec exec  /usr/local/bin/wolai
 #Test (x chromium) + "Chromium" Exec exec Chromium
@@ -1077,6 +1078,7 @@ Silent Key t  A   CM     Exec exec $[infostore.terminator]
 
 #ctr了+ m 打开dmenus_run
 Silent Key m  A   C     Exec exec dmenu_run
+Silent Key r  A   CM     Exec exec  rofi -show drun
 
 
 
@@ -1154,7 +1156,7 @@ Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic
 
 #Shift + Ctrl +  l  锁屏
 Silent Key   l          A  CM   Exec exec xscreensaver-command -lock
-Silent Key   l          A  CM   Exec exec slock
+Silent Key   l          A  CSM   Exec exec slock
 
 #Key F5 A A Direction North Maximize True 0 growdown
 
