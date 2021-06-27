@@ -117,6 +117,7 @@ alias ca='cd ~/公共的/c文件/数据结构/'
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias update=’sudo apt update’
 alias upgrade=’sudo apt upgrade’
+alias up='sudo apt update ; sudo apt upgrade'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
