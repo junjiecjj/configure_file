@@ -25,8 +25,8 @@ xterm*Font: 7*13
 ! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
 ! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
-! xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
-xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
+xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
 ! xterm*faceNameDoublesize:JetBrains Mono Regular:antialias=True:pixelsize=13
