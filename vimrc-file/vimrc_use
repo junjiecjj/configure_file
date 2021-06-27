@@ -633,7 +633,7 @@ nmap <Leader>w :w!<CR>
 " 定义快捷键保存当前窗口内容
 map Q :q<CR>
 map S :w!<CR>
-map <C-s> :w<CR>
+
 
 " Call figlet
 map ;x :r !figlet
@@ -3552,8 +3552,15 @@ autocmd FileType javascript,html,css,xml set sts=2
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-noremap <C-a> ggvG$
-inoremap <C-a> <Esc>ggvG$
+" Ctrl+A全选高亮显示，
+noremap <C-a> ggVG$
+inoremap <C-a> <Esc>ggVG$
+
+" Ctrl+A全选复制，
+"noremap <C-a> ggyG$
+"inoremap <C-a> <Esc>ggyG$
+
+
 
 " set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
 " vnoremap <C-C> "+y<Esc>
@@ -3572,8 +3579,6 @@ inoremap <C-x> <Esc>"+x
 
 " map <C-z> "+u
 " inoremap <C-z> <Esc>"+u
-
-
 
 
 "括号等的自动补全
@@ -4572,6 +4577,17 @@ autocmd BufReadPost * cd %:p:h
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 "-----------------------------vim快捷键结束----------------------------------------------
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"        (          (左小括号) 移到这个句子的开头
+"         )          (左小括号) 移到下一个句子的开头
+
+"       [[         跳往上一个函式的起始大括号
+"       ]]         跳往下一个函式的起始大括号
+"       []         跳往上一个函数的结束大括号
+"       ][         跳往下一个函数的结束大括号
+
+
+"      {         (左大括号) 跳到上一段的开头
+"      }         (右大括号) 跳到下一段的的开头
 
 
 " 在开发中，可能会遇到一次性给多行代码增加注释的情况。
