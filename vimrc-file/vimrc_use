@@ -1,4 +1,3 @@
-
 "基本键位设置
 "============
 "     ^
@@ -6,261 +5,263 @@
 " < h   l >
 "     j
 "     v
-" === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：neovim+vim-plug
 " ===
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
-endif
-
 " === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：vim+vim-plug
 " ===
 " if empty(glob('~/.vim/autoload/plug.vim'))
-"     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"     autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+"   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
+" endif
+
+" ===
+" === Auto load for first time usesneovim 配置文件最前面，有这么一段代码：vim+vundle
+" ===
+" if empty(glob('~/.vim/bundle/Vundle.vim'))
+"   silent !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"   autocmd VimEnter * PluginInstall --sync | source ~/.vimrc
 " endif
 
 "如果你用的是 Vim，请把~/.config/nvim/autoload/plug.vim换成~/.vim/autoload/plug.vim
 
 let mapleader = '\'
 "不适用vi的键盘模式，使用vim自己的
-set nocompatible                             " required
-filetype on                                  " required开启探测文件类型,on off
+set nocompatible             " required
+filetype on                  " required开启探测文件类型,on off
 filetype plugin on           " 载入文件类型插件
 filetype indent on           " 为特定文件类型载入相关缩进文件
 
-" 打开文件类型检测, 加了这句才可以用智能补全
-filetype plugin indent on
-
 "sheerun/vim-polyglot插件配置disable
-let g:polyglot_disabled = ['markdown.plugin','autoindent','sensible','ftdetect','latex']
+let g:polyglot_disabled = ['markdown.plugin','autoindent','sensible','ftdetect','latex','javascript']
+
 
 "set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
 
-call plug#begin('~/.config/nvim/plugged')
-" :PlugStatus 检查现在 plug 负责的插件状态
-" :PlugInstall 安装配置好的插件
-" :PlugUpdate 更新已安装的插件
-" :PlugClean 清理插件，需要现在 .vimrc 里面删除或注释掉
-" :PlugUpgrade 升级自身
+call vundle#begin('~/.vim/bundle')
+" PluginInstall:安装插件
+" PluginClean:移除不要的插件
+" PluginUpdate:更新插件
+" PluginList:列出所有安装的插件
+" PluginSearch:查找插件
 
+"let Vundle manage Vundle,require
+Plugin 'VundleVim/Vundle.vim'
 "以下是颜色主题
-Plug 'liuchengxu/space-vim-theme'
-Plug 'ashfinal/vim-colors-violet'
-Plug 'nlknguyen/papercolor-theme'
-Plug 'nightsense/snow'
-Plug 'nightsense/vimspectr'
-Plug 'nightsense/carbonized'
-Plug 'nightsense/stellarized'
-Plug 'junegunn/seoul256.vim'
-Plug 'ayu-theme/ayu-vim' " or other package manager
-Plug 'nightsense/cosmic_latte'
-Plug 'crusoexia/vim-monokai'               " 配色方案
-Plug 'morhetz/gruvbox'                     " 配色方案
-Plug 'jnurmine/Zenburn'
-Plug 'altercation/vim-colors-solarized'
+Plugin 'liuchengxu/space-vim-theme'
+Plugin 'ashfinal/vim-colors-violet'
+Plugin 'nlknguyen/papercolor-theme'
+Plugin 'nightsense/snow'
+Plugin 'nightsense/vimspectr'
+Plugin 'nightsense/carbonized'
+Plugin 'nightsense/stellarized'
+Plugin 'ayu-theme/ayu-vim'              " or other package manager
+Plugin 'nightsense/cosmic_latte'
+Plugin 'crusoexia/vim-monokai'              " 配色方案
+Plugin 'morhetz/gruvbox'                     " 配色方案
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 "主题插件
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'glepnir/oceanic-material'
-Plug 'mhartington/oceanic-next'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'glepnir/oceanic-material'
+Plugin 'mhartington/oceanic-next'
 
 " 翻译
-Plug 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'voldikss/vim-translator', { 'on':'<Plug>Translate' }
 
-Plug 'bronson/vim-trailing-whitespace'   " 行尾空格处理
+Plugin 'bronson/vim-trailing-whitespace'   " 行尾空格处理
+
+" 自动补全插件coc.nvim
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 " 让光标所在单词高亮或者下划线
-Plug 'lfv89/vim-interestingwords'
-Plug 'itchyny/vim-cursorword'
+Plugin 'lfv89/vim-interestingwords'
+Plugin 'itchyny/vim-cursorword'
 " General Highlighter
 " Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
-Plug 'RRethy/vim-illuminate'
+Plugin 'RRethy/vim-illuminate'
 
 " 多层括号配色
-Plug 'luochen1990/rainbow'
-Plug 'kien/rainbow_parentheses.vim'
+Plugin 'luochen1990/rainbow'
+Plugin 'kien/rainbow_parentheses.vim'
 
-Plug 'wincent/terminus'   " 终端增强
-Plug 'craigemery/vim-autotag'
+Plugin 'wincent/terminus'       " 终端增强
 
+Plugin 'craigemery/vim-autotag'
 " Git
-Plug 'rhysd/conflict-marker.vim'          " Highlight, jump and resolve conflict markers quickly.
-Plug 'tpope/vim-fugitive'                 " 在vim中执行git命令
-" Plug 'gisphm/vim-gitignore', " { 'for': ['gitignore', 'vim-plug'] }
+Plugin 'rhysd/conflict-marker.vim'          " Highlight, jump and resolve conflict markers quickly.
+Plugin 'tpope/vim-fugitive'                 " 在vim中执行git命令
+Plugin 'gisphm/vim-gitignore',  { 'for': ['gitignore', 'vim-plug'] }
 if has('nvim') || has('patch-8.0.902')
-    Plug 'mhinz/vim-signify'          " git/svn版本控制插件vim-signify
+    Plugin 'mhinz/vim-signify'          " git/svn版本控制插件vim-signify
 else
-    Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+    Plugin 'mhinz/vim-signify', { 'branch': 'legacy' }
 endif
-Plug 'cohama/agit.vim'
-Plug 'kdheepak/lazygit.nvim'
-" Plug 'airblade/vim-gitgutter'
-Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+Plugin 'cohama/agit.vim'
+Plugin 'kdheepak/lazygit.nvim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 
+" 弹窗特性
+Plugin 'nvim-lua/popup.nvim'
+Plugin 'nvim-lua/plenary.nvim'
 
 " 查找替换
-Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }       "查找替换
+Plugin 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo'] }    "查找替换
 " CSharp
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] }
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'liuchengxu/vim-clap'                              " 在vim中搜索文件
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }       " 在vim中搜索文件
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
-Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'                          " 强大的文本搜索工具
-Plug 'easymotion/vim-easymotion'                " 强大的搜索定位，快速移动
-Plug 'tpope/vim-surround'                         "快速将括号、‘’、“”、[]等替换
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] }
+Plugin 'liuchengxu/vim-clap'                          " 在vim中搜索文件
+Plugin 'Yggdroot/LeaderF', { 'do': './install.sh' }   " 在vim中搜索文件
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }    " 在vim中搜索文件
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'                      " 强大的文本搜索工具
+Plugin 'easymotion/vim-easymotion'           " 强大的搜索定位，快速移动
+Plugin 'tpope/vim-surround'                "快速将括号、‘’、“”、[]等替换
 
 "代码调试
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}  " Debugger,代码调试IDE
+Plugin 'puremourning/vimspector', {'do': './install_gadget.py --enable-c --enable-python --enable-go'}  " Debugger,代码调试IDE
 
 
 "美化
 " Plug 'glepnir/galaxyline.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'itchyny/calendar.vim'             "日历，:Calendar 在 Vim 中查看日历
-Plug 'Yggdroot/indentLine', { 'for': ['lua', 'c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }              " 缩进指示线
-Plug 'fadein/vim-FIGlet'                " 出现有趣的文字图像
-Plug 'lambdalisue/suda.vim'             " do stuff like :sudowrite
-Plug 'junegunn/goyo.vim'                " 提供一个专注阅读和写作的环境
-Plug 'junegunn/limelight.vim'           " 与 Goyo, seoul256 为同一开发者，联合使用效果最佳。不适用于写代码和看代码
-Plug 'junegunn/vim-peekaboo'            "  当你按下双引号键时，它会在右侧打开一个寄存器备忘单
-Plug 'matze/vim-move'                   " 代码块移动
-" Plug 'DoxygenToolkit.vim'               " 注释文档生成
-" Plug 'VimTweak'                         " 背景透明插件
-Plug 'kshenoy/vim-signature'            " 增加书签
-Plug 'makerj/vim-pdf'                   "阅读pdf
-Plug 'chrisbra/changesPlugin'           " 显示vim文档哪些行被修改
-Plug 'vim-utils/vim-man'                " 在vim中查看相关函数等的man手册，支持水平窗口和垂直窗口打开。
-Plug 'machakann/vim-highlightedyank'    " 使 yank 的文档半透明高亮
-Plug 'glepnir/dashboard-nvim'             " 启动vim时启动界面美化
-Plug 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
+Plugin 'kyazdani42/nvim-web-devicons'
+Plugin 'itchyny/calendar.vim'             "日历，:Calendar 在 Vim 中查看日历
+Plugin 'Yggdroot/indentLine', { 'for': ['lua', 'c', 'h', 'cpp', 'py', 'json', 'go', 'java', 'vim', 'hs'] }              " 缩进指示线
+Plugin 'fadein/vim-FIGlet'                " 出现有趣的文字图像
+Plugin 'lambdalisue/suda.vim'             " do stuff like :sudowrite
+Plugin 'junegunn/goyo.vim'                " 提供一个专注阅读和写作的环境
+Plugin 'junegunn/limelight.vim'            " 实现类似于“关灯看小说”的功能
+Plugin 'junegunn/vim-peekaboo'            "  当你按下双引号键时，它会在右侧打开一个寄存器备忘单
+Plugin 'matze/vim-move'                   " 代码块移动
+Plugin 'DoxygenToolkit.vim'               " 注释文档生成
+Plugin 'VimTweak'                         " 背景透明插件
+Plugin 'kshenoy/vim-signature'            " 增加书签
+Plugin 'makerj/vim-pdf'                   "阅读pdf
+Plugin 'chrisbra/changesPlugin'       " 显示vim文档哪些行被修改
+Plugin 'vim-utils/vim-man'            " 在vim中查看相关函数等的man手册，支持水平窗口和垂直窗口打开。
+Plugin 'machakann/vim-highlightedyank'    " 使 yank 的文档半透明高亮
+Plugin 'mhinz/vim-startify'               " 此插件为 Vim 和 Neovim 提供一个启动屏幕
 " :h startify
 " :h startify-faq
 
+Plugin 't9md/vim-choosewin'                         " 指定窗口中打开文件
+Plugin 'tyru/open-browser.vim'                      " 打开浏览器
+Plugin 'lucasicf/vim-smooth-scroll'                 " 支持平滑滚动
+Plugin 'Shougo/echodoc.vim'                         " 函数参数提示
+Plugin 'ryanoasis/vim-devicons'                     " 在目录中为文件增加图标
 
-Plug 't9md/vim-choosewin'                            " 指定窗口中打开文件
-Plug 'tyru/open-browser.vim'                        " 打开浏览器
-Plug 'lucasicf/vim-smooth-scroll'                    " 支持平滑滚动
-Plug 'Shougo/echodoc.vim'                           " 函数参数提示
-Plug 'ryanoasis/vim-devicons'                     " 在目录中为文件增加图标
-
-Plug 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
+Plugin 'rhysd/accelerated-jk', {'on':['<Plug>(accelerated_jk_gj)' , '<Plug>(accelerated_jk_gk)']}
 
 " FPGA
-Plug 'vhda/verilog_systemverilog.vim'     "verilog
+Plugin 'vhda/verilog_systemverilog.vim'     "verilog
 
 " 快速对齐
-Plug 'godlygeek/tabular'                            " 快速对齐
-Plug 'junegunn/vim-easy-align'                      " 用来对齐指定符号的工具
+Plugin 'godlygeek/tabular'                     " 快速对齐
+Plugin 'junegunn/vim-easy-align'               " 用来对齐指定符号的工具
 
-Plug 'fholgado/minibufexpl.vim'            " 多文档编辑
-Plug 'bagrat/vim-buffet'                   " 类似minibuf管理多buffer的
-Plug 'vim-scripts/winmanager'              " 多窗口管理器
-Plug 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
-Plug 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
+Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
+Plugin 'bagrat/vim-buffet'                    "类似minibuf管理多buffer的
+Plugin 'vim-scripts/winmanager'              " 多窗口管理器
+Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
+Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 
 "补全
-Plug 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
-Plug 'jiangmiao/auto-pairs'                " 自动补全括号等
-Plug 'Valloric/YouCompleteMe'              " 自动补全
+Plugin 'vim-scripts/indentpython.vim'        " 写python代码自动缩进
+Plugin 'jiangmiao/auto-pairs'                " 自动补全括号等
+Plugin 'Valloric/YouCompleteMe'              " 自动补全
 " Plug 'davidhalter/jedi-vim'                " Python自动补齐和静态分析的开源库
-Plug 'ervandew/supertab'                   " 补全记忆插件
+Plugin 'ervandew/supertab'                   " 补全记忆插件
 
 
-Plug 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
-Plug 'Raimondi/delimitMate'
-Plug 'chxuan/cpp-mode'                     " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
-Plug 'tenfyzhong/CompleteParameter.vim',{'for':['lua', 'c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
+Plugin 'octol/vim-cpp-enhanced-highlight'    " C++  IDE
+Plugin 'Raimondi/delimitMate'
+Plugin 'chxuan/cpp-mode'                     " 提供生成函数实现、函数声明/实现跳转、.h .cpp切换等功能
+Plugin 'tenfyzhong/CompleteParameter.vim',{'for':['lua', 'c', 'h', 'cpp', 'py', 'go', 'java', 'vim', 'json', 'hs']}
 
 
 " latex插件
-Plug 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}
+Plugin 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}
 
 " 浮动终端
-Plug 'voldikss/vim-floaterm', { 'on': 'FloatermNew' }
+Plugin 'voldikss/vim-floaterm', { 'on': 'FloatermNew' }
 
 "代码块
-Plug 'SirVer/ultisnips'                    " 安装引擎
-Plug 'honza/vim-snippets'                  " 安装代码块集合
+Plugin 'SirVer/ultisnips'                    " 安装引擎
+Plugin 'honza/vim-snippets'                  " 安装代码块集合
 
 
 "格式化代码
-" Plug 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
-Plug 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
-Plug 'sbdchd/neoformat', {'on':'Neoformat'}
-" Plug 'rhysd/vim-clang-format'
+" Plugin 'rhysd/vim-clang-format'
+" Plugin 'Chiel92/vim-autoformat'              "格式化代码（或保存时自动格式化）
+Plugin 'tell-k/vim-autopep8'                 " 按照pep8的标准自动格式化代码
+Plugin 'sbdchd/neoformat', {'on':'Neoformat'}
 
 
 " 目录树
-Plug 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
-Plug 'liuchengxu/vista.vim',  "{ 'on': ['Vista'] }       tagbar的增强版
-Plug 'mbbill/undotree'                              " Undo Tree
-Plug 'scrooloose/nerdtree'                          " 添加树形目录
-Plug 'jistr/vim-nerdtree-tabs'                     " 想用tab键
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
+Plugin 'majutsushi/tagbar'                   "taglist的增强版，显示变量函数宏等
+Plugin 'liuchengxu/vista.vim',  "{ 'on': ['Vista'] }       tagbar的增强版
+Plugin 'mbbill/undotree'                              " Undo Tree
+Plugin 'scrooloose/nerdtree'                          " 添加树形目录
+Plugin 'jistr/vim-nerdtree-tabs'                     " 想用tab键
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'        " 增强图标
 "新一代目录树defx
-Plug 'Shougo/defx.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-Plug 'kristijanhusak/defx-git', {'on':'Defx'}
-Plug 'kristijanhusak/defx-icons'
-
-Plug 'fatih/vim-go',{ 'for': ['go', 'vim-plug'], 'tag': '*' }        " go主要插件
+Plugin 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'roxma/nvim-yarp'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'kristijanhusak/defx-git', {'on':'Defx'}
+Plugin 'kristijanhusak/defx-icons'
 
 
-Plug 'pechorin/any-jump.vim'
+Plugin 'fatih/vim-go',{ 'for': ['go', 'vim-plug'], 'tag': '*' }        " go主要插件
+
+
+Plugin 'pechorin/any-jump.vim'
 
 " Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown'] }
-Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'   , {'for': 'markdown'}
-Plug 'vimwiki/vimwiki'
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
-Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
-Plug 'dkarter/bullets.vim'
+Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown'] }
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'   , {'for': 'markdown'}
+Plugin 'vimwiki/vimwiki'
+Plugin 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+Plugin 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
+Plugin 'dkarter/bullets.vim'
 
-Plug 'tmhedberg/SimpylFold'                " 自动折叠
+Plugin 'tmhedberg/SimpylFold'                " 自动折叠
 
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'sheerun/vim-polyglot'                  " 语法高亮
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'sheerun/vim-polyglot'                  " 语法高亮
 " Plug 'w0rp/ale'
 
-" 美化状态栏
-Plug 'vim-airline/vim-airline'                   " 美化状态栏，显示正在编辑的文件
-Plug 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正在编辑的文件
-Plug 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
+"美化状态栏
+Plugin 'vim-airline/vim-airline'                   " 美化状态栏，显示正在编辑的文件
+Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正在编辑的文件
+Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
 " Plug 'glepnir/spaceline.vim'                    " 美化状态栏，
-Plug 'scrooloose/nerdcommenter'                   "快速注释，取消注释
-Plug 'tpope/vim-commentary'                     " 快速注释插件，相比于 nerdcommenter 更加简洁实用
+Plugin 'scrooloose/nerdcommenter'                   "快速注释，取消注释
+Plugin 'tpope/vim-commentary'          " 快速注释插件，相比于 nerdcommenter 更加简洁实用
 
 "python
-Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }   "为 Python 提供语义高亮
+Plugin 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+Plugin 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+Plugin 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }   "为 Python 提供语义高亮
 
 " css,js
-Plug 'othree/html5.vim'                    " html全能补全
-Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'mattn/emmet-vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'ap/vim-css-color'
-Plug 'pangloss/vim-javascript'
-Plug 'maksimr/vim-jsbeautify'                                        " 格式化js css等文件
-Plug 'mxw/vim-jsx'
-Plug 'prettier/vim-prettier', {
+Plugin 'othree/html5.vim'                    " html全能补全
+Plugin 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plugin 'mattn/emmet-vim'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+" Plug 'pangloss/vim-javascript'
+Plugin 'maksimr/vim-jsbeautify'              " 格式化js css等文件
+Plugin 'mxw/vim-jsx'
+Plugin 'prettier/vim-prettier', {
             \ 'do': 'yarn install',
             \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'php'] }
 
-
 "All of your Plugins must be added before the following line
-call plug#end()
-
+call vundle#end()
 
 set secure   "会关闭项目中的 shell autocmd write 等命令。
 
@@ -341,7 +342,7 @@ if has('gui_running')
         set guifont=SauceCodePro\ Nerd\ Font\ Mono\ 9
       " set guifont=DejaVu\ Sans\ Mono\ 10
     endif
-  endif
+endif
 
 
 " ===
@@ -365,8 +366,6 @@ set mouse=a
 "指定在选择文本时，光标所在位置也属于被选中的范围。
 set selection=inclusive
 
-
-
 " 在被分割的窗口间显示空白，便于阅读
 "set fillchars=vert:\ ,stl:\ ,stlnc:\
 set fillchars=vert:\|
@@ -382,7 +381,7 @@ set path+=**
 set list
 "set listchars=tab:▸\ ,trail:▫
 " set listchars=tab:▸\ ,trail:▫,extends:>,precedes:<,eol:$
-set listchars=tab:▸\ ,nbsp:+,trail:▫,extends:→,precedes:←
+set listchars=tab:▸\ ,nbsp:+,trail:▫,extends:>,precedes:<
 " set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
 "折叠
@@ -466,7 +465,7 @@ set guioptions+=m
 set guioptions+=r
 set guioptions+=L
 " 设置为双字宽显示，否则无法完整显示如:☆
-
+" set ambiwidth=double "防止特殊符号无法正常显示
 
 set laststatus=2
 " 2为总显示最后一个窗口的状态行
@@ -512,11 +511,10 @@ set whichwrap+=<,>,b,s,[,]
 
 " 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
 " Show command autocomplete
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.dll,*.exe,*.jpg,*.gif,*.png
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                      " show a navigable menu for tab completion
-" set wildmode=list:longest,full
+set wildmode=list:longest,full
 set wildchar=<Tab> wildcharm=<C-Z>
-set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 
 hi BadWhitespace  ctermfg=15 ctermbg=15
 hi BadWhitespace  guifg= gray guibg=darkred
@@ -550,6 +548,8 @@ if has('persistent_undo')
 	set undofile
 	set undodir=~/.config/nvim/tmp/undo,.
 endif
+
+
 """"""""""""""""""""""""""""""""快捷键定义"""""""""""""""""""""""""""""""""""""""""""''
 " 实现按 \sa 全选当前文件所有文本的效果
 map <leader>sa ggVG"
@@ -558,11 +558,13 @@ noremap s <nop>
 
 " 定义快捷键关闭当前分割窗口
 nmap ;q :q<CR>
+" nmap <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容并离开
 nmap ;wq :wq<CR>
-nmap ;w :w<CR>
+nmap ;w :w!<CR>
+nmap <Leader>wq :wq<CR>
+nmap <Leader>w :w!<CR>
 " 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
 map Q :q<CR>
 map S :w!<CR>
 
@@ -579,7 +581,6 @@ noremap = nzz
 noremap - Nzz
 
 
-
 " 水平滚动
 " 向左
 map \fl 10zh
@@ -594,14 +595,15 @@ map \fr 10zl
 " === Other useful stuff
 " ===
 " 打开新标签页并在新标签页打开终端
-"nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
-nnoremap \t :tabe<CR>:term sh -c 'st'<CR>
-
+nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 
 " 上下分屏并在下方打开终端
 noremap ;t :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " 左右分屏并在下方打开终端
 noremap ;r :set splitright<CR>:vsplit<CR>:res +10<CR>:term<CR>
+
+" Press <SPACE> + q to close the window below the current window
+noremap <LEADER>q <C-w>j:q<CR>
 
 " Press space twice to jump to the next '<++>' and edit it
 noremap <SPACE><SPACE> <Esc>/<++><CR>:nohlsearch<CR>c4l
@@ -611,8 +613,6 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
 
-" Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
 
 
 " Open the vimrc file anytime
@@ -633,6 +633,7 @@ endif
 
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation
 nnoremap < <<
 nnoremap > >>
@@ -716,7 +717,7 @@ let &t_EI.="\e[2 q" "EI = NORMAL mode (ELSE)
 " ===
 set termguicolors
 let g:neoterm_autoscroll = 1
-autocmd TermOpen term://* startinsert
+" autocmd TermOpen term://* startinsert
 let g:space_vim_transp_bg = 1
 tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
@@ -781,6 +782,7 @@ if has("autocmd")
 endif
 
 
+
 """""""""""""""""""""""""""""""""voldikss/vim-translator设置'"""""""""""""""""
 nmap <silent> <Leader>ts <Plug>TranslateW
 vmap <silent> <Leader>ts <Plug>TranslateWV
@@ -788,18 +790,17 @@ let g:translator_window_max_width=0.3
 let g:translator_window_max_height=0.3
 let g:translator_default_engines=['youdao' , 'google']
 
+""""""""""""""""""""""" Goyo和junegunn/limelight.vim配置"""""""""""""""""""""""""""""
+map <LEADER>gy :Goyo<CR>
 
 
-"""""""""""" Goyo和junegunn/limelight"""""""""""
-map <LEADER>gy    :Goyo<CR>
-xmap <Leader>gy   :Goyo<CR>
-let g:limelight_default_coefficient = 0.5   " 设置隐藏区域的黑暗度, 值越大越暗
-let g:limelight_paragraph_span = 2      " 设置暗光的跨度, 暗光所能照亮的范围
-let g:limelight_priority = -1        " 暗光优先级, 防止搜索的高亮效果被覆盖
-autocmd! User GoyoEnter Limelight   " 进入 Goyo 专注插件时, 同时开启暗光效果
-autocmd! User GoyoLeave Limelight!   " 离开 Goyo 专注插件时, 同时退出暗光效果
+let g:limelight_default_coefficient = 0.5    " 设置隐藏区域的黑暗度, 值越大越暗
+let g:limelight_paragraph_span = 2           " 设置暗光的跨度, 暗光所能照亮的范围
+let g:limelight_priority = -1                " 暗光优先级, 防止搜索的高亮效果被覆盖
+autocmd! User GoyoEnter Limelight            " 进入 Goyo 专注插件时, 同时开启暗光效果
+autocmd! User GoyoLeave Limelight!           " 离开 Goyo 专注插件时, 同时退出暗光效果
 
-""""""""""""""""""""""""altercation/vim-colors-solarized"""""""""""""""""""""
+""""""""""""""""""""""altercation/vim-colors-solarized""""""""""""""""""""""""""
 
 let g:solarized_termcolors=256
 let g:solarized_termtrans=0
@@ -810,6 +811,7 @@ let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
 let g:solarized_hitrail=0
 let g:solarized_menu=1
+
 
 """""""""""""""""""""""lfv89/vim-interestingwords""""""""""""""""""""""""""""""
 
@@ -825,8 +827,6 @@ let g:interestingWordsGUIColors = ['#8CCBEA', '#A4E57E', '#FFDB72', '#FF7272', '
 
 let g:interestingWordsTermColors = ['154', '121', '211', '137', '214', '222']
 let g:interestingWordsRandomiseColors = 1
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""COC-vim配置"""""""""""""""""""""""""""
 " :checkhealth
@@ -991,12 +991,9 @@ imap <C-e> <Plug>(coc-snippets-expand-jump)
 let g:snips_author = 'jj.Chen'
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
-
-
   """"""""""""""""""""""""""""""""""""""vim-trailing-whitespace" **********
   " <leader> + space 去掉末尾空格快捷键
   nnoremap <leader><space> :FixWhitespace<cr>
-
 
 " ********** """"""""""""""""""""""""""""""vim-utils/vim-man" **********
 " <leader>m 新建水平窗口打开man
@@ -1030,6 +1027,7 @@ let g:Illuminate_delay = 750
 hi illuminatedWord cterm=undercurl gui=undercurl
 
 
+
 """""""""""""""""""""""""""""luochen1990/rainbow配置"""""""""""""""""""""""""""""""""""""""""
 
 " rainbow 对于不同的括号，渲染成不同颜色
@@ -1058,6 +1056,7 @@ let g:rainbow_conf = {
             \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1109,7 +1108,7 @@ let g:agit_no_default_mappings = 1
 
 
 
-" “”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”“”kdheepak/lazygit.nvim插件"""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""kdheepak/lazygit.nvim插件"""""""""""""""""""""""""""""""""""""
 noremap <c-g> :LazyGit<CR>
 let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
@@ -1124,7 +1123,7 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_override_sign_column_highlight = 0
 let g:gitgutter_preview_win_floating = 1
 let g:gitgutter_sign_added = '▎'
-let g:gitgutter_sign_modified = ''
+" let g:gitgutter_sign_modified = ''
 let g:gitgutter_sign_removed = '▏'
 let g:gitgutter_sign_removed_first_line = '▔'
 let g:gitgutter_sign_modified_removed = '▒'
@@ -1534,97 +1533,7 @@ sign define vimspectorBPDisabled text=☞ texthl=Normal
 sign define vimspectorPC text=🔶 texthl=SpellBad
 
 
-""""""""""""""""""glepnir/dashboard-nvim设置""""""""""""""""""""""""""""""
-let g:dashboard_default_header = "eval"
-let g:dashboard_custom_header = [
-       \ '',
-       \ '███████╗██╗   ██╗ ██████╗ ██╗    ██╗   ██╗███████╗    ██╗',
-       \ '██╔════╝██║   ██║██╔═══██╗██║    ██║   ██║██╔════╝    ██║',
-       \ '█████╗  ██║   ██║██║   ██║██║    ██║   ██║█████╗      ██║',
-       \ '██╔══╝  ╚██╗ ██╔╝██║   ██║██║    ╚██╗ ██╔╝██╔══╝      ╚═╝',
-       \ '███████╗ ╚████╔╝ ╚██████╔╝███████╗╚████╔╝ ███████╗    ██╗',
-       \ '╚══════╝  ╚═══╝   ╚═════╝ ╚══════╝ ╚═══╝  ╚══════╝    ╚═╝',
-       \ '',
-       \ '                       [Hello jj.Chen]',
-       \ '',
-\ ]
-let g:dashboard_custom_header = [
-			\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
-			\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
-			\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
-			\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
-			\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
-			\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
-			\ '',
-			\ '                       [Hello jj.Chen]',
-			\ '',
-\]
 
-let g:dashboard_preview_command = 'cat'
-let g:dashboard_preview_pipeline = 'lolcat'
-let g:dashboard_preview_file_height = 10
-let g:dashboard_preview_file_width = 80
-" let g:dashboard_default_executive ='telescope'
-" let g:dashboard_default_executive ='clap'
-let g:dashboard_default_executive ='fzf'
-nmap ;ss :<C-u>SessionSave<CR>
-nmap ;sl :<C-u>SessionLoad<CR>
-nnoremap <silent> ;fh :DashboardFindHistory<CR>
-nnoremap <silent> ;ff :DashboardFindFile<CR>
-nnoremap <silent> ;tc :DashboardChangeColorscheme<CR>
-nnoremap <silent> ;fa :DashboardFindWord<CR>
-nnoremap <silent> ;fb :DashboardJumpMark<CR>
-nnoremap <silent> ;cn :DashboardNewFile<CR>
-let g:dashboard_custom_shortcut={
-\ 'last_session'       : 'SPC s l',
-\ 'find_history'       : 'SPC f h',
-\ 'find_file'          : 'SPC f f',
-\ 'new_file'           : 'SPC c n',
-\ 'change_colorscheme' : 'SPC t c',
-\ 'find_word'          : 'SPC f a',
-\ 'book_marks'         : 'SPC f b',
-\ }
-
-" let g:dashboard_custom_shortcut_icon['last_session'] = ' '
-" let g:dashboard_custom_shortcut_icon['find_history'] = 'ﭯ '
-" let g:dashboard_custom_shortcut_icon['find_file'] = ' '
-" let g:dashboard_custom_shortcut_icon['new_file'] = ' '
-" let g:dashboard_custom_shortcut_icon['change_colorscheme'] = ' '
-" let g:dashboard_custom_shortcut_icon['find_word'] = ' '
-" let g:dashboard_custom_shortcut_icon['book_marks'] = ' '
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""nvim-telescope/telescope.nvim配置"""""""""""""""""""""""""""""""""
-" Find files using Telescope command-line sugar.
-nnoremap [ff <cmd>Telescope find_files<cr>
-nnoremap [fg <cmd>Telescope live_grep<cr>
-nnoremap [fb <cmd>Telescope buffers<cr>
-nnoremap [fh <cmd>Telescope help_tags<cr>
-
-" Using lua functions
-nnoremap ]ff <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap ]fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap ]fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap ]fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-
-
-highlight TelescopeSelection      guifg=#D79921 gui=bold  ctermfg=11 " selected item
-highlight TelescopeSelectionCaret guifg=#CC241D  ctermfg=9  " selection caret
-highlight TelescopeMultiSelection guifg=#928374  ctermfg=241  " multisections
-highlight TelescopeNormal         guibg=#000000   ctermfg=0 " floating windows created by telescope.
-
-" Border highlight groups.
-highlight TelescopeBorder         guifg=#ffffff      ctermfg=15
-highlight TelescopePromptBorder   guifg=#ffffff      ctermfg=15
-highlight TelescopeResultsBorder  guifg=#ffffff      ctermfg=15
-highlight TelescopePreviewBorder  guifg=#ffffff      ctermfg=15
-
-" Used for highlighting characters that you match.
-highlight TelescopeMatching       guifg=blue        ctermfg=12
-
-" Used for the prompt prefix
-highlight TelescopePromptPrefix   guifg=red        ctermfg=9
 """"""""""""""""""""""""""suda配置"""""""""""""""""""""""""""""""""
 "This plugin was built while :w !sudo tee % > /dev/null trick does not work on neovim.
 " Re-open a current file with sudo
@@ -1649,7 +1558,6 @@ let g:suda#prompt = 'Mot de passe:'
 """"""""""""""""""""junegunn/vim-easy-align 插件"""""""""""""""""""""""''
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
 
 """"""""""""""""""""itchyny/calendar.vim插件"""""""""""""""""""""""''
 
@@ -1920,9 +1828,7 @@ let g:NERDCustomDelimiters = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""vim-nerdtree-syntax-highlight配置"""""""""""""""""""""""""""""""""""""""
-" let g:NERDTreeDisableFileExtensionHighlight=1
-" let g:NERDTreeDisableExactMatchHighlight=1
-" let g:NERDTreeDisablePatternMatchHighlight=1
+
 
 "Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
 let g:NERDTreeFileExtensionHighlightFullName = 1
@@ -1999,16 +1905,56 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""Shougo/defx.nvim设置"""""""""""""""""""""""""""""""""''
+""""""""""""""""""""'Shougo/defx.nvim设置"""""""""""""""""""""""""""""""""""""""""""""""''
 noremap <LEADER>df :Defx<CR>
-
+let g:defx_icons_enable_syntax_highlight = 1
 " 开关快捷键,【-search=`expand('%:p')`】表示打开defx树后，光标自动放在当前buffer上
 noremap <LEADER>df :Defx  -search=`expand('%:p')` -toggle <cr>
-nmap <silent> df :Defx  -search=`expand('%:p')` -toggle <cr>
+nmap <silent> ff :Defx  -search=`expand('%:p')` -toggle <cr>
 
+" Exit Vim if defxTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:defx') |
+\ quit | endif
+
+" 在打开多个tab的情况下，当前tab里只有一个buffer和nerd树，当关闭buffer时，自动关闭当前标签页的nerd树
+autocmd BufEnter * if tabpagenr('$') > 1 && winnr('$') == 1 && exists('b:defx') |
+    \ tabclose | endif
+
+"打开vim自动打开defx
+func! ArgFunc() abort
+    let s:arg = argv(0)
+    if isdirectory(s:arg)
+        return s:arg
+    else
+        return fnamemodify(s:arg, ':h')
+    endif
+endfunc
+" autocmd VimEnter * Defx `ArgFunc()` -no-focus -search=`expand('%:p')`
+
+" 在新tab页打开文件
+func! MyT(context) abort
+    if isdirectory(get(a:context.targets, 0)) == 0
+        call defx#call_action('drop', 'tabe')
+    endif
+endfunc
+
+" 给cd快捷键写的
+func! MyCD(context) abort
+    if isdirectory(get(a:context.targets, 0))
+        execute 'cd' . get(a:context.targets, 0)
+    else
+        execute 'cd' . fnamemodify(defx#get_candidate().action__path, ':h')
+    endif
+endfunc
+
+
+" 给 ter 快捷键写的
+func! MyTER(context) abort
+    call MyCD(a:context)
+    shell
+endfunc
 
 call defx#custom#option('_', {
-			\ 'resume': 1,
 			\ 'winwidth': 30,
 			\ 'split': 'vertical',
 			\ 'direction': 'topleft',
@@ -2044,7 +1990,6 @@ augroup END
 function! s:jump_dirty(dir) abort
 	let l:icons = get(g:, 'defx_git_indicators', {})
 	let l:icons_pattern = join(values(l:icons), '\|')
-
 	if ! empty(l:icons_pattern)
 		let l:direction = a:dir > 0 ? 'w' : 'bw'
 		return search(printf('\(%s\)', l:icons_pattern), l:direction)
@@ -2062,7 +2007,10 @@ function! s:defx_mappings() abort
 	setlocal signcolumn=no expandtab
 	nnoremap <silent><buffer><expr> <CR>     <SID>defx_toggle_tree()                    " 打开或者关闭文件夹，文件
 	nnoremap <silent><buffer><expr> <C-h>     defx#do_action('toggle_ignored_files')     " 显示隐藏文件
+    nnoremap <silent><buffer><expr> t        defx#do_action('call', 'MyT')
     nnoremap <silent><buffer><expr> dd       defx#do_action('remove_trash')
+    nnoremap <silent><buffer><expr> ter      defx#do_action('call', 'MyTER')
+    nnoremap <silent><buffer><expr> CD       defx#do_action('call', 'MyCD')
     nnoremap <silent><buffer><expr> >        defx#do_action('resize',  defx#get_context().winwidth - 10)
     nnoremap <silent><buffer><expr> <        defx#do_action('resize',  defx#get_context().winwidth + 10)
     nnoremap <silent><buffer><expr> j        line('.') == line('$') ? 'gg' : 'j'
@@ -2094,7 +2042,7 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr> <C-h> defx#do_action('toggle_ignored_files')
 	nnoremap <silent><buffer><expr> ;   defx#do_action('repeat')
 	nnoremap <silent><buffer><expr> a   defx#do_action('cd', ['..'])
-	nnoremap <silent><buffer><expr> ~   defx#do_action('cd')
+	nnoremap <silent><buffer><expr> i   defx#do_action('cd')
 	nnoremap <silent><buffer><expr> q   defx#do_action('quit')
 	nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
 	nnoremap <silent><buffer><expr> * defx#do_action('toggle_select_all')
@@ -2107,12 +2055,13 @@ function! s:defx_mappings() abort
 	nnoremap <silent><buffer><expr> 2u  defx#do_action('cd', ['../..'])
 	nnoremap <silent><buffer><expr> 3u  defx#do_action('cd', ['../../..'])
 	nnoremap <silent><buffer><expr> 4u  defx#do_action('cd', ['../../../..'])
+
 endfunction
+
 
 let g:defx_icons_column_length = 2
 let g:defx_icons_mark_icon = ''
 let g:defx_icons_parent_icon = ""
-
 
 """""""""""""""""""""""""""""""""""t9md/vim-choosewin配置""""""""""""""""""""""""""""""""""""""""""
 " if you want to use overlay feature
@@ -2134,8 +2083,6 @@ let g:openbrowser_search_engines = {
             \}
 
 
-
-
 """""""""""""""""""""'lucasicf/vim-smooth-scroll插件""""""""""""""""""""""""""""""
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -2144,13 +2091,10 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 """"""""""""""""""""""" godlygeek/tabular插件""""""""""""""""
 vmap ;t= :Tabularize /=
-
-
 " :Tabularize /,/ : 将整个缓冲区的所有行按照 , 符号进行对齐
 " :'<,'>Tabularize /,/ : 对高亮选中范围内的行进行对齐
 " :Tabularize /,/l1/c1/r0 : 按照 , 进行对齐，并且为每个分割的文本区域内的文本指定对齐方式，l, c, r 分别为左中右对齐，1 代表空距离分隔符一个空格
-" abc,def,ghi a,b a,b,c :Tabularize /,/r1c1l0 abc , def, ghi a , b a , b , c'>'
-
+" abc,def,ghi a,b a,b,c :Tabularize /,/r1c1l0 abc , def, ghi a , b a , b , c
 
 """""""""""""""""""""""""""""""""""""""vim-devicons配置"""""""""""""""""""""""""""""""""""""""
 "加上这样一句配置，作用是当剩余的窗口都不是文件编辑窗口时，自动退出 vim。就是你都不编辑文件了，还剩个 NerdTree 窗口在那里时自动退出 GVim（执行:qa!)。
@@ -2380,33 +2324,6 @@ let g:multi_cursor_quit_key='<Esc>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""""""""""""""" AutoComplPop配置 """""""""""""""""
-" 输入一个字母即可补全
-"let g:acp_behaviorKeywordLength = 1
-" 自动弹出是由键映射，对于通过移动来避免自动弹出是很有用
-let g:AutoComplPop_MappingDriven = 1
-" 修改GUI高亮参数 该设置全局有效
-hi Pmenu     ctermfg=0    ctermbg=241    guibg=#444444
-hi PmenuSel   ctermfg=196    ctermbg=251   guibg=#555555 guifg=#ffffff
-
-" 加载PHP函数字典，配置PHP函数自动补全，注意文件位置
-au FileType php setlocal dict+=$VIM/vimfiles/bundle/AutoComplPop/dict/php_funclist.txt
-" PHP提示触发
-if !exists('g:AutoComplPop_Behavior')
-    let g:AutoComplPop_Behavior = {}
-    let g:AutoComplPop_Behavior['php'] = []
-    call add(g:AutoComplPop_Behavior['php'], {
-                \ 'command' : "\<C-x>\<C-o>",
-                \ 'pattern' : printf('\(->\|::\|\$\)\k\{%d,}$', 0),
-                \ 'repeat' : 0,
-                \ })
-endif
-
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
 
@@ -2416,6 +2333,12 @@ endif
 " nnoremap <silent> <leader>a :Switch<cr>
 " nnoremap <leader><leader>fp :FormatFunParam<cr>
 " nnoremap <leader><leader>if :FormatIf<cr>
+
+
+"""""""""""""""""""""""""""""""""""Ycraigemery/vim-autotag 配置 """"""""""""""""""""""""""""""""""""""""""
+let g:autotagTagsFile=".tags"
+let g:autotagStartMethod='fork'
+
 
 """"""""""""""""""""""""""""""""""""""""""" tenfyzhong/CompleteParameter.vim   """""""""""""""""""""""""""""""""""""""""""
 
@@ -2512,6 +2435,7 @@ let g:vimtex_delim_toggle_mod_list = [
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """"""""""""""""""""""""""""""""""""""" voldikss/vim-floaterm插件 """""""""""""""""""""""""""""""""""""""""""
 " Set floaterm window's background to black
 hi Floaterm guibg=black   ctermbg=232
@@ -2520,8 +2444,7 @@ hi FloatermBorder guibg=orange guifg=cyan ctermbg=220  ctermfg=46
 hi FloatermNC guibg=gray   ctermbg=246
 "floaterm设置
 set shell=/usr/bin/bash
-hi Floaterm guibg=black
-hi FloatermBorder guibg=none guifg=cyan
+hi FloatermBorder   guifg=cyan
 let g:floaterm_position = 'center'
 let g:floaterm_wintype = 'floating'
 noremap  ftn :FloatermNew<CR>
@@ -2529,6 +2452,8 @@ noremap  ftk :FloatermKill<CR>
 noremap  ftd :FloatermNext<CR>
 noremap  ftp :FloatermPrev<CR>
 noremap  ftt :FloatermToggle<CR>
+
+
 """"""""""""""""""""""""""""""""""""""" SirVer/ultisnips插件 """""""""""""""""""""""""""""""""""""""""""
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -2538,11 +2463,11 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 " 使用 UltiSnipsEdit 命令时垂直分割屏幕
 let g:UltiSnipsEditSplit="vertical"
 
-"""""""""""""""""""""""""'""""vim-clang-format插件"""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置开始""""""""""""""""""""""""""""""""""""""""""
 "寻找全局配置文件
-let g:ycm_global_ycm_extra_conf='~/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
 "开始补全的字符数
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -2700,7 +2625,6 @@ let g:ycm_semantic_triggers =  {
 
 
 """""""""""""""""""""""""""""""""""YouCompleteMe插件配置结束""""""""""""""""""""""""""""""""""""""""""
-
 """"""""""""""""""""""""""""""""""" AutoComplPop配置 """""""""""""""""
 " 输入一个字母即可补全
 "let g:acp_behaviorKeywordLength = 1
@@ -2723,15 +2647,53 @@ if !exists('g:AutoComplPop_Behavior')
                 \ })
 endif
 
-"""""""""""""""""""""""""""""""""""Ycraigemery/vim-autotag 配置 """"""""""""""""""""""""""""""""""""""""""
-let g:autotagTagsFile=".tags"
-let g:autotagStartMethod='fork'
 
-"""""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" """""""""""""""""""""""""""""""""""""""Chiel92/vim-autoformat配置"""""""""""""""""""""""""""""""""""""""
+"
+" " sudo apt install astyle clang-format python-pep8 python3-pep8 python-autopep8 yapf  html-beautify ruby-beautify js-beautify
+"
+" "开启详细模式便于查错
+" let g:autoformat_verbosemode=1
+" "设置发生保存文件时执行格式化
+" " au BufWrite *.sql,*.c,*.py,*.java,*.js :Autoformat
+"
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
+" autocmd FileType vim,tex let b:autoformat_autoindent=0
+" :retab
+"
+" " 我比较喜欢 google 风格的代码
+" " let g:formatdef_clangformat_google = '"clang-format -style google -"'
+" " let g:formatters_c = ['clangformat_google']
+"
+" let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
+" let g:formatters_cpp = ['allman']
+" let g:formatters_c = ['allman']
+"
+" let g:formatdef_sqlformat = '"sqlformat --keywords upper -"'
+" let g:formatters_sql = ['sqlformat']
+"
+" "默认情况下是pep8，还可以选择google,facebook和chromium
+" let g:formatter_yapf_style = 'pep8'
+"
+" let g:formatdef_autopep8 = "'autopep8 - --range '.a:firstline.' '.a:lastline"
+" let g:formatters_python = ['autopep8']
+"
+" " <!-- 指定html格式化工具，并设置缩进为两个空格 -->
+" let g:formatdef_my_html = '"html-beautify -s 2"'
+" let g:formatters_html = ['my_html']
+"
+" "F3自动格式化代码
+" " noremap <F3> :Autoformat<CR>:w<CR>
 
 """""""""""""""""""""""""""""""""""""""Autopep8配置"""""""""""""""""""""""""""""""""""""""
-autocmd FileType python noremap <buffer> \ap :call Autopep8()<CR> "设置快捷键代替autopep8
+autocmd FileType python noremap <buffer> ;ap :call Autopep8()<CR> "设置快捷键代替autopep8
+
 
 
 """"""""""""""""""""""""""""""  majutsushi/tagbar配置 """"""""""""""""""""""""""""""""""""""
@@ -3073,6 +3035,7 @@ let g:vista_executive_for = {
 			\ 'typescriptreact': 'coc',
 			\ }
 
+
 """""""""""""""""""""""""""""""""""""""""配置w0rp/ale"""""""""""""""""""""""""""""""""""""""
 "let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -3206,13 +3169,14 @@ let g:NERDToggleCheckAllLines    = 1
 "  vim原本的注释快捷键是 \ci，一次注释，操作两次是取消注释
 "    n\ci是注释n行
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""tpope/vim-commentary配置"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gcc: 注释或反注释
 " gcap: 注释一段
 " gc: visual 模式下直接注释所有已选择的行
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 
 """"""""""""""""""""""""""""""""vim-emmet配置""""""""""""""""""""""""""""""""
 
@@ -3253,11 +3217,6 @@ let g:javascript_conceal_noarg_arrow_function = " "
 let g:javascript_conceal_underscore_arrow_function = " "
 set conceallevel=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 
 
 
@@ -3339,8 +3298,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 
 
-
-
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -3369,7 +3326,7 @@ nmap ;- <Plug>AirlineSelectPrevTab
 " 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
 nmap ;+ <Plug>AirlineSelectNextTab
 " 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
-nmap <leader>q :bp<cr>:bd #<cr>
+nmap .q :bp<cr>:bd #<cr>
 " 修改了一些个人不喜欢的字符
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -3469,7 +3426,6 @@ let g:prettier#config#jsx_bracket_same_line = 'false'
 let g:prettier#autoformat = 0
 autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
-
 """""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
 function! Buf_total_num()
     return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
@@ -3515,18 +3471,17 @@ hi User8 cterm=None ctermfg=249 ctermbg=240
 " "/usr/share/vim/vim81/colors/ 目录中包含了大多数文件类型的语法高亮插件。
 " hi clear
 
-map <Leader>c1 :set background=dark<CR>:colorscheme lilydjwg_dark<CR> :AirlineTheme xtermlight<CR>
+map <Leader>c1 :set background=dark<CR>:colorscheme lilydjwg_dark<CR> :AirlineTheme base16_color<CR>
 map <Leader>c2 :set background=dark<CR>:colorscheme lilydjwg_dark_modified<CR>:AirlineTheme base16_color<CR>
 map <Leader>c3 :set background=dark<CR>:colorscheme solarized8_flat<CR>:AirlineTheme base16_color<CR>
 map <Leader>c4 :set background=dark<CR>:colorscheme flattened_dark<CR>:AirlineTheme base16_color<CR>
 map <Leader>c5 :set background=dark<CR>:colorscheme vividchalk<CR>AirlineTheme base16_color<CR>
 
-map <Leader>c6 :set background=light<CR>:colorscheme colorful<CR>AirlineTheme xtermlight<CR>
-map <Leader>c7 :set background=light<CR>:colorscheme NeoSolarized<CR>AirlineTheme solarized_flood<CR>
-map <Leader>c8 :set background=light<CR>:colorscheme solarized8_flat<CR>AirlineTheme biogoo<CR>
-map <Leader>c9 :set background=light<CR>:colorscheme flattened_light<CR>AirlineTheme light<CR>
+map <Leader>c6 :set background=light<CR>:colorscheme colorful<CR>AirlineTheme dracula<CR>
+map <Leader>c7 :set background=light<CR>:colorscheme NeoSolarized<CR>AirlineTheme dracula<CR>
+map <Leader>c8 :set background=light<CR>:colorscheme solarized8_flat<CR>AirlineTheme dracula<CR>
+map <Leader>c9 :set background=light<CR>:colorscheme flattened_light<CR>AirlineTheme dracula<CR>
 map <Leader>c10 :set background=light<CR>:colorscheme vividchalk<CR>AirlineTheme dracula<CR>
-
 
 if strftime('%H') >= 7 && strftime('%H') < 22
     set background=light
@@ -3573,9 +3528,10 @@ exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " autocmd vimenter * ++nested colorscheme solarized8_higt
 
 
+
 " 黑色：carbonized_dark, SolarizedDark_modified ,NeoSolarized, colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
 
-" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gabo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
+" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gobo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
 
 
 
@@ -3722,10 +3678,6 @@ nnoremap L g_
 
 
 
-" 重新载入保存文件
-" autocmd BufWritePost $MYVIMRC source $MYVIMRC
-autocmd BufWritePost ~/.Xdefaults call system('xrdb --merge ~/.Xdefaults')
-
 " 更加智能的当前高亮
 autocmd InsertLeave,WinEnter * set cursorline
 autocmd InsertEnter,WinLeave * set nocursorline
@@ -3735,7 +3687,6 @@ set complete-=t " disable searching tags
 
 " 光标放到当前行末尾之后，默认情况下你是不可能做到的，但是可能通过设置virtualedit 选项达到目的
 "set virtualedit=all
-"
 
 
 "删除行尾空格
@@ -3753,6 +3704,7 @@ nnoremap ;ss   :g/^$/d<CR>
 
 
 
+
 "由于 Tab 键在不同的编辑器缩进不一致，该设置自动将 Tab 转为空格。
 if has("autocmd")
     autocmd BufRead,BufNewFile *.c,*.h set expandtab
@@ -3760,12 +3712,12 @@ endif
 "autocmd FileType python noremp <buffer> <F8>:call Autopep8()<CR> "设置快捷键代替autopep8
 "为python添加pep8的代码风格
 au BufNewFile,BufRead *.py,*.php,*.c,*.sh,*.cpp,*.java,*.ruby,*.perl
-            \ set tabstop=4 | "tab宽度"
+            \ set tabstop=4 |       "tab宽度"
             \ set softtabstop=4 |
             \ set shiftwidth=4 |
-            \ set textwidth=500 | "行最大宽"
-            \ set autoindent |  "自动缩进"
-            \ set fileformat=unix "保存文件的格式"
+            \ set textwidth=500 |   "行最大宽"
+            \ set autoindent |      "自动缩进"
+            \ set fileformat=unix   "保存文件的格式"
 
 au BufNewFile,BufRead *.js,*.html,*.css,*.xml
             \ set tabstop=2 |
@@ -3786,36 +3738,6 @@ autocmd FileType javascript,html,css,xml set ts=2
 autocmd FileType javascript,html,css,xml set sts=2
 
 
-""""""""""""""""""""""""""""""""""""""   """"""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""Ctrl+Up变大 Down变小 Home还原(假设你原来的字体是10)"""""""""""""""""""""""""""""""""""""""""""""""
-let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
-let s:minfontsize = 6
-let s:maxfontsize = 16
-
-function! AdjustFontSize(amount)
-   if has("gui_gtk2") && has("gui_running")
-     let fontname = substitute(&guifont, s:pattern, '\1', '')
-     let cursize = substitute(&guifont, s:pattern, '\2', '')
-     if (cursize < s:minfontsize) || (cursize > s:maxfontsize)
-       let cursize = 10
-     endif
-       let newsize = cursize + a:amount
-      if (a:amount > 1)
-        let newsize = a:amount
-     endif
-      if (newsize >= s:minfontsize) && (newsize <= s:maxfontsize)
-       let newfont = fontname . " " . newsize
-       let &guifont = newfont
-     endif
-   else
-     echoerr "You need to run the GTK2 version of Vim to use this function."
-   endif
-endfunction
-
-map <C-;> :call AdjustFontSize(1) <CR>
-map <C-.> :call AdjustFontSize(-1) <CR>
-map <C-Home> :call AdjustFontSize(10) <CR>
 
 ""--------------------vim原本的快捷键映射变更-----------------------------
 "###################################################
@@ -3829,11 +3751,15 @@ map <C-Home> :call AdjustFontSize(10) <CR>
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-noremap <C-a> ggvG$
-inoremap <C-a> <Esc>ggvG$
+" Ctrl+A全选高亮显示，
+noremap <C-a> ggVG$
+inoremap <C-a> <Esc>ggVG$
+
 " Ctrl+A全选复制，
 "noremap <C-a> ggyG$
 "inoremap <C-a> <Esc>ggyG$
+
+
 
 " set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
 " vnoremap <C-C> "+y<Esc>
@@ -3852,7 +3778,6 @@ inoremap <C-x> <Esc>"+x
 
 " map <C-z> "+u
 " inoremap <C-z> <Esc>"+u
-
 
 
 "括号等的自动补全
@@ -3918,10 +3843,11 @@ inoremap <C-M-down> <Esc><C-e>a
 " 光标在当前行的基础上再跳 20 行：20+enter 键
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap U 5k
-noremap D 5j
-noremap h 5h
+noremap k 5k
+noremap j 5j
 noremap l 5l
+noremap h 5h
+
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 " 向左分屏
@@ -4024,11 +3950,10 @@ set showtabline=1
 
 
 " 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
-
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 let g:tablineclosebutton=1
 
 "#################################### 多标签页切换####################################
-
 
 " 新建标签页
 noremap <silent><tab>t :tabnew<cr>
@@ -4037,12 +3962,25 @@ noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab><right> :tabn<cr>
 noremap <silent>\= :tabn<cr>
+
 " 上一个标签页
 noremap <silent><tab><left> :tabp<cr>
-noremap <silent>\- :tabn<cr>
+noremap <silent>\- :tabp<cr>
+
 "下一个标签页,循环
 noremap <silent><S-tab> :tabnext<CR>
 
+" Move around tabs with tn and tp
+noremap tn  :tabn<CR>
+noremap tp  :tabp<CR>
+
+" Create a new tab with tu
+noremap tu :tabe<CR>
+noremap tU :tab split<CR>
+
+" Move the tabs with tmn and tmp
+noremap tmn :-tabmove<CR>
+noremap tmp :+tabmove<CR>
 "Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
 set tabpagemax=15
 
@@ -4082,7 +4020,6 @@ noremap <leader>0 :tablast<CR>
 
 "######################################## 缓冲区#################################
 
-
 " ctrl + tab下一个buffer
 map <C-tab> :bn<CR>
 nnoremap <C-tab> :bn<CR>
@@ -4107,6 +4044,26 @@ nnoremap  ;a :bp<CR>
 
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
+
+
+"""""""""""""""""""""""""""""Terminal Colors"""""""""""""""""""""""""""""""
+
+
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
 
 "############################### 美化标签栏方法1 #######################################
 " TabLine (普通标签样式)／TabLineSel (选中状态标签的样式)。
@@ -4831,6 +4788,7 @@ autocmd BufReadPost * cd %:p:h
 "      {         (左大括号) 跳到上一段的开头
 "      }         (右大括号) 跳到下一段的的开头
 
+
 " 在开发中，可能会遇到一次性给多行代码增加注释的情况。
 " 操作步骤如下：
 " 在命令模式下，移动到要添加注释代码的第一行，按下 "^" 将光标移动到行首。
@@ -4839,3 +4797,4 @@ autocmd BufReadPost * cd %:p:h
 " 输入 "I"， 可视块模式 --> 编辑模式。（注意：必须使用 "I"）
 " 输入 "#" 字符，也就是注释的符号。
 " 按下 "Esc"， 编辑模式 --> 命令模式。
+
