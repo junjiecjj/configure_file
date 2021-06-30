@@ -1,4 +1,4 @@
-
+####
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -670,6 +670,7 @@ Test (x  emacs) + "Emacs %$[fvwm_exicons2]/emacs.png%"  Exec exec emacs
 Test (x  gedit) + "Gedit %$[fvwm_exicons2]/vim.png%"  Exec exec gedit
 Test (x xemacs) + "XEmacs %$[fvwm_exicons2]/XEmacs.png%" Exec exec xemacs
 Test (x  code) + "VSCode %$[fvwm_exicons2]/vscode.png%"  Exec exec code
+Test (x  notepadqq) + "Notepadqq %$[fvwm_exicons2]/notepadqq.png%"  Exec exec notepadqq
 
 #######################打开终端#######################
 DestroyMenu MenuTerminal
@@ -721,7 +722,6 @@ Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
 DestroyMenu MenuOffice
 AddToMenu   MenuOffice "文本编辑器" Title
 Test (x  typora) + "typora %$[fvwm_exicons2]/typora.png%"  Exec exec typora
-Test (x  notepadqq) + "notepadqq %$[fvwm_exicons2]/typora.png%"  Exec exec notepadqq
 Test (x  /usr/local/bin/notion) + "Notion %$[fvwm_exicons2]/typora.png%"  Exec exec /usr/local/bin/notion
 Test (x  /usr/local/bin/wolai) + "WoLai %$[fvwm_exicons2]/typora.png%"  Exec exec  /usr/local/bin/wolai
 #Test (x chromium) + "Chromium" Exec exec Chromium
