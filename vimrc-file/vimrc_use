@@ -4278,7 +4278,7 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 
 " Compile function
-map r :call CompileRunGcc()<CR>
+map <M-e> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
