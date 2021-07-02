@@ -1,3 +1,4 @@
+
 # ~/.config/alacritty/alacritty.yml
 # 默认窗口无标题栏，16:9的窗口比例启动
 window:
@@ -9,12 +10,17 @@ window:
 # 背景半透明，方便抄代码
 background_opacity: 0.8
 
+# 原来tabspaces是8
+tabspaces: 4
+
 # 实时重载配置文件，不用重启测试配置选项
 live_config_reload: true
 
 # 主题，抄肥猫的主题配色
 colors:
   primary:
+    background: "#1e2127"
+    # background: "#2E3440"
     foreground: '0xeeeeec'
 
   normal:
@@ -39,22 +45,32 @@ colors:
 
 # 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
 # 设置字体
+# Noto mono
+# JetBrains Mono Regular
+# Fire code Regular
+# SauceCodePro Nerd Font
+# SauceCodePro Nerd Font Mono
+# FiraCode Nerd Font
+# FiraCode Nerd Font Mono
+# JetBrainsMono Nerd Font
+# JetBrainsMono Nerd Font Mono
+# JetBrains Mono Regular
 font:
   normal:
-    family: "Hack Nerd Font"
+    family: "FiraCode Nerd Font"
     style: Regular
   bold:
-    family: "Hack Nerd Font"
+    family: "FiraCode Nerd Font"
     style: Bold
   italic:
-    family: "Hack Nerd Font"
+    family: "FiraCode Nerd Font"
     style: Italic
   bold_italic:
-    family: "Hack Nerd Font"
+    family: "FiraCode Nerd Font"
     style: Bold Italic
 
   # 字大小
-  size: 15.0 
+  size: 10.0
 
   offset:
     x: 0
