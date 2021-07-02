@@ -1,4 +1,4 @@
-"基本键位设置
+
 "============
 "     ^
 "     k
@@ -577,8 +577,8 @@ nnoremap  V  <C-v>
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
-noremap = nzz
-noremap - Nzz
+nnoremap = nzz
+nnoremap - Nzz
 
 
 " 水平滚动
@@ -4278,7 +4278,7 @@ autocmd Filetype c,cpp,h inoremap {<CR> {<CR>}<Esc>O
 
 
 " Compile function
-map <M-e> :call CompileRunGcc()<CR>
+map r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
@@ -4797,4 +4797,3 @@ autocmd BufReadPost * cd %:p:h
 " 输入 "I"， 可视块模式 --> 编辑模式。（注意：必须使用 "I"）
 " 输入 "#" 字符，也就是注释的符号。
 " 按下 "Esc"， 编辑模式 --> 命令模式。
-
