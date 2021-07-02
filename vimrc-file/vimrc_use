@@ -1662,14 +1662,14 @@ let g:startify_custom_footer = [
 """""""""""""""""""""""""""""""Undotree插件"""""""""""""""""""""""""""""""""""""""""""
 
 let g:undotree_DiffAutoOpen = 0
-noremap L :UndotreeToggle<CR>
+nnoremap L :UndotreeToggle<CR>
 let g:undotree_DiffAutoOpen = 1
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_ShortIndicators = 1
 let g:undotree_WindowLayout = 2
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
-function g:Undotree_CustomMap()
+function! g:Undotree_CustomMap()
     nmap <buffer> u <plug>UndotreeNextState
     nmap <buffer> e <plug>UndotreePreviousState
     nmap <buffer> U 5<plug>UndotreeNextState
@@ -3843,10 +3843,10 @@ inoremap <C-M-down> <Esc><C-e>a
 " 光标在当前行的基础上再跳 20 行：20+enter 键
 
 " U/E keys for 5 times u/e (faster navigation)
-noremap k 5k
-noremap j 5j
-noremap l 5l
-noremap h 5h
+nnoremap k 5k
+nnoremap j 5j
+nnoremap l 5l
+nnoremap h 5h
 
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
@@ -3971,16 +3971,16 @@ noremap <silent>\- :tabp<cr>
 noremap <silent><S-tab> :tabnext<CR>
 
 " Move around tabs with tn and tp
-noremap tn  :tabn<CR>
-noremap tp  :tabp<CR>
+nnoremap tn  :tabn<CR>
+nnoremap tp  :tabp<CR>
 
 " Create a new tab with tu
-noremap tu :tabe<CR>
-noremap tU :tab split<CR>
+nnoremap tu :tabe<CR>
+nnoremap tU :tab split<CR>
 
 " Move the tabs with tmn and tmp
-noremap tmn :-tabmove<CR>
-noremap tmp :+tabmove<CR>
+nnoremap tmn :-tabmove<CR>
+nnoremap tmp :+tabmove<CR>
 "Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
 set tabpagemax=15
 
