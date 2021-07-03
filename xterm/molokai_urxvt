@@ -1,4 +1,4 @@
-
+!  安装 :  sudo apt install rxvt-unicode
 !!$HOME/.Xresources
 !
 !抗锯齿
