@@ -1,20 +1,20 @@
-! Xterm 配置文件
- !copy & paste
+题
 
-! 外观重点的是下面第一行
- xterm.termName: xterm-256color
-XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
 
-!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v 粘贴，ctrl-p 拷屏。
+xterm*termName: xterm-256color
+
+xterm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
 !Ctrl p to print screen content to file
-XTerm*VT100.Translations: #override
+xterm*VT100.Translations: #override
     Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0)
     Ctrl <KeyPress> P: print()
 
-XTerm*metaSendsEscape: true
-Xterm*eightBitInput: false
-XTerm*Font: 7*13
+xterm*metaSendsEscape: true
+xterm*eightBitInput: false
+xterm*Font: 7*13
 
 ! English font
 ! xterm*faceName:Noto mono:antialas=true:pixelsize=12
@@ -25,8 +25,9 @@ XTerm*Font: 7*13
 ! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
 ! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
-! xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
-xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
+xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
+
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=13
 ! xterm*faceNameDoublesize:JetBrains Mono Regular:antialias=True:pixelsize=13
@@ -44,76 +45,63 @@ xterm*cjkWidth:false
 
 xterm*faceSize:200
 
-XTerm*locale:zh_CN.UTF-8
+xterm*locale:zh_CN.UTF-8
 xterm*utf8:true
 xterm*utf8Title:true
 
-! 窗口大小及位置
- xterm*geometry:110x35-0-0
+!窗口大小及位置
+xterm*geometry:100x30-0-0
 
 ! scrollbar
-XTerm*scrollBar:true
-XTerm*rightScrollBar:true
-XTerm*saveLines:  4096
-XTerm*fastScroll:true
+xterm*scrollBar:true
+xterm*rightScrollBar:true
+xterm*saveLines:  4096
+xterm*fastScroll:true
 
-Xterm*bellIsUrgent: true
+xterm*bellIsUrgent: true
+xterm*allowBoldFonts: false
 
-! 设置字体是否加粗
- XTerm*allowBoldFonts: false
 
-! 背景色及字体顔色
- xterm*background:#000000
-xterm*foreground:#00FF00
-xterm.borderLess: true
-xterm.cursorBlink: true
-xterm*colorUL: Green
-xterm*colorBD: #FFFF00
 
 !input method  好像不起作用
- XTerm*inputMethod:fcitx  
+xterm*inputMethod:fcitx
 
-! 调整行距离
- XTerm*scaleHeight: 1.01
-
-
-
-*xterm*color0: #000000
-*xterm*color1: #cc0000
-*xterm*color2: #A020F0
-*xterm*color3: #FA8072
-*xterm*color4: #FFFF00
-*xterm*color5: #EE00EE
-*xterm*color6: #63B8FF
-*xterm*color7: #CFCFCF
-*xterm*color8: #E8E8E8
-*xterm*color9: #ef2929
-*xterm*color10: #8ae234
-*xterm*color11: #fce94f
-*xterm*color12: #0000FF
-*xterm*color13: #FF6EB4
-*xterm*color14: #00f5e9
-*xterm*color15: #eeeeec
-
-*xterm*black: #073642
-*xterm*red: #dc322f
-*xterm*green: #859900
-*xterm*yellow: #b58900
-*xterm*blue #268bd2
-*xterm*magenta: #d33682
-*xterm*cyan: #2aa198
-*xterm*white : #eee8d5
-*xterm*brblack: #002b36
-*xterm*brred: #cb4b16
-*xterm*brgreen: #586e75
-*xterm*bryellow: #657b83
-*xterm*brblue: #839496
-*xterm*brmagenta: #6c71c4
-*xterm*brcyan: #93a1a1
-*xterm*brwhite: #fdf6e3
+!调整行距离
+xterm*scaleHeight: 1.01
+!####################################################
 
 
-！xrdb -merge ~/.Xdefault
-！或
-！在 /etc/X11/app-defaults/XTerm 里面加上面的东西
-！/usr/share/X11/app-defaults/XTerm
+! Colours for xterm
+! sets colors for everything.
+!xterm*background: #272822
+!xterm*foreground: #a08080
+
+
+
+xterm*background: #000000
+xterm*foreground: #d0d0d0
+
+
+xterm*color0: #272822
+xterm*color1: #d0d0d0
+xterm*color2: #66AA11
+xterm*color3: #c47f2c
+xterm*color4: #30309b
+xterm*color5: #7e40a5
+xterm*color6: #3579A8
+xterm*color7: #9999AA
+! 8-15 are considered brighter colours of 1-7
+xterm*color8: #303030
+xterm*color9: #ff0090
+xterm*color10: #80FF00
+xterm*color11: #ffba68
+xterm*color12: #5f5fee
+xterm*color13: #bb88dd
+xterm*color14: #4eb4fa
+xterm*color15: #ffffff
+
+! Mouse pointer
+xterm*pointerColor: #ffffff
+xterm*pointerColorBackground: #000000
+xterm*cursorColor: #FFA500
+xterm*cursorBlink: true
