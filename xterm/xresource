@@ -1,74 +1,125 @@
-!!$HOME/.Xdefaults
+
+!!$HOME/.Xresources
 !
+!抗锯齿
+Xft.antialias: true 
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
 !preeditType type 输入法样式可选:Root(置底) OverTheSpot(跟随) OffTheSpot OnTheSpot，后两种不是所有的都支持
 URxvt.preeditType:OverTheSpot
 !!调整此处设置输入法
 URxvt.inputMethod:fcitx
 
-!设置字体分辨率
+! 实现ctrl+shift+c/v的复制粘贴
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
-!!颜色设置
+! 一定要写全名及大写的C/V,否则无效
+! Shift/Control 顺序无关
+URxvt.keysym.Meta-V: eval:paste_clipboard
+URxvt.keysym.Meta-C: eval:selection_to_clipboard
+
+
+! 禁用之前的复制粘贴方案
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+
+! 通过在 shell 的 argv[0] 前加 - 来作为登录 shell 启动，false，作为子 shell 自动（默认）
+URxvt.loginShell: true
+
+
+
+
+! 资源深度，[许多 X 服务器在 -depth 32或 alpha 通道上有bug，会导致图形错误，但是无害]
 URxvt.depth:32
 !!中括号内数表示透明度
-URxvt.background:[60]#000000
+URxvt.background:[30]#000000
 URxvt.foreground:#00FF00
 !URxvt.colorBD:Gray95
 URxvt.colorBD:#FFFF00
 URxvt.cursorColor:#FFFF00
-URxvt.colorUL:Green
+URxvt.colorUL:#00EE00
+
 URxvt.color0:#000000
-URxvt.color1:#EE0000
+URxvt.color1:#cc0000
 URxvt.color2:#A020F0
-!URxvt.color2:springgreen
 URxvt.color3:#FA8072
-!URxvt.color4:#FFD700
 URxvt.color4:#FFFF00
 URxvt.color5:#EE00EE
 URxvt.color6:#63B8FF
 URxvt.color7:#CFCFCF
 URxvt.color8:#E8E8E8
-URxvt.color9:#FF0000
+URxvt.color9:#ef2929
 URxvt.color10:#00EE00
-URxvt.color11:#FFFF00
+URxvt.color11:#fce94f
 URxvt.color12:#0000FF
 URxvt.color13:#FF6EB4
 URxvt.color14:#00EEEE
 URxvt.color15:#E8E8E8
+
 !!URL操作
-URxvt.urlLauncher:chromium
+URxvt.urlLauncher:google-chrome
 URxvt.matcher.button:1
 Urxvt.perl-ext-common:matcher
+
 !!滚动条设置
+!true，允许滚动条「默认」；false，禁止滚动条
 URxvt.scrollBar:True
 URxvt.scrollBar_right:True
 URxvt.scrollBar_floating:False
 URxvt.scrollstyle:plain
+
 !!滚屏设置
+!true，鼠标滚轮滚动整页；false，滚动五行「默认」
 URxvt.mouseWheelScrollPage:True
-URxvt.scrollTtyOutput:False
+!true，当 tty 接受到输出时滚动到底部，false，不滚动到底部
+URxvt.scrollTtyOutput:True
+!true，当 tty 接受到新行并且 scrollTtyOutput 为 false 时使用回滚缓冲区滚动；false，不使用回滚缓冲区
 URxvt.scrollWithBuffer:True
+! 按下非特殊键时滚动到底部，false，不会滚动到底部
 URxvt.scrollTtyKeypress:True
+URxvt.secondaryScroll: True
+
 !!光标闪烁
+!true，闪烁光标；false，不闪烁光标
 URxvt.cursorBlink:True
+!true，光标为下划线；false光标为方块
+URxvt.cursorUnderline:True
+!在回滚缓冲区保留多少行数据「默认 1000」
 URxvt.saveLines:3000
 
 !屏幕缓冲
-Rxvt.saveLines:10000
-Rxvt.color12:DodgerBlue
-Rxvt.menu:/etc/X11/rxvt.menu
-Rxvt.preeditType:Root
-Rxvt.transparency:255
+URxvt.menu:/etc/X11/rxvt.menu
+URxvt.transparency:255
 
 
 !!边框
+!为 true 时，新建的 terminal 跨 tag 存在且无法输入和关闭
 URxvt.borderLess:False
+
+!，使用根像素启用伪透明度作为背景
+URxvt.transparent：True
+
 !!字体设置
 !设置字体分辨率
 Xft.dpi:96
 !SimSun, SimHei,WenQuanYi Micro Hei,Noto Mono
-URxvt.font:xft:Noto Mono:size=14:style=Regular:antialias=true
-URxvt.boldfont:xft:Noto Mono::size=14:style=Bold:antialias=true
+! URxvt.font:xft:Noto Mono:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:JetBrains Mono Regular:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:Fire code Regular:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:SauceCodePro Nerd Font:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:SauceCodePro Nerd Font Mono:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:FiraCode Nerd Font:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:FiraCode Nerd Font Mono:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:JetBrainsMono Nerd Font:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:JetBrainsMono Nerd Font Mono:size=16:style=Regular:antialias=true,xft:JetBrainsMono Nerd Font Mono:size=16:style=Regular:antialias=true
+! URxvt.font:xft:JetBrains Mono Regular:size=16:style=Regular:antialias=true,xft:Noto Mono:size=16:style=Regular:antialias=true
+URxvt.font:xft:文泉驿微米黑:size=14:style=Bold:antialias=true,xft:文泉驿微米黑:size=16:style=Bold:antialias=true
 
+URxvt.boldfont:xft:文泉驿微米黑:size=14:style=Bold:antialias=true,xft:文泉驿微米黑:size=16:style=Bold:antialias=true
+URxvt.mfont:-*-*-medium-r-normal-*-16-*-*-*-c-*-gb*-*
 
 ! Tab set
 !则默认情况下执行urxvt就会打开多标签功能。urxvt的标签支持使用鼠标操作，
@@ -79,15 +130,50 @@ URxvt.tabbed.tab-bg: 0
 URxvt.tabbed.tabbar-fg: 4
 URxvt.tabbed.tabbar-bg: 0
 
-multichar_encoding:utf8
 
 URxvt.clipboard.autocopy: true
 URxvt.keysym.M-c: perl:clipboard:copy
 URxvt.keysym.M-v: perl:clipboard:paste
 
 ! window geometry set
-URxvt.geometry: 90x25+180+200
+URxvt.geometry: 90x25-80-200
 URxvt.title:URxvt
 
 !icons
-URxvt.iconFile: ~/.fvwm/images/icons/16x16-crystalclear/terminal.png
+URxvt.iconFile: ~/.fvwm/images/icons/16x16-crystalclear/terminal.pn 
+
+
+!默认支持鼠标点击使用，快捷键如下：
+Shift+ ↓: new tab
+Shift+ ←: go to left tab
+Shift+ →: go to right tab
+Ctrl+ ←: move tab to the left
+Ctrl+ →: move tab to the right
+Ctrl+D: close tab
+
+!!!边框颜色
+URxvt.fadeColor: White   
+URxvt.colorIT: red 
+URxvt.underlineColor: blue
+URxvt.multichar_encoding: utf-8
+URxvt.imLocale: zh_CN.UTF-8
+
+URxvt.visualBell: False
+URxvt.inheritPixmap: true
+URxvt.tintCddolor: white
+URxvt.shading: 80 
+URxvt.fading: 60
+
+!URxvt.pointerBlank: true
+!*pointerColorBackground: #586e75
+!*pointerColorForeground: #93a1a1
+URxvt*letterSpace: -1  
+URxvt.internalBorder: 3
+URxvt.lineSpace: 0
+
+
+
+！xrdb -merge ~/.Xresources
+！或
+！在/etc/X11/app-defaults/URxvt里面加上面的东西
+！/usr/share/X11/app-defaults/URxvt
