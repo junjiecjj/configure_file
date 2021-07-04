@@ -50,34 +50,36 @@ working_directory: None
 live_config_reload: true
 
 # 主题，抄肥猫的主题配色
-# Colors (Seagull)
+
+# Colors (Seoul256-light)
 colors:
   # Default colors
   primary:
-    background: '#ffffff'
-    foreground: '#61707a'
+    background: '#dadada'
+    foreground: '#4e4e4e'
 
-  # Default colors
+  # Normal colors
   normal:
-    black:   '#0b141a'
-    red:     '#ff4053'
-    green:   '#11ab00'
-    yellow:  '#bf8c00'
-    blue:    '#0099ff'
-    magenta: '#9854ff'
-    cyan:    '#00a5ab'
-    white:   '#ffffff'
+    black:   '#4e4e4e'
+    red:     '#af5f5f'
+    green:   '#5f885f'
+    yellow:  '#af8760'
+    blue:    '#5f87ae'
+    magenta: '#875f87'
+    cyan:    '#5f8787'
+    white:   '#e4e4e4'
 
   # Bright colors
   bright:
-    black:   '#0b141a'
-    red:     '#ff4053'
-    green:   '#11ab00'
-    yellow:  '#bf8c00'
-    blue:    '#0099ff'
-    magenta: '#9854ff'
-    cyan:    '#00a5ab'
-    white:   '#ffffff'
+    black:   '#3a3a3a'
+    red:     '#870100'
+    green:   '#005f00'
+    yellow:  '#d8865f'
+    blue:    '#0087af'
+    magenta: '#87025f'
+    cyan:    '#008787'
+    white:   '#eeeeee'
+
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
