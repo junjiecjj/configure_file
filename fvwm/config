@@ -1,4 +1,4 @@
-####
+
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -75,6 +75,7 @@ DestroyModuleConfig FvwmScroll: *
 #InfoStoreAdd terminal 'xterm -fa "Noto mono" -fs 15 -bg grey11 -fg green2 -rightbar -sb'
 InfoStoreAdd   xterm         xterm
 InfoStoreAdd   kitty         kitty
+InfoStoreAdd   alacritty     alacritty
 InfoStoreAdd   urxvt         urxvt
 InfoStoreAdd   gnome-term    gnome-terminal
 InfoStoreAdd   kde-terminal  konsole
@@ -363,7 +364,8 @@ Style   *konsole              TitleAtLeft
 Style   *urxvt*                TitleAtLeft
 Style   *terminator*           TitleAtLeft
 Style   *gnome-terminal*       TitleAtLeft
-Style   *st*       TitleAtLeft
+Style   *kitty*                   TitleAtTop
+Style   *Alacritty*               TitleAtLeft
 
 # Default Font
 DefaultFont "StringEncoding=utf8:xft:NotoMono-Regular:Bold:size=8:antialias=True:encoding=en_US.UTF-8::Shadow=0 0 "
@@ -462,6 +464,8 @@ Colorset 27   fg  #FFFFFF, bg  #7D26CD, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*WeChat"                        HilightColorset 27
 Style     "qq"                             HilightColorset 27
 Style     "zoom"                             HilightColorset 27
+Style     "*kitty*"                  TitleAtTop  ,         HilightColorset 27
+Style     "*Alacritty"              TitleAtTop  ,         HilightColorset 27
 
 Colorset 28   fg  #FFFFFF, bg  #0000FF, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "*Shotwell"                    TitleAtTop, HilightColorset 28
@@ -482,7 +486,7 @@ Style     "urxvt"                                        HilightColorset 30
 Style     "konsole"                                      HilightColorset 30
 Style     "*gnome-terminal*"                             HilightColorset 30
 Style     "terminator"                                   HilightColorset 30
-Style     "st"                                TitleAtLeft           HilightColorset 30
+Style     "st"                     TitleAtLeft,          HilightColorset 30
 
 Colorset 31   fg  #0000FF, bg #CD661D , hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "Spyder*"                             HilightColorset 31
@@ -676,9 +680,11 @@ Test (x  notepadqq) + "Notepadqq %$[fvwm_exicons2]/notepadqq.png%"  Exec exec no
 DestroyMenu MenuTerminal
 AddToMenu   MenuTerminal "终端类型" Title
 Test (x xterm)  + "&XTerm  %$[fvwm_icons]/terminal.png%" Exec exec xterm
+Test (x urxvt)  + "&Urxvt  %$[fvwm_icons]/terminal.png%" Exec exec urxvt
 Test (x st)  + "&ST  %$[fvwm_icons]/terminal.png%" Exec exec st
 Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
 Test (x  kitty) + "&Kitty %$[fvwm_icons]/terminal1.png%"  Exec exec kitty
+Test (x  alacritty) + "&Alacritty %$[fvwm_icons]/terminal1.png%"  Exec exec alacritty
 Test (x gnome-terminal) + "&Gnome-terminal %$[fvwm_exicons2]/terminal.png%" Exec exec gnome-terminal
 Test (x  konsole) + "&Konsole %$[fvwm_exicons2]/terminal.png%"  Exec exec konsole
 
@@ -1073,8 +1079,9 @@ Silent Key 4 A C GotoDesk 0 3
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
 Silent Key z  A   CM     Exec exec st
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
-# Silent Key u  A   CM     Exec exec $[infostore.urxvt]
-# Silent Key z  A   CM     Exec exec $[infostore.kitty]
+Silent Key u  A   CM     Exec exec $[infostore.urxvt]
+Silent Key k  A   CM     Exec exec $[infostore.kitty]
+Silent Key a  A   CM     Exec exec $[infostore.alacritty]
 
 #ctr了+ m 打开dmenus_run
 Silent Key m  A   C     Exec exec dmenu_run
@@ -1118,10 +1125,10 @@ Silent Key o  A   CM     Exec exec  typora
 # ctrl+Shift+右      右卷一屏
 # ctrl+Shift+下      下卷一屏
 # ctrl+Shift+上      上卷一屏
-Key Left    A  CS    Scroll -100  +0
-Key Right   A  CS    Scroll +100  +0
-Key Up      A  CS    Scroll +0   -100
-Key Down    A  CS    Scroll +0   +100
+# Key Left    A  CS    Scroll -100  +0
+# Key Right   A  CS    Scroll +100  +0
+# Key Up      A  CS    Scroll +0   -100
+# Key Down    A  CS    Scroll +0   +100
 
 # Alt+F6    关闭显示屏
 Silent Key   F6      A    M    Function LockScreen
