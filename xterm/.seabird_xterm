@@ -1,0 +1,116 @@
+!xterm solarized_light 主题
+
+
+xterm*termName: xterm-256color
+
+xterm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
+
+!mouse selecting to copy, ctrl-v to paste 快捷键定义：鼠标选择自动复制，ctrl-v粘贴，ctrl-p拷屏。
+!Ctrl p to print screen content to file
+xterm*VT100.Translations: #override
+    Ctrl <KeyPress> V: insert-selection(CLIPBOARD,PRIMARY,CUT_BUFFER0)
+    <BtnUp>: select-end(CLIPBOARD,PRIMARY,CUT_BUFFER0)
+    Ctrl <KeyPress> P: print()
+
+xterm*metaSendsEscape: true
+Xterm*eightBitInput: false
+xterm*Font: 7*13
+
+! English font
+! xterm*faceName:Noto mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
+! xterm*faceName:Fire code Regular:antialas=true:pixelsize=12
+! xterm*faceName:SauceCodePro Nerd Font:antialas=true:pixelsize=12
+! xterm*faceName:SauceCodePro Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
+! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
+xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
+! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
+
+! Chinese font
+xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=12
+! xterm*faceNameDoublesize:JetBrains Mono Regular:antialias=True:pixelsize=12
+! xterm*faceNameDoublesize:Fire code Regular:antialias=True:pixelsize=12
+! xterm*faceNameDoublesize:SauceCodePro Nerd Font:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:SauceCodePro Nerd Font Mono:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:FiraCode Nerd Font:size=36:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:FiraCode Nerd Font Mono:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:JetBrainsMono Nerd Font:antialias=True:pixelsize=13
+! xterm*faceNameDoublesize:JetBrainsMono Nerd Font Mono:antialias=True:pixelsize=13
+
+xterm*xftAntialias:true
+xterm*cjkWidth:false
+
+
+xterm*faceSize:200
+
+xterm*locale:zh_CN.UTF-8
+xterm*utf8:true
+xterm*utf8Title:true
+
+!窗口大小及位置
+xterm*geometry:110x35-0-0
+
+! scrollbar
+xterm*scrollBar:true
+xterm*rightScrollBar:true
+xterm*saveLines:  4096
+xterm*fastScroll:true
+
+xterm*bellIsUrgent: true
+! 字体是否加粗
+xterm*allowBoldFonts: true
+
+
+
+!input method  好像不起作用
+xterm*inputMethod:fcitx
+
+!调整行距离
+xterm*scaleHeight: 1.01
+!####################################################
+
+
+
+xterm*background:            #CDC5BF
+xterm*foreground:            #61707a
+xterm*fadeColor:             #fdf6e3
+xterm*cursorColor:           #363636
+xterm*pointerColorBackground:#93a1a1
+xterm*pointerColorForeground:#586e75
+
+
+
+!! black dark/light
+xterm*color0:                #0b141a
+xterm*color8:                #0b141a
+
+!! red dark/light
+xterm*color1:                #ff4053
+xterm*color9:                #ff4053
+
+!! green dark/light
+xterm*color2:                #11ab00
+xterm*color10:               #11ab00
+
+!! yellow dark/light
+xterm*color3:                #bf8c00
+xterm*color11:               #bf8c00
+
+!! blue dark/light
+xterm*color4:                #0099ff
+xterm*color12:               #0099ff
+
+!! magenta dark/light
+xterm*color5:                #9854ff
+xterm*color13:               #9854ff
+
+!! cyan dark/light
+xterm*color6:                #00a5ab
+xterm*color14:               #00a5ab
+
+!! white dark/light
+xterm*color7:                #ffffff
+xterm*color15:               #ffffff
+
