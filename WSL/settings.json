@@ -34,24 +34,26 @@
       //"fontFace": "DroidSansMono NF",
       "fontFace": "JetBrains Mono",
       //"fontFace": "SauceCodePro Nerd Font Mono",
+      //"fontFace": "JetBrains Mono Regular Nerd Font",
+      //"fontFace": "FiraCode Nerd Font Mono",
       "fontSize": 8,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
-      "cursorShape": "bar",
+      "cursorShape": "underscore",
       // 是否开启背景亚克力透明效果（窗口失去焦点时无效）
       "useAcrylic": false,
       "cursorColor": "#0cee32",
       "historySize": 2001,
       "snapOnInput": true,
-      "acrylicOpacity": 0.8,
+      "acrylicOpacity": 0.7,
       "backgroundImageOpacity": 0.3,
-      "foreground": "#A7B191",
-      "background": "#000000",
+      //"foreground": "#A7B191",
+      //"background": "#000000",
       //"background": "#013456",
       "padding": "0, 0, 0, 0",
       "hidden": false,
       //"startingDirectory": "//wsl$/Ubuntu-20.04/home/junjie",
       "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~;bash\"",
-      "colorScheme": "Homebrew"
+      "colorScheme": "Seabird"
       //"colorScheme": "Tango Dark"
       //"colorScheme": "Homebrew"
       //"colorScheme": "Solarized Dark"
@@ -59,6 +61,10 @@
       //"colorScheme": "Night Owlish Light"
       //"colorScheme": "Campbell"
       //"colorScheme": "Snazzy"
+      //"colorScheme": "Seaoul256"
+      //"colorScheme": "Seabird"
+      //"colorScheme": "solarized_dark"
+
 
     },
     "list": [{
@@ -124,6 +130,69 @@
       "brightWhite": "#eeeeec",
       "background": "#000000",
       "foreground": "#D3D7CF"
+    },
+    {
+      "name": "Seaoul256",
+      "black": "#4e4e4e",
+      "red": "#af5f5f",
+      "green": "#5f885f",
+      "yellow": "#af8760",
+      "blue": "#5f87ae",
+      "purple": "#875f87",
+      "cyan": "#5f8787",
+      "white": "#e4e4e4",
+      "brightBlack": "#3a3a3a",
+      "brightRed": "#870100",
+      "brightGreen": "#005f00",
+      "brightYellow": "#d8865f",
+      "brightBlue": "#0087af",
+      "brightPurple": "#87025f",
+      "brightCyan": "#008787",
+      "brightWhite": "#eeeeee",
+      "background": "#dadada",
+      "foreground": "#4e4e4e"
+    },
+    {
+      "name": "Seabird",
+      "black": "#0b141a",
+      "red": "#ff4053",
+      "green": "#11ab00",
+      "yellow": "#bf8c00",
+      "blue": "#0099ff",
+      "purple": "#9854ff",
+      "cyan": "#00a5ab",
+      "white": "#ffffff",
+      "brightBlack": "#0b141a",
+      "brightRed": "#ff4053",
+      "brightGreen": "#11ab00",
+      "brightYellow": "#bf8c00",
+      "brightBlue": "#0099ff",
+      "brightPurple": "#9854ff",
+      "brightCyan": "#00a5ab",
+      "brightWhite": "#ffffff",
+      "background": "#CDC5BF",
+      "foreground": "#61707a"
+    },
+    {
+      "name": "solarized_dark",
+      "black": "#073642",
+      "red": "#dc322f",
+      "green": "#859900",
+      "yellow": "#b58900",
+      "blue": "#268bd2",
+      "purple": "#d33682",
+      "cyan": "#2aa198",
+      "white": "#eee8d5",
+      "brightBlack": "#002b36",
+      "brightRed": "#cb4b16",
+      "brightGreen": "#586e75",
+      "brightYellow": "#657b83",
+      "brightBlue": "#839496",
+      "brightPurple": "#6c71c4",
+      "brightCyan": "#93a1a1",
+      "brightWhite": "#fdf6e3",
+      "background": "#D2B48C",
+      "foreground": "#657b83"
     },
     {
       "name": "Snazzy",
