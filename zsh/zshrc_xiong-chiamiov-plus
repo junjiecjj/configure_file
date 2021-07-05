@@ -1,4 +1,4 @@
-# Set up the prompt
+
 
 
 
@@ -13,115 +13,34 @@ HISTFILE=~/.zsh_history
 
 
 
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/junjie/.oh-my-zsh"
+export ZSH="/home/jack/.oh-my-zsh"
 # zsh-nvm lazy load
 export NVM_LAZY_LOAD=true
 
 
-#打开～/.oh-my-zsh/themes 目录下面的任意一个文件
-# ZSH_THEME="myys"
+#打开～/.oh-my-zsh/themes目录下面的任意一个文件
+ZSH_THEME="xiong-chiamiov"
+# ZSH_THEME="af-magic"
 # ZSH_THEME="agnoster"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="xiong-chiamiov-plus"
+# ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME_RANDOM_CANDIDATES=(
+    "af-magic"
+    "afowler"        "agnoster"        "gnzh"        "alanpeabody"     "gozilla"
+    "pmcgee"    "amuse"     "half-life"     "pygmalion-virtualenv"        "pygmalion"
+    "aussiegeek"      "intheloop"            "re5et"  "avit"           "itchy"   "jaischeema"   "bira"
+    "rixius"        "jnrowe"            "rkj-repos"
+    "jonathan"          "rkj"              "candy"               "jtriley"    "simonoff"
+    "crcandy"          "cypher"          "kafeitu"              "kardan"            "Soliah"
+    "kphoen"            "steeef"     "strug"    "dstufft"           "dst"         "duellj"
+    "suvash"           "fino-time"       "mikeh"             "fino"                "fox"               "xiong-chiamiov-plus"
+     "muse"            "xiong-chiamiov"  "myys"              "ys"   "nanotech"
+)
 
-	"3den"  "garyblessington"   "nicoulaj"  "adben"
-	"gentoo"  "norm"  "af-magic"
-	"af-magic"   "geoffgarside"  "obraun"  "afowler"  "gianu"
-	"peepcode"   "agnoster"        "gnzh"           "philips"
-	"alanpeabody"     "gozilla"           "pmcgee"
-	"amuse"         "half-life"      "pygmalion-virtualenv"
-	"apple"          "humza"             "pygmalion"
-	"arrow"          "imajes"            "random"
-	"aussiegeek"      "intheloop"         "re5et"
-	"avit"           "itchy"             "refined"
-	"awesomepanda"   "jaischeema"        "rgm"
-	"bira"            "jbergantine"       "risto"
-	"blinks"          "jispwoso"          "rixius"
-	"bureau"         "jnrowe"            "rkj-repos"
-	"candy-kingdom"   "jonathan"          "rkj"
-	"candy"           "josh"              "robbyrussell"
-	"clean"          "jreese"            "sammy"
-	"cloud"           "jtriley"           "simonoff"
-	"crcandy"         "juanghurtado"      "simple"
-	"crunch"         "junkfood"          "skaro"
-	"cypher"          "kafeitu"           "smt"
-	"dallas"          "kardan"            "Soliah"
-	"darkblood"       "kennethreitz"      "sonicradish"
-	"daveverwer"      "kiwi"              "sorin"
-	"dieter"          "kolo"              "sporty_256"
-	"dogenpunk"       "kphoen"            "steeef"
-	"dpoggi"          "lambda"            "strug"
-	"dstufft"        "linuxonly"         "sunaku"
-	"dst"           "lukerandall"       "sunrise"
-	"duellj"          "macovsky-ruby"    "superjarin"
-	"eastwood"        "macovsky"          "suvash"
-	"edvardm"         "maran"             "takashiyoshida"
-	"emotty"          "mgutz"             "terminalparty"
-	"essembeh"        "mh"                "theunraveler"
-	"evan"            "michelebologna"    "tjkirch_mod"
-	"fino-time"       "mikeh"             "tjkirch"
-	"fino"            "miloshadzic"       "tonotdo"
-	"fishy"           "minimal"           "trapd00r"
-	"flazz"           "mira"              "wedisagree"
-	"fletcherm"       "mlh"           "wezm+"
-	"fox"             "mortalscumbag"     "wezm"
-	"frisk"           "mrtazz"            "wuffers"
-	"frontcube"       "murilasso"         "xiong-chiamiov-plus"
-	"funky"          "muse"              "xiong-chiamiov"
-	"fwalch"          "myys"              "ys"
-	"gallifrey"       "nanotech"          "zhann"
-	"gallois"         "nebirhos"
-    )
-
-# some more ls aliases
-alias ll='ls -alF --color=auto -h'
-alias la='ls -A --color=auto -h'
-alias l='ls -CF --color=auto -h'
-alias ls='ls -l --color=auto -h'
-
-# alias el='exa -lh'
-alias e='exa -lh'
-alias er='exa -lh -R'
-alias et='exa -lh -T'
-# alias ell='exa -abghHliSr'
-alias ee='exa -abghHliSr'
-alias eer='exa -abghHliSr -R'
-alias eet='exa -abghHliSr -T'
-
-alias v='vim'
-alias nv='nvim'
-alias gd='gedit'
-
-alias cc='cd  /mnt/c/公共的/c文件/'
-alias cg='cd  /mnt/c/公共的/'
-alias cf='cd  ~/文档/'
-alias ca='cd  /mnt/c/公共的/c文件/数据结构/'
-
-mkd() { mkdir -p "$@" && cd "$1"; }
-alias install='sudo apt install'
-alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
-alias up='sudo apt update ; sudo apt upgrade -y'
-alias show_dimensions='xdpyinfo | grep '''dimensions:''''
-alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
-
-export LESS_TERMCAP_mb=$'\E[01;34m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;36;44m'
-export LESS_TERMCAP_se=$'\E[0m'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 plugins=(
 
@@ -158,32 +77,71 @@ source $ZSH/oh-my-zsh.sh
 
 
 # added by Anaconda3 installer
-export PATH="/home/junjie/anaconda3/bin:$PATH"
+export PATH="/home/jack/anaconda3/bin:$PATH"
 export PYTHONPATH="/usr/local/mdsplus/python/MDSplus"
 
+
 # some more ls aliases
+
 alias ll='ls -alF --color=auto -h'
 alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
 
-alias el='exa -lh'
-alias elr='exa -lh -R'
-alias elt='exa -lh -T'
-alias ell='exa -abghHliSr'
-alias ellr='exa -abghHliSr -R'
-alias ellt='exa -abghHliSr -T'
+# alias el='exa -lh'
+alias e='exa -lh'
+alias er='exa -lh -R'
+alias et='exa -lh -T'
+# alias ell='exa -abghHliSr'
+alias ee='exa -abghHliSr'
+alias eer='exa -abghHliSr -R'
+alias eet='exa -abghHliSr -T'
 
 alias cc='cd ~/公共的/c文件/'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
 
+
+mkd() { mkdir -p "$@" && cd "$1"; }
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias up='sudo apt update ; sudo apt upgrade -y'
+alias show_dimensions='xdpyinfo | grep '''dimensions:''''
+alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
+
+alias v='vim'
+alias nv='nvim'
+
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+export LESS_TERMCAP_mb=$'\E[01;34m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;36;44m'
+export LESS_TERMCAP_se=$'\E[0m'
+
+man() {
+  env \
+  LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+  LESS_TERMCAP_md=$(printf "\e[1;31m") \
+  LESS_TERMCAP_me=$(printf "\e[0m") \
+  LESS_TERMCAP_se=$(printf "\e[0m") \
+  LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+  LESS_TERMCAP_ue=$(printf "\e[0m") \
+  LESS_TERMCAP_us=$(printf "\e[1;32m") \
+  man "$@"
+}
+
+
 HIST_STAMPS="yyyy-mm-dd"
 DISABLE_UPDATE_PROMPT=true
 #source ~/.oh-my-zsh/plugins/incr/incr*.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -s /home/junjie/.autojump/etc/profile.d/autojump.sh ]] && source /home/junjie/.autojump/etc/profile.d/autojump.sh
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -s /home/jack/.autojump/etc/profile.d/autojump.sh ]] && source /home/jack/.autojump/etc/profile.d/autojump.sh
 
 
 # zsh-nvm lazy load
@@ -192,16 +150,16 @@ export NVM_LAZY_LOAD=true
 #export PS1='$\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\A\[\e[31;1m\]]\[\033[01;32m\]\$ '
 #
 #color{{{
-# autoload colors
-# colors
-#
-# for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-# eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-# eval $color='%{$fg[${(L)color}]%}'
-# (( count = $count + 1 ))
-# done
-# FINISH="%{$terminfo[sgr0]%}"
-# #}}}
+autoload colors
+colors
+
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+eval $color='%{$fg[${(L)color}]%}'
+(( count = $count + 1 ))
+done
+FINISH="%{$terminfo[sgr0]%}"
+#}}}
 
 #命令提示符
 #RPROMPT=$(echo "$RED%D %T$FINISH")
@@ -209,7 +167,7 @@ export NVM_LAZY_LOAD=true
 
 #PROMPT=$(echo "$BLUE%M$GREEN%/
 #$CYAN%n@$BLUE%M:$GREEN%/$_YELLOW>>>$FINISH ")
-#标题栏、任务栏样式 {{{
+#标题栏、任务栏样式{{{
 case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
 precmd () { print -Pn "\e]0;%n@%M//%/\a" }
 preexec () { print -Pn "\e]0;%n@%M//%/\ $1\a" }
@@ -220,64 +178,61 @@ esac
 #编辑器
 export EDITOR=vim
 #输入法
-export XMODIFIERS="@im=fcitx"
-export QT_MODULE=fcitx
-export GTK_MODULE=fcitx
+export XMODIFIERS="@im=ibus"
+export QT_MODULE=ibus
+export GTK_MODULE=ibus
 #关于历史纪录的配置 {{{
 #历史纪录条目数量
- export HISTSIZE=10000
+export HISTSIZE=10000
 #注销后保存的历史纪录条目数量
- export SAVEHIST=10000
+export SAVEHIST=10000
 #历史纪录文件
- export HISTFILE=~/.zhistory
+export HISTFILE=~/.zhistory
 #以附加的方式写入历史纪录
- setopt INC_APPEND_HISTORY
+setopt INC_APPEND_HISTORY
 #如果连续输入的命令相同，历史纪录中只保留一个
- setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_DUPS
 #为历史纪录中的命令添加时间戳
- setopt EXTENDED_HISTORY
+setopt EXTENDED_HISTORY      
 
-#启用 cd 命令的历史纪录，cd -[TAB] 进入历史路径
- setopt AUTO_PUSHD
+#启用 cd 命令的历史纪录，cd -[TAB]进入历史路径
+setopt AUTO_PUSHD
 #相同的历史路径只保留一个
- setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_IGNORE_DUPS
 
 #在命令前添加空格，不将此命令添加到纪录文件中
 #setopt HIST_IGNORE_SPACE
 #}}}
 
-# #每个目录使用独立的历史纪录 {{{
-# cd() {
-# builtin cd "$@"                             # do actual cd
-# fc -W                                       # write current history  file
-# local HISTDIR="$HOME/.zsh_history$PWD"      # use nested folders for history
-# if  [ ! -d "$HISTDIR" ] ; then          # create folder if needed
-#     mkdir -p "$HISTDIR"
-# fi
-# export HISTFILE="$HISTDIR/zhistory"     # set new history file
-# if  [ ! -f "$HISTFILE" ] ; then          # create folder if needed
-#     #mkdir -p "$HISTDIR"
-#     touch $HISTFILE
-# fi
-# local ohistsize=$HISTSIZE
-# HISTSIZE=0                              # Discard previous dir's history
-# HISTSIZE=$ohistsize                     # Prepare for new dir's history
-# fc -R                                       #read from current histfile
-# }
-# mkdir -p $HOME/.zsh_history$PWD
-# export HISTFILE="$HOME/.zsh_history$PWD/zhistory"
-#
-# function allhistory { cat $(find $HOME/.zsh_history -name zhistory) }
-# function convhistory {
-# sort $1 | uniq |
-# sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |
-# awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print }'
-# }
-# #使用 histall 命令查看全部历史纪录
-#  function histall { convhistory =(allhistory) |
-# sed '/^.\{20\} *cd/i\\' }
-# #使用 hist 查看当前目录历史纪录
-#  function hist { convhistory $HISTFILE }
+#每个目录使用独立的历史纪录{{{
+cd() {
+builtin cd "$@"                             # do actual cd
+fc -W                                       # write current history  file
+local HISTDIR="$HOME/.zsh_history$PWD"      # use nested folders for history
+if  [ ! -d "$HISTDIR" ] ; then          # create folder if needed
+    mkdir -p "$HISTDIR"
+fi
+export HISTFILE="$HISTDIR/zhistory"     # set new history file
+touch $HISTFILE
+local ohistsize=$HISTSIZE
+HISTSIZE=0                              # Discard previous dir's history
+HISTSIZE=$ohistsize                     # Prepare for new dir's history
+fc -R                                       #read from current histfile
+}
+mkdir -p $HOME/.zsh_history$PWD
+export HISTFILE="$HOME/.zsh_history$PWD/zhistory"
+
+function allhistory { cat $(find $HOME/.zsh_history -name zhistory) }
+function convhistory {
+sort $1 | uniq |
+sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |
+awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print }'
+}
+#使用 histall 命令查看全部历史纪录
+function histall { convhistory =(allhistory) |
+sed '/^.\{20\} *cd/i\\' }
+#使用 hist 查看当前目录历史纪录
+function hist { convhistory $HISTFILE }
 
 #全部历史纪录 top50
 function top50 { allhistory | awk -F':[ 0-9]*:[0-9]*;' '{ $1="" ; print }' | sed 's/ /\n/g' | sed '/^$/d' | sort | uniq -c | sort -nr | head -n 50 }
@@ -287,7 +242,7 @@ function top50 { allhistory | awk -F':[ 0-9]*:[0-9]*;' '{ $1="" ; print }' | sed
 #杂项 {{{
 #允许在交互模式中使用注释  例如：
 #cmd #这是注释
-setopt INTERACTIVE_COMMENTS
+setopt INTERACTIVE_COMMENTS      
 
 #启用自动 cd，输入目录名回车进入目录
 #稍微有点混乱，不如 cd 补全实用
@@ -300,14 +255,14 @@ setopt complete_in_word
 #禁用 core dumps
 limit coredumpsize 0
 
-#Emacs 风格 键绑定
+#Emacs风格 键绑定
 bindkey -e
 #bindkey -v
-#设置 [DEL] 键 为向后删除
+#设置 [DEL]键 为向后删除
 #bindkey "\e[3~" delete-char
 
 #以下字符视为单词的一部分
- WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
+WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
 #}}}
 
 #自动补全功能 {{{
@@ -316,7 +271,7 @@ setopt AUTO_MENU
 #开启此选项，补全时会直接选中菜单项
 #setopt MENU_COMPLETE
 
-# autoload -U compinit
+autoload -U compinit
 compinit
 
 #自动补全缓存
@@ -373,20 +328,20 @@ zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
 zstyle ':completion:*:corrections' format $'\e[01;32m -- %d (errors: %e) --\e[0m'
 
 # cd ~ 补全顺序
- zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 #}}}
 
-## 行编辑高亮模式 {{{
+##行编辑高亮模式 {{{
 # Ctrl+@ 设置标记，标记和光标点之间为 region
 zle_highlight=(region:bg=magenta #选中区域
- special:bold      #特殊字符
- isearch:underline)# 搜索时使用的关键字
+special:bold      #特殊字符
+isearch:underline)#搜索时使用的关键字
 #}}}
 
-## 空行 (光标在行首) 补全 "cd" {{{
+##空行(光标在行首)补全 "cd " {{{
 user-complete(){
 case $BUFFER in
-"")                       # 空行填入"cd "
+"" )                       # 空行填入 "cd "
 BUFFER="cd "
 zle end-of-line
 zle expand-or-complete
@@ -410,9 +365,9 @@ zle -N user-complete
 bindkey "\t" user-complete
 #}}}
 
-## 在命令前插入 sudo {{{
+##在命令前插入 sudo {{{
 #定义功能
- sudo-command-line() {
+sudo-command-line() {
 [[ -z $BUFFER ]] && zle up-history
 [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
 zle end-of-line                 #光标移动到行末
@@ -434,12 +389,66 @@ alias h='htop'
 alias vim='vim'
 
 #[Esc][h] man 当前命令时，显示简短说明
- alias run-help >&/dev/null && unalias run-help
-# autoload run-help
+alias run-help >&/dev/null && unalias run-help
+autoload run-help
 
 #历史命令 top10
 alias top10='print -l  ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 #}}}
+
+
+alias ll='ls -alF --color=auto -h'
+alias la='ls -A --color=auto -h'
+alias l='ls -CF --color=auto -h'
+alias ls='ls -l --color=auto -h'
+
+# alias el='exa -lh'
+alias e='exa -lh'
+alias er='exa -lh -R'
+alias et='exa -lh -T'
+# alias ell='exa -abghHliSr'
+alias ee='exa -abghHliSr'
+alias eer='exa -abghHliSr -R'
+alias eet='exa -abghHliSr -T'
+
+alias cc='cd ~/公共的/c文件/'
+alias cg='cd ~/公共的/'
+alias cf='cd ~/文档/'
+alias ca='cd ~/公共的/c文件/数据结构/'
+
+
+mkd() { mkdir -p "$@" && cd "$1"; }
+alias install='sudo apt install'
+alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias up='sudo apt update ; sudo apt upgrade -y'
+alias show_dimensions='xdpyinfo | grep '''dimensions:''''
+alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
+
+alias v='vim'
+alias nv='nvim'
+
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+export LESS_TERMCAP_mb=$'\E[01;34m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;36;44m'
+export LESS_TERMCAP_se=$'\E[0m'
+
+man() {
+  env \
+  LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+  LESS_TERMCAP_md=$(printf "\e[1;31m") \
+  LESS_TERMCAP_me=$(printf "\e[0m") \
+  LESS_TERMCAP_se=$(printf "\e[0m") \
+  LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+  LESS_TERMCAP_ue=$(printf "\e[0m") \
+  LESS_TERMCAP_us=$(printf "\e[1;32m") \
+  man "$@"
+}
 
 #路径别名 {{{
 #进入相应的路径时只要 cd ~xxx
@@ -450,7 +459,7 @@ hash -d D="/home/ayumi/Documents"
 #}}}
 
 ##for Emacs {{{
-#在 Emacs 终端 中使用 Zsh 的一些设置 不推荐在 Emacs 中使用它
+#在 Emacs终端 中使用 Zsh 的一些设置 不推荐在 Emacs 中使用它
 #if [[ "$TERM" == "dumb" ]]; then
 #setopt No_zle
 #PROMPT='%n@%M %/
@@ -468,7 +477,7 @@ zstyle ':completion:*:ping:*' hosts 192.168.1.{1,50,51,100,101} www.google.com
 #}}}
 
 #{{{ F1 计算器
- arith-eval-echo() {
+arith-eval-echo() {
 LBUFFER="${LBUFFER}echo \$(( "
 RBUFFER=" ))$RBUFFER"
 }
@@ -482,7 +491,7 @@ function timeconv { date -d @$1 +"%Y-%m-%d %T" }
 # }}}
 
 zmodload zsh/mathfunc
-# autoload -U zsh-mime-setup
+autoload -U zsh-mime-setup
 zsh-mime-setup
 setopt EXTENDED_GLOB
 #autoload -U promptinit
@@ -490,10 +499,10 @@ setopt EXTENDED_GLOB
 #prompt redhat
 
 setopt correctall
-# autoload compinstall
+autoload compinstall
 
 #漂亮又实用的命令高亮界面
- setopt extended_glob
+setopt extended_glob
  TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
 
  recolor-cmd() {
@@ -526,4 +535,11 @@ check-cmd-self-insert() { zle .self-insert && recolor-cmd }
 
  zle -N self-insert check-cmd-self-insert
  zle -N backward-delete-char check-cmd-backward-delete-char
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
