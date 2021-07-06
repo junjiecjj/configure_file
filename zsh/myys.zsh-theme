@@ -56,7 +56,7 @@ PROMPT="
 %{$fg[white]%}@ \
 %{$fg[green]%}%m \
 %{$fg[white]%}in \
-%{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
+%{$terminfo[bold]$fg[red]%}%~%{$reset_color%}\
 ${hg_info}\
 ${git_info}\
  \
