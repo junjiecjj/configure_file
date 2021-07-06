@@ -23,22 +23,20 @@ export NVM_LAZY_LOAD=true
 
 
 #打开～/.oh-my-zsh/themes目录下面的任意一个文件
-ZSH_THEME="xiong-chiamiov"
-# ZSH_THEME="af-magic"
+# ZSH_THEME="rkj-repos"  "jonathan" "rkj"  "candy"  "simonoff"  "crcandy"  "Soliah"  "kphoen" "steeef" "dstufft" "dst"  "duellj" "suvash" "fino"  "gnzh"  "bira"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="af-magic "
 # ZSH_THEME="agnoster"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME_RANDOM_CANDIDATES=(
-    "af-magic"
-    "afowler"        "agnoster"        "gnzh"        "alanpeabody"     "gozilla"
-    "pmcgee"    "amuse"     "half-life"     "pygmalion-virtualenv"        "pygmalion"
-    "aussiegeek"      "intheloop"            "re5et"  "avit"           "itchy"   "jaischeema"   "bira"
-    "rixius"        "jnrowe"            "rkj-repos"
-    "jonathan"          "rkj"              "candy"               "jtriley"    "simonoff"
-    "crcandy"          "cypher"          "kafeitu"              "kardan"            "Soliah"
+    "af-magic"  "agnoster"        "gnzh"        "alanpeabody"     "amuse"         "half-life"
+    "pygmalion-virtualenv"        "pygmalion"   "aussiegeek"      "re5et"         "itchy"
+    "jaischeema"   "bira"         "jnrowe"        "rkj-repos"    "jonathan"          "rkj"
+    "candy"         "jtriley"    "simonoff"     "crcandy"          "cypher"        "Soliah"
     "kphoen"            "steeef"     "strug"    "dstufft"           "dst"         "duellj"
-    "suvash"           "fino-time"       "mikeh"             "fino"                "fox"               "xiong-chiamiov-plus"
-     "muse"            "xiong-chiamiov"  "myys"              "ys"   "nanotech"
+    "suvash"           "fino-time"     "fino"   "xiong-chiamiov-plus"   "xiong-chiamiov"
+    "myys"
 )
 
 
