@@ -33,7 +33,7 @@ ZSH_THEME="random"
 ZSH_THEME_RANDOM_CANDIDATES=(
     "af-magic"        "gnzh"   "amuse"         "half-life"
     "aussiegeek"          "re5et"       "itchy"
-     "bira"         "jnrowe"        "rkj-repos"    "rkj"    "candy"      "jtriley"
+     "bira"       "rkj-repos"    "rkj"    "candy"      "jtriley"
     "simonoff"     "crcandy"                "Soliah"    "kphoen"            "steeef"
     "strug"    "dstufft"           "dst"         "duellj"    "suvash"
     "fino-time"     "fino"   "xiong-chiamiov-plus"   "xiong-chiamiov"
