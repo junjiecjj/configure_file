@@ -122,6 +122,7 @@ colors:
 # JetBrainsMono Nerd Font
 # JetBrainsMono Nerd Font Mono
 # JetBrains Mono Regular
+# Hack
 font:
   normal:
     family: "FiraCode Nerd Font"
