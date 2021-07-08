@@ -194,8 +194,6 @@ visual_bell:
   duration: 0
   color: '0xffffff'
 
-mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
 
 mouse:
   # Click settings
@@ -211,6 +209,11 @@ mouse:
   hints:
     modifiers: None
 
+mouse_bindings:
+  # 鼠标中按键，粘贴
+  - { mouse: Middle, action: PasteSelection }
+  # 鼠标右键，复制
+  - { mouse: Right,  action: Copy }
 
 
 
