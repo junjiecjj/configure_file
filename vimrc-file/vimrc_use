@@ -164,6 +164,7 @@ Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
 Plugin 'bagrat/vim-buffet'                    "类似minibuf管理多buffer的
 Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
+Plugin 'mg979/vim-visual-multi', {'branch': 'master'}     " 比vim-multiple-cursor更好用的多光标插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 
 "补全
@@ -1453,7 +1454,8 @@ map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
-
+" 使用 ss 启用
+nmap ss <Plug>(easymotion-s2)
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 """""""""""""""""""""""""""""""""" 'tpope/vim-surround'配置 """"""""""""""""""""""""""""""""""""""""""
@@ -2322,7 +2324,15 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+""""""""""""""""""""""""""""" mg979/vim-visual-multi(vim多重光标选取插件)   """""""""""""""""""""""""""""
+let g:VM_theme = 'iceblue'
+let g:VM_maps = {}
+let g:VM_maps["Select Cursor Down"] = '<C-Down>'
+let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
+let g:VM_maps["Select l"] = '<C-Right>'
+let g:VM_maps["Select h"] = '<C-Left>'
+let g:VM_theme = 'iceblue'
+let g:VM_highlight_matches = 'underline'
 
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
@@ -3750,15 +3760,11 @@ autocmd FileType javascript,html,css,xml set sts=2
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-" Ctrl+A全选高亮显示，
-noremap <C-a> ggVG$
-inoremap <C-a> <Esc>ggVG$
-
+noremap <C-a> ggvG$
+inoremap <C-a> <Esc>ggvG$
 " Ctrl+A全选复制，
 "noremap <C-a> ggyG$
 "inoremap <C-a> <Esc>ggyG$
-
-
 
 " set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
 " vnoremap <C-C> "+y<Esc>
@@ -3777,6 +3783,7 @@ inoremap <C-x> <Esc>"+x
 
 " map <C-z> "+u
 " inoremap <C-z> <Esc>"+u
+
 
 
 "括号等的自动补全
@@ -3842,11 +3849,14 @@ inoremap <C-M-down> <Esc><C-e>a
 " 光标在当前行的基础上再跳 20 行：20+enter 键
 
 " U/E keys for 5 times u/e (faster navigation)
-nnoremap k 5k
-nnoremap j 5j
-nnoremap l 5l
+nnoremap K 5k
+nnoremap J 5j
+nnoremap U 10k
+nnoremap D 10j
 nnoremap h 5h
-
+nnoremap l 5l
+nnoremap H 10h
+nnoremap L 10l
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 " 向左分屏
@@ -3859,32 +3869,32 @@ map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 map sl :set splitright<CR>:vsplit<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+nnoremap sh <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+nnoremap sv <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+nnoremap srh <C-w>b<C-w>K
+nnoremap srv <C-w>b<C-w>H
 
 "---------------- 窗口、标签页、缓冲区的切换--------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "########################### 切换窗口####################################
-nnoremap <C-down> <C-W>j
-nnoremap <C-up> <C-W>k
-nnoremap <C-right> <C-W>l
-nnoremap <C-left> <C-W>h
+" nnoremap <C-down> <C-W>j
+" nnoremap <C-up> <C-W>k
+" nnoremap <C-right> <C-W>l
+" nnoremap <C-left> <C-W>h
 "组合快捷键：
 " Ctrl-down 切换到下方的分割窗口
 " Ctrl-up 切换到上方的分割窗口
 " Ctrl-right 切换到右侧的分割窗口
 " Ctrl-left 切换到左侧的分割窗口
 
-" nnoremap <C-j> <C-W>j
-" nnoremap <C-k> <C-W>k
-" nnoremap <C-l> <C-W>l
-" nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+nnoremap <C-h> <C-W>h
 "组合快捷键：
 " Ctrl-j 切换到下方的分割窗口
 " Ctrl-k 切换到上方的分割窗口
@@ -3892,6 +3902,10 @@ nnoremap <C-left> <C-W>h
 " Ctrl-h 切换到左侧的分割窗口
 " 注意，这里的ctrl+hjkl与WinManager的ctrl+上下左右是一样的左右，也就是切换窗口,这里的快捷键覆盖了winmanager的快捷键
 
+" nnoremap <A-j> <C-W>j
+" nnoremap <A-k> <C-W>k
+" nnoremap <A-l> <C-W>l
+" nnoremap <A-h> <C-W>h
 
 nnoremap <C-w> <C-W>w
 nnoremap <C-q> <C-W>q
@@ -3905,14 +3919,14 @@ nnoremap <space> za
 " 用空格代替za进行折叠代码
 
 " " 移动窗口
-" Ctrl+shift+j当前窗口向上面移动
-nnoremap <C-S-j> <C-w>J
-" Ctrl+shift+k当前窗口向上方移动
-nnoremap <C-S-k> <C-w>K
-" Ctrl+shift+l 当前窗口向右边移动
-nnoremap <C-S-l> <C-w>L
-" Ctrl+shift+h当前窗口向左边移动
-nnoremap <C-S-h> <C-w>H
+" alt+j当前窗口向上面移动
+nnoremap <A-j> <C-w>J
+" alt+k当前窗口向上方移动
+nnoremap <A-k> <C-w>K
+" alt+l 当前窗口向右边移动
+nnoremap <A-l> <C-w>L
+" alt+h当前窗口向左边移动
+nnoremap <A-h> <C-w>H
 
 
 " 多窗口分屏时改变窗口大小 +/- 3
@@ -3949,10 +3963,11 @@ set showtabline=1
 
 
 " 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
-set suffixes=.bak,~,.o,.h,.info,.swp,.obj
+
 let g:tablineclosebutton=1
 
 "#################################### 多标签页切换####################################
+
 
 " 新建标签页
 noremap <silent><tab>t :tabnew<cr>
@@ -3961,13 +3976,15 @@ noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
 noremap <silent><tab><right> :tabn<cr>
 noremap <silent>\= :tabn<cr>
-
 " 上一个标签页
 noremap <silent><tab><left> :tabp<cr>
-noremap <silent>\- :tabp<cr>
-
+noremap <silent>\- :tabn<cr>
 "下一个标签页,循环
 noremap <silent><S-tab> :tabnext<CR>
+
+"Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
+set tabpagemax=15
+
 
 " Move around tabs with tn and tp
 nnoremap tn  :tabn<CR>
@@ -3980,8 +3997,6 @@ nnoremap tU :tab split<CR>
 " Move the tabs with tmn and tmp
 nnoremap tmn :-tabmove<CR>
 nnoremap tmp :+tabmove<CR>
-"Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
-set tabpagemax=15
 
 " 正常模式下切换到确切的 tab
 noremap <leader>1 1gt
@@ -4019,14 +4034,15 @@ noremap <leader>0 :tablast<CR>
 
 "######################################## 缓冲区#################################
 
+
 " ctrl + tab下一个buffer
-map <C-tab> :bn<CR>
-nnoremap <C-tab> :bn<CR>
+" map <C-tab> :bn<CR>
+" nnoremap <C-tab> :bn<CR>
 nnoremap  ]b :bn<CR>
 nnoremap  ;e :bn<CR>
 " ctrl + shift + tab下一个buffer
-map <C-M-tab> :bp<CR>
-nnoremap <C-M-tab> :bp<CR>
+" map <C-M-tab> :bp<CR>
+" nnoremap <C-M-tab> :bp<CR>
 nnoremap  [b :bp<CR>
 nnoremap  ;a :bp<CR>
 
