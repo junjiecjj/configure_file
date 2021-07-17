@@ -216,7 +216,7 @@ LS_COLORS="ow=01;36;40" && export LS_COLORS
 
 export DISPLAY=localhost:0
 export DISPLAY=:0.0
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 
 export LC_ALL=en_US.UTF-8
 export LANG=zh_CN.UTF-8
