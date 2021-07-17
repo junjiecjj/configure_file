@@ -487,4 +487,8 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
