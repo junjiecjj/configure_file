@@ -180,7 +180,7 @@ fi
   非登录式：`~/.bashrc-----/etc/bashrc（ubuntu为 /etc/bash.bashrc）-----/etc/profile.d/*.sh`
 因此，无论是login还是non-login，`~/.bashrc和/etc/bashrc（ubuntu为 /etc/bash.bashrc）`都会生效。
 
-# .profile、.bashrc、.xinitrc、.xprofile 环境文件
+# 五 .profile、.bashrc、.xinitrc、.xprofile 环境文件
 + .profile: 每次终端登录时读取
 
 + .bashrc: 每次终端登录时读取。
@@ -199,3 +199,21 @@ profile 文件和 bashrc 文件的读取顺序
 2. 根据登录帐号，读取～/.bash_profile，如果这读取不了就读取～/.bash_login，这个也读取不了才会读取～/.profile。
 
 3. 最后根据登录帐号读取～/.bashrc。
+
+# 六 .xinitrc，.xsession 和.xsessionrc 之间的区别
+
+~/.xinitrc 由执行 xinit，通常通过调用 startx。登录后将执行此程序：首先登录文本控制台，然后使用启动 GUI startx。的作用.xinitrc 是启动会话的 GUI 部分，通常是通过设置一些与 GUI 相关的设置（例如，键绑定（带有 xmodmap 或 xkbcomp），X 资源（带有 xrdb）等），并启动会话管理器或窗口管理器（可能是桌面环境的一部分）。
+
+~/.xsession 当您以图形方式登录时（在显示管理器上）并在显示管理器调用 “自定义” 会话类型时执行。（使用历史显示管理器 xdm .xsession 总是可以执行，但是使用可以为用户提供会话类型选择的现代显示管理器，通常需要选择 “自定义” .xsession 才能运行。）它的作用是设置登录时间参数（例如环境变量）并启动 GUI 会话。典型的.xsession 是
+
+```bash
+#!/bin/sh
+. ~/.profile
+. ~/.xinitrc
+```
+
+~/.xsessionrc 对于所有会话类型和（我认为）所有显示管理器，都通过 GUI 登录名上的 X 启动脚本在 Debian（以及 Ubuntu，Linux Mint 等衍生产品）上执行。startx 如果用户没有，它也从执行.xinitrc，因为在这种情况下，startx 回退到用于 GUI 登录的相同会话启动脚本。它是在加载资源之后但在启动任何程序（如密钥代理，D-Bus 守护程序等）之前相对较早地执行的。它通常会设置可由以后的启动脚本使用的变量。它没有我知道的任何官方文档，您必须深入研究源代码才能看到有效的方法。
+
+.xinitrc 并且.xsession 是 X11 Window 系统的历史功能，因此它们应该可用，并且在所有 Unix 系统上都具有类似的行为。另一方面，这.xsessionrc 是 Debian 的一项功能，除非他们已经实现了类似的功能，否则不基于 Debian 的发行版将没有此功能。
+
+.xprofile 与极为相似.xsessionrc，但它是 GDM（GNOME 显示管理器）的会话启动脚本的一部分，因此仅当您使用 GDM 登录时才读取。
