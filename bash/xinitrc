@@ -1,1 +1,15 @@
 # ~/.xinitrc
+
+
+export LANG=zh_CN.UTF-8
+export XMODIFIERS=@im=fcitx #case sensitive for this variable!
+export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
+exec fcitx &
+exec startxfce4
+
+#xfce-mcs-manager
+#xfwm4 --daemon
+#xftaskbar4 &
+#xfdesktop &
+#exec xfce4-panel
