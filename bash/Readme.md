@@ -175,8 +175,8 @@ fi
 ## 登录式 shell 和非登录式 shell
 这个一定要理解登录式 shell 和非登录式 shell 的区别，前者是完全切换用户，后者是不完全，就算切换过来了，你 pwd 时家目录还是之前的家目录，所以
 
-  登录式顺序为：/etc/bashrc---/etc/profile.d/*.sh----~/.bash_profile（ubuntu为 ~/.profile）---~/.bashrc_profile----~/.bashrc-----/etc/bashrc
+  登录式顺序为：`/etc/bashrc---/etc/profile.d/*.sh----~/.bash_profile（ubuntu为 ~/.profile）---~/.bashrc_profile----~/.bashrc-----/etc/bashrc`
 
-  非登录式：~/.bashrc-----/etc/bashrc（ubuntu为 /etc/bash.bashrc）-----/etc/profile.d/*.sh
-因此，无论是login还是non-login，~/.bashrc和/etc/bashrc（ubuntu为 /etc/bash.bashrc）都会生效。
+  非登录式：`~/.bashrc-----/etc/bashrc（ubuntu为 /etc/bash.bashrc）-----/etc/profile.d/*.sh`
+因此，无论是login还是non-login，`~/.bashrc和/etc/bashrc（ubuntu为 /etc/bash.bashrc）`都会生效。
 
