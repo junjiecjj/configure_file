@@ -180,3 +180,22 @@ fi
   非登录式：`~/.bashrc-----/etc/bashrc（ubuntu为 /etc/bash.bashrc）-----/etc/profile.d/*.sh`
 因此，无论是login还是non-login，`~/.bashrc和/etc/bashrc（ubuntu为 /etc/bash.bashrc）`都会生效。
 
+# .profile、.bashrc、.xinitrc、.xprofile 环境文件
++ .profile: 每次终端登录时读取
+
++ .bashrc: 每次终端登录时读取。
+
++ .xinitrc: 每次 startx 启动 Xwindows 服务时读取
+
++ .xprofile: 每次使用 gdm、lightdm 等图形登录管理器时读取。
+ 
+
+profile 文件和 bashrc 文件的读取顺序
+
+当登入系统时候获得一个 shell 进程时，其读取环境设定档有三步 :
+
+1. 读取全局环境变量设定档 /etc/profile，然后根据其内容读取额外的设定的文档，如 /etc/profile.d、/etc/inputrc、/etc/bashrc。
+
+2. 根据登录帐号，读取～/.bash_profile，如果这读取不了就读取～/.bash_login，这个也读取不了才会读取～/.profile。
+
+3. 最后根据登录帐号读取～/.bashrc。
