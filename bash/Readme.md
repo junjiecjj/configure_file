@@ -1,3 +1,5 @@
+[TOC]
+
 # linux下的/etc/profile、/etc/bashrc、\~/.bash_profile、~/.bashrc文件
 
 # 一、介绍
