@@ -30,18 +30,21 @@
       //"fontFace": "Cascadia Code",
       //"fontFace": "DejaVu Sans Mono",
       //"fontFace": "Monospace Regular",
-      // "fontFace": "文泉驿微米黑",
+      //"fontFace": "文泉驿微米黑",
       //"fontFace": "DroidSansMono NF",
-      "fontFace": "JetBrains Mono",
+      //"fontFace": "JetBrains Mono",
       //"fontFace": "SauceCodePro Nerd Font Mono",
       //"fontFace": "JetBrains Mono Regular Nerd Font",
       //"fontFace": "FiraCode Nerd Font Mono",
-      "fontSize": 8,
+      "fontFace": "JetBrainsMono Nerd Font",
+      //"fontFace": "FiraCode Nerd Font",
+      //"fontFace": "SauceCodePro Nerd Font",
+      "fontSize": 9,
       // 光标类型，可选值 "vintage" ( ▃ ), "bar" ( ┃ ), "underscore" ( ▁ ), "filledBox" ( █ ), "emptyBox" ( ▯ )
-      "cursorShape": "underscore",
+      "cursorShape": "vintage",
       // 是否开启背景亚克力透明效果（窗口失去焦点时无效）
       "useAcrylic": false,
-      "cursorColor": "#0cee32",
+      "cursorColor": "#000000",
       "historySize": 2001,
       "snapOnInput": true,
       "acrylicOpacity": 0.7,
@@ -52,7 +55,8 @@
       "padding": "0, 0, 0, 0",
       "hidden": false,
       //"startingDirectory": "//wsl$/Ubuntu-20.04/home/junjie",
-      "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~;bash\"",
+      "commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~; bash;\"",
+      //"commandline": "wsl -d Ubuntu-20.04 -e bash -c \"cd ~; zsh\"",
       "colorScheme": "Seabird"
       //"colorScheme": "Tango Dark"
       //"colorScheme": "Homebrew"
@@ -72,6 +76,7 @@
         "hidden": false,
         "name": "Ubuntu-20.04",
         "tabTitle": "Ubuntu20.04",
+        //"fontFace" : "Noto Mono for Powerline",
         "source": "Windows.Terminal.Wsl"
       },
       {
@@ -358,7 +363,7 @@
     },
     {
       "command": "closeTab",
-      "keys": ["ctrl+m"]
+      "keys": ["ctrl+w"]
     },
     {
       "command": "closePane",
