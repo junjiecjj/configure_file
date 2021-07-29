@@ -122,6 +122,8 @@ alias eer='exa -abghHliSr -R'
 alias eet='exa -abghHliSr -T'
 
 alias cc='cd ~/公共的/c文件/'
+alias cs='cd ~/公共的/ShellScript/'
+alias cP='cd ~/公共的/py文件/'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
