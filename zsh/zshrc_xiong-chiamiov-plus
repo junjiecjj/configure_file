@@ -31,9 +31,10 @@ ZSH_THEME="random"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME_RANDOM_CANDIDATES=(
-       "gnzh"   "amuse"  "aussiegeek"   "bira"       "rkj-repos"    "rkj"    "jtriley"
-      "Soliah"  "duellj"    "suvash"  "fino-time"     "fino"   "xiong-chiamiov-plus"   "xiong-chiamiov"  "myys"
+       "gnzh"   "amuse"  "aussiegeek"   "bira"       "rkj-repos"    "rkj"
+        "duellj"    "fino-time"     "fino"   "xiong-chiamiov-plus"    "myys"
 )
+
 
 plugins=(
 
