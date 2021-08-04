@@ -1,4 +1,4 @@
-
+####################
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -633,7 +633,8 @@ AddToMenu   MenuFvwmRoot "FVWM菜单" Title
 + "&文件夹       %$[fvwm_exicons2]/file-manager.png%" Popup MenuFile
 + "&图片查看、编辑     %$[fvwm_exicons2]/graphics.png%" Popup MenuPhoto
 + "&视频编辑     %$[fvwm_exicons2]/video.png%" Popup MenuVideo
-+ "&影音         %$[fvwm_exicons2]/netesase.png%" Popup MenuYule
++ "&娱乐         %$[fvwm_exicons2]/netesase.png%" Popup MenuYule
+# + "&电子书         %$[fvwm_exicons2]/netesase.png%" Popup MenueBook
 + "&通讯     %$[fvwm_exicons2]/qq.png%" Popup MenuCommunitation
 + "&壁纸         %icons/wallpaper.png%" Popup BGMenu
 + "&网络管理器   %$[fvwm_exicons2]/network.png%" Popup NetworkMenu
@@ -766,6 +767,18 @@ Test (x netease-cloud-music) + "%$[fvwm_exicons2]/netesase.png% 网易云音乐"
 Test (x smplayer) +   "SMPlayer射手影音 %$[fvwm_exicons2]/smplayer.png%" Exec exec smplayer
 Test (x vlc) +       "VLC媒体播放器 %$[fvwm_exicons2]/cd-player.png%" Exec exec vlc
 Test (x mpv) +       "Mplayer媒体播放器 %$[fvwm_exicons2]/MPlayer.png%" Exec exec mpv
+
+##################电子书##########################################
++ "" Nop
+# AddToMenu   MenueYule    "电子书" Title
+Test (x calibre) + "%$[fvwm_exicons2]/calibre.png% Calibre   电子书" Exec exec calibre
+Test (x lucidor) +   "Lucidor %$[fvwm_exicons2]/smplayer.png%" Exec exec lucidor
+
++ "" Nop
+# AddToMenu   MenueYule    "电子书" Title
+Test (x supertuxkart) + "%$[fvwm_exicons2]/supertuxkart.png% supertuxkart   游戏" Exec exec supertuxkart
+Test (x simutrans) +   "Simutrans %$[fvwm_exicons2]/simutrans.png%" Exec exec simutrans
+
 
 ################图片相关##########################################
 DestroyMenu MenuPhoto
@@ -1084,7 +1097,7 @@ Silent Key k  A   CM     Exec exec $[infostore.kitty]
 Silent Key a  A   CM     Exec exec $[infostore.alacritty]
 
 #ctr了+ m 打开dmenus_run
-Silent Key m  A   C     Exec exec dmenu_run
+Silent Key m  A   CM     Exec exec dmenu_run
 Silent Key r  A   CM     Exec exec  rofi -show drun
 
 
