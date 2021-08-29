@@ -1,4 +1,4 @@
-#######################
+################
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -1097,9 +1097,8 @@ Silent Key k  A   CM     Exec exec $[infostore.kitty]
 Silent Key a  A   CM     Exec exec $[infostore.alacritty]
 
 #ctr了+ m 打开dmenus_run
-Silent Key m  A   CM     Exec exec  dmenu_run
-Silent Key r  A   CM     Exec exec  rofi -show drun
-
+Silent Key d  A   M     Exec exec  dmenu_run
+Silent Key f  A   M     Exec exec  rofi -show drun
 
 
 #Ctrl+Alt+n打开文件管理器
@@ -1156,13 +1155,10 @@ Silent Key   F11		A	C	Maximize 50 100
 #Ctrl+F12  最大化
 Silent Key   F12		A	C	Maximize 100 100
 
-# 按ctrl + windows_L 当前page全部最小化
-Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
-
 # ctrl+shift+q 关闭当前窗口，直至退出桌面对话框
-# Silent Key   q        A  CS   Close
+Silent Key   q        A  CS   Close
 # alt+q 关闭当前窗口，直至退出桌面对话框
-Silent Key   q          A  M   Close
+# Silent Key   q          A  M   Close
 
 #按Alt w 且鼠标在想要被最小化的工作区， 就最小化当前窗口
 #Silent  Key   w        W  M  Iconify
@@ -1170,6 +1166,9 @@ Silent  Key   w         W    M   Iconify
 
 # Ctrl+shift+q 关闭当前page所有窗口
 #Silent Key   q        A  CS   All (AcceptsFocus CurrentPage !FvwmIconMan,Iconic !Shaded !FvwmTaskBar) Close
+
+# 按ctrl + windows_L 当前page全部最小化
+Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Shaded !FvwmTaskBar) Iconify
 
 # shift + win_L 最大化当前page的所有窗口
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
