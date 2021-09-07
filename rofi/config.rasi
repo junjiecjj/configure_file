@@ -1,4 +1,4 @@
-iguration {
+configuration {
     /* 配置显示类型 */
 /*	modi: "window,run,ssh,drun";*/
 /*	width: 50;*/
@@ -55,7 +55,7 @@ iguration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-     theme:"fancy";
+    /*  theme:"fancy"; */
     /*  theme:"DarkBlue"; */
     /*  theme:"Indego"; */
     /*  theme:"lb"; */
@@ -63,9 +63,7 @@ iguration {
     /*  theme:"paper-float"; */
     /*  theme:"Paper"; */
     /*  theme:"Pop-Dark"; */
-    /*  theme:"sidebar"; */
     /*  theme:"solarized_alternate"; */
-    /*  theme:"cloud"; */
     /*  theme:"flamingo"; */
     /*  theme:"flat-orange"; */
     /*  theme:"material"; */
@@ -74,6 +72,8 @@ iguration {
     /*  theme:"ribbon"; */
     /*  theme:"sidetab-adapta"; */
     /*  theme:"sidetab"; */
+    /*  theme:"cloud"; */
+     theme:"sidebar";
 
     /* theme:"oxide"; */
     /* theme:"glue_pro_blue"; */
