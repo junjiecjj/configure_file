@@ -1,4 +1,4 @@
- bash(1) for non-login shells.
+d by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -127,19 +127,21 @@ alias cP='cd ~/公共的/py文件/'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
+alias clc='cd ~/公共的/c文件/Linux_c_skills/'
 
 
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias install='sudo apt install'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
-alias up='sudo apt update ; sudo apt upgrade -y'
+alias up='sudo apt update ; sudo apt upgrade -y; sudo apt automove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
 alias v='vim'
 alias nv='nvim'
 
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 export LESS_TERMCAP_mb=$'\E[01;34m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -161,12 +163,23 @@ man() {
   man "$@"
 }
 
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/snap/bin:$PATH"
 # eval "$(starship init bash)"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -218,9 +231,9 @@ LS_COLORS="ow=01;36;40" && export LS_COLORS
 
 export DISPLAY=localhost:0
 export DISPLAY=:0.0
-export EDITOR=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
 
-export LC_ALL=en_US.UTF-8
+export LC_ALL=zh_CN.UTF-8
 export LANG=zh_CN.UTF-8
 export LANGUAGE=zh_CN:en_US
 export LC_CTYPE=en_US.UTF-8
