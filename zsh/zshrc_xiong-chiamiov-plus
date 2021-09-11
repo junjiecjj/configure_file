@@ -1,4 +1,4 @@
-# Set up the prompt
+t up the prompt
 
 
 
@@ -393,12 +393,36 @@ man() {
   man "$@"
 }
 
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    alias nvim=nvr -cc split --remote-wait +'set bufhidden=wipe'
+fi
+
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export VISUAL="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+    export EDITOR="nvr -cc split --remote-wait +'set bufhidden=wipe'"
+else
+    export VISUAL="nvim"
+    export EDITOR="nvim"
+fi
+
 #路径别名 {{{
 #进入相应的路径时只要 cd ~xxx
 hash -d A="/media/ayu/dearest"
 hash -d H="/media/data/backup/ayu"
 hash -d E="/etc/"
-hash -d D="/home/ayumi/Documents"
+hash -d D="~/公共的/Linux_C"
 #}}}
 
 ##for Emacs {{{
