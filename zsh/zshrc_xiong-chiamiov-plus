@@ -1,4 +1,4 @@
-
+# Set up the prompt
 
 
 
@@ -352,7 +352,7 @@ alias eer='exa -abghHliSr -R'
 alias eet='exa -abghHliSr -T'
 
 alias cc='cd ~/公共的/c文件/'
-alias cl='cd ~/公共的/c文件/Linux_C'
+alias cl='cd ~/公共的/Linux_C'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias cs='cd ~/公共的/ShellScript/'
@@ -363,7 +363,7 @@ alias cm='cd ~/公共的/MarkDown/'
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias install='sudo apt install'
 alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
+alias upgrade='sudo apt upgrade -y'
 alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
