@@ -1,4 +1,4 @@
-# Set up the prompt
+
 
 
 
@@ -31,10 +31,9 @@ ZSH_THEME="random"
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 # ZSH_THEME="xiong-chiamiov-plus"
 ZSH_THEME_RANDOM_CANDIDATES=(
-       "gnzh"   "amuse"  "aussiegeek"   "bira"       "rkj-repos"    "rkj"
-        "duellj"    "fino-time"     "fino"   "xiong-chiamiov-plus"    "myys"
+       "gnzh"     "aussiegeek"       "rkj-repos"    "rkj"
+        "duellj"    "fino-time"       "xiong-chiamiov-plus"    "myys"
 )
-
 
 plugins=(
 
@@ -353,17 +352,19 @@ alias eer='exa -abghHliSr -R'
 alias eet='exa -abghHliSr -T'
 
 alias cc='cd ~/公共的/c文件/'
+alias cl='cd ~/公共的/c文件/Linux_C'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
-alias ca='cd ~/公共的/c文件/数据结构/'
 alias cs='cd ~/公共的/ShellScript/'
 alias cP='cd ~/公共的/py文件/'
+alias cm='cd ~/公共的/MarkDown/'
+
 
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias install='sudo apt install'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
-alias up='sudo apt update ; sudo apt upgrade -y'
+alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
@@ -483,9 +484,5 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
-
-source /usr/share/powerlevel9k/powerlevel9k.zsh-theme
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
