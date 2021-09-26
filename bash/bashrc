@@ -1,4 +1,4 @@
-d by bash(1) for non-login shells.
+ bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
@@ -128,6 +128,10 @@ alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias ca='cd ~/公共的/c文件/数据结构/'
 alias clc='cd ~/公共的/c文件/Linux_c_skills/'
+alias cm='cd ~/公共的/MarkDown/'
+alias cmat='cd ~/公共的/MATLAB/'
+alias gos='git add .; git commit -m "just update"; git push origin master'
+alias gom='git add .; git commit -m "just update"; git push origin main'
 
 
 mkd() { mkdir -p "$@" && cd "$1"; }
