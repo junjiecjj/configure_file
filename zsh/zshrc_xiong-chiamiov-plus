@@ -1,4 +1,4 @@
-t up the prompt
+the prompt
 
 
 
@@ -358,6 +358,9 @@ alias cf='cd ~/文档/'
 alias cs='cd ~/公共的/ShellScript/'
 alias cP='cd ~/公共的/py文件/'
 alias cm='cd ~/公共的/MarkDown/'
+alias cmat='cd ~/公共的/MATLAB/'
+alias gos='git add .; git commit -m "just update"; git push origin master'
+alias gom='git add .; git commit -m "just update"; git push origin main'
 
 
 mkd() { mkdir -p "$@" && cd "$1"; }
