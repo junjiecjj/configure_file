@@ -567,6 +567,5 @@ fi
 # theme.sh aco
 # theme.sh man-page
 # theme.sh papercolor-light
-theme.sh solarized-light
-# theme.sh syntax-midnight-light
-
+# theme.sh solarized-light
+theme.sh synth-midnight-light
