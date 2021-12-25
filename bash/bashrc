@@ -276,30 +276,34 @@ if command -v theme.sh > /dev/null; then
 fi
 
 # theme.sh  gruvbox-mix-light-medium
-theme.sh desert-night
+# theme.sh desert-night
 # theme.sh mono-amber
 # theme.sh elic
 # theme.sh apathy
 # theme.sh desert
-theme.sh darcula
-theme.sh urple
-theme.sh unikitty
+# theme.sh darcula
+# theme.sh urple
+# theme.sh unikitty-dark
 
-theme.sh solarized-dark-higher-contrast
-theme.sh  elementary
-theme.sh   warm-neon
-theme.sh pico
-theme.sh tango
-theme.sh mellow-purple
-theme.sh yachiyo
-theme.sh windows-nt
-theme.sh solarized-darcula
-theme.sh freya
+# theme.sh solarized-dark-higher-contrast
+# theme.sh  elementary
+# theme.sh   warm-neon
+# theme.sh pico
+# theme.sh tango
+# theme.sh mellow-purple
+# theme.sh yachiyo
+# theme.sh windows-nt
+# theme.sh solarized-darcula
+# theme.sh freya
+# theme.sh solarized-light
+# theme.sh molokai
+# theme.sh vs-code-dark-plus
+# theme.sh goa-base
+# theme.sh mathias
+# theme.sh vag
+# theme.sh aco
+# theme.sh man-page
+# theme.sh papercolor-light
 theme.sh solarized-light
-theme.sh molokai
-theme.sh vs-code-dark-plus
-theme.sh goa-base
-theme.sh mathias
-theme.sh vag
-theme.sh aco
+# theme.sh syntax-midnight-light
 
