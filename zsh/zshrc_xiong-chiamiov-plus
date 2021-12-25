@@ -519,3 +519,28 @@ kitty + complete setup zsh | source /dev/stdin
 if command -v theme.sh > /dev/null; then
     [ -e ~/.theme_history ] && theme.sh "$(theme.sh -l|tail -n1)"
 fi
+
+# theme.sh  gruvbox-mix-light-medium
+theme.sh desert-night
+# theme.sh mono-amber
+# theme.sh elic
+# theme.sh apathy
+# theme.sh desert
+theme.sh darcula
+theme.sh urple
+theme.sh unikitty
+
+theme.sh solarized-dark-higher-contrast
+theme.sh  elementary
+theme.sh   warm-neon
+theme.sh pico
+theme.sh tango
+theme.sh mellow-purple
+theme.sh yachiyo
+theme.sh windows-nt
+theme.sh solarized-darcula
+theme.sh freya
+theme.sh solarized-light
+theme.sh molokai
+theme.sh vs-code-dark-plus
+
