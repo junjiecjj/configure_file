@@ -298,4 +298,8 @@ theme.sh freya
 theme.sh solarized-light
 theme.sh molokai
 theme.sh vs-code-dark-plus
+theme.sh goa-base
+theme.sh mathias
+theme.sh vag
+theme.sh aco
 
