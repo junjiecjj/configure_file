@@ -1,4 +1,4 @@
-################
+############################
 #  ____________________________
 # (   _________________________)
 #  ) (__  _  _  _    _
@@ -701,6 +701,7 @@ Test (x  /home/jack/Qt5.9.9/Tools/QtCreator/bin/qtcreator) + "Qtcreator %$[fvwm_
 Test (x  codeblocks) + "Codeblocks %$[fvwm_exicons2]/codeblocks.png%"  Exec exec codeblocks &
 Test (x  eclipse) + "Eclipse %$[fvwm_exicons2]/eclipse.png%"  Exec exec eclipse &
 Test (x  matlab) + "MatLab %$[fvwm_exicons2]/matlab.png%"  Exec exec matlab &
+Test (x  octave) + "Octave %$[fvwm_exicons2]/octave.png%"  Exec exec /usr/bin/octave --gui  &
 
 
 ##################系统设置##########################
@@ -1174,7 +1175,7 @@ Silent Key   Super_L	A	C	All (AcceptsFocus CurrentPage !FvwmIconMan !Iconic !Sha
 Silent Key   Super_L  A   S   All (AcceptsFocus CurrentPage !FvwmIconMan,!Iconic !Shaded !FvwmTaskBar) Maximize
 
 #Shift + Ctrl +  l  锁屏
-Silent Key   l          A  CSM   Exec exec xscreensaver-command -lock
+Silent Key   c          A  CM   Exec exec xscreensaver-command -lock
 Silent Key   l          A  CM   Exec exec slock
 
 #Key F5 A A Direction North Maximize True 0 growdown
