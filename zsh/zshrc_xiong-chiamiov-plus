@@ -351,16 +351,20 @@ alias ee='exa -abghHliSr'
 alias eer='exa -abghHliSr -R'
 alias eet='exa -abghHliSr -T'
 
+alias bat='batcat'
+alias fd='fdfind'
+
 alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
 alias cs='cd ~/公共的/ShellScript/'
-alias cP='cd ~/公共的/py文件/'
+alias cP='cd ~/公共的/Python/'
 alias cm='cd ~/公共的/MarkDown/'
 alias cmat='cd ~/公共的/MATLAB/'
 alias gos='git add .; git commit -m "just update"; git push origin master'
 alias gom='git add .; git commit -m "just update"; git push origin main'
+
 
 
 mkd() { mkdir -p "$@" && cd "$1"; }
