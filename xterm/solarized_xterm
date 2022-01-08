@@ -22,7 +22,7 @@ xterm*Font: 7*13
 ! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
 ! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
-xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=16
+!xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=16
 ! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! xterm*faceName:Hack:antialas=true:pixelsize=12
 
@@ -30,8 +30,9 @@ xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=16
 ! xterm*faceName:InconsolataGo Nerd Font:antialas=true:pixelsize=12
 ! xterm*faceName:InconsolataGo Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:InconsolataLGC Nerd Font Medium:antialas=true:pixelsize=12
-! xterm*faceName:YaHei Consolas Hybrid:antialas=true:pixelsize=12
-xterm*faceName:YaHei Consolas Hybrid YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
+! xterm*faceName:YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
+! xterm*faceName:YaHei Consolas Hybrid YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
+xterm*faceName:Cascadia Code:antialas=true:pixelsize=16
 
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=16
