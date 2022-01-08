@@ -126,6 +126,15 @@ colors:
 # JetBrainsMono Nerd Font Mono
 # JetBrains Mono Regular
 # Hack
+
+# Monaco
+# InconsolataGo Nerd Font
+# InconsolataGo Nerd Font Mono
+# InconsolataLGC Nerd Font Medium
+# YaHei Consolas Hybrid Regular
+# YaHei Consolas Hybrid YaHei Consolas Hybrid Regular
+# Cascadia Code
+
 font:
   normal:
     family: "FiraCode Nerd Font"
