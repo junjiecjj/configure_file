@@ -821,6 +821,8 @@ Test (x /usr/NX/bin/nxplayer) + "NoMachine %$[fvwm_exicons2]/NMLogo.png%"  Exec 
 Test (x vncviewer) + "VNC %$[fvwm_exicons2]/VNC.png%" Exec exec vncviewer
 Test (x mendeleydesktop) + "%$[fvwm_exicons2]/science.png% Mendeley文献管理"    Exec exec  mendeleydesktop
 Test (x virtualbox) + "%$[fvwm_exicons2]/virtualbox.png% 虚拟机"    Exec exec  virtualbox
+Test (x vncviewer) + "%$[fvwm_exicons2]/vncviewer.png% 虚拟机"    Exec exec  vncviewer
+Test (x vncviewer) + "%$[fvwm_exicons2]/vncviewer.png% 远程桌面VNC"    Exec exec  vncviewer
 
 
 # Background Menu
