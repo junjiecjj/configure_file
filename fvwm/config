@@ -514,6 +514,7 @@ Style         "TeXstudio"                HilightColorset 22
 Style         "lyx"                               HilightColorset 22
 Style         "okular"                        HilightColorset 22
 Style         "wps*"                           TitleAtLeft,  HilightColorset 22
+Style         "onlyoffice-desktopeditors"                           TitleAtLeft,  HilightColorset 22
 Style         "et*"                               TitleAtLeft,  HilightColorset 22
 Style         "wpp*"                         TitleAtLeft,  HilightColorset 22
 Style         "wpspdf*"                   TitleAtLeft,  HilightColorset 22
@@ -741,6 +742,8 @@ Test (x et)  +      "wps-excel %$[fvwm_exicons2]/wps-excel.png%" Exec exec et &
 Test (x okular)  +  "okular %$[fvwm_exicons2]/okular.png%" Exec exec okular &
 Test (x wpspdf)  +  "wps-pdf %$[fvwm_exicons2]/wps-pdf.png%" Exec exec wpspdf &
 Test (x  remarkable) + "Remarkable %$[fvwm_exicons2]/remarkable.png%"  Exec exec remarkable
+Test (x  onlyoffice-desktopeditors) + "onlyoffice %$[fvwm_exicons2]/onlyoffice.png%"  Exec exec onlyoffice-desktopeditors
+
 
 
 ############这是浏览器软件菜单##########################
