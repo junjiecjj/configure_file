@@ -209,20 +209,21 @@ export PATH="/home/jack/anaconda3/bin:$PATH"
 # commented out by conda initialize
 export PATH=~/Qt5.9.9/Tools/QtCreator/bin:$PATH
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/jack/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/jack/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/jack/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/jack/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jack/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jack/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jack/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jack/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 
 [[ -s /home/jack/.autojump/etc/profile.d/autojump.sh ]] && source /home/jack/.autojump/etc/profile.d/autojump.sh
 LANG=zh_CN.UTF-8
@@ -304,6 +305,9 @@ fi
 # theme.sh aco
 # theme.sh man-page
 # theme.sh papercolor-light
-theme.sh solarized-light
+# theme.sh solarized-light
 # theme.sh syntax-midnight-light
+# theme.sh edge-light
+# theme.sh belafonte-day
+theme.sh tokyo-day
 
