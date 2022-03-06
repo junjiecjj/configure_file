@@ -580,7 +580,7 @@ fi
 #>>>>>>下面根据当前时间自动随机选择主题
 light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light synth-midnight-light solarized-light windows-95-light  man-page  papercolor-light gruvbox-light-soft  novel)
 L1=${#light_theme[*]}
-echo -e "L1 = ${L1}\n"
+# echo -e "L1 = ${L1}\n"
 index1=$(((${RANDOM} % ${L1}+1)))
 # echo -e "index1 = ${index1}\n"
 
@@ -600,7 +600,7 @@ hour=`date +%H`
 if (( ${hour}>=7 && ${hour} < 23 ))
 then
     # echo -e "现在是白天\n"
-    echo -e "index1 = ${index1}\n"
+    # echo -e "index1 = ${index1}\n"
     theme.sh ${light_theme[index1]}
     echo  "白天主题: ${light_theme[index1]}"
 else
@@ -609,7 +609,6 @@ else
     echo  "暗夜主题: ${dark_theme[index1]}"
 fi
 #<<<<<<
-
 
 
 
