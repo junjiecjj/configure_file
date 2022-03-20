@@ -382,6 +382,7 @@ alias nalaremove='sudo nala remove'
 alias nalapurge='sudo nala purge'
 alias nalafetch='sudo nala fetch'
 alias nalashow='sudo nala show'
+alias nalaclean='sudo nala clean'
 alias nalahistory='sudo nala history'
 alias nalaup='sudo nala update ; sudo nala upgrade'
 
