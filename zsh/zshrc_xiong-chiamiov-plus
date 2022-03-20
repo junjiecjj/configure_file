@@ -375,6 +375,22 @@ alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
+alias nalainstall='sudo nala install'
+alias nalaupdate='sudo nala update'
+alias nalaupgrade='sudo nala upgrade'
+alias nalaremove='sudo nala remove'
+alias nalapurge='sudo nala purge'
+alias nalafetch='sudo nala fetch'
+alias nalashow='sudo nala show'
+alias nalahistory='sudo nala history'
+alias nalaup='sudo nala update ; sudo nala upgrade'
+
+
+autoload bashcompinit
+bashcompinit
+source /usr/share/bash-completion/completions/nala
+
+
 alias v='vim'
 alias nv='nvim'
 
