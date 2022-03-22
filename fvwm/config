@@ -686,6 +686,8 @@ Test (x urxvt)  + "&Urxvt  %$[fvwm_icons]/terminal.png%" Exec exec urxvt
 Test (x st)  + "&ST  %$[fvwm_icons]/terminal.png%" Exec exec st
 Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
 Test (x  kitty) + "&Kitty %$[fvwm_icons]/terminal1.png%"  Exec exec kitty
+Test (x  yakuake) + "&Yakuake %$[fvwm_icons]/terminal1.png%"  Exec exec yakuake
+Test (x  tabby) + "&tabby %$[fvwm_icons]/terminal1.png%"  Exec exec tabby
 Test (x  alacritty) + "&Alacritty %$[fvwm_icons]/terminal1.png%"  Exec exec alacritty
 Test (x gnome-terminal) + "&Gnome-terminal %$[fvwm_exicons2]/terminal.png%" Exec exec gnome-terminal
 Test (x  konsole) + "&Konsole %$[fvwm_exicons2]/terminal.png%"  Exec exec konsole
