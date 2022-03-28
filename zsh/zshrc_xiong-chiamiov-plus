@@ -387,6 +387,10 @@ alias nalahistory='sudo nala history'
 alias nalaup='sudo nala update ; sudo nala upgrade'
 
 
+alias lsblk='lsblk -f'
+alias df='df -Thl'
+
+
 autoload bashcompinit
 bashcompinit
 source /usr/share/bash-completion/completions/nala
