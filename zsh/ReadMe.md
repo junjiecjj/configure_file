@@ -21,6 +21,8 @@
 `cd ~ && curl -L  https://raw.githubusercontent.com/junjiecjj/configure_file/master/zsh/.p10k.zsh  > .p10k.zsh`
 
 ##  安装powerlevel10k 
+ 
+Run `p10k configure` to generate a new ~/.p10k.zsh. The old config may work incorrectly with the new font.
 
 `git clone --depth=1 https://gitee.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
  
