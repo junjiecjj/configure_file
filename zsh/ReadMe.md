@@ -1,8 +1,9 @@
-#安装 zsh， on my zsh等
+# 安装 zsh， on my zsh等
 
-##安装zsh
+## 安装zsh
 sudo apt install zsh
-##安装on my zsh
+
+## 安装on my zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 或
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
