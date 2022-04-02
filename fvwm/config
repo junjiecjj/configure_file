@@ -1109,6 +1109,7 @@ Silent Key a  A   CM     Exec exec $[infostore.alacritty]
 #ctr了+ m 打开dmenus_run
 Silent Key d  A   M     Exec exec  dmenu_run
 Silent Key f  A   M     Exec exec  rofi -show drun
+Silent Key f  A   M     Exec exec   rofi -combi-modi window,drun,run,ssh -show combi
 
 
 #Ctrl+Alt+n打开文件管理器
