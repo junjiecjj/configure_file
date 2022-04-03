@@ -733,8 +733,9 @@ Test (x wicd-client) + "NetworkManager-wicd" Exec exec wicd-client
 DestroyMenu MenuOffice
 AddToMenu   MenuOffice "文本编辑器" Title
 Test (x  typora) + "Typora %$[fvwm_exicons2]/typora.png%"  Exec exec typora
-Test (x  remarkable) + "remarkable %$[fvwm_exicons2]/typora.png%"  Exec exec remarkable
-Test (x  notable) + "notable %$[fvwm_exicons2]/typora.png%"  Exec exec notable
+Test (x  remarkable) + "Remarkable %$[fvwm_exicons2]/typora.png%"  Exec exec remarkable
+Test (x  zettlr) + "Zettlr %$[fvwm_exicons2]/typora.png%"  Exec exec zettlr
+Test (x  notable) + "Notable %$[fvwm_exicons2]/typora.png%"  Exec exec notable
 Test (x  /usr/local/bin/notion) + "Notion %$[fvwm_exicons2]/typora.png%"  Exec exec /usr/local/bin/notion
 Test (x  /usr/local/bin/wolai) + "WoLai %$[fvwm_exicons2]/typora.png%"  Exec exec  /usr/local/bin/wolai
 #Test (x chromium) + "Chromium" Exec exec Chromium
@@ -745,7 +746,6 @@ Test (x wpp)  +     "wps-ppt %$[fvwm_exicons2]/wps-ppt.png%" Exec exec wpp &
 Test (x et)  +      "wps-excel %$[fvwm_exicons2]/wps-excel.png%" Exec exec et &
 Test (x okular)  +  "okular %$[fvwm_exicons2]/okular.png%" Exec exec okular &
 Test (x wpspdf)  +  "wps-pdf %$[fvwm_exicons2]/wps-pdf.png%" Exec exec wpspdf &
-Test (x  remarkable) + "Remarkable %$[fvwm_exicons2]/remarkable.png%"  Exec exec remarkable
 Test (x  onlyoffice-desktopeditors) + "onlyoffice %$[fvwm_exicons2]/onlyoffice.png%"  Exec exec onlyoffice-desktopeditors
 
 
