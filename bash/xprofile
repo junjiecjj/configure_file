@@ -11,6 +11,7 @@ xrandr --output DP-1-3  --right-of eDP-1-1  --auto
 `export QT_IM_MODULE=fcitx`
 
 fcitx &
+run_im fcitx
 
 
 
