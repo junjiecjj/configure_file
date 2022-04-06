@@ -1,1 +1,5 @@
 
+#!/bin/bash
+
+#xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+xrandr --output DP-1-3  --right-of eDP-1-1  --auto
