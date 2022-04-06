@@ -1,5 +1,8 @@
-
 #!/bin/bash
 
 #xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+
+# compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
+# picom --experimental-backends -b # 启动 picom
+
 xrandr --output DP-1-3  --right-of eDP-1-1  --auto
