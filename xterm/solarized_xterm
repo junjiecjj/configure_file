@@ -32,7 +32,9 @@ xterm*Font: 7*13
 ! xterm*faceName:InconsolataLGC Nerd Font Medium:antialas=true:pixelsize=12
 ! xterm*faceName:YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
 ! xterm*faceName:YaHei Consolas Hybrid YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
-xterm*faceName:Cascadia Code:antialas=true:pixelsize=16
+! xterm*faceName:Cascadia Code:antialas=true:pixelsize=16
+xterm*faceName:CaskaydiaCove Nerd Font Mono:style=SemiLight:antialas=true:pixelsize=16
+
 
 ! Chinese font
 xterm*faceNameDoublesize:WenQuanYi Micro Hei:antialias=True:pixelsize=16
