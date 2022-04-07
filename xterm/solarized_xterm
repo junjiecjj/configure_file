@@ -34,6 +34,7 @@ xterm*Font: 7*13
 ! xterm*faceName:YaHei Consolas Hybrid YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
 ! xterm*faceName:Cascadia Code:antialas=true:pixelsize=16
 xterm*faceName:CaskaydiaCove Nerd Font Mono:style=SemiLight:antialas=true:pixelsize=16
+xterm*faceName:CaskaydiaCove Nerd Font:style=SemiLight:antialas=true:pixelsize=16
 
 
 ! Chinese font
