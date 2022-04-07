@@ -368,7 +368,7 @@ alias cm='cd ~/公共的/MarkDown/'
 alias cmat='cd ~/公共的/MATLAB/'
 alias gos='git add .; git commit -m "just update"; git push origin master'
 alias gom='git add .; git commit -m "just update"; git push origin main'
-
+alias creatfont='sudo mkfontscale; sudo mkfontdir; sudo fc-cache -fv'
 
 
 mkd() { mkdir -p "$@" && cd "$1"; }
