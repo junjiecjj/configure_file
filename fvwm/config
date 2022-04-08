@@ -319,6 +319,13 @@ DesktopName 0   主桌面
 #DesktopName 2 程序
 #DesktopName 3 娱乐
 
+#配置三：在笔记本连接显示屏时用此
+#DesktopSize 1x4   #这里的axb是指有a列b行
+#DesktopName 0   主桌面
+#DesktopName 1  程序
+#DesktopName 2  文档
+#DesktopName 3  娱乐
+
 
 # EdgeScroll will move the view port between the Pages when the mouse
 # moves to the edge of the screen. This set the amount of distance to
