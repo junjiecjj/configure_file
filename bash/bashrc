@@ -106,6 +106,15 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias grep='grep --color=auto'
+alias pacman='sudo pacman-color'
+alias p='sudo pacman-color'
+alias y='yaourt'
+alias h='htop'
+alias vim='vim'
 
 alias ll='ls -alF --color=auto -h'
 alias la='ls -A --color=auto -h'
@@ -121,31 +130,57 @@ alias ee='exa -abghHliSr'
 alias eer='exa -abghHliSr -R'
 alias eet='exa -abghHliSr -T'
 
+alias bat='batcat'
+alias fd='fdfind'
+
 alias cc='cd ~/公共的/c文件/'
-alias cs='cd ~/公共的/ShellScript/'
-alias cP='cd ~/公共的/py文件/'
+alias cl='cd ~/公共的/Linux_C'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
-alias ca='cd ~/公共的/c文件/数据结构/'
-alias clc='cd ~/公共的/c文件/Linux_c_skills/'
+alias cs='cd ~/公共的/ShellScript/'
+alias cP='cd ~/公共的/Python/'
 alias cm='cd ~/公共的/MarkDown/'
 alias cmat='cd ~/公共的/MATLAB/'
 alias gos='git add .; git commit -m "just update"; git push origin master'
 alias gom='git add .; git commit -m "just update"; git push origin main'
 
 
+alias creatfont='sudo mkfontscale; sudo mkfontdir; sudo fc-cache -fv'
+
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias install='sudo apt install'
 alias update='sudo apt update'
-alias upgrade='sudo apt upgrade'
-alias up='sudo apt update ; sudo apt upgrade -y; sudo apt automove -y'
+alias upgrade='sudo apt upgrade -y'
+alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
+alias nalainstall='sudo nala install'
+alias nalaupdate='sudo nala update'
+alias nalaupgrade='sudo nala upgrade'
+alias nalaremove='sudo nala remove'
+alias nalapurge='sudo nala purge'
+alias nalafetch='sudo nala fetch'
+alias nalashow='sudo nala show'
+alias nalaclean='sudo nala clean'
+alias nalahistory='sudo nala history'
+alias nalaup='sudo nala update ; sudo nala upgrade'
+
+
+alias lsblk='lsblk -f'
+alias df='df -Thl'
+
 alias v='vim'
-alias nv='nvim'
+alias nm='nvim'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+alias rcd=ranger-cd
+
+alias racd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
+
 
 export LESS_TERMCAP_mb=$'\E[01;34m'
 export LESS_TERMCAP_md=$'\E[01;31m'
@@ -310,4 +345,45 @@ fi
 # theme.sh edge-light
 # theme.sh belafonte-day
 theme.sh tokyo-day
+
+#>>>>>>下面根据当前时间自动随机选择主题
+light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light ayu-light terminal-basic clrs novel synth-midnight-light solarized-light windows-95-light   papercolor-light gruvbox-light-soft  novel)
+L1=${#light_theme[*]}
+# echo -e "L1 = ${L1}\n"
+index1=$(((${RANDOM} % ${L1}+1)))
+# echo -e "index1 = ${index1}\n"
+
+dark_theme=(desert-night tango mellow-purple freya mathias goa-base vs-code-dark-plus  molokai yachiyo solarized-darcula mono-amber elic  desert  apathy  darcula urple warm-neon unikitty-dark elementary  solarized-dark-higher-contrast pico)
+L2=${#dark_theme[*]}
+# echo -e "L2 = ${L2}\n"
+index2=$(((${RANDOM} % ${L2}+1)))
+# echo -e "index2 = ${index2}\n"
+
+hour=`date +%H`
+# hour=date | awk '{print $5}' | awk -F: '{print $1}'
+
+
+# echo   "hour = ${hour}"
+# echo  ${light_theme[1]}
+
+if (( ${hour}>=7 && ${hour} < 23 ))
+then
+    # echo -e "现在是白天\n"
+    # echo -e "index1 = ${index1}\n"
+    theme.sh ${light_theme[index1]}
+    # echo  "白天主题: ${light_theme[index1]}"
+else
+    # echo -e "现在是晚上\n"
+    theme.sh ${dark_theme[index2]}
+    # echo  "暗夜主题: ${dark_theme[index1]}"
+fi
+#<<<<<<
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 
