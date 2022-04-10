@@ -790,9 +790,11 @@ Test (x calibre) + "%$[fvwm_exicons2]/calibre.png% Calibre   电子书" Exec exe
 Test (x lucidor) +   "Lucidor %$[fvwm_exicons2]/smplayer.png%" Exec exec lucidor
 
 + "" Nop
-# AddToMenu   MenueYule    "电子书" Title
-Test (x supertuxkart) + "%$[fvwm_exicons2]/supertuxkart.png% supertuxkart   游戏" Exec exec supertuxkart
+Test (x supertuxkart) + "游戏Supertuxkart %$[fvwm_exicons2]/supertuxkart.png%" Exec exec supertuxkart
 Test (x simutrans) +   "Simutrans %$[fvwm_exicons2]/simutrans.png%" Exec exec simutrans
+Test (x supertux) +       "Supertux %$[fvwm_exicons2]/MPlayer.png%" Exec exec supertux
+Test (x supertuxkart) +    "Supertuxkart %$[fvwm_exicons2]/MPlayer.png%" Exec exec supertuxkart
+
 
 
 ################图片相关##########################################
