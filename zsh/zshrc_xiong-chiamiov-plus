@@ -645,7 +645,7 @@ L1=${#light_theme[*]}
 index1=$(((${RANDOM} % ${L1}+1)))
 # echo -e "index1 = ${index1}\n"
 
-dark_theme=(desert-night tango mellow-purple freya mathias goa-base vs-code-dark-plus  molokai yachiyo solarized-darcula mono-amber elic  desert  apathy  darcula urple warm-neon unikitty-dark elementary  solarized-dark-higher-contrast pico)
+dark_theme=(desert-night solarized-dark tango mellow-purple freya mathias goa-base vs-code-dark-plus  molokai yachiyo solarized-darcula mono-amber elic  desert  apathy  darcula urple warm-neon unikitty-dark elementary  solarized-dark-higher-contrast pico)
 L2=${#dark_theme[*]}
 # echo -e "L2 = ${L2}\n"
 index2=$(((${RANDOM} % ${L2}+1)))
@@ -663,10 +663,12 @@ then
     # echo -e "现在是白天\n"
     # echo -e "index1 = ${index1}\n"
     theme.sh ${light_theme[index1]}
+    theme.sh novel
     # echo  "白天主题: ${light_theme[index1]}"
 else
     # echo -e "现在是晚上\n"
     theme.sh ${dark_theme[index2]}
+    theme.sh solarized-dark
     # echo  "暗夜主题: ${dark_theme[index1]}"
 fi
 #<<<<<<
