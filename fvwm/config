@@ -790,10 +790,20 @@ Test (x calibre) + "%$[fvwm_exicons2]/calibre.png% Calibre   电子书" Exec exe
 Test (x lucidor) +   "Lucidor %$[fvwm_exicons2]/smplayer.png%" Exec exec lucidor
 
 + "" Nop
-Test (x supertuxkart) + "游戏Supertuxkart %$[fvwm_exicons2]/supertuxkart.png%" Exec exec supertuxkart
+# AddToMenu   MenueYule    "游戏" Title
+Test (x supertuxkart) + "马里奥赛车 %$[fvwm_exicons2]/supertuxkart.png%" Exec exec supertuxkart
 Test (x simutrans) +   "Simutrans %$[fvwm_exicons2]/simutrans.png%" Exec exec simutrans
-Test (x supertux) +       "Supertux %$[fvwm_exicons2]/MPlayer.png%" Exec exec supertux
-Test (x supertuxkart) +    "Supertuxkart %$[fvwm_exicons2]/MPlayer.png%" Exec exec supertuxkart
+Test (x tmnationsforever) +   "疯狂赛道 %$[fvwm_exicons2]/simutrans.png%" Exec exec tmnationsforever
+Test (x xonotic) +   "异能 %$[fvwm_exicons2]/simutrans.png%" Exec exec xonotic
+Test (x openarena) +   "第一人称射击游戏 %$[fvwm_exicons2]/simutrans.png%" Exec exec openarena
+Test (x minetest) +   "旷工测试 %$[fvwm_exicons2]/simutrans.png%" Exec exec minetest
+Test (x 0ad) +   "公元 %$[fvwm_exicons2]/simutrans.png%" Exec exec 0ad
+Test (x wesnoth) +   "维诺之战 %$[fvwm_exicons2]/simutrans.png%" Exec exec wesnoth
+Test (x astromenace) +   "天文馆 %$[fvwm_exicons2]/simutrans.png%" Exec exec astromenace
+Test (x redeclipse) +   "红日蚀 %$[fvwm_exicons2]/simutrans.png%" Exec exec redeclipse
+Test (x chromium-bsu) +   "太空射击 %$[fvwm_exicons2]/simutrans.png%" Exec exec chromium-bsu
+Test (x openmw) +   "上古卷轴III:晨风 %$[fvwm_exicons2]/simutrans.png%" Exec exec openmw
+Test (x opentyrian) +   "垂直射击 %$[fvwm_exicons2]/simutrans.png%" Exec exec opentyrian
 
 
 
