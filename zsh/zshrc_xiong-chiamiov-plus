@@ -639,13 +639,13 @@ fi
 # theme.sh terminal-basic
 
 #>>>>>>下面根据当前时间自动随机选择主题
-light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light ayu-light terminal-basic clrs novel synth-midnight-light solarized-light windows-95-light  man-page  papercolor-light gruvbox-light-soft  novel)
+light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light ayu-light terminal-basic clrs novel synth-midnight-light solarized-light windows-95-light   papercolor-light gruvbox-light-soft  novel)
 L1=${#light_theme[*]}
 # echo -e "L1 = ${L1}\n"
 index1=$(((${RANDOM} % ${L1}+1)))
 # echo -e "index1 = ${index1}\n"
 
-dark_theme=(desert-night solarized-dark tango mellow-purple freya mathias goa-base vs-code-dark-plus  molokai yachiyo solarized-darcula mono-amber elic  desert  apathy  darcula urple warm-neon unikitty-dark elementary  solarized-dark-higher-contrast pico)
+dark_theme=(selenized-dark desert-night solarized-dark tango mellow-purple freya mathias goa-base vs-code-dark-plus  molokai yachiyo solarized-darcula mono-amber elic  desert  apathy  darcula urple warm-neon unikitty-dark elementary  solarized-dark-higher-contrast pico)
 L2=${#dark_theme[*]}
 # echo -e "L2 = ${L2}\n"
 index2=$(((${RANDOM} % ${L2}+1)))
@@ -662,13 +662,14 @@ if (( ${hour}>=7 && ${hour} < 23 ))
 then
     # echo -e "现在是白天\n"
     # echo -e "index1 = ${index1}\n"
-    theme.sh ${light_theme[index1]}
+    # theme.sh ${light_theme[index1]}
     theme.sh novel
     # echo  "白天主题: ${light_theme[index1]}"
 else
     # echo -e "现在是晚上\n"
-    theme.sh ${dark_theme[index2]}
+    # theme.sh ${dark_theme[index2]}
     theme.sh solarized-dark
+    theme.sh selenized-dark
     # echo  "暗夜主题: ${dark_theme[index1]}"
 fi
 #<<<<<<
