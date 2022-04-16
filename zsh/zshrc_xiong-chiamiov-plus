@@ -378,7 +378,9 @@ alias tl='tldr'
 alias diff='vimdiff'
 alias nf='neofetch'
 
-alias bat='batcat --theme=OneHalfLight -n'
+alias bat='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto '
+alias bata='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto  -A'
+
 export BAT_THEME="OneHalfLight"
 alias fd='fdfind'
 alias fde='fdfind -e'
