@@ -348,17 +348,42 @@ alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
 
-# alias el='exa -lh'
-alias e='exa -lh'
-alias er='exa -lh -R'
-alias et='exa -lh -T'
-# alias ell='exa -abghHliSr'
-alias ee='exa -abghHliSr'
-alias eer='exa -abghHliSr -R'
-alias eet='exa -abghHliSr -T'
+alias ld='lsd -a'
+alias lsd='lsd -alFhv'
 
-alias bat='batcat'
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+
+# alias el='exa -lh --icons --colour-scale'
+alias e='exa -lh --icons --colour-scale'
+alias er='exa -lh -R --icons --colour-scale'
+alias et='exa -lh -T --icons --colour-scale'
+# alias ell='exa -abghHliSr  --icons --colour-scale'
+alias ee='exa -abghHliSr  --icons --colour-scale'
+alias eer='exa -abghHliSr -R  --icons --colour-scale'
+alias eet='exa -abghHliSr -T --icons --colour-scale'
+
+LS_COLORS="*.xyz=37;41:*.ts=34"
+EXA_COLORS="da=1;34"
+EXA_COLORS="hs_err_pid*=37;41;1"
+
+# 性能监控
+alias inxi='inxi -b -c31 -F'
+alias ds='dstst'
+alias gla='glances'
+alias tl='tldr'
+alias diff='vimdiff'
+alias nf='neofetch'
+
+alias bat='batcat --theme=OneHalfLight -n'
+export BAT_THEME="OneHalfLight"
 alias fd='fdfind'
+alias fde='fdfind -e'
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
