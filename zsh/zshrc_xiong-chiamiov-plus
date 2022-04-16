@@ -366,10 +366,11 @@ alias lt='lsd --tree -alFhv --icon-theme=fancy'
 # alias eet='exa -abghHliSr -T --icons --colour-scale'
 
 alias e='exa  --icons --colour-scale --color=always'
-alias es='exa -l  --icons --colour-scale --color=always'
+alias es='exa -l  --icons --colour-scale --color=always --time=changed --git'
 alias ea='exa -a  --icons --colour-scale --color=always'
-alias el='exa -abghHliSr  --icons --colour-scale --color=always'
-alias et='exa -abghHliSr -T --icons --colour-scale --color=always'
+alias el='exa -al -bghHiSr  --icons --colour-scale --color=always  --time=changed --git'
+alias et='exa -al -bghHiSr -T --icons --colour-scale --color=always  --time=changed --git'
+
 
 
 LS_COLORS="*.xyz=37;41:*.ts=34"
