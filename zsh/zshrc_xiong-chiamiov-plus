@@ -671,6 +671,64 @@ fi
 # theme.sh clrs
 # theme.sh terminal-basic
 
+su() {
+	(
+		INHIBIT_THEME_HIST=1 theme.sh red-alert
+		trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
+		env su "$@"
+		theme.sh "$(theme.sh -l|tail -n1)"
+	)
+}
+
+sudo() {
+	(
+		pid=$(exec sh -c 'echo "$PPID"')
+
+		# If the command takes less than .2s, don't change the theme.
+		# We could also just match on 'su' and ignore everything else,
+		# but this also accomodates other long running commands
+		# like 'sudo sleep 5s'. Modify to taste.
+
+		(
+				sleep .2s
+				ps -p "$pid" > /dev/null && INHIBIT_THEME_HIST=1 theme.sh red-alert
+		) &
+
+		trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
+		env sudo "$@"
+		theme.sh "$(theme.sh -l|tail -n1)"
+	)
+}
+
+ssh() {
+	# A tiny ssh wrapper which extracts a theme from ~/.ssh_themes
+	# and applies it for the duration of the current ssh command.
+	# Each line in ~/.ssh_themes has the format:
+	#     <hostname>: <theme>.
+
+	# Restoration relies on the fact that you are using theme.sh to manage
+	# the current theme.  (that is, you set the theme in your bashrc.)
+
+	# This can probably be made more robust. It is just a small demo
+	# of what is possible.
+
+
+	touch ~/.ssh_themes
+
+	host="$(echo "$@"|awk '{gsub(".*@","",$NF);print $NF}')"
+	theme="$(awk -vhost="$host" -F': *' 'index($0, host":") == 1 {print $2}' < ~/.ssh_themes)"
+
+	if [ -z "$theme" ]; then
+		env ssh "$@"
+		return
+	fi
+
+	INHIBIT_THEME_HIST=1 theme.sh "$theme"
+	trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
+	env ssh "$@"
+	theme.sh "$(theme.sh -l|tail -n1)"
+}
+
 #>>>>>>下面根据当前时间自动随机选择主题
 light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light ayu-light terminal-basic clrs novel synth-midnight-light solarized-light windows-95-light   papercolor-light gruvbox-light-soft  novel)
 L1=${#light_theme[*]}
