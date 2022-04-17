@@ -15,6 +15,7 @@ XTerm*metaSendsEscape: true
 Xterm*eightBitInput: false
 XTerm*Font: 7*13
 
+
 ! English font
 ! xterm*faceName:Noto mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
@@ -24,21 +25,23 @@ XTerm*Font: 7*13
 ! xterm*faceName:FiraCode Nerd Font:antialas=true:pixelsize=12
 ! xterm*faceName:FiraCode Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrainsMono Nerd Font:antialas=true:pixelsize=12
-!xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=16
+xterm*faceName:JetBrainsMono Nerd Font Mono:antialas=true:pixelsize=12
 ! xterm*faceName:JetBrains Mono Regular:antialas=true:pixelsize=12
 ! xterm*faceName:Hack:antialas=true:pixelsize=12
 
-! xterm*faceName:Monaco:antialas=true:pixelsize=12
-! xterm*faceName:InconsolataGo Nerd Font:antialas=true:pixelsize=12
-! xterm*faceName:InconsolataGo Nerd Font Mono:antialas=true:pixelsize=12
-! xterm*faceName:InconsolataLGC Nerd Font Medium:antialas=true:pixelsize=12
-! xterm*faceName:YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
-! xterm*faceName:YaHei Consolas Hybrid YaHei Consolas Hybrid Regular:antialas=true:pixelsize=16
-! xterm*faceName:Cascadia Code:antialas=true:pixelsize=16
+xterm*faceName:Cascadia Code:style=Regular:antialas=true:pixelsize=16
+! xterm*faceName:Cascadia Code:style=SemiLight:antialas=true:pixelsize=16
+! xterm*faceName:Cascadia Code:style=ExtraLight:antialas=true:pixelsize=16
+
 xterm*faceName:CaskaydiaCove Nerd Font Mono:style=SemiLight:antialas=true:pixelsize=16
-xterm*faceName:CaskaydiaCove Nerd Font:style=SemiLight:antialas=true:pixelsize=16
-!xterm*faceName:Cascadia Code SemiLight:style=SemiLight:antialas=true:pixelsize=16
-xterm*faceName:Cascadia Code ExtraLight:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font Mono:style=Light:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font Mono:style=Regular:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font Mono:style=ExtraLight:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font:style=SemiLight:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font:style=ExtraLight:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font:style=Regular:antialas=true:pixelsize=16
+! xterm*faceName:CaskaydiaCove Nerd Font:style=Light:antialas=true:pixelsize=16
+
 
 
 ! Chinese font
