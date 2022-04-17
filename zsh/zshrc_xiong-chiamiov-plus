@@ -332,7 +332,7 @@ alias y='yaourt'
 alias h='htop'
 alias vim='vim'
 alias nf='neofetch'
-
+alias sf='screenfetch'
 
 #[Esc][h] man 当前命令时，显示简短说明
 alias run-help >&/dev/null && unalias run-help
