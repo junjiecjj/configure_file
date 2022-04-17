@@ -348,12 +348,12 @@ alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
 
-alias l='lsd --icon-theme=fancy'
-alias ls='lsd -l --icon-theme=fancy'
-alias la='lsd -a --icon-theme=fancy'
-alias ll='lsd -al --icon-theme=fancy'
-alias ld='lsd -alFhv --icon-theme=fancy'
-alias lt='lsd --tree -alFhv --icon-theme=fancy'
+alias a='lsd --icon-theme=fancy'
+alias as='lsd -l --icon-theme=fancy'
+alias aa='lsd -a --icon-theme=fancy'
+alias al='lsd -al --icon-theme=fancy'
+alias ad='lsd -alFhv --icon-theme=fancy'
+alias at='lsd --tree -alFhv --icon-theme=fancy'
 
 
 
