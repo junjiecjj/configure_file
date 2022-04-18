@@ -347,6 +347,10 @@ alias ll='ls -alF --color=auto -h'
 alias la='ls -A --color=auto -h'
 alias l='ls -CF --color=auto -h'
 alias ls='ls -l --color=auto -h'
+alias fc='ls -al | grep "^-" | wc -l'
+alias fdc='ls -alR | grep "^-" | wc -l'
+alias dc='ls -al | grep "^d" | wc -l'
+
 
 alias a='lsd --icon-theme=fancy'
 alias as='lsd -l --icon-theme=fancy'
@@ -384,6 +388,7 @@ alias gla='glances'
 alias tl='tldr'
 alias diff='vimdiff'
 alias nf='neofetch'
+alias sf='screenfetch'
 
 alias bat='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto '
 alias bata='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto  -A'
@@ -391,7 +396,7 @@ alias bata='batcat --theme=OneHalfLight -n --color=always --decorations=always -
 export BAT_THEME="OneHalfLight"
 alias fd='fdfind'
 alias fde='fdfind -e'
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias ndu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
