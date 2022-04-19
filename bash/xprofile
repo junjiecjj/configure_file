@@ -5,15 +5,16 @@
 # compton -cCGfF -o 0.38 -O 200 -I 200 -t 0 -l 0 -r 3 -D2 -m 0.88
 # picom --experimental-backends -b # 启动 picom
 
-# 当笔记本外接一个显示器时开启这行
-# xrandr --output DP-1-3  --right-of eDP-1-1  --auto
+xrandr --output eDP-1 --primary
+xrandr --output DP-3  --right-of eDP-1  --auto
+# xrandr --output DP-1 --right-of DP-3
+# xrandr --output HDMI-1 --rotate left
+
 
 
 `export QT_IM_MODULE=fcitx`
 
 fcitx &
-run_im fcitx
-
 
 
 export GTK_IM_MODULE=fcitx
