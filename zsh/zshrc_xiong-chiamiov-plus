@@ -354,7 +354,7 @@ alias dc='ls -al | grep "^d" | wc -l'
 
 alias a='lsd --icon-theme=fancy'
 alias as='lsd -l --icon-theme=fancy'
-alias aa='lsd -aAl --icon-theme=fancy'
+alias aa='lsd -Al --icon-theme=fancy'
 alias al='lsd -al --icon-theme=fancy'
 alias ad='lsd -alFhv --icon-theme=fancy'
 alias at='lsd --tree -alFhv --icon-theme=fancy'
