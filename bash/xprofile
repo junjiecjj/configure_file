@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 #xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
@@ -6,11 +7,31 @@
 # picom --experimental-backends -b # 启动 picom
 
 xrandr --output eDP-1 --primary
+
+# 设置 HDMI-1为eDP-1的右扩展屏
 xrandr --output DP-3  --right-of eDP-1  --auto
 # xrandr --output DP-1 --right-of DP-3
+
+# 设置外接显示器为竖屏
 # xrandr --output HDMI-1 --rotate left
 
+# 只用外接显示器
+# xrandr --output HDMI-1 --auto --output eDP-1 --off 
 
+
+# 这里设置外接显示器为主显示器
+# xrandr --output HDMI-1 --primary
+
+# 在上一步的基础上，可以设置笔记本显示器为外接显示器的左扩展
+# xrandr --output eDP-1 --left-of HDMI-1
+
+# 主显示器和外接显示器同内容
+# xrandr --output HDMI-1 --same-as eDP-1 --auto
+
+
+# 设置 HDMI-1为eDP-1的右扩展屏
+# xrandr --output HDMI-1 --right-of eDP-1 --auto
+# 相关参数：--left-of, --right-of, --above, --below, --same-as
 
 `export QT_IM_MODULE=fcitx`
 
