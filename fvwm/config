@@ -1121,7 +1121,7 @@ Silent Key 4 A C GotoDesk 0 3
 # Silent Key m  A   CM     Exec exec $[infostore.gnome-term]
 # Silent Key k  A   CM     Exec exec $[infostore.kde-terminal]
 Silent Key x  A   CM     Exec exec $[infostore.xterm]
-Silent Key s  A   CM     Exec exec `st zellij`
+Silent Key s  A   CM     Exec exec st zellij
 Silent Key t  A   CM     Exec exec $[infostore.terminator]
 Silent Key u  A   CM     Exec exec $[infostore.urxvt]
 Silent Key k  A   CM     Exec exec $[infostore.kitty]
