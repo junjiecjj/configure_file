@@ -455,6 +455,8 @@ Style     "*Typora"                     TitleAtLeft,  HilightColorset 34
 Style     "*Remarkable*"                TitleAtTop,  HilightColorset 34
 Style     "*notion*"                    TitleAtLeft,  HilightColorset 34
 Style     "*wolai*"                     TitleAtLeft,  HilightColorset 34
+Style     "*zellij*"                     TitleAtLeft,  HilightColorset 34
+
 
 Colorset 25   fg  #FFFFFF, bg 	#B22222, hi #FF0000, sh #FF0000, Plain,  NoShape
 Style     "smplayer"                     HilightColorset 25
@@ -690,7 +692,7 @@ DestroyMenu MenuTerminal
 AddToMenu   MenuTerminal "终端类型" Title
 Test (x xterm)  + "&XTerm  %$[fvwm_icons]/terminal.png%" Exec exec xterm
 Test (x urxvt)  + "&Urxvt  %$[fvwm_icons]/terminal.png%" Exec exec urxvt
-Test (x st)  + "&ST  %$[fvwm_icons]/terminal.png%" Exec exec st
+Test (x st)  + "&ST  %$[fvwm_icons]/terminal.png%" Exec exec st zellij
 Test (x  terminator) + "&Terminator %$[fvwm_icons]/terminal1.png%"  Exec exec terminator
 Test (x  kitty) + "&Kitty %$[fvwm_icons]/terminal1.png%"  Exec exec kitty
 Test (x  yakuake) + "&Yakuake %$[fvwm_icons]/terminal1.png%"  Exec exec yakuake
