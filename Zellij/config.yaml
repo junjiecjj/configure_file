@@ -1,0 +1,249 @@
+
+
+default_shell: zsh
+on_force_close: detach
+
+simplified_ui: false # 简单 UI（不包含提示字体）
+pane_frames: false # pane 之间的边框
+theme: default
+
+default_mode: normal # 启动时的模式，locked 可选
+mouse_mode: true # 鼠标模式（选取）
+scroll_buffer_size: 10000 # 缓冲大小
+
+
+
+# ---
+# template:
+#   direction: Horizontal # 排布方向
+#   parts:
+#     - direction: Vertical # part 1，垂直分割
+#       borderless: true # 边框
+#       split_size:
+#         Fixed: 1
+#       run:
+#         plugin:
+#           location: 'zellij:tab-bar' # 加载标签栏
+#     - direction: Vertical # part 2
+#       body: true # 加载主体
+#     - direction: Vertical # part 3
+#       borderless: true
+#       split_size:
+#         Fixed: 2
+#       run:
+#         plugin:
+#           location: 'zellij:status-bar' # 加载状态栏
+
+# tabs: # 每个标签 pane 的排布
+#   - name: 'Tab 1' # 每个标签的名字
+#     direction: Horizontal # 水平排布
+#     parts:
+#       - direction: Vertical # 垂直分割
+#         split_size:
+#           Percent: 60 # 上半部分占比
+#       - direction: Vertical
+#         parts:
+#           - direction: Horizontal # 水平分割
+#           - direction: Horizontal
+
+---
+template:
+  direction: Horizontal
+  parts:
+    - direction: Vertical  # part 1
+      borderless: true
+      split_size:
+        Fixed: 1
+      run:
+        plugin:
+          location: "zellij:tab-bar"
+    - direction: Vertical # part 2
+      body: true
+    - direction: Vertical # part 3
+      borderless: true
+      split_size:
+        Fixed: 2
+      run:
+        plugin:
+          location: "zellij:status-bar"
+tabs:
+  - name: "tab 1" # tab 1
+  - name: "tab 2" # tab 2
+    direction: Vertical
+    parts:
+      - direction: Horizontal
+      - direction: Horizontal
+  - name: "tab 3" # tab 3
+    direction: Vertical
+    parts:
+      - direction: Horizontal
+      - direction: Horizontal
+        parts:
+          - direction: Horizontal
+          - direction: Vertical
+
+# 键位绑定
+keybinds:
+  resize:
+    - action: [Resize: Left]
+      key: [Char: 'h', Alt: 'h']
+    - action: [Resize: Right]
+      key: [Char: 'l', Alt: 'l']
+    - action: [Resize: Down]
+      key: [Char: 'j', Alt: 'j']
+    - action: [Resize: Up]
+      key: [Char: 'k', Alt: 'k']
+
+
+
+
+# # solarized.yaml
+# themes:
+#   solarized-dark:
+#     bg: [0, 43, 54]
+#     red: [220, 50, 47]
+#     green: [133, 153, 0]
+#     yellow: [181, 137, 0]
+#     blue: [38, 139, 210]
+#     magenta: [211, 54, 130]
+#     orange: [203, 75, 22]
+#     fg: [253, 246, 227]
+#     cyan: [42, 161, 152]
+#     black: [7, 54, 66]
+#     white: [238, 232, 213]
+
+
+
+# TokyoNight Theme
+# Originally by https://github.com/enkia/tokyo-night-vscode-theme
+themes:
+  tokyo-night:
+    fg: [169,177,214] #A9B1D6
+    bg: [26,27,38] #1A1B26
+    black: [56,62,90] #383E5A
+    red: [249,51,87] #F9334D
+    green: [158,206,106]  #9ECE6A
+    yellow: [224,175,104] #E0AF68
+    blue: [122,162,247]  #7AA2F7
+    magenta: [187,154,247] #BB9AF7
+    cyan: [42,195,222] #2AC3DE
+    white: [192,202,245] #C0CAF5
+    orange: [255,158,100] #FF9E64
+  tokyo-night-storm:
+    fg: [169,177,214] #A9B1D6
+    bg: [36,40,59] #24283B
+    black: [56,62,90] #383E5A
+    red: [249,51,87] #F9334D
+    green: [158,206,106]  #9ECE6A
+    yellow: [224,175,104] #E0AF68
+    blue: [122,162,247]  #7AA2F7
+    magenta: [187,154,247] #BB9AF7
+    cyan: [42,195,222] #2AC3DE
+    white: [192,202,245] #C0CAF5
+    orange: [255,158,100] #FF9E64
+  tokyo-night-light:
+    fg: [52,59,88] #343B58
+    bg: [213,214,219] #D5D6DB
+    black: [15,15,20] #0F0F14
+    red: [186,75,96] #BA4B60
+    green: [72,94,48]  #485E30
+    yellow: [143,94,21] #8F5E15
+    blue: [52,84,138]  #34548A
+    magenta: [90,74,120] #5A4A78
+    cyan: [15,75,110] #0F4B6E
+    white: [130,137,172] #8289AC
+    orange: [150,80,39] #965027
+
+
+
+# # Molokai Theme
+# themes:
+#   molokai-dark:
+#     bg: [27, 29, 30]
+#     red: [255, 0, 0]
+#     green: [0, 140, 0]
+#     yellow: [255, 255, 0]
+#     blue: [102, 217, 239]
+#     magenta: [174, 129, 255]
+#     orange: [253, 151, 31]
+#     fg: [248, 248, 240]
+#     cyan: [0, 255, 255]
+#     black: [0, 0, 0]
+#     white: [255, 255, 255]
+
+
+# # Gruvbox theme
+# themes:
+#   gruvbox-dark:
+#     bg: [40, 40, 40]
+#     red: [204, 36, 29]
+#     green: [152, 151, 26]
+#     yellow: [215, 153, 33]
+#     blue: [69, 133, 136]
+#     magenta: [177, 98, 134]
+#     orange: [214, 93, 14]
+#     fg: [213, 196, 161]
+#     cyan: [104, 157, 106]
+#     black: [60, 56, 54]
+#     white: [251, 241, 199]
+#   gruvbox-light:
+#     bg: [251, 82, 75]
+#     red: [205, 75, 69]
+#     green: [152, 151, 26]
+#     yellow: [215, 153, 33]
+#     blue: [69, 133, 136]
+#     magenta: [177, 98, 134]
+#     orange: [214, 93, 14]
+#     fg: [60, 56, 54]
+#     cyan: [104, 157, 106]
+#     black: [40, 40, 40]
+#     white: [213, 196, 161]
+
+
+
+# # Dracula Theme
+# themes:
+#   dracula:
+#     bg: [40, 42, 54]
+#     red: [236, 63, 63]
+#     green: [80, 250, 123]
+#     yellow: [241, 250, 140]
+#     blue: [98, 114, 164]
+#     magenta: [189, 147, 249]
+#     orange: [216, 133, 76]
+#     fg: [248, 248, 242]
+#     cyan: [139, 233, 253]
+#     black: [35, 36, 38]
+#     white: [222, 222, 218]
+
+
+# # Nord theme
+# themes:
+#   nord:
+#     fg: [216, 222, 233] #D8DEE9
+#     bg: [46, 52, 64] #2E3440
+#     black: [59, 66, 82] #3B4252
+#     red: [191, 97, 106] #BF616A
+#     green: [163, 190, 140] #A3BE8C
+#     yellow: [235,203,139] #EBCB8B
+#     blue: [129, 161, 193] #81A1C1
+#     magenta: [180, 142, 173] #B48EAD
+#     cyan: [136, 192, 208] #88C0D0
+#     white: [229, 233, 240] #E5E9F0
+#     orange: [208, 135, 112] #D08770
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
