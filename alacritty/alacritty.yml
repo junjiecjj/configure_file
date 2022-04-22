@@ -133,7 +133,18 @@ colors:
 # InconsolataLGC Nerd Font Medium
 # YaHei Consolas Hybrid Regular
 # YaHei Consolas Hybrid YaHei Consolas Hybrid Regular
-# Cascadia Code
+# Cascadia Code Regular
+# Cascadia Code SemiLight
+# Cascadia Code ExtraLight
+# CaskaydiaCove Nerd Font Mono SemiLight
+# CaskaydiaCove Nerd Font Mono Light
+# CaskaydiaCove Nerd Font Mono Regular
+# CaskaydiaCove Nerd Font Mono ExtraLight
+# CaskaydiaCove Nerd Font SemiLight
+# CaskaydiaCove Nerd Font ExtraLight
+# CaskaydiaCove Nerd Font Regular
+# CaskaydiaCove Nerd Font Light
+
 
 font:
   normal:
@@ -187,8 +198,14 @@ alt_send_esc: true
 
 shell:
   program: /bin/zsh
+  args:
+    # login
+    - -l
+    - -c
+    - 'zellij attach --index 0 --create'
   # args:
   #   - --command=tmux
+
 
 debug:
   render_timer: false
