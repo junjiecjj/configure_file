@@ -707,7 +707,7 @@ sudo() {
 
 		(
 				sleep .2s
-				ps -p "$pid" > /dev/null && INHIBIT_THEME_HIST=1 theme.sh red-alert
+				ps -p "$pid" > /dev/null && INHIBIT_THEME_HIST=1 theme.sh mono-amber
 		) &
 
 		trap 'theme.sh "$(theme.sh -l|tail -n1)"' INT
