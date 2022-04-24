@@ -359,6 +359,10 @@ alias al='lsd -al --icon-theme=fancy'
 alias ad='lsd -alFhv --icon-theme=fancy'
 alias at='lsd --tree -alFhv --icon-theme=fancy'
 
+alias o='logo-ls '
+alias os='logo-ls -l'
+alias oa='logo-ls -Al'
+alias ol='logo-ls -al'
 
 
 # alias el='exa -lh --icons --colour-scale'
