@@ -116,58 +116,63 @@ alias p='sudo pacman-color'
 alias y='yaourt'
 alias h='htop'
 alias als='alsamixer'
+alias nf='neofetch'
+alias sf='screenfetch'
 
 #历史命令 top10
 alias top10='print -l  ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
 
 
-alias ll='ls -alF --color=auto -h'
-alias la='ls -A --color=auto -h'
-alias l='ls -CF --color=auto -h'
-alias ls='ls -l --color=auto -h'
+# alias ll='ls -alF --color=auto -h'
+# alias la='ls -A --color=auto -h'
+# alias l='ls -CF --color=auto -h'
+# alias ls='ls -l --color=auto -h'
+alias fc='ls -al | grep "^-" | wc -l'
+alias fdc='ls -alR | grep "^-" | wc -l'
+alias dc='ls -al | grep "^d" | wc -l'
 
 # alias ld='lsd'
 # alias lsd='lsd -alFhv'
 # alias lt='lsd -al --tree'
 
-alias l='lsd --icon-theme=fancy'
-alias ls='lsd -l --icon-theme=fancy'
-alias la='lsd -a --icon-theme=fancy'
-alias ll='lsd -al --icon-theme=fancy'
-alias ld='lsd -alFhv --icon-theme=fancy'
-alias lt='lsd --tree -alFhv --icon-theme=fancy'
+alias a='lsd --icon-theme=fancy'
+alias as='lsd -l --icon-theme=fancy'
+alias aa='lsd -Al --icon-theme=fancy'
+alias al='lsd -al --icon-theme=fancy'
+alias ad='lsd -alFhv --icon-theme=fancy'
+alias at='lsd --tree -alFhv --icon-theme=fancy'
 
 
-alias el='exa -lh --icons --colour-scale'
-alias e='exa -lh --icons --colour-scale'
-alias er='exa -lh -R --icons --colour-scale'
-alias et='exa -lh -T --icons --colour-scale'
-# alias ell='exa -abghHliSr  --icons --colour-scale'
-alias ee='exa -abghHliSr  --icons --colour-scale'
-alias eer='exa -abghHliSr -R  --icons --colour-scale'
-alias eet='exa -abghHliSr -T --icons --colour-scale'
+# alias o='logo-ls -h'
+# alias os='logo-ls -lh'
+# alias oa='logo-ls -Alh'
+# alias ol='logo-ls -alh'
 
-LS_COLORS="*.xyz=37;41:*.ts=34"
-EXA_COLORS="da=1;34"
-EXA_COLORS="hs_err_pid*=37;41;1"
+alias l='logo-ls -h'
+alias ls='logo-ls -lh'
+alias la='logo-ls -Alh'
+alias ll='logo-ls -alh'
 
 
 
-# 性能监控
-alias inxi='inxi -b -c31 -F'
-alias ds='dstst'
-alias gla='glances'
-alias tl='tldr'
-alias diff='vimdiff'
-alias nf='neofetch'
+# alias el='exa -lh --icons --colour-scale'
+# alias e='exa -lh --icons --colour-scale'
+# alias er='exa -lh -R --icons --colour-scale'
+# alias et='exa -lh -T --icons --colour-scale'
+# alias ee='exa -abghHliSr  --icons --colour-scale'
+# alias eer='exa -abghHliSr -R  --icons --colour-scale'
+# alias eet='exa -abghHliSr -T --icons --colour-scale'
 
-alias bat='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto '
-alias bata='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto  -A'
-export BAT_THEME="OneHalfLight"
+alias e='exa  --icons --colour-scale --color=always'
+alias es='exa -lh  --icons --colour-scale --color=always --time=changed --git'
+alias ea='exa -alh  --icons --colour-scale --color=always'
+alias el='exa -al -bghHiSr  --icons --colour-scale --color=always  --time=changed --git'
+alias et='exa -al -bghHiSr -T --icons --colour-scale --color=always  --time=changed --git'
+
+
+
+alias bat='batcat'
 alias fd='fdfind'
-alias fde='fdfind -e'
-alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
-
 
 alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
@@ -191,7 +196,6 @@ alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
 
-
 alias nalainstall='sudo nala install'
 alias nalaupdate='sudo nala update'
 alias nalaupgrade='sudo nala upgrade'
@@ -203,41 +207,14 @@ alias nalaclean='sudo nala clean'
 alias nalahistory='sudo nala history'
 alias nalaup='sudo nala update ; sudo nala upgrade'
 
-alias v='vim'
-alias nm='nvim'
-
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-
 
 alias lsblk='lsblk -f'
 alias df='df -Thl'
 
-rg() {
-    if [ -z "$RANGER_LEVEL" ]
-    then
-        ranger
-    else
-        exit
-    fi
-}
-export RANGER_LOAD_DEFAULT_RC=FALSE
-# ranger 自动进入目录
-function ranger-cd {
-    # 创建一个临时文件并存储
-    tempfile="$(mktemp -t tmp.XXXXXX)"
-	# 运行ranger并要求其将最后一条路径输出到临时文件
-    ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+alias v='vim'
+alias nm='nvim'
 
-	# 如果临时文件存在，则读取并且临时文件的内容不等于当前路径
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-		# 将目录更改为临时文件中的路径
-        cd -- "$(cat "$tempfile")"
-    fi
-	# 这行删除临时文件不是非常必要，因为Linux应该在下次启动时处理它
-    rm -f -- "$tempfile"
-}
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
 alias rcd=ranger-cd
