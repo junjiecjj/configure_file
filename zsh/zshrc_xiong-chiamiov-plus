@@ -364,6 +364,11 @@ alias os='logo-ls -l'
 alias oa='logo-ls -Al'
 alias ol='logo-ls -al'
 
+# alias l='logo-ls -h'
+# alias ls='logo-ls -lh'
+# alias la='logo-ls -Alh'
+# alias ll='logo-ls -alh'
+
 
 # alias el='exa -lh --icons --colour-scale'
 # alias e='exa -lh --icons --colour-scale'
