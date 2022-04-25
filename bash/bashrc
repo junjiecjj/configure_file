@@ -114,7 +114,6 @@ alias pacman='sudo pacman-color'
 alias p='sudo pacman-color'
 alias y='yaourt'
 alias h='htop'
-alias vim='vim'
 alias sound='alsamixer'
 
 #历史命令 top10
