@@ -164,7 +164,6 @@ Plugin 'fholgado/minibufexpl.vim'            " 多文档编辑
 Plugin 'bagrat/vim-buffet'                    "类似minibuf管理多buffer的
 Plugin 'vim-scripts/winmanager'              " 多窗口管理器
 Plugin 'terryma/vim-multiple-cursors'        " vim多重光标选取插件
-Plugin 'mg979/vim-visual-multi', {'branch': 'master'}     " 比vim-multiple-cursor更好用的多光标插件
 Plugin 'gorodinskiy/vim-coloresque'          " 颜色符号显示对应颜色
 
 "补全
@@ -236,9 +235,9 @@ Plugin 'sheerun/vim-polyglot'                  " 语法高亮
 " Plug 'w0rp/ale'
 
 "美化状态栏
-Plugin 'vim-airline/vim-airline'                   " 美化状态栏，显示正在编辑的文件
-Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正在编辑的文件
-Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
+" Plugin 'vim-airline/vim-airline'                   " 美化状态栏，显示正在编辑的文件
+" Plugin 'vim-airline/vim-airline-themes'            " 美化状态栏，显示正在编辑的文件
+" Plugin 'itchyny/lightline.vim'                     " 美化状态栏，显示正在编辑的文件
 " Plug 'glepnir/spaceline.vim'                    " 美化状态栏，
 Plugin 'scrooloose/nerdcommenter'                   "快速注释，取消注释
 Plugin 'tpope/vim-commentary'          " 快速注释插件，相比于 nerdcommenter 更加简洁实用
@@ -263,6 +262,7 @@ Plugin 'prettier/vim-prettier', {
 
 "All of your Plugins must be added before the following line
 call vundle#end()
+
 
 set secure   "会关闭项目中的 shell autocmd write 等命令。
 
@@ -784,6 +784,7 @@ endif
 
 
 
+
 """""""""""""""""""""""""""""""""voldikss/vim-translator设置'"""""""""""""""""
 nmap <silent> <Leader>ts <Plug>TranslateW
 vmap <silent> <Leader>ts <Plug>TranslateWV
@@ -1057,7 +1058,6 @@ let g:rainbow_conf = {
             \}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""rainbow_parenthsis配置""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -1454,8 +1454,7 @@ map <Leader><Leader>j <Plug>(easymotion-j)
 map <Leader><Leader>k <Plug>(easymotion-k)
 " 重复上一次操作, 类似repeat插件, 很强大
 map <Leader><leader>. <Plug>(easymotion-repeat)
-" 使用 ss 启用
-nmap ss <Plug>(easymotion-s2)
+
 "注意：以上操作都是在本界面，也就是在当前所在屏幕的大小里面能显示的界面
 
 """""""""""""""""""""""""""""""""" 'tpope/vim-surround'配置 """"""""""""""""""""""""""""""""""""""""""
@@ -2286,6 +2285,7 @@ nmap ;8 <Plug>BuffetSwitch(8)
 nmap ;9 <Plug>BuffetSwitch(9)
 nmap ;0 <Plug>BuffetSwitch(10)
 
+
 " """"""""""""""""""""""""""""""""""""" WinManager 配置 """""""""""""""""""""""""""""""""""""
 
 " let g:winManagerWindowLayout='FileExplorer'
@@ -2324,15 +2324,7 @@ let g:multi_cursor_skip_key='<C-x>'
 let g:multi_cursor_quit_key='<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""" mg979/vim-visual-multi(vim多重光标选取插件)   """""""""""""""""""""""""""""
-let g:VM_theme = 'iceblue'
-let g:VM_maps = {}
-let g:VM_maps["Select Cursor Down"] = '<C-Down>'
-let g:VM_maps["Select Cursor Up"]   = '<C-Up>'
-let g:VM_maps["Select l"] = '<C-Right>'
-let g:VM_maps["Select h"] = '<C-Left>'
-let g:VM_theme = 'iceblue'
-let g:VM_highlight_matches = 'underline'
+
 
 """""""""""""""""""""""""""""""""""""""""""  cpp-mode   """""""""""""""""""""""""""""""""""""""""""
 
@@ -2444,8 +2436,6 @@ let g:vimtex_delim_toggle_mod_list = [
 " autocmd FileType * setlocal spell spelllang=en_us,cjk
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 """"""""""""""""""""""""""""""""""""""" voldikss/vim-floaterm插件 """""""""""""""""""""""""""""""""""""""""""
 " Set floaterm window's background to black
 hi Floaterm guibg=black   ctermbg=232
@@ -2461,7 +2451,6 @@ noremap  ftk :FloatermKill<CR>
 noremap  ftd :FloatermNext<CR>
 noremap  ftp :FloatermPrev<CR>
 noremap  ftt :FloatermToggle<CR>
-
 
 """"""""""""""""""""""""""""""""""""""" SirVer/ultisnips插件 """""""""""""""""""""""""""""""""""""""""""
 
@@ -3265,82 +3254,82 @@ let g:PaperColor_Theme_Options = {
   \   }
   \ }
 
-"""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""" 设置状态栏主题风格 airline """"""""""""""""""""""""""""""
 
-"选择主题
+""选择主题
 
-let airlinethemes = [
-    \ '"alduin"', '"angr"', '"atomic"', '"ayu"', '"ayu_dark"', '"ayu_light"','"ayu_mirage"', '"badwolf"', '"base16"', '"base16_3024"','"base16_adwaita"','"papercolor"',
-    \ '"base16_apathy"','"base16_ashes"' ,'"base16_atelierdune"' ,'"base16_atelierforest"' ,'"base16_atelierheath"' ,
-    \ '"base16_atelierlakeside"' ,'"base16_atelierseaside"' ,'"base16_bespin"' ,'"base16_brewer"' ,'"base16_bright"' ,'"base16_chalk"' ,
-    \ '"base16_classic"','"base16_codeschool"','"base16_colors"' ,'"base16_default"' ,'"base16_eighties"' ,'"base16_gruvbox_dark_hard"' ,
-    \ '"base16_greenscreen"' ,'"base16_monokai"' ,'"base16_oceanicnext"' ,'"base16_shapeshifter"' ,'"base16_tomorrow"' ,'"biogoo"' ,
-    \ '"distinguished"' ,'"google_light"' ,'"jellybeans"' ,'"onedark"','"powerlineish"' ,'"seoul256"' ,'"solarized_flood"' ,'"xtermlight"' ,'"wombat"',
-    \ '"base16_google"','"base16color"','"molokai"','"papercolor"','"term_light"','"solarized"','"term_light"',
-    \ ]
+"let airlinethemes = [
+"    \ '"alduin"', '"angr"', '"atomic"', '"ayu"', '"ayu_dark"', '"ayu_light"','"ayu_mirage"', '"badwolf"', '"base16"', '"base16_3024"','"base16_adwaita"','"papercolor"',
+"    \ '"base16_apathy"','"base16_ashes"' ,'"base16_atelierdune"' ,'"base16_atelierforest"' ,'"base16_atelierheath"' ,
+"    \ '"base16_atelierlakeside"' ,'"base16_atelierseaside"' ,'"base16_bespin"' ,'"base16_brewer"' ,'"base16_bright"' ,'"base16_chalk"' ,
+"    \ '"base16_classic"','"base16_codeschool"','"base16_colors"' ,'"base16_default"' ,'"base16_eighties"' ,'"base16_gruvbox_dark_hard"' ,
+"    \ '"base16_greenscreen"' ,'"base16_monokai"' ,'"base16_oceanicnext"' ,'"base16_shapeshifter"' ,'"base16_tomorrow"' ,'"biogoo"' ,
+"    \ '"distinguished"' ,'"google_light"' ,'"jellybeans"' ,'"onedark"','"powerlineish"' ,'"seoul256"' ,'"solarized_flood"' ,'"xtermlight"' ,'"wombat"',
+"    \ '"base16_google"','"base16color"','"molokai"','"papercolor"','"term_light"','"solarized"','"term_light"',
+"    \ ]
 
-exe 'let g:airline_theme= '.airlinethemes[localtime() % len(airlinethemes)]
-
-
-"这个是安装字体后 必须设置此项"
-let g:airline_powerline_fonts = 1
-
-"打开tabline功能,方便查看Buffer和切换，这个功能比较不错,我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
-let g:airline#extensions#tabline#enabled = 1
-" tabline中buffer显示编号
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_section_b = '%{strftime("%m/%d/%y - %H:%M")}'
-let g:airline_section_y = 'BN: %{bufnr("%")}'
-" 设置中文提示
-language messages zh_CN.utf-8
-" 设置中文帮助
-set helplang=cn
-" tabline中当前buffer两端的分隔字符
-let g:airline#extensions#tabline#left_sep = ' '  "separater
-" tabline中未激活buffer两端的分隔字符
-let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
-let g:airline#extensions#tabline#formatter = 'default'  "formater
-
-" 关闭状态显示空白符号计数,这个对我用处不大"
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#whitespace#symbol = '!'
+"exe 'let g:airline_theme= '.airlinethemes[localtime() % len(airlinethemes)]
 
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+""这个是安装字体后 必须设置此项"
+"let g:airline_powerline_fonts = 1
 
-"old vim-powerline symbols
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
+""打开tabline功能,方便查看Buffer和切换，这个功能比较不错,我还省去了minibufexpl插件，因为我习惯在1个Tab下用多个buffer"
+"let g:airline#extensions#tabline#enabled = 1
+"" tabline中buffer显示编号
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline_section_b = '%{strftime("%m/%d/%y - %H:%M")}'
+"let g:airline_section_y = 'BN: %{bufnr("%")}'
+"" 设置中文提示
+"language messages zh_CN.utf-8
+"" 设置中文帮助
+"set helplang=cn
+"" tabline中当前buffer两端的分隔字符
+"let g:airline#extensions#tabline#left_sep = ' '  "separater
+"" tabline中未激活buffer两端的分隔字符
+"let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+"let g:airline#extensions#tabline#formatter = 'default'  "formater
+
+"" 关闭状态显示空白符号计数,这个对我用处不大"
+"let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#whitespace#symbol = '!'
 
 
-" 设置切换tab的快捷键 <\> + <i> 切换到第i个 tab
-nmap <Leader>1 <Plug>AirlineSelectTab1
-nmap <Leader>2 <Plug>AirlineSelectTab2
-nmap <Leader>3 <Plug>AirlineSelectTab3
-nmap <Leader>4 <Plug>AirlineSelectTab4
-nmap <Leader>5 <Plug>AirlineSelectTab5
-nmap <Leader>6 <Plug>AirlineSelectTab6
-nmap <Leader>7 <Plug>AirlineSelectTab7
-nmap <Leader>8 <Plug>AirlineSelectTab8
-nmap <Leader>9 <Plug>AirlineSelectTab9
-" 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
-nmap ;- <Plug>AirlineSelectPrevTab
-" 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
-nmap ;+ <Plug>AirlineSelectNextTab
-" 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
-nmap .q :bp<cr>:bd #<cr>
-" 修改了一些个人不喜欢的字符
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+
+""old vim-powerline symbols
+"let g:airline_left_sep = '▶'
+"let g:airline_left_alt_sep = '❯'
+"let g:airline_right_sep = '◀'
+"let g:airline_right_alt_sep = '❮'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+
+
+"" 设置切换tab的快捷键 <\> + <i> 切换到第i个 tab
+"nmap <Leader>1 <Plug>AirlineSelectTab1
+"nmap <Leader>2 <Plug>AirlineSelectTab2
+"nmap <Leader>3 <Plug>AirlineSelectTab3
+"nmap <Leader>4 <Plug>AirlineSelectTab4
+"nmap <Leader>5 <Plug>AirlineSelectTab5
+"nmap <Leader>6 <Plug>AirlineSelectTab6
+"nmap <Leader>7 <Plug>AirlineSelectTab7
+"nmap <Leader>8 <Plug>AirlineSelectTab8
+"nmap <Leader>9 <Plug>AirlineSelectTab9
+"" 设置切换tab的快捷键 <\> + <-> 切换到前一个 tab
+"nmap ;- <Plug>AirlineSelectPrevTab
+"" 设置切换tab的快捷键 <\> + <+> 切换到后一个 tab
+"nmap ;+ <Plug>AirlineSelectNextTab
+"" 设置切换tab的快捷键 <\> + <q> 退出当前的 tab
+"nmap .q :bp<cr>:bd #<cr>
+"" 修改了一些个人不喜欢的字符
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " " """"""""""""""""""""""""""""""""配置spaceline""""""""""""""""""""""""""""""""
 "
 " let g:spaceline_seperate_style = 'arrow'
@@ -3473,60 +3462,50 @@ hi User6 cterm=None ctermfg=246 ctermbg=237
 hi User7 cterm=None ctermfg=250 ctermbg=238
 hi User8 cterm=None ctermfg=249 ctermbg=240
 
+
+"""""""""""""""""""""""""""""""""""""""""配置底部状态栏"""""""""""""""""""""""""""""""""""""""""
+
+set statusline=%1*\%<%.50F\             "显示文件名和文件路径 (%<应该可以去掉)
+set statusline+=%=%2*\%y%m%r%h%w\ %*        "显示文件类型及文件状态
+set statusline+=%3*\%{&ff}\[%{&fenc}]\ %*   "显示文件编码类型
+set statusline+=%4*\ row:%l/%L,col:%c\ %*   "显示光标所在行和列
+set statusline+=%5*\%3p%%\%*            "显示光标前文本所占总文本的比例
+hi User1 cterm=none ctermfg=25 ctermbg=0
+hi User2 cterm=none ctermfg=208 ctermbg=0
+hi User3 cterm=none ctermfg=169 ctermbg=0
+hi User4 cterm=none ctermfg=100 ctermbg=0
+hi User5 cterm=none ctermfg=green ctermbg=0
+hi Normal ctermfg=252 ctermbg=none
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" """"""""""""""""""""""""""""""""""""""""""""""""""""""""自定义"配色方案"""""""""""""""""""""""""""""""""""'""'""
-
-" "/usr/share/vim/vim81/colors/ 目录中包含了大多数文件类型的语法高亮插件。
-" hi clear
-
-map <Leader>c1 :set background=dark<CR>:colorscheme lilydjwg_dark<CR> :AirlineTheme base16_color<CR>
-map <Leader>c2 :set background=dark<CR>:colorscheme lilydjwg_dark_modified<CR>:AirlineTheme base16_color<CR>
-map <Leader>c3 :set background=dark<CR>:colorscheme solarized8_flat<CR>:AirlineTheme base16_color<CR>
-map <Leader>c4 :set background=dark<CR>:colorscheme flattened_dark<CR>:AirlineTheme base16_color<CR>
-map <Leader>c5 :set background=dark<CR>:colorscheme vividchalk<CR>AirlineTheme base16_color<CR>
-
-map <Leader>c6 :set background=light<CR>:colorscheme colorful<CR>AirlineTheme dracula<CR>
-map <Leader>c7 :set background=light<CR>:colorscheme NeoSolarized<CR>AirlineTheme dracula<CR>
-map <Leader>c8 :set background=light<CR>:colorscheme solarized8_flat<CR>AirlineTheme dracula<CR>
-map <Leader>c9 :set background=light<CR>:colorscheme flattened_light<CR>AirlineTheme dracula<CR>
-map <Leader>c10 :set background=light<CR>:colorscheme vividchalk<CR>AirlineTheme dracula<CR>
-
-if strftime('%H') >= 7 && strftime('%H') < 22
+if strftime('%H') >= 7 && strftime('%H') < 23
     set background=light
     let ayucolor="light"  " for light version of theme
     let themes = [
-        \ 'cosmic_latte','carbonized-light', 'ayu', 'blacklight', 'bmichaelsen', 'c16gui',
-        \ 'cake16', 'carrot', 'cleanphp', 'colorful',  'flattened_light','github','PaperColor',
-        \ 'gobo','greygull', 'gruvbox', 'habiLight', 'navajo',  'nicotine','fine_blue',
-        \ 'nightshade_print_modified','nightshade_print', 'pencil', 'earth','tcsoft',
-        \ 'phpx', 'professional','rainbow_autumn','relaxedgreen','redstring','NeoSolarized',
-        \ 'seagull','sf','snow','solarized8', 'solarized8_flat', 'solarized8_low',
-        \ 'solarized8_higt','stellarized', 'thegoodluck','winter','zellner','darkblack',
-        \ 'violet','space_vim_theme',
+        \ 'cosmic_latte', 'carbonized-light', 'ayu', 'c16gui', 'cake16', 'carrot', 'cleanphp',
+        \ 'colorful',  'flattened_light', 'github', 'PaperColor', 'gobo', 'gruvbox', 'habiLight',
+        \ 'navajo',  'fine_blue', 'nightshade_print_modified', 'nightshade_print',
+        \ 'pencil', 'earth', 'tcsoft',  'phpx', 'professional', 'rainbow_autumn', 'NeoSolarized',
+        \ 'seagull',  'snow', 'solarized8', 'solarized8_light_high', 'solarized8_high', 'stellarized',
+        \ 'thegoodluck', 'winter', 'violet', 'space_vim_theme', 'Atelier_LakesideLight', 'Atelier_SeasideLight',
+	    \ 'kemonofriends', 'one', 'onehalflight', 'lucario', 'gruvbox8_soft', 'ayumi',
+        \ 'rakr-light', 'rakr', 'lightning', 'fruchtig', 'tatami', 'snowtrek', 'donbass', 'blandon',
+	    \ 'vadelma', 'greent', 'fruit', 'nortia-nvim',
         \ ]
     " autocmd vimenter * ++nested colorscheme PaperColor
     hi CursorColumn      ctermbg=250
     hi CursorColumn      guibg= #bcbcbc
-        " \ 'vimspectr0-light'  , 'vimspectr0-light'   , 'vimspectr30-light' ,
-        " \ 'vimspectr60-light' , 'vimspectr90-light'  , 'vimspectr120-light',
-        " \ 'vimspectr150-light', 'vimspectr180-light' , 'vimspectr210-light',
-        " \ 'vimspectr240-light', 'vimspectr270-light' , 'vimspectr300-light',
-        " \ 'vimspectr330-light', 'vimspectrgrey-light',
 else
     set background=dark
     let ayucolor="mirage"  " for light version of theme
     let themes = [
-        \ 'carbonized-dark', 'SolarizedDark_modified' , 'colorful256','github','NeoSolarized',
-        \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel',
-        \ 'solarized8_flat', 'solarized8_low', 'solarized8_higt','solarized8' ,'lilydjwg_dark',
-        \ 'vividchalk', 'PaperColor', 'gruvbox','violet','space_vim_theme',
+        \ 'solarized8_dark_high' , 'github','NeoSolarized','neonwave',
+        \ 'flattened_dark' ,  'lilydjwg_dark_modified', 'molokai','umber_green','petrel','detorte',
+        \ 'solarized8_flat', 'solarized8_low', 'solarized8_high','solarized8' ,'lilydjwg_dark',
+        \ 'PaperColor', 'gruvbox8_soft','gruvbox8_hard','violet','lucario','palenight','rigel',
+        \ 'shades_of_purple','cobalt','cobaltish','cosmic-barf','tokyonight','true','purpura',
         \ ]
-        " \ 'vimspectr0-dark'   , 'vimspectr0-dark'    , 'vimspectr30-dark'  ,
-        " \ 'vimspectr60-dark'  , 'vimspectr90-dark'   , 'vimspectr120-dark' ,
-        " \ 'vimspectr150-dark' , 'vimspectr180-dark'  , 'vimspectr210-dark' ,
-        " \ 'vimspectr240-dark' , 'vimspectr270-dark'  , 'vimspectr300-dark' ,
-        " \ 'vimspectr330-dark' , 'vimspectrgrey-dark' ,
     " autocmd vimenter * ++nested colorscheme lilydjwg_dark_modified
     hi CursorColumn      ctermbg=237
     hi CursorColumn      guibg= #3a3a3a
@@ -3537,13 +3516,36 @@ exe 'autocmd vimenter * ++nested colorscheme '.themes[localtime() % len(themes)]
 " autocmd vimenter * ++nested colorscheme solarized8_higt
 
 
-
 " 黑色：carbonized_dark, SolarizedDark_modified ,NeoSolarized, colorful256, drakblack, earth, fine_blue, flattened_dark , github, lilydjwg_dark_modified, molokai, solarized8 , solarized8_flat, solarized8_low, solarized8_higt,umber_green,
 
-" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gobo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
+" 白色：cosmic_latte，carbonized_light, ayu,NeoSolarized, blacklight, bmichaelsen, c16gui, cake16, carrot, cleanphp, colorful,  flattened_light,github,gabo,greygull, gruvbox, habLight, navajo,  nicotine,nightshade_print_modified,nightshade_print, pencil, petrel, phpx, , , ,professional,rainbow_autumn,relaxedgreen,redstring,seagull,sf,snow,solarized8 , solarized8_flat, solarized8_low, solarized8_higt,stellarized, thegoodluck,winter,zellner,
 
+" autocmd FileType  c,cpp            colorscheme   kemonofriends
+" autocmd FileType  sh               colorscheme   true
+" autocmd FileType  python           colorscheme   purpura
+" autocmd FileType  vim              colorscheme   donbass
+" autocmd FileType  text             colorscheme   seagull
+" autocmd FileType  xterm            colorscheme   ayumi
+" autocmd FileType  markdown         colorscheme   donbass
+" autocmd FileType  zsh              colorscheme   fruchtig
 
+nnoremap c1 :set background=dark<CR>:colorscheme lilydjwg_dark<CR> :AirlineTheme base16_colors<CR>
+nnoremap c2 :set background=dark<CR>:colorscheme lilydjwg_dark_modified<CR>:AirlineTheme base16_colors<CR>
+nnoremap c3 :set background=dark<CR>:colorscheme solarized8_flat<CR>:AirlineTheme base16_colors<CR>
+nnoremap c4 :set background=dark<CR>:colorscheme NeoSolarized<CR>:AirlineTheme base16_colors<CR>
+nnoremap c5 :set background=dark<CR>:colorscheme flattened_dark<CR>:AirlineTheme base16_colors<CR>
+nnoremap c6 :set background=dark<CR>:colorscheme true<CR>:AirlineTheme base16_colors<CR>
+nnoremap c7 :set background=dark<CR>:colorscheme purpura<CR>:AirlineTheme base16_colors<CR>
 
+nnoremap c11 :set background=light<CR>:colorscheme colorful<CR>:AirlineTheme base16_colors<CR>
+nnoremap c12 :set background=light<CR>:colorscheme NeoSolarized<CR>:AirlineTheme base16_colors<CR>
+nnoremap c13 :set background=light<CR>:colorscheme solarized8_flat<CR>:AirlineTheme base16_colors<CR>
+nnoremap c14 :set background=light<CR>:colorscheme flattened_light<CR>:AirlineTheme base16_colors<CR>
+nnoremap c15 :set background=light<CR>:colorscheme seagull<CR>:AirlineTheme base16_colors<CR>
+nnoremap c16 :set background=light<CR>:colorscheme PaperColor<CR>:AirlineTheme base16_colors<CR>
+nnoremap c17 :set background=light<CR>:colorscheme kemonofriends<CR>:AirlineTheme base16_colors<CR>
+nnoremap c18 :set background=light<CR>:colorscheme donbass<CR>:AirlineTheme base16_colors<CR>
+nnoremap c19 :set background=light<CR>:colorscheme greent<CR>:AirlineTheme base16_colors<CR>
 
 "光标所在的屏幕行 ,是让光标所在行整一行都显示下划线的，就是加一条水平下划线）
 " hi CursorLine       ctermbg=234   cterm=underline
@@ -3604,8 +3606,6 @@ hi Folded          guifg=#66CD00
 hi Directory       ctermfg=46               cterm=bold
 hi Directory       guifg=#00FF00               gui=bold
 
-
-
 " complete menu
 hi Pmenu      ctermfg=0       ctermbg=243
 hi Pmenu      guifg=#000000    guibg=darkgrey
@@ -3628,11 +3628,14 @@ hi  TabLineFill   ctermfg=2     ctermbg=246     term=Bold   cterm=bold
 " " 窗口尾部的'~'和 '@'
 hi NonText         ctermfg=1  cterm=bold
 hi NonText         guifg=#FF0000  cterm=bold
+
 " " "特殊键，字符和'listchars'
 hi SpecialKey         cterm=bold
 hi SpecialKey      guifg=#00FFFF  gui=bold
 """""""""""""""""""""""""""""""""""""""""""""""设置颜色结束"""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""新增配置""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -3659,6 +3662,9 @@ nnoremap ]e :<c-u>execute  'move +'.v:count1<cr>
 " 速添加空行
 nnoremap [s :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]s :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap <space>i i<space><esc>
+nnoremap <space>a a<space><esc>
+
 "快速跳转到源/头文件
 autocmd BufLeave *.{c,cpp} mark C
 autocmd BufLeave *.h mark H
@@ -3685,7 +3691,9 @@ xnoremap > >gv
 "选择当前行至末尾，排除换行符
 nnoremap L g_
 
-
+" 重新载入保存文件
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
+autocmd BufWritePost ~/.Xdefaults call system('xrdb --merge ~/.Xdefaults')
 
 " 更加智能的当前高亮
 autocmd InsertLeave,WinEnter * set cursorline
@@ -3700,6 +3708,10 @@ set complete-=t " disable searching tags
 
 "删除行尾空格
 nnoremap ;se  :%s/\s\+$//g<CR>
+" 去除空白
+nmap wb :%s/\s\+$//ge<CR>
+autocmd BufWritePre *.lua,*.[hcm],*.cpp,*.c,*.mm,*.sh,*.py normal wb
+
 
 "删除行首空格
 nnoremap ;sh  :%s/^\s*//g<CR>
@@ -3707,6 +3719,7 @@ nnoremap ;sh  :%s/^\s*//g<CR>
 "删除所有空格行
 nnoremap ;ss   :g/^$/d<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3760,22 +3773,25 @@ autocmd FileType javascript,html,css,xml set sts=2
 
 " Ctrl+A全选，Ctrl+C复制，Ctrl+V粘贴
 "sudo apt-get install vim-gnome
-noremap <C-a> ggvG$
-inoremap <C-a> <Esc>ggvG$
+" Ctrl+A全选高亮显示，
+noremap <C-a> ggVG$
+inoremap <C-a> <Esc>ggVG$
+
 " Ctrl+A全选复制，
 "noremap <C-a> ggyG$
 "inoremap <C-a> <Esc>ggyG$
 
+
+
 " set clipboard=unnamedplus  "使得vim剪切板和系统剪切板一致，这样就可以使用ctrl c/v了
-" vnoremap <C-C> "+y<Esc>
+"sudo apt install xclip, vim-gtk
+"sudo pacman -S xsel
 nnoremap <C-c> "+y
 vnoremap <C-c> "+y<Esc>
 
-"nnoremap <C-V> "+p
-"inoremap <C-V> <Esc>"+pa
-nnoremap <C-v> "+p
-inoremap <C-v> <Esc>"+pa
-nnoremap <C-v> "+gp
+nnoremap <C-s> "+p
+inoremap <C-s> <Esc>"+pa
+nnoremap <C-s> "+gp
 " "+gp  粘贴并且移动光标到粘贴内容后
 
 map <C-x> "+x
@@ -3784,6 +3800,8 @@ inoremap <C-x> <Esc>"+x
 " map <C-z> "+u
 " inoremap <C-z> <Esc>"+u
 
+" v进入可视模式，V进入行可视模式，alt-v进入块可视模式
+" nnoremap  <M-v>  <C-v>
 
 
 "括号等的自动补全
@@ -3849,14 +3867,15 @@ inoremap <C-M-down> <Esc><C-e>a
 " 光标在当前行的基础上再跳 20 行：20+enter 键
 
 " U/E keys for 5 times u/e (faster navigation)
-nnoremap K 5k
-nnoremap J 5j
-nnoremap U 10k
-nnoremap D 10j
+nnoremap k 5k
+nnoremap j 5j
 nnoremap h 5h
 nnoremap l 5l
+nnoremap U 10k
+nnoremap D 10j
 nnoremap H 10h
 nnoremap L 10l
+
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
 " 向左分屏
@@ -3869,13 +3888,13 @@ map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 map sl :set splitright<CR>:vsplit<CR>
 
 " Place the two screens up and down
-nnoremap sh <C-w>t<C-w>K
+noremap sh <C-w>t<C-w>K
 " Place the two screens side by side
-nnoremap sv <C-w>t<C-w>H
+noremap sv <C-w>t<C-w>H
 
 " Rotate screens
-nnoremap srh <C-w>b<C-w>K
-nnoremap srv <C-w>b<C-w>H
+noremap srh <C-w>b<C-w>K
+noremap srv <C-w>b<C-w>H
 
 "---------------- 窗口、标签页、缓冲区的切换--------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -3895,12 +3914,15 @@ nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-l> <C-W>l
 nnoremap <C-h> <C-W>h
+
+
 "组合快捷键：
 " Ctrl-j 切换到下方的分割窗口
 " Ctrl-k 切换到上方的分割窗口
 " Ctrl-l 切换到右侧的分割窗口
 " Ctrl-h 切换到左侧的分割窗口
 " 注意，这里的ctrl+hjkl与WinManager的ctrl+上下左右是一样的左右，也就是切换窗口,这里的快捷键覆盖了winmanager的快捷键
+
 
 " nnoremap <A-j> <C-W>j
 " nnoremap <A-k> <C-W>k
@@ -3911,22 +3933,22 @@ nnoremap <C-w> <C-W>w
 nnoremap <C-q> <C-W>q
 nnoremap <C-t> <C-W>T
 nnoremap <C-S-o> <C-W>o
-nnoremap <space> za
+
 " Ctrl-w 遍历切换窗口
 " Ctrl-q 关闭当前窗口，如果只剩最后一个了，则退出 vim
 " Ctrl-t 当前窗口移动到新标签页
 " Ctrl-shift-o 关闭出当前窗口之外的所有窗口
-" 用空格代替za进行折叠代码
+
 
 " " 移动窗口
 " alt+j当前窗口向上面移动
-nnoremap <A-j> <C-w>J
+nnoremap <S-M-j> <C-w>J
 " alt+k当前窗口向上方移动
-nnoremap <A-k> <C-w>K
+nnoremap <S-M-k> <C-w>K
 " alt+l 当前窗口向右边移动
-nnoremap <A-l> <C-w>L
+nnoremap <S-M-l> <C-w>L
 " alt+h当前窗口向左边移动
-nnoremap <A-h> <C-w>H
+nnoremap <S-M-h> <C-w>H
 
 
 " 多窗口分屏时改变窗口大小 +/- 3
@@ -3963,7 +3985,7 @@ set showtabline=1
 
 
 " 若要在右上角启用关闭按钮，请将以下内容添加到 ~/.vimrc
-
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj
 let g:tablineclosebutton=1
 
 "#################################### 多标签页切换####################################
@@ -3974,21 +3996,24 @@ noremap <silent><tab>t :tabnew<cr>
 " 关闭标签页
 noremap <silent><tab>c :tabclose<cr>
 "下一个标签页
-noremap <silent><tab><right> :tabn<cr>
-noremap <silent>\= :tabn<cr>
+noremap <silent><tab><right> :tabnext<cr>
+noremap <silent>]t :tabnext<cr>
+noremap <silent>;n :tabnext<cr>
+" nnoremap tn  :tabnext<CR>
+" nnoremap <M-k>  :tabnext<CR>
 " 上一个标签页
-noremap <silent><tab><left> :tabp<cr>
-noremap <silent>\- :tabn<cr>
+noremap <silent><tab><left> :tabprevious<cr>
+noremap <silent>[t :tabprevious<cr>
+noremap <silent>;p :tabprevious<cr>
+" nnoremap tp  :tabprevious<CR>
+" nnoremap <M-j>  :tabprevious<CR>
+
 "下一个标签页,循环
 noremap <silent><S-tab> :tabnext<CR>
 
 "Vim默认最多只能打开10个标签页。你可以用set tabpagemax=15改变这个限制。
 set tabpagemax=15
 
-
-" Move around tabs with tn and tp
-nnoremap tn  :tabn<CR>
-nnoremap tp  :tabp<CR>
 
 " Create a new tab with tu
 nnoremap tu :tabe<CR>
@@ -4009,6 +4034,24 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
+
+:nn <M-1> 1gt
+:nn <M-2> 2gt
+:nn <M-3> 3gt
+:nn <M-4> 4gt
+:nn <M-5> 5gt
+:nn <M-6> 6gt
+:nn <M-7> 7gt
+:nn <M-8> 8gt
+:nn <M-9> 9gt
+:nn <M-0> :tablast<CR>
+
+
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :bp<CR>
+noremap <Leader><Tab> :Bw<CR>
+noremap <Leader><S-Tab> :Bw!<CR>
+" noremap <C-t> :tabnew split<CR>
 
 
 
@@ -4034,17 +4077,20 @@ noremap <leader>0 :tablast<CR>
 
 "######################################## 缓冲区#################################
 
-
 " ctrl + tab下一个buffer
 " map <C-tab> :bn<CR>
 " nnoremap <C-tab> :bn<CR>
 nnoremap  ]b :bn<CR>
 nnoremap  ;e :bn<CR>
+" nnoremap  `e :bn<CR>
+" nnoremap  <M-l> :bn<CR>
 " ctrl + shift + tab下一个buffer
 " map <C-M-tab> :bp<CR>
 " nnoremap <C-M-tab> :bp<CR>
 nnoremap  [b :bp<CR>
 nnoremap  ;a :bp<CR>
+" nnoremap  `a :bp<CR>
+" nnoremap  <M-h> :bp<CR>
 
 " :buffers或:ls或:files 显示缓冲区列表。
 " ctrl+^：在最近两个缓冲区间切换。
@@ -4059,6 +4105,26 @@ nnoremap  ;a :bp<CR>
 
 
 " :e 文档名        这是在进入vim后，不离开 vim 的情形下打开其他文档。
+
+""""""""""""""""""""""""""""""""""""""" Markdown 快捷键""""""""""""""""""""""""""""""""""""""""
+"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l --------<Enter>
+
+
 
 
 """""""""""""""""""""""""""""Terminal Colors"""""""""""""""""""""""""""""""
@@ -4812,4 +4878,3 @@ autocmd BufReadPost * cd %:p:h
 " 输入 "I"， 可视块模式 --> 编辑模式。（注意：必须使用 "I"）
 " 输入 "#" 字符，也就是注释的符号。
 " 按下 "Esc"， 编辑模式 --> 命令模式。
-
