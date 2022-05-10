@@ -13,3 +13,9 @@ exec startxfce4
 #xftaskbar4 &
 #xfdesktop &
 #exec xfce4-panel
+
+
+
+# dwmstatus 2>&1 >/dev/null &
+# exec dwm
+# xrandr --output DP-1-3  --right-of eDP-1-1  --auto
