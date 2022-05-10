@@ -8,8 +8,16 @@
 
 xrandr --output eDP-1 --primary
 
+#笔记本，三个显示器，一个原屏幕，两个外界，下面三行：关闭原屏幕，只用两个外界显示器
+# xrandr --output DP-1-8 --primary
+# xrandr --output DP-1-8 --auto --output eDP-1 --off
+# xrandr --output DP-1-9  --right-of DP-1-8  --auto
+# 或
+# xrandr --output DP-1-8 --primary --auto --output eDP-1 --off  --output DP-1-9  --right-of DP-1-8 --auto
+
+
 # 设置 HDMI-1为eDP-1的右扩展屏
-xrandr --output DP-3  --right-of eDP-1  --auto
+# xrandr --output DP-3  --right-of eDP-1  --auto
 # xrandr --output DP-1 --right-of DP-3
 
 # 设置外接显示器为竖屏
@@ -35,11 +43,11 @@ xrandr --output DP-3  --right-of eDP-1  --auto
 
 `export QT_IM_MODULE=fcitx`
 
-fcitx &
+# fcitx &
 
 
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export DefaultIMModule=fcitx
-fcitx-autostart &>/dev/null
+# fcitx-autostart &>/dev/null
