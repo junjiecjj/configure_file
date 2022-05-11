@@ -443,6 +443,10 @@ alias fd='fdfind'
 alias fde='fdfind -e'
 alias ndu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
+alias ci3='cd ~/.config/i3'
+alias cdwm='cd ~/tmp/my-dwm'
+
+
 alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
 alias cg='cd ~/公共的/'
