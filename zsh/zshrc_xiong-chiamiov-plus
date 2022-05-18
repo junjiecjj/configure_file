@@ -1,5 +1,12 @@
-# the prompt
 
+
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 
 # Use emacs keybindings even if our EDITOR is set to vi
@@ -35,9 +42,9 @@ ZSH_THEME_RANDOM_CANDIDATES=(
         "duellj"    "fino-time"       "xiong-chiamiov-plus"    "myys"
 )
 
-ZSH_THEME="purify"
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="purify"
 
 plugins=(
 
@@ -84,7 +91,7 @@ export PYTHONPATH="/usr/local/mdsplus/python/MDSplus"
 HIST_STAMPS="yyyy-mm-dd"
 DISABLE_UPDATE_PROMPT=true
 #source ~/.oh-my-zsh/plugins/incr/incr*.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.oh-my-zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -s /home/jack/.autojump/etc/profile.d/autojump.sh ]] && source /home/jack/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
@@ -92,7 +99,12 @@ autoload -U compinit && compinit -u
 export NVM_LAZY_LOAD=true
 
 #export PS1='$\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\A\[\e[31;1m\]]\[\033[01;32m\]\$ '
-#
+
+
+#============================================================================================================================
+#====================   COPY的 =================================================================================== 
+#============================================================================================================================
+
 #color{{{
 autoload colors
 colors
@@ -105,7 +117,7 @@ done
 FINISH="%{$terminfo[sgr0]%}"
 #}}}
 
-#命令提示符
+##命令提示符
 #RPROMPT=$(echo "$RED%D %T$FINISH")
 #PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")
 
@@ -120,7 +132,7 @@ esac
 #}}}
 
 #编辑器
-export EDITOR=vim
+export EDITOR=nvim
 #输入法
 export XMODIFIERS="@im=ibus"
 export QT_MODULE=ibus
@@ -203,7 +215,7 @@ limit coredumpsize 0
 bindkey -e
 #bindkey -v
 #设置 [DEL]键 为向后删除
-#bindkey "\e[3~" delete-char
+bindkey "\e[3~" delete-char
 
 #以下字符视为单词的一部分
 WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
@@ -290,6 +302,15 @@ BUFFER="cd "
 zle end-of-line
 zle expand-or-complete
 ;;
+"cd " )                 # TAB + 空格 替换为 "cd ~"
+BUFFER="cd ~"
+zle end-of-line
+zle expand-or-complete
+;;
+" " )
+BUFFER="!?"
+zle end-of-line
+;;
 "cd --" )                  # "cd --" 替换为 "cd +"
 BUFFER="cd +"
 zle end-of-line
@@ -321,6 +342,10 @@ zle -N sudo-command-line
 bindkey "\e\e" sudo-command-line
 #}}}
 
+#============================================================================================================
+#================================   自己的配置 ==========================
+#============================================================================================================
+
 # 搞定Home键和小键盘
 # Home
 bindkey '\e[1~' beginning-of-line
@@ -350,7 +375,6 @@ bindkey -s "^[Om" "-"
 bindkey -s "^[Oj" "*"
 bindkey -s "^[Oo" "/"
 
-
 #命令别名 {{{
 alias cp='cp -i'
 alias mv='mv -i'
@@ -360,9 +384,10 @@ alias pacman='sudo pacman-color'
 alias p='sudo pacman-color'
 alias y='yaourt'
 alias h='htop'
-alias vim='vim'
-alias nf='neofetch'
-alias sf='screenfetch'
+alias sound='alsamixer'
+
+alias ifsound="amixer get Master | egrep 'Playback.*?\[o' | egrep -o '\[o.+\]'"
+alias mutetoggle='amixer -D pulse set Master 1+ toggle'
 
 #[Esc][h] man 当前命令时，显示简短说明
 alias run-help >&/dev/null && unalias run-help
@@ -420,15 +445,13 @@ alias ll='logo-ls -alh'
 # alias ll='exa -al -bghHiSr  --icons --colour-scale --color=always  --time=changed --git'
 # alias lt='exa -al -bghHiSr -T --icons --colour-scale --color=always  --time=changed --git'
 
-
-
 LS_COLORS="*.xyz=37;41:*.ts=34"
 EXA_COLORS="da=1;34"
 EXA_COLORS="hs_err_pid*=37;41;1"
 
 # 性能监控
 alias inxi='inxi -b -c31 -F'
-alias ds='dstst'
+alias ds='dstat'
 alias gla='glances'
 alias tl='tldr'
 alias diff='vimdiff'
@@ -437,7 +460,6 @@ alias sf='screenfetch'
 
 alias bat='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto '
 alias bata='batcat --theme=OneHalfLight -n --color=always --decorations=always --style=full --italic-text==always --paging=auto  -A'
-
 export BAT_THEME="OneHalfLight"
 alias fd='fdfind'
 alias fde='fdfind -e'
@@ -445,9 +467,9 @@ alias ndu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
 alias ci3='cd ~/.config/i3'
 alias cdwm='cd ~/tmp/my-dwm'
+alias cc='cd ~/.config'
 
-
-alias cc='cd ~/公共的/c文件/'
+# alias cc='cd ~/公共的/c文件/'
 alias cl='cd ~/公共的/Linux_C'
 alias cg='cd ~/公共的/'
 alias cf='cd ~/文档/'
@@ -457,8 +479,9 @@ alias cm='cd ~/公共的/MarkDown/'
 alias cmat='cd ~/公共的/MATLAB/'
 alias gos='git add .; git commit -m "just update"; git push origin master'
 alias gom='git add .; git commit -m "just update"; git push origin main'
-alias creatfont='sudo mkfontscale; sudo mkfontdir; sudo fc-cache -fv'
 
+
+alias creatfont='sudo mkfontscale; sudo mkfontdir; sudo fc-cache -fv'
 
 mkd() { mkdir -p "$@" && cd "$1"; }
 alias install='sudo apt install'
@@ -467,6 +490,7 @@ alias upgrade='sudo apt upgrade -y'
 alias up='sudo apt update ; sudo apt upgrade -y; sudo apt autoremove -y'
 alias show_dimensions='xdpyinfo | grep '''dimensions:''''
 alias list_repos='grep ^[^#] /etc/apt/sources.list /etc/apt/sources.list.d/*'
+
 
 alias nalainstall='sudo nala install'
 alias nalaupdate='sudo nala update'
@@ -483,36 +507,15 @@ alias nalaup='sudo nala update ; sudo nala upgrade'
 alias lsblk='lsblk -f'
 alias df='df -Thl'
 
-
 autoload bashcompinit
 bashcompinit
-source /usr/share/bash-completion/completions/nala
+# source /usr/share/bash-completion/completions/nala
 
 
 alias v='vim'
 alias nm='nvim'
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-export LESS_TERMCAP_mb=$'\E[01;34m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;36;44m'
-export LESS_TERMCAP_se=$'\E[0m'
-
-man() {
-  env \
-  LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-  LESS_TERMCAP_md=$(printf "\e[1;31m") \
-  LESS_TERMCAP_me=$(printf "\e[0m") \
-  LESS_TERMCAP_se=$(printf "\e[0m") \
-  LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-  LESS_TERMCAP_ue=$(printf "\e[0m") \
-  LESS_TERMCAP_us=$(printf "\e[1;32m") \
-  man "$@"
-}
 
 rg() {
     if [ -z "$RANGER_LEVEL" ]
@@ -545,6 +548,26 @@ alias rcd=ranger-cd
 alias racd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 
+export LESS_TERMCAP_mb=$'\E[01;34m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;36;44m'
+export LESS_TERMCAP_se=$'\E[0m'
+
+man() {
+  env \
+  LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+  LESS_TERMCAP_md=$(printf "\e[1;31m") \
+  LESS_TERMCAP_me=$(printf "\e[0m") \
+  LESS_TERMCAP_se=$(printf "\e[0m") \
+  LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+  LESS_TERMCAP_ue=$(printf "\e[0m") \
+  LESS_TERMCAP_us=$(printf "\e[1;32m") \
+  man "$@"
+}
+
 lg()
 {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
@@ -571,11 +594,20 @@ fi
 
 #路径别名 {{{
 #进入相应的路径时只要 cd ~xxx
-hash -d A="/media/ayu/dearest"
-hash -d H="/media/data/backup/ayu"
-hash -d E="/etc/"
-hash -d D="~/公共的/Linux_C"
+hash -d d="/home/jack/tmp/my-dwm"
+hash -d i="/home/jack/.config/i3"
+hash -d t="/home/jack/tmp"
+hash -d p="/home/jack/公共的/Python"
+hash -d s="/home/jack/公共的/ShellScript"
+hash -d c="/home/jack/公共的/Linux_C"
 #}}}
+
+
+#============================================================================================================================
+#====================   COPY的 =================================================================================== 
+#============================================================================================================================
+
+
 
 ##for Emacs {{{
 #在 Emacs终端 中使用 Zsh 的一些设置 不推荐在 Emacs 中使用它
@@ -606,8 +638,17 @@ bindkey "^[[11~" arith-eval-echo
 
 ####{{{
 function timeconv { date -d @$1 +"%Y-%m-%d %T" }
-
 # }}}
+
+####{{{
+function command_not_found_handler() {
+    python /usr/lib/command-not-found $1
+    return 0
+}
+# }}}
+
+## END OF FILE #################################################################
+# vim:filetype=zsh foldmethod=marker autoindent expandtab shiftwidth=4 
 
 zmodload zsh/mathfunc
 autoload -U zsh-mime-setup
@@ -622,57 +663,50 @@ autoload compinstall
 
 #漂亮又实用的命令高亮界面
 setopt extended_glob
- TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
+  TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
 
- recolor-cmd() {
-     region_highlight=()
-     colorize=true
-     start_pos=0
-     for arg in ${(z)BUFFER}; do
-         ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
-         ((end_pos=$start_pos+${#arg}))
-         if $colorize; then
-             colorize=false
-             res=$(LC_ALL=C builtin type $arg 2>/dev/null)
-             case $res in
-                 *'reserved word'*)   style="fg=magenta,bold";;
-                 *'alias for'*)       style="fg=cyan,bold";;
-                 *'shell builtin'*)   style="fg=yellow,bold";;
-                 *'shell function'*)  style='fg=green,bold';;
-                 *"$arg is"*)
-                     [[ $arg = 'sudo' ]] && style="fg=red,bold" || style="fg=blue,bold";;
-                 *)                   style='none,bold';;
-             esac
-             region_highlight+=("$start_pos $end_pos $style")
-         fi
-         [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
-         start_pos=$end_pos
-     done
- }
+recolor-cmd() {
+    region_highlight=()
+    colorize=true
+    start_pos=0
+    for arg in ${(z)BUFFER}; do
+        ((start_pos+=${#BUFFER[$start_pos+1,-1]}-${#${BUFFER[$start_pos+1,-1]## #}}))
+        ((end_pos=$start_pos+${#arg}))
+        if $colorize; then
+            colorize=false
+            res=$(LC_ALL=C builtin type $arg 2>/dev/null)
+            case $res in
+                *'reserved word'*)   style="fg=magenta,bold";;
+                *'alias for'*)       style="fg=cyan,bold";;
+                *'shell builtin'*)   style="fg=yellow,bold";;
+                *'shell function'*)  style='fg=green,bold';;
+                *"$arg is"*)
+                    [[ $arg = 'sudo' ]] && style="fg=red,bold" || style="fg=blue,bold";;
+                *)                   style='none,bold';;
+            esac
+            region_highlight+=("$start_pos $end_pos $style")
+        fi
+        [[ ${${TOKENS_FOLLOWED_BY_COMMANDS[(r)${arg//|/\|}]}:+yes} = 'yes' ]] && colorize=true
+        start_pos=$end_pos
+    done
+}
 check-cmd-self-insert() { zle .self-insert && recolor-cmd }
- check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
+check-cmd-backward-delete-char() { zle .backward-delete-char && recolor-cmd }
 
- zle -N self-insert check-cmd-self-insert
- zle -N backward-delete-char check-cmd-backward-delete-char
+zle -N self-insert check-cmd-self-insert
+zle -N backward-delete-char check-cmd-backward-delete-char
 
 
-autoload -Uz compinit
-compinit
+#============================================================================================================
+#================================   以下是自己的配置 ==========================
+#============================================================================================================
+
+
+
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# eval "$(starship init zsh)"
-# ZJ_SESSIONS=$(zellij list-sessions)
-# NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
-
-# if [ "${NO_SESSIONS}" -ge 2 ]; then
-#     zellij attach \
-#     "$(echo "${ZJ_SESSIONS}" | sk)"
-# else
-#    zellij attach -c
-# fi
 
 
 
@@ -729,12 +763,7 @@ fi
 # theme.sh papercolor-light
 # theme.sh solarized-light
 # theme.sh synth-midnight-light
-# theme.sh edge-light
-# theme.sh belafonte-day
-# theme.sh tokyo-day
-# theme.sh ayu-light
-# theme.sh clrs
-# theme.sh terminal-basic
+
 
 su() {
 	(
@@ -814,7 +843,7 @@ hour=`date +%H`
 # echo   "hour = ${hour}"
 # echo  ${light_theme[1]}
 
-if (( ${hour}>=7 && ${hour} < 23 ))
+if (( ${hour}>=7 && ${hour} <= 24 ))
 then
     # echo -e "现在是白天\n"
     # echo -e "index1 = ${index1}\n"
@@ -825,11 +854,22 @@ else
     # echo -e "现在是晚上\n"
     # theme.sh ${dark_theme[index2]}
     theme.sh solarized-dark
-    theme.sh selenized-dark
+    # theme.sh selenized-dark
     # echo  "暗夜主题: ${dark_theme[index1]}"
 fi
+# theme.sh selenized-dark
 #<<<<<<
 
+# eval "$(starship init zsh)"
+# ZJ_SESSIONS=$(zellij list-sessions)
+# NO_SESSIONS=$(echo "${ZJ_SESSIONS}" | wc -l)
+
+# if [ "${NO_SESSIONS}" -ge 2 ]; then
+#     zellij attach \
+#     "$(echo "${ZJ_SESSIONS}" | sk)"
+# else
+#    zellij attach -c
+# fi
 
 
 
@@ -852,11 +892,9 @@ unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CUDA_HOME}/lib64
 export PATH=${CUDA_HOME}/bin:${PATH}
-export RANGER_LOAD_DEFAULT_RC=FALSE
 
 
 export NVM_DIR="$HOME/.nvm"
