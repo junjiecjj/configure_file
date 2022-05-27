@@ -464,8 +464,13 @@ export BAT_THEME="OneHalfLight"
 alias fd='fdfind'
 alias fde='fdfind -e'
 alias ndu="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+alias red='redshift -P -O'
 
 alias ci3='cd ~/.config/i3'
+alias csome='cd ~/.config/awesome'
+alias cxmonad='cd ~/.xmonad'
+alias cleft='cd ~/.config/leftwm'
+alias cbsp='cd ~/.config/bspwm'
 alias cdwm='cd ~/tmp/my-dwm'
 alias cc='cd ~/.config'
 
@@ -592,15 +597,15 @@ else
     export EDITOR="nvim"
 fi
 
-#路径别名 {{{
-#进入相应的路径时只要 cd ~xxx
-hash -d d="/home/jack/tmp/my-dwm"
-hash -d i="/home/jack/.config/i3"
-hash -d t="/home/jack/tmp"
-hash -d p="/home/jack/公共的/Python"
-hash -d s="/home/jack/公共的/ShellScript"
-hash -d c="/home/jack/公共的/Linux_C"
-#}}}
+##路径别名 {{{
+##进入相应的路径时只要 cd ~xxx
+#hash -d d="/home/jack/tmp/my-dwm"
+#hash -d i="/home/jack/.config/i3"
+#hash -d t="/home/jack/tmp"
+#hash -d p="/home/jack/公共的/Python"
+#hash -d s="/home/jack/公共的/ShellScript"
+#hash -d c="/home/jack/公共的/Linux_C"
+##}}}
 
 
 #============================================================================================================================
