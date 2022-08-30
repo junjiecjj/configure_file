@@ -1,0 +1,116 @@
+
+#以宽度自适应打开
+set adjust-open "width"
+
+#字体与字号
+set font "Noto Sans CJK SC Regular 10"
+
+#GUI相关，留空可隐藏底部statusbar
+set guioptions ""
+
+#只显示文件名，否则显示完整路径
+set window-title-basename true
+
+#增强搜索，实时搜索
+set incremental-search true
+
+#显示右侧进度条
+set show-v-scrollbar true
+
+#粘贴版
+set selection-clipboard clipboard
+
+#默认高度，像素
+set window-height 760
+
+#默认宽度
+set window-width 1300
+
+
+# zathura使用 rgb() 记法来记录背景颜色，使用的语法如下（我使用的颜色是随便选的，和我vim底色相同）
+set default-bg \#1c1c1c
+
+
+#
+# 普通浏览模式
+# J: 下翻一页
+# K: 上翻一页
+# h,k,j,l
+# Ctrl+t,Ctrl+y: 左右滚动半页
+# Ctrl+d, Ctrl+u: 上下滚动半页
+# t，y： 左右滚动一页
+# Ctrl+f, Ctrl+b: 上下滚动一页
+# space, : 上下滚动一页
+# gg, G, nG: 第一页，最后一页，跳转到第n页
+# H，L: 跳转到当前页面的top，bottom
+# Ctrl+o,Ctrl+i: 移动到之前的跳转的页面，移动到之后跳转的页面，参考vimperator
+# Ctrl+j, Ctrl+k: 在两个跳转之间切换
+# Ctrl+c, Escape: 终止
+# a, s: 以高度或者宽度适应窗口
+# /, ?: 搜索，向前和向后，参考vim
+# o, O: 打开文件
+# f: 链接
+# <:>: 输入命令
+# r: 旋转90度
+# Ctrl+r: 换色
+# R: 重新加载文件
+# Tab: 打开/关闭目录
+# d: 打开/关闭 双页面显示
+# F5: 切换显示模式
+# F11: 切换到全屏模式
+# Ctrl+m: 打开/关闭 输入栏
+# Ctrl+n: 打开/关闭 状态栏
+# +, -, =: 放大，缩小，恢复原始大小
+# n=: 放大到大小为n
+# mX: 快速标记
+# ‘X: 跳转到标记处
+# 目录模式
+# k,j: 移动
+# l,h: 展开，折叠
+# L,H: 全部展开，全部折叠
+# space, Return: 选中并打开
+# 命令行模式（按:进入命令行模式）
+# bmark: 保存书签
+# bdelete: 删除书签
+# blist: 列出书签
+# close: 关闭文档
+# exec: 执行外部命令
+# ifno: 显示文档信息
+# open: 打开一个文档
+# offset: 设置页面偏移
+# print: 打印文档
+# write(!)： 保存文档（强制覆盖）
+# export: 导出附件
+#
+# :bmark xxx    创建书签xxx （长书签）
+# :blist xxx    打开bookmark
+# :bdelete xxx  删除书签
+# :info         显示文档信息
+#
+# # 下面命令和 vim 类似
+# :q            退出
+# /word         搜索word，使用 n / N 跳到下一个(上一个)结果，
+# ?word         搜索 向前（向后）
+
+# 常用快捷键：
+#
+# 按键	功能
+# gg	跳至开头
+# G	跳至结尾
+# j、k、h、l	上、下、左、右移动
+# J、K	翻页（也可以直接用空格、Page Down、Page Up翻页）
+# Tab	打开/关闭index（一般是目录）
+# o	打开另外的文件
+# f	选择链接（按f后所有link都高亮,并附有数字,按相应数字就等价与点击link）
+# m	标记位置
+# '	跳转到标记位置
+# [0-9]+G	到指定页
+# a	放大页面到适应高度
+# s	放大页面到适应高度宽度
+# d	双页平铺
+# F5	全屏
+# ^n	显示/隐藏底部状态栏
+# ^m	打开/关闭底部输入栏
+# ^q或:q	退出
+# :bmark xxx	创建书签
+# :blist	打开书签
