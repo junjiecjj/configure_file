@@ -9,3 +9,14 @@ host shenma
 host xxxx
     user junjie
     hostname  111.111.111.111
+
+host xxxx
+    user junjie
+    hostname  111.111.111.111
+
+ServerAliveInterval 60
+
+
+
+
+# ~/.ssh/config
