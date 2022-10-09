@@ -5,17 +5,25 @@ host hdp
 host shenma
     user junjie
     hostname  111.111.111.111
+host shenma
+    user jjchen
+    hostname 111.127.204.3
 
-host xxxx
+host 1408
     user junjie
-    hostname  111.111.111.111
+    hostname  111.195.92.166
 
-host xxxx
-    user junjie
-    hostname  111.111.111.111
+host vultr
+    user jack
+    hostname 45.111.11.99
 
+
+Host *
+TCPKeepAlive=yes
+# Client每隔 60 秒发送一次请求给 Server，然后 Server响应，从而保持连接
 ServerAliveInterval 60
-
+# Client发出请求后，服务器端没有响应得次数达到3，就自动断开连接，正常情况下，Server 不会不响应
+ServerAliveCountMax 3
 
 
 
