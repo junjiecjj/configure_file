@@ -1,11 +1,11 @@
-# bash(1) for non-login shells.
+# ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # If not running interactively, don't do anything
 case $- in
-*i*) ;;
-*) return ;;
+    *i*) ;;
+      *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-xterm-color | *-256color) color_prompt=yes ;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -47,46 +47,30 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-        color_prompt=
+	color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    #[jack@unix:~16:43:55]$ 形式的
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[01;31m\]]\n\[\e[01;31m\]$\[\e[01;32m\] '
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[01;37m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[m\]\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
 else
-    #[jack@unix:~16:43:55]$ 形式的
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[01;37m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[m\]\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm* | rxvt*)
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;01m\]]\n\[\e[01;31m\]$\[\e[01;32m\] '
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[01;37m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
+xterm*|rxvt*)
+    #PS1="\[\033[01;31m\][\u@\h\[\033[01m\]:\[\033[01;33m\]\w\[\033[01;36m\]\t\[\e[31;1m\]]\[\033[01;32m\]\$"
+    #PS1='${debian_chroot:+($debian_chroot)}\n\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;04;31m\]周\d日\[\e[m\], \[\e[01;32m\]时间: \[\e[01;04;31m\]\t\[\e[m\]\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;34m\]# \[\e[01;36m\]\u\[\e[01;37m\] @ \[\e[01;31m\]\H \[\e[01;37m\]in \[\e[01;33m\]\w \[\e[01;32m\][日期: \[\e[01;31m\]周\d日\[\e[m\], \[\e[01;32m\]时间: \[\e[01;31m\]\t\[\e[m\]\[\e[01;32m\]]\n\[\e[01;31m\]\$\[\e[01;32m\] '
     ;;
-*) ;;
-esac
-
-case ${TERM} in
-
-  xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
-     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
-
-    ;;
-  screen*)
-    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+*)
     ;;
 esac
 
@@ -114,6 +98,7 @@ alias pacman='sudo pacman-color'
 alias p='sudo pacman-color'
 alias y='yaourt'
 alias h='htop'
+alias vim='vim'
 alias sound='alsamixer'
 
 #历史命令 top10
@@ -295,12 +280,9 @@ lg()
     fi
 }
 
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/snap/bin:$PATH"
-# eval "$(starship init bash)"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -315,11 +297,11 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
 
 export  PATH="$PATH:/usr/local/cuda-9.0/bin"
@@ -330,56 +312,29 @@ export CUDA_HOME=/usr/local/cuda-9.1
 #export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 
+
 # added by Anaconda3 installer
 export PATH="/home/jack/anaconda3/bin:$PATH"
-# commented out by conda initialize
-export PATH=~/Qt5.9.9/Tools/QtCreator/bin:$PATH
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jack/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jack/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jack/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jack/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+source "$HOME/.cargo/env"
 
 [[ -s /home/jack/.autojump/etc/profile.d/autojump.sh ]] && source /home/jack/.autojump/etc/profile.d/autojump.sh
+
 LANG=zh_CN.UTF-8
 LANGUAGE=zh_CN.UTF-8
 
-
-source <(kitty + complete setup bash)
 # Change ls colours
 LS_COLORS="ow=01;36;40" && export LS_COLORS
 
-export DISPLAY=localhost:0
-export DISPLAY=:0.0
-export EDITOR=/usr/bin/vim
+#export DISPLAY=localhost:0
+export EDITOR=/usr/bin/nvim
 
-export LC_ALL=zh_CN.UTF-8
-export LANG=zh_CN.UTF-8
-export LANGUAGE=zh_CN:en_US
-export LC_CTYPE=en_US.UTF-8
-
+export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-
-
 export TERM=xterm-256color
 LS_COLORS="di=01;04;33:fi=01;32;40:ln=01;36:so=00;36:bd=05;95:cd=05;95:mi=00;90:*.md=01;36:*.docx=01;92:*.doc=01;92:*.pdf=01;92:*.tex=01;92:*.c=01;34:*.cpp=01;34:*.ex=00;91"
-source "$HOME/.cargo/env"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 
 if command -v theme.sh > /dev/null; then
    	[ -e ~/.theme_history ] && theme.sh "$(theme.sh -l|tail -n1)"
@@ -397,41 +352,6 @@ if command -v theme.sh > /dev/null; then
 	# Interactively load a dark theme
 	alias thd='theme.sh --dark -i'
 fi
-
-# theme.sh  gruvbox-mix-light-medium
-# theme.sh desert-night
-# theme.sh mono-amber
-# theme.sh elic
-# theme.sh apathy
-# theme.sh desert
-# theme.sh darcula
-# theme.sh urple
-# theme.sh unikitty-dark
-
-# theme.sh solarized-dark-higher-contrast
-# theme.sh  elementary
-# theme.sh   warm-neon
-# theme.sh pico
-# theme.sh tango
-# theme.sh mellow-purple
-# theme.sh yachiyo
-# theme.sh windows-nt
-# theme.sh solarized-darcula
-# theme.sh freya
-# theme.sh solarized-light
-# theme.sh molokai
-# theme.sh vs-code-dark-plus
-# theme.sh goa-base
-# theme.sh mathias
-# theme.sh vag
-# theme.sh aco
-# theme.sh man-page
-# theme.sh papercolor-light
-# theme.sh solarized-light
-# theme.sh syntax-midnight-light
-# theme.sh edge-light
-# theme.sh belafonte-day
-theme.sh tokyo-day
 
 #>>>>>>下面根据当前时间自动随机选择主题
 light_theme=(gruvbox-mix-light-medium tokyo-day belafonte-day edge-light ayu-light terminal-basic clrs novel synth-midnight-light solarized-light windows-95-light   papercolor-light gruvbox-light-soft  novel)
@@ -457,40 +377,14 @@ if (( ${hour}>=7 && ${hour} < 23 ))
 then
     # echo -e "现在是白天\n"
     # echo -e "index1 = ${index1}\n"
-    # theme.sh ${light_theme[index1]}
-    theme.sh novel
+    theme.sh ${light_theme[index1]}
     # echo  "白天主题: ${light_theme[index1]}"
 else
     # echo -e "现在是晚上\n"
-    # theme.sh ${dark_theme[index2]}
-    theme.sh solarized-dark
-    theme.sh selenized-dark
+    theme.sh ${dark_theme[index2]}
     # echo  "暗夜主题: ${dark_theme[index1]}"
 fi
 #<<<<<<
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jack/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jack/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jack/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jack/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-export CUDA_HOME=/usr/local/cuda
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CUDA_HOME}/lib64
-export PATH=${CUDA_HOME}/bin:${PATH}
-
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
@@ -500,3 +394,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 
+
+
+
+
+. "$HOME/.cargo/env"
