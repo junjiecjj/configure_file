@@ -394,7 +394,14 @@ export NVM_DIR="$HOME/.nvm"
 
 
 
-
+# Mosek 配置
+export PATH=$PATH:/home/jack/mosek/10.0/tools/platform/linux64x86/bin
+export PATH=$PATH:/home/jack/mosek/mosek.lic
+# GUROBI 配置
+export GUROBI_HOME="/home/jack/gurobi1000/linux64" 
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE="/home/jack/gurobi1000/gurobi.lic" 
 
 
 
