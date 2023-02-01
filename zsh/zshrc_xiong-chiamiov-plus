@@ -512,6 +512,10 @@ alias nalaup='sudo nala update ; sudo nala upgrade'
 alias lsblk='lsblk -f'
 alias df='df -Thl'
 
+
+YEAR=`date +'%Y'`
+alias cal='date && cal ${YEAR}'
+
 autoload bashcompinit
 bashcompinit
 # source /usr/share/bash-completion/completions/nala
